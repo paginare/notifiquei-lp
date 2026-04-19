@@ -134,6 +134,7 @@
     nav { margin: 12px 12px 0; }
     .nav-links { display: none; }
     .nav-login { display: none; }
+    .nav-cta-group .btn-brand { display: none; }
     .nav-burger { display: flex; }
 
     nav.open .nav-inner {
@@ -155,6 +156,12 @@
     }
     nav.open .nav-links a:last-child { border-bottom: none; }
     nav.open .nav-login-mobile { display: block !important; opacity: 0.55; }
+    nav.open .nav-cta-group .btn-brand {
+      display: block;
+      width: calc(100% - 36px);
+      margin: 12px 18px 4px;
+      text-align: center;
+    }
 
     nav.open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     nav.open .nav-burger span:nth-child(2) { opacity: 0; }
