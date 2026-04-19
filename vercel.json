@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "landing-pages",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
