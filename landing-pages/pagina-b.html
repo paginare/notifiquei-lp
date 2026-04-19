@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifiquei — Cada comentário sem resposta é uma venda perdida</title>
+  <meta name="description" content="O Notifiquei responde DMs, comentários e stories automaticamente — em segundos, com a sua voz. Você só fala com quem já quer comprar.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #FF1F6D;
+      --brand-dark: #C81558;
+      --brand-light: #FFF0F5;
+      --ink: #111111;
+      --ink-soft: #555555;
+      --ink-muted: #888888;
+      --bg: #FFFFFF;
+      --bg-alt: #F7F8FA;
+      --border: #E8E8E8;
+      --display: 'Bricolage Grotesque', system-ui, sans-serif;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Reveal animations */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .rv-d1 { transition-delay: 0.1s; }
+    .rv-d2 { transition-delay: 0.2s; }
+    .rv-d3 { transition-delay: 0.3s; }
+    .rv-d4 { transition-delay: 0.4s; }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--brand);
+      color: white;
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--sans);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 31, 109, 0.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-ghost:hover {
+      border-color: var(--ink-muted);
+      color: var(--ink);
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Section headings */
+    .section-h2 {
+      font-family: var(--display);
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    /* ============================================
+       NAV
+    ============================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      height: 64px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-svg {
+      height: 22px;
+      width: auto;
+      color: var(--brand);
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-login {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      transition: color 0.2s ease;
+    }
+    .nav-login:hover { color: var(--ink); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      background: var(--brand);
+      color: white;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .nav-cta:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .nav-burger:hover { background: var(--bg-alt); }
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 28px 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .nav-mobile-menu .nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .nav-mobile-menu .nav-links li {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-mobile-menu .nav-links li:last-child { border-bottom: none; }
+    .nav-mobile-menu .nav-links a {
+      display: block;
+      padding: 14px 0;
+      font-size: 15px;
+    }
+    .nav-mobile-menu .nav-mobile-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      align-items: center;
+    }
+    .nav-mobile-menu .nav-login { font-size: 15px; }
+    .nav-mobile-menu .nav-cta { flex: 1; justify-content: center; }
+
+    nav.open .nav-mobile-menu { display: block; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-actions { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      padding: 80px 0 100px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-proof {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .avatars {
+      display: flex;
+      align-items: center;
+    }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-right: -10px;
+      flex-shrink: 0;
+    }
+    .avatar:last-child { margin-right: 0; }
+
+    .proof-text {
+      font-size: 14px;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .stars {
+      color: #F59E0B;
+      font-size: 14px;
+    }
+    .stars-score {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    /* DM Card mockup */
+    .dm-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px -15px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .dm-card-header {
+      background: var(--bg-alt);
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dm-card-header .dm-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .dm-card-header .dm-icon svg {
+      width: 16px;
+      height: 16px;
+      color: white;
+    }
+
+    .dm-card-header-text {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .dm-card-header-text span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 1px;
+    }
+
+    .dm-badge-active {
+      font-size: 11px;
+      font-weight: 600;
+      color: #16A34A;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 999px;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+
+    .dm-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bubble-received {
+      background: #F0F0F0;
+      border-radius: 4px 16px 16px 16px;
+      padding: 10px 14px;
+      font-size: 14px;
+      max-width: 80%;
+      align-self: flex-start;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .bubble-meta {
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+
+    .bubble-sent {
+      background: var(--brand);
+      color: white;
+      border-radius: 16px 4px 16px 16px;
+      padding: 10px 14px;
+      font-size: 14px;
+      max-width: 85%;
+      align-self: flex-end;
+      line-height: 1.4;
+    }
+
+    .bubble-auto-badge {
+      font-size: 11px;
+      color: var(--brand);
+      background: var(--brand-light);
+      padding: 4px 10px;
+      border-radius: 999px;
+      align-self: flex-end;
+      white-space: nowrap;
+    }
+
+    /* ============================================
+       TRUST BAR
+    ============================================ */
+    .trust-bar {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+
+    .trust-dot {
+      color: var(--border);
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* ============================================
+       FEATURE BLOCKS
+    ============================================ */
+    .feature-block {
+      padding: 100px 0;
+    }
+    .feature-block.alt { background: var(--bg-alt); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .feature-grid.reversed { direction: rtl; }
+    .feature-grid.reversed > * { direction: ltr; }
+
+    .feature-text .eyebrow { margin-bottom: 12px; }
+
+    .feature-text .section-h2 { margin-bottom: 16px; }
+
+    .feature-desc {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .feature-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-bullets li {
+      font-size: 15px;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .feature-bullets li::before {
+      content: "✓";
+      color: var(--brand);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Metric card */
+    .metric-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .metric-number {
+      font-family: var(--display);
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 24px;
+    }
+
+    .metric-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .metric-comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .metric-row-label { color: var(--ink-muted); }
+    .metric-row-value { font-weight: 600; }
+    .metric-row-value.bad { color: #DC2626; }
+    .metric-row-value.good { color: #16A34A; }
+
+    .metric-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: var(--bg-alt);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .metric-bar {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .metric-bar.bad { background: #DC2626; width: 100%; }
+    .metric-bar.good { background: #16A34A; width: 2%; }
+
+    .metric-badge {
+      font-size: 11px;
+      color: var(--ink-muted);
+      background: var(--bg-alt);
+      border-radius: 999px;
+      padding: 4px 12px;
+      display: inline-block;
+    }
+
+    /* Flow demo */
+    .flow-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .flow-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .fnode {
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      background: white;
+      width: 100%;
+      text-align: center;
+    }
+
+    .fnode.trigger {
+      border-color: var(--brand);
+      background: var(--brand-light);
+      color: var(--brand);
+    }
+
+    .fnode.outcome {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    .farrow {
+      color: #CCC;
+      font-size: 20px;
+      text-align: center;
+      padding: 6px 0;
+      line-height: 1;
+    }
+
+    /* Dashboard card */
+    .dashboard-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .dashboard-header {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .kpi-card {
+      background: var(--bg-alt);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .kpi-number {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .chart-badge {
+      font-size: 12px;
+      color: #16A34A;
+      background: #F0FDF4;
+      border-radius: 999px;
+      padding: 4px 10px;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       COMPARISON TABLE
+    ============================================ */
+    .vs-section {
+      background: var(--bg-alt);
+      padding: 100px 0;
+    }
+
+    .vs-header { text-align: center; margin-bottom: 48px; }
+    .vs-header .section-h2 { margin-bottom: 12px; }
+    .vs-sub {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .compare-table {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      align-items: center;
+    }
+
+    .compare-row.head {
+      background: var(--bg-alt);
+    }
+
+    .compare-cell {
+      padding: 18px 24px;
+      font-size: 15px;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .compare-row:last-child .compare-cell { border-bottom: none; }
+
+    .compare-row.head .compare-cell {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+    }
+
+    .compare-row.head .compare-cell.notifiquei-col {
+      color: var(--brand);
+    }
+
+    .compare-cell.feature-name {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .compare-cell.manychat-col {
+      color: var(--ink-muted);
+    }
+
+    .compare-cell.notifiquei-col {
+      font-weight: 500;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notifiquei-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--brand);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       PLANOS
+    ============================================ */
+    .plans-section {
+      padding: 100px 0;
+    }
+
+    .plans-header { text-align: center; margin-bottom: 48px; }
+    .plans-header .section-h2 { margin-bottom: 12px; }
+    .plans-sub {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .plan-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .plan-card.featured {
+      border-color: var(--brand);
+      box-shadow: 0 8px 32px rgba(255, 31, 109, 0.12);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brand);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .plan-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .plan-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      margin-bottom: 0;
+    }
+
+    .plan-sym {
+      font-size: 16px;
+      color: var(--ink-soft);
+    }
+
+    .plan-amt {
+      font-family: var(--display);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .plan-per {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 24px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .plan-features li {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-features li::before {
+      content: "✓";
+      color: var(--brand);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: auto;
+      transition: all 0.2s ease;
+    }
+
+    .plan-btn.normal {
+      background: var(--bg-alt);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .plan-btn.normal:hover {
+      background: var(--border);
+    }
+
+    .plan-btn.featured {
+      background: var(--brand);
+      color: white;
+      border: none;
+    }
+    .plan-btn.featured:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(255, 31, 109, 0.3);
+    }
+
+    .plan-guarantee {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       FAQ
+    ============================================ */
+    .faq-section {
+      background: var(--bg-alt);
+      padding: 100px 0;
+    }
+
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-header .section-h2 { margin-bottom: 0; }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .faq-head {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+      line-height: 1;
+      width: 24px;
+      text-align: center;
+    }
+
+    .faq-body {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      display: none;
+    }
+
+    .faq-item.open .faq-body { display: block; }
+
+    /* ============================================
+       FINAL CTA
+    ============================================ */
+    .final-cta {
+      background: #111111;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .final-cta h2 {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .final-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .final-sub-link {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: #111111;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding: 64px 0 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand-col .footer-logo {
+      height: 20px;
+      width: auto;
+      color: white;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: border-color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.6;
+    }
+    .footer-social-link:hover { opacity: 1; border-color: rgba(255,255,255,0.3); }
+    .footer-social-link svg { width: 18px; height: 18px; color: white; }
+
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: white; }
+
+    .footer-contact-item {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    .footer-contact-item:hover { color: white; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      color: #16A34A;
+      font-size: 10px;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 56px 0 72px; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .feature-block { padding: 64px 0; }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .feature-grid.reversed { direction: ltr; }
+
+      .vs-section { padding: 64px 0; }
+      .plans-section { padding: 64px 0; }
+      .faq-section { padding: 64px 0; }
+      .final-cta { padding: 72px 0; }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding: 48px 0 36px;
+      }
+
+      .kpi-grid { gap: 8px; }
+
+      .metric-card { padding: 28px 20px; }
+      .metric-number { font-size: 56px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .hero-ctas .btn-primary,
+      .hero-ctas .btn-ghost { width: 100%; justify-content: center; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .compare-cell {
+        font-size: 11px;
+        padding: 12px 8px;
+      }
+      .compare-row.head .compare-cell {
+        font-size: 10px;
+        padding: 12px 8px;
+      }
+      .compare-row { grid-template-columns: 1fr 1fr 1fr; }
+
+      .trust-bar-inner { gap: 8px; }
+      .trust-item { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     SVG Logo Symbol
+============================================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="notifiquei-logo" viewBox="0 0 290 50" fill="currentColor">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- =============================================
+     NAV
+============================================= -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Notifiquei">
+      <svg class="logo-svg" viewBox="0 0 290 50" aria-hidden="true"><use href="#notifiquei-logo"/></svg>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#como">Como funciona</a></li>
+      <li><a href="#features">Funcionalidades</a></li>
+      <li><a href="#vs">vs. ManyChat</a></li>
+      <li><a href="#planos">Planos</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://app.notifiquei.com.br/login" class="nav-login">Entrar</a>
+      <a href="#planos" class="nav-cta">Começar grátis →</a>
+    </div>
+
+    <button class="nav-burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile-menu">
+    <ul class="nav-links" role="list">
+      <li><a href="#como">Como funciona</a></li>
+      <li><a href="#features">Funcionalidades</a></li>
+      <li><a href="#vs">vs. ManyChat</a></li>
+      <li><a href="#planos">Planos</a></li>
+    </ul>
+    <div class="nav-mobile-actions">
+      <a href="https://app.notifiquei.com.br/login" class="nav-login">Entrar</a>
+      <a href="#planos" class="nav-cta">Começar grátis →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <!-- Text column -->
+      <div class="hero-text">
+        <p class="eyebrow rv">API oficial Meta · Feito pra quem vende no Instagram</p>
+        <h1 class="hero-h1 rv rv-d1">Cada comentário sem resposta é uma venda perdida.</h1>
+        <p class="hero-sub rv rv-d2">O Notifiquei responde DMs, comentários e stories automaticamente — em segundos, com a sua voz. Você só fala com quem já quer comprar.</p>
+        <div class="hero-ctas rv rv-d3">
+          <a href="#planos" class="btn-primary">Começar grátis →</a>
+          <a href="#como" class="btn-ghost">Ver como funciona</a>
+        </div>
+        <div class="hero-proof rv rv-d4">
+          <div class="avatars">
+            <div class="avatar" style="background:#FFD4DE;" aria-hidden="true"></div>
+            <div class="avatar" style="background:#FF1F6D;" aria-hidden="true"></div>
+            <div class="avatar" style="background:#FFB3C6;" aria-hidden="true"></div>
+            <div class="avatar" style="background:#C81558;" aria-hidden="true"></div>
+          </div>
+          <span class="proof-text">+2.000 negócios e criadores automatizando</span>
+          <span class="stars" aria-label="5 estrelas">★★★★★</span>
+          <span class="stars-score">4.9/5</span>
+        </div>
+      </div>
+
+      <!-- Visual column -->
+      <div class="rv rv-d2">
+        <div class="dm-card">
+          <div class="dm-card-header">
+            <div class="dm-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <div class="dm-card-header-text">
+              Instagram Direct · Automático
+              <span>Resposta configurada por você</span>
+            </div>
+            <span class="dm-badge-active">● Ativo</span>
+          </div>
+          <div class="dm-card-body">
+            <div class="bubble-received">quero saber mais sobre isso 👀</div>
+            <div class="bubble-meta">Comentário recebido · agora</div>
+            <div class="bubble-sent">Oi! 😊 Acabei de te mandar os detalhes no DM. Qualquer dúvida é só chamar!</div>
+            <div class="bubble-auto-badge">⚡ Respondido em 3 segundos · Automático</div>
+            <div class="bubble-sent">Aqui o link: notifiquei.com.br/promo 🔗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     TRUST BAR
+============================================= -->
+<div class="trust-bar">
+  <div class="wrap">
+    <div class="trust-bar-inner">
+      <span class="trust-item">2.000+ contas ativas</span>
+      <span class="trust-dot" aria-hidden="true">·</span>
+      <span class="trust-item">API oficial Meta</span>
+      <span class="trust-dot" aria-hidden="true">·</span>
+      <span class="trust-item">Sem código</span>
+      <span class="trust-dot" aria-hidden="true">·</span>
+      <span class="trust-item">7 dias de garantia</span>
+      <span class="trust-dot" aria-hidden="true">·</span>
+      <span class="trust-item">★★★★★ 4.9/5</span>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     FEATURE BLOCK 1 — Respostas instantâneas
+============================================= -->
+<section class="feature-block" id="como">
+  <div class="wrap">
+    <div class="feature-grid">
+      <!-- Text -->
+      <div class="feature-text rv">
+        <p class="eyebrow">Respostas instantâneas</p>
+        <h2 class="section-h2">Você posta. Alguém comenta. O Notifiquei já respondeu.</h2>
+        <p class="feature-desc">Configura uma vez: quando alguém comentar uma palavra-chave no seu post, o Notifiquei manda o DM automaticamente. Sem demora, sem perda.</p>
+        <ul class="feature-bullets">
+          <li>Cobre DMs, comentários e stories</li>
+          <li>Resposta em segundos, não horas</li>
+          <li>Sua voz, seu texto — você escreve</li>
+        </ul>
+      </div>
+
+      <!-- Visual: Metric card -->
+      <div class="rv rv-d1">
+        <div class="metric-card">
+          <div class="metric-number">3s</div>
+          <div class="metric-label">tempo médio de resposta automática</div>
+          <div class="metric-divider"></div>
+          <div class="metric-comparison">
+            <div class="metric-row">
+              <span class="metric-row-label">Antes (manual)</span>
+              <div class="metric-bar-wrap"><div class="metric-bar bad"></div></div>
+              <span class="metric-row-value bad">4h 23min</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-row-label">Depois (Notifiquei)</span>
+              <div class="metric-bar-wrap"><div class="metric-bar good"></div></div>
+              <span class="metric-row-value good">3s</span>
+            </div>
+          </div>
+          <span class="metric-badge">Dados de +2.000 usuários ativos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FEATURE BLOCK 2 — Construtor visual
+============================================= -->
+<section class="feature-block alt" id="features">
+  <div class="wrap">
+    <div class="feature-grid reversed">
+      <!-- Visual: Flow builder -->
+      <div class="rv">
+        <div class="flow-card">
+          <div class="flow-demo">
+            <div class="fnode trigger">💬 Comentário "quero"</div>
+            <div class="farrow" aria-hidden="true">↓</div>
+            <div class="fnode action">📩 Enviar DM automático</div>
+            <div class="farrow" aria-hidden="true">↓</div>
+            <div class="fnode action">🔗 Enviar link do produto</div>
+            <div class="farrow" aria-hidden="true">↓</div>
+            <div class="fnode outcome">✅ Lead qualificado</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="feature-text rv rv-d1">
+        <p class="eyebrow">Construtor visual</p>
+        <h2 class="section-h2">Arrasta, solta, salva. Pronto.</h2>
+        <p class="feature-desc">Interface visual sem código. Escolhe o gatilho, define a ação, salva o fluxo. Se você sabe usar o Instagram, sabe usar o Notifiquei.</p>
+        <ul class="feature-bullets">
+          <li>Templates prontos pra começar em 5 min</li>
+          <li>Fluxos com múltiplas etapas</li>
+          <li>Ativa e pausa com 1 clique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FEATURE BLOCK 3 — Analytics
+============================================= -->
+<section class="feature-block">
+  <div class="wrap">
+    <div class="feature-grid">
+      <!-- Text -->
+      <div class="feature-text rv">
+        <p class="eyebrow">Analytics em tempo real</p>
+        <h2 class="section-h2">Sabe exatamente o que está vendendo.</h2>
+        <p class="feature-desc">Acompanha quantos DMs foram enviados, quantos viraram resposta e quantos viraram venda. Sem achismo, sem planilha manual.</p>
+        <ul class="feature-bullets">
+          <li>Métricas por fluxo e por post</li>
+          <li>Relatório semanal automático</li>
+          <li>Vê qual copy converte mais</li>
+        </ul>
+      </div>
+
+      <!-- Visual: Dashboard card -->
+      <div class="rv rv-d1">
+        <div class="dashboard-card">
+          <div class="dashboard-header">Dashboard · Últimos 30 dias</div>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">847</div>
+              <div class="kpi-label">DMs enviados</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">312</div>
+              <div class="kpi-label">Respostas</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">89</div>
+              <div class="kpi-label">Vendas</div>
+            </div>
+          </div>
+          <svg viewBox="0 0 200 60" style="width:100%;margin-top:16px" aria-hidden="true">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF1F6D"/>
+                <stop offset="100%" stop-color="#FF1F6D" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polyline points="0,50 40,38 80,30 120,20 160,12 200,8" fill="none" stroke="#FF1F6D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,50 40,38 80,30 120,20 160,12 200,8 200,60 0,60" fill="url(#chartGrad)" opacity="0.15"/>
+          </svg>
+          <div style="text-align:center">
+            <span class="chart-badge">↑ +47% vs mês anterior</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     COMPARISON — vs ManyChat
+============================================= -->
+<section class="vs-section" id="vs">
+  <div class="wrap">
+    <div class="vs-header rv">
+      <p class="eyebrow">Comparação honesta</p>
+      <h2 class="section-h2">Mais barato. Em português. Sem complicação.</h2>
+      <p class="vs-sub">Não inventamos nada. Só ouvimos o que o pessoal reclamava do ManyChat e fizemos diferente.</p>
+    </div>
+
+    <div class="compare-table rv rv-d1">
+      <div class="compare-row head" role="row">
+        <div class="compare-cell" role="columnheader"></div>
+        <div class="compare-cell" role="columnheader">ManyChat</div>
+        <div class="compare-cell notifiquei-col" role="columnheader">★ Notifiquei</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">Preço inicial</div>
+        <div class="compare-cell manychat-col" role="cell">US$ 15+ (≈ R$ 90)</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>R$ 99 · tudo incluso</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">Suporte em português</div>
+        <div class="compare-cell manychat-col" role="cell">Chat em inglês</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>WhatsApp, em minutos</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">Configuração</div>
+        <div class="compare-cell manychat-col" role="cell">Complexa, feita pra dev</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>5 minutos, sem código</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">API oficial da Meta</div>
+        <div class="compare-cell manychat-col" role="cell">Sim</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>Sim · parceiro oficial</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">Foco no Brasil</div>
+        <div class="compare-cell manychat-col" role="cell">Produto global</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>Feito pra criador BR</div>
+      </div>
+      <div class="compare-row" role="row">
+        <div class="compare-cell feature-name" role="cell">Controle via WhatsApp</div>
+        <div class="compare-cell manychat-col" role="cell">Não existe</div>
+        <div class="compare-cell notifiquei-col" role="cell"><span class="notifiquei-dot" aria-hidden="true"></span>Incluso no Business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     PLANOS
+============================================= -->
+<section class="plans-section" id="planos">
+  <div class="wrap">
+    <div class="plans-header rv">
+      <p class="eyebrow">Planos</p>
+      <h2 class="section-h2">Mais barato que perder um lead quente.</h2>
+      <p class="plans-sub">Um funcionário custa R$ 2.500/mês. O Notifiquei começa em R$ 99 e não tira férias.</p>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Solo -->
+      <div class="plan-card rv rv-d1">
+        <div class="plan-name">Solo</div>
+        <div class="plan-desc">Para quem está começando a automatizar</div>
+        <div class="plan-price">
+          <span class="plan-sym">R$</span>
+          <span class="plan-amt">99</span>
+          <span class="plan-per">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li>1 conta Instagram</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates básicos</li>
+          <li>Atendimento chat</li>
+        </ul>
+        <a href="https://pay.cakto.com.br/zkfbz2t_694723" class="plan-btn normal">Começar agora</a>
+        <p class="plan-guarantee">7 dias de garantia total</p>
+      </div>
+
+      <!-- Pro (featured) -->
+      <div class="plan-card featured rv rv-d2">
+        <span class="plan-badge">Mais popular</span>
+        <div class="plan-name">Pro</div>
+        <div class="plan-desc">Para negócios em crescimento</div>
+        <div class="plan-price">
+          <span class="plan-sym">R$</span>
+          <span class="plan-amt">499</span>
+          <span class="plan-per">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li>5 contas Instagram</li>
+          <li>Gestão de times</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates completos</li>
+          <li>Atendimento chat</li>
+        </ul>
+        <a href="https://pay.cakto.com.br/sniut4t" class="plan-btn featured">Começar agora</a>
+        <p class="plan-guarantee">7 dias de garantia total</p>
+      </div>
+
+      <!-- Business -->
+      <div class="plan-card rv rv-d3">
+        <div class="plan-name">Business</div>
+        <div class="plan-desc">Para agências e times maiores</div>
+        <div class="plan-price">
+          <span class="plan-sym">R$</span>
+          <span class="plan-amt">799</span>
+          <span class="plan-per">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li>10 contas Instagram</li>
+          <li>Gestão de times</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates completos</li>
+          <li>Atendimento VIP WhatsApp</li>
+          <li>Controle via WhatsApp</li>
+        </ul>
+        <a href="https://pay.cakto.com.br/tky3kae" class="plan-btn normal">Começar agora</a>
+        <p class="plan-guarantee">7 dias de garantia total</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FAQ
+============================================= -->
+<section class="faq-section" id="faq">
+  <div class="wrap">
+    <div class="faq-header rv">
+      <p class="eyebrow">Dúvidas comuns</p>
+      <h2 class="section-h2">Respostas diretas.</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item rv">
+        <div class="faq-head">
+          <span class="faq-question">Isso pode bloquear meu Instagram?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">Não. Somos provedor oficial da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento.</div>
+      </div>
+
+      <div class="faq-item rv rv-d1">
+        <div class="faq-head">
+          <span class="faq-question">Preciso saber programar?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual.</div>
+      </div>
+
+      <div class="faq-item rv rv-d2">
+        <div class="faq-head">
+          <span class="faq-question">Funciona pra e-commerce?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">Sim. Temos clientes vendendo moda, cosmético, suplemento e produto físico em geral. O fluxo ideal muda um pouco, mas tem template pronto pra isso.</div>
+      </div>
+
+      <div class="faq-item rv rv-d3">
+        <div class="faq-head">
+          <span class="faq-question">Qual a diferença pro ManyChat?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">Mais barato, suporte em português, interface mais simples, e foco exclusivo no Instagram pro mercado brasileiro.</div>
+      </div>
+
+      <div class="faq-item rv rv-d4">
+        <div class="faq-head">
+          <span class="faq-question">Posso cancelar quando quiser?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">A qualquer momento, pelo painel. Nos primeiros 7 dias, devolvemos 100% do valor sem perguntar porquê.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FINAL CTA
+============================================= -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2 class="rv">Enquanto você leu essa página,<br>alguém comentou <em style="color:var(--brand);font-style:normal">"quero"</em> no seu post.</h2>
+    <p class="final-sub rv rv-d1">O Notifiquei garante que você responde em segundos — toda vez.</p>
+    <a href="#planos" class="btn-primary rv rv-d2" style="font-size:16px;padding:16px 36px">Automatizar agora →</a>
+    <p class="final-sub-link rv rv-d3">7 dias de garantia · Cancela quando quiser · Sem fidelidade</p>
+  </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand-col">
+        <a href="#" aria-label="Notifiquei">
+          <svg class="footer-logo" viewBox="0 0 290 50" aria-hidden="true"><use href="#notifiquei-logo"/></svg>
+        </a>
+        <p class="footer-tagline">Automação de vendas no Instagram com a API oficial da Meta.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/notifiquei" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/@notifiquei" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/551231995949" class="footer-social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Produto -->
+      <div>
+        <p class="footer-col-title">Produto</p>
+        <ul class="footer-links">
+          <li><a href="#como">Como funciona</a></li>
+          <li><a href="#features">Funcionalidades</a></li>
+          <li><a href="#vs">vs. ManyChat</a></li>
+          <li><a href="#planos">Planos</a></li>
+        </ul>
+      </div>
+
+      <!-- Notifiquei -->
+      <div>
+        <p class="footer-col-title">Notifiquei</p>
+        <ul class="footer-links">
+          <li><a href="criadores.html">Pra criadores</a></li>
+          <li><a href="afiliados.html">Programa de afiliados</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/termos-de-uso">Termos</a></li>
+          <li><a href="/politica-de-privacidade">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div>
+        <p class="footer-col-title">Contato</p>
+        <a href="mailto:contato@notifiquei.com.br" class="footer-contact-item">contato@notifiquei.com.br</a>
+        <a href="https://wa.me/551231995949" class="footer-contact-item" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Notifiquei. Todos os direitos reservados.</span>
+      <span class="footer-status">
+        <span class="status-dot">●</span>
+        Todos os sistemas operando · Parceiro oficial Meta
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // IntersectionObserver para reveals .rv
+  const obs = new IntersectionObserver((ents) => {
+    ents.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+  // Trigger hero reveals on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.hero .rv').forEach(el => el.classList.add('in'));
+    }, 100);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(it => {
+    it.querySelector('.faq-head').addEventListener('click', () => {
+      const isOpen = it.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-icon').textContent = '+';
+        other.querySelector('.faq-body').style.display = 'none';
+      });
+      // Toggle clicked
+      if (!isOpen) {
+        it.classList.add('open');
+        it.querySelector('.faq-icon').textContent = '−';
+        it.querySelector('.faq-body').style.display = 'block';
+      }
+    });
+  });
+
+  // Hamburger menu
+  (function () {
+    const burger = document.querySelector('.nav-burger');
+    const nav = document.querySelector('nav');
+    if (!burger) return;
+
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+
+    nav.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
