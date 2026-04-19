@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notifiquei — Pedido confirmado!</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<meta name="theme-color" content="#FF1F6D">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #FF1F6D;
+    --brand-dark: #C81558;
+    --brand-light: #FFEFF4;
+    --brand-soft: #FFD4DE;
+    --cream: #FFF9F3;
+    --cream-2: #F5ECE0;
+    --ink: #1A1416;
+    --ink-2: #3A2F33;
+    --ink-soft: #6B5A5F;
+    --ink-muted: #A39196;
+    --line: #EADDD8;
+    --green: #1A7A4A;
+    --green-bg: #EDFAF3;
+    --display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 16px; z-index: 100;
+    margin: 16px 20px 0;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    background: var(--ink); color: var(--cream);
+    border-radius: 999px;
+    padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 1px 0 0 rgba(255, 31, 109, 0.35), 0 20px 40px -12px rgba(26,20,22,0.25);
+  }
+  .logo-svg {
+    height: 22px; width: auto;
+    color: var(--brand); display: block;
+  }
+  .nav-support {
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,249,243,0.6);
+  }
+  .nav-support a { color: inherit; text-decoration: none; transition: color .2s; }
+  .nav-support a:hover { color: var(--cream); }
+
+  /* MAIN */
+  main { flex: 1; padding: 80px 0 100px; }
+
+  /* CHECK ICON */
+  .check-wrap {
+    width: 72px; height: 72px;
+    background: var(--green-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    animation: popIn .5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .check-wrap svg { color: var(--green); }
+
+  @keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* HEADING */
+  .page-eyebrow {
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    animation: fadeUp .5s .1s both;
+  }
+  .page-title {
+    font-family: var(--display);
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 16px;
+    font-variation-settings: 'opsz' 60;
+    animation: fadeUp .5s .15s both;
+  }
+  .page-sub {
+    text-align: center;
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 56px;
+    animation: fadeUp .5s .2s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* STEPS */
+  .steps {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-bottom: 48px;
+    animation: fadeUp .5s .25s both;
+  }
+  .step {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .step-num {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--brand-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display);
+    font-size: 15px; font-weight: 800;
+    color: var(--brand);
+    font-variation-settings: 'opsz' 32;
+  }
+  .step-body { flex: 1; }
+  .step-title {
+    font-family: var(--display);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); margin-bottom: 4px;
+    font-variation-settings: 'opsz' 24;
+  }
+  .step-desc {
+    font-size: 14px; color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .step-desc strong { color: var(--ink); font-weight: 600; }
+  .step-tag {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--green-bg);
+    color: var(--green);
+    font-size: 12px; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px;
+  }
+
+  /* CTA */
+  .cta-block {
+    text-align: center;
+    animation: fadeUp .5s .3s both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand); color: white;
+    padding: 16px 32px; border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+  .cta-note {
+    margin-top: 16px;
+    font-size: 13px; color: var(--ink-muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none; border-top: 1px solid var(--line);
+    margin: 48px 0;
+    animation: fadeUp .5s .35s both;
+  }
+
+  /* SUPPORT */
+  .support-block {
+    text-align: center;
+    animation: fadeUp .5s .4s both;
+  }
+  .support-block p {
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 12px;
+  }
+  .support-links {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .support-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    text-decoration: none; padding: 8px 16px;
+    border: 1px solid var(--line); border-radius: 999px;
+    background: white;
+    transition: border-color .2s, background .2s;
+  }
+  .support-link:hover { border-color: var(--brand); background: var(--brand-light); }
+
+  /* FOOTER */
+  footer {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 13px; color: var(--ink-muted);
+    position: relative; z-index: 2;
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 480px) {
+    .step { padding: 20px; gap: 16px; }
+    main { padding: 56px 0 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG LOGO -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="notifiquei-logo" viewBox="0 0 290 50" fill="currentColor">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" style="display:inline-flex;align-items:center;text-decoration:none;">
+      <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
+    </a>
+    <span class="nav-support">Precisa de ajuda? <a href="mailto:suporte@notifiquei.com.br">suporte@notifiquei.com.br</a></span>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <div class="check-wrap">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+
+    <p class="page-eyebrow">Assinatura confirmada</p>
+
+    <h1 class="page-title">Bem-vindo ao Notifiquei!</h1>
+
+    <p class="page-sub">
+      Seu plano está ativo. Veja o que acontece agora e como acessar sua conta.
+    </p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Verifique sua caixa de entrada</div>
+          <div class="step-desc">
+            Enviamos um e-mail com seus <strong>dados de acesso e o link para criar sua senha</strong>.
+            Confira também a pasta de spam — às vezes ele vai parar lá.
+          </div>
+          <span class="step-tag">Chega em até 5 minutos</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Acesse a plataforma</div>
+          <div class="step-desc">
+            Com o link do e-mail, entre no painel em <strong>app.notifiquei.com.br</strong>
+            e conecte sua conta do Instagram para começar.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Configure seu primeiro fluxo</div>
+          <div class="step-desc">
+            Escolha uma palavra-gatilho, escreva a resposta automática e ative.
+            O setup completo leva <strong>menos de 5 minutos</strong> — sem código nenhum.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-block">
+      <a href="https://app.notifiquei.com.br" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Acessar minha conta
+      </a>
+      <p class="cta-note">Já com os dados do e-mail em mãos? Clique e entre diretamente.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="support-block">
+      <p>Ficou com dúvida ou não recebeu o e-mail?</p>
+      <div class="support-links">
+        <a href="mailto:suporte@notifiquei.com.br" class="support-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          suporte@notifiquei.com.br
+        </a>
+        <a href="https://wa.me/5511999999999" class="support-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2025 Notifiquei · <a href="/">Página inicial</a> · <a href="mailto:suporte@notifiquei.com.br">Suporte</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
