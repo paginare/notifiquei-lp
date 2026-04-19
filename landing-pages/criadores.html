@@ -50,7 +50,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--cream);
@@ -116,7 +116,50 @@
   }
   .btn-brand:hover { background: var(--brand-dark); }
 
-  @media (max-width: 900px) { .nav-links { display: none; } }
+  .nav-burger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    padding: 6px; color: var(--cream);
+    flex-direction: column; gap: 5px;
+    align-items: center; justify-content: center;
+  }
+  .nav-burger span {
+    display: block; width: 20px; height: 2px;
+    background: currentColor; border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .nav-login-mobile { display: none !important; }
+
+  @media (max-width: 900px) {
+    nav { margin: 12px 12px 0; }
+    .nav-links { display: none; }
+    .nav-login { display: none; }
+    .nav-burger { display: flex; }
+
+    nav.open .nav-inner {
+      border-radius: 20px;
+      flex-wrap: wrap;
+      padding-bottom: 8px;
+    }
+    nav.open .nav-links {
+      display: flex; flex-direction: column;
+      width: 100%; gap: 0;
+      padding: 8px 0 4px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 6px;
+    }
+    nav.open .nav-links a {
+      padding: 13px 18px;
+      font-size: 15px; opacity: 0.85;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    nav.open .nav-links a:last-child { border-bottom: none; }
+    nav.open .nav-login-mobile { display: block !important; opacity: 0.55; }
+
+    nav.open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
 
   .nav-pill {
     background: rgba(255, 31, 109, 0.15);
@@ -2133,10 +2176,14 @@ fbq('track', 'PageView');
       <a href="#usos">Casos de uso</a>
       <a href="#planos">Planos</a>
       <a href="#faq">Dúvidas</a>
+      <a href="https://app.notifiquei.com.br" class="nav-login-mobile">Entrar</a>
     </div>
     <div class="nav-cta-group">
       <a href="https://app.notifiquei.com.br" class="nav-login">Entrar</a>
       <a href="#planos" class="btn-brand">Começar grátis →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -3060,6 +3107,30 @@ fbq('track', 'PageView');
       document.querySelectorAll('.hero .rv, .hero .blur-in').forEach(el => el.classList.add('in'));
     }, 100);
   });
+
+  // Hamburger menu
+  (function() {
+    const burger = document.querySelector('.nav-burger');
+    const nav = document.querySelector('nav');
+    if (!burger) return;
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+    nav.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
 
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(it => {
