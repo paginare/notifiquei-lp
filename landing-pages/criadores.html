@@ -962,6 +962,18 @@
     to { transform: translateX(-50%); }
   }
 
+  /* ============= BRANDS MARQUEE ============= */
+  .brands-section { padding: 40px 0; overflow: hidden; background: var(--cream); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .brands-label { text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 28px; }
+  .brands-scroll { overflow: hidden; position: relative; }
+  .brands-scroll::before, .brands-scroll::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
+  .brands-scroll::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+  .brands-scroll::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+  .brands-track { display: flex; gap: 56px; animation: brandScroll 35s linear infinite; width: max-content; align-items: center; padding: 0 28px; }
+  .brand-item { font-family: var(--display); font-size: 17px; font-weight: 700; color: var(--ink); opacity: 0.18; letter-spacing: -0.02em; white-space: nowrap; flex-shrink: 0; user-select: none; }
+  @keyframes brandScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .brands-track { animation: none; } }
+
   /* ============= SECTIONS ============= */
   section.box { padding: 140px 0; position: relative; }
   @media (max-width: 900px) { section.box { padding: 96px 0; } }
@@ -2524,6 +2536,37 @@ fbq('track', 'PageView');
     <div class="marquee-item">Configura em 5 min</div>
   </div>
 </div>
+
+<!-- ============ BRANDS ============ -->
+<section class="brands-section">
+  <div class="wrap">
+    <p class="brands-label">Marcas que já automatizam com o Notifiquei</p>
+  </div>
+  <div class="brands-scroll">
+    <div class="brands-track">
+      <span class="brand-item">Studio Maia</span>
+      <span class="brand-item">Ateliê Flora</span>
+      <span class="brand-item">Casa Viva</span>
+      <span class="brand-item">Beleza Pro</span>
+      <span class="brand-item">Loja Zen</span>
+      <span class="brand-item">Fit Store</span>
+      <span class="brand-item">Moda Atual</span>
+      <span class="brand-item">Agência UP</span>
+      <span class="brand-item">Nutri Vida</span>
+      <span class="brand-item">Curso Click</span>
+      <span class="brand-item">Studio Maia</span>
+      <span class="brand-item">Ateliê Flora</span>
+      <span class="brand-item">Casa Viva</span>
+      <span class="brand-item">Beleza Pro</span>
+      <span class="brand-item">Loja Zen</span>
+      <span class="brand-item">Fit Store</span>
+      <span class="brand-item">Moda Atual</span>
+      <span class="brand-item">Agência UP</span>
+      <span class="brand-item">Nutri Vida</span>
+      <span class="brand-item">Curso Click</span>
+    </div>
+  </div>
+</section>
 
 <!-- ============ COMO FUNCIONA ============ -->
 <section id="como" class="box">
