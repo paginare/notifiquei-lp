@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual de Identidade Visual · Notifiquei</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  :root {
+    --brand: #FF1F6D;
+    --brand-dark: #C81558;
+    --brand-deep: #6B1538;
+    --brand-light: #FFEFF4;
+    --brand-soft: #FFD4DE;
+    --cream: #FFF9F3;
+    --cream-2: #F5ECE0;
+    --ink: #1A1416;
+    --ink-2: #3A2F33;
+    --ink-soft: #6B5A5F;
+    --ink-muted: #A39196;
+    --line: #EADDD8;
+    --success: #22C55E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background: #0E0A0C;
+  }
+
+  /* Container do documento em tela */
+  .document-shell {
+    max-width: 210mm;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 16mm 18mm;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5), 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Print-friendly: remove decorações em impressão */
+  @media print {
+    body { background: white; }
+    .document-shell { margin: 0; gap: 0; max-width: none; }
+    .page {
+      box-shadow: none;
+      page-break-after: always;
+      border-radius: 0;
+      margin: 0;
+    }
+    .nav-sidebar, .print-hint { display: none !important; }
+  }
+
+  /* Barra lateral de navegação (só em tela) */
+  .nav-sidebar {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: rgba(26, 20, 22, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 249, 243, 0.1);
+    border-radius: 16px;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    color: rgba(255, 249, 243, 0.55);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all .15s;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  .nav-sidebar a:hover {
+    background: rgba(255, 31, 109, 0.15);
+    color: #FF1F6D;
+  }
+  .nav-sidebar a .nav-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #FF1F6D;
+    min-width: 18px;
+  }
+
+  /* Dica de impressão (topo, aparece só em tela) */
+  .print-hint {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    background: rgba(255, 31, 109, 0.95);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px -8px rgba(255, 31, 109, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .print-hint:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px -8px rgba(255, 31, 109, 0.6);
+  }
+  .print-hint svg { width: 16px; height: 16px; }
+
+  @media (max-width: 900px) {
+    .nav-sidebar { display: none; }
+    .document-shell { margin: 20px auto; padding: 0 10px; }
+    .page { transform-origin: top left; }
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--brand);
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 16px;
+    height: 1.5px;
+    background: var(--brand);
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 14mm;
+    left: 20mm;
+    font-size: 9pt;
+    color: var(--ink-muted);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+  .page-footer {
+    position: absolute;
+    bottom: 14mm;
+    right: 20mm;
+    font-size: 9pt;
+    color: var(--ink-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============ CAPA ============ */
+  .cover {
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25mm 20mm;
+  }
+  .cover-glow {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255, 31, 109, 0.25) 0%, rgba(255, 31, 109, 0) 65%);
+    pointer-events: none;
+  }
+  .cover-logo-bg {
+    position: absolute;
+    bottom: -20mm;
+    left: -20mm;
+    right: -20mm;
+    width: 250%;
+    opacity: 0.04;
+    fill: var(--brand);
+  }
+  .cover-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cover-logo {
+    height: 32px;
+    fill: var(--brand);
+  }
+  .cover-meta {
+    font-size: 9pt;
+    color: rgba(255, 249, 243, 0.5);
+    text-align: right;
+    letter-spacing: 0.08em;
+  }
+  .cover-main {
+    position: relative;
+    z-index: 2;
+  }
+  .cover-label {
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--brand);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 72pt;
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--cream);
+    margin-bottom: 30px;
+  }
+  .cover-title em {
+    font-style: normal;
+    color: var(--brand);
+    font-weight: 600;
+  }
+  .cover-subtitle {
+    font-size: 13pt;
+    color: rgba(255, 249, 243, 0.7);
+    max-width: 400px;
+    line-height: 1.5;
+  }
+  .cover-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 9pt;
+    color: rgba(255, 249, 243, 0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ============ SUMÁRIO ============ */
+  .toc-title {
+    font-size: 48pt;
+    margin-bottom: 48px;
+  }
+  .toc-list {
+    list-style: none;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+  }
+  .toc-num {
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 11pt;
+    letter-spacing: 0.05em;
+    min-width: 28px;
+  }
+  .toc-name {
+    flex: 1;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .toc-desc {
+    color: var(--ink-soft);
+    font-size: 10pt;
+    flex: 1;
+    text-align: right;
+  }
+  .toc-page {
+    color: var(--ink-muted);
+    font-size: 10pt;
+    font-weight: 600;
+    min-width: 30px;
+    text-align: right;
+  }
+
+  /* ============ TÍTULOS DE SEÇÃO ============ */
+  .section-title {
+    font-size: 34pt;
+    margin-bottom: 12px;
+    max-width: 520px;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--brand);
+    font-weight: 600;
+  }
+  .section-lead {
+    font-size: 11pt;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* ============ CAIXAS DE CONTEÚDO ============ */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .card-dark {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .card-brand {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+  }
+  .card-label {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .card-dark .card-label { color: rgba(255, 249, 243, 0.5); }
+  .card-brand .card-label { color: rgba(255, 255, 255, 0.7); }
+  .card-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .card-body {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .card-dark .card-body { color: rgba(255, 249, 243, 0.75); }
+  .card-brand .card-body { color: rgba(255, 255, 255, 0.9); }
+
+  /* ============ COLOR SWATCHES ============ */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .swatch {
+    border-radius: 10px;
+    padding: 12px 14px;
+    height: 86px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--line);
+  }
+  .swatch-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 11pt;
+    letter-spacing: -0.015em;
+  }
+  .swatch-hex {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .swatch-usage {
+    font-size: 7.5pt;
+    opacity: 0.75;
+    line-height: 1.25;
+  }
+
+  /* Cores escuras: texto claro */
+  .swatch.dark { color: white; }
+  .swatch.dark .swatch-usage { color: rgba(255, 255, 255, 0.8); }
+  .swatch.light { color: var(--ink); }
+  .swatch.light .swatch-usage { color: var(--ink-soft); }
+
+  /* ============ TIPOGRAFIA ============ */
+  .type-row {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 8pt;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .type-meta .name { color: var(--brand); }
+  .type-sample {
+    color: var(--ink);
+    line-height: 1;
+  }
+  .display-xl {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 40pt;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+  }
+  .display-lg {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 26pt;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+  }
+  .display-md {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .body-lg {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12pt;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .body-base {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10pt;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+  .body-sm {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9pt;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ DO / DONT ============ */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .do-card, .dont-card {
+    padding: 14px 16px;
+    border-radius: 12px;
+    min-height: 92px;
+    position: relative;
+  }
+  .do-card {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+  }
+  .dont-card {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+  }
+  .dd-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 10pt;
+    margin-bottom: 8px;
+  }
+  .do-card .dd-icon { background: #22C55E; }
+  .dont-card .dd-icon { background: #DC2626; }
+  .dd-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 11.5pt;
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+  }
+  .do-card .dd-title { color: #166534; }
+  .dont-card .dd-title { color: #991B1B; }
+  .dd-body {
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .do-card .dd-body { color: #166534; }
+  .dont-card .dd-body { color: #991B1B; }
+
+  /* ============ LOGO SHOWCASE ============ */
+  .logo-showcase {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 110px;
+    position: relative;
+  }
+  .logo-showcase.dark { background: var(--ink); }
+  .logo-showcase.brand { background: var(--brand); }
+  .logo-showcase svg { max-width: 170px; height: auto; }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .logo-label {
+    font-size: 8.5pt;
+    color: var(--ink-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+  }
+
+  /* ============ BOTÕES MOCKUP ============ */
+  .btn-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .btn-demo {
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 11pt;
+    letter-spacing: -0.005em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary-demo {
+    background: var(--brand);
+    color: white;
+  }
+  .btn-secondary-demo {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn-ghost-demo {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+
+  /* ============ TABELA VOZ ============ */
+  .voice-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .voice-table th,
+  .voice-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    font-size: 9.5pt;
+    vertical-align: top;
+  }
+  .voice-table th {
+    background: var(--cream-2);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+  .voice-table tr:last-child td { border-bottom: none; }
+  .voice-table .col-yes { color: var(--ink); font-weight: 500; }
+  .voice-table .col-no { color: var(--ink-muted); text-decoration: line-through; }
+
+  /* Mini header interno */
+  .mini-h {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    margin-top: 18px;
+  }
+  .mb-lg { margin-bottom: 24px; }
+  .mb-md { margin-bottom: 16px; }
+  .mb-sm { margin-bottom: 10px; }
+  .mt-lg { margin-top: 24px; }
+
+  /* Grid de exemplos de iconografia */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .icon-cell {
+    aspect-ratio: 1;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-cell svg { width: 20px; height: 20px; stroke: var(--brand); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Lista de princípios */
+  .principles {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .principle {
+    padding: 14px 16px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .principle-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 10pt;
+    margin-bottom: 8px;
+  }
+  .principle-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+  }
+  .principle-body {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Symbol da logo reusable em todas as páginas -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo-symbol" viewBox="0 0 290 50">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Barra lateral de navegação (só tela) -->
+<nav class="nav-sidebar">
+  <a href="#p1"><span class="nav-num">00</span> Capa</a>
+  <a href="#p3"><span class="nav-num">01</span> Princípios</a>
+  <a href="#p4"><span class="nav-num">02</span> Logo</a>
+  <a href="#p5"><span class="nav-num">03</span> Cores</a>
+  <a href="#p6"><span class="nav-num">04</span> Tipografia</a>
+  <a href="#p7"><span class="nav-num">05</span> Componentes</a>
+  <a href="#p8"><span class="nav-num">06</span> Iconografia</a>
+  <a href="#p9"><span class="nav-num">07</span> Tom de voz</a>
+  <a href="#p10"><span class="nav-num">08</span> Aplicações</a>
+  <a href="#p11"><span class="nav-num">09</span> Proibidos</a>
+</nav>
+
+<!-- Botão imprimir (só tela) -->
+<a href="#" class="print-hint" onclick="window.print(); return false;">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+  Salvar como PDF
+</a>
+
+<div class="document-shell">
+
+<!-- ============ PÁGINA 1 — CAPA ============ -->
+<div class="page cover" id="p1">
+  <div class="cover-glow"></div>
+  <svg class="cover-logo-bg" viewBox="0 0 290 50" xmlns="http://www.w3.org/2000/svg">
+    <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+  </svg>
+  <div class="cover-top">
+    <svg class="cover-logo" viewBox="0 0 290 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z" fill="#FF1F6D"/>
+      <path d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z" fill="#FF1F6D"/>
+      <path d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754L260.294 25.999C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718Z" fill="#FF1F6D"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534V13.5089H232.609V22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z" fill="#FF1F6D"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C132.278 23.9378 132.321 19.6215 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z" fill="#FF1F6D"/>
+      <path d="M84.6709 9.45401L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z" fill="#FF1F6D"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074V26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z" fill="#FF1F6D"/>
+      <path d="M179.081 15.1678H176.18C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z" fill="#FF1F6D"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516V26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z" fill="#FF1F6D"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906V26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z" fill="#FF1F6D"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z" fill="#FF1F6D"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z" fill="#FF1F6D"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z" fill="#FF1F6D"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z" fill="#FF1F6D"/>
+    </svg>
+    <div class="cover-meta">
+      v1.0 · 2026<br>
+      Documento interno
+    </div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-label">Manual de identidade visual</div>
+    <div class="cover-title">A voz visual do <em>Notifiquei.</em></div>
+    <div class="cover-subtitle">
+      Um guia prático pra quem desenha, escreve ou desenvolve qualquer coisa com a nossa marca.
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <span>Notifiquei · Brand Guidelines</span>
+    <span>Confidencial</span>
+  </div>
+</div>
+
+<!-- ============ PÁGINA 2 — SUMÁRIO ============ -->
+<div class="page" id="p2">
+  <div class="eyebrow">Sumário</div>
+  <h1 class="toc-title">O que você vai <em style="font-style:normal; color:var(--brand); font-weight:600;">encontrar aqui.</em></h1>
+
+  <ul class="toc-list">
+    <li class="toc-item">
+      <span class="toc-num">01</span>
+      <span class="toc-name">Princípios</span>
+      <span class="toc-desc">O espírito da marca</span>
+      <span class="toc-page">03</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">02</span>
+      <span class="toc-name">Logo</span>
+      <span class="toc-desc">Uso, versões e proteção</span>
+      <span class="toc-page">04</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">03</span>
+      <span class="toc-name">Cores</span>
+      <span class="toc-desc">Paleta primária e suporte</span>
+      <span class="toc-page">05</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">04</span>
+      <span class="toc-name">Tipografia</span>
+      <span class="toc-desc">Escala, pesos e uso</span>
+      <span class="toc-page">06</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">05</span>
+      <span class="toc-name">Componentes</span>
+      <span class="toc-desc">Botões, cards e formulários</span>
+      <span class="toc-page">07</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">06</span>
+      <span class="toc-name">Iconografia</span>
+      <span class="toc-desc">Estilo, peso e aplicação</span>
+      <span class="toc-page">08</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">07</span>
+      <span class="toc-name">Tom de voz</span>
+      <span class="toc-desc">Como a marca fala</span>
+      <span class="toc-page">09</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">08</span>
+      <span class="toc-name">Aplicações</span>
+      <span class="toc-desc">Web, social, email</span>
+      <span class="toc-page">10</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">09</span>
+      <span class="toc-name">Proibidos</span>
+      <span class="toc-desc">O que nunca fazer</span>
+      <span class="toc-page">11</span>
+    </li>
+  </ul>
+
+  <div class="page-number">02</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 3 — PRINCÍPIOS ============ -->
+<div class="page" id="p3">
+  <div class="eyebrow">01 · Princípios</div>
+  <h1 class="section-title">O que fala mais alto que <em>qualquer cor.</em></h1>
+  <p class="section-lead">Antes de qualquer pixel, nossa identidade é uma atitude. Quatro princípios guiam cada decisão visual e de linguagem.</p>
+
+  <ul class="principles">
+    <li class="principle">
+      <span class="principle-num">1</span>
+      <div class="principle-title">Direto ao ponto</div>
+      <div class="principle-body">Zero rodeio. Cada frase, cada elemento, cada pixel tem propósito. Se não precisa estar, não tá.</div>
+    </li>
+    <li class="principle">
+      <span class="principle-num">2</span>
+      <div class="principle-title">Confiante sem ser arrogante</div>
+      <div class="principle-body">A gente sabe o que faz e fala com firmeza. Mas nunca de cima. O cliente é parceiro, não platéia.</div>
+    </li>
+    <li class="principle">
+      <span class="principle-num">3</span>
+      <div class="principle-title">Humano e técnico</div>
+      <div class="principle-body">Somos um produto de tech, mas feito por gente e pra gente. A voz é próxima. O rigor é sério.</div>
+    </li>
+    <li class="principle">
+      <span class="principle-num">4</span>
+      <div class="principle-title">Brasileiro de verdade</div>
+      <div class="principle-body">Não traduzimos nada. Escrevemos como se fala aqui. Com carinho, com informalidade, com precisão.</div>
+    </li>
+  </ul>
+
+  <div class="mt-lg">
+    <div class="card card-dark" style="padding: 28px;">
+      <div class="card-label">Nossa essência em uma frase</div>
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 26pt; font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; color: var(--cream);">
+        Você posta. Eles comentam.<br>
+        <span style="color: var(--brand); font-weight: 600;">A gente vende.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number">03</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 4 — LOGO ============ -->
+<div class="page" id="p4">
+  <div class="eyebrow">02 · Logo</div>
+  <h1 class="section-title">A marca que <em>tá em todo lugar.</em></h1>
+  <p class="section-lead">A logo é o elemento mais reconhecível do sistema. Tem uma versão principal em rosa e variações para cada contexto. Respeite a área de proteção.</p>
+
+  <div class="logo-grid">
+    <div>
+      <div class="logo-showcase">
+        <svg viewBox="0 0 290 50" width="200"><g fill="#FF1F6D">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </g></svg>
+      </div>
+      <div class="logo-label">Versão principal · sobre cream</div>
+    </div>
+    <div>
+      <div class="logo-showcase dark">
+        <svg viewBox="0 0 290 50" width="200"><g fill="#FF1F6D">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </g></svg>
+      </div>
+      <div class="logo-label">Sobre fundo escuro</div>
+    </div>
+    <div>
+      <div class="logo-showcase brand">
+        <svg viewBox="0 0 290 50" width="200"><g fill="#FFF9F3">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </g></svg>
+      </div>
+      <div class="logo-label">Sobre fundo brand</div>
+    </div>
+    <div>
+      <div class="logo-showcase" style="background: var(--cream-2);">
+        <svg viewBox="0 0 290 50" width="200"><g fill="#1A1416">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </g></svg>
+      </div>
+      <div class="logo-label">Preto sólido · impressão monocromática</div>
+    </div>
+  </div>
+
+  <div class="mini-h">Regras de uso</div>
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-label">Tamanho mínimo</div>
+      <div class="card-body">A logo não deve ser usada em tamanhos menores que <strong>20px de altura</strong> (digital) ou <strong>8mm</strong> (impresso). Abaixo disso, a legibilidade é comprometida.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Área de proteção</div>
+      <div class="card-body">Reserve um espaço equivalente a <strong>metade da altura da logo</strong> em todos os lados. Esse espaço nunca deve ser invadido por outros elementos.</div>
+    </div>
+  </div>
+
+  <div class="page-number">04</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 5 — CORES ============ -->
+<div class="page" id="p5">
+  <div class="eyebrow">03 · Cores</div>
+  <h1 class="section-title">Rosa pra agir, ink pra <em>ancorar.</em></h1>
+  <p class="section-lead">A paleta é intencionalmente enxuta. Rosa da marca pra pontos de ação e ênfase. Tons neutros quentes pra estrutura. Verde apenas pra sucessos. Nada mais.</p>
+
+  <div class="mini-h" style="margin-top: 0;">Cores primárias</div>
+  <div class="palette-grid mb-md">
+    <div class="swatch dark" style="background: #FF1F6D;">
+      <div>
+        <div class="swatch-name">Brand</div>
+        <div class="swatch-hex">#FF1F6D</div>
+      </div>
+      <div class="swatch-usage">CTAs, destaques, ênfase, links ativos. Uso pontual e de alto impacto.</div>
+    </div>
+    <div class="swatch dark" style="background: #1A1416;">
+      <div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-hex">#1A1416</div>
+      </div>
+      <div class="swatch-usage">Texto principal, nav, seções dark, tipografia de display.</div>
+    </div>
+  </div>
+
+  <div class="mini-h">Escala rosa</div>
+  <div class="palette-grid mb-md">
+    <div class="swatch dark" style="background: #C81558;">
+      <div>
+        <div class="swatch-name">Brand Dark</div>
+        <div class="swatch-hex">#C81558</div>
+      </div>
+      <div class="swatch-usage">Hover de botões primários, estados pressionados.</div>
+    </div>
+    <div class="swatch light" style="background: #FFEFF4; border-color: #FFD4DE;">
+      <div>
+        <div class="swatch-name">Brand Light</div>
+        <div class="swatch-hex">#FFEFF4</div>
+      </div>
+      <div class="swatch-usage">Background de seção, chips, estados hover suaves.</div>
+    </div>
+    <div class="swatch light" style="background: #FFD4DE; border-color: #FFC4D2;">
+      <div>
+        <div class="swatch-name">Brand Soft</div>
+        <div class="swatch-hex">#FFD4DE</div>
+      </div>
+      <div class="swatch-usage">Acentos médios, avatares, badges secundários.</div>
+    </div>
+    <div class="swatch dark" style="background: #6B1538;">
+      <div>
+        <div class="swatch-name">Brand Deep</div>
+        <div class="swatch-hex">#6B1538</div>
+      </div>
+      <div class="swatch-usage">Texto sobre fundos rosa claro, bordas escuras.</div>
+    </div>
+  </div>
+
+  <div class="mini-h">Neutros quentes</div>
+  <div class="palette-grid mb-md">
+    <div class="swatch light" style="background: #FFF9F3; border-color: #F5ECE0;">
+      <div>
+        <div class="swatch-name">Cream</div>
+        <div class="swatch-hex">#FFF9F3</div>
+      </div>
+      <div class="swatch-usage">Fundo principal da landing. Levemente amarelado, nunca branco puro.</div>
+    </div>
+    <div class="swatch light" style="background: #F5ECE0; border-color: #EADDD8;">
+      <div>
+        <div class="swatch-name">Cream 2</div>
+        <div class="swatch-hex">#F5ECE0</div>
+      </div>
+      <div class="swatch-usage">Background de seções alternadas, separadores, table header.</div>
+    </div>
+    <div class="swatch light" style="background: #6B5A5F; color: white;">
+      <div>
+        <div class="swatch-name" style="color: white;">Ink Soft</div>
+        <div class="swatch-hex" style="color: rgba(255,255,255,0.7);">#6B5A5F</div>
+      </div>
+      <div class="swatch-usage" style="color: rgba(255,255,255,0.8);">Texto secundário, descrições, leads.</div>
+    </div>
+    <div class="swatch light" style="background: #A39196; color: white;">
+      <div>
+        <div class="swatch-name" style="color: white;">Ink Muted</div>
+        <div class="swatch-hex" style="color: rgba(255,255,255,0.8);">#A39196</div>
+      </div>
+      <div class="swatch-usage" style="color: rgba(255,255,255,0.85);">Labels pequenos, metadata, placeholders.</div>
+    </div>
+  </div>
+
+  <div class="page-number">05</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 6 — TIPOGRAFIA ============ -->
+<div class="page" id="p6">
+  <div class="eyebrow">04 · Tipografia</div>
+  <h1 class="section-title">Grotesk pra presença.<br>Sans pra <em>conforto.</em></h1>
+  <p class="section-lead">Duas famílias. Uma pra impor (Bricolage Grotesque), outra pra explicar (Plus Jakarta Sans). Juntas, criam hierarquia clara sem poluir.</p>
+
+  <div class="mini-h" style="margin-top: 0;">Famílias</div>
+  <div class="content-grid mb-md">
+    <div class="card card-brand">
+      <div class="card-label">Display</div>
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 48pt; font-weight: 500; letter-spacing: -0.04em; line-height: 0.9; margin: 16px 0 12px; color: white;">Aa</div>
+      <div class="card-title" style="color: white;">Bricolage Grotesque</div>
+      <div class="card-body">Variable font. Títulos, números, ênfases. Use com tracking negativo (-0.03em a -0.045em) e opsz ativo.</div>
+    </div>
+    <div class="card card-dark">
+      <div class="card-label">Corpo</div>
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 48pt; font-weight: 500; line-height: 0.9; margin: 16px 0 12px; color: var(--cream);">Aa</div>
+      <div class="card-title" style="color: var(--cream);">Plus Jakarta Sans</div>
+      <div class="card-body">Parágrafos, descrições, UI, labels. Altamente legível. Use em pesos 400 (corpo) ou 500 (ênfase).</div>
+    </div>
+  </div>
+
+  <div class="mini-h">Escala tipográfica</div>
+  <div style="background: white; border: 1px solid var(--line); border-radius: 14px; padding: 24px;">
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Display XL</span>
+        <span>Bricolage · 500</span>
+        <span>-0.04em</span>
+      </div>
+      <div class="type-sample display-xl">Você posta.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Display LG</span>
+        <span>Bricolage · 500</span>
+        <span>-0.035em</span>
+      </div>
+      <div class="type-sample display-lg">Três passos.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Display MD</span>
+        <span>Bricolage · 600</span>
+        <span>-0.025em</span>
+      </div>
+      <div class="type-sample display-md">Templates prontos</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Body LG</span>
+        <span>Jakarta · 400</span>
+        <span>1.5 line-height</span>
+      </div>
+      <div class="type-sample body-lg">O Notifiquei responde na hora, com a sua voz.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Body Base</span>
+        <span>Jakarta · 400</span>
+        <span>1.55 line-height</span>
+      </div>
+      <div class="type-sample body-base">Quando o cliente comenta, a gente puxa pro privado, manda o link e qualifica na hora.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="name">Micro</span>
+        <span>Jakarta · 500</span>
+        <span>0.1em tracking</span>
+      </div>
+      <div class="type-sample body-sm">FUNCIONALIDADES · PLANOS · AJUDA</div>
+    </div>
+  </div>
+
+  <div class="page-number">06</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 7 — COMPONENTES ============ -->
+<div class="page" id="p7">
+  <div class="eyebrow">05 · Componentes</div>
+  <h1 class="section-title">Elementos que se repetem <em>com consistência.</em></h1>
+  <p class="section-lead">Cada componente tem papel claro e uso definido. Quando em dúvida entre variações, use a versão mais simples.</p>
+
+  <div class="mini-h" style="margin-top: 0;">Botões</div>
+  <div class="content-grid mb-md">
+    <div class="card">
+      <div class="card-label">Primário · CTA</div>
+      <div class="btn-showcase" style="margin: 16px 0;">
+        <button class="btn-demo btn-primary-demo">Começar grátis →</button>
+      </div>
+      <div class="card-body">Uso único por tela. Chama ação principal. Rosa brand sempre.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Secundário</div>
+      <div class="btn-showcase" style="margin: 16px 0;">
+        <button class="btn-demo btn-secondary-demo">Entrar</button>
+      </div>
+      <div class="card-body">Ações secundárias. Ink sólido. Bom pra navegação.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Ghost / outline</div>
+      <div class="btn-showcase" style="margin: 16px 0;">
+        <button class="btn-demo btn-ghost-demo">Ver em 90s ▶</button>
+      </div>
+      <div class="card-body">Ações terciárias, links. Nunca compete com CTA primário.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Regras universais</div>
+      <ul style="margin: 14px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 10pt; line-height: 1.6;">
+        <li>Sempre pill (border-radius 999px)</li>
+        <li>Peso 600, letter-spacing -0.005em</li>
+        <li>Padding 14–18px vertical, 24–32px horizontal</li>
+        <li>Transição 200ms com ease-out</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mini-h">Cards</div>
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-label">Conteúdo</div>
+      <div class="card-title">Card padrão</div>
+      <div class="card-body">Fundo branco, border 1px line, radius 20px, padding 32px. Hover leve (translate -4px + shadow).</div>
+    </div>
+    <div class="card card-dark">
+      <div class="card-label">Destaque</div>
+      <div class="card-title" style="color: var(--cream);">Card ink</div>
+      <div class="card-body">Fundo ink pra chamar atenção. Usado no plano "Pro" (featured) e bentos importantes.</div>
+    </div>
+  </div>
+
+  <div class="page-number">07</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 8 — ICONOGRAFIA ============ -->
+<div class="page" id="p8">
+  <div class="eyebrow">06 · Iconografia</div>
+  <h1 class="section-title">Ícones <em>leves e geométricos.</em></h1>
+  <p class="section-lead">Seguimos a linguagem da família Lucide. Stroke 2px, line-caps arredondados, viewBox 24×24. Rosa da marca pra ação, ink pra neutros.</p>
+
+  <div class="mini-h" style="margin-top: 0;">Biblioteca base</div>
+  <div class="icon-grid mb-md">
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="#FF1F6D" stroke="none"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+    </div>
+  </div>
+
+  <div class="mini-h">Regras</div>
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-label">Estilo</div>
+      <div class="card-body">Sempre outline. Stroke-width 2, round caps. Nunca filled (exceto acentos pontuais como o ponto da câmera).</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Cor</div>
+      <div class="card-body">Brand em ações, ink em contextos neutros, cream/white em fundos escuros. Nunca cinza aleatório.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Tamanho</div>
+      <div class="card-body">16px (inline), 22px (cards), 28–32px (hero/feature). Sempre contido num container de radius 10–12px.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Container</div>
+      <div class="card-body">Em feature cards, use background brand-light (rosa claro) com ícone em brand. Em cards ink, fundo rgba(255,255,255,0.15).</div>
+    </div>
+  </div>
+
+  <div class="page-number">08</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 9 — TOM DE VOZ ============ -->
+<div class="page" id="p9">
+  <div class="eyebrow">07 · Tom de voz</div>
+  <h1 class="section-title">Como a gente fala <em>com as pessoas.</em></h1>
+  <p class="section-lead">Voz é mais importante que fonte. O jeito Notifiquei de escrever é direto, informal e humano. Sem parecer robô.</p>
+
+  <table class="voice-table mb-md">
+    <thead>
+      <tr>
+        <th>Faça</th>
+        <th>Não faça</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-yes">"Responda em segundos."</td>
+        <td class="col-no">"Obtenha respostas mais ágeis através de nossa solução."</td>
+      </tr>
+      <tr>
+        <td class="col-yes">"Zero código, zero stress."</td>
+        <td class="col-no">"Plataforma no-code com usabilidade otimizada."</td>
+      </tr>
+      <tr>
+        <td class="col-yes">"Tá cansado de perder venda?"</td>
+        <td class="col-no">"Está insatisfeito com sua taxa de conversão atual?"</td>
+      </tr>
+      <tr>
+        <td class="col-yes">"A gente responde por você."</td>
+        <td class="col-no">"Nossa tecnologia proporciona respostas automatizadas."</td>
+      </tr>
+      <tr>
+        <td class="col-yes">"Cancele quando quiser."</td>
+        <td class="col-no">"Flexibilidade de cancelamento a qualquer momento."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mini-h">Princípios de escrita</div>
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-label">01 · Contração</div>
+      <div class="card-title" style="font-size: 14pt;">"Tá" no lugar de "Está"</div>
+      <div class="card-body">Escrevemos como se fala. Evita soar engessado. "Tá pronto", "tá rolando", "cê sabe".</div>
+    </div>
+    <div class="card">
+      <div class="card-label">02 · Brevidade</div>
+      <div class="card-title" style="font-size: 14pt;">Corte palavras</div>
+      <div class="card-body">Se dá pra falar em 5 palavras, não use 10. Menos adjetivos, mais verbos. Mais pontuação final, menos vírgulas.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">03 · Concretude</div>
+      <div class="card-title" style="font-size: 14pt;">Número &gt; adjetivo</div>
+      <div class="card-body">"Responde em 3s" é melhor que "responde rapidamente". "R$ 99/mês" é melhor que "preço acessível".</div>
+    </div>
+    <div class="card">
+      <div class="card-label">04 · Afirmação</div>
+      <div class="card-title" style="font-size: 14pt;">Evite hedging</div>
+      <div class="card-body">Zero "talvez", "geralmente", "tende a". A marca é confiante. Se algo é verdade, afirma. Se não é, não promete.</div>
+    </div>
+  </div>
+
+  <div class="page-number">09</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 10 — APLICAÇÕES ============ -->
+<div class="page" id="p10">
+  <div class="eyebrow">08 · Aplicações</div>
+  <h1 class="section-title">A marca em <em>todos os contextos.</em></h1>
+  <p class="section-lead">A identidade funciona em qualquer canvas — do banner de Instagram ao rodapé de e-mail transacional. Veja os principais formatos.</p>
+
+  <div class="mini-h" style="margin-top: 0;">Web / Landing</div>
+  <div class="content-grid mb-md">
+    <div class="card card-dark" style="padding: 28px; min-height: 140px;">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 18pt; font-weight: 500; letter-spacing: -0.025em; color: var(--cream); line-height: 1.1;">
+        Você posta.<br>
+        Eles comentam.<br>
+        <span style="color: var(--brand); font-weight: 600;">A gente vende.</span>
+      </div>
+      <div style="margin-top: 16px; display: inline-flex; gap: 8px;">
+        <span style="background: var(--brand); color: white; padding: 8px 14px; border-radius: 999px; font-size: 9pt; font-weight: 600;">Começar →</span>
+        <span style="color: var(--cream); padding: 8px 14px; border: 1px solid rgba(255,249,243,0.3); border-radius: 999px; font-size: 9pt; font-weight: 500;">Ver demo</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Hero</div>
+      <div class="card-body">Tagline principal em 3 linhas equilibradas. Ênfase rosa na linha de ação. Botão primário + ghost lado a lado.</div>
+      <div style="margin-top: 12px; font-size: 9pt; color: var(--ink-muted); line-height: 1.5;">
+        <strong style="color: var(--ink);">Regra:</strong> background cream, H1 em Bricolage 500, line-height 0.98, padding vertical 120px+.
+      </div>
+    </div>
+  </div>
+
+  <div class="mini-h">Email · assinatura</div>
+  <div class="card mb-md">
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--brand); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20pt; font-family: 'Bricolage Grotesque', sans-serif;">N</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 14pt; letter-spacing: -0.02em; color: var(--ink);">Time Notifiquei</div>
+        <div style="font-size: 10pt; color: var(--ink-soft); margin-top: 2px;">Automação de vendas no Instagram</div>
+        <div style="font-size: 10pt; color: var(--brand); margin-top: 4px; font-weight: 500;">contato@notifiquei.com.br · (12) 3199-5949</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mini-h">Social · Post template</div>
+  <div class="content-grid">
+    <div class="card" style="padding: 0; overflow: hidden; background: var(--ink);">
+      <div style="padding: 32px; color: var(--cream); min-height: 180px;">
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20pt; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05;">
+          +2.000 criadores<br>
+          já automatizam<br>
+          no <span style="color: var(--brand); font-weight: 600;">Instagram.</span>
+        </div>
+        <div style="margin-top: 20px; display: inline-flex; align-items: center; gap: 6px; background: var(--brand); color: white; padding: 6px 12px; border-radius: 999px; font-size: 9pt; font-weight: 600;">
+          Comece grátis →
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding: 0; overflow: hidden; background: var(--brand-light);">
+      <div style="padding: 32px; min-height: 180px;">
+        <div style="font-size: 10pt; color: var(--brand); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px;">Cliente fala</div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16pt; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);">
+          "Muito mais simples e acessível que o ManyChat."
+        </div>
+        <div style="margin-top: 16px; font-size: 10pt; color: var(--ink-soft);">
+          <strong style="color: var(--ink);">Leid Medeiros</strong> · @leidconsultoria
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number">10</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 11 — PROIBIDOS ============ -->
+<div class="page" id="p11">
+  <div class="eyebrow">09 · Proibidos</div>
+  <h1 class="section-title">O que <em>nunca</em> fazemos.</h1>
+  <p class="section-lead">Essas regras protegem a marca. Se você pegar alguém violando uma dessas, pode (e deve) intervir.</p>
+
+  <div class="do-dont mb-md">
+    <div class="do-card">
+      <div class="dd-icon">✓</div>
+      <div class="dd-title">Rosa brand em CTA único</div>
+      <div class="dd-body">Um botão rosa por tela. Ele é o destino principal, tudo mais conduz a ele.</div>
+    </div>
+    <div class="dont-card">
+      <div class="dd-icon">✕</div>
+      <div class="dd-title">Rosa brand em 5+ lugares</div>
+      <div class="dd-body">Quando tudo é destaque, nada é. Rosa repetido perde força e cansa a vista.</div>
+    </div>
+
+    <div class="do-card">
+      <div class="dd-icon">✓</div>
+      <div class="dd-title">Tipografia Bricolage + Jakarta</div>
+      <div class="dd-body">Essas duas famílias juntas criam nossa identidade. Outras fontes quebram a marca.</div>
+    </div>
+    <div class="dont-card">
+      <div class="dd-icon">✕</div>
+      <div class="dd-title">Serif (Times, Garamond) no lugar</div>
+      <div class="dd-body">Serifas puxam pra clássico/formal. Nossa marca é tech, contemporânea, direta.</div>
+    </div>
+
+    <div class="do-card">
+      <div class="dd-icon">✓</div>
+      <div class="dd-title">Fundo cream #FFF9F3</div>
+      <div class="dd-body">Cream quente é nosso branco. Tem personalidade, acolhe, não ofusca.</div>
+    </div>
+    <div class="dont-card">
+      <div class="dd-icon">✕</div>
+      <div class="dd-title">Branco puro #FFFFFF</div>
+      <div class="dd-body">Branco total fica clínico, frio, genérico. Evite em backgrounds amplos.</div>
+    </div>
+
+    <div class="do-card">
+      <div class="dd-icon">✓</div>
+      <div class="dd-title">Contrações ("tá", "cê")</div>
+      <div class="dd-body">Linguagem cotidiana brasileira. Aproxima, diferencia, humaniza.</div>
+    </div>
+    <div class="dont-card">
+      <div class="dd-icon">✕</div>
+      <div class="dd-title">Tom corporativo/formal</div>
+      <div class="dd-body">"Solução", "otimizar", "proporciona". Zero disso. Nossa concorrência fala assim.</div>
+    </div>
+
+    <div class="do-card">
+      <div class="dd-icon">✓</div>
+      <div class="dd-title">Afirmações concretas</div>
+      <div class="dd-body">"Responde em 3s", "R$ 99/mês", "+2.000 usuários". Números ancoram.</div>
+    </div>
+    <div class="dont-card">
+      <div class="dd-icon">✕</div>
+      <div class="dd-title">Promessas vagas ou falsas</div>
+      <div class="dd-body">Não prometa o que o produto não entrega hoje. Honestidade é parte da marca.</div>
+    </div>
+  </div>
+
+  <div class="page-number">11</div>
+  <div class="page-footer">Notifiquei · Manual v1.0</div>
+</div>
+
+<!-- ============ PÁGINA 12 — CONTRACAPA ============ -->
+<div class="page cover" id="p12" style="justify-content: center; text-align: center;">
+  <div class="cover-glow" style="top: 30%;"></div>
+  <div style="position: relative; z-index: 2;">
+    <div style="margin-bottom: 60px;">
+      <svg style="height: 40px;" viewBox="0 0 290 50" width="232"><g fill="#FF1F6D">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </g></svg>
+    </div>
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 48pt; font-weight: 500; line-height: 0.95; letter-spacing: -0.035em; color: var(--cream); max-width: 500px; margin: 0 auto 32px;">
+      Em caso de dúvida,<br>
+      <span style="color: var(--brand); font-weight: 600;">simplifique.</span>
+    </div>
+    <div style="color: rgba(255, 249, 243, 0.55); font-size: 12pt; max-width: 440px; margin: 0 auto; line-height: 1.5;">
+      A regra mais importante do manual.<br>
+      Quando achar que precisa de mais um elemento, na real precisa de menos.
+    </div>
+
+    <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255, 249, 243, 0.1); display: inline-block; min-width: 320px;">
+      <div style="font-size: 9pt; color: rgba(255, 249, 243, 0.4); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 8px;">Dúvidas ou sugestões</div>
+      <div style="color: var(--brand); font-size: 12pt; font-weight: 500;">contato@notifiquei.com.br</div>
+      <div style="color: rgba(255, 249, 243, 0.5); font-size: 10pt; margin-top: 4px;">(12) 3199-5949</div>
+    </div>
+  </div>
+
+  <div class="cover-bottom" style="position: absolute; bottom: 20mm; left: 20mm; right: 20mm;">
+    <span>Notifiquei · v1.0 · 2026</span>
+    <span>Feito no Brasil</span>
+  </div>
+</div>
+
+</div><!-- /document-shell -->
+
+<script>
+// Smooth scroll
+document.querySelectorAll('.nav-sidebar a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
