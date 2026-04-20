@@ -48,9 +48,13 @@
   ]
 }
 </script>
+<link rel="dns-prefetch" href="//connect.facebook.net">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"></noscript>
 <style>
   :root {
     /* Identidade visual oficial */
@@ -3170,10 +3174,8 @@ fbq('track', 'PageView');
   allReveal.forEach(el => obs.observe(el));
 
   // Hero elements animam logo ao carregar (sem esperar scroll)
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.querySelectorAll('.hero .rv, .hero .blur-in').forEach(el => el.classList.add('in'));
-    }, 100);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.hero .rv, .hero .blur-in').forEach(el => el.classList.add('in'));
   });
 
   // Hamburger menu

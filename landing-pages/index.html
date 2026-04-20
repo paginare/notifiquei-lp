@@ -71,9 +71,15 @@
   }
 }
 </script>
+<!-- DNS prefetch para analytics (não bloqueia render) -->
+<link rel="dns-prefetch" href="//connect.facebook.net">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<!-- Fonts: preconnect + carregamento não-bloqueante via media=print trick -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"></noscript>
 <style>
   :root {
     /* Identidade visual oficial */
@@ -2093,40 +2099,6 @@
   .logo-wordmark { display: inline-flex; align-items: center; }
 </style>
 
-<!-- ============ ANALYTICS & TRACKING ============ -->
-<!--
-  IMPORTANTE: Substitua os IDs abaixo antes de publicar.
-  META PIXEL:       troque 'YOUR_PIXEL_ID' pelo ID do seu pixel (Business Manager → Eventos)
-  GOOGLE ANALYTICS: troque 'G-XXXXXXXXXX' pelo seu Measurement ID (GA4)
-  Se não for usar algum dos dois, basta envolver o bloco correspondente em comentário HTML.
--->
-
-<!-- Meta Pixel (Facebook/Instagram) -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'YOUR_PIXEL_ID');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-
-<!-- /ANALYTICS -->
-
 </head>
 <body>
 
@@ -3027,12 +2999,12 @@ fbq('track', 'PageView');
 
     <div class="foot-partners">
       <div class="foot-partner-item">
-        <img src="assets/servidores-turbo.png" alt="Servidores turbo" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
+        <img src="assets/servidores-turbo.png" alt="Servidores turbo" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
       </div>
       <div class="foot-partner-divider"></div>
       <div class="foot-partner-item">
         <span class="foot-partner-label">Payments by</span>
-        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
         <span class="foot-partner-abacate-fallback" style="display: none;">Abacatepay</span>
       </div>
     </div>
@@ -3067,10 +3039,8 @@ fbq('track', 'PageView');
   allReveal.forEach(el => obs.observe(el));
 
   // Hero elements animam logo ao carregar (sem esperar scroll)
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.querySelectorAll('.hero .rv, .hero .blur-in').forEach(el => el.classList.add('in'));
-    }, 100);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.hero .rv, .hero .blur-in').forEach(el => el.classList.add('in'));
   });
 
   // Hamburger menu
@@ -3270,5 +3240,33 @@ fbq('track', 'PageView');
   })();
 
 </script>
+<!-- ============ ANALYTICS (carregados após interação do usuário) ============ -->
+<!--
+  IMPORTANTE: Substitua os IDs abaixo antes de publicar.
+  META PIXEL:       troque 'YOUR_PIXEL_ID' pelo ID do seu pixel
+  GOOGLE ANALYTICS: troque 'G-XXXXXXXXXX' pelo seu Measurement ID (GA4)
+-->
+<script>
+(function loadAnalytics() {
+  function init() {
+    // Meta Pixel
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    // Google Analytics 4
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  }
+  if (document.readyState === 'complete') { setTimeout(init, 1); }
+  else { window.addEventListener('load', function(){ setTimeout(init, 1); }); }
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>
