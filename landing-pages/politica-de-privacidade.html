@@ -26,212 +26,73 @@
     --cream: #FFF9F3;
     --cream-2: #F5ECE0;
     --ink: #1A1416;
-    --ink-2: #3A2F33;
     --ink-soft: #6B5A5F;
     --ink-muted: #A39196;
     --line: #EADDD8;
     --display: 'Bricolage Grotesque', system-ui, sans-serif;
     --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; }
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-    mix-blend-mode: multiply;
-    opacity: 0.7;
-  }
+  body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.7; }
   .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
 
-  /* NAV */
-  nav {
-    position: sticky; top: 16px; z-index: 100;
-    margin: 16px 20px 0;
-  }
-  .nav-inner {
-    max-width: 1200px; margin: 0 auto;
-    background: var(--ink); color: var(--cream);
-    border-radius: 999px;
-    padding: 8px 10px 8px 28px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 0 0 rgba(255, 31, 109, 0.35), 0 20px 40px -12px rgba(26,20,22,0.25);
-  }
+  nav { position: sticky; top: 16px; z-index: 100; margin: 16px 20px 0; }
+  .nav-inner { max-width: 1200px; margin: 0 auto; background: var(--ink); color: var(--cream); border-radius: 999px; padding: 8px 10px 8px 28px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 0 0 rgba(255, 31, 109, 0.35), 0 20px 40px -12px rgba(26,20,22,0.25); }
   .logo-svg { height: 24px; width: auto; color: var(--brand); display: block; }
   .nav-cta-group { display: flex; gap: 8px; align-items: center; }
   .nav-login { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; padding: 0 12px; transition: opacity .2s; }
   .nav-login:hover { opacity: 1; }
-  .btn-brand {
-    background: var(--brand-dark); color: white;
-    padding: 11px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none;
-    transition: background .2s;
-    border: none;
-    letter-spacing: -0.005em;
-  }
+  .btn-brand { background: var(--brand-dark); color: white; padding: 11px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .2s; border: none; letter-spacing: -0.005em; }
   .btn-brand:hover { background: var(--brand); }
-  @media (max-width: 600px) {
-    nav { margin: 12px 12px 0; }
-    .nav-login { display: none; }
-  }
+  @media (max-width: 600px) { nav { margin: 12px 12px 0; } .nav-login { display: none; } }
 
-  /* PAGE CONTENT */
-  .legal-page {
-    padding: 80px 0 120px;
-    min-height: 60vh;
-  }
+  .legal-page { padding: 80px 0 120px; min-height: 60vh; }
   .legal-page .wrap { max-width: 760px; }
-
-  .breadcrumb {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--ink-muted);
-    text-decoration: none;
-    margin-bottom: 48px;
-    transition: color .2s;
-  }
+  .breadcrumb { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-muted); text-decoration: none; margin-bottom: 48px; transition: color .2s; }
   .breadcrumb:hover { color: var(--ink-soft); }
   .breadcrumb svg { width: 14px; height: 14px; }
-
-  .legal-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--brand);
-    margin-bottom: 16px;
-  }
-
-  .legal-title {
-    font-family: var(--display);
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 12px;
-  }
-
-  .legal-meta {
-    font-size: 13px;
-    color: var(--ink-muted);
-    margin-bottom: 56px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .legal-body section {
-    margin-bottom: 40px;
-  }
-  .legal-body h2 {
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .legal-body h2 .sec-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--brand-light);
-    color: var(--brand);
-    font-size: 12px; font-weight: 700;
-    font-family: var(--sans);
-    flex-shrink: 0;
-  }
-  .legal-body p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--ink-soft);
-  }
-  .legal-body a {
-    color: var(--brand);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,31,109,0.3);
-    transition: border-color .2s;
-  }
+  .legal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand); margin-bottom: 16px; }
+  .legal-title { font-family: var(--display); font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: var(--ink); margin-bottom: 12px; }
+  .legal-meta { font-size: 13px; color: var(--ink-muted); margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+  .legal-body section { margin-bottom: 40px; }
+  .legal-body h2 { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .legal-body h2 .sec-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: var(--brand-light); color: var(--brand); font-size: 12px; font-weight: 700; font-family: var(--sans); flex-shrink: 0; }
+  .legal-body p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 12px; }
+  .legal-body p:last-child { margin-bottom: 0; }
+  .legal-body ul { list-style: none; padding: 0; margin-top: 8px; }
+  .legal-body ul li { font-size: 15px; line-height: 1.75; color: var(--ink-soft); padding-left: 20px; position: relative; margin-bottom: 6px; }
+  .legal-body ul li::before { content: '–'; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
+  .legal-body a { color: var(--brand); text-decoration: none; border-bottom: 1px solid rgba(255,31,109,0.3); transition: border-color .2s; }
   .legal-body a:hover { border-color: var(--brand); }
+  .legal-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; margin-bottom: 8px; }
+  .legal-table th { text-align: left; padding: 10px 14px; background: var(--cream-2); color: var(--ink); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .legal-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+  .legal-table tr:last-child td { border-bottom: none; }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 72px 0 0;
-    position: relative;
-    overflow: hidden;
-  }
-  footer::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 900px; height: 400px;
-    background: radial-gradient(ellipse at center top, rgba(255, 31, 109, 0.18) 0%, rgba(255, 31, 109, 0) 60%);
-    pointer-events: none;
-  }
+  footer { background: var(--ink); color: var(--cream); padding: 72px 0 0; position: relative; overflow: hidden; }
+  footer::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse at center top, rgba(255, 31, 109, 0.18) 0%, rgba(255, 31, 109, 0) 60%); pointer-events: none; }
   footer .wrap { position: relative; z-index: 2; }
-
-  .foot-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 56px;
-    padding-bottom: 56px;
-  }
+  .foot-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; }
   @media (max-width: 900px) { .foot-top { grid-template-columns: 1fr 1fr; gap: 40px 32px; } }
-
   footer .logo-svg { color: var(--cream); height: 32px; display: block; }
   footer .foot-brand { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 20px; }
   footer .foot-brand-col { text-align: left; }
-  footer .foot-brand-col p.tag {
-    max-width: 340px; font-size: 14px;
-    color: rgba(255, 249, 243, 0.6); line-height: 1.6; margin-bottom: 24px;
-  }
+  footer .foot-brand-col p.tag { max-width: 340px; font-size: 14px; color: rgba(255, 249, 243, 0.6); line-height: 1.6; margin-bottom: 24px; }
   @media (max-width: 900px) { footer .foot-brand-col { grid-column: span 2; } }
-
   .foot-social { display: flex; gap: 10px; }
-  .foot-social a {
-    width: 40px; height: 40px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 10px;
-    background: rgba(255, 249, 243, 0.06);
-    color: rgba(255, 249, 243, 0.7);
-    transition: all .2s;
-    border: 1px solid rgba(255, 249, 243, 0.08);
-  }
+  .foot-social a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255, 249, 243, 0.06); color: rgba(255, 249, 243, 0.7); transition: all .2s; border: 1px solid rgba(255, 249, 243, 0.08); }
   .foot-social a:hover { background: var(--brand); color: white; border-color: var(--brand); transform: translateY(-2px); }
   .foot-social svg { width: 18px; height: 18px; }
-
-  footer h2 {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
-    font-weight: 700; color: rgba(255, 249, 243, 0.45); margin-bottom: 20px;
-  }
+  footer h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: rgba(255, 249, 243, 0.45); margin-bottom: 20px; }
   footer ul { list-style: none; }
   footer li { margin-bottom: 12px; }
   footer a { color: rgba(255, 249, 243, 0.75); text-decoration: none; font-size: 14.5px; transition: color .2s; }
   footer a:not(.foot-brand):not(.foot-social a):hover { color: var(--cream); }
   .foot-link-with-icon { display: inline-flex; align-items: center; gap: 8px; }
   .foot-link-with-icon svg { width: 14px; height: 14px; opacity: 0.6; }
-
-  .foot-partners {
-    padding: 24px 0;
-    display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap;
-    border-top: 1px solid rgba(255, 249, 243, 0.06);
-    position: relative; z-index: 3;
-  }
+  .foot-partners { padding: 24px 0; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255, 249, 243, 0.06); position: relative; z-index: 3; }
   .foot-partner-item { display: inline-flex; align-items: center; gap: 10px; opacity: 0.55; transition: opacity .2s; }
   .foot-partner-item:hover { opacity: 0.85; }
   .foot-partner-item img { height: 28px; width: auto; display: block; }
@@ -240,24 +101,9 @@
   .foot-partner-abacate-fallback { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; display: inline-flex; align-items: center; gap: 6px; }
   .foot-partner-abacate-fallback::before { content: '🥑'; font-size: 18px; }
   .foot-partner-divider { width: 1px; height: 20px; background: rgba(255, 249, 243, 0.15); }
-
-  .foot-bottom {
-    padding: 28px 0;
-    border-top: 1px solid rgba(255, 249, 243, 0.08);
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; color: rgba(255, 249, 243, 0.4);
-    flex-wrap: wrap; gap: 16px;
-    position: relative; z-index: 3;
-  }
+  .foot-bottom { padding: 28px 0; border-top: 1px solid rgba(255, 249, 243, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255, 249, 243, 0.4); flex-wrap: wrap; gap: 16px; position: relative; z-index: 3; }
   .foot-bottom-badges { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-  .foot-bottom-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 10px; border-radius: 999px;
-    background: rgba(255, 249, 243, 0.04);
-    border: 1px solid rgba(255, 249, 243, 0.06);
-    font-size: 12px; font-weight: 500;
-    color: rgba(255, 249, 243, 0.6);
-  }
+  .foot-bottom-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: rgba(255, 249, 243, 0.04); border: 1px solid rgba(255, 249, 243, 0.06); font-size: 12px; font-weight: 500; color: rgba(255, 249, 243, 0.6); }
   .foot-bottom-badge .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
   @media (max-width: 600px) { .foot-partners { gap: 16px; } .foot-partner-divider { display: none; } }
 </style>
@@ -313,33 +159,112 @@
     <div class="legal-body">
 
       <section>
-        <h2><span class="sec-num">1</span> Informações que coletamos</h2>
-        <p>Coletamos informações necessárias para a prestação do serviço, incluindo dados de cadastro, dados de uso da plataforma e, quando aplicável, informações vinculadas à API do Instagram (META), em conformidade com as políticas da META e da LGPD.</p>
+        <h2><span class="sec-num">1</span> Quem é o controlador dos seus dados</h2>
+        <p>A Notifiquei (CNPJ 59.859.848/0001-13) é a controladora dos dados pessoais tratados por esta plataforma, nos termos da Lei Geral de Proteção de Dados (Lei 13.709/2018 — LGPD).</p>
+        <p>Para dúvidas, solicitações ou exercício dos seus direitos relacionados a dados pessoais, entre em contato pelo e-mail: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>.</p>
+        <p>A Notifiquei não está obrigada a nomear formalmente um Encarregado de Dados (DPO) neste momento, considerando o porte e volume de tratamento de dados realizado. O canal acima está disponível para todas as solicitações de titulares.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">2</span> Uso das informações</h2>
-        <p>Utilizamos as informações para operar e melhorar a Notifiquei, para suporte ao usuário, cumprimento de obrigações legais e, quando autorizado, para comunicação sobre o serviço.</p>
+        <h2><span class="sec-num">2</span> Quais dados coletamos</h2>
+        <p><strong>Dados de cadastro:</strong> nome completo, endereço de e-mail, número de telefone (quando fornecido) e dados de faturamento (nome, CPF/CNPJ e endereço).</p>
+        <p><strong>Dados de acesso e uso da plataforma:</strong> endereço de IP, informações do dispositivo/navegador, registro de ações realizadas na plataforma (logs) e configurações de automação criadas pelo usuário.</p>
+        <p><strong>Dados vinculados à API do Instagram (Meta):</strong> token de acesso à conta do Instagram do usuário, identificadores de conta autorizados pelo próprio usuário e logs de interações automatizadas realizadas em seu nome, conforme autorizado pelas políticas da Meta.</p>
+        <p>Não coletamos dados sensíveis, como dados de saúde, biometria, crenças religiosas ou orientação sexual.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">3</span> Compartilhamento</h2>
-        <p>Não vendemos dados pessoais. Podemos compartilhar dados com prestadores de serviço que nos auxiliam na operação (hospedagem, pagamento, e-mail), sempre com obrigação de confidencialidade e em conformidade com a lei.</p>
+        <h2><span class="sec-num">3</span> Para que usamos seus dados (finalidade e base legal)</h2>
+        <p>Tratamos seus dados com as seguintes finalidades e bases legais, conforme o artigo 7 da LGPD:</p>
+        <table class="legal-table">
+          <thead><tr><th>Finalidade</th><th>Base Legal (LGPD)</th></tr></thead>
+          <tbody>
+            <tr><td>Criação e gestão da sua conta</td><td>Execução de contrato (Art. 7, V)</td></tr>
+            <tr><td>Prestação das funcionalidades de automação</td><td>Execução de contrato (Art. 7, V)</td></tr>
+            <tr><td>Processamento de pagamentos</td><td>Execução de contrato (Art. 7, V)</td></tr>
+            <tr><td>Suporte técnico e atendimento ao cliente</td><td>Execução de contrato (Art. 7, V)</td></tr>
+            <tr><td>Cumprimento de obrigações fiscais e legais</td><td>Obrigação legal (Art. 7, II)</td></tr>
+            <tr><td>Melhoria e desenvolvimento da plataforma</td><td>Legítimo interesse (Art. 7, IX)</td></tr>
+            <tr><td>Comunicações de marketing e novidades</td><td>Consentimento (Art. 7, I) — mediante opt-in</td></tr>
+            <tr><td>Prevenção a fraudes e segurança</td><td>Legítimo interesse (Art. 7, IX)</td></tr>
+          </tbody>
+        </table>
+        <p>Seus dados não serão utilizados para finalidades incompatíveis com as listadas acima.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">4</span> Seus direitos</h2>
-        <p>Você pode acessar, corrigir ou solicitar a exclusão de seus dados pessoais, na medida do permitido por lei. Entre em contato por <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a> para exercer seus direitos.</p>
+        <h2><span class="sec-num">4</span> Por quanto tempo guardamos seus dados</h2>
+        <ul>
+          <li><strong>Dados de cadastro e de uso:</strong> mantidos durante a vigência do contrato e por até 5 (cinco) anos após o encerramento da conta, para cumprimento de obrigações legais e fiscais.</li>
+          <li><strong>Logs de acesso:</strong> mantidos por 6 (seis) meses, conforme exigido pelo Marco Civil da Internet (Lei 12.965/2014).</li>
+          <li><strong>Dados de pagamento:</strong> mantidos pelo prazo exigido pela legislação fiscal e financeira aplicável.</li>
+          <li><strong>Tokens de acesso à API da Meta:</strong> mantidos apenas durante a vigência da autorização concedida pelo usuário. Revogada a autorização ou encerrada a conta, os tokens são removidos.</li>
+        </ul>
+        <p>Após os prazos acima, os dados são eliminados ou anonimizados de forma irreversível.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">5</span> Alterações</h2>
-        <p>Esta Política pode ser atualizada. Alterações relevantes serão comunicadas por e-mail ou aviso na plataforma.</p>
+        <h2><span class="sec-num">5</span> Com quem compartilhamos seus dados</h2>
+        <p>Não vendemos dados pessoais. Podemos compartilhar dados com:</p>
+        <ul>
+          <li><strong>Processadores de pagamento</strong> (ex.: Abacatepay ou similar) — apenas os dados necessários para a transação.</li>
+          <li><strong>Provedores de infraestrutura e hospedagem</strong> (como Amazon Web Services — AWS e/ou Google Cloud) — o que pode implicar transferência internacional de dados, com garantias adequadas conforme o Art. 33 da LGPD.</li>
+          <li><strong>Provedores de e-mail e comunicação</strong> para envio de notificações e suporte.</li>
+          <li><strong>Meta Platforms, Inc.</strong> — dados vinculados ao Instagram são transmitidos exclusivamente para operação das automações autorizadas pelo usuário, conforme os Meta Platform Terms.</li>
+          <li><strong>Autoridades públicas</strong> — quando exigido por lei, ordem judicial ou regulatória.</li>
+        </ul>
       </section>
 
       <section>
-        <h2><span class="sec-num">6</span> Contato</h2>
-        <p>Dúvidas sobre privacidade: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>.</p>
+        <h2><span class="sec-num">6</span> Transferência internacional de dados</h2>
+        <p>Alguns de nossos fornecedores de infraestrutura processam dados em servidores localizados fora do Brasil. Quando isso ocorre, adotamos as salvaguardas previstas no artigo 33 da LGPD, verificando que o país de destino oferece grau adequado de proteção ou que existem cláusulas contratuais que garantam a proteção dos dados transferidos.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">7</span> Seus direitos como titular de dados</h2>
+        <p>Nos termos do artigo 18 da LGPD, você tem os seguintes direitos em relação aos seus dados pessoais:</p>
+        <ul>
+          <li><strong>Confirmação:</strong> saber se tratamos seus dados pessoais;</li>
+          <li><strong>Acesso:</strong> obter uma cópia dos dados que mantemos sobre você;</li>
+          <li><strong>Correção:</strong> solicitar a correção de dados incompletos, inexatos ou desatualizados;</li>
+          <li><strong>Anonimização, bloqueio ou eliminação:</strong> solicitar que dados desnecessários ou excessivos sejam anonimizados, bloqueados ou eliminados;</li>
+          <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado para uso com outro fornecedor, quando tecnicamente viável;</li>
+          <li><strong>Eliminação:</strong> solicitar a exclusão dos dados tratados com base em consentimento, salvo quando a retenção for exigida por lei;</li>
+          <li><strong>Informação sobre compartilhamento:</strong> saber com quais entidades compartilhamos seus dados;</li>
+          <li><strong>Informação sobre não consentir:</strong> ser informado sobre as consequências de não fornecer o consentimento;</li>
+          <li><strong>Revogação do consentimento:</strong> retirar consentimentos concedidos anteriormente, a qualquer momento e sem ônus.</li>
+        </ul>
+        <p>Para exercer qualquer um desses direitos, envie uma solicitação para <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>. Atenderemos no prazo de até 15 (quinze) dias úteis, conforme previsto na LGPD.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">8</span> Cookies e tecnologias de rastreamento</h2>
+        <p>Utilizamos cookies e tecnologias similares para manter você autenticado na plataforma (cookies essenciais), analisar o uso e melhorar a experiência (cookies analíticos) e lembrar preferências de configuração (cookies funcionais).</p>
+        <p>Você pode gerenciar as preferências de cookies nas configurações do seu navegador. A desativação de cookies essenciais pode impedir o funcionamento correto da plataforma.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">9</span> Segurança dos dados</h2>
+        <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, incluindo criptografia em trânsito (TLS/HTTPS), controle de acesso por função, monitoramento de acessos e revisões periódicas de segurança.</p>
+        <p>Em caso de incidente de segurança que possa acarretar risco ou dano relevante aos titulares, notificaremos a Autoridade Nacional de Proteção de Dados (ANPD) e os titulares afetados nos termos do artigo 48 da LGPD, no prazo de até 72 (setenta e duas) horas após a ciência do incidente.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">10</span> Dados de menores</h2>
+        <p>Nossa plataforma é destinada exclusivamente a pessoas jurídicas e pessoas físicas maiores de 18 anos. Não coletamos intencionalmente dados de menores de idade. Caso identifiquemos que dados de um menor foram fornecidos sem o devido consentimento, excluiremos essas informações imediatamente.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">11</span> Alterações nesta Política</h2>
+        <p>Esta Política pode ser atualizada periodicamente. Quando houver alterações relevantes, notificaremos você por e-mail ou por aviso visível na plataforma com antecedência mínima de 10 (dez) dias antes de entrarem em vigor.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">12</span> Contato e canal de privacidade</h2>
+        <p>Para dúvidas, solicitações ou reclamações sobre privacidade e proteção de dados:<br>
+        E-mail: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a><br>
+        Notifiquei — CNPJ 59.859.848/0001-13<br>
+        Prazo de resposta: até 15 (quinze) dias úteis.</p>
       </section>
 
     </div>
@@ -356,18 +281,11 @@
         </a>
         <p class="tag">Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
         <div class="foot-social">
-          <a href="https://instagram.com/notifiquei.com.br" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@notifiqueicombr" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-          </a>
-          <a href="https://wa.me/551231995949" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.1-.3.2-.5 0-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
-          </a>
+          <a href="https://instagram.com/notifiquei.com.br" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
+          <a href="https://www.youtube.com/@notifiqueicombr" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          <a href="https://wa.me/551231995949" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.1-.3.2-.5 0-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z"/></svg></a>
         </div>
       </div>
-
       <div>
         <h2>Produto</h2>
         <ul>
@@ -377,7 +295,6 @@
           <li><a href="/#faq">Dúvidas</a></li>
         </ul>
       </div>
-
       <div>
         <h2>Notifiquei</h2>
         <ul>
@@ -388,26 +305,16 @@
           <li><a href="/politica-de-privacidade">Privacidade</a></li>
         </ul>
       </div>
-
       <div>
         <h2>Contato</h2>
         <ul>
-          <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-            contato@notifiquei.com.br
-          </a></li>
-          <li><a href="https://wa.me/551231995949" class="foot-link-with-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            (12) 3199-5949
-          </a></li>
+          <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>contato@notifiquei.com.br</a></li>
+          <li><a href="https://wa.me/551231995949" class="foot-link-with-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>(12) 3199-5949</a></li>
         </ul>
       </div>
     </div>
-
     <div class="foot-partners">
-      <div class="foot-partner-item">
-        <img src="assets/servidores-turbo.png" alt="Servidores turbo" width="120" height="28" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
-      </div>
+      <div class="foot-partner-item"><img src="assets/servidores-turbo.png" alt="Servidores turbo" width="120" height="28" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';"></div>
       <div class="foot-partner-divider"></div>
       <div class="foot-partner-item">
         <span class="foot-partner-label">Payments by</span>
@@ -415,14 +322,10 @@
         <span class="foot-partner-abacate-fallback" style="display: none;">Abacatepay</span>
       </div>
     </div>
-
     <div class="foot-bottom">
       <div>© 2026 Notifiquei. Todos os direitos reservados. &nbsp;·&nbsp; CNPJ 59.859.848/0001-13</div>
       <div class="foot-bottom-badges">
-        <span class="foot-bottom-badge">
-          <span class="badge-dot"></span>
-          Todos os sistemas operando
-        </span>
+        <span class="foot-bottom-badge"><span class="badge-dot"></span>Todos os sistemas operando</span>
         <span class="foot-bottom-badge">Parceiro oficial Meta</span>
       </div>
     </div>
