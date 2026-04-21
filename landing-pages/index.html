@@ -1037,7 +1037,8 @@
   .marquee-track {
     display: flex;
     gap: 40px;
-    animation: scroll 40s linear infinite;
+    width: max-content;
+    animation: scroll 30s linear infinite;
     white-space: nowrap;
     font-family: var(--sans);
     font-size: 14px;
@@ -1054,7 +1055,7 @@
   }
   @keyframes scroll {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-33.3333%); }
   }
 
   /* ============= BRANDS MARQUEE ============= */
@@ -2759,7 +2760,13 @@
 
 <!-- ============ MARQUEE ============ -->
 <div class="marquee">
-  <div class="marquee-track">
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-item">Responda em segundos</div>
+    <div class="marquee-item">Sem parecer robô</div>
+    <div class="marquee-item">API oficial Meta</div>
+    <div class="marquee-item">Feito pra Instagram</div>
+    <div class="marquee-item">24h por dia</div>
+    <div class="marquee-item">Configura em 5 min</div>
     <div class="marquee-item">Responda em segundos</div>
     <div class="marquee-item">Sem parecer robô</div>
     <div class="marquee-item">API oficial Meta</div>
