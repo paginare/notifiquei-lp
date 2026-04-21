@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Termos de Uso — Notifiquei</title>
-<meta name="description" content="Termos de uso da plataforma Notifiquei.">
-<link rel="canonical" href="https://notifiquei.com.br/termos-de-uso">
+<title>Acordo de Operação de Dados — Notifiquei</title>
+<meta name="description" content="Acordo de operação de dados pessoais entre a Notifiquei e seus clientes, nos termos da LGPD.">
+<link rel="canonical" href="https://notifiquei.com.br/dpa">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
@@ -55,8 +55,22 @@
   .breadcrumb:hover { color: var(--ink-soft); }
   .breadcrumb svg { width: 14px; height: 14px; }
   .legal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand); margin-bottom: 16px; }
-  .legal-title { font-family: var(--display); font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: var(--ink); margin-bottom: 12px; }
-  .legal-meta { font-size: 13px; color: var(--ink-muted); margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+  .legal-title { font-family: var(--display); font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: var(--ink); margin-bottom: 12px; }
+  .legal-meta { font-size: 13px; color: var(--ink-muted); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+
+  /* Bloco de aceite */
+  .consent-block {
+    background: var(--brand-light);
+    border: 1.5px solid rgba(255,31,109,0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .consent-block .consent-icon { font-size: 24px; flex-shrink: 0; line-height: 1; }
+  .consent-block p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .consent-block strong { color: var(--ink); }
+
   .legal-body section { margin-bottom: 40px; }
   .legal-body h2 { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
   .legal-body h2 .sec-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: var(--brand-light); color: var(--brand); font-size: 12px; font-weight: 700; font-family: var(--sans); flex-shrink: 0; }
@@ -72,6 +86,14 @@
   .legal-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
   .legal-table tr:last-child td { border-bottom: none; }
 
+  /* Assinatura */
+  .parties-block { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  @media (max-width: 600px) { .parties-block { grid-template-columns: 1fr; } }
+  .party-card { background: var(--cream-2); border-radius: 12px; padding: 20px 24px; }
+  .party-card .party-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-muted); margin-bottom: 8px; }
+  .party-card .party-name { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .party-card .party-detail { font-size: 13px; color: var(--ink-soft); }
+
   footer { background: var(--ink); color: var(--cream); padding: 72px 0 0; position: relative; overflow: hidden; }
   footer::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse at center top, rgba(255, 31, 109, 0.18) 0%, rgba(255, 31, 109, 0) 60%); pointer-events: none; }
   footer .wrap { position: relative; z-index: 2; }
@@ -80,20 +102,20 @@
   footer .logo-svg { color: var(--cream); height: 32px; display: block; }
   footer .foot-brand { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 20px; }
   footer .foot-brand-col { text-align: left; }
-  footer .foot-brand-col p.tag { max-width: 340px; font-size: 14px; color: rgba(255, 249, 243, 0.6); line-height: 1.6; margin-bottom: 24px; }
+  footer .foot-brand-col p.tag { max-width: 340px; font-size: 14px; color: rgba(255,249,243,0.6); line-height: 1.6; margin-bottom: 24px; }
   @media (max-width: 900px) { footer .foot-brand-col { grid-column: span 2; } }
   .foot-social { display: flex; gap: 10px; }
-  .foot-social a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255, 249, 243, 0.06); color: rgba(255, 249, 243, 0.7); transition: all .2s; border: 1px solid rgba(255, 249, 243, 0.08); }
+  .foot-social a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255,249,243,0.06); color: rgba(255,249,243,0.7); transition: all .2s; border: 1px solid rgba(255,249,243,0.08); }
   .foot-social a:hover { background: var(--brand); color: white; border-color: var(--brand); transform: translateY(-2px); }
   .foot-social svg { width: 18px; height: 18px; }
-  footer h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: rgba(255, 249, 243, 0.45); margin-bottom: 20px; }
+  footer h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: rgba(255,249,243,0.45); margin-bottom: 20px; }
   footer ul { list-style: none; }
   footer li { margin-bottom: 12px; }
-  footer a { color: rgba(255, 249, 243, 0.75); text-decoration: none; font-size: 14.5px; transition: color .2s; }
+  footer a { color: rgba(255,249,243,0.75); text-decoration: none; font-size: 14.5px; transition: color .2s; }
   footer a:not(.foot-brand):not(.foot-social a):hover { color: var(--cream); }
   .foot-link-with-icon { display: inline-flex; align-items: center; gap: 8px; }
   .foot-link-with-icon svg { width: 14px; height: 14px; opacity: 0.6; }
-  .foot-partners { padding: 24px 0; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255, 249, 243, 0.06); position: relative; z-index: 3; }
+  .foot-partners { padding: 24px 0; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,249,243,0.06); position: relative; z-index: 3; }
   .foot-partner-item { display: inline-flex; align-items: center; gap: 10px; opacity: 0.55; transition: opacity .2s; }
   .foot-partner-item:hover { opacity: 0.85; }
   .foot-partner-item img { height: 28px; width: auto; display: block; }
@@ -101,10 +123,10 @@
   .foot-partner-abacate { height: 22px !important; filter: brightness(0) invert(1); opacity: 0.85; }
   .foot-partner-abacate-fallback { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; display: inline-flex; align-items: center; gap: 6px; }
   .foot-partner-abacate-fallback::before { content: '🥑'; font-size: 18px; }
-  .foot-partner-divider { width: 1px; height: 20px; background: rgba(255, 249, 243, 0.15); }
-  .foot-bottom { padding: 28px 0; border-top: 1px solid rgba(255, 249, 243, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255, 249, 243, 0.4); flex-wrap: wrap; gap: 16px; position: relative; z-index: 3; }
+  .foot-partner-divider { width: 1px; height: 20px; background: rgba(255,249,243,0.15); }
+  .foot-bottom { padding: 28px 0; border-top: 1px solid rgba(255,249,243,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,249,243,0.4); flex-wrap: wrap; gap: 16px; position: relative; z-index: 3; }
   .foot-bottom-badges { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-  .foot-bottom-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: rgba(255, 249, 243, 0.04); border: 1px solid rgba(255, 249, 243, 0.06); font-size: 12px; font-weight: 500; color: rgba(255, 249, 243, 0.6); }
+  .foot-bottom-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: rgba(255,249,243,0.04); border: 1px solid rgba(255,249,243,0.06); font-size: 12px; font-weight: 500; color: rgba(255,249,243,0.6); }
   .foot-bottom-badge .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
   @media (max-width: 600px) { .foot-partners { gap: 16px; } .foot-partner-divider { display: none; } }
 </style>
@@ -153,95 +175,160 @@
       Voltar ao início
     </a>
 
-    <p class="legal-eyebrow">Legal</p>
-    <h1 class="legal-title">Termos de Uso</h1>
-    <p class="legal-meta">Última atualização: 11 de fevereiro de 2026</p>
+    <p class="legal-eyebrow">LGPD — Art. 37</p>
+    <h1 class="legal-title">Acordo de Operação de Dados</h1>
+    <p class="legal-meta">Última atualização: 11 de fevereiro de 2026 &nbsp;·&nbsp; Versão 1.0</p>
+
+    <div class="consent-block">
+      <div class="consent-icon">📋</div>
+      <div>
+        <p><strong>Aceite automático ao contratar.</strong> Ao criar uma conta e contratar qualquer plano da Notifiquei, o Controlador declara ter lido, compreendido e concordado integralmente com este Acordo de Operação de Dados, que passa a fazer parte integrante dos <a href="/termos-de-uso">Termos de Uso</a>. O aceite é registrado com data, hora e IP no momento do cadastro.</p>
+      </div>
+    </div>
 
     <div class="legal-body">
 
       <section>
-        <h2><span class="sec-num">1</span> Quem somos e o que é a Notifiquei</h2>
-        <p>A Notifiquei é uma plataforma SaaS de automação de vendas no Instagram, desenvolvida e operada por Notifiquei (CNPJ 59.859.848/0001-13), com sede no Brasil. Nosso serviço utiliza exclusivamente a API oficial da Meta Platforms, Inc. ("Meta"), o que significa que toda a automação de DMs, comentários e stories ocorre dentro dos limites e condições estabelecidos pela própria Meta.</p>
-        <p>Ao criar sua conta e utilizar a Notifiquei, você declara ter lido, compreendido e concordado com estes Termos de Uso. Se você não concordar com qualquer disposição, por favor, não utilize o serviço.</p>
+        <h2><span class="sec-num">1</span> Partes e definições</h2>
+        <p>Este Acordo é celebrado entre:</p>
+        <div class="parties-block">
+          <div class="party-card">
+            <div class="party-label">Operador (LGPD, Art. 5º, VII)</div>
+            <div class="party-name">Notifiquei</div>
+            <div class="party-detail">CNPJ 59.859.848/0001-13<br>contato@notifiquei.com.br</div>
+          </div>
+          <div class="party-card">
+            <div class="party-label">Controlador (LGPD, Art. 5º, VI)</div>
+            <div class="party-name">O Cliente</div>
+            <div class="party-detail">Pessoa física ou jurídica que contrata a Notifiquei e determina as finalidades e os meios do tratamento de dados de seus seguidores e contatos no Instagram.</div>
+          </div>
+        </div>
+        <p style="margin-top:20px">Para os fins deste Acordo, aplicam-se as definições da Lei Geral de Proteção de Dados (Lei 13.709/2018 — LGPD): <strong>Dados Pessoais</strong> (qualquer informação relacionada a pessoa natural identificada ou identificável), <strong>Tratamento</strong> (toda operação realizada com dados pessoais), <strong>Titular</strong> (a pessoa natural a quem se referem os dados), <strong>Suboperador</strong> (terceiro que realiza tratamento sob instrução do Operador).</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">2</span> Descrição do serviço</h2>
-        <p>A Notifiquei oferece automação de mensagens diretas (DMs), comentários e interações em stories no Instagram, por meio da API oficial da Meta. Os recursos disponíveis dependem do plano contratado.</p>
-        <p>É importante que você saiba:</p>
+        <h2><span class="sec-num">2</span> Objeto e natureza do tratamento</h2>
+        <p>A Notifiquei atua como <strong>Operadora</strong> no tratamento dos dados pessoais de terceiros (seguidores, comentaristas e remetentes de mensagens diretas no Instagram) que interagem com as automações configuradas pelo Controlador (Cliente).</p>
+        <p>O tratamento realizado pela Notifiquei inclui:</p>
         <ul>
-          <li>O serviço é condicionado às políticas da Meta Platform Terms e às Políticas de Uso Aceitável da Meta, disponíveis em developers.facebook.com. Ao usar a Notifiquei, você também aceita estar sujeito a essas políticas.</li>
-          <li>A Meta pode alterar, restringir ou suspender o acesso à sua API a qualquer momento, independentemente de nossa vontade. Nessas hipóteses, funcionalidades da Notifiquei podem ser afetadas sem que isso configure inadimplemento de nossa parte. Comunicaremos qualquer impacto relevante assim que tivermos ciência.</li>
-          <li>A Notifiquei não tem vínculo formal de parceria ou representação com a Meta. Somos um desenvolvedor independente que utiliza a API pública disponibilizada pela Meta.</li>
+          <li>Recepção e processamento de mensagens diretas (DMs) recebidas pelo perfil do Controlador;</li>
+          <li>Leitura e resposta automatizada a comentários em publicações do Controlador;</li>
+          <li>Processamento de interações em stories, conforme fluxos configurados pelo Controlador;</li>
+          <li>Armazenamento temporário de identificadores de usuário do Instagram necessários para operar as automações;</li>
+          <li>Geração de relatórios e estatísticas de uso para o Controlador.</li>
+        </ul>
+        <p>A Notifiquei <strong>não determina as finalidades do tratamento</strong> — estas são definidas exclusivamente pelo Controlador ao configurar os fluxos de automação.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">3</span> Tipos de dados e categorias de titulares</h2>
+        <table class="legal-table">
+          <thead><tr><th>Tipo de dado</th><th>Categoria de titular</th><th>Origem</th></tr></thead>
+          <tbody>
+            <tr><td>Nome de usuário do Instagram</td><td>Seguidores / visitantes do perfil do Controlador</td><td>API oficial Meta</td></tr>
+            <tr><td>Identificador único de usuário (PSID/IGSID)</td><td>Usuários que enviaram DM ou comentaram</td><td>API oficial Meta</td></tr>
+            <tr><td>Conteúdo de mensagens recebidas</td><td>Usuários que iniciaram conversa</td><td>API oficial Meta</td></tr>
+            <tr><td>Conteúdo de comentários públicos</td><td>Usuários que comentaram em publicações</td><td>API oficial Meta</td></tr>
+            <tr><td>Timestamp das interações</td><td>Todos os anteriores</td><td>API oficial Meta</td></tr>
+          </tbody>
+        </table>
+        <p>Não são tratados dados sensíveis (Art. 5º, II da LGPD) pela Notifiquei no âmbito deste Acordo.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">4</span> Finalidade e base legal</h2>
+        <p>O tratamento realizado pela Notifiquei tem como única finalidade a <strong>execução do contrato de prestação de serviços</strong> firmado com o Controlador (Art. 7º, V da LGPD). A Notifiquei não utilizará os dados para qualquer outra finalidade, incluindo publicidade própria, treinamento de modelos de IA ou compartilhamento com terceiros não autorizados.</p>
+        <p>É responsabilidade do Controlador garantir que possui base legal adequada para coletar e processar os dados dos titulares por meio da plataforma Notifiquei, inclusive observando as políticas da Meta Platform e as diretrizes da ANPD aplicáveis.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">5</span> Duração do tratamento</h2>
+        <p>O tratamento de dados de terceiros (seguidores/contatos do Controlador) ocorre durante a vigência do contrato de serviços. Após o encerramento da conta:</p>
+        <ul>
+          <li>Dados de interação (conteúdo de mensagens e comentários) são eliminados em até 30 (trinta) dias;</li>
+          <li>Identificadores técnicos necessários para auditoria são retidos por até 90 (noventa) dias adicionais;</li>
+          <li>Logs de segurança são mantidos por 6 (seis) meses, conforme exigido pelo Marco Civil da Internet.</li>
         </ul>
       </section>
 
       <section>
-        <h2><span class="sec-num">3</span> Usos permitidos e proibidos</h2>
-        <p>Ao usar a Notifiquei, você se compromete a utilizá-la exclusivamente para fins legítimos de comunicação e vendas. É proibido:</p>
+        <h2><span class="sec-num">6</span> Obrigações da Notifiquei (Operadora)</h2>
+        <p>A Notifiquei se compromete a:</p>
         <ul>
-          <li>Usar a plataforma para enviar spam, mensagens não solicitadas em massa ou conteúdo que viole as políticas da Meta ou do Instagram;</li>
-          <li>Usar automações para manipular métricas, enganar usuários, disseminar desinformação ou praticar qualquer forma de fraude;</li>
-          <li>Usar o serviço para coletar dados de terceiros sem consentimento ou para finalidades além das autorizadas pelas políticas da Meta;</li>
-          <li>Usar a plataforma para fins ilícitos, incluindo práticas que violem o CDC (Lei 8.078/1990), a LGPD (Lei 13.709/2018) ou qualquer outra legislação aplicável;</li>
-          <li>Compartilhar credenciais de acesso com terceiros não autorizados;</li>
-          <li>Praticar qualquer ato que comprometa a segurança ou disponibilidade da plataforma.</li>
+          <li>Tratar os dados pessoais exclusivamente conforme as instruções documentadas do Controlador;</li>
+          <li>Garantir que as pessoas autorizadas a tratar os dados estejam sujeitas a obrigações de confidencialidade;</li>
+          <li>Implementar medidas técnicas e organizacionais adequadas para garantir a segurança dos dados (criptografia em trânsito TLS, controle de acesso por função, logs de auditoria);</li>
+          <li>Notificar o Controlador em até 48 (quarenta e oito) horas caso tome conhecimento de incidente de segurança que envolva dados tratados neste Acordo;</li>
+          <li>Auxiliar o Controlador no atendimento a solicitações de titulares de dados (Art. 18 da LGPD), na medida do tecnicamente possível;</li>
+          <li>Auxiliar o Controlador no cumprimento de obrigações relativas à segurança, notificação de incidentes e avaliação de impacto;</li>
+          <li>Eliminar ou devolver os dados ao Controlador ao término dos serviços, conforme os prazos do item 5;</li>
+          <li>Disponibilizar ao Controlador todas as informações necessárias para demonstrar o cumprimento das obrigações previstas neste Acordo.</li>
         </ul>
-        <p>O descumprimento destas regras pode resultar na suspensão ou encerramento imediato da sua conta, sem prejuízo de outras medidas cabíveis.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">4</span> Cadastro e segurança da conta</h2>
-        <p>Para usar a Notifiquei, você precisará criar uma conta com informações verdadeiras, completas e atualizadas. Você é responsável pela confidencialidade de suas credenciais e por todas as atividades realizadas em sua conta.</p>
-        <p>Caso identifique uso não autorizado da sua conta, comunique-nos imediatamente pelo e-mail <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>.</p>
+        <h2><span class="sec-num">7</span> Obrigações do Controlador (Cliente)</h2>
+        <p>O Controlador se compromete a:</p>
+        <ul>
+          <li>Garantir que possui base legal adequada para utilizar os dados dos titulares (seguidores/contatos) por meio da plataforma Notifiquei;</li>
+          <li>Utilizar a plataforma em conformidade com as políticas da Meta Platform Terms e com a LGPD;</li>
+          <li>Não configurar fluxos de automação para fins ilícitos, discriminatórios ou que violem direitos dos titulares;</li>
+          <li>Responder diretamente às solicitações de titulares de dados que exerçam seus direitos relacionados a interações ocorridas por meio da plataforma;</li>
+          <li>Comunicar a Notifiquei imediatamente sobre qualquer solicitação de titular ou autoridade que afete dados tratados neste Acordo;</li>
+          <li>Manter suas credenciais de acesso à plataforma em segurança.</li>
+        </ul>
       </section>
 
       <section>
-        <h2><span class="sec-num">5</span> Planos, pagamento e condições comerciais</h2>
-        <p>A Notifiquei oferece planos de assinatura mensal. As cobranças são realizadas mensalmente, na data de início de cada ciclo. Os preços podem ser reajustados mediante comunicação prévia de pelo menos 30 (trinta) dias por e-mail. O uso continuado do serviço após o reajuste comunicado constitui aceite das novas condições.</p>
-        <p>Em caso de inadimplência, o acesso à plataforma poderá ser suspenso após notificação, respeitados os direitos do consumidor previstos na legislação vigente.</p>
+        <h2><span class="sec-num">8</span> Suboperadores</h2>
+        <p>A Notifiquei utiliza os seguintes suboperadores no tratamento de dados no âmbito deste Acordo:</p>
+        <table class="legal-table">
+          <thead><tr><th>Suboperador</th><th>Finalidade</th><th>País</th></tr></thead>
+          <tbody>
+            <tr><td>Amazon Web Services (AWS)</td><td>Hospedagem e infraestrutura de dados</td><td>Brasil / EUA</td></tr>
+            <tr><td>Meta Platforms, Inc.</td><td>API oficial do Instagram (origem dos dados)</td><td>EUA</td></tr>
+            <tr><td>Abacatepay</td><td>Processamento de pagamentos (dados do Controlador)</td><td>Brasil</td></tr>
+          </tbody>
+        </table>
+        <p>A Notifiquei informará o Controlador sobre qualquer alteração relevante na lista de suboperadores com antecedência mínima de 15 (quinze) dias, salvo em caso de força maior. O Controlador pode se opor a alterações justificando por escrito para <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">6</span> Direito de arrependimento e reembolso</h2>
-        <p>De acordo com o artigo 49 do Código de Defesa do Consumidor (Lei 8.078/1990), você tem o <strong>direito de cancelar a contratação e solicitar reembolso integral em até 7 (sete) dias corridos</strong> a partir da data de contratação, sem necessidade de justificativa. Este é um direito legal do consumidor e não pode ser condicionado ou restringido por qualquer razão.</p>
-        <p>Para exercer o direito de arrependimento, entre em contato pelo e-mail <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>. O reembolso será processado em até 10 (dez) dias úteis, pelo mesmo meio de pagamento utilizado na contratação.</p>
-        <p>Após o prazo de 7 dias, não realizamos reembolsos proporcionais pelo período restante do mês contratado, exceto nos casos previstos em lei.</p>
+        <h2><span class="sec-num">9</span> Segurança e incidentes</h2>
+        <p>A Notifiquei adota as seguintes medidas de segurança técnica e organizacional:</p>
+        <ul>
+          <li>Criptografia de dados em trânsito (TLS 1.2+);</li>
+          <li>Controle de acesso baseado em funções (RBAC) com princípio do menor privilégio;</li>
+          <li>Logs de acesso e auditoria com retenção de 90 dias;</li>
+          <li>Testes de segurança periódicos;</li>
+          <li>Política interna de resposta a incidentes.</li>
+        </ul>
+        <p>Em caso de incidente de segurança que envolva dados tratados neste Acordo, a Notifiquei notificará o Controlador em até 48 horas, com descrição da natureza do incidente, categorias e quantidade estimada de titulares afetados, e medidas adotadas ou propostas para remediar o incidente.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">7</span> Limitação de responsabilidade</h2>
-        <p>A Notifiquei se compromete a manter o serviço disponível e funcional. No entanto, não podemos garantir disponibilidade ininterrupta em razão de alterações ou suspensões da API da Meta, problemas de infraestrutura de terceiros ou casos fortuitos e de força maior.</p>
-        <p>Nossa responsabilidade por danos diretos fica limitada ao valor pago pelo usuário nos últimos 3 (três) meses de serviço. Não nos responsabilizamos por lucros cessantes ou danos indiretos decorrentes de limitações da API da Meta ou de eventos fora do nosso controle razoável.</p>
-        <p>Nenhuma cláusula deste item exclui ou limita direitos previstos no Código de Defesa do Consumidor.</p>
+        <h2><span class="sec-num">10</span> Transferência internacional de dados</h2>
+        <p>O tratamento de dados pode envolver transferência para os Estados Unidos em razão do uso de infraestrutura da AWS e da Meta. Essas transferências são realizadas com base nas salvaguardas previstas no Art. 33 da LGPD, incluindo cláusulas contratuais padrão e a verificação de adequação de proteção dos países destinatários.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">8</span> Propriedade intelectual</h2>
-        <p>Todo o código-fonte, design, marca e demais elementos da plataforma Notifiquei são de nossa propriedade ou licenciados para uso pela Notifiquei. Os conteúdos criados por você (textos, fluxos de automação) permanecem de sua propriedade — ao usá-los na plataforma, você nos concede licença limitada e revogável para processá-los exclusivamente com a finalidade de prestar o serviço contratado.</p>
+        <h2><span class="sec-num">11</span> Direitos dos titulares</h2>
+        <p>Quando um titular de dados (seguidor/contato do Controlador) exercer seus direitos previstos no Art. 18 da LGPD perante a Notifiquei, esta redirecionará a solicitação ao Controlador no prazo de 5 (cinco) dias úteis, pois é o Controlador o responsável principal pelo atendimento.</p>
+        <p>A Notifiquei auxiliará tecnicamente o Controlador no atendimento dessas solicitações na medida do possível, sem custo adicional para solicitações de até 5 (cinco) por mês.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">9</span> Suspensão e encerramento de conta</h2>
-        <p>Você pode encerrar sua conta a qualquer momento, mediante solicitação pelo e-mail <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>. Podemos suspender ou encerrar sua conta, com aviso prévio sempre que possível, em caso de violação destes Termos, inadimplência após notificação ou determinação legal.</p>
+        <h2><span class="sec-num">12</span> Vigência, rescisão e eliminação de dados</h2>
+        <p>Este Acordo vigora durante todo o período de contratação dos serviços. O encerramento da conta pelo Controlador ou pela Notifiquei implica a rescisão automática deste Acordo, sem prejuízo das obrigações de confidencialidade e dos prazos de retenção previstos no item 5.</p>
+        <p>Mediante solicitação escrita ao e-mail <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>, o Controlador pode solicitar a eliminação antecipada de dados de terceiros tratados neste Acordo, desde que não haja impedimento legal.</p>
       </section>
 
       <section>
-        <h2><span class="sec-num">10</span> Alterações nestes Termos</h2>
-        <p>Podemos atualizar estes Termos de Uso a qualquer momento. Quando as alterações forem relevantes, notificaremos você por e-mail ou por aviso visível na plataforma com antecedência mínima de 10 (dez) dias antes de entrarem em vigor. O uso continuado do serviço após esse prazo constitui aceite das novas condições.</p>
-      </section>
-
-      <section>
-        <h2><span class="sec-num">11</span> Foro e lei aplicável</h2>
-        <p>Estes Termos são regidos pelas leis brasileiras. Para resolução de conflitos, fica eleito o foro do domicílio do consumidor, em conformidade com o artigo 101, inciso I, do Código de Defesa do Consumidor. Antes de qualquer medida judicial, incentivamos a resolução amigável pelo e-mail <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>, com prazo de resposta de até 5 (cinco) dias úteis.</p>
-      </section>
-
-      <section>
-        <h2><span class="sec-num">12</span> Contato</h2>
-        <p>Dúvidas, solicitações ou reclamações relacionadas a estes Termos:<br>
-        E-mail: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a><br>
-        Notifiquei — CNPJ 59.859.848/0001-13<br>
-        Prazo de resposta: até 5 (cinco) dias úteis.</p>
+        <h2><span class="sec-num">13</span> Contato do Encarregado</h2>
+        <p>Para questões relacionadas a este Acordo, incluindo exercício de direitos de titulares e notificações de incidentes:<br>
+        <strong>Encarregado pelo Tratamento de Dados (DPO):</strong> Antonio Duarte<br>
+        E-mail: <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a><br>
+        Notifiquei — CNPJ 59.859.848/0001-13</p>
       </section>
 
     </div>
@@ -273,20 +360,18 @@
         </ul>
       </div>
       <div>
-        <h2>Notifiquei</h2>
+        <h2>Legal</h2>
         <ul>
-          <li><a href="/criadores">Pra criadores</a></li>
-          <li><a href="/afiliados">Programa de afiliados</a></li>
-          <li><a href="/blog">Blog</a></li>
           <li><a href="/termos-de-uso">Termos de uso</a></li>
           <li><a href="/politica-de-privacidade">Privacidade</a></li>
+          <li><a href="/dpa">Acordo de dados (DPA)</a></li>
         </ul>
       </div>
       <div>
         <h2>Contato</h2>
         <ul>
           <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>contato@notifiquei.com.br</a></li>
-          <li><a href="https://wa.me/551231995949" class="foot-link-with-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>(12) 3199-5949</a></li>
+          <li><a href="mailto:dpa@notifiquei.com.br" class="foot-link-with-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>dpa@notifiquei.com.br</a></li>
         </ul>
       </div>
     </div>

@@ -48,14 +48,20 @@
   ]
 }
 </script>
+<script src="/assets/cookie-consent.js"></script>
 <link rel="dns-prefetch" href="//connect.facebook.net">
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-800.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-700.woff2">
 <style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
   :root {
     /* Identidade visual oficial */
     --brand: #FF1F6D;          /* rosa/magenta Notifiquei - uso pontual */
@@ -148,7 +154,7 @@
   .nav-login { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; padding: 0 12px; transition: opacity .2s; }
   .nav-login:hover { opacity: 1; }
   .btn-brand {
-    background: var(--brand); color: white;
+    background: var(--brand-dark); color: white;
     padding: 11px 22px; border-radius: 999px;
     font-size: 14px; font-weight: 600;
     text-decoration: none;
@@ -156,7 +162,7 @@
     border: none;
     letter-spacing: -0.005em;
   }
-  .btn-brand:hover { background: var(--brand-dark); }
+  .btn-brand:hover { background: var(--brand); }
 
   .nav-burger {
     display: none;
@@ -327,7 +333,7 @@
     margin-top: 40px;
   }
   .btn-big {
-    background: var(--brand); color: white;
+    background: var(--brand-dark); color: white;
     padding: 17px 30px; border-radius: 999px;
     font-size: 16px; font-weight: 600;
     text-decoration: none;
@@ -337,7 +343,7 @@
     letter-spacing: -0.005em;
     box-shadow: 0 8px 24px -6px rgba(255, 31, 109, 0.45);
   }
-  .btn-big:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(255, 31, 109, 0.55); }
+  .btn-big:hover { background: var(--brand); transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(255, 31, 109, 0.55); }
   .btn-big:active { transform: translateY(0); }
 
   .btn-outline {
@@ -564,17 +570,17 @@
     animation: liveDot 1.6s ease-in-out infinite;
   }
   @keyframes liveDot {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
-    50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   /* Animação principal: entra, fica, sai — inspirada em iOS toasts */
   @keyframes notifCycle {
-    0% { opacity: 0; transform: translateX(16px) scale(0.94); filter: blur(4px); }
-    5% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-    28% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-    33% { opacity: 0; transform: translateX(-16px) scale(0.94); filter: blur(4px); }
-    100% { opacity: 0; transform: translateX(-16px) scale(0.94); filter: blur(4px); }
+    0% { opacity: 0; transform: translateX(16px) scale(0.94); }
+    5% { opacity: 1; transform: translateX(0) scale(1); }
+    28% { opacity: 1; transform: translateX(0) scale(1); }
+    33% { opacity: 0; transform: translateX(-16px) scale(0.94); }
+    100% { opacity: 0; transform: translateX(-16px) scale(0.94); }
   }
 
   .notif { animation: notifCycle 12s cubic-bezier(.2, .8, .2, 1) infinite; }
@@ -1905,7 +1911,7 @@
   }
   .foot-social svg { width: 18px; height: 18px; }
 
-  footer h4 {
+  footer h2 {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -2042,8 +2048,8 @@
   .scale-in.in { opacity: 1; transform: scale(1); }
 
   /* Blur-in pra títulos importantes */
-  .blur-in { opacity: 0; filter: blur(8px); transform: translateY(16px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), filter 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
-  .blur-in.in { opacity: 1; filter: blur(0); transform: translateY(0); }
+  .blur-in { opacity: 0; transform: translateY(16px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
+  .blur-in.in { opacity: 1; transform: translateY(0); }
 
   /* Respeitar usuários com prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
@@ -2083,8 +2089,8 @@
 
   /* Pulse nos elementos ativos */
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 31, 109, 0.5); }
-    50% { box-shadow: 0 0 0 10px rgba(255, 31, 109, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
   }
 
   /* Flow builder: linha pulsante */
@@ -2172,39 +2178,25 @@
   .logo-wordmark { display: inline-flex; align-items: center; }
 </style>
 
-<!-- ============ ANALYTICS & TRACKING ============ -->
-<!--
-  IMPORTANTE: Substitua os IDs abaixo antes de publicar.
-  META PIXEL:       troque 'YOUR_PIXEL_ID' pelo ID do seu pixel (Business Manager → Eventos)
-  GOOGLE ANALYTICS: troque 'G-XXXXXXXXXX' pelo seu Measurement ID (GA4)
-  Se não for usar algum dos dois, basta envolver o bloco correspondente em comentário HTML.
--->
-
-<!-- Meta Pixel (Facebook/Instagram) -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'YOUR_PIXEL_ID');
-fbq('track', 'PageView');
+(function () {
+  var fired = false;
+  function init() {
+    if (fired) return;
+    if (window.notifiqueiConsent !== 'all') return;
+    fired = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4197456147066821');
+    fbq('track', 'PageView');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
+  }
+  window._nfInitAnalytics = init;
+  ['click','scroll','touchstart','keydown'].forEach(function(ev) {
+    window.addEventListener(ev, init, {once: true, passive: true});
+  });
+})();
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-
-<!-- /ANALYTICS -->
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=PageView&noscript=1"/></noscript>
 
 </head>
 <body>
@@ -2258,6 +2250,7 @@ fbq('track', 'PageView');
   </div>
 </nav>
 
+<main>
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="blob blob-1"></div>
@@ -3057,6 +3050,8 @@ fbq('track', 'PageView');
   </div>
 </section>
 
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -3096,7 +3091,7 @@ fbq('track', 'PageView');
       </div>
 
       <div>
-        <h4>Produto</h4>
+        <h2>Produto</h2>
         <ul>
           <li><a href="#como">Como funciona</a></li>
           <li><a href="#usos">Casos de uso</a></li>
@@ -3107,7 +3102,7 @@ fbq('track', 'PageView');
       </div>
 
       <div>
-        <h4>Notifiquei</h4>
+        <h2>Notifiquei</h2>
         <ul>
           <li><a href="index.html">Página principal</a></li>
           <li><a href="afiliados.html">Programa de afiliados</a></li>
@@ -3118,7 +3113,7 @@ fbq('track', 'PageView');
       </div>
 
       <div>
-        <h4>Contato</h4>
+        <h2>Contato</h2>
         <ul>
           <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>

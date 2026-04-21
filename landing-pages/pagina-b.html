@@ -48,12 +48,17 @@
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-800.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-700.woff2">
   <style>
+    @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -1354,6 +1359,7 @@
   </div>
 </nav>
 
+<main>
 <!-- =============================================
      HERO
 ============================================= -->
@@ -1762,6 +1768,8 @@
 <!-- =============================================
      FOOTER
 ============================================= -->
+</main>
+
 <footer>
   <div class="wrap">
     <div class="footer-top">
@@ -1900,5 +1908,24 @@
     });
   })();
 </script>
+<script>
+(function () {
+  var fired = false;
+  function init() {
+    if (fired) return;
+    if (window.notifiqueiConsent !== 'all') return;
+    fired = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4197456147066821');
+    fbq('track', 'PageView');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
+  }
+  window._nfInitAnalytics = init;
+  ['click','scroll','touchstart','keydown'].forEach(function(ev) {
+    window.addEventListener(ev, init, {once: true, passive: true});
+  });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>

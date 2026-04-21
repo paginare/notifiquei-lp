@@ -71,6 +71,8 @@
   }
 }
 </script>
+<!-- Cookie Consent + Google Consent Mode v2 (deve vir ANTES de qualquer analytics) -->
+<script src="/assets/cookie-consent.js"></script>
 <!-- DNS prefetch para analytics (não bloqueia render) -->
 <link rel="dns-prefetch" href="//connect.facebook.net">
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
@@ -3129,10 +3131,15 @@
   })();
 
 </script>
-<!-- ============ ANALYTICS (carregados após interação do usuário) ============ -->
+<!-- ============ ANALYTICS (apenas com consentimento + primeira interação) ============ -->
 <script>
-(function loadAnalytics() {
+(function () {
+  var fired = false;
   function init() {
+    if (fired) return;
+    // Só carrega se o usuário aceitou cookies analíticos
+    if (window.notifiqueiConsent !== 'all') return;
+    fired = true;
     // Meta Pixel
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '4197456147066821');
@@ -3140,10 +3147,11 @@
     // Google Tag Manager
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
   }
-  var fired = false;
-  function trigger() { if (fired) return; fired = true; init(); }
+  // Expõe para o banner chamar quando usuário aceitar durante esta sessão
+  window._nfInitAnalytics = init;
+  // Carrega na primeira interação (se já consentiu)
   ['click','scroll','touchstart','keydown'].forEach(function(ev) {
-    window.addEventListener(ev, trigger, {once: true, passive: true});
+    window.addEventListener(ev, init, {once: true, passive: true});
   });
 })();
 </script>

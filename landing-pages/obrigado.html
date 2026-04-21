@@ -9,10 +9,15 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
 <meta name="theme-color" content="#FF1F6D">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
 <style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
   :root {
     --brand: #FF1F6D;
     --brand-dark: #C81558;
@@ -189,7 +194,7 @@
   }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--brand); color: white;
+    background: var(--brand-dark); color: white;
     padding: 16px 32px; border-radius: 999px;
     font-family: var(--sans);
     font-size: 15px; font-weight: 700;
@@ -197,7 +202,7 @@
     transition: background .2s, transform .15s;
     letter-spacing: -0.01em;
   }
-  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--brand); transform: translateY(-1px); }
   .cta-note {
     margin-top: 16px;
     font-size: 13px; color: var(--ink-muted);
@@ -370,5 +375,25 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var fired = false;
+  function init() {
+    if (fired) return;
+    if (window.notifiqueiConsent !== 'all') return;
+    fired = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4197456147066821');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
+  }
+  window._nfInitAnalytics = init;
+  ['click','scroll','touchstart','keydown'].forEach(function(ev) {
+    window.addEventListener(ev, init, {once: true, passive: true});
+  });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=Purchase&noscript=1"/></noscript>
 </body>
 </html>
