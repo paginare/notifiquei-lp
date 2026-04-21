@@ -2270,18 +2270,23 @@
   .api-compare-col.danger ul li::before { background: #E55347; }
   .api-compare-col.safe   ul li::before { background: var(--brand); }
   .api-shield {
-    display: flex; align-items: center; gap: 20px;
-    padding: 28px 32px;
+    display: flex; align-items: center; gap: 24px;
+    padding: 28px 36px;
     background: rgba(255,31,109,0.07);
     border: 1px solid rgba(255,31,109,0.18);
     border-radius: 20px;
-    max-width: 680px;
+    max-width: 880px;
+    margin: 0 auto;
   }
-  .api-shield-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: var(--brand); display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0;
+  @media (max-width: 700px) { .api-shield { flex-direction: column; text-align: center; } }
+  .api-shield-logo {
+    flex-shrink: 0;
+    background: white;
+    border-radius: 10px;
+    padding: 8px 14px;
+    display: flex; align-items: center; justify-content: center;
   }
+  .api-shield-logo img { height: 44px; width: auto; display: block; }
   .api-shield-text strong {
     display: block; font-family: var(--display); font-size: 18px;
     font-weight: 600; color: white; letter-spacing: -0.02em; margin-bottom: 4px;
@@ -3103,8 +3108,8 @@
     </div>
 
     <div class="api-shield rv">
-      <div class="api-shield-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div class="api-shield-logo">
+        <img src="/assets/meta-business-partner.png" alt="Meta Business Partner" width="120" height="44" loading="lazy">
       </div>
       <div class="api-shield-text">
         <strong>Notifiquei é parceiro certificado da Meta</strong>
