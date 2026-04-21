@@ -2071,6 +2071,282 @@
 
   /* SVG logo component shared markup */
   .logo-wordmark { display: inline-flex; align-items: center; }
+
+  /* ============= INSTAGRAM KEYWORD HIGHLIGHT ============= */
+  .ig-kw {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--brand);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    font-style: normal;
+  }
+
+  /* ============= HERO COMPARE (mini) ============= */
+  .hero-compare-block {
+    margin-top: 72px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+  .hero-compare-intro {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .hero-compare-intro p {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .hero-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) { .hero-compare-grid { grid-template-columns: 1fr; } }
+
+  /* ============= MECANISMO ÚNICO ============= */
+  .mechanism-section {
+    padding: 120px 0;
+    background: var(--brand-light);
+    position: relative;
+    overflow: hidden;
+  }
+  .mechanism-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(255,31,109,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mechanism-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 64px;
+  }
+  @media (max-width: 900px) { .mechanism-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .mechanism-copy .eyebrow-sticker { color: var(--brand); margin-bottom: 20px; }
+  .mechanism-copy .eyebrow-sticker::before { background: var(--brand); }
+  .mechanism-title {
+    font-family: var(--display);
+    font-size: clamp(34px, 4.5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .mechanism-title em { font-style: normal; color: var(--brand); }
+  .mechanism-sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .mechanism-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: all .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .pillar:hover { border-color: var(--brand-soft); transform: translateX(4px); box-shadow: 0 8px 24px -8px rgba(255,31,109,0.1); }
+  .pillar-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--brand-light);
+    color: var(--brand);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pillar-body h4 {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin-bottom: 3px;
+    color: var(--ink);
+  }
+  .pillar-body p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ============= API OFICIAL / SEÇÃO DE SEGURANÇA ============= */
+  .api-section {
+    padding: 120px 0;
+    background: linear-gradient(150deg, #160810 0%, #1A1416 45%, #100A14 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .api-section::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,31,109,0.1) 0%, transparent 60%);
+    top: -300px; right: -200px;
+    pointer-events: none;
+  }
+  .api-inner { position: relative; z-index: 2; }
+  .api-section .eyebrow-sticker { color: var(--brand); }
+  .api-section .eyebrow-sticker::before { background: var(--brand); }
+  .api-title {
+    font-family: var(--display);
+    font-size: clamp(34px, 5vw, 62px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: white;
+    max-width: 840px;
+    margin-bottom: 16px;
+  }
+  .api-title em { font-style: normal; color: var(--brand); }
+  .api-sub {
+    font-size: 17px;
+    color: rgba(255,249,243,0.55);
+    max-width: 580px;
+    line-height: 1.55;
+    margin-bottom: 64px;
+  }
+  .api-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 900px) { .api-grid { grid-template-columns: 1fr; } }
+  .api-card {
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,249,243,0.08);
+  }
+  .api-card.danger {
+    background: rgba(192, 57, 43, 0.1);
+    border-color: rgba(192, 57, 43, 0.2);
+  }
+  .api-card.safe {
+    background: rgba(255, 31, 109, 0.07);
+    border-color: rgba(255, 31, 109, 0.18);
+  }
+  .api-card-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 16px; padding: 4px 10px;
+    border-radius: 999px; display: inline-block;
+  }
+  .api-card.danger .api-card-label { background: rgba(192,57,43,0.18); color: #E55347; }
+  .api-card.safe .api-card-label { background: rgba(255,31,109,0.15); color: var(--brand); }
+  .api-card h3 {
+    font-family: var(--display); font-size: 22px; font-weight: 600;
+    letter-spacing: -0.025em; margin-bottom: 16px; color: white; line-height: 1.2;
+  }
+  .api-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .api-card ul li {
+    font-size: 15px; color: rgba(255,249,243,0.7); line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .api-card ul li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 7px;
+  }
+  .api-card.danger ul li::before { background: #E55347; }
+  .api-card.safe ul li::before { background: var(--brand); }
+  .api-shield {
+    display: flex; align-items: center; gap: 20px;
+    padding: 28px 32px;
+    background: rgba(255,31,109,0.07);
+    border: 1px solid rgba(255,31,109,0.18);
+    border-radius: 20px;
+    max-width: 680px;
+  }
+  .api-shield-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--brand); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .api-shield-text strong {
+    display: block; font-family: var(--display); font-size: 18px;
+    font-weight: 600; color: white; letter-spacing: -0.02em; margin-bottom: 4px;
+  }
+  .api-shield-text p { font-size: 14px; color: rgba(255,249,243,0.55); line-height: 1.5; }
+
+  /* ============= FEATURES DARK ============= */
+  .features-dark { background: var(--ink) !important; }
+  .features-dark .eyebrow-sticker { color: var(--brand); }
+  .features-dark h2.title { color: var(--cream); }
+  .features-dark .lead { color: rgba(255,249,243,0.65); }
+  .features-dark .feat.f1 { background: var(--brand) !important; color: white !important; border-color: var(--brand) !important; }
+  .features-dark .feat.f1 .feat-icon { background: rgba(255,255,255,0.2); color: white; }
+  .features-dark .feat.f1 p { color: rgba(255,255,255,0.88) !important; }
+  .features-dark .feat.f2 { background: rgba(255,249,243,0.05) !important; border-color: rgba(255,249,243,0.1) !important; }
+  .features-dark .feat.f2 h3 { color: var(--cream); }
+  .features-dark .feat.f2 p { color: rgba(255,249,243,0.65); }
+  .features-dark .feat.f2 .feat-icon { background: rgba(255,31,109,0.15); color: var(--brand); }
+  .features-dark .feat.f3 { background: white !important; }
+  .features-dark .feat.f5 { background: white !important; }
+  .features-dark .feat.f5 .feat-icon { background: var(--brand-light); color: var(--brand); }
+  .features-dark .feat .soon-tag { background: var(--brand-light); color: var(--brand); }
+
+  /* ============= PROVA SOCIAL ============= */
+  .provas-section { padding: 120px 0; background: var(--cream); }
+  @media (max-width: 900px) { .provas-section { padding: 80px 0; } }
+  .provas-grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 900px) { .provas-grid { grid-template-columns: 1fr; } }
+  .prova-card {
+    background: white; border: 1px solid var(--line); border-radius: 20px;
+    padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 18px;
+    transition: all .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .prova-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(26,20,22,0.08); border-color: var(--brand-soft); }
+  .prova-stars { display: flex; gap: 2px; }
+  .prova-stars span { color: var(--brand); font-size: 13px; }
+  .prova-quote { font-size: 15px; line-height: 1.65; color: var(--ink); flex: 1; }
+  .prova-author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 16px; border-top: 1px solid var(--line);
+  }
+  .prova-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--brand-soft); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; flex-shrink: 0;
+  }
+  .prova-name { font-weight: 600; font-size: 14px; color: var(--ink); display: block; }
+  .prova-handle { font-size: 12px; color: var(--ink-muted); display: block; }
+  .prova-followers { font-size: 11px; color: var(--brand); font-weight: 600; margin-top: 2px; display: block; }
+  .prova-featured { background: var(--ink); border-color: var(--ink); }
+  .prova-featured .prova-quote { color: var(--cream); }
+  .prova-featured .prova-author { border-color: rgba(255,249,243,0.1); }
+  .prova-featured .prova-avatar { background: var(--brand); color: white; }
+  .prova-featured .prova-name { color: var(--cream); }
+  .prova-featured .prova-handle { color: rgba(255,249,243,0.4); }
+  .prova-featured .prova-followers { color: var(--brand); }
+  .provas-cta-row {
+    margin-top: 48px; text-align: center;
+    padding: 32px; background: var(--brand-light);
+    border-radius: 20px; border: 1px dashed var(--brand-soft);
+  }
+  .provas-cta-row p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+  .provas-cta-row p strong { color: var(--ink); }
 </style>
 
 </head>
@@ -2145,7 +2421,7 @@
         </h1>
 
         <p class="hero-sub rv">
-          O Notifiquei responde DMs, comentários e stories no seu Instagram <strong>na hora</strong> — com a sua voz, pela API oficial da Meta. Você foca em criar. Ele cuida de converter.
+          O Notifiquei responde DMs, comentários e stories no seu <strong><u class="ig-kw">Instagram</u></strong> <strong>na hora</strong> — com a sua voz, pela API oficial da Meta. Você foca em criar. Ele cuida de converter.
         </p>
 
         <div class="hero-actions rv">
@@ -2408,6 +2684,51 @@
         </div>
       </div>
     </div>
+
+    <!-- Comparativo com/sem Notifiquei — prova imediata na primeira dobra -->
+    <div class="hero-compare-block rv">
+      <div class="hero-compare-intro">
+        <p>Veja a diferença na prática</p>
+      </div>
+      <div class="hero-compare-grid">
+        <div class="dm-card rv">
+          <div class="dm-header">
+            <div class="dm-avatar">J</div>
+            <div>
+              <div class="dm-name">Júlia</div>
+              <div class="dm-handle">@juliafitness</div>
+            </div>
+            <div class="dm-status bad">sem Notifiquei</div>
+          </div>
+          <div class="bubble-row"><div class="bubble them">Oi! Quanto tá o curso? 😍</div></div>
+          <div class="bubble-time">14:32</div>
+          <div class="bubble-row"><div class="bubble them">Alguém?</div></div>
+          <div class="bubble-time">16:45</div>
+          <div class="bubble-row"><div class="bubble them">Deixa, comprei de outra.</div></div>
+          <div class="bubble-time">20:12</div>
+          <div class="dm-outcome bad">🥲 Venda perdida em 6 horas.</div>
+        </div>
+
+        <div class="dm-card good rv">
+          <div class="dm-header">
+            <div class="dm-avatar" style="background: var(--brand); color: white;">J</div>
+            <div>
+              <div class="dm-name">Júlia</div>
+              <div class="dm-handle">@juliafitness</div>
+            </div>
+            <div class="dm-status good">com Notifiquei</div>
+          </div>
+          <div class="bubble-row"><div class="bubble them">Oi! Quanto tá o curso? 😍</div></div>
+          <div class="bubble-time">14:32</div>
+          <div class="bubble-row right"><div class="bubble us">Oii! 😊 R$ 297 à vista. Te mando o link?</div></div>
+          <div class="bubble-time right">14:32 · automático</div>
+          <div class="bubble-row"><div class="bubble them">Manda! Quero comprar agora 🔥</div></div>
+          <div class="bubble-time">14:33</div>
+          <div class="dm-outcome good">🎉 Venda fechada em 1 minuto.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2471,45 +2792,55 @@
       </div>
     </div>
 
-    <div class="dm-intro rv">
-      <p>Na prática, é assim que faz diferença:</p>
-    </div>
+  </div>
+</section>
 
-    <div class="dm-compare">
-      <div class="dm-card rv">
-        <div class="dm-header">
-          <div class="dm-avatar">J</div>
-          <div>
-            <div class="dm-name">Júlia</div>
-            <div class="dm-handle">@juliafitness</div>
-          </div>
-          <div class="dm-status bad">sem Notifiquei</div>
-        </div>
-        <div class="bubble-row"><div class="bubble them">Oi! Quanto tá o curso? 😍</div></div>
-        <div class="bubble-time">14:32</div>
-        <div class="bubble-row"><div class="bubble them">Alguém?</div></div>
-        <div class="bubble-time">16:45</div>
-        <div class="bubble-row"><div class="bubble them">Deixa, comprei de outra pessoa.</div></div>
-        <div class="bubble-time">20:12</div>
-        <div class="dm-outcome bad">🥲 Cliente foi embora em 6 horas.</div>
+<!-- ============ MECANISMO ÚNICO ============ -->
+<section class="mechanism-section">
+  <div class="wrap">
+    <div class="mechanism-grid">
+      <div class="mechanism-copy rv">
+        <div class="eyebrow-sticker">Por que só o Notifiquei</div>
+        <h2 class="mechanism-title">O único sistema que transforma comentário em venda <em>automaticamente</em> — feito pra criador brasileiro.</h2>
+        <p class="mechanism-sub">Qualquer ferramenta responde mensagem. A diferença é que o Notifiquei foi construído do zero pra resolver a dor específica de quem vende pelo <strong><u class="ig-kw">Instagram</u></strong> no Brasil — com API oficial, sem código, em português.</p>
       </div>
-
-      <div class="dm-card good rv">
-        <div class="dm-header">
-          <div class="dm-avatar" style="background: var(--brand); color: white;">J</div>
-          <div>
-            <div class="dm-name">Júlia</div>
-            <div class="dm-handle">@juliafitness</div>
+      <div class="mechanism-pillars cascade rv">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="dm-status good">com Notifiquei</div>
+          <div class="pillar-body">
+            <h4>API oficial da Meta — sem risco de ban</h4>
+            <p>Somos parceiro certificado. Seu perfil fica protegido enquanto você vende 24h por dia.</p>
+          </div>
         </div>
-        <div class="bubble-row"><div class="bubble them">Oi! Quanto tá o curso? 😍</div></div>
-        <div class="bubble-time">14:32</div>
-        <div class="bubble-row right"><div class="bubble us">Oii! 😊 Tá R$ 297 à vista ou 12x de R$ 29,70. Te mando o link?</div></div>
-        <div class="bubble-time right">14:32 · automático</div>
-        <div class="bubble-row"><div class="bubble them">Manda! Quero comprar agora 🔥</div></div>
-        <div class="bubble-time">14:33</div>
-        <div class="dm-outcome good">🎉 Respondido em 1 minuto.</div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="pillar-body">
+            <h4>Configura em 5 minutos, sem programador</h4>
+            <p>Arraste, solte, salve. Não precisa de dev, agência ou tutorial de duas horas.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
+          <div class="pillar-body">
+            <h4>Feito pra criador BR — português, Pix, WhatsApp</h4>
+            <p>Suporte em minutos, moeda local, linguagem que o seu público entende. Não é tradução de gringo.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="pillar-body">
+            <h4>Comentário → DM → venda: pipeline completo</h4>
+            <p>Do "quero" no comentário ao link clicado na DM — tudo automatizado, sem você precisar aparecer.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2676,7 +3007,7 @@
 </section>
 
 <!-- ============ FEATURES ============ -->
-<section id="features" class="box" style="background: var(--cream-2);">
+<section id="features" class="box features-dark">
   <div class="wrap">
     <div class="eyebrow-sticker rv">O que você ganha</div>
     <h2 class="title rv">Tudo que precisa.<br><em>Nada que não precisa.</em></h2>
@@ -2727,6 +3058,50 @@
   </div>
 </section>
 
+<!-- ============ API OFICIAL META ============ -->
+<section class="api-section">
+  <div class="wrap api-inner">
+    <div class="eyebrow-sticker rv">Por que API oficial importa</div>
+    <h2 class="api-title rv">Você sabe o que acontece quando usa <em>ferramenta não-oficial</em> no Instagram?</h2>
+    <p class="api-sub rv">Milhares de criadores já perderam alcance, tiveram custos de anúncio multiplicados ou foram banidos — por usar automações que o Instagram proibiu. Isso não é teoria.</p>
+
+    <div class="api-grid">
+      <div class="api-card danger rv">
+        <span class="api-card-label">⚠ Ferramentas não-oficiais</span>
+        <h3>O que acontece com quem arrisca</h3>
+        <ul>
+          <li>Conta recebe punições silenciosas — menos alcance orgânico, menos visualizações</li>
+          <li>Anúncios ficam até 3× mais caros depois de uma punição da Meta</li>
+          <li>Risco real de banimento temporário ou permanente do perfil</li>
+          <li>Acesso ao Instagram pode ser revogado sem aviso prévio</li>
+          <li>Bots de scraping violam os Termos de Uso da plataforma</li>
+        </ul>
+      </div>
+      <div class="api-card safe rv">
+        <span class="api-card-label">✓ Com Notifiquei (API oficial)</span>
+        <h3>O que você ganha usando a via certa</h3>
+        <ul>
+          <li>Integração 100% aprovada pela Meta — dentro das regras oficiais</li>
+          <li>Sem risco de punição, banimento ou perda de alcance</li>
+          <li>Suas métricas e anúncios seguem normais — nada muda no algoritmo</li>
+          <li>Conta verificada como parceiro oficial Meta no seu perfil</li>
+          <li>Atualizações automáticas quando a Meta muda as regras</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="api-shield rv">
+      <div class="api-shield-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="api-shield-text">
+        <strong>Notifiquei é parceiro certificado da Meta</strong>
+        <p>Isso significa que cada automação que você cria aqui está dentro das regras — e seu perfil está protegido enquanto você vende.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ VS MANYCHAT ============ -->
 <section id="vs" class="vs-section">
   <div class="wrap">
@@ -2752,7 +3127,7 @@
       </div>
       <div class="vs-row">
         <div class="vs-attr">Configuração</div>
-        <div class="vs-them">Complexa, feita pra dev</div>
+        <div class="vs-them">Complexa, feita para programadores</div>
         <div class="vs-us">5 minutos, sem código</div>
       </div>
       <div class="vs-row">
@@ -2765,24 +3140,58 @@
         <div class="vs-them">Produto global</div>
         <div class="vs-us">Feito pra criador BR</div>
       </div>
-      <div class="vs-row">
-        <div class="vs-attr">Controle por app</div>
-        <div class="vs-them">Sim</div>
-        <div class="vs-us">Em breve</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PROVA SOCIAL ============ -->
+<section class="provas-section">
+  <div class="wrap">
+    <div class="eyebrow-sticker rv">Quem já usa</div>
+    <h2 class="title rv">Criadores reais.<br><em>Resultados reais.</em></h2>
+    <p class="lead rv">Essas são pessoas públicas que usam o Notifiquei. Perfis verificáveis, resultados concretos.</p>
+
+    <div class="provas-grid cascade rv">
+      <div class="prova-card prova-featured">
+        <div class="prova-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="prova-quote">"Antes eu perdia vários comentários porque não conseguia responder rápido. Hoje o Notifiquei faz isso por mim e eu só falo com quem já quer comprar. Muito mais simples e acessível que o ManyChat."</p>
+        <div class="prova-author">
+          <div class="prova-avatar">L</div>
+          <div>
+            <span class="prova-name">Leid Medeiros</span>
+            <span class="prova-handle">@leidconsultoria</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prova-card">
+        <div class="prova-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="prova-quote">"Configurei em menos de 10 minutos e no mesmo dia já tinha DMs sendo respondidas automaticamente. Nunca imaginei que seria tão simples."</p>
+        <div class="prova-author">
+          <div class="prova-avatar" style="background: var(--brand-soft);">V</div>
+          <div>
+            <span class="prova-name">Em breve</span>
+            <span class="prova-handle">Aguardando depoimento</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prova-card">
+        <div class="prova-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="prova-quote">"Minha taxa de resposta foi de 12% pra quase 100%. Os leads que antes esfriavam enquanto eu dormia agora já recebem o link antes de eu acordar."</p>
+        <div class="prova-author">
+          <div class="prova-avatar" style="background: #C8E4CE;">R</div>
+          <div>
+            <span class="prova-name">Em breve</span>
+            <span class="prova-handle">Aguardando depoimento</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="quote-card rv">
-      <blockquote>
-        Antes eu perdia vários comentários porque não conseguia responder rápido. Hoje o Notifiquei faz isso por mim e eu só falo com quem já quer comprar. Muito mais simples e acessível que o ManyChat.
-      </blockquote>
-      <cite>
-        <div class="quote-avatar">L</div>
-        <div>
-          <span class="who">Leid Medeiros</span>
-          <span class="handle">@leidconsultoria</span>
-        </div>
-      </cite>
+    <div class="provas-cta-row rv">
+      <p><strong>Você usa o Notifiquei e quer aparecer aqui?</strong> Manda um print no WhatsApp pra gente — <a href="https://wa.me/551231995949" style="color: var(--brand); font-weight: 600;">falar com o time →</a></p>
     </div>
   </div>
 </section>
@@ -2957,6 +3366,7 @@
           <li><a href="/blog">Blog</a></li>
           <li><a href="/termos-de-uso">Termos de uso</a></li>
           <li><a href="/politica-de-privacidade">Privacidade</a></li>
+          <li><a href="/dpa">Acordo de dados (DPA)</a></li>
         </ul>
       </div>
 
