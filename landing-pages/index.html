@@ -74,13 +74,18 @@
 <!-- DNS prefetch para analytics (não bloqueia render) -->
 <link rel="dns-prefetch" href="//connect.facebook.net">
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
-<!-- Fonts: preconnect + carregamento não-bloqueante via media=print trick -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"></noscript>
+<!-- Fonts: self-hosted WOFF2 — eliminates Google Fonts DNS/TCP chain -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-800.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-700.woff2">
 <style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
   :root {
     /* Identidade visual oficial */
     --brand: #FF1F6D;          /* rosa/magenta Notifiquei - uso pontual */
@@ -173,7 +178,7 @@
   .nav-login { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; padding: 0 12px; transition: opacity .2s; }
   .nav-login:hover { opacity: 1; }
   .btn-brand {
-    background: var(--brand); color: white;
+    background: var(--brand-dark); color: white;
     padding: 11px 22px; border-radius: 999px;
     font-size: 14px; font-weight: 600;
     text-decoration: none;
@@ -181,7 +186,7 @@
     border: none;
     letter-spacing: -0.005em;
   }
-  .btn-brand:hover { background: var(--brand-dark); }
+  .btn-brand:hover { background: var(--brand); }
 
   .nav-burger {
     display: none;
@@ -271,7 +276,10 @@
     position: relative;
     z-index: 2;
   }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-illo { order: -1; max-width: 380px; }
+  }
 
   .hero-badge {
     display: inline-flex; align-items: center; gap: 12px;
@@ -345,7 +353,7 @@
     margin-top: 40px;
   }
   .btn-big {
-    background: var(--brand); color: white;
+    background: var(--brand-dark); color: white;
     padding: 17px 30px; border-radius: 999px;
     font-size: 16px; font-weight: 600;
     text-decoration: none;
@@ -355,7 +363,7 @@
     letter-spacing: -0.005em;
     box-shadow: 0 8px 24px -6px rgba(255, 31, 109, 0.45);
   }
-  .btn-big:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(255, 31, 109, 0.55); }
+  .btn-big:hover { background: var(--brand); transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(255, 31, 109, 0.55); }
   .btn-big:active { transform: translateY(0); }
 
   .btn-outline {
@@ -439,8 +447,8 @@
     flex-shrink: 0;
   }
   @keyframes ambientPulse {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
-    50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
   .ambient-card .ambient-bar {
     height: 4px;
@@ -570,7 +578,7 @@
   }
   .notif-time {
     font-size: 11px;
-    color: var(--ink-muted);
+    color: var(--ink-soft);
     font-weight: 500;
     flex-shrink: 0;
   }
@@ -596,17 +604,17 @@
     animation: liveDot 1.6s ease-in-out infinite;
   }
   @keyframes liveDot {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
-    50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   /* Animação principal: entra, fica, sai — inspirada em iOS toasts */
   @keyframes notifCycle {
-    0% { opacity: 0; transform: translateX(16px) scale(0.94); filter: blur(4px); }
-    5% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-    28% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-    33% { opacity: 0; transform: translateX(-16px) scale(0.94); filter: blur(4px); }
-    100% { opacity: 0; transform: translateX(-16px) scale(0.94); filter: blur(4px); }
+    0% { opacity: 0; transform: translateX(16px) scale(0.94); }
+    5% { opacity: 1; transform: translateX(0) scale(1); }
+    28% { opacity: 1; transform: translateX(0) scale(1); }
+    33% { opacity: 0; transform: translateX(-16px) scale(0.94); }
+    100% { opacity: 0; transform: translateX(-16px) scale(0.94); }
   }
 
   .notif { animation: notifCycle 12s cubic-bezier(.2, .8, .2, 1) infinite; }
@@ -622,7 +630,7 @@
   }
   .video-inner {
     position: relative;
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 28px;
   }
@@ -691,6 +699,16 @@
     letter-spacing: 0.02em;
     backdrop-filter: blur(8px);
     z-index: 3;
+  }
+  .video-title {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 32px;
   }
   .video-caption {
     margin-top: 20px;
@@ -1050,7 +1068,7 @@
   @media (prefers-reduced-motion: reduce) { .brands-track { animation: none; } }
 
   /* ============= SECTIONS ============= */
-  section.box { padding: 140px 0; position: relative; content-visibility: auto; contain-intrinsic-size: 0 600px; }
+  section.box { padding: 140px 0; position: relative; }
   @media (max-width: 900px) { section.box { padding: 96px 0; } }
 
   .eyebrow-sticker {
@@ -1174,8 +1192,18 @@
   }
 
   /* ============= DM COMPARE ============= */
+  .dm-intro {
+    margin-top: 60px;
+    text-align: center;
+  }
+  .dm-intro p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
   .dm-compare {
-    margin-top: 80px;
+    margin-top: 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
@@ -1289,7 +1317,7 @@
   .feat.f2 { grid-column: span 3; background: var(--brand-light); }
   .feat.f3 { grid-column: span 2; }
   .feat.f4 { grid-column: span 2; background: var(--brand); color: white; border-color: var(--brand); }
-  .feat.f5 { grid-column: span 2; background: var(--cream-2); }
+  .feat.f5 { grid-column: span 2; background: white; }
 
   @media (max-width: 900px) {
     .feat.f1, .feat.f2, .feat.f3, .feat.f4, .feat.f5 { grid-column: span 1; }
@@ -1339,7 +1367,7 @@
   }
 
   /* ============= VS MANYCHAT ============= */
-  .vs-section { background: var(--ink); color: var(--cream); padding: 140px 0; position: relative; overflow: hidden; content-visibility: auto; contain-intrinsic-size: 0 700px; }
+  .vs-section { background: var(--ink); color: var(--cream); padding: 140px 0; position: relative; overflow: hidden; }
   .vs-section .lead { color: rgba(255, 249, 243, 0.65); }
   .vs-section h2.title { color: var(--cream); }
   .vs-section h2.title em, .vs-section h2.title .underlined { color: var(--brand); }
@@ -1449,7 +1477,7 @@
   .quote-card cite .handle { color: rgba(255, 249, 243, 0.5); font-size: 13px; }
 
   /* ============= PRICING ============= */
-  .price-section { background: var(--brand-light); padding: 140px 0; position: relative; overflow: hidden; content-visibility: auto; contain-intrinsic-size: 0 700px; }
+  .price-section { background: var(--brand-light); padding: 140px 0; position: relative; overflow: hidden; }
   @media (max-width: 900px) { .price-section { padding: 96px 0; } }
 
   .price-grid {
@@ -1587,7 +1615,7 @@
   .price-card.featured .price-guarantee { color: rgba(255, 249, 243, 0.4); }
 
   /* ============= FAQ ============= */
-  .faq-section { padding: 140px 0; content-visibility: auto; contain-intrinsic-size: 0 500px; }
+  .faq-section { padding: 140px 0; }
   @media (max-width: 900px) { .faq-section { padding: 96px 0; } }
   .faq-list { margin-top: 56px; max-width: 820px; }
   .faq-item {
@@ -1669,7 +1697,7 @@
 
   .final h2 {
     font-family: var(--display);
-    font-size: clamp(48px, 7vw, 88px);
+    font-size: clamp(30px, 7vw, 88px);
     font-weight: 500;
     line-height: 1;
     letter-spacing: -0.04em;
@@ -1837,7 +1865,7 @@
   }
   .foot-social svg { width: 18px; height: 18px; }
 
-  footer h4 {
+  footer h2 {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -1974,8 +2002,8 @@
   .scale-in.in { opacity: 1; transform: scale(1); }
 
   /* Blur-in pra títulos importantes */
-  .blur-in { opacity: 0; filter: blur(8px); transform: translateY(16px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), filter 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
-  .blur-in.in { opacity: 1; filter: blur(0); transform: translateY(0); }
+  .blur-in { opacity: 0; transform: translateY(16px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
+  .blur-in.in { opacity: 1; transform: translateY(0); }
 
   /* Respeitar usuários com prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
@@ -2015,8 +2043,8 @@
 
   /* Pulse nos elementos ativos */
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 31, 109, 0.5); }
-    50% { box-shadow: 0 0 0 10px rgba(255, 31, 109, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
   }
 
   /* Flow builder: linha pulsante */
@@ -2039,77 +2067,12 @@
     50% { transform: scale(1.03); }
   }
 
-  /* ============= CURSOR CUSTOMIZADO ============= */
-  .cursor-dot,
-  .cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: normal;
-    transition: opacity .3s ease;
-  }
-  .cursor-dot {
-    width: 6px; height: 6px;
-    background: var(--brand);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity .3s ease, background .2s, width .25s cubic-bezier(.2, .8, .2, 1), height .25s cubic-bezier(.2, .8, .2, 1);
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--brand);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width .3s cubic-bezier(.2, .8, .2, 1), height .3s cubic-bezier(.2, .8, .2, 1), border-color .25s, background .25s, opacity .3s ease;
-  }
-
-  /* Hover em elementos interativos: anel aumenta e fica levemente preenchido */
-  .cursor-ring.hover {
-    width: 56px; height: 56px;
-    background: rgba(255, 31, 109, 0.08);
-    border-color: var(--brand);
-  }
-  .cursor-dot.hover {
-    transform: translate(-50%, -50%) scale(0);
-  }
-
-  /* Em áreas escuras (nav, VS section, final CTA), o cursor inverte pra cream */
-  .cursor-dot.light { background: var(--cream); }
-  .cursor-ring.light { border-color: var(--cream); }
-  .cursor-ring.light.hover { background: rgba(255, 249, 243, 0.12); border-color: var(--cream); }
-
-  /* Escondido inicialmente até ter primeiro movimento */
-  .cursor-dot.hidden, .cursor-ring.hidden { opacity: 0; }
-
-  /* Esconder cursor nativo só em viewport com pointer fino (desktop) */
-  @media (hover: hover) and (pointer: fine) {
-    body, a, button, input, select, textarea, [role="button"], .faq-item, .video-wrap {
-      cursor: none;
-    }
-  }
-
-  /* Mobile/touch: cursor padrão, nosso customizado fica invisível */
-  @media (hover: none), (pointer: coarse) {
-    .cursor-dot, .cursor-ring { display: none; }
-  }
-
-  /* Respeita reduced-motion: sem cursor animado */
-  @media (prefers-reduced-motion: reduce) {
-    .cursor-dot, .cursor-ring { display: none; }
-    body, a, button { cursor: auto; }
-  }
-
   /* SVG logo component shared markup */
   .logo-wordmark { display: inline-flex; align-items: center; }
 </style>
 
 </head>
 <body>
-
-<!-- Cursor customizado -->
-<div class="cursor-ring hidden" id="cursor-ring"></div>
-<div class="cursor-dot hidden" id="cursor-dot"></div>
 
 <!-- ============ SVG LOGO (reused) ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2155,6 +2118,7 @@
   </div>
 </nav>
 
+<main>
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="blob blob-1"></div>
@@ -2217,7 +2181,7 @@
 
         <div class="ambient-card ambient-2" aria-hidden="true">
           <div class="ambient-head">
-            <span style="color: var(--brand); font-weight: 700;">↑ 32%</span>
+            <span style="color: var(--brand-dark); font-weight: 700;">↑ 32%</span>
             <span>cliques essa semana</span>
           </div>
           <svg class="ambient-chart" viewBox="0 0 120 32" preserveAspectRatio="none">
@@ -2448,6 +2412,7 @@
 <!-- ============ VÍDEO DEMO ============ -->
 <section class="video-section">
   <div class="video-inner">
+    <h2 class="video-title rv">Conecte sua conta em&nbsp;1&nbsp;minuto</h2>
     <div class="video-wrap scale-in" id="video-demo" onclick="loadVideo()">
       <div class="video-thumb-fallback">
         <div class="video-play"></div>
@@ -2502,6 +2467,10 @@
         <h3>Relaxe e venda</h3>
         <p>O Notifiquei responde, qualifica, manda link, e só chama você quando o cliente tá pronto pra comprar.</p>
       </div>
+    </div>
+
+    <div class="dm-intro rv">
+      <p>Na prática, é assim que faz diferença:</p>
     </div>
 
     <div class="dm-compare">
@@ -2749,7 +2718,7 @@
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
-        <h3>Controle pelo WhatsApp</h3>
+        <h3>Controle pelo app</h3>
         <p>Crie e pause automações do celular, sem abrir o painel.</p>
       </div>
     </div>
@@ -2927,6 +2896,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -2966,7 +2937,7 @@
       </div>
 
       <div>
-        <h4>Produto</h4>
+        <h2>Produto</h2>
         <ul>
           <li><a href="#como">Como funciona</a></li>
           <li><a href="#features">Funcionalidades</a></li>
@@ -2977,7 +2948,7 @@
       </div>
 
       <div>
-        <h4>Notifiquei</h4>
+        <h2>Notifiquei</h2>
         <ul>
           <li><a href="criadores.html">Pra criadores</a></li>
           <li><a href="afiliados.html">Programa de afiliados</a></li>
@@ -2988,7 +2959,7 @@
       </div>
 
       <div>
-        <h4>Contato</h4>
+        <h2>Contato</h2>
         <ul>
           <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
@@ -3004,18 +2975,18 @@
 
     <div class="foot-partners">
       <div class="foot-partner-item">
-        <img src="assets/servidores-turbo.png" alt="Servidores turbo" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
+        <img src="assets/servidores-turbo.png" alt="Servidores turbo" width="120" height="28" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
       </div>
       <div class="foot-partner-divider"></div>
       <div class="foot-partner-item">
         <span class="foot-partner-label">Payments by</span>
-        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" width="96" height="22" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
         <span class="foot-partner-abacate-fallback" style="display: none;">Abacatepay</span>
       </div>
     </div>
 
     <div class="foot-bottom">
-      <div>© 2026 Notifiquei. Todos os direitos reservados.</div>
+      <div>© 2026 Notifiquei. Todos os direitos reservados. &nbsp;·&nbsp; CNPJ 59.859.848/0001-13</div>
       <div class="foot-bottom-badges">
         <span class="foot-bottom-badge">
           <span class="badge-dot"></span>
@@ -3095,93 +3066,6 @@
     }, { passive: true });
   }
 
-  // ====== CURSOR CUSTOMIZADO ======
-  (function initCursor() {
-    // Só desktop com pointer fino
-    const canUseCustomCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!canUseCustomCursor) return;
-
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-
-    // Posição do mouse (target) e posição renderizada do anel (com lerp)
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
-    // Áreas escuras onde cursor precisa ser claro
-    const darkSelectors = [
-      'nav', '.vs-section', '.final', 'footer',
-      '.step-card:nth-child(3)',
-      '.feat.f1', '.feat.f4',
-      '.price-card.featured',
-      '.marquee'
-    ];
-
-    function isOverDark(el) {
-      if (!el) return false;
-      let cur = el;
-      while (cur && cur !== document.body) {
-        for (const sel of darkSelectors) {
-          try { if (cur.matches && cur.matches(sel)) return true; } catch(e) {}
-        }
-        cur = cur.parentElement;
-      }
-      return false;
-    }
-
-    function showCursor() {
-      dot.classList.remove('hidden');
-      ring.classList.remove('hidden');
-    }
-
-    // Tracking do mouse
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      // Dot segue imediato (responsivo)
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-      showCursor();
-
-      // Checar se está em área escura
-      const el = document.elementFromPoint(mouseX, mouseY);
-      const overDark = isOverDark(el);
-      dot.classList.toggle('light', overDark);
-      ring.classList.toggle('light', overDark);
-    });
-
-    // Saiu da janela
-    document.addEventListener('mouseleave', () => {
-      dot.classList.add('hidden');
-      ring.classList.add('hidden');
-    });
-
-    // Animação do anel com lerp (seguir suave)
-    function animate() {
-      const lerp = 0.18;
-      ringX += (mouseX - ringX) * lerp;
-      ringY += (mouseY - ringY) * lerp;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // Estado hover: expandir anel, encolher dot
-    const hoverables = 'a, button, [role="button"], input, textarea, select, .faq-item, .video-wrap, .step-card, .feat, .price-card, .dm-card, .screen-frame';
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest && e.target.closest(hoverables)) {
-        dot.classList.add('hover');
-        ring.classList.add('hover');
-      }
-    });
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest && e.target.closest(hoverables)) {
-        dot.classList.remove('hover');
-        ring.classList.remove('hover');
-      }
-    });
-  })();
-
   // ============= CONVERSION TRACKING =============
   // Dispara eventos de conversão quando CTAs relevantes são clicados
   // Funciona com Meta Pixel (fbq) e Google Analytics (gtag) se estiverem carregados
@@ -3246,32 +3130,23 @@
 
 </script>
 <!-- ============ ANALYTICS (carregados após interação do usuário) ============ -->
-<!--
-  IMPORTANTE: Substitua os IDs abaixo antes de publicar.
-  META PIXEL:       troque 'YOUR_PIXEL_ID' pelo ID do seu pixel
-  GOOGLE ANALYTICS: troque 'G-XXXXXXXXXX' pelo seu Measurement ID (GA4)
--->
 <script>
 (function loadAnalytics() {
   function init() {
     // Meta Pixel
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('init', '4197456147066821');
     fbq('track', 'PageView');
-    // Google Analytics 4
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    // Google Tag Manager
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
   }
-  if (document.readyState === 'complete') { setTimeout(init, 1); }
-  else { window.addEventListener('load', function(){ setTimeout(init, 1); }); }
+  var fired = false;
+  function trigger() { if (fired) return; fired = true; init(); }
+  ['click','scroll','touchstart','keydown'].forEach(function(ev) {
+    window.addEventListener(ev, trigger, {once: true, passive: true});
+  });
 })();
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>

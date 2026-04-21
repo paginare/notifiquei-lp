@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Termos de Uso — Notifiquei</title>
+<meta name="description" content="Termos de uso da plataforma Notifiquei.">
+<link rel="canonical" href="https://notifiquei.com.br/termos-de-uso">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<meta name="theme-color" content="#FF1F6D">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
+<style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
+  :root {
+    --brand: #FF1F6D;
+    --brand-dark: #C81558;
+    --brand-light: #FFEFF4;
+    --cream: #FFF9F3;
+    --cream-2: #F5ECE0;
+    --ink: #1A1416;
+    --ink-2: #3A2F33;
+    --ink-soft: #6B5A5F;
+    --ink-muted: #A39196;
+    --line: #EADDD8;
+    --display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 16px; z-index: 100;
+    margin: 16px 20px 0;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    background: var(--ink); color: var(--cream);
+    border-radius: 999px;
+    padding: 8px 10px 8px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 1px 0 0 rgba(255, 31, 109, 0.35), 0 20px 40px -12px rgba(26,20,22,0.25);
+  }
+  .logo-svg { height: 24px; width: auto; color: var(--brand); display: block; }
+  .nav-cta-group { display: flex; gap: 8px; align-items: center; }
+  .nav-login { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; padding: 0 12px; transition: opacity .2s; }
+  .nav-login:hover { opacity: 1; }
+  .btn-brand {
+    background: var(--brand-dark); color: white;
+    padding: 11px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    transition: background .2s;
+    border: none;
+    letter-spacing: -0.005em;
+  }
+  .btn-brand:hover { background: var(--brand); }
+  @media (max-width: 600px) {
+    nav { margin: 12px 12px 0; }
+    .nav-login { display: none; }
+  }
+
+  /* PAGE CONTENT */
+  .legal-page {
+    padding: 80px 0 120px;
+    min-height: 60vh;
+  }
+  .legal-page .wrap { max-width: 760px; }
+
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ink-muted);
+    text-decoration: none;
+    margin-bottom: 48px;
+    transition: color .2s;
+  }
+  .breadcrumb:hover { color: var(--ink-soft); }
+  .breadcrumb svg { width: 14px; height: 14px; }
+
+  .legal-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--brand);
+    margin-bottom: 16px;
+  }
+
+  .legal-title {
+    font-family: var(--display);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .legal-meta {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal-body section {
+    margin-bottom: 40px;
+  }
+  .legal-body h2 {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .legal-body h2 .sec-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--brand-light);
+    color: var(--brand);
+    font-size: 12px; font-weight: 700;
+    font-family: var(--sans);
+    flex-shrink: 0;
+  }
+  .legal-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .legal-body a {
+    color: var(--brand);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,31,109,0.3);
+    transition: border-color .2s;
+  }
+  .legal-body a:hover { border-color: var(--brand); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 72px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 400px;
+    background: radial-gradient(ellipse at center top, rgba(255, 31, 109, 0.18) 0%, rgba(255, 31, 109, 0) 60%);
+    pointer-events: none;
+  }
+  footer .wrap { position: relative; z-index: 2; }
+
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 56px;
+  }
+  @media (max-width: 900px) { .foot-top { grid-template-columns: 1fr 1fr; gap: 40px 32px; } }
+
+  footer .logo-svg { color: var(--cream); height: 32px; display: block; }
+  footer .logo-svg .svg-brand-dot { color: var(--brand); }
+  footer .foot-brand { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 20px; }
+  footer .foot-brand-col { text-align: left; }
+  footer .foot-brand-col p.tag {
+    max-width: 340px; font-size: 14px;
+    color: rgba(255, 249, 243, 0.6); line-height: 1.6; margin-bottom: 24px;
+  }
+  @media (max-width: 900px) { footer .foot-brand-col { grid-column: span 2; } }
+
+  .foot-social { display: flex; gap: 10px; }
+  .foot-social a {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 249, 243, 0.06);
+    color: rgba(255, 249, 243, 0.7);
+    transition: all .2s;
+    border: 1px solid rgba(255, 249, 243, 0.08);
+  }
+  .foot-social a:hover { background: var(--brand); color: white; border-color: var(--brand); transform: translateY(-2px); }
+  .foot-social svg { width: 18px; height: 18px; }
+
+  footer h2 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    font-weight: 700; color: rgba(255, 249, 243, 0.45); margin-bottom: 20px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 12px; }
+  footer a { color: rgba(255, 249, 243, 0.75); text-decoration: none; font-size: 14.5px; transition: color .2s; }
+  footer a:not(.foot-brand):not(.foot-social a):hover { color: var(--cream); }
+  .foot-link-with-icon { display: inline-flex; align-items: center; gap: 8px; }
+  .foot-link-with-icon svg { width: 14px; height: 14px; opacity: 0.6; }
+
+  .foot-partners {
+    padding: 24px 0;
+    display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 249, 243, 0.06);
+    position: relative; z-index: 3;
+  }
+  .foot-partner-item { display: inline-flex; align-items: center; gap: 10px; opacity: 0.55; transition: opacity .2s; }
+  .foot-partner-item:hover { opacity: 0.85; }
+  .foot-partner-item img { height: 28px; width: auto; display: block; }
+  .foot-partner-label { font-size: 11px; font-weight: 500; color: rgba(255,249,243,0.45); text-transform: uppercase; letter-spacing: 0.12em; }
+  .foot-partner-abacate { height: 22px !important; filter: brightness(0) invert(1); opacity: 0.85; }
+  .foot-partner-abacate-fallback { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; display: inline-flex; align-items: center; gap: 6px; }
+  .foot-partner-abacate-fallback::before { content: '🥑'; font-size: 18px; }
+  .foot-partner-divider { width: 1px; height: 20px; background: rgba(255, 249, 243, 0.15); }
+
+  .foot-bottom {
+    padding: 28px 0;
+    border-top: 1px solid rgba(255, 249, 243, 0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(255, 249, 243, 0.4);
+    flex-wrap: wrap; gap: 16px;
+    position: relative; z-index: 3;
+  }
+  .foot-bottom-badges { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .foot-bottom-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(255, 249, 243, 0.04);
+    border: 1px solid rgba(255, 249, 243, 0.06);
+    font-size: 12px; font-weight: 500;
+    color: rgba(255, 249, 243, 0.6);
+  }
+  .foot-bottom-badge .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
+  @media (max-width: 600px) { .foot-partners { gap: 16px; } .foot-partner-divider { display: none; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="notifiquei-logo" viewBox="0 0 290 50" fill="currentColor">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" style="display: inline-flex; align-items: center; text-decoration: none;">
+      <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
+    </a>
+    <div class="nav-cta-group">
+      <a href="https://app.notifiquei.com.br" class="nav-login">Entrar</a>
+      <a href="/#planos" class="btn-brand">Começar grátis →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="legal-page">
+  <div class="wrap">
+
+    <a href="/" class="breadcrumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Voltar ao início
+    </a>
+
+    <p class="legal-eyebrow">Legal</p>
+    <h1 class="legal-title">Termos de Uso</h1>
+    <p class="legal-meta">Última atualização: 11 de fevereiro de 2026</p>
+
+    <div class="legal-body">
+
+      <section>
+        <h2><span class="sec-num">1</span> Aceitação dos termos</h2>
+        <p>Ao acessar e utilizar a plataforma Notifiquei, você declara ter lido, entendido e concordado com estes Termos de Uso. Caso não concorde com qualquer disposição, solicitamos que não utilize nossos serviços.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">2</span> Descrição do serviço</h2>
+        <p>A Notifiquei oferece ferramentas de automação para vendas no Instagram, utilizando a API oficial da META. O uso do serviço está sujeito aos planos contratados e às políticas da META aplicáveis.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">3</span> Cadastro e responsabilidade</h2>
+        <p>O usuário é responsável pelas informações fornecidas no cadastro e pelo uso de sua conta. É vedado o uso da plataforma para fins ilícitos ou em desacordo com as políticas do Instagram e da META.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">4</span> Pagamento e reembolso</h2>
+        <p>Os valores dos planos são cobrados conforme a opção escolhida. Em até 7 (sete) dias a partir da contratação, o usuário pode solicitar reembolso integral, desde que não tenha violado estes Termos.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">5</span> Alterações</h2>
+        <p>A Notifiquei pode alterar estes Termos a qualquer momento. Alterações relevantes serão comunicadas por e-mail ou por aviso na plataforma. O uso continuado após as alterações constitui aceitação dos novos termos.</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">6</span> Contato</h2>
+        <p>Dúvidas sobre estes Termos podem ser enviadas para <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a>.</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand-col">
+        <a href="/" class="foot-brand">
+          <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
+        </a>
+        <p class="tag">Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
+        <div class="foot-social">
+          <a href="https://instagram.com/notifiquei.com.br" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@notifiqueicombr" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+          <a href="https://wa.me/551231995949" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.1-.3.2-.5 0-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2>Produto</h2>
+        <ul>
+          <li><a href="/#como">Como funciona</a></li>
+          <li><a href="/#features">Funcionalidades</a></li>
+          <li><a href="/#planos">Planos</a></li>
+          <li><a href="/#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Notifiquei</h2>
+        <ul>
+          <li><a href="/criadores">Pra criadores</a></li>
+          <li><a href="/afiliados">Programa de afiliados</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/termos-de-uso">Termos de uso</a></li>
+          <li><a href="/politica-de-privacidade">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Contato</h2>
+        <ul>
+          <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            contato@notifiquei.com.br
+          </a></li>
+          <li><a href="https://wa.me/551231995949" class="foot-link-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (12) 3199-5949
+          </a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-partners">
+      <div class="foot-partner-item">
+        <img src="assets/servidores-turbo.png" alt="Servidores turbo" width="120" height="28" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
+      </div>
+      <div class="foot-partner-divider"></div>
+      <div class="foot-partner-item">
+        <span class="foot-partner-label">Payments by</span>
+        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" width="96" height="22" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="foot-partner-abacate-fallback" style="display: none;">Abacatepay</span>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 Notifiquei. Todos os direitos reservados. &nbsp;·&nbsp; CNPJ 59.859.848/0001-13</div>
+      <div class="foot-bottom-badges">
+        <span class="foot-bottom-badge">
+          <span class="badge-dot"></span>
+          Todos os sistemas operando
+        </span>
+        <span class="foot-bottom-badge">Parceiro oficial Meta</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
