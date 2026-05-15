@@ -625,281 +625,206 @@
   .notif-3 { animation-delay: 8.8s; }
 
   /* ============= VIDEO HERO ============= */
-  .video-section {
-    padding: 0 0 80px;
+  /* ============= DEMO PRODUTO ============= */
+  .demo-section {
+    padding: 100px 0;
+    background: var(--cream-2);
     position: relative;
-    z-index: 2;
   }
-  .video-inner {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  .video-wrap {
-    position: relative;
-    aspect-ratio: 16/9;
-    border-radius: 24px;
-    overflow: hidden;
-    background: var(--ink);
-    box-shadow: 0 40px 80px -24px rgba(26, 20, 22, 0.35);
-    cursor: pointer;
-    transition: transform .3s cubic-bezier(.2,.8,.2,1);
-  }
-  .video-wrap:hover { transform: translateY(-4px); }
-  .video-wrap iframe,
-  .video-wrap img.video-thumb {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    object-fit: cover;
-  }
-  .video-thumb-fallback {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, #2A1620 0%, #1A1416 50%, #4A1530 100%);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .video-thumb-fallback::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,31,109,0.3) 0%, rgba(255,31,109,0) 60%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .video-play {
-    width: 88px; height: 88px;
-    border-radius: 50%;
-    background: var(--brand);
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 12px 40px -8px rgba(255,31,109,0.6);
-    transition: transform .3s cubic-bezier(.2,.8,.2,1);
-  }
-  .video-wrap:hover .video-play { transform: scale(1.1); }
-  .video-play::after {
-    content: '';
-    width: 0; height: 0;
-    border-left: 20px solid white;
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    margin-left: 6px;
-  }
-  .video-wrap .duration {
-    position: absolute;
-    bottom: 20px; right: 20px;
-    background: rgba(26, 20, 22, 0.75);
-    color: var(--cream);
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    backdrop-filter: blur(8px);
-    z-index: 3;
-  }
-  .video-title {
-    font-family: var(--display);
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    text-align: center;
-    color: var(--ink);
-    margin-bottom: 32px;
-  }
-  .video-caption {
-    margin-top: 20px;
+  .demo-section .wrap { max-width: 1040px; }
+  .demo-section-hd { text-align: center; margin-bottom: 52px; }
+  .demo-section-hd .eyebrow-sticker { margin-bottom: 16px; }
+  .demo-section-hd h2 { margin-bottom: 12px; }
+  .demo-section-hd .lead { max-width: 500px; margin: 0 auto; }
+  .demo-caption {
+    margin-top: 24px;
     text-align: center;
     font-size: 14px;
     color: var(--ink-soft);
     font-family: var(--sans);
   }
 
-  /* ============= DEMO PRODUTO ============= */
   .demo-wrap {
     position: relative;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #2A1620 0%, #1A1416 60%, #1E0E1A 100%);
+    border-radius: 28px;
+    background: linear-gradient(150deg, #2D1821 0%, #1A1416 55%, #1C0F19 100%);
     overflow: hidden;
-    padding: 48px 48px 48px 48px;
+    padding: 52px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 52px;
     align-items: center;
-    box-shadow: 0 40px 80px -24px rgba(26,20,22,0.4);
+    box-shadow: 0 48px 96px -24px rgba(26,20,22,0.5), 0 0 0 1px rgba(255,255,255,0.07);
   }
   .demo-wrap::before {
     content: '';
     position: absolute;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,31,109,0.18) 0%, transparent 65%);
-    top: 50%; left: 35%;
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(255,31,109,0.22) 0%, transparent 60%);
+    top: 50%; left: 44%;
     transform: translate(-50%,-50%);
-    pointer-events: none;
+    pointer-events: none; z-index: 0;
+  }
+  .demo-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none; z-index: 0;
   }
   .demo-phone-ui {
-    background: #120C10;
-    border-radius: 20px;
+    background: #100B0E;
+    border-radius: 22px;
     padding: 20px;
-    border: 1px solid rgba(255,255,255,0.07);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 28px 64px rgba(0,0,0,0.55);
+    position: relative; z-index: 2;
   }
   .demo-phone-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px; padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
   .demo-phone-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
+    width: 36px; height: 36px; border-radius: 50%;
     background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
     display: flex; align-items: center; justify-content: center;
-    font-size: 17px;
-    flex-shrink: 0;
+    font-size: 17px; flex-shrink: 0;
   }
   .demo-phone-name { flex: 1; }
   .demo-phone-name strong { display: block; color: #fff; font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
   .demo-phone-name span { color: rgba(255,255,255,0.38); font-size: 11px; }
-  .demo-msg-list { display: flex; flex-direction: column; gap: 8px; }
-  .demo-msg {
-    max-width: 86%;
-    padding: 10px 14px;
-    border-radius: 18px;
-    font-size: 12.5px;
-    line-height: 1.45;
-    font-family: var(--sans);
+  .demo-status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    flex-shrink: 0;
   }
+  .demo-msg-list { display: flex; flex-direction: column; gap: 8px; min-height: 168px; }
+  .demo-msg {
+    max-width: 88%; padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 12.5px; line-height: 1.5;
+    font-family: var(--sans);
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .demo-msg.visible { opacity: 1; transform: none; }
   .demo-msg.user {
-    background: rgba(255,255,255,0.07);
-    color: rgba(255,255,255,0.78);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.78);
+    align-self: flex-start; border-bottom-left-radius: 4px;
   }
   .demo-msg.bot {
-    background: var(--brand);
-    color: #fff;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
+    background: var(--brand); color: #fff;
+    align-self: flex-end; border-bottom-right-radius: 4px;
   }
   .demo-typing {
     display: flex; align-items: center; gap: 5px;
     align-self: flex-end;
     background: rgba(255,31,109,0.12);
     border: 1px solid rgba(255,31,109,0.28);
-    border-radius: 18px;
-    border-bottom-right-radius: 4px;
+    border-radius: 18px; border-bottom-right-radius: 4px;
     padding: 11px 16px;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .3s ease, transform .3s ease;
   }
+  .demo-typing.visible { opacity: 1; transform: none; }
   .demo-typing span {
-    width: 6px; height: 6px;
-    border-radius: 50%;
+    width: 6px; height: 6px; border-radius: 50%;
     background: var(--brand);
-    animation: demo-dot 1.4s ease-in-out infinite;
-    opacity: 0.5;
+    animation: demo-dot 1.4s ease-in-out infinite; opacity: 0.5;
   }
   .demo-typing span:nth-child(2) { animation-delay: 0.2s; }
   .demo-typing span:nth-child(3) { animation-delay: 0.4s; }
   .demo-msg-card {
-    align-self: flex-end;
-    max-width: 86%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 16px;
-    overflow: hidden;
+    align-self: flex-end; max-width: 88%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; overflow: hidden;
     font-family: var(--sans);
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .3s ease, transform .3s ease;
   }
-  .demo-msg-card .card-text {
-    padding: 10px 14px;
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.78);
-    line-height: 1.45;
-  }
+  .demo-msg-card.visible { opacity: 1; transform: none; }
+  .demo-msg-card .card-text { padding: 10px 14px; font-size: 12.5px; color: rgba(255,255,255,0.82); line-height: 1.5; }
   .demo-msg-card .card-btn {
-    display: block; width: 100%;
-    padding: 10px 14px;
+    display: block; width: 100%; padding: 10px 14px;
     background: none; border: none;
     border-top: 1px solid rgba(255,255,255,0.12);
-    color: #4FC3F7;
-    font-size: 13px; font-weight: 600;
-    text-align: center;
-    cursor: default;
-    font-family: var(--sans);
-    letter-spacing: -0.01em;
+    color: #4FC3F7; font-size: 13px; font-weight: 600;
+    text-align: center; cursor: default;
+    font-family: var(--sans); letter-spacing: -0.01em;
   }
   @keyframes demo-dot {
     0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
     30% { transform: translateY(-5px); opacity: 1; }
   }
   .demo-info {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    position: relative;
-    z-index: 2;
+    display: flex; flex-direction: column; gap: 28px;
+    position: relative; z-index: 2;
+  }
+  .demo-info-eyebrow {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--brand); margin-bottom: 8px;
   }
   .demo-info-title {
-    color: #fff;
-    font-family: var(--display);
-    font-size: clamp(22px, 2.8vw, 34px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
+    color: #fff; font-family: var(--display);
+    font-size: clamp(24px, 2.6vw, 36px);
+    font-weight: 800; line-height: 1.12; letter-spacing: -0.03em;
   }
   .demo-info-title em { color: var(--brand); font-style: normal; }
-  .demo-features { display: flex; flex-direction: column; gap: 12px; }
+  .demo-metric-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .demo-metric-num {
+    font-family: var(--display);
+    font-size: 58px; font-weight: 800; letter-spacing: -0.04em;
+    color: var(--brand); line-height: 1;
+    font-variation-settings: 'opsz' 48;
+  }
+  .demo-metric-info { display: flex; flex-direction: column; gap: 3px; }
+  .demo-metric-info strong { color: #fff; font-size: 14px; font-weight: 600; line-height: 1.3; }
+  .demo-metric-info span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  .demo-features { display: flex; flex-direction: column; gap: 14px; }
   .demo-feat {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    color: rgba(255,255,255,0.72);
-    font-size: 13.5px;
-    line-height: 1.45;
-    font-family: var(--sans);
+    display: flex; align-items: flex-start; gap: 12px;
+    color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.45;
   }
   .demo-feat-icon {
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: rgba(255,31,109,0.14);
-    border: 1px solid rgba(255,31,109,0.35);
+    width: 24px; height: 24px; border-radius: 8px;
+    background: rgba(255,31,109,0.16);
+    border: 1px solid rgba(255,31,109,0.3);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    color: var(--brand);
-    font-size: 10px;
-    font-weight: 700;
-    margin-top: 1px;
+    flex-shrink: 0; color: var(--brand); margin-top: 1px;
   }
+  .demo-feat-icon svg { width: 13px; height: 13px; }
+  .demo-feat strong { color: #fff; font-weight: 600; }
   .demo-badges { display: flex; gap: 8px; flex-wrap: wrap; }
   .demo-badge {
-    padding: 7px 13px;
-    border-radius: 999px;
-    font-size: 11.5px;
-    font-weight: 600;
-    display: flex; align-items: center; gap: 6px;
-    font-family: var(--sans);
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 7px;
   }
+  .demo-badge svg { width: 13px; height: 13px; }
   .demo-badge-official {
-    background: rgba(255,31,109,0.14);
-    border: 1px solid rgba(255,31,109,0.32);
+    background: rgba(255,31,109,0.15);
+    border: 1px solid rgba(255,31,109,0.3);
     color: #FFB3CB;
   }
   .demo-badge-safe {
-    background: rgba(34,197,94,0.10);
+    background: rgba(34,197,94,0.12);
     border: 1px solid rgba(34,197,94,0.28);
     color: #86EFAC;
   }
-  @media (max-width: 640px) {
-    .demo-wrap { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
-    .demo-info-title { font-size: 22px; }
+  @media (max-width: 760px) {
+    .demo-wrap { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
+    .demo-metric-num { font-size: 44px; }
   }
 
   /* ============= SCREENSHOTS ============= */
@@ -3223,58 +3148,6 @@
   </div>
 </section>
 
-<!-- ============ DEMO PRODUTO ============ -->
-<section class="video-section">
-  <div class="video-inner" style="max-width:900px">
-    <h2 class="video-title rv">Veja o Notifiquei em ação</h2>
-    <div class="demo-wrap scale-in">
-      <div class="demo-phone-ui">
-        <div class="demo-phone-header">
-          <div class="demo-phone-avatar">🛍️</div>
-          <div class="demo-phone-name">
-            <strong>@ana.biju</strong>
-            <span>Mensagem direta · Instagram™</span>
-          </div>
-          <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#22C55E"/></svg>
-        </div>
-        <div class="demo-msg-list">
-          <div class="demo-msg user">Oi! Ainda tem o kit dourado disponível?</div>
-          <div class="demo-msg bot">Oi Ana! Sim, temos sim 🤩 o kit dourado está disponível em 3 tamanhos. Qual você prefere?</div>
-          <div class="demo-msg user">O médio! Como eu compro?</div>
-          <div class="demo-typing"><span></span><span></span><span></span></div>
-        </div>
-      </div>
-      <div class="demo-info">
-        <div class="demo-info-title">Resposta <em>automática</em><br>em menos de 3s</div>
-        <div class="demo-features">
-          <div class="demo-feat">
-            <div class="demo-feat-icon">✓</div>
-            <span>Com a sua voz — sem parecer robô</span>
-          </div>
-          <div class="demo-feat">
-            <div class="demo-feat-icon">✓</div>
-            <span>DMs, comentários e stories — tudo automatizado</span>
-          </div>
-          <div class="demo-feat">
-            <div class="demo-feat-icon">✓</div>
-            <span>Funciona 24h por dia, mesmo quando você dorme</span>
-          </div>
-        </div>
-        <div class="demo-badges">
-          <div class="demo-badge demo-badge-official">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
-            App Oficial Meta
-          </div>
-          <div class="demo-badge demo-badge-safe">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Zero risco de banimento
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="video-caption rv">API oficial do Instagram™ — sem código, configuração em minutos</div>
-  </div>
-</section>
 
 <!-- ============ MARQUEE ============ -->
 <div class="marquee">
@@ -3876,6 +3749,68 @@
   </div>
 </section>
 
+<!-- ============ DEMO PRODUTO ============ -->
+<section class="demo-section">
+  <div class="wrap">
+    <div class="demo-section-hd rv">
+      <div class="eyebrow-sticker">Veja em ação</div>
+      <h2 class="title">Enquanto você dorme,<br><em>ele vende.</em></h2>
+      <p class="lead">Uma mensagem entra. Em 3 segundos o Notifiquei respondeu, qualificou e mandou o link de compra.</p>
+    </div>
+    <div class="demo-wrap scale-in">
+      <div class="demo-phone-ui">
+        <div class="demo-phone-header">
+          <div class="demo-phone-avatar">🛍️</div>
+          <div class="demo-phone-name">
+            <strong>@ana.biju</strong>
+            <span>Mensagem direta · Instagram™</span>
+          </div>
+          <div class="demo-status-dot"></div>
+        </div>
+        <div class="demo-msg-list"></div>
+      </div>
+      <div class="demo-info">
+        <div>
+          <div class="demo-info-eyebrow">Tempo de resposta</div>
+          <div class="demo-info-title">Resposta <em>automática</em><br>antes do cliente fechar a tela.</div>
+        </div>
+        <div class="demo-metric-card">
+          <div class="demo-metric-num">3s</div>
+          <div class="demo-metric-info">
+            <strong>tempo médio de resposta</strong>
+            <span>vs. 4h+ da média humana</span>
+          </div>
+        </div>
+        <div class="demo-features">
+          <div class="demo-feat">
+            <div class="demo-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span><strong>Com a sua voz</strong> — sem parecer robô</span>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span><strong>DMs, comentários e stories</strong> — tudo automatizado</span>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span><strong>24h por dia</strong> — mesmo quando você dorme</span>
+          </div>
+        </div>
+        <div class="demo-badges">
+          <div class="demo-badge demo-badge-official">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+            App Oficial Meta
+          </div>
+          <div class="demo-badge demo-badge-safe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Zero risco de banimento
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="demo-caption rv">API oficial do Instagram™ — sem código, configuração em minutos</p>
+  </div>
+</section>
+
 <!-- ============ PLANOS ============ -->
 <section id="planos" class="price-section">
   <div class="wrap">
@@ -4244,70 +4179,66 @@
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=PageView&noscript=1"/></noscript>
 <script>
 (function() {
-  var INITIAL = [
-    { who: 'user', text: 'Oi! Ainda tem o kit dourado disponível?' },
-    { who: 'bot',  text: 'Oi Ana! Sim, temos sim 🤩 o kit dourado está disponível em 3 tamanhos. Qual você prefere?' },
-    { who: 'user', text: 'O médio! Como eu compro?' },
-  ];
-  var CONTINUATION = [
-    { delay: 1600, type: 'resolve', text: 'O médio está R$ 89! Vou te mandar o link agora 🛒' },
-    { delay: 3800, type: 'msg', who: 'user', text: 'Perfeito! Manda o link 😍' },
-    { delay: 5000, type: 'typing' },
-    { delay: 6800, type: 'card', text: 'Kit Dourado Médio — R$ 89', btn: 'Comprar agora' },
-    { delay: 10000, type: 'reset' },
+  var STEPS = [
+    { delay: 0,     type: 'msg',     who: 'user', text: 'Oi! Ainda tem o kit dourado disponível?' },
+    { delay: 700,   type: 'typing' },
+    { delay: 2100,  type: 'resolve', text: 'Oi Ana! Sim, temos sim 🤩 o kit dourado está disponível em 3 tamanhos. Qual você prefere?' },
+    { delay: 3300,  type: 'msg',     who: 'user', text: 'O médio! Como eu compro?' },
+    { delay: 4000,  type: 'typing' },
+    { delay: 5600,  type: 'resolve', text: 'O médio está R$ 89! Vou te mandar o link agora 🛒' },
+    { delay: 6900,  type: 'msg',     who: 'user', text: 'Perfeito! Manda o link 😍' },
+    { delay: 7600,  type: 'typing' },
+    { delay: 9400,  type: 'card',    text: 'Kit Dourado Médio — R$ 89', btn: 'Comprar agora' },
+    { delay: 13500, type: 'reset' },
   ];
 
-  function buildInitial(list) {
-    return list.map(function(m) {
-      var d = document.createElement('div');
-      d.className = 'demo-msg ' + m.who;
-      d.textContent = m.text;
-      return d;
-    });
+  var timers = [];
+
+  function show(el) {
+    el.offsetHeight; // force reflow for transition
+    el.classList.add('visible');
   }
 
   function makeTyping() {
-    var d = document.createElement('div');
-    d.className = 'demo-typing';
-    d.innerHTML = '<span></span><span></span><span></span>';
-    return d;
-  }
-
-  function reset(list) {
-    list.innerHTML = '';
-    buildInitial(INITIAL).forEach(function(el) { list.appendChild(el); });
-    list.appendChild(makeTyping());
+    var el = document.createElement('div');
+    el.className = 'demo-typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    return el;
   }
 
   function run(list) {
-    var timers = [];
-    CONTINUATION.forEach(function(step) {
+    timers.forEach(clearTimeout);
+    timers = [];
+    list.innerHTML = '';
+
+    STEPS.forEach(function(step) {
       var t = setTimeout(function() {
-        if (step.type === 'card') {
-          var typing = list.querySelector('.demo-typing');
-          var card = document.createElement('div');
-          card.className = 'demo-msg-card';
-          card.innerHTML = '<div class="card-text">' + step.text + '</div><button class="card-btn">' + step.btn + '</button>';
-          if (typing) list.replaceChild(card, typing);
-          else list.appendChild(card);
-        } else if (step.type === 'resolve') {
-          var typing = list.querySelector('.demo-typing');
-          var msg = document.createElement('div');
-          msg.className = 'demo-msg bot';
-          msg.textContent = step.text;
-          if (typing) list.replaceChild(msg, typing);
-          else list.appendChild(msg);
-        } else if (step.type === 'msg') {
-          var msg = document.createElement('div');
-          msg.className = 'demo-msg ' + step.who;
-          msg.textContent = step.text;
-          list.appendChild(msg);
+        var typing = list.querySelector('.demo-typing');
+        var el;
+        if (step.type === 'msg') {
+          el = document.createElement('div');
+          el.className = 'demo-msg ' + step.who;
+          el.textContent = step.text;
+          list.appendChild(el);
+          requestAnimationFrame(function() { show(el); });
         } else if (step.type === 'typing') {
-          list.appendChild(makeTyping());
+          el = makeTyping();
+          list.appendChild(el);
+          requestAnimationFrame(function() { show(el); });
+        } else if (step.type === 'resolve') {
+          el = document.createElement('div');
+          el.className = 'demo-msg bot';
+          el.textContent = step.text;
+          if (typing) list.replaceChild(el, typing); else list.appendChild(el);
+          requestAnimationFrame(function() { show(el); });
+        } else if (step.type === 'card') {
+          el = document.createElement('div');
+          el.className = 'demo-msg-card';
+          el.innerHTML = '<div class="card-text">' + step.text + '</div><button class="card-btn">' + step.btn + '</button>';
+          if (typing) list.replaceChild(el, typing); else list.appendChild(el);
+          requestAnimationFrame(function() { show(el); });
         } else if (step.type === 'reset') {
-          timers.forEach(clearTimeout);
-          reset(list);
-          setTimeout(function() { run(list); }, 600);
+          setTimeout(function() { run(list); }, 400);
         }
       }, step.delay);
       timers.push(t);
