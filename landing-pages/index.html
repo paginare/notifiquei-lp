@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Notifiquei — Você posta. A gente responde.</title>
+<title>Notifiquei — Automação de Instagram™ pela API oficial da Meta</title>
 <meta name="description" content="O Notifiquei responde DMs, comentários e stories no Instagram em segundos, com a sua voz, pela API oficial da Meta. Você foca em criar. Ele cuida de converter.">
 <link rel="canonical" href="https://notifiquei.com.br/">
 
@@ -45,30 +45,58 @@
     {
       "@type": "Offer",
       "name": "Plano Solo",
-      "price": "97",
+      "price": "99",
       "priceCurrency": "BRL",
       "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
     },
     {
       "@type": "Offer",
       "name": "Plano Pro",
-      "price": "197",
+      "price": "499",
       "priceCurrency": "BRL",
       "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
     },
     {
       "@type": "Offer",
       "name": "Plano Business",
-      "price": "397",
+      "price": "799",
       "priceCurrency": "BRL",
       "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
     }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "2000"
-  }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Isso pode bloquear meu Instagram?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." }
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso saber programar?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual." }
+    },
+    {
+      "@type": "Question",
+      "name": "Funciona pra e-commerce?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. Temos clientes vendendo moda, cosméticos, suplementos e produtos físicos em geral. O fluxo ideal muda um pouco, mas tem template pronto pra isso." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a diferença pro ManyChat?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mais barato, suporte em português, interface mais simples, e foco exclusivo no Instagram pro mercado brasileiro." }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso cancelar quando quiser?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A qualquer momento, pelo painel. Nos primeiros 7 dias, devolvemos 100% do valor sem perguntar por quê." }
+    }
+  ]
 }
 </script>
 <!-- Cookie Consent + Google Consent Mode v2 (deve vir ANTES de qualquer analytics) -->
@@ -259,7 +287,6 @@
   }
   .blob-1 { width: 460px; height: 460px; background: var(--brand-soft); top: -120px; right: -100px; animation: float 14s ease-in-out infinite; }
   .blob-2 { width: 380px; height: 380px; background: var(--brand-light); top: 240px; left: -140px; animation: float 16s ease-in-out infinite reverse; }
-  .blob-3 { width: 300px; height: 300px; background: var(--brand-soft); bottom: -100px; right: 22%; animation: float 18s ease-in-out infinite; opacity: 0.4; }
   /* Mobile: desativa blobs animados para reduzir GPU/paint */
   @media (max-width: 768px) {
     .blob { animation: none; filter: blur(40px); }
@@ -1975,7 +2002,7 @@
   }
   .foot-social svg { width: 18px; height: 18px; }
 
-  footer h2 {
+  footer .foot-nav-label {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -2134,21 +2161,9 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Typing dots */
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-3px); opacity: 1; }
-  }
-
   /* Chart line desenhando */
   @keyframes drawLine {
     to { stroke-dashoffset: 0; }
-  }
-
-  /* Número subindo */
-  @keyframes countUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Pulse nos elementos ativos */
@@ -2160,21 +2175,6 @@
   /* Flow builder: linha pulsante */
   @keyframes dashFlow {
     to { stroke-dashoffset: -20; }
-  }
-
-  /* Shake sutil pra chamar atenção no notification */
-  @keyframes shake {
-    0%, 100% { transform: rotate(0deg); }
-    20% { transform: rotate(-8deg); }
-    40% { transform: rotate(8deg); }
-    60% { transform: rotate(-4deg); }
-    80% { transform: rotate(4deg); }
-  }
-
-  /* Logo breath sutil */
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
   }
 
   /* SVG logo component shared markup */
@@ -2426,8 +2426,9 @@
   .provas-grid {
     margin-top: 64px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 18px;
+    max-width: 640px;
   }
   @media (max-width: 900px) { .provas-grid { grid-template-columns: 1fr; } }
   .prova-card {
@@ -2793,7 +2794,7 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="#" style="display: inline-flex; align-items: center; text-decoration: none;">
+    <a href="/" style="display: inline-flex; align-items: center; text-decoration: none;">
       <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
     </a>
     <div class="nav-links">
@@ -2805,7 +2806,7 @@
     </div>
     <div class="nav-cta-group">
       <a href="https://app.notifiquei.com.br" class="nav-login">Entrar</a>
-      <a href="#planos" class="btn-brand">Começar grátis →</a>
+      <a href="#planos" class="btn-brand">Ver planos →</a>
       <button class="nav-burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -3699,7 +3700,7 @@
 </section>
 
 <!-- ============ PROVA SOCIAL ============ -->
-<section class="provas-section" style="display:none">
+<section class="provas-section">
   <div class="wrap">
     <div class="eyebrow-sticker rv">Quem já usa</div>
     <h2 class="title rv">Criadores reais.<br><em>Resultados reais.</em></h2>
@@ -3718,29 +3719,6 @@
         </div>
       </div>
 
-      <div class="prova-card">
-        <div class="prova-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="prova-quote">"Configurei em menos de 10 minutos e no mesmo dia já tinha DMs sendo respondidas automaticamente. Nunca imaginei que seria tão simples."</p>
-        <div class="prova-author">
-          <div class="prova-avatar" style="background: var(--brand-soft);">V</div>
-          <div>
-            <span class="prova-name">Em breve</span>
-            <span class="prova-handle">Aguardando depoimento</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="prova-card">
-        <div class="prova-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="prova-quote">"Minha taxa de resposta foi de 12% pra quase 100%. Os leads que antes esfriavam enquanto eu dormia agora já recebem o link antes de eu acordar."</p>
-        <div class="prova-author">
-          <div class="prova-avatar" style="background: #C8E4CE;">R</div>
-          <div>
-            <span class="prova-name">Em breve</span>
-            <span class="prova-handle">Aguardando depoimento</span>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="provas-cta-row rv">
@@ -3942,7 +3920,7 @@
 
     <div class="foot-top">
       <div class="foot-brand-col">
-        <a href="#" class="foot-brand">
+        <a href="/" class="foot-brand">
           <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
         </a>
         <p class="tag">Automação de vendas no Instagram™ com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
@@ -3963,7 +3941,7 @@
       </div>
 
       <div>
-        <h2>Produto</h2>
+        <p class="foot-nav-label">Produto</p>
         <ul>
           <li><a href="#como">Como funciona</a></li>
           <li><a href="#features">Funcionalidades</a></li>
@@ -3974,7 +3952,7 @@
       </div>
 
       <div>
-        <h2>Notifiquei</h2>
+        <p class="foot-nav-label">Notifiquei</p>
         <ul>
           <li><a href="criadores.html">Pra criadores</a></li>
           <li><a href="/termos-de-uso">Termos de uso</a></li>
@@ -3984,7 +3962,7 @@
       </div>
 
       <div>
-        <h2>Contato</h2>
+        <p class="foot-nav-label">Contato</p>
         <ul>
           <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
@@ -4117,7 +4095,7 @@
     document.querySelectorAll('.price-card a, .price-btn').forEach(el => {
       el.addEventListener('click', () => {
         const card = el.closest('.price-card');
-        const planName = card?.querySelector('h3')?.textContent || 'unknown';
+        const planName = card?.querySelector('.price-name')?.textContent || 'unknown';
         const planPrice = card?.querySelector('.price-tag .amt')?.textContent || '';
         trackEvent('InitiateCheckout', 'begin_checkout', {
           content_name: planName,
@@ -4234,7 +4212,14 @@
         } else if (step.type === 'card') {
           el = document.createElement('div');
           el.className = 'demo-msg-card';
-          el.innerHTML = '<div class="card-text">' + step.text + '</div><button class="card-btn">' + step.btn + '</button>';
+          var ct = document.createElement('div');
+          ct.className = 'card-text';
+          ct.textContent = step.text;
+          var cb = document.createElement('button');
+          cb.className = 'card-btn';
+          cb.textContent = step.btn;
+          el.appendChild(ct);
+          el.appendChild(cb);
           if (typing) list.replaceChild(el, typing); else list.appendChild(el);
           requestAnimationFrame(function() { show(el); });
         } else if (step.type === 'reset') {
@@ -4248,7 +4233,17 @@
   document.addEventListener('DOMContentLoaded', function() {
     var list = document.querySelector('.demo-msg-list');
     if (!list) return;
-    run(list);
+    var wrap = list.closest('.demo-wrap') || list.closest('.demo-section');
+    if (!wrap || !window.IntersectionObserver) { run(list); return; }
+    var started = false;
+    var demoObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !started) {
+        started = true;
+        demoObs.disconnect();
+        run(list);
+      }
+    }, { threshold: 0.3 });
+    demoObs.observe(wrap);
   });
 })();
 </script>
