@@ -177,7 +177,7 @@
 
     <p class="legal-eyebrow">LGPD — Art. 37</p>
     <h1 class="legal-title">Acordo de Operação de Dados</h1>
-    <p class="legal-meta">Última atualização: 11 de fevereiro de 2026 &nbsp;·&nbsp; Versão 1.0</p>
+    <p class="legal-meta">Última atualização: 15 de maio de 2026 &nbsp;·&nbsp; Versão 1.1</p>
 
     <div class="consent-block">
       <div class="consent-icon">📋</div>
@@ -258,7 +258,7 @@
           <li>Tratar os dados pessoais exclusivamente conforme as instruções documentadas do Controlador;</li>
           <li>Garantir que as pessoas autorizadas a tratar os dados estejam sujeitas a obrigações de confidencialidade;</li>
           <li>Implementar medidas técnicas e organizacionais adequadas para garantir a segurança dos dados (criptografia em trânsito TLS, controle de acesso por função, logs de auditoria);</li>
-          <li>Notificar o Controlador em até 48 (quarenta e oito) horas caso tome conhecimento de incidente de segurança que envolva dados tratados neste Acordo;</li>
+          <li>Notificar o Controlador em até 72 (setenta e duas) horas caso tome conhecimento de incidente de segurança que envolva dados tratados neste Acordo;</li>
           <li>Auxiliar o Controlador no atendimento a solicitações de titulares de dados (Art. 18 da LGPD), na medida do tecnicamente possível;</li>
           <li>Auxiliar o Controlador no cumprimento de obrigações relativas à segurança, notificação de incidentes e avaliação de impacto;</li>
           <li>Eliminar ou devolver os dados ao Controlador ao término dos serviços, conforme os prazos do item 5;</li>
@@ -285,9 +285,16 @@
         <table class="legal-table">
           <thead><tr><th>Suboperador</th><th>Finalidade</th><th>País</th></tr></thead>
           <tbody>
-            <tr><td>Amazon Web Services (AWS)</td><td>Hospedagem e infraestrutura de dados</td><td>Brasil / EUA</td></tr>
+            <tr><td>Turbocloud</td><td>Servidor principal da API (VPS dedicado)</td><td>Brasil</td></tr>
+            <tr><td>Amazon Web Services (AWS)</td><td>Infraestrutura de nuvem, armazenamento de dados e serviços auxiliares</td><td>Brasil / EUA</td></tr>
             <tr><td>Meta Platforms, Inc.</td><td>API oficial do Instagram (origem dos dados)</td><td>EUA</td></tr>
             <tr><td>Abacatepay</td><td>Processamento de pagamentos (dados do Controlador)</td><td>Brasil</td></tr>
+            <tr><td>OpenAI (openai.com)</td><td>Processamento de linguagem natural (IA), transcrição de áudio via Whisper, análise de mensagens</td><td>EUA</td></tr>
+            <tr><td>Google Cloud / Google LLC</td><td>Armazenamento de mídia (imagens/vídeos), modelos de linguagem (Gemini)</td><td>EUA</td></tr>
+            <tr><td>Anthropic</td><td>Modelos de linguagem (Claude) para automações de resposta</td><td>EUA</td></tr>
+            <tr><td>Resend</td><td>Envio de e-mails transacionais (convites, redefinição de senha, alertas)</td><td>EUA</td></tr>
+            <tr><td>Supabase</td><td>Autenticação de usuários (armazena e-mail e ID)</td><td>EUA</td></tr>
+            <tr><td>n8n</td><td>Execução de automações e fluxos de trabalho configurados pelos usuários</td><td>Alemanha / EUA</td></tr>
           </tbody>
         </table>
         <p>A Notifiquei informará o Controlador sobre qualquer alteração relevante na lista de suboperadores com antecedência mínima de 15 (quinze) dias, salvo em caso de força maior. O Controlador pode se opor a alterações justificando por escrito para <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>.</p>
@@ -303,12 +310,12 @@
           <li>Testes de segurança periódicos;</li>
           <li>Política interna de resposta a incidentes.</li>
         </ul>
-        <p>Em caso de incidente de segurança que envolva dados tratados neste Acordo, a Notifiquei notificará o Controlador em até 48 horas, com descrição da natureza do incidente, categorias e quantidade estimada de titulares afetados, e medidas adotadas ou propostas para remediar o incidente.</p>
+        <p>Em caso de incidente de segurança que envolva dados tratados neste Acordo, a Notifiquei notificará o Controlador em até 72 (setenta e duas) horas, com descrição da natureza do incidente, categorias e quantidade estimada de titulares afetados, e medidas adotadas ou propostas para remediar o incidente.</p>
       </section>
 
       <section>
         <h2><span class="sec-num">10</span> Transferência internacional de dados</h2>
-        <p>O tratamento de dados pode envolver transferência para os Estados Unidos em razão do uso de infraestrutura da AWS e da Meta. Essas transferências são realizadas com base nas salvaguardas previstas no Art. 33 da LGPD, incluindo cláusulas contratuais padrão e a verificação de adequação de proteção dos países destinatários.</p>
+        <p>O servidor principal da API da Notifiquei opera em infraestrutura localizada no Brasil (Turbocloud). O tratamento de dados pode envolver transferência para os Estados Unidos em razão do uso de serviços auxiliares em nuvem (filas, cache e similares) e da integração com a Meta Platforms. Essas transferências são realizadas com base nas salvaguardas previstas no Art. 33 da LGPD, incluindo cláusulas contratuais padrão e a verificação de adequação de proteção dos países destinatários.</p>
       </section>
 
       <section>
