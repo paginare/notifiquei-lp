@@ -720,6 +720,188 @@
     font-family: var(--sans);
   }
 
+  /* ============= DEMO PRODUTO ============= */
+  .demo-wrap {
+    position: relative;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #2A1620 0%, #1A1416 60%, #1E0E1A 100%);
+    overflow: hidden;
+    padding: 48px 48px 48px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    box-shadow: 0 40px 80px -24px rgba(26,20,22,0.4);
+  }
+  .demo-wrap::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,31,109,0.18) 0%, transparent 65%);
+    top: 50%; left: 35%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  .demo-phone-ui {
+    background: #120C10;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 2;
+  }
+  .demo-phone-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .demo-phone-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .demo-phone-name { flex: 1; }
+  .demo-phone-name strong { display: block; color: #fff; font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+  .demo-phone-name span { color: rgba(255,255,255,0.38); font-size: 11px; }
+  .demo-msg-list { display: flex; flex-direction: column; gap: 8px; }
+  .demo-msg {
+    max-width: 86%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    font-family: var(--sans);
+  }
+  .demo-msg.user {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.78);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .demo-msg.bot {
+    background: var(--brand);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .demo-typing {
+    display: flex; align-items: center; gap: 5px;
+    align-self: flex-end;
+    background: rgba(255,31,109,0.12);
+    border: 1px solid rgba(255,31,109,0.28);
+    border-radius: 18px;
+    border-bottom-right-radius: 4px;
+    padding: 11px 16px;
+  }
+  .demo-typing span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+    animation: demo-dot 1.4s ease-in-out infinite;
+    opacity: 0.5;
+  }
+  .demo-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .demo-typing span:nth-child(3) { animation-delay: 0.4s; }
+  .demo-msg-card {
+    align-self: flex-end;
+    max-width: 86%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    overflow: hidden;
+    font-family: var(--sans);
+  }
+  .demo-msg-card .card-text {
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.45;
+  }
+  .demo-msg-card .card-btn {
+    display: block; width: 100%;
+    padding: 10px 14px;
+    background: none; border: none;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: #4FC3F7;
+    font-size: 13px; font-weight: 600;
+    text-align: center;
+    cursor: default;
+    font-family: var(--sans);
+    letter-spacing: -0.01em;
+  }
+  @keyframes demo-dot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-5px); opacity: 1; }
+  }
+  .demo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .demo-info-title {
+    color: #fff;
+    font-family: var(--display);
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .demo-info-title em { color: var(--brand); font-style: normal; }
+  .demo-features { display: flex; flex-direction: column; gap: 12px; }
+  .demo-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255,255,255,0.72);
+    font-size: 13.5px;
+    line-height: 1.45;
+    font-family: var(--sans);
+  }
+  .demo-feat-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(255,31,109,0.14);
+    border: 1px solid rgba(255,31,109,0.35);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--brand);
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .demo-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .demo-badge {
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--sans);
+  }
+  .demo-badge-official {
+    background: rgba(255,31,109,0.14);
+    border: 1px solid rgba(255,31,109,0.32);
+    color: #FFB3CB;
+  }
+  .demo-badge-safe {
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.28);
+    color: #86EFAC;
+  }
+  @media (max-width: 640px) {
+    .demo-wrap { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+    .demo-info-title { font-size: 22px; }
+  }
+
   /* ============= SCREENSHOTS ============= */
   .screens-block {
     margin-top: 72px;
@@ -2359,6 +2541,304 @@
   }
   .provas-cta-row p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
   .provas-cta-row p strong { color: var(--ink); }
+
+  /* ============= SCREEN BULLETS + SUP COPY ============= */
+  .screen-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0 20px;
+  }
+  .screen-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .bullet-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--brand-light);
+    border: 1.5px solid var(--brand-soft);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .bullet-dot::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+  .screen-sup {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 460px;
+    border-left: 3px solid var(--brand-soft);
+    padding-left: 16px;
+    margin: 0 0 28px;
+  }
+  .screen-cta-row { margin-top: 32px; }
+
+  /* ============= INTENÇÃO DE COMPRA — MOCK UI ============= */
+  .screen-intent {
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+  .intent-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: white;
+  }
+  .intent-title {
+    font-family: var(--display);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: -0.015em; color: var(--ink);
+  }
+  .intent-live { font-size: 11px; color: #22c55e; font-weight: 600; letter-spacing: 0.02em; }
+  .intent-list { flex: 1; background: white; }
+  .intent-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .intent-item.hot { background: var(--brand-light); }
+  .intent-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--brand-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--brand-dark);
+    flex-shrink: 0;
+  }
+  .intent-avatar.b2 { background: #D4F0FF; color: #0E6FA8; }
+  .intent-avatar.b3 { background: #DDF4E0; color: #1A7A2E; }
+  .intent-body { flex: 1; min-width: 0; }
+  .intent-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+  .intent-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .intent-badge {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px;
+    letter-spacing: 0.03em;
+  }
+  .intent-badge.high { background: #FFE0EC; color: #C01F56; }
+  .intent-badge.med { background: #FFF3D6; color: #A06B00; }
+  .intent-badge.low { background: #EEF0F2; color: #6B7280; }
+  .intent-preview {
+    font-size: 11px; color: var(--ink-soft);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  .intent-enter-btn {
+    background: var(--brand); color: white;
+    border: none; border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    padding: 5px 12px; white-space: nowrap;
+    font-family: var(--sans); cursor: default;
+  }
+  .intent-notif {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: var(--ink); color: var(--cream);
+    font-size: 12px; line-height: 1.4;
+  }
+  .notif-icon { font-size: 15px; flex-shrink: 0; }
+  .intent-notif strong { color: var(--brand); }
+
+  /* ============= MODERAÇÃO — MOCK UI ============= */
+  .screen-moderation {
+    display: flex; flex-direction: column;
+    min-height: 280px; background: white;
+  }
+  .mod-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mod-post-thumb {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--brand-soft), var(--brand-light));
+    flex-shrink: 0;
+  }
+  .mod-post-title { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .mod-post-stats { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+  .mod-list { flex: 1; }
+  .mod-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mod-item.blocked { opacity: 0.45; background: #fafafa; }
+  .mod-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--brand-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--brand-dark);
+    flex-shrink: 0;
+  }
+  .mod-avatar.b2 { background: #D4F0FF; color: #0E6FA8; }
+  .mod-avatar.spam { background: #F0F0F0; color: #999; }
+  .mod-body { flex: 1; min-width: 0; }
+  .mod-text { font-size: 11.5px; color: var(--ink); line-height: 1.45; margin-bottom: 4px; }
+  .mod-reply { font-size: 11px; color: var(--ink-soft); font-style: italic; line-height: 1.4; padding-left: 10px; border-left: 2px solid var(--brand-soft); }
+  .mod-tag {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 999px;
+    margin-left: 6px; vertical-align: middle; white-space: nowrap;
+  }
+  .mod-tag.auto-reply { background: #DDF4E0; color: #1A7A2E; }
+  .mod-tag.spam-tag { background: #FEE2E2; color: #B91C1C; }
+  .mod-tag.neg-tag { background: #FEF3C7; color: #92400E; }
+  .mod-stats-bar {
+    display: flex; gap: 1px; background: var(--line);
+    border-top: 1px solid var(--line);
+  }
+  .mod-stat {
+    flex: 1; background: white;
+    padding: 8px 12px; text-align: center;
+  }
+  .mod-stat .ms-val { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
+  .mod-stat .ms-lbl { font-size: 9px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .mod-stat.positive .ms-val { color: #1A7A2E; }
+  .mod-stat.blocked-stat .ms-val { color: #B91C1C; }
+
+  /* ============= MODERAÇÃO — SEÇÃO ESCURA ============= */
+  .moderation-dark {
+    background: var(--ink);
+    padding: 140px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  @media (max-width: 900px) { .moderation-dark { padding: 96px 0; } }
+  .moderation-dark::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,31,109,0.12) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+  .moderation-dark .eyebrow-sticker { color: var(--brand); }
+  .moderation-dark .eyebrow-sticker::before { background: var(--brand); }
+  .mod-center {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .mod-center h2 {
+    font-family: var(--display);
+    font-size: clamp(34px, 4.4vw, 54px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--cream);
+    margin-bottom: 16px;
+    font-variation-settings: 'opsz' 72;
+  }
+  .mod-center h2 em { font-style: normal; color: var(--brand); font-weight: 600; }
+  .mod-center .mod-lead {
+    font-size: 18px;
+    color: rgba(255,249,243,0.62);
+    line-height: 1.55;
+    margin-bottom: 64px;
+  }
+  .mod-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 760px) { .mod-cards { grid-template-columns: 1fr; } }
+  .mod-card {
+    background: rgba(255,249,243,0.05);
+    border: 1px solid rgba(255,249,243,0.09);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: left;
+    transition: background .2s, border-color .2s;
+  }
+  .mod-card:hover {
+    background: rgba(255,249,243,0.08);
+    border-color: rgba(255,31,109,0.3);
+  }
+  .mod-card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    font-size: 20px;
+  }
+  .mod-card-icon.red { background: rgba(185,28,28,0.2); }
+  .mod-card-icon.green { background: rgba(26,122,46,0.2); }
+  .mod-card-icon.purple { background: rgba(255,31,109,0.18); }
+  .mod-card h4 {
+    font-family: var(--display);
+    font-size: 17px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .mod-card p {
+    font-size: 14px;
+    color: rgba(255,249,243,0.55);
+    line-height: 1.55;
+  }
+  .mod-ticker {
+    background: rgba(255,249,243,0.04);
+    border: 1px solid rgba(255,249,243,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .mod-ticker-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,249,243,0.07);
+  }
+  .mod-ticker-title {
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,249,243,0.5);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .mod-ticker-live {
+    font-size: 11px; color: #22c55e; font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .mod-ticker-live::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22c55e;
+    animation: pulse-green 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .mod-ticker-rows { padding: 8px 0; }
+  .mod-tick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+  .tick-action {
+    font-size: 10px; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    white-space: nowrap; flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+  .tick-action.blocked { background: rgba(185,28,28,0.25); color: #F87171; }
+  .tick-action.replied { background: rgba(26,122,46,0.25); color: #4ade80; }
+  .tick-action.hidden { background: rgba(161,145,150,0.2); color: rgba(255,249,243,0.4); }
+  .tick-text { color: rgba(255,249,243,0.65); flex: 1; }
+  .tick-text strong { color: var(--cream); font-weight: 600; }
+  .tick-time { font-size: 10px; color: rgba(255,249,243,0.25); white-space: nowrap; }
+  .mod-dark-cta { text-align: center; }
+  .mod-dark-sub { font-size: 14px; color: rgba(255,249,243,0.4); margin-top: 14px; }
 </style>
 
 </head>
@@ -2433,12 +2913,11 @@
         </h1>
 
         <p class="hero-sub rv">
-          O Notifiquei responde DMs, comentários e stories no seu <strong><u class="ig-kw">Instagram</u></strong> <strong>na hora</strong> — com a sua voz, pela API oficial da Meta. Você foca em criar. Ele cuida de converter.
+          O Notifiquei responde DMs, comentários e stories no seu <strong><u class="ig-kw">Instagram™</u></strong> <strong>na hora</strong> — com a sua voz, pela API oficial da Meta. Você foca em criar. Ele cuida de converter.
         </p>
 
         <div class="hero-actions rv">
           <a href="#planos" class="btn-big">Quero automatizar →</a>
-          <a href="#como" class="btn-outline">▶ Ver em 90s</a>
         </div>
 
         <div class="hero-trust rv">
@@ -2744,17 +3223,56 @@
   </div>
 </section>
 
-<!-- ============ VÍDEO DEMO ============ -->
+<!-- ============ DEMO PRODUTO ============ -->
 <section class="video-section">
-  <div class="video-inner">
-    <h2 class="video-title rv">Conecte sua conta em&nbsp;1&nbsp;minuto</h2>
-    <div class="video-wrap scale-in" id="video-demo" onclick="loadVideo()">
-      <div class="video-thumb-fallback">
-        <div class="video-play"></div>
+  <div class="video-inner" style="max-width:900px">
+    <h2 class="video-title rv">Veja o Notifiquei em ação</h2>
+    <div class="demo-wrap scale-in">
+      <div class="demo-phone-ui">
+        <div class="demo-phone-header">
+          <div class="demo-phone-avatar">🛍️</div>
+          <div class="demo-phone-name">
+            <strong>@ana.biju</strong>
+            <span>Mensagem direta · Instagram™</span>
+          </div>
+          <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#22C55E"/></svg>
+        </div>
+        <div class="demo-msg-list">
+          <div class="demo-msg user">Oi! Ainda tem o kit dourado disponível?</div>
+          <div class="demo-msg bot">Oi Ana! Sim, temos sim 🤩 o kit dourado está disponível em 3 tamanhos. Qual você prefere?</div>
+          <div class="demo-msg user">O médio! Como eu compro?</div>
+          <div class="demo-typing"><span></span><span></span><span></span></div>
+        </div>
       </div>
-      <div class="duration">▶ 90s</div>
+      <div class="demo-info">
+        <div class="demo-info-title">Resposta <em>automática</em><br>em menos de 3s</div>
+        <div class="demo-features">
+          <div class="demo-feat">
+            <div class="demo-feat-icon">✓</div>
+            <span>Com a sua voz — sem parecer robô</span>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon">✓</div>
+            <span>DMs, comentários e stories — tudo automatizado</span>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon">✓</div>
+            <span>Funciona 24h por dia, mesmo quando você dorme</span>
+          </div>
+        </div>
+        <div class="demo-badges">
+          <div class="demo-badge demo-badge-official">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+            App Oficial Meta
+          </div>
+          <div class="demo-badge demo-badge-safe">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Zero risco de banimento
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="video-caption rv">Veja o Notifiquei em ação — configuração completa em 90 segundos</div>
+    <div class="video-caption rv">API oficial do Instagram™ — sem código, configuração em minutos</div>
   </div>
 </section>
 
@@ -2764,19 +3282,19 @@
     <div class="marquee-item">Responda em segundos</div>
     <div class="marquee-item">Sem parecer robô</div>
     <div class="marquee-item">API oficial Meta</div>
-    <div class="marquee-item">Feito pra Instagram</div>
+    <div class="marquee-item">Feito pra Instagram™</div>
     <div class="marquee-item">24h por dia</div>
     <div class="marquee-item">Configura em 5 min</div>
     <div class="marquee-item">Responda em segundos</div>
     <div class="marquee-item">Sem parecer robô</div>
     <div class="marquee-item">API oficial Meta</div>
-    <div class="marquee-item">Feito pra Instagram</div>
+    <div class="marquee-item">Feito pra Instagram™</div>
     <div class="marquee-item">24h por dia</div>
     <div class="marquee-item">Configura em 5 min</div>
     <div class="marquee-item">Responda em segundos</div>
     <div class="marquee-item">Sem parecer robô</div>
     <div class="marquee-item">API oficial Meta</div>
-    <div class="marquee-item">Feito pra Instagram</div>
+    <div class="marquee-item">Feito pra Instagram™</div>
     <div class="marquee-item">24h por dia</div>
     <div class="marquee-item">Configura em 5 min</div>
   </div>
@@ -2793,7 +3311,7 @@
       <div class="step-card">
         <div class="step-badge">Passo 1</div>
         <div class="step-num">01</div>
-        <h3>Conecte seu Instagram</h3>
+        <h3>Conecte seu Instagram™</h3>
         <p>Login via Meta oficial, em poucos cliques. Zero senha exposta, zero risco, zero enrolação.</p>
       </div>
       <div class="step-card">
@@ -2819,7 +3337,7 @@
     <div class="mechanism-grid">
       <div class="mechanism-copy rv">
         <h2 class="mechanism-title">O único sistema que transforma comentários em vendas <em>automaticamente.</em> Feito pra criador brasileiro.</h2>
-        <p class="mechanism-sub">Qualquer ferramenta responde mensagem. A diferença é que o Notifiquei foi construído do zero pra resolver a dor específica de quem vende pelo <strong><u class="ig-kw">Instagram</u></strong> no Brasil — com API oficial, sem código, em português.</p>
+        <p class="mechanism-sub">Qualquer ferramenta responde mensagem. A diferença é que o Notifiquei foi construído do zero pra resolver a dor específica de quem vende pelo <strong><u class="ig-kw">Instagram™</u></strong> no Brasil — com API oficial, sem código, em português.</p>
       </div>
       <div class="mechanism-pillars cascade rv">
         <div class="pillar">
@@ -3023,6 +3541,150 @@
   </div>
 </section>
 
+<!-- ============ INTENÇÃO DE COMPRA ============ -->
+<section class="box" style="background: var(--cream);">
+  <div class="wrap">
+    <div class="screens-block rv">
+      <div class="screen-side">
+        <div class="chip">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Intenção de Compra
+        </div>
+        <h3>Saiba exatamente quem está pronto para comprar — <em>antes de perder a venda.</em></h3>
+        <p>A Notifiquei analisa cada conversa em tempo real e te avisa no momento certo, quando o lead está quente.</p>
+        <ul class="screen-bullets">
+          <li><span class="bullet-dot"></span>Monitora automaticamente as últimas mensagens de cada conversa no seu DM</li>
+          <li><span class="bullet-dot"></span>Classifica a intenção de compra como alta, média ou baixa com base no que o lead está dizendo</li>
+          <li><span class="bullet-dot"></span>Dispara uma notificação instantânea só quando alguém realmente está pronto para fechar</li>
+        </ul>
+        <p class="screen-sup">Chega de vasculhar centenas de DMs tentando adivinhar quem precisa de atenção agora. Você define as palavras-chave do seu negócio, a IA faz o trabalho — e você entra na conversa na hora certa.</p>
+        <div class="screen-cta-row">
+          <a href="#planos" class="btn-brand">Ativar Intenção de Compra →</a>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="screen-chrome">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="url">app.notifiquei.com.br/intencao</div>
+        </div>
+        <div class="screen-body" style="padding: 0;">
+          <div class="screen-intent">
+            <div class="intent-header">
+              <span class="intent-title">Intenção de Compra — IA</span>
+              <span class="intent-live">● Ao vivo</span>
+            </div>
+            <div class="intent-list">
+              <div class="intent-item hot">
+                <div class="intent-avatar">M</div>
+                <div class="intent-body">
+                  <div class="intent-name-row">
+                    <span class="intent-name">@mariana.fit</span>
+                    <span class="intent-badge high">Alta</span>
+                  </div>
+                  <div class="intent-preview">"Sim, quero fechar hoje! Pode mandar o Pix?"</div>
+                </div>
+                <button class="intent-enter-btn">Entrar</button>
+              </div>
+              <div class="intent-item">
+                <div class="intent-avatar b2">C</div>
+                <div class="intent-body">
+                  <div class="intent-name-row">
+                    <span class="intent-name">@carla.nutri</span>
+                    <span class="intent-badge med">Média</span>
+                  </div>
+                  <div class="intent-preview">"Quanto custa? Tem parcelamento?"</div>
+                </div>
+              </div>
+              <div class="intent-item">
+                <div class="intent-avatar b3">R</div>
+                <div class="intent-body">
+                  <div class="intent-name-row">
+                    <span class="intent-name">@rafaalmeida</span>
+                    <span class="intent-badge low">Baixa</span>
+                  </div>
+                  <div class="intent-preview">"Vi seu post. Interessante..."</div>
+                </div>
+              </div>
+            </div>
+            <div class="intent-notif">
+              <span class="notif-icon">🔔</span>
+              <span><strong>@mariana.fit</strong> está pronta para fechar — entre agora</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODERAÇÃO DE COMENTÁRIOS ============ -->
+<section class="moderation-dark rv">
+  <div class="wrap">
+    <div class="mod-center rv">
+      <div class="eyebrow-sticker" style="display:inline-flex; margin-bottom:24px;">Moderação com IA</div>
+      <h2>Sua seção de comentários, sem spam, sem negatividade, <em>sem esforço.</em></h2>
+      <p class="mod-lead">A IA modera seus comentários automaticamente, mantendo o engajamento real e filtrando o que não agrega.</p>
+    </div>
+
+    <div class="mod-cards cascade rv">
+      <div class="mod-card">
+        <div class="mod-card-icon red">🚫</div>
+        <h4>Bloqueia antes que alguém veja</h4>
+        <p>Detecta e oculta spam, ofensas e comentários negativos em tempo real — antes que qualquer seguidor leia.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-icon green">💬</div>
+        <h4>Responde os positivos automaticamente</h4>
+        <p>Comentários de engajamento recebem resposta na hora, com a sua voz — aumentando o alcance orgânico do post.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-icon purple">⚙️</div>
+        <h4>Aprende com as suas regras</h4>
+        <p>Você define o padrão do seu negócio. A IA aplica — e fica mais precisa a cada moderação feita.</p>
+      </div>
+    </div>
+
+    <div class="mod-ticker rv">
+      <div class="mod-ticker-header">
+        <span class="mod-ticker-title">Atividade de moderação</span>
+        <span class="mod-ticker-live">Ao vivo</span>
+      </div>
+      <div class="mod-ticker-rows">
+        <div class="mod-tick-row">
+          <span class="tick-action blocked">Spam ocultado</span>
+          <span class="tick-text"><strong>@spam123</strong> "Segue de volta!!! 🔥🔥🔥"</span>
+          <span class="tick-time">agora</span>
+        </div>
+        <div class="mod-tick-row">
+          <span class="tick-action replied">Respondido</span>
+          <span class="tick-text"><strong>@mariana.fit</strong> "Amei! Quanto custa o curso?" → DM enviado</span>
+          <span class="tick-time">1 min</span>
+        </div>
+        <div class="mod-tick-row">
+          <span class="tick-action hidden">Ocultado</span>
+          <span class="tick-text"><strong>@hater99</strong> "Isso não funciona pra nada"</span>
+          <span class="tick-time">2 min</span>
+        </div>
+        <div class="mod-tick-row">
+          <span class="tick-action replied">Respondido</span>
+          <span class="tick-text"><strong>@lucas_faz</strong> "Melhor conteúdo que já vi! 👏" → Curtido + reply</span>
+          <span class="tick-time">3 min</span>
+        </div>
+        <div class="mod-tick-row">
+          <span class="tick-action blocked">Spam ocultado</span>
+          <span class="tick-text"><strong>@bot_seguidor</strong> "Olha meu perfil ✨✨"</span>
+          <span class="tick-time">4 min</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod-dark-cta rv">
+      <a href="#planos" class="btn-brand">Ver como funciona →</a>
+      <p class="mod-dark-sub">Post novo, comentários pipocando — a Notifiquei cuida enquanto você foca em vender.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURES ============ -->
 <section id="features" class="box features-dark">
   <div class="wrap">
@@ -3079,8 +3741,8 @@
 <section class="api-section">
   <div class="wrap api-inner">
     <div class="eyebrow-sticker rv" style="display:flex;justify-content:center;width:100%;">Por que API oficial importa</div>
-    <h2 class="api-title rv">Você sabe o que acontece quando usa <em>ferramenta não-oficial</em> no Instagram?</h2>
-    <p class="api-sub rv">Milhares de criadores já perderam alcance, tiveram custos de anúncio multiplicados ou foram banidos — por usar automações que o Instagram proibiu. Isso não é teoria.</p>
+    <h2 class="api-title rv">Você sabe o que acontece quando usa <em>ferramenta não-oficial</em> no Instagram™?</h2>
+    <p class="api-sub rv">Milhares de criadores já perderam alcance, tiveram custos de anúncio multiplicados ou foram banidos — por usar automações que o Instagram™ proibiu. Isso não é teoria.</p>
 
     <div class="api-compare-card rv">
       <div class="api-compare-col danger">
@@ -3090,7 +3752,7 @@
           <li>Conta recebe punições silenciosas — menos alcance orgânico, menos visualizações</li>
           <li>Anúncios ficam até 3× mais caros depois de uma punição da Meta</li>
           <li>Risco real de banimento temporário ou permanente do perfil</li>
-          <li>Acesso ao Instagram pode ser revogado sem aviso prévio</li>
+          <li>Acesso ao Instagram™ pode ser revogado sem aviso prévio</li>
           <li>Bots de scraping violam os Termos de Uso da plataforma</li>
         </ul>
       </div>
@@ -3293,12 +3955,12 @@
 
     <div class="faq-list cascade rv">
       <div class="faq-item">
-        <div class="faq-q">Isso pode bloquear meu Instagram?<div class="faq-icon">+</div></div>
-        <div class="faq-a">Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento.</div>
+        <div class="faq-q">Isso pode bloquear meu Instagram™?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram™. Zero automação disfarçada, zero quebra de regra, zero risco de banimento.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Preciso saber programar?<div class="faq-icon">+</div></div>
-        <div class="faq-a">Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual.</div>
+        <div class="faq-a">Nada. Zero código. Se você sabe mandar mensagem no Instagram™, sabe usar o Notifiquei. A interface é toda visual.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Funciona pra e-commerce?<div class="faq-icon">+</div></div>
@@ -3306,7 +3968,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Qual a diferença pro ManyChat?<div class="faq-icon">+</div></div>
-        <div class="faq-a">Mais barato, suporte em português, interface mais simples, e foco exclusivo no Instagram pro mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você.</div>
+        <div class="faq-a">Mais barato, suporte em português, interface mais simples, e foco exclusivo no Instagram™ pro mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Posso cancelar quando quiser?<div class="faq-icon">+</div></div>
@@ -3320,7 +3982,7 @@
 <section class="final">
   <div class="wrap">
     <h2>Enquanto você lia isso,<br>alguém comentou <em>"quero"</em><br>no seu post.</h2>
-    <p>No Instagram, quem responde primeiro fica com o cliente. O Notifiquei garante que esse sempre seja você.</p>
+    <p>No Instagram™, quem responde primeiro fica com o cliente. O Notifiquei garante que esse sempre seja você.</p>
     <a href="#planos" class="btn-big">Automatizar minhas respostas →</a>
   </div>
 </section>
@@ -3348,15 +4010,15 @@
         <a href="#" class="foot-brand">
           <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
         </a>
-        <p class="tag">Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
+        <p class="tag">Automação de vendas no Instagram™ com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
         <div class="foot-social">
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/notifiquei.com.br/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
           </a>
-          <a href="#" aria-label="YouTube">
+          <a href="https://www.youtube.com/@notifiqueicombr" target="_blank" rel="noopener" aria-label="YouTube">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
           </a>
-          <a href="#" aria-label="LinkedIn">
+          <a href="https://br.linkedin.com/company/notifiquei" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.3A1.8 1.8 0 114.7 6.5 1.8 1.8 0 016.5 8.3zM19 19h-3v-4.4c0-1 0-2.4-1.5-2.4s-1.7 1.1-1.7 2.3V19h-3v-9h2.9v1.2h.04a3.2 3.2 0 012.9-1.6c3 0 3.6 2 3.6 4.6V19z"/></svg>
           </a>
           <a href="https://wa.me/551231995949" aria-label="WhatsApp">
@@ -3380,8 +4042,6 @@
         <h2>Notifiquei</h2>
         <ul>
           <li><a href="criadores.html">Pra criadores</a></li>
-          <li><a href="afiliados.html">Programa de afiliados</a></li>
-          <li><a href="/blog">Blog</a></li>
           <li><a href="/termos-de-uso">Termos de uso</a></li>
           <li><a href="/politica-de-privacidade">Privacidade</a></li>
           <li><a href="/dpa">Acordo de dados (DPA)</a></li>
@@ -3478,12 +4138,6 @@
     it.addEventListener('click', () => it.classList.toggle('open'));
   });
 
-  // Vídeo lazy-load
-  function loadVideo() {
-    const wrap = document.getElementById('video-demo');
-    wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/gdAAd2wOnLE?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-    wrap.style.cursor = 'default';
-  }
 
   // Smooth parallax leve nos blobs do hero (efeito sutil)
   const blobs = document.querySelectorAll('.blob');
@@ -3588,5 +4242,84 @@
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=PageView&noscript=1"/></noscript>
+<script>
+(function() {
+  var INITIAL = [
+    { who: 'user', text: 'Oi! Ainda tem o kit dourado disponível?' },
+    { who: 'bot',  text: 'Oi Ana! Sim, temos sim 🤩 o kit dourado está disponível em 3 tamanhos. Qual você prefere?' },
+    { who: 'user', text: 'O médio! Como eu compro?' },
+  ];
+  var CONTINUATION = [
+    { delay: 1600, type: 'resolve', text: 'O médio está R$ 89! Vou te mandar o link agora 🛒' },
+    { delay: 3800, type: 'msg', who: 'user', text: 'Perfeito! Manda o link 😍' },
+    { delay: 5000, type: 'typing' },
+    { delay: 6800, type: 'card', text: 'Kit Dourado Médio — R$ 89', btn: 'Comprar agora' },
+    { delay: 10000, type: 'reset' },
+  ];
+
+  function buildInitial(list) {
+    return list.map(function(m) {
+      var d = document.createElement('div');
+      d.className = 'demo-msg ' + m.who;
+      d.textContent = m.text;
+      return d;
+    });
+  }
+
+  function makeTyping() {
+    var d = document.createElement('div');
+    d.className = 'demo-typing';
+    d.innerHTML = '<span></span><span></span><span></span>';
+    return d;
+  }
+
+  function reset(list) {
+    list.innerHTML = '';
+    buildInitial(INITIAL).forEach(function(el) { list.appendChild(el); });
+    list.appendChild(makeTyping());
+  }
+
+  function run(list) {
+    var timers = [];
+    CONTINUATION.forEach(function(step) {
+      var t = setTimeout(function() {
+        if (step.type === 'card') {
+          var typing = list.querySelector('.demo-typing');
+          var card = document.createElement('div');
+          card.className = 'demo-msg-card';
+          card.innerHTML = '<div class="card-text">' + step.text + '</div><button class="card-btn">' + step.btn + '</button>';
+          if (typing) list.replaceChild(card, typing);
+          else list.appendChild(card);
+        } else if (step.type === 'resolve') {
+          var typing = list.querySelector('.demo-typing');
+          var msg = document.createElement('div');
+          msg.className = 'demo-msg bot';
+          msg.textContent = step.text;
+          if (typing) list.replaceChild(msg, typing);
+          else list.appendChild(msg);
+        } else if (step.type === 'msg') {
+          var msg = document.createElement('div');
+          msg.className = 'demo-msg ' + step.who;
+          msg.textContent = step.text;
+          list.appendChild(msg);
+        } else if (step.type === 'typing') {
+          list.appendChild(makeTyping());
+        } else if (step.type === 'reset') {
+          timers.forEach(clearTimeout);
+          reset(list);
+          setTimeout(function() { run(list); }, 600);
+        }
+      }, step.delay);
+      timers.push(t);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var list = document.querySelector('.demo-msg-list');
+    if (!list) return;
+    run(list);
+  });
+})();
+</script>
 </body>
 </html>
