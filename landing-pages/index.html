@@ -2575,6 +2575,73 @@
   .notif-icon { font-size: 15px; flex-shrink: 0; }
   .intent-notif strong { color: var(--brand); }
 
+  /* ============= TIKTOK DM — MOCK UI ============= */
+  .screen-tiktok-dm {
+    display: flex; flex-direction: column;
+    min-height: 300px; background: white;
+  }
+  .tiktok-dm-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    background: #010101;
+  }
+  .tiktok-dm-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #222;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  .tiktok-dm-info { flex: 1; min-width: 0; }
+  .tiktok-dm-name {
+    font-size: 12px; font-weight: 700;
+    color: white;
+    font-family: var(--display); letter-spacing: -0.01em;
+  }
+  .tiktok-dm-status { font-size: 10px; color: #69C9D0; font-weight: 600; letter-spacing: 0.02em; }
+  .tiktok-dm-messages {
+    flex: 1; padding: 14px 12px;
+    display: flex; flex-direction: column; gap: 10px;
+    background: #F7F7F7;
+  }
+  .tiktok-msg {
+    max-width: 82%; padding: 8px 12px; border-radius: 16px;
+    font-size: 12px; line-height: 1.45;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .screens-block.in .tiktok-msg { opacity: 1; transform: translateY(0); }
+  .screens-block.in .tiktok-msg:nth-child(1) { transition-delay: 0.15s; }
+  .screens-block.in .tiktok-msg:nth-child(2) { transition-delay: 0.55s; }
+  .screens-block.in .tiktok-msg:nth-child(3) { transition-delay: 1.05s; }
+  .screens-block.in .tiktok-msg:nth-child(4) { transition-delay: 1.45s; }
+  .tiktok-msg.incoming {
+    background: #EBEBEB; color: #111;
+    align-self: flex-start; border-bottom-left-radius: 4px;
+  }
+  .tiktok-msg.outgoing {
+    background: #111; color: white;
+    align-self: flex-end; border-bottom-right-radius: 4px;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .tiktok-auto-tag {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: rgba(105,201,208,0.2); color: #69C9D0;
+    font-size: 9px; font-weight: 800;
+    padding: 2px 6px; border-radius: 999px;
+    letter-spacing: 0.04em; align-self: flex-end;
+  }
+  .tiktok-partner-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: white; border-top: 1px solid var(--line);
+    opacity: 0; transition: opacity 0.4s ease 1.9s;
+  }
+  .screens-block.in .tiktok-partner-bar { opacity: 1; }
+  .tiktok-partner-bar img { height: 36px; width: auto; flex-shrink: 0; }
+  .tiktok-partner-bar-label { font-size: 11px; color: var(--ink-soft); line-height: 1.35; }
+  .tiktok-partner-bar-label strong { color: var(--ink); font-size: 11px; font-weight: 700; display: block; }
+
   /* ============= MODERAÇÃO — MOCK UI ============= */
   .screen-moderation {
     display: flex; flex-direction: column;
@@ -3559,6 +3626,65 @@
   </div>
 </section>
 
+<!-- ============ TIKTOK DM AUTOMATIONS ============ -->
+<section class="box" style="background: var(--cream-2);">
+  <div class="wrap">
+    <div class="screens-block reverse rv">
+      <div class="screen-side">
+        <div class="chip">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/></svg>
+          TikTok DM
+          <span style="background:var(--brand);color:white;font-size:9px;font-weight:800;padding:2px 7px;border-radius:999px;letter-spacing:0.06em;margin-left:2px;">NOVO</span>
+        </div>
+        <h3>Nunca deixe uma mensagem sem resposta — <em>mesmo fora do horário.</em></h3>
+        <p>Conecte sua conta TikTok Business e configure respostas automáticas de texto para as mensagens que você recebe — sem precisar estar online.</p>
+        <ul class="screen-bullets">
+          <li><span class="bullet-dot"></span><strong>Boas-vindas:</strong> todo novo usuário recebe uma apresentação automática na primeira DM — quebre o gelo antes de você ver a conversa</li>
+          <li><span class="bullet-dot"></span><strong>Palavras-chave:</strong> defina o gatilho e a resposta — "preço", "link", "suporte". Funciona por trecho, início ou mensagem exata</li>
+          <li><span class="bullet-dot"></span><strong>Resposta Padrão:</strong> quando nenhuma palavra-chave bater, uma mensagem orienta o usuário — ninguém fica sem retorno</li>
+        </ul>
+        <p class="screen-sup">Respostas em texto, configuração em minutos, sem limite de regras. Requer Conta Empresarial do TikTok — não funciona com conta pessoal.</p>
+        <div class="screen-cta-row">
+          <a href="#planos" class="btn-brand">Ativar TikTok DM →</a>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="screen-chrome">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="url">app.notifiquei.com.br/tiktok-dm</div>
+        </div>
+        <div class="screen-body" style="padding: 0;">
+          <div class="screen-tiktok-dm">
+            <div class="tiktok-dm-header">
+              <div class="tiktok-dm-icon">♪</div>
+              <div class="tiktok-dm-info">
+                <div class="tiktok-dm-name">TikTok DM · @seuperfil</div>
+                <div class="tiktok-dm-status">● Automação ativa</div>
+              </div>
+            </div>
+            <div class="tiktok-dm-messages">
+              <div class="tiktok-msg incoming">preço</div>
+              <div class="tiktok-msg outgoing">
+                <span class="tiktok-auto-tag">⚡ Auto</span>
+                Nosso plano mensal é R$97 🎯 Quer saber mais?
+              </div>
+              <div class="tiktok-msg incoming">link</div>
+              <div class="tiktok-msg outgoing">
+                <span class="tiktok-auto-tag">⚡ Auto</span>
+                Acessa aqui 👇 linktr.ee/seuperfil
+              </div>
+            </div>
+            <div class="tiktok-partner-bar">
+              <img src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" width="80" height="36" loading="lazy">
+              <span class="tiktok-partner-bar-label"><strong>Parceira Oficial ✓</strong>TikTok Marketing Partner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURES ============ -->
 <section id="features" class="box features-dark">
   <div class="wrap">
@@ -3886,6 +4012,18 @@
       <div class="faq-item">
         <div class="faq-q">Posso cancelar quando quiser?<div class="faq-icon">+</div></div>
         <div class="faq-a">A qualquer momento, pelo painel. Nos primeiros 7 dias, devolvemos 100% do valor sem perguntar por quê.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">O TikTok DM funciona com qualquer conta?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Não. A API oficial do TikTok exige que sua conta seja uma Conta Empresarial. É um requisito da própria plataforma — não tem como contornar. A boa notícia: converter é gratuito e leva menos de dois minutos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">A automação do TikTok pode bloquear minha conta?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Não. O Notifiquei é parceiro oficial de marketing do TikTok e usa exclusivamente a TikTok Business API. Nenhum acesso não autorizado, nenhuma automação disfarçada — tudo dentro das regras da plataforma.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Quais tipos de mensagem posso automatizar no TikTok DM?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Três: boas-vindas (disparada na primeira DM de qualquer novo usuário), regras por palavra-chave (você define a palavra e o texto de resposta — "preço", "link", "suporte") e resposta padrão (enviada quando nenhuma palavra-chave bater). Todas as respostas são em texto puro — sem botões, imagens ou fluxos em etapas. Sem limite de regras por conta.</div>
       </div>
     </div>
   </div>
