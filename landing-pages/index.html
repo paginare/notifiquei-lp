@@ -93,6 +93,21 @@
     },
     {
       "@type": "Question",
+      "name": "Funciona com poucos seguidores?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores." }
+    },
+    {
+      "@type": "Question",
+      "name": "O Notifiquei responde sozinho, com IA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. O Agente de IA responde DMs e comentários na sua voz, usando uma base de conhecimento que você ensina, e lembra do contexto da conversa. Quando o lead fica quente, ele te avisa pra você fechar." }
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso de conta comercial ou profissional?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim, uma conta Profissional ou de Criador no Instagram — gratuita de ativar e leva 1 minuto nas configurações. É exigência da própria API oficial da Meta." }
+    },
+    {
+      "@type": "Question",
       "name": "Posso cancelar quando quiser?",
       "acceptedAnswer": { "@type": "Answer", "text": "A qualquer momento, pelo painel. Nos primeiros 7 dias, devolvemos 100% do valor sem perguntar por quê." }
     }
@@ -306,8 +321,9 @@
     z-index: 2;
   }
   @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .hero-illo { order: -1; max-width: 380px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    /* Mobile: headline + CTA primeiro; o mockup entra como reforço, depois. */
+    .hero-illo { order: 2; max-width: 320px; margin: 0 auto; }
   }
 
   .hero-badge {
@@ -1455,9 +1471,11 @@
   .feat.f3 { grid-column: span 2; }
   .feat.f4 { grid-column: span 2; background: var(--brand); color: white; border-color: var(--brand); }
   .feat.f5 { grid-column: span 2; background: white; }
+  .feat.f6 { grid-column: span 3; background: var(--brand-light); }
+  .feat.f7 { grid-column: span 3; background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
   @media (max-width: 900px) {
-    .feat.f1, .feat.f2, .feat.f3, .feat.f4, .feat.f5 { grid-column: span 1; }
+    .feat.f1, .feat.f2, .feat.f3, .feat.f4, .feat.f5, .feat.f6, .feat.f7 { grid-column: span 1; }
   }
 
   .feat h3 {
@@ -2133,6 +2151,12 @@
   .cascade.in > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
   .cascade.in > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
   .cascade.in > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.55s; }
+  .cascade.in > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.62s; }
+  .cascade.in > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.69s; }
+  .cascade.in > *:nth-child(9) { opacity: 1; transform: translateY(0); transition-delay: 0.76s; }
+  .cascade.in > *:nth-child(10) { opacity: 1; transform: translateY(0); transition-delay: 0.83s; }
+  .cascade.in > *:nth-child(11) { opacity: 1; transform: translateY(0); transition-delay: 0.90s; }
+  .cascade.in > *:nth-child(12) { opacity: 1; transform: translateY(0); transition-delay: 0.97s; }
 
   /* Scale-in pra cards de destaque */
   .scale-in { opacity: 0; transform: scale(0.96); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
@@ -2832,7 +2856,33 @@
   .tick-time { font-size: 10px; color: rgba(255,249,243,0.25); white-space: nowrap; }
   .mod-dark-cta { text-align: center; }
   .mod-dark-sub { font-size: 14px; color: rgba(255,249,243,0.4); margin-top: 14px; }
+
+  /* Barra de CTA fixa no rodapé (só mobile, aparece após sair do hero) */
+  .mcta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    display: none; padding: 10px 14px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255,249,243,0.94);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+    transform: translateY(110%); transition: transform .25s ease;
+  }
+  .mcta a {
+    display: block; text-align: center; text-decoration: none;
+    font-weight: 700; font-size: 16px; color: #fff; padding: 14px 16px;
+    border-radius: 999px; background: var(--brand);
+  }
+  @media (max-width: 768px) {
+    .mcta { display: block; }
+    .mcta.show { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .mcta { transition: none; } }
 </style>
+
+<!-- Fallback: se o JS estiver desligado, o conteúdo de reveal aparece normalmente -->
+<noscript><style>
+  .rv, .cascade > *, .scale-in, .blur-in { opacity: 1 !important; transform: none !important; }
+</style></noscript>
 
 </head>
 <body>
@@ -2911,6 +2961,7 @@
 
         <div class="hero-actions rv">
           <a href="#planos" class="btn-big">Quero automatizar →</a>
+          <a href="#features" class="btn-outline">Ver recursos</a>
         </div>
 
         <div class="hero-trust rv">
@@ -3726,12 +3777,27 @@
       </div>
 
       <div class="feat f5">
-        <span class="soon-tag">Em breve</span>
         <div class="feat-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
         </div>
-        <h3>Controle pelo app</h3>
-        <p>Crie e pause automações do celular, sem abrir o painel.</p>
+        <h3>Controle pelo celular</h3>
+        <p>App nativo no iPhone: crie, pause e acompanhe suas automações de onde estiver.</p>
+      </div>
+
+      <div class="feat f6">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3l1.2 3.3L13.5 7.5 10.2 8.7 9 12l-1.2-3.3L4.5 7.5l3.3-1.2z"/><path d="M17 12l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>
+        </div>
+        <h3>Agente de IA com a sua voz</h3>
+        <p>Responde DMs e comentários sozinho — na sua voz, com a base de conhecimento que você ensina e memória da conversa. Quando o lead esquenta, ele te chama. O que o ManyChat não faz.</p>
+      </div>
+
+      <div class="feat f7">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <h3>Sorteios pelos comentários</h3>
+        <p>Quem comenta a palavra-chave entra no sorteio automaticamente. Você clica e a gente sorteia o ganhador — sem caçar comentário um por um.</p>
       </div>
     </div>
   </div>
@@ -3814,6 +3880,21 @@
         <div class="vs-attr">API oficial da Meta</div>
         <div class="vs-them">Sim</div>
         <div class="vs-us">Sim · parceiro oficial</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-attr">Agente de IA</div>
+        <div class="vs-them">Genérica, em inglês</div>
+        <div class="vs-us">Com a sua voz, em português</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-attr">Sorteios pelos comentários</div>
+        <div class="vs-them">Não nativo</div>
+        <div class="vs-us">Nativo · sorteia em 1 clique</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-attr">App no celular</div>
+        <div class="vs-them">Só no navegador</div>
+        <div class="vs-us">App nativo no iPhone</div>
       </div>
       <div class="vs-row">
         <div class="vs-attr">Foco no Brasil</div>
@@ -4008,6 +4089,18 @@
       <div class="faq-item">
         <div class="faq-q">Qual a diferença pro ManyChat?<div class="faq-icon">+</div></div>
         <div class="faq-a">Mais barato, suporte em português, interface mais simples, e foco exclusivo no Instagram™ pro mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Funciona com poucos seguidores?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores. Conta menor costuma sentir o resultado primeiro, porque cada lead pesa mais.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">O Notifiquei responde sozinho, com IA?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Sim. O Agente de IA responde DMs e comentários na sua voz, usando uma base de conhecimento que você ensina — e lembra do contexto da conversa. Quando o lead fica quente, ele te avisa pra você fechar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Preciso de conta comercial ou profissional?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Sim, uma conta Profissional ou de Criador no Instagram™ — gratuita de ativar e leva 1 minuto nas configurações. É exigência da própria API oficial da Meta.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Posso cancelar quando quiser?<div class="faq-icon">+</div></div>
@@ -4384,6 +4477,35 @@
     demoObs.observe(wrap);
   });
 })();
+</script>
+
+<!-- Barra de CTA fixa (mobile) -->
+<div class="mcta" id="mctaBar"><a href="#planos">Ver planos →</a></div>
+<script>
+  (function(){
+    var bar = document.getElementById('mctaBar');
+    if (!bar) return;
+    var planos = document.getElementById('planos');
+    // Latch: depois que a seção de planos for vista uma vez, a barra fica
+    // escondida dali pra baixo (planos + rodapé) — robusto a layout shift.
+    var reached = false;
+    if (planos && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function(es){ if (es[0].isIntersecting) { reached = true; upd(); } }, { threshold: 0 }).observe(planos);
+    }
+    function upd(){ bar.classList.toggle('show', window.scrollY > 700 && !reached); }
+    window.addEventListener('scroll', upd, { passive: true });
+    upd();
+  })();
+</script>
+
+<!-- Failsafe: se o reveal por scroll falhar, mostra tudo após 2,6s (nunca deixa seção invisível) -->
+<script>
+  setTimeout(function(){
+    try {
+      document.querySelectorAll('.rv:not(.in), .cascade:not(.in), .scale-in:not(.in), .blur-in:not(.in), .screens-block:not(.in)')
+        .forEach(function(e){ e.classList.add('in'); });
+    } catch (e) {}
+  }, 2600);
 </script>
 </body>
 </html>
