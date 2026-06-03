@@ -169,10 +169,10 @@
 
   /* ===== PARCEIRO OFICIAL (strip) ===== */
   .partners-strip { background: var(--cream); padding: 32px 0; border-bottom: 1px solid var(--line); }
-  .partners-strip .wrap { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .partners-strip .wrap { display: flex; align-items: center; justify-content: center; gap: 26px; flex-wrap: wrap; }
   .partners-strip-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-muted); }
-  .partner-pill { background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 16px; display: inline-flex; align-items: center; box-shadow: 0 4px 14px rgba(26,20,22,0.06); }
-  .partner-pill img { display: block; height: 30px; width: auto; }
+  .partner-badge { display: block; height: 54px; width: auto; }
+  @media (max-width: 600px) { .partner-badge { height: 44px; } }
 
   /* ===== CLIENTES (slider de logos) ===== */
   .clients { background: #fff; padding: 56px 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -509,8 +509,8 @@
 <section class="partners-strip">
   <div class="wrap">
     <span class="partners-strip-label">Parceiro oficial</span>
-    <span class="partner-pill"><img src="assets/meta-business-partner.png" alt="Meta Business Partner" loading="lazy"></span>
-    <span class="partner-pill"><img src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" loading="lazy"></span>
+    <img class="partner-badge" src="assets/meta-business-partner.png" alt="Meta Business Partner" loading="lazy">
+    <img class="partner-badge" src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" loading="lazy">
   </div>
 </section>
 
