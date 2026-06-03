@@ -34,7 +34,8 @@
     { "@type": "Offer", "name": "Plus Vitalício", "price": "699.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_fTHEgmmP0ZJrMnYtRWYkxyMd" },
     { "@type": "Offer", "name": "Pro Vitalício", "price": "1079.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg" },
     { "@type": "Offer", "name": "Business Vitalício", "price": "1349.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej" },
-    { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN" }
+    { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN" },
+    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3799.98", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_dFTMAJW3XJebKjuxbMHXT6JQ" }
   ]
 }
 </script>
@@ -212,11 +213,11 @@
 
   .price-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 48px auto 0;
+    max-width: 1040px;
   }
-  @media (max-width: 1180px) { .price-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
   @media (max-width: 760px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
 
@@ -389,6 +390,7 @@
   .cascade.in > *:nth-child(3) { opacity: 1; transform: none; transition-delay: .16s; }
   .cascade.in > *:nth-child(4) { opacity: 1; transform: none; transition-delay: .24s; }
   .cascade.in > *:nth-child(5) { opacity: 1; transform: none; transition-delay: .32s; }
+  .cascade.in > *:nth-child(6) { opacity: 1; transform: none; transition-delay: .40s; }
 </style>
 </head>
 <body>
@@ -637,6 +639,31 @@
         <div class="price-guarantee">Garantia de 7 dias</div>
       </div>
 
+      <!-- Enterprise — 50 contas (compra 40, ganha 50) -->
+      <div class="price-card">
+        <div class="price-badge">Compre 40, ganhe 50</div>
+        <div class="price-name">Enterprise</div>
+        <div class="price-desc">Operação enorme e revenda.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">3.799</span>
+          <span class="cents">,98</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 332,50 no cartão</div>
+        <ul class="price-list">
+          <li>50 contas conectadas</li>
+          <li>Times e divisão por equipe</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates completos</li>
+          <li>Atendimento VIP no WhatsApp</li>
+          <li>Controle pelo WhatsApp</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="50">Garantir Enterprise →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -821,7 +848,9 @@
       '10': { name: 'Business', pixPrice: 'R$ 1.349,99', cardInstallment: '12x de R$ 118,12', cardPrice: 'R$ 1.417,49',
               pix: 'https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej', card: 'https://app.abacatepay.com/pay/bill_wwazKsf31ME0C1LZdbBGX0nf' },
       '20': { name: 'Agency',   pixPrice: 'R$ 1.899,99', cardInstallment: '12x de R$ 166,25', cardPrice: 'R$ 1.994,99',
-              pix: 'https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN', card: 'https://app.abacatepay.com/pay/bill_ZKrkjMXXnkw35uEaqGdrehJs' }
+              pix: 'https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN', card: 'https://app.abacatepay.com/pay/bill_ZKrkjMXXnkw35uEaqGdrehJs' },
+      '50': { name: 'Enterprise', pixPrice: 'R$ 3.799,98', cardInstallment: '12x de R$ 332,50', cardPrice: 'R$ 3.989,98',
+              pix: 'https://app.abacatepay.com/pay/bill_dFTMAJW3XJebKjuxbMHXT6JQ', card: 'https://app.abacatepay.com/pay/bill_0tey11DgNcDsjw3fEQef6jWR' }
     };
 
     var modal = document.getElementById('payModal');
