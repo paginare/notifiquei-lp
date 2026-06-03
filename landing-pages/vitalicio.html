@@ -167,18 +167,22 @@
   }
   .guarantee-strip strong { color: var(--brand-soft); }
 
-  /* ===== SOCIAL PROOF (parceiros + slider de logos) ===== */
-  .proof { background: var(--ink); color: var(--cream); padding: 44px 0 48px; overflow: hidden; position: relative; z-index: 2; }
-  .proof-partners { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
-  .proof-partners-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,249,243,0.55); }
-  .partner-pill { background: #fff; border-radius: 12px; padding: 9px 14px; display: inline-flex; align-items: center; box-shadow: 0 6px 18px rgba(0,0,0,0.22); }
-  .partner-pill img { display: block; height: 28px; width: auto; }
-  .proof-caption { text-align: center; font-size: 13px; color: rgba(255,249,243,0.5); margin: 0 0 28px; }
+  /* ===== PARCEIRO OFICIAL (strip) ===== */
+  .partners-strip { background: var(--cream); padding: 32px 0; border-bottom: 1px solid var(--line); }
+  .partners-strip .wrap { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .partners-strip-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-muted); }
+  .partner-pill { background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 16px; display: inline-flex; align-items: center; box-shadow: 0 4px 14px rgba(26,20,22,0.06); }
+  .partner-pill img { display: block; height: 30px; width: auto; }
+
+  /* ===== CLIENTES (slider de logos) ===== */
+  .clients { background: #fff; padding: 56px 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .clients-label { text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-muted); margin-bottom: 32px; }
   .logo-marquee { position: relative; width: 100%; overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-  .logo-track { display: flex; align-items: center; gap: 64px; width: max-content; animation: logoscroll 26s linear infinite; }
-  .logo-track img { height: 32px; width: auto; opacity: 0.8; filter: brightness(0) invert(1); }
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .logo-track { display: flex; align-items: center; gap: 60px; width: max-content; animation: logoscroll 32s linear infinite; }
+  .logo-track img { height: 34px; width: auto; }
+  .logo-track img.on-dark { background: var(--ink); padding: 10px 16px; border-radius: 10px; box-sizing: content-box; }
   @keyframes logoscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; } }
 
@@ -501,35 +505,12 @@
   <strong>Sem renovação automática.</strong> Sem cartão de crédito recorrente. Sem mensalidade. Nunca.
 </div>
 
-<!-- ===== SOCIAL PROOF (parceiros oficiais + slider de logos) ===== -->
-<section class="proof">
+<!-- ===== PARCEIRO OFICIAL ===== -->
+<section class="partners-strip">
   <div class="wrap">
-    <div class="proof-partners">
-      <span class="proof-partners-label">Parceiro oficial</span>
-      <span class="partner-pill"><img src="assets/meta-business-partner.png" alt="Meta Business Partner" loading="lazy"></span>
-      <span class="partner-pill"><img src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" loading="lazy"></span>
-    </div>
-    <p class="proof-caption">Marcas que automatizam vendas com a Notifiquei</p>
-  </div>
-  <div class="logo-marquee">
-    <div class="logo-track">
-      <img src="assets/clientes/gummy.png" alt="Gummy">
-      <img src="assets/clientes/rosa-selvagem.png" alt="Rosa Selvagem">
-      <img src="assets/clientes/kactos-white.png" alt="Kactos">
-      <img src="assets/clientes/vert-sophistique.png" alt="Vert Sophistique">
-      <img src="assets/clientes/responda.png" alt="Responda">
-      <img src="assets/clientes/cikiy.svg" alt="Cikiy">
-      <img src="assets/clientes/debran.svg" alt="DeBran">
-      <img src="assets/clientes/logo-quadrado-branco.png" alt="Cliente Notifiquei">
-      <img src="assets/clientes/gummy.png" alt="" aria-hidden="true">
-      <img src="assets/clientes/rosa-selvagem.png" alt="" aria-hidden="true">
-      <img src="assets/clientes/kactos-white.png" alt="" aria-hidden="true">
-      <img src="assets/clientes/vert-sophistique.png" alt="" aria-hidden="true">
-      <img src="assets/clientes/responda.png" alt="" aria-hidden="true">
-      <img src="assets/clientes/cikiy.svg" alt="" aria-hidden="true">
-      <img src="assets/clientes/debran.svg" alt="" aria-hidden="true">
-      <img src="assets/clientes/logo-quadrado-branco.png" alt="" aria-hidden="true">
-    </div>
+    <span class="partners-strip-label">Parceiro oficial</span>
+    <span class="partner-pill"><img src="assets/meta-business-partner.png" alt="Meta Business Partner" loading="lazy"></span>
+    <span class="partner-pill"><img src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" loading="lazy"></span>
   </div>
 </section>
 
@@ -560,6 +541,33 @@
         <h3>Atualizações incluídas</h3>
         <p>Todas as novas funcionalidades lançadas enquanto a plataforma existir chegam para você sem nenhum custo adicional.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTES (slider de logos) ===== -->
+<section class="clients">
+  <div class="wrap">
+    <p class="clients-label">Marcas que automatizam vendas com a Notifiquei</p>
+  </div>
+  <div class="logo-marquee">
+    <div class="logo-track">
+      <img src="assets/clientes/gummy.png" alt="Gummy">
+      <img src="assets/clientes/rosa-selvagem.png" alt="Rosa Selvagem">
+      <img class="on-dark" src="assets/clientes/kactos-white.png" alt="Kactos">
+      <img src="assets/clientes/vert-sophistique.png" alt="Vert Sophistique">
+      <img src="assets/clientes/responda.png" alt="Responda">
+      <img src="assets/clientes/cikiy.svg" alt="Cikiy">
+      <img src="assets/clientes/debran.svg" alt="DeBran">
+      <img class="on-dark" src="assets/clientes/logo-quadrado-branco.png" alt="Cliente Notifiquei">
+      <img src="assets/clientes/gummy.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/rosa-selvagem.png" alt="" aria-hidden="true">
+      <img class="on-dark" src="assets/clientes/kactos-white.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/vert-sophistique.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/responda.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/cikiy.svg" alt="" aria-hidden="true">
+      <img src="assets/clientes/debran.svg" alt="" aria-hidden="true">
+      <img class="on-dark" src="assets/clientes/logo-quadrado-branco.png" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -709,7 +717,7 @@
           <li>Sorteios automáticos</li>
           <li>Etiquetas e campanhas para contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Revenda para clientes · atendimento VIP</li>
+          <li>Atendimento VIP no WhatsApp</li>
           <li>Atualizações inclusas</li>
         </ul>
         <button class="price-btn" data-plan="20">Garantir Agency →</button>
@@ -739,7 +747,7 @@
           <li>Sorteios automáticos</li>
           <li>Etiquetas e campanhas para contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Revenda para clientes · atendimento VIP</li>
+          <li>Atendimento VIP no WhatsApp</li>
           <li>Atualizações inclusas</li>
         </ul>
         <button class="price-btn" data-plan="50">Garantir Enterprise →</button>
