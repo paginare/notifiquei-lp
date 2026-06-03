@@ -31,11 +31,11 @@
   "operatingSystem": "Web",
   "offers": [
     { "@type": "Offer", "name": "Solo Vitalício", "price": "299.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_LpHcHyu3dhdD5YUE62he5WXF" },
-    { "@type": "Offer", "name": "Plus Vitalício", "price": "699.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_fTHEgmmP0ZJrMnYtRWYkxyMd" },
+    { "@type": "Offer", "name": "Plus Vitalício", "price": "799.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_5kwLMBzqz2hKhLWD5BrkNSwY" },
     { "@type": "Offer", "name": "Pro Vitalício", "price": "1079.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg" },
     { "@type": "Offer", "name": "Business Vitalício", "price": "1349.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej" },
     { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN" },
-    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3799.98", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_dFTMAJW3XJebKjuxbMHXT6JQ" }
+    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3599.00", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_WePNkL6BPMsHXmJd0CjnBs4U" }
   ]
 }
 </script>
@@ -263,8 +263,10 @@
 
   .price-once { font-size: 12px; color: var(--ink-muted); margin-bottom: 4px; font-weight: 500; }
   .price-card.featured .price-once { color: rgba(255,249,243,0.4); }
-  .price-installment { font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; font-weight: 600; }
+  .price-installment { font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; font-weight: 600; }
   .price-card.featured .price-installment { color: rgba(255,249,243,0.62); }
+  .price-economy { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--brand-dark); background: var(--brand-light); padding: 4px 10px; border-radius: 999px; margin: 0 0 16px; }
+  .price-card.featured .price-economy { color: #fff; background: rgba(255,255,255,0.16); }
 
   .price-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); padding-top: 16px; flex: 1; }
   .price-card.featured .price-list { border-top-color: rgba(255,249,243,0.12); }
@@ -549,11 +551,12 @@
         <div class="price-desc">Pra quem gerencia mais de um perfil.</div>
         <div class="price-tag">
           <span class="sym">R$</span>
-          <span class="amt">699</span>
+          <span class="amt">799</span>
           <span class="cents">,99</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 61,25 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 70,00 no cartão</div>
+        <div class="price-economy">11% mais barato por conta que o Solo</div>
         <ul class="price-list">
           <li>3 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -578,6 +581,7 @@
         </div>
         <div class="price-once">no PIX · pagamento único</div>
         <div class="price-installment">ou 12x de R$ 94,50 no cartão</div>
+        <div class="price-economy">19% mais barato por conta que o Plus</div>
         <ul class="price-list">
           <li>5 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -602,6 +606,7 @@
         </div>
         <div class="price-once">no PIX · pagamento único</div>
         <div class="price-installment">ou 12x de R$ 118,12 no cartão</div>
+        <div class="price-economy">38% mais barato por conta que o Pro</div>
         <ul class="price-list">
           <li>10 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -626,6 +631,7 @@
         </div>
         <div class="price-once">no PIX · pagamento único</div>
         <div class="price-installment">ou 12x de R$ 166,25 no cartão</div>
+        <div class="price-economy">30% mais barato por conta que o Business</div>
         <ul class="price-list">
           <li>20 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -646,11 +652,12 @@
         <div class="price-desc">Operação enorme e revenda. Alugue para clientes e gere recorrência.</div>
         <div class="price-tag">
           <span class="sym">R$</span>
-          <span class="amt">3.799</span>
-          <span class="cents">,98</span>
+          <span class="amt">3.599</span>
+          <span class="cents">,00</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 332,50 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 314,91 no cartão</div>
+        <div class="price-economy">24% mais barato por conta que o Agency</div>
         <ul class="price-list">
           <li>50 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -841,16 +848,16 @@
     var PLANS = {
       '1':  { name: 'Solo',     pixPrice: 'R$ 299,99',   cardInstallment: '12x de R$ 26,25',  cardPrice: 'R$ 314,99',
               pix: 'https://app.abacatepay.com/pay/bill_LpHcHyu3dhdD5YUE62he5WXF', card: 'https://app.abacatepay.com/pay/bill_SzfgUQKwaawbxGKS5dBHJ2Ep' },
-      '3':  { name: 'Plus',     pixPrice: 'R$ 699,99',   cardInstallment: '12x de R$ 61,25',  cardPrice: 'R$ 734,99',
-              pix: 'https://app.abacatepay.com/pay/bill_fTHEgmmP0ZJrMnYtRWYkxyMd', card: 'https://app.abacatepay.com/pay/bill_Q6YQ0Y2n6YQ2eQJU1zCDJ2ya' },
+      '3':  { name: 'Plus',     pixPrice: 'R$ 799,99',   cardInstallment: '12x de R$ 70,00',  cardPrice: 'R$ 839,99',
+              pix: 'https://app.abacatepay.com/pay/bill_5kwLMBzqz2hKhLWD5BrkNSwY', card: 'https://app.abacatepay.com/pay/bill_uwGuEyUDpQyZAJTqzyH6MbAJ' },
       '5':  { name: 'Pro',      pixPrice: 'R$ 1.079,99', cardInstallment: '12x de R$ 94,50',  cardPrice: 'R$ 1.133,99',
               pix: 'https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg', card: 'https://app.abacatepay.com/pay/bill_at6N3RWSNuK5zLNWaC4YNNnt' },
       '10': { name: 'Business', pixPrice: 'R$ 1.349,99', cardInstallment: '12x de R$ 118,12', cardPrice: 'R$ 1.417,49',
               pix: 'https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej', card: 'https://app.abacatepay.com/pay/bill_wwazKsf31ME0C1LZdbBGX0nf' },
       '20': { name: 'Agency',   pixPrice: 'R$ 1.899,99', cardInstallment: '12x de R$ 166,25', cardPrice: 'R$ 1.994,99',
               pix: 'https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN', card: 'https://app.abacatepay.com/pay/bill_ZKrkjMXXnkw35uEaqGdrehJs' },
-      '50': { name: 'Enterprise', pixPrice: 'R$ 3.799,98', cardInstallment: '12x de R$ 332,50', cardPrice: 'R$ 3.989,98',
-              pix: 'https://app.abacatepay.com/pay/bill_dFTMAJW3XJebKjuxbMHXT6JQ', card: 'https://app.abacatepay.com/pay/bill_0tey11DgNcDsjw3fEQef6jWR' }
+      '50': { name: 'Enterprise', pixPrice: 'R$ 3.599,00', cardInstallment: '12x de R$ 314,91', cardPrice: 'R$ 3.778,95',
+              pix: 'https://app.abacatepay.com/pay/bill_WePNkL6BPMsHXmJd0CjnBs4U', card: 'https://app.abacatepay.com/pay/bill_ND0YKk0KqUkXqLJh2KDszcnG' }
     };
 
     var modal = document.getElementById('payModal');
