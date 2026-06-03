@@ -30,10 +30,11 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
   "offers": [
-    { "@type": "Offer", "name": "Solo Vitalício", "priceCurrency": "BRL" },
-    { "@type": "Offer", "name": "Pro Vitalício", "priceCurrency": "BRL" },
-    { "@type": "Offer", "name": "Business Vitalício", "priceCurrency": "BRL" },
-    { "@type": "Offer", "name": "Agency Vitalício", "priceCurrency": "BRL" }
+    { "@type": "Offer", "name": "Solo Vitalício", "price": "299.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_LpHcHyu3dhdD5YUE62he5WXF" },
+    { "@type": "Offer", "name": "Plus Vitalício", "price": "699.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_fTHEgmmP0ZJrMnYtRWYkxyMd" },
+    { "@type": "Offer", "name": "Pro Vitalício", "price": "1079.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg" },
+    { "@type": "Offer", "name": "Business Vitalício", "price": "1349.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej" },
+    { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN" }
   ]
 }
 </script>
@@ -211,18 +212,19 @@
 
   .price-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
     margin-top: 48px;
   }
-  @media (max-width: 1100px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .price-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1180px) { .price-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  @media (max-width: 760px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
 
   .price-card {
     background: white;
     border: 1.5px solid var(--line);
     border-radius: 24px;
-    padding: 28px 24px 24px;
+    padding: 26px 20px 22px;
     display: flex; flex-direction: column;
     transition: transform .2s, box-shadow .2s;
     position: relative;
@@ -253,13 +255,15 @@
   .price-tag { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
   .price-tag .sym { font-family: var(--display); font-size: 18px; font-weight: 500; color: var(--ink-muted); }
   .price-card.featured .price-tag .sym { color: rgba(255,249,243,0.45); }
-  .price-tag .amt { font-family: var(--display); font-size: 42px; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); line-height: 1; }
+  .price-tag .amt { font-family: var(--display); font-size: 36px; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); line-height: 1; }
   .price-card.featured .price-tag .amt { color: var(--cream); }
-  .price-tag .cents { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--ink-soft); align-self: flex-start; margin-top: 8px; }
+  .price-tag .cents { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--ink-soft); align-self: flex-start; margin-top: 6px; }
   .price-card.featured .price-tag .cents { color: rgba(255,249,243,0.7); }
 
-  .price-once { font-size: 12px; color: var(--ink-muted); margin-bottom: 20px; font-weight: 500; }
+  .price-once { font-size: 12px; color: var(--ink-muted); margin-bottom: 4px; font-weight: 500; }
   .price-card.featured .price-once { color: rgba(255,249,243,0.4); }
+  .price-installment { font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; font-weight: 600; }
+  .price-card.featured .price-installment { color: rgba(255,249,243,0.62); }
 
   .price-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); padding-top: 16px; flex: 1; }
   .price-card.featured .price-list { border-top-color: rgba(255,249,243,0.12); }
@@ -269,15 +273,18 @@
 
   .price-btn {
     display: block;
+    width: 100%;
     text-align: center;
     margin-top: 20px;
     padding: 14px 20px;
     border-radius: 999px;
     font-size: 14px; font-weight: 700;
+    font-family: var(--sans);
     text-decoration: none;
     background: var(--cream-2); color: var(--ink);
     transition: background .2s;
     letter-spacing: -0.005em;
+    border: none; cursor: pointer;
   }
   .price-btn:hover { background: var(--ink); color: var(--cream); }
   .price-card.featured .price-btn { background: var(--brand); color: white; }
@@ -351,6 +358,28 @@
   .foot-bottom-badge .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
   @media (max-width: 600px) { .foot-partners { gap: 16px; } .foot-partner-divider { display: none; } }
 
+  /* ===== PAYMENT MODAL ===== */
+  .pay-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .pay-modal.open { display: flex; }
+  .pay-modal-backdrop { position: absolute; inset: 0; background: rgba(26,20,22,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .pay-modal-card { position: relative; z-index: 2; background: var(--cream); border: 1.5px solid var(--line); border-radius: 24px; padding: 32px 28px 28px; max-width: 420px; width: 100%; box-shadow: 0 24px 60px rgba(26,20,22,0.3); animation: payIn .22s ease; }
+  @keyframes payIn { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+  .pay-modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line); background: white; color: var(--ink-soft); font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+  .pay-modal-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .pay-modal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand); margin-bottom: 6px; }
+  .pay-modal-title { font-family: var(--display); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 20px; }
+  .pay-opt { display: block; text-decoration: none; border: 1.5px solid var(--line); border-radius: 16px; padding: 15px 18px; margin-bottom: 12px; transition: all .18s; background: white; }
+  .pay-opt:last-child { margin-bottom: 0; }
+  .pay-opt:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,20,22,0.08); }
+  .pay-opt-pix { border-color: var(--brand-soft); }
+  .pay-opt-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .pay-opt-tag { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--ink); }
+  .pay-opt-best { font-size: 11px; font-weight: 700; color: var(--brand); background: var(--brand-light); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .pay-opt-inst { font-size: 12px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+  .pay-opt-price { font-family: var(--display); font-size: 23px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; }
+  .pay-opt-sub { font-size: 12.5px; color: var(--ink-muted); margin-top: 1px; }
+  .pay-modal-foot { text-align: center; font-size: 11.5px; color: var(--ink-muted); margin-top: 16px; }
+
   /* ===== REVEAL ANIMATIONS ===== */
   .rv { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
   .rv.in { opacity: 1; transform: none; }
@@ -359,6 +388,7 @@
   .cascade.in > *:nth-child(2) { opacity: 1; transform: none; transition-delay: .08s; }
   .cascade.in > *:nth-child(3) { opacity: 1; transform: none; transition-delay: .16s; }
   .cascade.in > *:nth-child(4) { opacity: 1; transform: none; transition-delay: .24s; }
+  .cascade.in > *:nth-child(5) { opacity: 1; transform: none; transition-delay: .32s; }
 </style>
 </head>
 <body>
@@ -488,10 +518,17 @@
 
     <div class="price-grid cascade rv">
 
-      <!-- Solo -->
+      <!-- Solo — 1 conta -->
       <div class="price-card">
         <div class="price-name">Solo</div>
         <div class="price-desc">Criador iniciante, operação pequena.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">299</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 26,25 no cartão</div>
         <ul class="price-list">
           <li>1 conta conectada</li>
           <li>Automações ilimitadas</li>
@@ -500,15 +537,45 @@
           <li>Atualizações inclusas</li>
           <li>Novidades antes de todo mundo</li>
         </ul>
-        <a href="#" class="price-btn">Garantir Solo →</a>
+        <button class="price-btn" data-plan="1">Garantir Solo →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
       </div>
 
-      <!-- Pro -->
+      <!-- Plus — 3 contas -->
+      <div class="price-card">
+        <div class="price-name">Plus</div>
+        <div class="price-desc">Pra quem gerencia mais de um perfil.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">699</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 61,25 no cartão</div>
+        <ul class="price-list">
+          <li>3 contas conectadas</li>
+          <li>Times e divisão por equipe</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates completos</li>
+          <li>Atendimento via chat</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="3">Garantir Plus →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Pro — 5 contas -->
       <div class="price-card featured">
         <div class="price-badge">Mais popular</div>
         <div class="price-name">Pro</div>
         <div class="price-desc">Pra quem já escalou um pouco.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.079</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 94,50 no cartão</div>
         <ul class="price-list">
           <li>5 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -518,14 +585,21 @@
           <li>Atualizações inclusas</li>
           <li>Novidades antes de todo mundo</li>
         </ul>
-        <a href="#" class="price-btn">Garantir Pro →</a>
+        <button class="price-btn" data-plan="5">Garantir Pro →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
       </div>
 
-      <!-- Business -->
+      <!-- Business — 10 contas -->
       <div class="price-card">
         <div class="price-name">Business</div>
         <div class="price-desc">Agência e operação grande.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.349</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 118,12 no cartão</div>
         <ul class="price-list">
           <li>10 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -535,14 +609,21 @@
           <li>Controle pelo WhatsApp</li>
           <li>Atualizações inclusas</li>
         </ul>
-        <a href="#" class="price-btn">Garantir Business →</a>
+        <button class="price-btn" data-plan="10">Garantir Business →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
       </div>
 
-      <!-- Agency -->
+      <!-- Agency — 20 contas -->
       <div class="price-card">
         <div class="price-name">Agency</div>
         <div class="price-desc">Para agências e grandes times.</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.899</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 166,25 no cartão</div>
         <ul class="price-list">
           <li>20 contas conectadas</li>
           <li>Times e divisão por equipe</li>
@@ -552,7 +633,7 @@
           <li>Controle pelo WhatsApp</li>
           <li>Atualizações inclusas</li>
         </ul>
-        <a href="#" class="price-btn">Garantir Agency →</a>
+        <button class="price-btn" data-plan="20">Garantir Agency →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
       </div>
 
@@ -601,7 +682,37 @@
 
 </main>
 
-<footer>
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="pay-modal" id="payModal" aria-hidden="true">
+  <div class="pay-modal-backdrop" data-close></div>
+  <div class="pay-modal-card" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <button class="pay-modal-close" data-close aria-label="Fechar">&times;</button>
+    <div class="pay-modal-eyebrow">Plano <span id="pmPlanName"></span> · Vitalício</div>
+    <h3 class="pay-modal-title" id="pmTitle">Como você prefere pagar?</h3>
+
+    <a class="pay-opt pay-opt-pix" id="pmPix" href="#" rel="nofollow">
+      <div class="pay-opt-head">
+        <span class="pay-opt-tag">PIX</span>
+        <span class="pay-opt-best">Melhor preço · à vista</span>
+      </div>
+      <div class="pay-opt-price" id="pmPixPrice"></div>
+      <div class="pay-opt-sub">Aprovação na hora · acesso liberado em minutos</div>
+    </a>
+
+    <a class="pay-opt pay-opt-card" id="pmCard" href="#" rel="nofollow">
+      <div class="pay-opt-head">
+        <span class="pay-opt-tag">Cartão</span>
+        <span class="pay-opt-inst">em até 12x</span>
+      </div>
+      <div class="pay-opt-price" id="pmCardPrice"></div>
+      <div class="pay-opt-sub" id="pmCardTotal"></div>
+    </a>
+
+    <div class="pay-modal-foot">Pagamento seguro via AbacatePay · 7 dias de garantia</div>
+  </div>
+</div>
+
+<footer
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand-col">
@@ -697,12 +808,62 @@
       if (typeof fbq !== 'undefined') fbq('track', metaEvent, params);
       if (typeof gtag !== 'undefined') gtag('event', ga4Event, params);
     }
-    document.querySelectorAll('.price-btn').forEach(el => {
-      el.addEventListener('click', () => {
-        const card = el.closest('.price-card');
-        const planName = card?.querySelector('.price-name')?.textContent || 'unknown';
-        trackEvent('InitiateCheckout', 'begin_checkout', { content_name: 'Vitalício ' + planName });
-      });
+
+    // Links de pagamento AbacatePay — PIX (valor base) e Cartão (+5%, até 12x).
+    // cardInstallment = valor da parcela (destaque); cardPrice = total debitado.
+    var PLANS = {
+      '1':  { name: 'Solo',     pixPrice: 'R$ 299,99',   cardInstallment: '12x de R$ 26,25',  cardPrice: 'R$ 314,99',
+              pix: 'https://app.abacatepay.com/pay/bill_LpHcHyu3dhdD5YUE62he5WXF', card: 'https://app.abacatepay.com/pay/bill_SzfgUQKwaawbxGKS5dBHJ2Ep' },
+      '3':  { name: 'Plus',     pixPrice: 'R$ 699,99',   cardInstallment: '12x de R$ 61,25',  cardPrice: 'R$ 734,99',
+              pix: 'https://app.abacatepay.com/pay/bill_fTHEgmmP0ZJrMnYtRWYkxyMd', card: 'https://app.abacatepay.com/pay/bill_Q6YQ0Y2n6YQ2eQJU1zCDJ2ya' },
+      '5':  { name: 'Pro',      pixPrice: 'R$ 1.079,99', cardInstallment: '12x de R$ 94,50',  cardPrice: 'R$ 1.133,99',
+              pix: 'https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg', card: 'https://app.abacatepay.com/pay/bill_at6N3RWSNuK5zLNWaC4YNNnt' },
+      '10': { name: 'Business', pixPrice: 'R$ 1.349,99', cardInstallment: '12x de R$ 118,12', cardPrice: 'R$ 1.417,49',
+              pix: 'https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej', card: 'https://app.abacatepay.com/pay/bill_wwazKsf31ME0C1LZdbBGX0nf' },
+      '20': { name: 'Agency',   pixPrice: 'R$ 1.899,99', cardInstallment: '12x de R$ 166,25', cardPrice: 'R$ 1.994,99',
+              pix: 'https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN', card: 'https://app.abacatepay.com/pay/bill_ZKrkjMXXnkw35uEaqGdrehJs' }
+    };
+
+    var modal = document.getElementById('payModal');
+    var pmName = document.getElementById('pmPlanName');
+    var pmPix = document.getElementById('pmPix');
+    var pmPixPrice = document.getElementById('pmPixPrice');
+    var pmCard = document.getElementById('pmCard');
+    var pmCardPrice = document.getElementById('pmCardPrice');
+    var pmCardTotal = document.getElementById('pmCardTotal');
+    var current = null;
+
+    function openPay(key) {
+      var p = PLANS[key];
+      if (!p) return;
+      current = p;
+      pmName.textContent = p.name;
+      pmPix.href = p.pix; pmPixPrice.textContent = p.pixPrice;
+      pmCard.href = p.card; pmCardPrice.textContent = p.cardInstallment; pmCardTotal.textContent = 'Total ' + p.cardPrice + ' no cartão';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      trackEvent('InitiateCheckout', 'begin_checkout', { content_name: 'Vitalício ' + p.name });
+    }
+    function closePay() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.price-btn').forEach(function (b) {
+      b.addEventListener('click', function () { openPay(b.getAttribute('data-plan')); });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closePay);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePay(); });
+
+    pmPix.addEventListener('click', function () {
+      if (current) trackEvent('AddPaymentInfo', 'add_payment_info', { content_name: 'Vitalício ' + current.name, payment_type: 'pix' });
+    });
+    pmCard.addEventListener('click', function () {
+      if (current) trackEvent('AddPaymentInfo', 'add_payment_info', { content_name: 'Vitalício ' + current.name, payment_type: 'card' });
     });
   })();
 </script>
