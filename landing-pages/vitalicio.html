@@ -250,8 +250,12 @@
 
   .price-name { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px; }
   .price-card.featured .price-name { color: var(--cream); }
-  .price-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 20px; }
+  .price-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 16px; }
   .price-card.featured .price-desc { color: rgba(255,249,243,0.55); }
+  .price-accounts { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: var(--display); font-size: 13.5px; font-weight: 700; color: var(--brand-dark); background: var(--brand-light); border: 1.5px solid var(--brand-soft); padding: 7px 14px; border-radius: 999px; margin-bottom: 18px; }
+  .price-accounts strong { font-size: 17px; line-height: 1; }
+  .price-accounts svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .price-card.featured .price-accounts { color: #fff; background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.22); }
 
   .price-tag { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
   .price-tag .sym { font-family: var(--display); font-size: 18px; font-weight: 500; color: var(--ink-muted); }
@@ -526,6 +530,10 @@
       <div class="price-card">
         <div class="price-name">Solo</div>
         <div class="price-desc">Criador iniciante, operação pequena.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>1</strong> conta conectada</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">299</span>
@@ -534,12 +542,12 @@
         <div class="price-once">no PIX · pagamento único</div>
         <div class="price-installment">ou 12x de R$ 26,25 no cartão</div>
         <ul class="price-list">
-          <li>1 conta conectada</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Automações ilimitadas</li>
-          <li>Templates básicos</li>
-          <li>Atendimento via chat</li>
-          <li>Atualizações inclusas</li>
-          <li>Novidades antes de todo mundo</li>
+          <li>Templates básicos · atendimento via chat</li>
         </ul>
         <button class="price-btn" data-plan="1">Garantir Solo →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
@@ -549,6 +557,10 @@
       <div class="price-card">
         <div class="price-name">Plus</div>
         <div class="price-desc">Pra quem gerencia mais de um perfil.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>3</strong> contas conectadas</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">799</span>
@@ -558,12 +570,12 @@
         <div class="price-installment">ou 12x de R$ 70,00 no cartão</div>
         <div class="price-economy">11% mais barato por conta que o Solo</div>
         <ul class="price-list">
-          <li>3 contas conectadas</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Automações ilimitadas</li>
-          <li>Templates completos</li>
-          <li>Atendimento via chat</li>
-          <li>Atualizações inclusas</li>
+          <li>Automações ilimitadas · templates completos</li>
         </ul>
         <button class="price-btn" data-plan="3">Garantir Plus →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
@@ -574,6 +586,10 @@
         <div class="price-badge">Mais popular</div>
         <div class="price-name">Pro</div>
         <div class="price-desc">Pra quem já escalou um pouco.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>5</strong> contas conectadas</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">1.079</span>
@@ -583,12 +599,12 @@
         <div class="price-installment">ou 12x de R$ 94,50 no cartão</div>
         <div class="price-economy">19% mais barato por conta que o Plus</div>
         <ul class="price-list">
-          <li>5 contas conectadas</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Automações ilimitadas</li>
-          <li>Templates completos</li>
-          <li>Atendimento via chat</li>
-          <li>Atualizações inclusas</li>
+          <li>Automações ilimitadas · templates completos</li>
           <li>Novidades antes de todo mundo</li>
         </ul>
         <button class="price-btn" data-plan="5">Garantir Pro →</button>
@@ -599,6 +615,10 @@
       <div class="price-card">
         <div class="price-name">Business</div>
         <div class="price-desc">Agência e operação grande.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>10</strong> contas conectadas</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">1.349</span>
@@ -608,13 +628,13 @@
         <div class="price-installment">ou 12x de R$ 118,12 no cartão</div>
         <div class="price-economy">38% mais barato por conta que o Pro</div>
         <ul class="price-list">
-          <li>10 contas conectadas</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Automações ilimitadas</li>
-          <li>Templates completos</li>
+          <li>Automações ilimitadas · templates completos</li>
           <li>Atendimento VIP no WhatsApp</li>
-          <li>Controle pelo WhatsApp</li>
-          <li>Atualizações inclusas</li>
         </ul>
         <button class="price-btn" data-plan="10">Garantir Business →</button>
         <div class="price-guarantee">Garantia de 7 dias</div>
@@ -624,6 +644,10 @@
       <div class="price-card">
         <div class="price-name">Agency</div>
         <div class="price-desc">Para agências e grandes times. Alugue para clientes e gere recorrência.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>20</strong> contas conectadas</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">1.899</span>
@@ -633,12 +657,12 @@
         <div class="price-installment">ou 12x de R$ 166,25 no cartão</div>
         <div class="price-economy">30% mais barato por conta que o Business</div>
         <ul class="price-list">
-          <li>20 contas conectadas</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Automações ilimitadas</li>
-          <li>Templates completos</li>
-          <li>Atendimento VIP no WhatsApp</li>
-          <li>Controle pelo WhatsApp</li>
+          <li>Revenda para clientes · atendimento VIP</li>
           <li>Atualizações inclusas</li>
         </ul>
         <button class="price-btn" data-plan="20">Garantir Agency →</button>
@@ -650,6 +674,10 @@
         <div class="price-badge">Compre 40, ganhe 50</div>
         <div class="price-name">Enterprise</div>
         <div class="price-desc">Operação enorme e revenda. Alugue para clientes e gere recorrência.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>50</strong> contas conectadas</span>
+        </div>
         <div class="price-tag">
           <span class="sym">R$</span>
           <span class="amt">3.599</span>
@@ -659,12 +687,12 @@
         <div class="price-installment">ou 12x de R$ 314,91 no cartão</div>
         <div class="price-economy">24% mais barato por conta que o Agency</div>
         <ul class="price-list">
-          <li>50 contas conectadas</li>
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>CRM com etiquetas e contatos</li>
           <li>Times e divisão por equipe</li>
-          <li>Automações ilimitadas</li>
-          <li>Templates completos</li>
-          <li>Atendimento VIP no WhatsApp</li>
-          <li>Controle pelo WhatsApp</li>
+          <li>Revenda para clientes · atendimento VIP</li>
           <li>Atualizações inclusas</li>
         </ul>
         <button class="price-btn" data-plan="50">Garantir Enterprise →</button>
