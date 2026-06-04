@@ -60,6 +60,9 @@
     --brand-deep: #6B1538;
     --brand-light: #FFEFF4;
     --brand-soft: #FFD4DE;
+    --cta: #0E9F6E;        /* verde CTA — alto contraste com o rosa, sinaliza "avançar" */
+    --cta-bright: #12C07A;
+    --cta-deep: #0B7E57;
     --cream: #FFF9F3;
     --cream-2: #F5ECE0;
     --ink: #1A1416;
@@ -302,19 +305,22 @@
     width: 100%;
     text-align: center;
     margin-top: 20px;
-    padding: 14px 20px;
+    padding: 15px 20px;
     border-radius: 999px;
-    font-size: 14px; font-weight: 700;
+    font-size: 14.5px; font-weight: 700;
     font-family: var(--sans);
     text-decoration: none;
-    background: var(--cream-2); color: var(--ink);
-    transition: background .2s;
+    background: var(--cta); color: #fff;
+    box-shadow: 0 6px 18px -4px rgba(14,159,110,0.5);
+    transition: background .2s, transform .15s, box-shadow .2s;
     letter-spacing: -0.005em;
     border: none; cursor: pointer;
   }
-  .price-btn:hover { background: var(--ink); color: var(--cream); }
-  .price-card.featured .price-btn { background: var(--brand); color: white; }
-  .price-card.featured .price-btn:hover { background: var(--brand-dark); }
+  .price-btn:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(14,159,110,0.6); }
+  .price-btn:active { transform: translateY(0); box-shadow: 0 4px 12px -4px rgba(14,159,110,0.5); }
+  /* Plano em destaque (Pro): verde vivo no card escuro, com hover de alto contraste */
+  .price-card.featured .price-btn { background: var(--cta-bright); color: #fff; box-shadow: 0 8px 24px -4px rgba(18,192,122,0.65); }
+  .price-card.featured .price-btn:hover { background: #fff; color: var(--cta-deep); transform: translateY(-2px); }
 
   .price-guarantee { text-align: center; font-size: 12px; color: var(--ink-muted); margin-top: 12px; }
   .price-card.featured .price-guarantee { color: rgba(255,249,243,0.35); }
