@@ -30,12 +30,12 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
   "offers": [
-    { "@type": "Offer", "name": "Solo Vitalício", "price": "349.00", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_fX2RtS46WXdZPUhSccANNAat" },
-    { "@type": "Offer", "name": "Plus Vitalício", "price": "799.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_5kwLMBzqz2hKhLWD5BrkNSwY" },
-    { "@type": "Offer", "name": "Pro Vitalício", "price": "1079.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg" },
-    { "@type": "Offer", "name": "Business Vitalício", "price": "1349.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej" },
-    { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN" },
-    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3599.00", "priceCurrency": "BRL", "url": "https://app.abacatepay.com/pay/bill_WePNkL6BPMsHXmJd0CjnBs4U" }
+    { "@type": "Offer", "name": "Solo Vitalício", "price": "349.00", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/4r5hyjp_912931" },
+    { "@type": "Offer", "name": "Plus Vitalício", "price": "799.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/7n22fnj" },
+    { "@type": "Offer", "name": "Pro Vitalício", "price": "1079.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/3v8fz3c" },
+    { "@type": "Offer", "name": "Business Vitalício", "price": "1349.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/z9nvbwv" },
+    { "@type": "Offer", "name": "Agency Vitalício", "price": "1899.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/c77a29r_912927" },
+    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3599.00", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/3c7pufc" }
   ]
 }
 </script>
@@ -599,7 +599,7 @@
           <span class="cents">,00</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 30,54 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 36,05 no cartão</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
           <li>TikTok: resposta automática no Direct</li>
@@ -626,7 +626,7 @@
           <span class="cents">,99</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 70,00 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 82,53 no cartão</div>
         <div class="price-economy">24% mais barato por conta que o Solo</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
@@ -655,7 +655,7 @@
           <span class="cents">,99</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 94,50 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 111,45 no cartão</div>
         <div class="price-economy">19% mais barato por conta que o Plus</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
@@ -684,7 +684,7 @@
           <span class="cents">,99</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 118,12 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 139,44 no cartão</div>
         <div class="price-economy">38% mais barato por conta que o Pro</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
@@ -713,7 +713,7 @@
           <span class="cents">,99</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 166,25 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 196,24 no cartão</div>
         <div class="price-economy">30% mais barato por conta que o Business</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
@@ -743,7 +743,7 @@
           <span class="cents">,00</span>
         </div>
         <div class="price-once">no PIX · pagamento único</div>
-        <div class="price-installment">ou 12x de R$ 314,91 no cartão</div>
+        <div class="price-installment">ou 12x de R$ 371,82 no cartão</div>
         <div class="price-economy">24% mais barato por conta que o Agency</div>
         <ul class="price-list">
           <li>DM, comentários e stories no Instagram</li>
@@ -930,21 +930,21 @@
       if (typeof gtag !== 'undefined') gtag('event', ga4Event, params);
     }
 
-    // Links de pagamento AbacatePay — PIX (valor base) e Cartão (+5%, até 12x).
-    // cardInstallment = valor da parcela (destaque); cardPrice = total debitado.
+    // Links de pagamento Cakto — link único por plano (cliente escolhe PIX ou cartão na Cakto).
+    // pixPrice = valor à vista no PIX; cardInstallment = parcela (destaque); cardPrice = total no cartão (12x).
     var PLANS = {
-      '1':  { name: 'Solo',     pixPrice: 'R$ 349,00',   cardInstallment: '12x de R$ 30,54',  cardPrice: 'R$ 366,45',
-              pix: 'https://app.abacatepay.com/pay/bill_fX2RtS46WXdZPUhSccANNAat', card: 'https://app.abacatepay.com/pay/bill_1pfTdx6j6QtZeQWSqYcLefyY' },
-      '3':  { name: 'Plus',     pixPrice: 'R$ 799,99',   cardInstallment: '12x de R$ 70,00',  cardPrice: 'R$ 839,99',
-              pix: 'https://app.abacatepay.com/pay/bill_5kwLMBzqz2hKhLWD5BrkNSwY', card: 'https://app.abacatepay.com/pay/bill_uwGuEyUDpQyZAJTqzyH6MbAJ' },
-      '5':  { name: 'Pro',      pixPrice: 'R$ 1.079,99', cardInstallment: '12x de R$ 94,50',  cardPrice: 'R$ 1.133,99',
-              pix: 'https://app.abacatepay.com/pay/bill_NjtzNHETZknkSuqBtTxhn4rg', card: 'https://app.abacatepay.com/pay/bill_at6N3RWSNuK5zLNWaC4YNNnt' },
-      '10': { name: 'Business', pixPrice: 'R$ 1.349,99', cardInstallment: '12x de R$ 118,12', cardPrice: 'R$ 1.417,49',
-              pix: 'https://app.abacatepay.com/pay/bill_Q1gSPz6wa25sZ6Hy66YPUZej', card: 'https://app.abacatepay.com/pay/bill_wwazKsf31ME0C1LZdbBGX0nf' },
-      '20': { name: 'Agency',   pixPrice: 'R$ 1.899,99', cardInstallment: '12x de R$ 166,25', cardPrice: 'R$ 1.994,99',
-              pix: 'https://app.abacatepay.com/pay/bill_uxGUyfnBhhbbJhJpSpeUA1NN', card: 'https://app.abacatepay.com/pay/bill_ZKrkjMXXnkw35uEaqGdrehJs' },
-      '50': { name: 'Enterprise', pixPrice: 'R$ 3.599,00', cardInstallment: '12x de R$ 314,91', cardPrice: 'R$ 3.778,95',
-              pix: 'https://app.abacatepay.com/pay/bill_WePNkL6BPMsHXmJd0CjnBs4U', card: 'https://app.abacatepay.com/pay/bill_ND0YKk0KqUkXqLJh2KDszcnG' }
+      '1':  { name: 'Solo',     pixPrice: 'R$ 349,00',   cardInstallment: '12x de R$ 36,05',  cardPrice: 'R$ 432,60',
+              pix: 'https://pay.cakto.com.br/4r5hyjp_912931', card: 'https://pay.cakto.com.br/4r5hyjp_912931' },
+      '3':  { name: 'Plus',     pixPrice: 'R$ 799,99',   cardInstallment: '12x de R$ 82,53',  cardPrice: 'R$ 990,36',
+              pix: 'https://pay.cakto.com.br/7n22fnj', card: 'https://pay.cakto.com.br/7n22fnj' },
+      '5':  { name: 'Pro',      pixPrice: 'R$ 1.079,99', cardInstallment: '12x de R$ 111,45', cardPrice: 'R$ 1.337,40',
+              pix: 'https://pay.cakto.com.br/3v8fz3c', card: 'https://pay.cakto.com.br/3v8fz3c' },
+      '10': { name: 'Business', pixPrice: 'R$ 1.349,99', cardInstallment: '12x de R$ 139,44', cardPrice: 'R$ 1.673,28',
+              pix: 'https://pay.cakto.com.br/z9nvbwv', card: 'https://pay.cakto.com.br/z9nvbwv' },
+      '20': { name: 'Agency',   pixPrice: 'R$ 1.899,99', cardInstallment: '12x de R$ 196,24', cardPrice: 'R$ 2.354,88',
+              pix: 'https://pay.cakto.com.br/c77a29r_912927', card: 'https://pay.cakto.com.br/c77a29r_912927' },
+      '50': { name: 'Enterprise', pixPrice: 'R$ 3.599,00', cardInstallment: '12x de R$ 371,82', cardPrice: 'R$ 4.461,84',
+              pix: 'https://pay.cakto.com.br/3c7pufc', card: 'https://pay.cakto.com.br/3c7pufc' }
     };
 
     var modal = document.getElementById('payModal');
