@@ -175,9 +175,9 @@
       Voltar ao início
     </a>
 
-    <p class="legal-eyebrow">LGPD — Art. 37</p>
-    <h1 class="legal-title">Acordo de Operação de Dados</h1>
-    <p class="legal-meta">Última atualização: 15 de maio de 2026 &nbsp;·&nbsp; Versão 1.1</p>
+    <p class="legal-eyebrow">LGPD Art. 39 · GDPR Art. 28</p>
+    <h1 class="legal-title">Acordo de Tratamento de Dados (DPA)</h1>
+    <p class="legal-meta">Última atualização: 5 de junho de 2026 &nbsp;·&nbsp; Versão 2.0</p>
 
     <div class="consent-block">
       <div class="consent-icon">📋</div>
@@ -293,11 +293,14 @@
             <tr><td>Google Cloud / Google LLC</td><td>Armazenamento de mídia (imagens/vídeos), modelos de linguagem (Gemini)</td><td>EUA</td></tr>
             <tr><td>Anthropic</td><td>Modelos de linguagem (Claude) para automações de resposta</td><td>EUA</td></tr>
             <tr><td>Resend</td><td>Envio de e-mails transacionais (convites, redefinição de senha, alertas)</td><td>EUA</td></tr>
-            <tr><td>Supabase</td><td>Autenticação de usuários (armazena e-mail e ID)</td><td>EUA</td></tr>
-            <tr><td>n8n</td><td>Execução de automações e fluxos de trabalho configurados pelos usuários</td><td>Alemanha / EUA</td></tr>
+            <tr><td>Supabase</td><td>Autenticação, banco de dados e armazenamento de mídia (datacenter em São Paulo, sa-east-1)</td><td>Brasil</td></tr>
+            <tr><td>Cakto</td><td>Processamento de pagamentos (dados do Controlador)</td><td>Brasil</td></tr>
+            <tr><td>Sentry</td><td>Monitoramento de erros e desempenho da aplicação</td><td>EUA</td></tr>
+            <tr><td>Apple (APNs) / Google (FCM)</td><td>Envio de notificações push para os apps móveis</td><td>EUA</td></tr>
+            <tr><td>Apiyi</td><td>Gateway intermediário de acesso a modelos de IA</td><td>China</td></tr>
           </tbody>
         </table>
-        <p>A Notifiquei informará o Controlador sobre qualquer alteração relevante na lista de suboperadores com antecedência mínima de 15 (quinze) dias, salvo em caso de força maior. O Controlador pode se opor a alterações justificando por escrito para <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>.</p>
+        <p><strong>Autorização geral e responsabilidade (GDPR Art. 28(2) e (4)).</strong> O Controlador concede autorização geral por escrito para a contratação dos suboperadores acima. A Notifiquei impõe a cada suboperador, por contrato, as mesmas obrigações de proteção de dados deste Acordo e permanece integralmente responsável perante o Controlador pelo cumprimento dessas obrigações pelos suboperadores. A Notifiquei informará o Controlador sobre qualquer alteração relevante na lista com antecedência mínima de 15 (quinze) dias, salvo força maior; o Controlador pode se opor justificadamente por escrito para <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>.</p>
       </section>
 
       <section>
@@ -315,7 +318,8 @@
 
       <section>
         <h2><span class="sec-num">10</span> Transferência internacional de dados</h2>
-        <p>O servidor principal da API da Notifiquei opera em infraestrutura localizada no Brasil (Turbocloud). O tratamento de dados pode envolver transferência para os Estados Unidos em razão do uso de serviços auxiliares em nuvem (filas, cache e similares) e da integração com a Meta Platforms. Essas transferências são realizadas com base nas salvaguardas previstas no Art. 33 da LGPD, incluindo cláusulas contratuais padrão e a verificação de adequação de proteção dos países destinatários.</p>
+        <p>O servidor principal da API da Notifiquei opera em infraestrutura localizada no Brasil (Turbocloud), e o banco de dados, autenticação e armazenamento de mídia ficam em datacenter no Brasil (Supabase, São Paulo). O tratamento pode envolver transferência para os Estados Unidos (integração com a Meta, monitoramento, push e provedores de IA) e, no caso do gateway Apiyi, para a China. Essas transferências contam com salvaguardas adequadas (Art. 33 da LGPD).</p>
+        <p><strong>Transferências sob o GDPR (Capítulo V).</strong> Em 2026, a Comissão Europeia e a ANPD reconheceram a equivalência entre a LGPD e o GDPR (adequação mútua), de modo que a transferência de dados entre o Espaço Econômico Europeu e o Brasil ocorre de forma direta, sem salvaguardas adicionais. Para transferências a suboperadores localizados em países sem decisão de adequação da União Europeia (por exemplo, Estados Unidos e China), a Notifiquei utiliza as Cláusulas Contratuais-Tipo (SCCs) da UE ou outro mecanismo válido do Capítulo V, e o Controlador pode solicitar a desativação dos recursos de IA que dependam de provedores fora de país adequado.</p>
       </section>
 
       <section>
@@ -336,6 +340,23 @@
         <strong>Encarregado pelo Tratamento de Dados (DPO):</strong> Antonio Duarte<br>
         E-mail: <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a><br>
         Notifiquei — CNPJ 59.859.848/0001-13</p>
+      </section>
+
+      <section>
+        <h2><span class="sec-num">14</span> Cláusulas específicas do GDPR (Art. 28)</h2>
+        <p>Quando o Controlador trata, por meio da plataforma, dados pessoais de titulares localizados na União Europeia ou no Espaço Econômico Europeu, este Acordo serve também como o contrato de operador exigido pelo <strong>art. 28 do Regulamento (UE) 2016/679 (GDPR)</strong>. Para esse fim, o Controlador é o <em>controller</em> e a Notifiquei é o <em>processor</em>, e aplicam-se as seguintes disposições, que prevalecem em caso de conflito com as demais cláusulas no que toca a dados sujeitos ao GDPR:</p>
+        <ul>
+          <li><strong>Instruções documentadas (Art. 28(3)(a)):</strong> a Notifiquei trata os dados apenas segundo as instruções documentadas do Controlador — que incluem estes Termos, este DPA e as automações e configurações definidas pelo Controlador na plataforma —, inclusive quanto a transferências internacionais, salvo exigência legal.</li>
+          <li><strong>Confidencialidade (Art. 28(3)(b)):</strong> as pessoas autorizadas a tratar os dados estão sujeitas a dever de confidencialidade.</li>
+          <li><strong>Segurança (Art. 28(3)(c) e Art. 32):</strong> medidas técnicas e organizacionais adequadas, conforme a seção 9.</li>
+          <li><strong>Suboperadores (Art. 28(2) e (4)):</strong> autorização geral, imposição das mesmas obrigações e responsabilidade da Notifiquei, conforme a seção 8.</li>
+          <li><strong>Assistência a direitos do titular (Art. 28(3)(e)):</strong> a Notifiquei auxilia o Controlador a responder a pedidos de exercício de direitos dos arts. 15 a 22 do GDPR (acesso, retificação, apagamento, limitação, oposição, portabilidade), na medida do tecnicamente possível.</li>
+          <li><strong>Apoio a segurança, violações e DPIA (Art. 28(3)(f), Art. 33–34 e Art. 35):</strong> a Notifiquei notifica o Controlador sem demora injustificada (e em até 72 horas) ao tomar conhecimento de violação, e o auxilia em avaliações de impacto e consultas prévias.</li>
+          <li><strong>Eliminação ou devolução (Art. 28(3)(g)):</strong> ao término dos serviços, os dados são eliminados ou devolvidos conforme a seção 5.</li>
+          <li><strong>Auditoria (Art. 28(3)(h)):</strong> a Notifiquei disponibiliza ao Controlador as informações necessárias para demonstrar conformidade e permite auditorias/inspeções razoáveis, mediante aviso prévio e confidencialidade.</li>
+          <li><strong>Transferências internacionais (Capítulo V):</strong> conforme a seção 10 (adequação Brasil–UE; SCCs para países sem adequação).</li>
+        </ul>
+        <p><em>Nota: a Notifiquei é empresa estabelecida no Brasil e não designou representante na UE nos termos do art. 27 do GDPR. Titulares e autoridades da UE podem contatar diretamente o Encarregado em <a href="mailto:dpa@notifiquei.com.br">dpa@notifiquei.com.br</a>.</em></p>
       </section>
 
     </div>
