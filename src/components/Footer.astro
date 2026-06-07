@@ -1,0 +1,123 @@
+---
+import Logo from "./Logo.astro";
+
+const cols = [
+  {
+    title: "Produto",
+    links: [
+      { href: "/#como", label: "Como funciona" },
+      { href: "/#plataforma", label: "Plataforma" },
+      { href: "/vs-manychat", label: "vs ManyChat" },
+      { href: "/#planos", label: "Planos" },
+      { href: "/criadores", label: "Para criadores" },
+      { href: "/afiliados", label: "Programa de afiliados" },
+    ],
+  },
+  {
+    title: "Empresa",
+    links: [
+      { href: "https://www.instagram.com/notifiquei.com.br/", label: "Instagram" },
+      { href: "https://www.youtube.com/@notifiqueicombr", label: "YouTube" },
+      { href: "https://br.linkedin.com/company/notifiquei", label: "LinkedIn" },
+      { href: "mailto:contato@notifiquei.com.br", label: "contato@notifiquei.com.br" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "/termos-de-uso", label: "Termos de uso" },
+      { href: "/politica-de-privacidade", label: "Privacidade" },
+      { href: "/dpa", label: "Acordo de dados (DPA)" },
+    ],
+  },
+];
+---
+<footer class="footer section--ink on-ink">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <Logo height={30} label="Notifiquei" />
+        <p class="footer__pitch">
+          Automação de vendas no Instagram com a API oficial da Meta.
+          Feito no Brasil, pra quem vende em português.
+        </p>
+        <div class="footer__badges">
+          <span class="footer__seal"><img src="/assets/meta-business-partner.png" alt="Notifiquei — Meta Business Partner (parceiro oficial da Meta)" width="555" height="318" loading="lazy" /></span>
+          <span class="footer__seal"><img src="/assets/tiktok-marketing-partner.svg" alt="Notifiquei — TikTok Marketing Partner" width="119" height="61" loading="lazy" /></span>
+        </div>
+      </div>
+
+      <div class="footer__cols">
+        {cols.map((col) => (
+          <nav class="footer__col" aria-label={col.title}>
+            <h4 class="footer__col-title">{col.title}</h4>
+            <ul>
+              {col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </nav>
+        ))}
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__legal">
+        © 2026 Notifiquei. Todos os direitos reservados. · CNPJ 59.859.848/0001-13
+      </p>
+      <div class="footer__meta">
+        <span class="footer__status"><span class="footer__dot"></span> Todos os sistemas operando</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: clamp(4rem, 8vw, 6rem) 2.5rem; }
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--line-ink);
+  }
+  .footer__brand { color: var(--on-ink); max-width: 30rem; }
+  .footer__pitch { margin-top: 1.25rem; color: var(--on-ink-soft); font-size: 0.975rem; line-height: 1.6; }
+  .footer__badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
+  /* selos oficiais em chip branco (logos pretos/escuros precisam de fundo claro) */
+  .footer__seal {
+    display: inline-flex; align-items: center;
+    background: #fff; border-radius: var(--r-md);
+    padding: 0.5rem 0.85rem; box-shadow: var(--shadow-sm);
+  }
+  .footer__seal img { height: 38px; width: auto; display: block; }
+  .footer__dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--positive); display: inline-block;
+  }
+  .footer__cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .footer__col-title {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-lift);
+    margin-bottom: 1.1rem;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer__col a {
+    color: var(--on-ink-soft); font-size: 0.95rem;
+    transition: color 0.2s var(--ease-out);
+  }
+  .footer__col a:hover { color: var(--on-ink); }
+  .footer__bottom {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+    align-items: center; padding-top: 2rem;
+  }
+  .footer__legal { font-size: 0.85rem; color: var(--on-ink-soft); }
+  .footer__meta { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+  .footer__status {
+    display: inline-flex; align-items: center; gap: 0.5em;
+    font-size: 0.82rem; color: var(--on-ink-soft);
+  }
+
+  @media (min-width: 720px) {
+    .footer__top { grid-template-columns: 1.4fr 2fr; }
+    .footer__cols { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

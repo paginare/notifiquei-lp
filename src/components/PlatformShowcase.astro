@@ -1,0 +1,277 @@
+---
+interface Props {
+  bg?: "paper" | "paper2";
+  eyebrow?: string;
+  title?: string; // pode conter <br>
+  lead?: string;
+  id?: string;
+}
+const {
+  bg = "paper",
+  eyebrow = "Dentro da plataforma",
+  title = "É bonita de olhar. <br class='br-r' />E melhor ainda de usar.",
+  lead = "Nada de painel confuso com mil abas. Tudo que você precisa, onde você espera encontrar.",
+  id = "plataforma",
+} = Astro.props;
+
+const platform = [
+  { tag: "Montagem visual", title: "Monte o fluxo arrastando.", body: "Escolhe o gatilho, define o que acontece depois e salva. Sem código, sem manual, sem “configurador avançado” escondido." },
+  { tag: "Números em tempo real", title: "Veja cada clique acontecendo.", body: "Quantos DMs respondidos, quantos leads receberam o link, quantos clicaram. Dados simples que respondem “tá engajando?”." },
+  { tag: "Inbox unificada", title: "Só aparece quem precisa de você.", body: "Ele filtra, qualifica e responde o simples. Quando chega o lead que vale ouro, ele te marca e você entra pra fechar." },
+  { tag: "Intenção de compra · IA", title: "Saiba quem está pronto pra comprar.", body: "A IA lê cada conversa em tempo real e te avisa no momento certo — antes de você perder a venda." },
+];
+---
+<section class={`section ${bg === "paper2" ? "section--paper2" : ""}`} id={id}>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 set:html={title} />
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="platform">
+      <!-- 1 · Montagem visual -->
+      <article class="prow reveal">
+        <div class="prow__copy">
+          <span class="eyebrow pcard__tag">{platform[0].tag}</span>
+          <h3 class="pcard__title">{platform[0].title}</h3>
+          <p class="pcard__body">{platform[0].body}</p>
+        </div>
+        <div class="prow__art" aria-hidden="true">
+          <div class="ui ui--flow">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · automações</span></div>
+            <div class="canvas">
+              <article class="fnode fnode--trigger">
+                <span class="hdl hdl--out"></span>
+                <div class="fnode__top">
+                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+                  <span class="fnode__lbl"><b>Comentário em Post</b><small>palavra “quero”</small></span>
+                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </div>
+                <div class="fnode__prev">Quando alguém comenta no post</div>
+              </article>
+              <svg class="edge" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M20 0 C20 13 20 17 20 30"/></svg>
+              <article class="fnode fnode--action">
+                <span class="hdl hdl--in"></span><span class="hdl hdl--out"></span>
+                <div class="fnode__top">
+                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg></span>
+                  <span class="fnode__lbl"><b>Responder no DM</b><small>com o link</small></span>
+                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </div>
+                <div class="fnode__prev">“Oii! Tá R$ 297 à vista 💸”</div>
+              </article>
+              <svg class="edge" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M20 0 C20 13 20 17 20 30"/></svg>
+              <article class="fnode fnode--tag">
+                <span class="hdl hdl--in"></span>
+                <div class="fnode__top">
+                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1"/></svg></span>
+                  <span class="fnode__lbl"><b>Adicionar Tag</b><small>lead quente</small></span>
+                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 · Números em tempo real -->
+      <article class="prow prow--rev reveal">
+        <div class="prow__copy">
+          <span class="eyebrow pcard__tag">{platform[1].tag}</span>
+          <h3 class="pcard__title">{platform[1].title}</h3>
+          <p class="pcard__body">{platform[1].body}</p>
+        </div>
+        <div class="prow__art" aria-hidden="true">
+          <div class="ui ui--stats">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · relatórios</span></div>
+            <div class="dash">
+              <div class="dash__cards">
+                <div class="scard">
+                  <div class="scard__head"><span>DMs respondidos</span><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                  <b class="scard__num">1.284</b>
+                  <span class="scard__delta up">+18% vs. semana passada</span>
+                </div>
+                <div class="scard">
+                  <div class="scard__head"><span>Links clicados</span><svg viewBox="0 0 24 24"><path d="m9 9 5 12 1.8-5.2L21 14z"/><path d="M7.2 2.2 8 5.1M5.1 8 2.2 7.2M14 4.1 12 6M6 12l-1.9 2"/></svg></div>
+                  <b class="scard__num">847</b>
+                  <span class="scard__delta up">+9% vs. semana passada</span>
+                </div>
+                <div class="scard scard--brand">
+                  <div class="scard__head"><span>Taxa de resposta</span><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                  <b class="scard__num">98%</b>
+                  <span class="scard__delta up">tempo médio · 3s</span>
+                </div>
+              </div>
+              <svg class="spark" viewBox="0 0 320 64" preserveAspectRatio="none">
+                <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--brand)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0,50 C40,46 60,28 95,31 C130,34 150,12 190,17 C230,22 250,6 320,5 L320,64 L0,64 Z" fill="url(#sg)"/>
+                <path d="M0,50 C40,46 60,28 95,31 C130,34 150,12 190,17 C230,22 250,6 320,5" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 · Inbox unificada -->
+      <article class="prow reveal">
+        <div class="prow__copy">
+          <span class="eyebrow pcard__tag">{platform[2].tag}</span>
+          <h3 class="pcard__title">{platform[2].title}</h3>
+          <p class="pcard__body">{platform[2].body}</p>
+        </div>
+        <div class="prow__art" aria-hidden="true">
+          <div class="ui ui--inbox">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · conversas</span></div>
+            <div class="inbox2">
+              <ul class="inbox2__list">
+                <li class="ic is-active">
+                  <span class="ava" data-ava="mariana"></span>
+                  <span class="ic__txt"><b>mariana.fit</b><em>Sim, quero fechar hoje!</em></span>
+                  <span class="ic__un">2</span>
+                </li>
+                <li class="ic">
+                  <span class="ava" data-ava="joao"></span>
+                  <span class="ic__txt"><b>joao.suplementos</b><em>Qual o valor do kit?</em></span>
+                </li>
+                <li class="ic">
+                  <span class="ava" data-ava="bia"></span>
+                  <span class="ic__txt"><b>bia.estetica</b><em>Recebi, obrigada! 🧡</em></span>
+                </li>
+              </ul>
+              <div class="thread">
+                <div class="thread__head"><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="tag-hot">Alta intenção</span></div>
+                <div class="thread__body">
+                  <div class="tb tb--them">Quanto tá o curso? 😍</div>
+                  <div class="tb tb--me">Oii! 😊 R$ 297 à vista. Te mando o link?<i>auto</i></div>
+                  <div class="tb tb--them">Sim, quero fechar hoje! Pode mandar o Pix?</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 · Intenção de compra · IA -->
+      <article class="prow prow--rev reveal">
+        <div class="prow__copy">
+          <span class="eyebrow pcard__tag">{platform[3].tag}</span>
+          <h3 class="pcard__title">{platform[3].title}</h3>
+          <p class="pcard__body">{platform[3].body}</p>
+        </div>
+        <div class="prow__art" aria-hidden="true">
+          <div class="ui ui--intent">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · intenção de compra</span></div>
+            <div class="intent">
+              <div class="intent__alert">
+                <span class="intent__spark"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
+                <span><b>mariana.fit</b> está pronta pra fechar — entre agora</span>
+              </div>
+              <div class="chatmini">
+                <div class="cm"><span class="cm__txt">“Vi seu post. Interessante…”</span><span class="lvl lvl--low">Baixa</span></div>
+                <div class="cm"><span class="cm__txt">“Quanto custa? Tem parcelamento?”</span><span class="lvl lvl--mid">Média</span></div>
+                <div class="cm"><span class="cm__txt">“Sim, quero fechar hoje! Pode mandar o Pix?”</span><span class="lvl lvl--high">Alta</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .platform { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 5.5rem); margin-top: 3.5rem; }
+  .prow { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+  .prow > * { min-width: 0; }
+  .pcard__tag { color: var(--brand-ink); }
+  .pcard__title { font-size: clamp(1.45rem, 1.1rem + 1.4vw, 2rem); margin-top: 0.9rem; }
+  .pcard__body { margin-top: 0.8rem; color: var(--ink-soft); font-size: 1rem; max-width: 30rem; }
+  @media (min-width: 880px) {
+    .prow { grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem); }
+    .prow--rev .prow__copy { order: 2; }
+    .prow--rev .prow__art { order: 1; }
+  }
+
+  /* chrome comum dos mockups (double-bezel) */
+  .ui { background: linear-gradient(180deg, var(--paper-2), var(--paper-3)); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 7px; box-shadow: var(--shadow-lg); max-width: 100%; overflow: hidden; --ok: #1B9A5F; --purple: #7C3AED; }
+  .ui__bar { display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0.85rem; }
+  .ui__dots { display: inline-flex; gap: 5px; }
+  .ui__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--paper-3); border: 1px solid var(--line); }
+  .ui__url { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.01em; }
+  .ui > :not(.ui__bar) { background: var(--card); border-radius: calc(var(--r-xl) - 7px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); }
+
+  /* 1 · flow builder */
+  .ui--flow .canvas { position: relative; padding: 1.5rem 1.1rem; display: flex; flex-direction: column; align-items: center; gap: 0; background-color: var(--card); background-image: radial-gradient(var(--line) 1.1px, transparent 1.1px); background-size: 18px 18px; }
+  .fnode { position: relative; width: 100%; max-width: 244px; padding: 0.7rem 0.8rem; border-radius: 12px; border: 2px solid var(--ok); background: linear-gradient(135deg, rgba(255,31,109,0.10), rgba(255,31,109,0.015)); box-shadow: var(--shadow-sm); }
+  .fnode--tag { background: linear-gradient(135deg, rgba(124,58,237,0.13), rgba(124,58,237,0.02)); }
+  .fnode__top { display: flex; align-items: center; gap: 0.55rem; }
+  .fnode__ic { flex: none; width: 24px; height: 24px; display: grid; place-items: center; }
+  .fnode__ic svg { width: 18px; height: 18px; fill: none; stroke: var(--brand-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .fnode--tag .fnode__ic svg { stroke: var(--purple); }
+  .fnode__lbl { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.15; }
+  .fnode__lbl b { font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fnode__lbl small { font-size: 0.66rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fnode__chk { flex: none; }
+  .fnode__chk svg { width: 15px; height: 15px; fill: none; stroke: var(--ok); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .fnode__prev { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--line-soft); font-size: 0.7rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fnode__plus { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; box-shadow: var(--shadow-md); }
+  .fnode__plus svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; }
+  .hdl { position: absolute; left: 50%; transform: translateX(-50%); width: 9px; height: 9px; border-radius: 50%; background: var(--brand); border: 2px solid var(--card); }
+  .hdl--out { bottom: -6px; }
+  .hdl--in { top: -6px; }
+  .edge { width: 40px; height: 30px; margin: 0; }
+  .edge path { fill: none; stroke: var(--line); stroke-width: 2; }
+
+  /* 2 · dashboard */
+  .ui--stats .dash { padding: 0.85rem; }
+  .dash__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .scard { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.75rem; box-shadow: var(--shadow-sm); }
+  .scard--brand { border-color: color-mix(in srgb, var(--brand) 35%, var(--line)); background: linear-gradient(180deg, var(--brand-wash), var(--card)); }
+  .scard__head { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; }
+  .scard__head span { font-size: 0.66rem; font-weight: 600; color: var(--ink-soft); line-height: 1.2; }
+  .scard__head svg { flex: none; width: 14px; height: 14px; fill: none; stroke: var(--ink-faint); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .scard--brand .scard__head svg { stroke: var(--brand-ink); }
+  .scard__num { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; letter-spacing: -0.03em; margin-top: 0.35rem; line-height: 1; }
+  .scard--brand .scard__num { color: var(--brand-ink); }
+  .scard__delta { font-size: 0.6rem; color: var(--ink-faint); }
+  .scard__delta.up { color: var(--ok); }
+  .ui--stats .spark { display: block; width: 100%; height: 64px; margin-top: 0.85rem; }
+
+  /* 3 · inbox */
+  .ava { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--paper-3); background-size: cover; background-position: center; box-shadow: inset 0 0 0 1px var(--line); }
+  .ava--sm { width: 26px; height: 26px; }
+  .ava[data-ava="mariana"] { background-image: url("/assets/avatars/mariana.png"); }
+  .ava[data-ava="joao"] { background-image: url("/assets/avatars/joao.png"); }
+  .ava[data-ava="bia"] { background-image: url("/assets/avatars/bia.png"); }
+  .inbox2 { display: grid; grid-template-columns: 1fr; }
+  .inbox2__list { padding: 0.4rem; border-bottom: 1px solid var(--line-soft); }
+  .ic { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.55rem; border-radius: 10px; min-width: 0; }
+  .ic.is-active { background: var(--brand-wash); }
+  .ic__txt { display: flex; flex-direction: column; gap: 0.05rem; flex: 1; min-width: 0; }
+  .ic__txt b { font-size: 0.78rem; }
+  .ic__txt em { font-style: normal; font-size: 0.72rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ic__un { flex: none; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--r-pill); background: var(--brand); color: #fff; font-size: 0.65rem; font-weight: 800; display: grid; place-items: center; }
+  .thread { padding: 0.7rem 0.8rem 0.9rem; }
+  .thread__head { display: flex; align-items: center; gap: 0.45rem; padding-bottom: 0.6rem; }
+  .thread__head b { font-size: 0.78rem; }
+  .tag-hot { margin-left: auto; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-ink); background: var(--brand-wash); padding: 0.2rem 0.5rem; border-radius: var(--r-pill); }
+  .thread__body { display: flex; flex-direction: column; gap: 0.45rem; }
+  .tb { max-width: 82%; padding: 0.5rem 0.75rem; border-radius: 14px; font-size: 0.8rem; line-height: 1.35; }
+  .tb--them { align-self: flex-start; background: var(--paper-2); border-bottom-left-radius: 5px; }
+  .tb--me { align-self: flex-end; background: var(--brand); color: #fff; border-bottom-right-radius: 5px; position: relative; }
+  .tb--me i { display: block; font-style: normal; font-size: 0.58rem; opacity: 0.85; margin-top: 0.15rem; text-align: right; }
+
+  /* 4 · intent */
+  .ui--intent .intent { padding: 0.85rem; }
+  .intent__alert { display: flex; align-items: center; gap: 0.55rem; padding: 0.7rem 0.8rem; background: var(--ink); color: var(--on-ink); border-radius: 12px; font-size: 0.82rem; }
+  .intent__alert b { color: #fff; }
+  .intent__spark { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); }
+  .intent__spark svg { width: 12px; height: 12px; }
+  .intent__spark svg path { fill: #fff; stroke: none; }
+  .chatmini { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.7rem; }
+  .cm { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.7rem; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); }
+  .cm__txt { flex: 1; min-width: 0; font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lvl { flex: none; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.18rem 0.5rem; border-radius: var(--r-pill); }
+  .lvl--low { background: var(--paper-3); color: var(--ink-faint); }
+  .lvl--mid { background: color-mix(in srgb, #E8A23D 20%, transparent); color: #9a6212; }
+  .lvl--high { background: var(--brand); color: #fff; }
+</style>

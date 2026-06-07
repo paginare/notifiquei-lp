@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Planos Vitalícios — Notifiquei</title>
+<meta name="description" content="Acesso vitalício ao Notifiquei. Pague uma vez e automatize DMs e comentários no Instagram para sempre, pela API oficial da Meta.">
+<link rel="canonical" href="https://notifiquei.com.br/vitalicio">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<meta name="theme-color" content="#FF1F6D">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Notifiquei">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://notifiquei.com.br/vitalicio">
+<meta property="og:title" content="Notifiquei Vitalício — Pague uma vez. Use para sempre.">
+<meta property="og:description" content="Acesso vitalício ao Notifiquei. Automatize DMs e comentários no Instagram pela API oficial da Meta sem pagar mensalidade nunca mais.">
+<meta property="og:image" content="https://notifiquei.com.br/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notifiquei",
+  "url": "https://notifiquei.com.br",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": [
+    { "@type": "Offer", "name": "Solo Vitalício", "price": "399.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/4r5hyjp_912931" },
+    { "@type": "Offer", "name": "Plus Vitalício", "price": "899.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/7n22fnj" },
+    { "@type": "Offer", "name": "Pro Vitalício", "price": "1199.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/3v8fz3c" },
+    { "@type": "Offer", "name": "Business Vitalício", "price": "1499.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/z9nvbwv" },
+    { "@type": "Offer", "name": "Agency Vitalício", "price": "1999.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/c77a29r_912927" },
+    { "@type": "Offer", "name": "Enterprise Vitalício", "price": "3999.99", "priceCurrency": "BRL", "url": "https://pay.cakto.com.br/3c7pufc" }
+  ]
+}
+</script>
+
+<script src="/assets/cookie-consent.js"></script>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-700.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/bricolage-800.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-600.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jakarta-700.woff2">
+
+<style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/bricolage-700.woff2') format('woff2'); }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: swap; src: url('/assets/fonts/bricolage-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/jakarta-700.woff2') format('woff2'); }
+
+  :root {
+    --brand: #FF1F6D;
+    --brand-dark: #C81558;
+    --brand-deep: #6B1538;
+    --brand-light: #FFEFF4;
+    --brand-soft: #FFD4DE;
+    --cta: #0E9F6E;        /* verde CTA — alto contraste com o rosa, sinaliza "avançar" */
+    --cta-bright: #12C07A;
+    --cta-deep: #0B7E57;
+    --cream: #FFF9F3;
+    --cream-2: #F5ECE0;
+    --ink: #1A1416;
+    --ink-2: #3A2F33;
+    --ink-soft: #6B5A5F;
+    --ink-muted: #A39196;
+    --line: #EADDD8;
+    --display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1.big, h2.title { font-variation-settings: 'opsz' 72; }
+  .price-tag .amt { font-variation-settings: 'opsz' 48; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.7; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* ===== NAV ===== */
+  nav { position: sticky; top: 16px; z-index: 100; margin: 16px 20px 0; }
+  .nav-inner { max-width: 1200px; margin: 0 auto; background: var(--ink); color: var(--cream); border-radius: 999px; padding: 8px 10px 8px 28px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 0 0 rgba(255, 31, 109, 0.35), 0 20px 40px -12px rgba(26,20,22,0.25); }
+  .logo-svg { height: 24px; width: auto; color: var(--brand); display: block; }
+  .nav-cta-group { display: flex; gap: 8px; align-items: center; }
+  .nav-login { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; padding: 0 12px; transition: opacity .2s; }
+  .nav-login:hover { opacity: 1; }
+  .btn-brand { background: var(--brand-dark); color: white; padding: 11px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .2s; border: none; letter-spacing: -0.005em; }
+  .btn-brand:hover { background: var(--brand); }
+  @media (max-width: 600px) { nav { margin: 12px 12px 0; } .nav-login { display: none; } }
+
+  /* ===== HERO ===== */
+  .hero-vit {
+    padding: 100px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .blob-1 { width: 560px; height: 560px; background: rgba(255,31,109,0.12); top: -140px; left: -120px; }
+  .blob-2 { width: 400px; height: 400px; background: rgba(200,21,88,0.08); bottom: -100px; right: -80px; }
+
+  .hero-vit .wrap { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: var(--cream);
+    padding: 8px 16px 8px 8px; border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 32px;
+  }
+  .hero-badge .badge-pill {
+    background: var(--brand); color: white;
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  h1.big {
+    font-family: var(--display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.03;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  h1.big em { font-style: normal; color: var(--brand); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+
+  .btn-big {
+    display: inline-block;
+    background: var(--brand-dark); color: white;
+    padding: 18px 40px; border-radius: 999px;
+    font-size: 17px; font-weight: 700;
+    text-decoration: none; letter-spacing: -0.01em;
+    transition: background .2s, transform .15s;
+    box-shadow: 0 4px 20px rgba(200,21,88,0.35);
+  }
+  .btn-big:hover { background: var(--brand); transform: translateY(-2px); }
+
+  .hero-trust {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; flex-wrap: wrap;
+    margin-top: 28px;
+    font-size: 13px; color: var(--ink-muted); font-weight: 500;
+  }
+  .hero-trust-item { display: flex; align-items: center; gap: 6px; }
+  .hero-trust-item svg { color: var(--brand); }
+
+  /* ===== GUARANTEE STRIP ===== */
+  .guarantee-strip {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .guarantee-strip strong { color: var(--brand-soft); }
+
+  /* ===== PARCEIRO OFICIAL (strip) ===== */
+  .partners-strip { background: var(--cream); padding: 32px 0; border-bottom: 1px solid var(--line); }
+  .partners-strip .wrap { display: flex; align-items: center; justify-content: center; gap: 26px; flex-wrap: wrap; }
+  .partners-strip-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-muted); }
+  .partner-badge { display: block; height: 54px; width: auto; }
+  @media (max-width: 600px) { .partner-badge { height: 44px; } }
+
+  /* ===== CLIENTES (slider de logos) ===== */
+  .clients { background: #fff; padding: 56px 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .clients-label { text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-muted); margin-bottom: 32px; }
+  .logo-marquee { position: relative; width: 100%; overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .logo-track { display: flex; align-items: center; gap: 60px; width: max-content; animation: logoscroll 32s linear infinite; }
+  .logo-track img { height: 34px; width: auto; }
+  .logo-track img.on-dark { background: var(--ink); padding: 10px 16px; border-radius: 10px; box-sizing: content-box; }
+  @keyframes logoscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; } }
+
+  /* ===== BENEFITS ===== */
+  .benefits { padding: 80px 0; }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (max-width: 900px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+  .benefit-card {
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 28px 24px;
+  }
+  .benefit-icon {
+    width: 44px; height: 44px;
+    background: var(--brand-light);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    color: var(--brand);
+  }
+  .benefit-icon svg { width: 22px; height: 22px; }
+  .benefit-card h3 { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px; }
+  .benefit-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+  .section-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand); margin-bottom: 12px; }
+  h2.title {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  h2.title em { font-style: italic; }
+  .lead { font-size: 17px; color: var(--ink-soft); max-width: 560px; line-height: 1.7; }
+
+  /* ===== PRICING ===== */
+  .price-section { background: var(--brand-light); padding: 100px 0; position: relative; overflow: hidden; }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 48px auto 0;
+    max-width: 1040px;
+  }
+  @media (max-width: 760px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 24px;
+    padding: 26px 20px 22px;
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+  }
+  .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,20,22,0.10); }
+  .price-card.featured {
+    background: var(--ink);
+    border-color: var(--brand-dark);
+    box-shadow: 0 0 0 3px rgba(255,31,109,0.25), 0 12px 40px rgba(26,20,22,0.15);
+  }
+  .price-card.featured:hover { transform: translateY(-4px); box-shadow: 0 0 0 3px rgba(255,31,109,0.35), 0 16px 48px rgba(26,20,22,0.2); }
+
+  .price-badge {
+    display: inline-block;
+    background: var(--brand);
+    color: white;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 4px 12px; border-radius: 999px;
+    margin-bottom: 16px;
+    align-self: flex-start;
+  }
+
+  .price-name { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px; }
+  .price-card.featured .price-name { color: var(--cream); }
+  .price-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 16px; }
+  .price-card.featured .price-desc { color: rgba(255,249,243,0.55); }
+  .price-accounts { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: var(--display); font-size: 13.5px; font-weight: 700; color: var(--brand-dark); background: var(--brand-light); border: 1.5px solid var(--brand-soft); padding: 7px 14px; border-radius: 999px; margin-bottom: 18px; }
+  .price-accounts strong { font-size: 17px; line-height: 1; }
+  .price-accounts svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .price-card.featured .price-accounts { color: #fff; background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.22); }
+  .price-pair-note { font-size: 12px; color: var(--ink-muted); margin-top: -12px; margin-bottom: 18px; font-weight: 600; }
+  .price-card.featured .price-pair-note { color: rgba(255,249,243,0.6); }
+
+  .price-tag { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+  .price-tag .sym { font-family: var(--display); font-size: 18px; font-weight: 500; color: var(--ink-muted); }
+  .price-card.featured .price-tag .sym { color: rgba(255,249,243,0.45); }
+  .price-tag .amt { font-family: var(--display); font-size: 36px; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); line-height: 1; }
+  .price-card.featured .price-tag .amt { color: var(--cream); }
+  .price-tag .cents { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--ink-soft); align-self: flex-start; margin-top: 6px; }
+  .price-card.featured .price-tag .cents { color: rgba(255,249,243,0.7); }
+
+  .price-once { font-size: 12px; color: var(--ink-muted); margin-bottom: 4px; font-weight: 500; }
+  .price-card.featured .price-once { color: rgba(255,249,243,0.4); }
+  .price-installment { font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; font-weight: 600; }
+  .price-card.featured .price-installment { color: rgba(255,249,243,0.62); }
+  .price-economy { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--brand-dark); background: var(--brand-light); padding: 4px 10px; border-radius: 999px; margin: 0 0 16px; }
+  .price-card.featured .price-economy { color: #fff; background: rgba(255,255,255,0.16); }
+
+  .price-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); padding-top: 16px; flex: 1; }
+  .price-card.featured .price-list { border-top-color: rgba(255,249,243,0.12); }
+  .price-list li { font-size: 14px; line-height: 1.75; color: var(--ink-soft); padding-left: 22px; position: relative; margin-bottom: 6px; }
+  .price-card.featured .price-list li { color: rgba(255,249,243,0.8); }
+  .price-list li::before { content: '✓'; position: absolute; left: 0; color: var(--brand); font-weight: 700; font-size: 13px; }
+
+  .price-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 999px;
+    font-size: 14.5px; font-weight: 700;
+    font-family: var(--sans);
+    text-decoration: none;
+    background: var(--cta); color: #fff;
+    box-shadow: 0 6px 18px -4px rgba(14,159,110,0.5);
+    transition: background .2s, transform .15s, box-shadow .2s;
+    letter-spacing: -0.005em;
+    border: none; cursor: pointer;
+  }
+  .price-btn:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(14,159,110,0.6); }
+  .price-btn:active { transform: translateY(0); box-shadow: 0 4px 12px -4px rgba(14,159,110,0.5); }
+  /* Plano em destaque (Pro): verde vivo no card escuro, com hover de alto contraste */
+  .price-card.featured .price-btn { background: var(--cta-bright); color: #fff; box-shadow: 0 8px 24px -4px rgba(18,192,122,0.65); }
+  .price-card.featured .price-btn:hover { background: #fff; color: var(--cta-deep); transform: translateY(-2px); }
+
+  .price-guarantee { text-align: center; font-size: 12px; color: var(--ink-muted); margin-top: 12px; }
+  .price-card.featured .price-guarantee { color: rgba(255,249,243,0.35); }
+
+  /* ===== FAQ ===== */
+  .faq-section { padding: 100px 0; }
+  .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; max-width: 720px; }
+  .faq-item { border: 1.5px solid var(--line); border-radius: 16px; overflow: hidden; cursor: pointer; transition: border-color .2s; }
+  .faq-item:hover, .faq-item.open { border-color: var(--brand-soft); }
+  .faq-q { font-family: var(--display); font-size: 16px; font-weight: 700; letter-spacing: -0.015em; color: var(--ink); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; user-select: none; }
+  .faq-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; color: var(--brand); flex-shrink: 0; transition: transform .25s, background .2s; font-weight: 400; line-height: 1; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--brand-light); }
+  .faq-a { font-size: 15px; color: var(--ink-soft); line-height: 1.75; padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s; }
+  .faq-item.open .faq-a { max-height: 400px; padding: 0 24px 20px; }
+
+  /* ===== FINAL CTA ===== */
+  .final {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse at center top, rgba(255,31,109,0.2) 0%, transparent 65%); pointer-events: none; }
+  .final .wrap { position: relative; z-index: 2; }
+  .final h2 { font-family: var(--display); font-size: clamp(30px, 4.5vw, 54px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 20px; }
+  .final h2 em { font-style: italic; color: var(--brand); }
+  .final p { font-size: 17px; color: rgba(255,249,243,0.6); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+  .final .btn-big { background: var(--brand-dark); }
+  .final .btn-big:hover { background: var(--brand); }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--ink); color: var(--cream); padding: 72px 0 0; position: relative; overflow: hidden; }
+  footer::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse at center top, rgba(255,31,109,0.18) 0%, transparent 60%); pointer-events: none; }
+  footer .wrap { position: relative; z-index: 2; }
+  .foot-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; }
+  @media (max-width: 900px) { .foot-top { grid-template-columns: 1fr 1fr; gap: 40px 32px; } }
+  footer .logo-svg { color: var(--cream); height: 32px; display: block; }
+  footer .foot-brand { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 20px; }
+  footer .foot-brand-col { text-align: left; }
+  footer .foot-brand-col p.tag { max-width: 340px; font-size: 14px; color: rgba(255,249,243,0.6); line-height: 1.6; margin-bottom: 24px; }
+  @media (max-width: 900px) { footer .foot-brand-col { grid-column: span 2; } }
+  .foot-social { display: flex; gap: 10px; }
+  .foot-social a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255,249,243,0.06); color: rgba(255,249,243,0.7); transition: all .2s; border: 1px solid rgba(255,249,243,0.08); }
+  .foot-social a:hover { background: var(--brand); color: white; border-color: var(--brand); transform: translateY(-2px); }
+  .foot-social svg { width: 18px; height: 18px; }
+  footer .foot-nav-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: rgba(255,249,243,0.45); margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 12px; }
+  footer a { color: rgba(255,249,243,0.75); text-decoration: none; font-size: 14.5px; transition: color .2s; }
+  footer a:not(.foot-brand):not(.foot-social a):hover { color: var(--cream); }
+  .foot-link-with-icon { display: inline-flex; align-items: center; gap: 8px; }
+  .foot-link-with-icon svg { width: 14px; height: 14px; opacity: 0.6; }
+  .foot-partners { padding: 24px 0; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,249,243,0.06); position: relative; z-index: 3; }
+  .foot-partner-item { display: inline-flex; align-items: center; gap: 10px; opacity: 0.55; transition: opacity .2s; }
+  .foot-partner-item:hover { opacity: 0.85; }
+  .foot-partner-item img { height: 28px; width: auto; display: block; }
+  .foot-partner-label { font-size: 11px; font-weight: 500; color: rgba(255,249,243,0.45); text-transform: uppercase; letter-spacing: 0.12em; }
+  .foot-partner-abacate { height: 22px !important; filter: brightness(0) invert(1); opacity: 0.85; }
+  .foot-partner-abacate-fallback { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; display: inline-flex; align-items: center; gap: 6px; }
+  .foot-partner-abacate-fallback::before { content: '🥑'; font-size: 18px; }
+  .foot-partner-divider { width: 1px; height: 20px; background: rgba(255,249,243,0.15); }
+  .foot-bottom { padding: 28px 0; border-top: 1px solid rgba(255,249,243,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,249,243,0.4); flex-wrap: wrap; gap: 16px; position: relative; z-index: 3; }
+  .foot-bottom-badges { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .foot-bottom-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: rgba(255,249,243,0.04); border: 1px solid rgba(255,249,243,0.06); font-size: 12px; font-weight: 500; color: rgba(255,249,243,0.6); }
+  .foot-bottom-badge .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
+  @media (max-width: 600px) { .foot-partners { gap: 16px; } .foot-partner-divider { display: none; } }
+
+  /* ===== PAYMENT MODAL ===== */
+  .pay-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .pay-modal.open { display: flex; }
+  .pay-modal-backdrop { position: absolute; inset: 0; background: rgba(26,20,22,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .pay-modal-card { position: relative; z-index: 2; background: var(--cream); border: 1.5px solid var(--line); border-radius: 24px; padding: 32px 28px 28px; max-width: 420px; width: 100%; box-shadow: 0 24px 60px rgba(26,20,22,0.3); animation: payIn .22s ease; }
+  @keyframes payIn { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+  .pay-modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line); background: white; color: var(--ink-soft); font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+  .pay-modal-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .pay-modal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand); margin-bottom: 6px; }
+  .pay-modal-title { font-family: var(--display); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 20px; }
+  .pay-opt { display: block; text-decoration: none; border: 1.5px solid var(--line); border-radius: 16px; padding: 15px 18px; margin-bottom: 12px; transition: all .18s; background: white; }
+  .pay-opt:last-child { margin-bottom: 0; }
+  .pay-opt:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,20,22,0.08); }
+  .pay-opt-pix { border-color: var(--brand-soft); }
+  .pay-opt-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .pay-opt-tag { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--ink); }
+  .pay-opt-best { font-size: 11px; font-weight: 700; color: var(--brand); background: var(--brand-light); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .pay-opt-inst { font-size: 12px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+  .pay-opt-price { font-family: var(--display); font-size: 23px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; }
+  .pay-opt-sub { font-size: 12.5px; color: var(--ink-muted); margin-top: 1px; }
+  .pay-modal-foot { text-align: center; font-size: 11.5px; color: var(--ink-muted); margin-top: 16px; }
+
+  /* ===== REVEAL ANIMATIONS ===== */
+  .rv { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  .cascade > * { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+  .cascade.in > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+  .cascade.in > *:nth-child(2) { opacity: 1; transform: none; transition-delay: .08s; }
+  .cascade.in > *:nth-child(3) { opacity: 1; transform: none; transition-delay: .16s; }
+  .cascade.in > *:nth-child(4) { opacity: 1; transform: none; transition-delay: .24s; }
+  .cascade.in > *:nth-child(5) { opacity: 1; transform: none; transition-delay: .32s; }
+  .cascade.in > *:nth-child(6) { opacity: 1; transform: none; transition-delay: .40s; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="notifiquei-logo" viewBox="0 0 290 50" fill="currentColor">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M202.702 12.718C206.429 12.718 209.261 15.3694 210.627 19.5692C210.56 16.2042 210.486 13.521 210.486 13.509H219.893C219.892 13.5309 219.646 22.4572 219.646 28.1806C219.646 33.911 219.893 42.8523 219.893 42.8523H210.486C210.486 42.8523 210.648 36.967 210.709 31.6858C209.345 36.1292 206.392 38.7788 202.702 38.7788C197.373 38.7788 193.874 33.3616 193.874 25.7483C193.874 17.8247 197.579 12.718 202.702 12.718ZM206.919 19.5847C204.55 19.5847 202.838 21.9631 202.838 25.6535C202.838 29.1992 204.456 31.7223 206.919 31.7223C210.245 31.7223 210.743 28.1997 210.719 25.668C210.696 23.1346 210.283 19.5847 206.919 19.5847Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M115.037 12.718C122.993 12.718 128.218 18.1746 128.218 25.8433C128.218 33.8246 122.687 38.9685 115.037 38.9685C107.081 38.9685 101.856 33.512 101.856 25.8433C101.856 17.862 107.387 12.718 115.037 12.718ZM115.037 19.6216C112.823 19.6216 111.221 22.0599 111.221 25.8432C111.221 29.4784 112.734 32.065 115.037 32.065C117.251 32.065 118.852 29.6266 118.852 25.8432C118.852 22.2081 117.34 19.6216 115.037 19.6216Z"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M263.963 12.718C271.241 12.718 276.337 16.7304 276.631 24.5213L268.63 25.2754C268.629 25.2647 268.628 25.254 268.628 25.2433L260.294 25.999C260.294 26.0024 260.294 26.0058 260.294 26.0092C260.294 29.7705 261.951 32.4468 264.473 32.4468C266.534 32.4468 268.109 30.6257 268.536 27.6772L276.637 27.5164C276.232 34.8412 270.789 38.7788 263.963 38.7788C256.312 38.7788 251.288 33.3616 251.288 25.7483C251.288 17.8247 256.607 12.718 263.963 12.718ZM264.473 19.5716C262.439 19.5716 260.878 21.3463 260.427 24.2281L268.229 22.9717C267.585 20.888 266.242 19.5716 264.473 19.5716Z"/>
+      <path d="M236.69 31.7222C240.148 31.7222 239.967 28.3511 239.967 25.8761C239.967 21.0519 239.721 13.529 239.72 13.5089H249.128C249.127 13.529 248.881 21.0519 248.881 25.8761C248.881 30.7067 249.128 38.2433 249.128 38.2433H239.72C239.72 38.2433 239.791 36.0731 239.857 33.3156C238.321 36.77 235.674 38.7787 232.473 38.7787C227.145 38.7787 223.646 33.3221 223.646 25.6534C223.646 25.6346 223.646 25.6159 223.646 25.5972H223.646V13.5089H232.609C232.609 16.4353 232.609 19.3617 232.609 22.288C232.609 25.4441 232.126 31.7222 236.69 31.7222Z"/>
+      <path d="M141.728 12.9945L146.804 12.718V19.6216L141.728 19.6215C141.728 19.6215 141.323 30.3161 142.174 31.1387C143.025 31.9614 146.804 31.3397 146.804 31.3397V38.2433C146.804 38.2433 138.453 39.9961 135.247 36.7863C134.182 35.7209 133.537 34.6452 133.146 33.5315C131.697 29.4018 132.278 23.9378 132.321 19.6215H129.641V13.5964L132.321 13.4592V9.47689L141.728 9.14808V12.9945Z"/>
+      <path d="M84.6709 9.45401V9.47873L84.6795 9.47648C86.0204 13.4638 87.3955 18.0216 88.7004 22.8916C89.3516 25.3216 89.9487 27.6931 90.487 29.9717V9.47689H99.0664V38.2433L85.4938 38.2433L85.4534 38.2541C84.1124 34.2668 82.7374 29.709 81.4325 24.8391C80.7397 22.2537 80.1081 19.7347 79.5435 17.3233H78.627V38.2433H70.0477V9.47689H75.6165V9.45393L84.6709 9.45401Z"/>
+      <path d="M159.645 15.1685C159.645 15.1685 159.513 22.2003 159.481 26.7059C159.449 31.2114 159.481 38.2433 159.481 38.2433H150.074C150.074 38.2433 150.32 31.2125 150.32 26.7059C150.32 22.1992 150.074 15.1685 150.074 15.1685C150.074 15.1685 152.938 15.4151 154.777 15.4151C156.617 15.4151 159.645 15.1685 159.645 15.1685Z"/>
+      <path d="M179.081 15.1678H176.18C176.18 15.1682 176.18 15.1686 176.18 15.169C173.892 15.1892 172.262 16.4588 172.225 18.3911L179.081 18.0178V24.9213L173.762 24.9213L173.966 38.2433H164.558L164.762 24.9213H161.917V18.8962L165.474 18.7141C164.192 17.6527 163.476 16.2185 163.476 14.5713C163.476 10.9001 166.962 8.48923 171.862 8.48918V8.48886H179.081V15.1678Z"/>
+      <path d="M191.088 15.1685C191.088 15.1685 190.956 22.2003 190.924 26.7059C190.891 31.2114 190.924 38.2433 190.924 38.2433H181.516C181.516 38.2433 181.763 31.2125 181.763 26.7059C181.763 22.1992 181.516 15.1685 181.516 15.1685C181.516 15.1685 184.38 15.4151 186.22 15.4151C188.059 15.4151 191.088 15.1685 191.088 15.1685Z"/>
+      <path d="M289.478 15.1685C289.478 15.1685 289.345 22.2003 289.313 26.7059C289.281 31.2114 289.313 38.2433 289.313 38.2433H279.906C279.906 38.2433 280.153 31.2125 280.153 26.7059C280.153 22.1992 279.906 15.1685 279.906 15.1685C279.906 15.1685 282.77 15.4151 284.61 15.4151C286.449 15.4151 289.478 15.1685 289.478 15.1685Z"/>
+      <path d="M154.777 7.14786C158.05 7.14786 160.16 8.48253 160.16 10.3284C160.16 12.2483 157.922 13.5089 154.777 13.5089C151.505 13.5089 149.395 12.1743 149.395 10.3284C149.395 8.40862 151.633 7.14786 154.777 7.14786Z"/>
+      <path d="M186.22 7.14786C189.493 7.14786 191.602 8.48253 191.602 10.3284C191.602 12.2483 189.365 13.5089 186.22 13.5089C182.947 13.5089 180.838 12.1743 180.838 10.3284C180.838 8.40862 183.075 7.14786 186.22 7.14786Z"/>
+      <path d="M284.61 7.14786C287.883 7.14786 289.992 8.48253 289.992 10.3284C289.992 12.2483 287.754 13.5089 284.61 13.5089C281.337 13.5089 279.228 12.1743 279.227 10.3284C279.227 8.40862 281.465 7.14786 284.61 7.14786Z"/>
+      <path d="M24.1312 21.3366C31.0739 7.66897 40.9416 -1.75991 46.1712 0.276579C50.9236 2.12724 50.2104 12.8091 44.8306 25H55.763C55.2286 26.2088 54.6484 27.4324 54.0231 28.6634C47.0804 42.331 37.2127 51.7599 31.983 49.7234C27.4413 47.9548 27.8915 38.1204 32.6361 26.6112C32.3155 27.2921 31.9807 27.9766 31.6318 28.6634C24.6892 42.331 14.8215 51.7599 9.5918 49.7234C4.83943 47.8728 5.55268 37.1909 10.9324 25H0C0.534451 23.7913 1.11459 22.5676 1.73994 21.3366C8.68264 7.66897 18.5503 -1.75991 23.78 0.276579C28.3217 2.04523 27.8714 11.8795 23.1268 23.3886C23.4474 22.7078 23.7823 22.0234 24.1312 21.3366Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" style="display:inline-flex;align-items:center;text-decoration:none;">
+      <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
+    </a>
+    <div class="nav-cta-group">
+      <a href="https://app.notifiquei.com.br" class="nav-login">Entrar</a>
+      <a href="#planos" class="btn-brand">Garantir acesso →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="hero-vit">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="wrap">
+    <div class="hero-badge rv">
+      <span class="badge-pill">Oferta vitalícia</span>
+      <span>Pague uma vez. Use para sempre.</span>
+    </div>
+
+    <h1 class="big rv">
+      Chega de pagar<br>
+      todo mês pela<br>
+      <em>mesma ferramenta.</em>
+    </h1>
+
+    <p class="hero-sub rv">
+      Acesso completo ao Notifiquei — automação de DMs, comentários e stories no <strong>Instagram™</strong> pela API oficial da Meta — em um único pagamento, sem renovação, sem surpresa.
+    </p>
+
+    <div class="rv">
+      <a href="#planos" class="btn-big">Ver os planos vitalícios →</a>
+    </div>
+
+    <div class="hero-trust rv">
+      <div class="hero-trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Pague uma vez
+      </div>
+      <div class="hero-trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Parceiro oficial Meta e TikTok
+      </div>
+      <div class="hero-trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Acesso vitalício imediato
+      </div>
+      <div class="hero-trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+        7 dias de garantia
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GUARANTEE STRIP ===== -->
+<div class="guarantee-strip">
+  <strong>Sem renovação automática.</strong> Sem cartão de crédito recorrente. Sem mensalidade. Nunca.
+</div>
+
+<!-- ===== PARCEIRO OFICIAL ===== -->
+<section class="partners-strip">
+  <div class="wrap">
+    <span class="partners-strip-label">Parceiro oficial</span>
+    <img class="partner-badge" src="assets/meta-business-partner.png" alt="Meta Business Partner" loading="lazy">
+    <img class="partner-badge" src="assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="benefits">
+  <div class="wrap">
+    <p class="section-eyebrow rv">Por que vitalício?</p>
+    <h2 class="title rv">Tudo que o plano mensal entrega,<br><em>sem o custo mensal.</em></h2>
+    <div class="benefits-grid cascade rv">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <h3>Automações ilimitadas</h3>
+        <p>Configure quantos fluxos quiser — comentário, DM, story — sem limite de uso e sem custo extra por volume.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>API oficial da Meta</h3>
+        <p>Zero risco de bloqueio. Usamos exclusivamente a API oficial do Instagram™, com parceria Meta Business Partner.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Atualizações incluídas</h3>
+        <p>Todas as novas funcionalidades lançadas enquanto a plataforma existir chegam para você sem nenhum custo adicional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTES (slider de logos) ===== -->
+<section class="clients">
+  <div class="wrap">
+    <p class="clients-label">Marcas que automatizam vendas com a Notifiquei</p>
+  </div>
+  <div class="logo-marquee">
+    <div class="logo-track">
+      <img src="assets/clientes/gummy.png" alt="Gummy">
+      <img src="assets/clientes/rosa-selvagem.png" alt="Rosa Selvagem">
+      <img class="on-dark" src="assets/clientes/kactos-white.png" alt="Kactos">
+      <img src="assets/clientes/vert-sophistique.png" alt="Vert Sophistique">
+      <img src="assets/clientes/responda.png" alt="Responda">
+      <img src="assets/clientes/cikiy.svg" alt="Cikiy">
+      <img src="assets/clientes/debran.svg" alt="DeBran">
+      <img class="on-dark" src="assets/clientes/img3840.png" alt="Procurada Agência Digital">
+      <img src="assets/clientes/abacatepay.svg" alt="AbacatePay">
+      <img class="on-dark" src="assets/clientes/logo-quadrado-branco.png" alt="Cliente Notifiquei">
+      <img src="assets/clientes/gummy.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/rosa-selvagem.png" alt="" aria-hidden="true">
+      <img class="on-dark" src="assets/clientes/kactos-white.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/vert-sophistique.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/responda.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/cikiy.svg" alt="" aria-hidden="true">
+      <img src="assets/clientes/debran.svg" alt="" aria-hidden="true">
+      <img class="on-dark" src="assets/clientes/img3840.png" alt="" aria-hidden="true">
+      <img src="assets/clientes/abacatepay.svg" alt="" aria-hidden="true">
+      <img class="on-dark" src="assets/clientes/logo-quadrado-branco.png" alt="" aria-hidden="true">
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="planos" class="price-section">
+  <div class="wrap">
+    <p class="section-eyebrow rv">Planos vitalícios</p>
+    <h2 class="title rv">Garanta agora o<br><em>acesso para sempre.</em></h2>
+    <p class="lead rv">Escolha o plano que cabe na sua operação. Pague apenas uma vez e nunca mais pense nisso.</p>
+
+    <div class="price-grid cascade rv">
+
+      <!-- Solo — 1 conta -->
+      <div class="price-card">
+        <div class="price-name">Solo</div>
+        <div class="price-desc">Criador iniciante, operação pequena.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>1</strong> conta conectada</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">399</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 41,98 no cartão</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Automações ilimitadas</li>
+          <li>Templates básicos · atendimento via chat</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="1">Garantir Solo →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Plus — 3 contas -->
+      <div class="price-card">
+        <div class="price-name">Plus</div>
+        <div class="price-desc">Pra quem gerencia mais de um perfil.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>3</strong> contas conectadas</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">899</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 94,45 no cartão</div>
+        <div class="price-economy">25% mais barato por conta que o Solo</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Times e divisão por equipe</li>
+          <li>Automações ilimitadas · templates completos</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="3">Garantir Plus →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Pro — 5 contas -->
+      <div class="price-card featured">
+        <div class="price-badge">Mais popular</div>
+        <div class="price-name">Pro</div>
+        <div class="price-desc">Pra quem já escalou um pouco.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>5</strong> contas conectadas</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.199</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 125,94 no cartão</div>
+        <div class="price-economy">20% mais barato por conta que o Plus</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Times e divisão por equipe</li>
+          <li>Automações ilimitadas · templates completos</li>
+          <li>Novidades antes de todo mundo</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="5">Garantir Pro →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Business — 10 contas -->
+      <div class="price-card">
+        <div class="price-name">Business</div>
+        <div class="price-desc">Agência e operação grande.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>10</strong> contas conectadas</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.499</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 157,42 no cartão</div>
+        <div class="price-economy">38% mais barato por conta que o Pro</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Times e divisão por equipe</li>
+          <li>Automações ilimitadas · templates completos</li>
+          <li>Atendimento VIP no WhatsApp</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="10">Garantir Business →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Agency — 20 contas -->
+      <div class="price-card">
+        <div class="price-name">Agency</div>
+        <div class="price-desc">Para agências e grandes times. Alugue para clientes e gere recorrência.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>20</strong> contas conectadas</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">1.999</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 209,90 no cartão</div>
+        <div class="price-economy">33% mais barato por conta que o Business</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Times e divisão por equipe</li>
+          <li>Atendimento VIP no WhatsApp</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="20">Garantir Agency →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+      <!-- Enterprise — 50 contas (compra 40, ganha 50) -->
+      <div class="price-card">
+        <div class="price-badge">Compre 40, ganhe 50</div>
+        <div class="price-name">Enterprise</div>
+        <div class="price-desc">Operação enorme e revenda. Alugue para clientes e gere recorrência.</div>
+        <div class="price-accounts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>50</strong> contas conectadas</span>
+        </div>
+        <div class="price-pair-note">Cada conta = 1 Instagram + 1 TikTok</div>
+        <div class="price-tag">
+          <span class="sym">R$</span>
+          <span class="amt">3.999</span>
+          <span class="cents">,99</span>
+        </div>
+        <div class="price-once">no PIX · pagamento único</div>
+        <div class="price-installment">ou 12x de R$ 419,80 no cartão</div>
+        <div class="price-economy">20% mais barato por conta que o Agency</div>
+        <ul class="price-list">
+          <li>DM, comentários e stories no Instagram</li>
+          <li>TikTok: resposta automática no Direct</li>
+          <li>Sorteios automáticos</li>
+          <li>Agendamento de posts: feed, reels e stories</li>
+          <li>Etiquetas e campanhas para contatos</li>
+          <li>Times e divisão por equipe</li>
+          <li>Atendimento VIP no WhatsApp</li>
+          <li>Atualizações inclusas</li>
+        </ul>
+        <button class="price-btn" data-plan="50">Garantir Enterprise →</button>
+        <div class="price-guarantee">Garantia de 7 dias</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <div class="wrap">
+    <p class="section-eyebrow rv">Dúvidas sobre o vitalício</p>
+    <h2 class="title rv">Perguntas diretas.<br><em>Respostas honestas.</em></h2>
+    <div class="faq-list cascade rv">
+      <div class="faq-item">
+        <div class="faq-q">O acesso é realmente para sempre?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Sim. Pagamento único, acesso permanente. Enquanto a Notifiquei existir como plataforma, sua conta estará ativa sem nenhum custo adicional.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">As atualizações também são vitalícias?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Sim. Todas as novas funcionalidades e melhorias lançadas na plataforma estão incluídas — sem custo extra e sem precisar fazer upgrade.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Posso mudar de plano depois?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Sim. Se sua operação crescer, você pode fazer upgrade pagando apenas a diferença entre os planos. Fale com a gente pelo WhatsApp.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Qual a garantia?<div class="faq-icon">+</div></div>
+        <div class="faq-a">7 dias. Se o Notifiquei não funcionar do jeito que você esperava, devolvemos 100% do valor sem perguntar por quê.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Isso pode bloquear meu Instagram™?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram™. Zero automação disfarçada, zero risco de banimento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final">
+  <div class="wrap">
+    <h2>Pague uma vez.<br>Venda <em>para sempre.</em></h2>
+    <p>Sem renovação, sem mensalidade, sem surpresa. Acesso completo ao Notifiquei com um único pagamento.</p>
+    <a href="#planos" class="btn-big">Garantir meu acesso vitalício →</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="pay-modal" id="payModal" aria-hidden="true">
+  <div class="pay-modal-backdrop" data-close></div>
+  <div class="pay-modal-card" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <button class="pay-modal-close" data-close aria-label="Fechar">&times;</button>
+    <div class="pay-modal-eyebrow">Plano <span id="pmPlanName"></span> · Vitalício</div>
+    <h3 class="pay-modal-title" id="pmTitle">Como você prefere pagar?</h3>
+
+    <a class="pay-opt pay-opt-pix" id="pmPix" href="#" rel="nofollow">
+      <div class="pay-opt-head">
+        <span class="pay-opt-tag">PIX</span>
+        <span class="pay-opt-best">Melhor preço · à vista</span>
+      </div>
+      <div class="pay-opt-price" id="pmPixPrice"></div>
+      <div class="pay-opt-sub">Aprovação na hora · acesso liberado em minutos</div>
+    </a>
+
+    <a class="pay-opt pay-opt-card" id="pmCard" href="#" rel="nofollow">
+      <div class="pay-opt-head">
+        <span class="pay-opt-tag">Cartão</span>
+        <span class="pay-opt-inst">em até 12x</span>
+      </div>
+      <div class="pay-opt-price" id="pmCardPrice"></div>
+      <div class="pay-opt-sub" id="pmCardTotal"></div>
+    </a>
+
+    <div class="pay-modal-foot">Pagamento seguro via AbacatePay · 7 dias de garantia</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand-col">
+        <a href="/" class="foot-brand">
+          <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
+        </a>
+        <p class="tag">Automação de vendas no Instagram™ com a API oficial da Meta. Feito no Brasil, pra quem vende em português.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/notifiquei.com.br/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@notifiqueicombr" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+          <a href="https://br.linkedin.com/company/notifiquei" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.3A1.8 1.8 0 114.7 6.5 1.8 1.8 0 016.5 8.3zM19 19h-3v-4.4c0-1 0-2.4-1.5-2.4s-1.7 1.1-1.7 2.3V19h-3v-9h2.9v1.2h.04a3.2 3.2 0 012.9-1.6c3 0 3.6 2 3.6 4.6V19z"/></svg>
+          </a>
+          <a href="https://wa.me/551231995949" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.1-.3.2-.5 0-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="foot-nav-label">Produto</p>
+        <ul>
+          <li><a href="/">Página principal</a></li>
+          <li><a href="/#features">Funcionalidades</a></li>
+          <li><a href="/#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-nav-label">Notifiquei</p>
+        <ul>
+          <li><a href="/criadores">Pra criadores</a></li>
+          <li><a href="/termos-de-uso">Termos de uso</a></li>
+          <li><a href="/politica-de-privacidade">Privacidade</a></li>
+          <li><a href="/dpa">Acordo de dados (DPA)</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-nav-label">Contato</p>
+        <ul>
+          <li><a href="mailto:contato@notifiquei.com.br" class="foot-link-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            contato@notifiquei.com.br
+          </a></li>
+          <li><a href="https://wa.me/551231995949" class="foot-link-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (12) 3199-5949
+          </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-partners">
+      <div class="foot-partner-item">
+        <img src="assets/servidores-turbo.png" alt="Servidores turbo" width="120" height="28" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://www.notifiquei.com.br/servidores-turbo.png';">
+      </div>
+      <div class="foot-partner-divider"></div>
+      <div class="foot-partner-item">
+        <span class="foot-partner-label">Payments by</span>
+        <img src="assets/abacatepay.svg" alt="Abacatepay" class="foot-partner-abacate" width="96" height="22" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="foot-partner-abacate-fallback" style="display:none;">Abacatepay</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Notifiquei. Todos os direitos reservados. &nbsp;·&nbsp; CNPJ 59.859.848/0001-13</div>
+      <div class="foot-bottom-badges">
+        <span class="foot-bottom-badge"><span class="badge-dot"></span>Todos os sistemas operando</span>
+        <span class="foot-bottom-badge">Parceiro oficial Meta e TikTok</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const allReveal = document.querySelectorAll('.rv, .cascade');
+  const obs = new IntersectionObserver((ents) => {
+    ents.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  allReveal.forEach(el => obs.observe(el));
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.hero-vit .rv').forEach(el => el.classList.add('in'));
+  });
+
+  document.querySelectorAll('.faq-item').forEach(it => {
+    it.addEventListener('click', () => it.classList.toggle('open'));
+  });
+
+  (function() {
+    function trackEvent(metaEvent, ga4Event, params) {
+      params = params || {};
+      if (typeof fbq !== 'undefined') fbq('track', metaEvent, params);
+      if (typeof gtag !== 'undefined') gtag('event', ga4Event, params);
+    }
+
+    // Links de pagamento Cakto — link único por plano (cliente escolhe PIX ou cartão na Cakto).
+    // pixPrice = valor à vista no PIX; cardInstallment = parcela (destaque); cardPrice = total no cartão (12x).
+    var PLANS = {
+      '1':  { name: 'Solo',     pixPrice: 'R$ 399,99',   cardInstallment: '12x de R$ 41,98',  cardPrice: 'R$ 503,76',
+              pix: 'https://pay.cakto.com.br/4r5hyjp_912931', card: 'https://pay.cakto.com.br/4r5hyjp_912931' },
+      '3':  { name: 'Plus',     pixPrice: 'R$ 899,99',   cardInstallment: '12x de R$ 94,45',  cardPrice: 'R$ 1.133,40',
+              pix: 'https://pay.cakto.com.br/7n22fnj', card: 'https://pay.cakto.com.br/7n22fnj' },
+      '5':  { name: 'Pro',      pixPrice: 'R$ 1.199,99', cardInstallment: '12x de R$ 125,94', cardPrice: 'R$ 1.511,28',
+              pix: 'https://pay.cakto.com.br/3v8fz3c', card: 'https://pay.cakto.com.br/3v8fz3c' },
+      '10': { name: 'Business', pixPrice: 'R$ 1.499,99', cardInstallment: '12x de R$ 157,42', cardPrice: 'R$ 1.889,04',
+              pix: 'https://pay.cakto.com.br/z9nvbwv', card: 'https://pay.cakto.com.br/z9nvbwv' },
+      '20': { name: 'Agency',   pixPrice: 'R$ 1.999,99', cardInstallment: '12x de R$ 209,90', cardPrice: 'R$ 2.518,80',
+              pix: 'https://pay.cakto.com.br/c77a29r_912927', card: 'https://pay.cakto.com.br/c77a29r_912927' },
+      '50': { name: 'Enterprise', pixPrice: 'R$ 3.999,99', cardInstallment: '12x de R$ 419,80', cardPrice: 'R$ 5.037,60',
+              pix: 'https://pay.cakto.com.br/3c7pufc', card: 'https://pay.cakto.com.br/3c7pufc' }
+    };
+
+    var modal = document.getElementById('payModal');
+    var pmName = document.getElementById('pmPlanName');
+    var pmPix = document.getElementById('pmPix');
+    var pmPixPrice = document.getElementById('pmPixPrice');
+    var pmCard = document.getElementById('pmCard');
+    var pmCardPrice = document.getElementById('pmCardPrice');
+    var pmCardTotal = document.getElementById('pmCardTotal');
+    var current = null;
+
+    function openPay(key) {
+      var p = PLANS[key];
+      if (!p) return;
+      current = p;
+      pmName.textContent = p.name;
+      pmPix.href = p.pix; pmPixPrice.textContent = p.pixPrice;
+      pmCard.href = p.card; pmCardPrice.textContent = p.cardInstallment; pmCardTotal.textContent = 'Total ' + p.cardPrice + ' no cartão';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      trackEvent('InitiateCheckout', 'begin_checkout', { content_name: 'Vitalício ' + p.name });
+    }
+    function closePay() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.price-btn').forEach(function (b) {
+      b.addEventListener('click', function () { openPay(b.getAttribute('data-plan')); });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closePay);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePay(); });
+
+    pmPix.addEventListener('click', function () {
+      if (current) trackEvent('AddPaymentInfo', 'add_payment_info', { content_name: 'Vitalício ' + current.name, payment_type: 'pix' });
+    });
+    pmCard.addEventListener('click', function () {
+      if (current) trackEvent('AddPaymentInfo', 'add_payment_info', { content_name: 'Vitalício ' + current.name, payment_type: 'card' });
+    });
+  })();
+</script>
+
+</body>
+</html>

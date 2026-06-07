@@ -1,0 +1,125 @@
+---
+// Seção dividida com scroll travado: imagem fixa (pin) que dá zoom + texto que troca.
+const beats = [
+  { k: "08h", t: "Você posta o reel e vai viver a sua vida." },
+  { k: "14h", t: "Choveu “quero” no comentário. Ele já respondeu cada um — no Instagram e no TikTok." },
+  { k: "22h", t: "Você abre o app na cama: a venda aconteceu sem você." },
+];
+---
+<section class="dil">
+  <div class="dil__stage">
+    <div class="container dil__inner">
+      <div class="dil__text">
+        <span class="eyebrow is-plain dil__eyebrow">Um dia comum</span>
+        <h2 class="dil__title">Enquanto você vive,<br />ele <span class="hl">vende</span>.</h2>
+        <div class="dil__beats">
+          {beats.map((b, i) => (
+            <p class={`dil__beat ${i === 0 ? "is-on" : ""}`} data-b={i}>
+              <span class="dil__k">{b.k}</span>{b.t}
+            </p>
+          ))}
+        </div>
+        <div class="dil__dots" aria-hidden="true">
+          {beats.map((_, i) => <span class={`dil__dot ${i === 0 ? "is-on" : ""}`} data-dot={i}></span>)}
+        </div>
+      </div>
+
+      <div class="dil__media reveal">
+        <div class="dil__frame">
+          <img class="dil__img" src="/assets/creators/day-night.jpg" alt="Criadora vendo as vendas chegarem pelo celular, à noite" width="900" height="1125" />
+          <div class="dil__badge"><span class="dil__badge-dot"></span> 12 vendas hoje · no automático</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dil { position: relative; background: var(--ink); color: var(--on-ink); }
+  .dil__stage { min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  .dil__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; width: 100%; padding-block: clamp(3rem, 8vh, 6rem); }
+
+  .dil__eyebrow { color: var(--brand-lift); }
+  .dil__title { margin-top: 1.1rem; font-size: clamp(2.4rem, 1.4rem + 4vw, 4.25rem); line-height: 0.98; color: #fff; }
+  .dil__title .hl { color: var(--brand-lift); }
+
+  .dil__beats { position: relative; margin-top: 2.25rem; min-height: 5.5em; }
+  .dil__beat {
+    position: absolute; left: 0; right: 0; top: 0; display: flex; gap: 1rem;
+    font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em;
+    font-size: clamp(1.3rem, 0.9rem + 1.4vw, 2rem); line-height: 1.12; color: var(--on-ink);
+    opacity: 0; text-wrap: balance;
+  }
+  .dil__beat.is-on { opacity: 1; }
+  .dil__k { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-lift); letter-spacing: 0.1em; padding-top: 0.5em; flex: none; }
+
+  .dil__dots { display: flex; gap: 0.6rem; margin-top: 2.5rem; }
+  .dil__dot { width: 30px; height: 4px; border-radius: 99px; background: var(--line-ink); transition: background 0.3s; }
+  .dil__dot.is-on { background: var(--brand); }
+
+  .dil__media { justify-self: center; width: 100%; max-width: 480px; }
+  .dil__frame {
+    position: relative; border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 4 / 5;
+    box-shadow: 0 30px 80px -24px rgba(0,0,0,0.6);
+  }
+  .dil__img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.04); will-change: transform; filter: saturate(0.94) contrast(1.02) sepia(0.05); }
+  .dil__badge {
+    position: absolute; left: 18px; bottom: 18px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 9px; padding: 11px 16px; border-radius: 999px;
+    background: rgba(20,16,14,0.55); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.18);
+    font-size: 0.85rem; font-weight: 600; color: #fff;
+  }
+  .dil__badge-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--positive); box-shadow: 0 0 0 0 var(--positive); animation: dilpulse 2s var(--ease-in-out) infinite; }
+  @keyframes dilpulse { 0%{box-shadow:0 0 0 0 rgba(31,157,107,0.6);} 70%{box-shadow:0 0 0 8px rgba(31,157,107,0);} 100%{box-shadow:0 0 0 0 rgba(31,157,107,0);} }
+
+  @media (min-width: 900px) {
+    .dil__inner { grid-template-columns: 1.05fr 0.95fr; }
+    .dil__media { justify-self: end; max-width: 460px; }
+  }
+
+  /* mobile e reduced-motion: estático, sem pin */
+  @media (prefers-reduced-motion: reduce), (max-width: 760px) {
+    .dil__stage { min-height: 0; }
+    .dil__beats { position: static; min-height: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+    .dil__beat { position: static; opacity: 1; }
+    .dil__img { transform: none; }
+    .dil__media { margin-top: 2.5rem; }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stage = document.querySelector<HTMLElement>(".dil__stage");
+
+  if (stage && !reduce && window.innerWidth > 760) {
+    const img = stage.querySelector<HTMLElement>(".dil__img");
+    const beats = Array.from(stage.querySelectorAll<HTMLElement>(".dil__beat"));
+    const dots = Array.from(stage.querySelectorAll<HTMLElement>(".dil__dot"));
+    gsap.set(beats, { autoAlpha: 0 });
+    gsap.set(beats[0], { autoAlpha: 1 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: stage, start: "top top", end: "+=165%", pin: true, scrub: 0.5, anticipatePin: 1 },
+    });
+
+    // imagem fixa dá zoom ao longo de TODO o scroll (timeline de 3 unidades)
+    tl.fromTo(img, { scale: 1.04 }, { scale: 1.2, ease: "none", duration: 3 }, 0);
+
+    // texto troca SEM sobreposição (cada beat tem janela própria + gap entre fades)
+    tl.to(beats[0], { autoAlpha: 0, duration: 0.22, ease: "none" }, 0.85);
+    tl.to(beats[1], { autoAlpha: 1, duration: 0.22, ease: "none" }, 1.15);
+    tl.to(beats[1], { autoAlpha: 0, duration: 0.22, ease: "none" }, 1.95);
+    tl.to(beats[2], { autoAlpha: 1, duration: 0.22, ease: "none" }, 2.25);
+
+    // dots acompanham
+    const setDot = (idx: number) => dots.forEach((d, i) => d.classList.toggle("is-on", i === idx));
+    tl.scrollTrigger?.vars && ScrollTrigger.create({
+      trigger: stage, start: "top top", end: "+=165%",
+      onUpdate: (s) => setDot(s.progress < 0.33 ? 0 : s.progress < 0.66 ? 1 : 2),
+    });
+  }
+</script>

@@ -1,0 +1,297 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PlatformShowcase from "../components/PlatformShowcase.astro";
+import Capabilities from "../components/Capabilities.astro";
+
+// Sem cadastro de afiliado dedicado ainda — CTA vai pro WhatsApp com msg pronta.
+// Quando existir o link do programa no Cakto, é só trocar esta constante.
+const WPP = "https://wa.me/551231995949?text=" + encodeURIComponent("Olá! Quero me afiliar ao Notifiquei.");
+
+const steps = [
+  { n: "01", t: "Preenche o formulário", d: "Leva 2 minutos. A gente quer saber seu nicho, audiência estimada e onde pretende divulgar." },
+  { n: "02", t: "Aprovação em até 48h", d: "Revisamos seu cadastro pra garantir alinhamento. Aprovado, seu painel libera na hora." },
+  { n: "03", t: "Pega link + materiais", d: "Link personalizado, banners, copy pronto pra e-mail e posts. Tudo já feito pra você." },
+  { n: "04", t: "Recebe todo mês", d: "Comissão paga via Kiwify ou Cakto — você escolhe. Cai direto, sem pedir, sem cobrar." },
+];
+
+const who = [
+  { t: "Infoprodutor", d: "Você vende curso, mentoria ou e-book pra quem também vende no Instagram. Sua indicação vira escala natural pros dois lados." },
+  { t: "Consultor de marketing", d: "Atende cliente que precisa automatizar Instagram? Em vez de montar do zero, indica o Notifiquei e recebe todo mês." },
+  { t: "Agência digital", d: "Gerencia o Instagram de vários clientes. Cada conta nova que entrar, você ganha 40% do plano — pra sempre." },
+  { t: "Influencer de marketing", d: "Cria conteúdo sobre vendas, copy, tráfego. Sua audiência precisa de ferramenta prática — você indica e lucra." },
+  { t: "Gestor de tráfego", d: "Toca anúncio de lançamento. O Notifiquei responde o lead que veio do ad. Você vira ponte — e recebe dos dois lados." },
+  { t: "Comunidade / grupo", d: "Lidera grupo no Telegram, WhatsApp ou Discord. Sua recomendação tem peso — monetize sem perder a confiança." },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Programa de afiliados Notifiquei",
+    url: "https://www.notifiquei.com.br/afiliados",
+    isPartOf: { "@id": "https://www.notifiquei.com.br/#org" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://www.notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Programa de afiliados", item: "https://www.notifiquei.com.br/afiliados" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      { "@type": "Question", name: "Quanto é a comissão do afiliado Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você recebe 40% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." } },
+      { "@type": "Question", name: "Quando o afiliado recebe?", acceptedAnswer: { "@type": "Answer", text: "Todo mês. A comissão é paga via Kiwify ou Cakto, com cookie de 60 dias." } },
+      { "@type": "Question", name: "Como me afilio ao Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você preenche o formulário (leva 2 minutos), a gente aprova em até 48h e libera seu painel com link personalizado e materiais prontos." } },
+    ],
+  },
+];
+---
+
+<Base
+  title="Programa de afiliados Notifiquei — 40% recorrente, pra sempre"
+  description="Indique o Notifiquei e receba 40% do pagamento mensal de cada cliente, enquanto ele continuar ativo. Comissão recorrente, sem teto, paga via Kiwify ou Cakto."
+  path="/afiliados"
+  jsonLd={jsonLd}
+>
+  <Nav />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow is-plain">Comissão recorrente enquanto o cliente pagar</span>
+          <h1 class="hero__title">Indica uma vez.<br /><span class="hl">Recebe</span> todo mês.</h1>
+          <p class="lead hero__lead">
+            Você indica, o cliente assina e você recebe <strong>40% do pagamento mensal dele</strong> —
+            enquanto ele continuar ativo. Sem teto, sem pegadinha, sem data de vencimento da comissão.
+          </p>
+          <div class="hero__actions">
+            <a href={WPP} class="btn btn--brand btn--lg">Quero me afiliar<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#calculadora" class="btn btn--ghost btn--lg">Calcular ganhos</a>
+          </div>
+          <ul class="hero__trust">
+            <li><span class="tick" aria-hidden="true">✓</span> 40% recorrente</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Cookie de 60 dias</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Via Kiwify ou Cakto</li>
+          </ul>
+        </div>
+
+        <div class="hero__demo">
+          <div class="ecard">
+            <span class="ecard__label">Ganhos neste mês</span>
+            <span class="ecard__big">R$ 4.788</span>
+            <span class="ecard__sub">12 clientes ativos · 40% recorrente</span>
+            <div class="ecard__row"><span>Próximo pagamento</span><b>05/05 · via Kiwify</b></div>
+            <div class="ecard__bars" aria-hidden="true">
+              <span style="height:38%"></span><span style="height:52%"></span><span style="height:46%"></span>
+              <span style="height:64%"></span><span style="height:78%"></span><span style="height:92%"></span>
+            </div>
+            <span class="ecard__link">notifiquei.com.br/?ref=voce</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="section section--paper2">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Quatro passos.<br />Um minuto.</h2>
+          <p class="lead">Você se cadastra, a gente aprova, você divulga, nós pagamos todo mês. Sem burocracia, sem planilha, sem contrato de 20 páginas.</p>
+        </div>
+        <ol class="steps steps--4">
+          {steps.map((s, i) => (
+            <li class="step reveal" style={`--reveal-delay:${i * 90}ms`}>
+              <span class="step__n">{s.n}</span>
+              <h3 class="step__t">{s.t}</h3>
+              <p class="step__d">{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- CALCULADORA -->
+    <section class="section" id="calculadora">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Quanto dá pra ganhar</span>
+          <h2>Comissão que não<br />para de pingar.</h2>
+          <p class="lead">Diferente de afiliado de curso que ganha uma vez e acabou. Aqui você recebe 40% do pagamento mensal — todo mês — enquanto o cliente continuar ativo.</p>
+        </div>
+
+        <div class="calc reveal">
+          <div class="calc__controls">
+            <label class="calc__field">
+              <span class="calc__lbl">Clientes que você indica por mês</span>
+              <input type="range" id="calc-n" min="1" max="15" value="5" />
+              <output id="calc-n-out" class="calc__val">5</output>
+            </label>
+            <fieldset class="calc__field">
+              <span class="calc__lbl">Plano médio dos seus indicados</span>
+              <div class="calc__plans" id="calc-plan">
+                <button type="button" data-price="99" class="calc__plan">Solo · R$ 99</button>
+                <button type="button" data-price="499" class="calc__plan is-on">Pro · R$ 499</button>
+                <button type="button" data-price="799" class="calc__plan">Business · R$ 799</button>
+              </div>
+            </fieldset>
+          </div>
+          <div class="calc__result">
+            <span class="calc__rlbl">Sua comissão mensal após 12 meses</span>
+            <span class="calc__rbig" id="calc-month">R$ 0</span>
+            <span class="calc__ryear"><b id="calc-year">R$ 0</b> acumulados no 1º ano</span>
+            <p class="calc__note">Estimativa com retenção média de 85% ao mês. O número real varia conforme a permanência dos seus indicados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <PlatformShowcase bg="paper2" eyebrow="O produto que você indica" title="Fácil de indicar<br />porque é fácil de usar." lead="Você divulga uma ferramenta que o cliente realmente usa — e continua pagando. É isso que faz a comissão durar." />
+    <Capabilities bg="paper" eyebrow="Argumentos de venda" title="Tudo que o cliente ganha." lead="Use esses recursos na sua divulgação: cada um é um motivo a mais pro seu indicado assinar e ficar." />
+
+    <!-- QUEM INDICA -->
+    <section class="section section--paper2">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Pra quem é</span>
+          <h2>Quem indica<br />com resultado.</h2>
+          <p class="lead">A gente aprova afiliados com audiência alinhada — gente que fala com quem vende no Instagram. Se é o seu caso, bem-vindo.</p>
+        </div>
+        <div class="who">
+          {who.map((w, i) => (
+            <article class="whocard reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
+              <h3 class="whocard__t">{w.t}</h3>
+              <p class="whocard__d">{w.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FinalCta
+      eyebrow="Renda recorrente de verdade"
+      title="Indica hoje."
+      titleHl="Recebe todo mês."
+      lead="Cadastro em 2 minutos, aprovação em até 48h. Sem teto de ganho, sem vencimento de comissão."
+      primaryHref={WPP}
+      primaryLabel="Quero me afiliar"
+      secondaryHref="/"
+      secondaryLabel="Conhecer o produto"
+      glyph="%"
+    />
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  const n = document.getElementById("calc-n") as HTMLInputElement | null;
+  const nOut = document.getElementById("calc-n-out");
+  const planWrap = document.getElementById("calc-plan");
+  const monthEl = document.getElementById("calc-month");
+  const yearEl = document.getElementById("calc-year");
+  const fmt = (v: number) => "R$ " + Math.round(v).toLocaleString("pt-BR");
+
+  let price = 499;
+  // base de clientes ativos após 12 meses acumulando N/mês com 85% de retenção
+  const ACTIVE_FACTOR = (1 - Math.pow(0.85, 12)) / (1 - 0.85); // ≈ 5.72
+
+  function update() {
+    if (!n) return;
+    const per = parseInt(n.value, 10);
+    if (nOut) nOut.textContent = String(per);
+    const active = per * ACTIVE_FACTOR;
+    const month = 0.4 * price * active;
+    // acumulado no 1º ano: soma das comissões mês a mês (cohortes crescendo)
+    let yearTotal = 0;
+    let base = 0;
+    for (let mth = 0; mth < 12; mth++) { base = base * 0.85 + per; yearTotal += 0.4 * price * base; }
+    if (monthEl) monthEl.textContent = fmt(month);
+    if (yearEl) yearEl.textContent = fmt(yearTotal);
+  }
+
+  n?.addEventListener("input", update);
+  planWrap?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".calc__plan");
+    if (!btn) return;
+    price = parseInt(btn.dataset.price || "499", 10);
+    planWrap.querySelectorAll(".calc__plan").forEach((b) => b.classList.toggle("is-on", b === btn));
+    update();
+  });
+  update();
+</script>
+
+<style>
+  /* HERO */
+  .hero { position: relative; padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) var(--space-section); overflow: clip; }
+  .hero__bg { position: absolute; inset: -10% -20% auto; height: 70%; z-index: 0; background: radial-gradient(60% 60% at 80% 0%, var(--brand-wash), transparent 70%); pointer-events: none; }
+  .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+  .hero__title { margin-top: 1.4rem; font-size: clamp(2.9rem, 1.4rem + 7vw, 6.5rem); line-height: 0.92; letter-spacing: -0.04em; }
+  .hero__title .hl { color: var(--brand-ink); }
+  .hero__lead { margin-top: 1.5rem; max-width: 32rem; }
+  .hero__lead strong { color: var(--ink); }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); }
+  .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
+  .hero__trust .tick { color: var(--brand-ink); font-weight: 800; }
+  @media (min-width: 940px) { .hero__inner { grid-template-columns: 1.05fr 0.95fr; } }
+
+  /* earnings card */
+  .hero__demo { justify-self: center; width: 100%; max-width: 380px; }
+  .ecard { background: var(--ink); color: var(--on-ink); border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; }
+  .ecard__label { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--on-ink-soft); }
+  .ecard__big { font-family: var(--font-display); font-weight: 800; font-size: 3rem; letter-spacing: -0.03em; line-height: 1; margin-top: 0.5rem; color: var(--brand-lift); }
+  .ecard__sub { font-size: 0.82rem; color: var(--on-ink-soft); margin-top: 0.4rem; }
+  .ecard__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--line-ink); font-size: 0.82rem; color: var(--on-ink-soft); }
+  .ecard__row b { color: var(--on-ink); }
+  .ecard__bars { display: flex; align-items: flex-end; gap: 6px; height: 56px; margin-top: 1.25rem; }
+  .ecard__bars span { flex: 1; background: linear-gradient(180deg, var(--brand-lift), var(--brand)); border-radius: 4px; }
+  .ecard__link { margin-top: 1rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--brand-lift); }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .step { padding: 1.9rem 1.6rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8); }
+  .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
+  .step__t { font-size: 1.3rem; margin-top: 0.9rem; }
+  .step__d { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.94rem; }
+  @media (min-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .steps--4 { grid-template-columns: repeat(4, 1fr); } }
+
+  /* calculadora */
+  .calc { margin-top: 3rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  .calc__controls { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 1.75rem; }
+  .calc__field { display: flex; flex-direction: column; gap: 0.7rem; border: none; padding: 0; margin: 0; min-width: 0; }
+  .calc__lbl { font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
+  .calc__field input[type="range"] { width: 100%; accent-color: var(--brand); }
+  .calc__val { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--brand-ink); }
+  .calc__plans { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+  .calc__plan { padding: 0.7rem 0.5rem; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--paper); font-weight: 600; font-size: 0.82rem; transition: all 0.2s var(--ease-out); }
+  .calc__plan:hover { border-color: var(--brand); }
+  .calc__plan.is-on { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .calc__result { background: var(--ink); color: var(--on-ink); border-radius: var(--r-lg); padding: 2rem 1.75rem; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--shadow-md); }
+  .calc__rlbl { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--on-ink-soft); }
+  .calc__rbig { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 1.5rem + 4vw, 3.75rem); letter-spacing: -0.03em; line-height: 1; margin-top: 0.6rem; color: var(--brand-lift); }
+  .calc__ryear { margin-top: 0.9rem; font-size: 0.95rem; color: var(--on-ink-soft); }
+  .calc__ryear b { color: var(--on-ink); }
+  .calc__note { margin-top: 1.25rem; font-size: 0.76rem; color: var(--on-ink-soft); line-height: 1.5; }
+  @media (min-width: 880px) { .calc { grid-template-columns: 1.1fr 0.9fr; } }
+
+  /* quem indica */
+  .who { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3rem; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  .whocard { background: var(--paper); padding: 1.75rem; transition: background 0.25s var(--ease-out); }
+  .whocard:hover { background: var(--card); }
+  .whocard__t { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .whocard__d { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.55; }
+  @media (min-width: 640px) { .who { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .who { grid-template-columns: repeat(3, 1fr); } }
+</style>

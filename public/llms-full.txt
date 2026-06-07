@@ -1,0 +1,73 @@
+# Notifiquei — informação completa
+
+> Notifiquei é uma ferramenta brasileira de automação de **Instagram e TikTok** que responde comentários, DMs e stories automaticamente — pela API oficial da Meta. Feita para criadores de conteúdo, infoprodutores e lojas que vendem pelo Instagram no Brasil. É uma alternativa brasileira ao ManyChat.
+
+## O que faz
+
+- Comentário → DM → venda: quando alguém comenta uma palavra-chave (ex.: "quero") num post, o Notifiquei responde o comentário e envia uma mensagem no Direct com o link ou um botão — em segundos, na voz do criador.
+- Agente de IA: responde DMs e comentários sozinho, na voz do criador, com base de conhecimento e memória da conversa. Quando o lead esquenta, avisa o criador.
+- Detecção de intenção de compra: classifica cada conversa como intenção baixa, média ou alta e avisa quando o lead está pronto pra fechar.
+- Moderação de comentários com IA: esconde spam, ofensa e negatividade antes dos seguidores verem; responde os comentários positivos.
+- Sorteios pelos comentários: quem comenta a palavra entra no sorteio automaticamente; sorteia o ganhador em 1 clique.
+- TikTok DM automático: boas-vindas, palavras-chave e resposta padrão no TikTok Business.
+- Agendamento de posts no Instagram.
+- App nativo iOS e Android; também integra WhatsApp (Cloud API).
+
+## Segurança / risco de ban
+
+- O Notifiquei usa exclusivamente a API oficial da Meta (provedor/parceiro oficial). Não pede a senha do Instagram. Não há risco de banimento por usá-lo. É também TikTok Marketing Partner.
+
+## Planos e preços (recorrente, em real, via PIX/boleto/cartão)
+
+- 2 em 1: cada conta conecta 1 Instagram + 1 TikTok no mesmo plano (sem pagar dobrado).
+- Solo — R$ 99/mês — 1 conta (Instagram + TikTok), automações ilimitadas, templates básicos, suporte por chat.
+- Pro — R$ 499/mês — 5 contas (Instagram + TikTok), times e divisão por equipe, automações ilimitadas, templates completos, suporte por chat. (Plano mais popular.)
+- Business — R$ 799/mês — 10 contas (Instagram + TikTok), times, automações ilimitadas, templates completos, atendimento VIP no WhatsApp, controle pelo WhatsApp.
+- 7 dias de garantia (devolução de 100%), cancele quando quiser, sem fidelidade.
+- Programa de afiliados: 40% de comissão recorrente, cookie de 60 dias, pago via Kiwify ou Cakto.
+
+## Notifiquei vs ManyChat (comparação)
+
+ManyChat é uma boa ferramenta e também usa a API oficial da Meta — não existe "risco de ban" por usá-lo, e nenhum dos dois pede a senha. Diferenças reais:
+
+- Preço inicial: Notifiquei em real, a partir de R$ 99/mês · ManyChat em dólar (sujeito a câmbio e IOF).
+- Forma de pagamento: Notifiquei PIX, boleto ou cartão · ManyChat cartão internacional.
+- Idioma da plataforma: Notifiquei 100% português · ManyChat inglês.
+- Suporte: Notifiquei brasileiro em português · ManyChat em inglês.
+- Agente de IA: Notifiquei qualifica leads e responde sozinho · ManyChat IA só em planos superiores.
+- Monta fluxo por linguagem natural: Notifiquei sim · ManyChat não (editor manual).
+- Sorteios nativos: Notifiquei sim · ManyChat não.
+- App no celular: Notifiquei iOS e Android · ManyChat app limitado.
+- Conformidade com a LGPD: Notifiquei sim (empresa brasileira) · ManyChat sujeito a leis estrangeiras.
+- Instagram + TikTok no mesmo plano: Notifiquei sim · ManyChat cobra por canal.
+- API oficial da Meta, automação por DM, gatilho por comentário e por story: ambos têm.
+
+## Perguntas frequentes
+
+P: Isso pode bloquear meu Instagram?
+R: Não. O Notifiquei é provedor oficial da Meta e usa exclusivamente a API oficial do Instagram. Sem automação disfarçada, sem risco de banimento.
+
+P: Preciso saber programar?
+R: Não, você não precisa saber programar para usar o Notifiquei. A interface é toda visual; se você sabe mandar mensagem no Instagram, sabe usar.
+
+P: O Notifiquei responde sozinho, com IA?
+R: Sim. O agente de IA responde DMs e comentários na voz do criador, com uma base de conhecimento que ele ensina, e lembra do contexto da conversa.
+
+P: Funciona com TikTok?
+R: Sim. O Notifiquei automatiza DMs do TikTok (conta Business) e cada plano já conecta 1 Instagram + 1 TikTok no mesmo preço.
+
+P: Funciona para e-commerce / loja?
+R: Sim. Há clientes vendendo moda, cosméticos, suplementos e produtos físicos. Tem template pronto para isso.
+
+P: Qual a diferença para o ManyChat?
+R: O Notifiquei é mais barato, cobra em real com PIX, é 100% em português com suporte brasileiro, tem agente de IA que monta o fluxo por linguagem natural, sorteios nativos, app no celular e conecta Instagram + TikTok no mesmo plano.
+
+P: Preciso de conta comercial ou profissional?
+R: Sim, uma conta Profissional ou de Criador no Instagram (gratuita, leva 1 minuto). É exigência da API oficial da Meta.
+
+P: Posso cancelar quando quiser?
+R: Sim, a qualquer momento pelo painel. Nos primeiros 7 dias, devolução de 100%.
+
+## Empresa
+
+Notifiquei Tecnologia, empresa brasileira. CNPJ 59.859.848/0001-13. Site: https://www.notifiquei.com.br

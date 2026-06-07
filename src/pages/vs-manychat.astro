@@ -1,0 +1,208 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PlatformShowcase from "../components/PlatformShowcase.astro";
+import Capabilities from "../components/Capabilities.astro";
+
+const APP = "https://app.notifiquei.com.br";
+
+// Conteúdo alinhado com a outra frente (Docs/handoff/vs-manychat-content.json).
+// Preço ajustado para R$99 para bater com a página principal.
+const headline = "Tudo que o ManyChat faz — em português, em real e com PIX.";
+const subhead =
+  "Automação de DM, comentário e story no Instagram com IA, pela API oficial da Meta. Sem câmbio, sem variação surpresa, com suporte que fala a sua língua.";
+const honestidade =
+  "ManyChat é uma ótima ferramenta e também usa a API oficial da Meta — não existe “risco de ban” por usá-lo, e nenhum dos dois pede a sua senha. Nossos diferenciais reais são preço em real com PIX, idioma e suporte em português, conformidade local (LGPD), app no celular e recursos pensados pro criador brasileiro. A tabela abaixo reflete isso de forma justa: marcamos só onde a gente realmente entrega algo diferente.";
+
+const rows = [
+  { c: "Preço inicial", n: "Em real, a partir de R$ 99/mês", m: "Em dólar (US$) — sujeito a câmbio e IOF", hl: true },
+  { c: "Forma de pagamento", n: "PIX, boleto ou cartão", m: "Cartão de crédito internacional", hl: true },
+  { c: "Moeda", n: "Real (BRL) — sem variação cambial", m: "Dólar (USD)", hl: true },
+  { c: "Idioma da plataforma", n: "100% em português", m: "Inglês (principalmente)", hl: true },
+  { c: "Suporte", n: "Brasileiro, em português", m: "Em inglês", hl: true },
+  { c: "API oficial da Meta", n: "Sim", m: "Sim", hl: false },
+  { c: "Automação por DM", n: "Sim", m: "Sim", hl: false },
+  { c: "Gatilho por comentário", n: "Sim", m: "Sim", hl: false },
+  { c: "Gatilho por story", n: "Sim", m: "Sim", hl: false },
+  { c: "Agente de IA", n: "Sim — qualifica leads e responde sozinho", m: "Recursos de IA só em planos superiores", hl: true },
+  { c: "Monta fluxo por linguagem natural", n: "Sim — descreva e a IA monta", m: "Não — editor visual manual", hl: true },
+  { c: "Sorteios nativos", n: "Sim — sorteia em 1 clique", m: "Não", hl: true },
+  { c: "Agendamento de posts", n: "Sim", m: "Não", hl: false },
+  { c: "App no celular", n: "Sim — iOS e Android", m: "App limitado", hl: true },
+  { c: "Conformidade com a LGPD", n: "Sim — empresa brasileira", m: "Sujeito a leis estrangeiras", hl: true },
+  { c: "Pede a senha do Instagram?", n: "Nunca — token oficial", m: "Nunca — token oficial", hl: false },
+  { c: "Foco no mercado brasileiro", n: "Feito pra criador BR", m: "Global, sem foco no Brasil", hl: true },
+];
+
+const reasons = [
+  { t: "Preço em real, com PIX", d: "Sem câmbio, sem IOF, sem surpresa no cartão internacional. Você paga em real, do jeito que já paga tudo." },
+  { t: "Tudo em português", d: "Plataforma, suporte e materiais na sua língua. Nada de traduzir termo de gringo no meio da configuração." },
+  { t: "IA que monta o fluxo sozinha", d: "Descreve o que você quer em português e a IA monta a automação. O ManyChat ainda é editor manual." },
+  { t: "Empresa brasileira, LGPD", d: "Seus dados e os do seu cliente sob a lei brasileira — não sujeitos a regras estrangeiras." },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://www.notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Notifiquei vs ManyChat", item: "https://www.notifiquei.com.br/vs-manychat" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Qual a melhor alternativa ao ManyChat no Brasil?",
+        acceptedAnswer: { "@type": "Answer", text: "O Notifiquei é a alternativa brasileira direta ao ManyChat: faz a mesma automação de DM, comentário e story no Instagram (e no TikTok), mas em português, com preço em real e pagamento via PIX, suporte brasileiro e conformidade com a LGPD." },
+      },
+      {
+        "@type": "Question",
+        name: "O Notifiquei é mais barato que o ManyChat?",
+        acceptedAnswer: { "@type": "Answer", text: "Sim. O Notifiquei começa em R$ 99/mês, cobrado em real via PIX, sem câmbio nem IOF. O ManyChat cobra em dólar no cartão internacional, o que costuma sair mais caro para o brasileiro." },
+      },
+      {
+        "@type": "Question",
+        name: "O ManyChat funciona em português?",
+        acceptedAnswer: { "@type": "Answer", text: "A plataforma do ManyChat é principalmente em inglês e o suporte é em inglês. O Notifiquei é 100% em português, com suporte brasileiro." },
+      },
+      {
+        "@type": "Question",
+        name: "Usar o ManyChat ou o Notifiquei pode bloquear minha conta do Instagram?",
+        acceptedAnswer: { "@type": "Answer", text: "Não. Tanto o Notifiquei quanto o ManyChat usam a API oficial da Meta e nenhum dos dois pede a senha do Instagram. Não há risco de banimento por usar qualquer um dos dois." },
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title="Notifiquei vs ManyChat — a alternativa brasileira, em real e com PIX"
+  description="Compare Notifiquei e ManyChat: automação de DM no Instagram com IA, em português, preço em real com PIX e suporte brasileiro."
+  path="/vs-manychat"
+  jsonLd={jsonLd}
+>
+  <Nav />
+
+  <main>
+    <!-- HERO -->
+    <section class="section vs-hero">
+      <div class="container container--narrow vs-hero__inner reveal">
+        <span class="eyebrow is-plain">Notifiquei × ManyChat</span>
+        <h1 class="vs-hero__title">{headline}</h1>
+        <p class="lead">{subhead}</p>
+        <div class="vs-hero__actions">
+          <a href={APP} class="btn btn--brand btn--lg">Começar em português<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#tabela" class="btn btn--ghost btn--lg">Ver a comparação</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABELA -->
+    <section class="section section--paper2" id="tabela">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Comparação honesta</span>
+          <h2>Lado a lado,<br />sem marketing enganoso.</h2>
+        </div>
+
+        <table class="vstable reveal">
+          <caption class="visually-hidden">Comparação entre Notifiquei e ManyChat</caption>
+          <thead>
+            <tr class="vstable__row vstable__row--head">
+              <th class="vstable__c vstable__crit" scope="col">Critério</th>
+              <th class="vstable__c vstable__nq" scope="col">★ Notifiquei</th>
+              <th class="vstable__c vstable__mc" scope="col">ManyChat</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr class={`vstable__row ${r.hl ? "is-hl" : ""}`}>
+                <th class="vstable__c vstable__crit" scope="row">{r.c}</th>
+                <td class="vstable__c vstable__nq">{r.n}</td>
+                <td class="vstable__c vstable__mc">{r.m}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <p class="vstable__note reveal">{honestidade}</p>
+      </div>
+    </section>
+
+    <!-- POR QUE BR -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Por que trocar</span>
+          <h2>A ferramenta global é boa.<br />A brasileira entende você.</h2>
+        </div>
+        <div class="vs-reasons">
+          {reasons.map((r, i) => (
+            <article class="vs-reason reveal" style={`--reveal-delay:${(i % 2) * 90}ms`}>
+              <h3 class="vs-reason__t">{r.t}</h3>
+              <p class="vs-reason__d">{r.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <PlatformShowcase bg="paper2" eyebrow="O que você ganha trocando" title="A mesma automação,<br />numa interface em português." lead="Tudo que o ManyChat faz no DM — e mais um pouco — dentro de um painel pensado pro criador brasileiro." />
+    <Capabilities bg="paper" />
+
+    <FinalCta
+      eyebrow="Pronto pra trocar?"
+      title="Mesma automação."
+      titleHl="Sua língua."
+      lead="Teste 7 dias, em português, com pagamento em real. Se não rolar, devolvemos."
+      primaryHref={APP}
+      primaryLabel="Começar agora"
+      secondaryHref="/#planos"
+      secondaryLabel="Ver planos"
+      glyph="★"
+    />
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .vs-hero { padding-top: clamp(3rem, 2rem + 5vw, 6rem); text-align: center; }
+  .vs-hero__inner { display: flex; flex-direction: column; align-items: center; }
+  .vs-hero__inner .eyebrow { justify-content: center; }
+  .vs-hero__title { margin: 1.2rem 0 0; font-size: clamp(2.4rem, 1.4rem + 4.5vw, 4.25rem); line-height: 0.98; }
+  .vs-hero .lead { margin-top: 1.4rem; max-width: 36rem; }
+  .vs-hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2rem; }
+
+  /* tabela */
+  .vstable { width: 100%; margin-top: 3rem; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--card); box-shadow: var(--shadow-sm); border-collapse: collapse; }
+  .vstable thead, .vstable tbody { display: block; }
+  .vstable__row { display: grid; grid-template-columns: 1.1fr 1.3fr 1fr; border-top: 1px solid var(--line-soft); }
+  .vstable thead .vstable__row { border-top: none; }
+  .vstable__c { padding: 0.95rem 1.1rem; font-size: 0.92rem; display: flex; align-items: center; min-width: 0; text-align: left; font-weight: 400; }
+  .vstable__crit { font-weight: 600; color: var(--ink); }
+  .vstable__nq { font-weight: 600; }
+  .vstable__mc { color: var(--ink-faint); }
+  .vstable__row.is-hl .vstable__nq { background: var(--brand-wash); color: var(--brand-ink); }
+  .vstable__row--head .vstable__c { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; padding-block: 0.85rem; background: var(--paper); }
+  .vstable__row--head .vstable__nq { color: var(--brand-ink); }
+  .vstable__note { margin: 1.75rem auto 0; max-width: 46rem; font-size: 0.88rem; color: var(--ink-faint); line-height: 1.6; text-align: center; }
+  @media (max-width: 600px) {
+    .vstable__c { padding: 0.7rem 0.65rem; font-size: 0.78rem; }
+    .vstable__row { grid-template-columns: 1fr 1.2fr 0.9fr; }
+  }
+
+  /* reasons */
+  .vs-reasons { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3rem; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  .vs-reason { background: var(--paper); padding: 1.9rem; transition: background 0.25s var(--ease-out); }
+  .vs-reason:hover { background: var(--card); }
+  .vs-reason__t { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+  .vs-reason__d { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
+  @media (min-width: 760px) { .vs-reasons { grid-template-columns: 1fr 1fr; } }
+</style>

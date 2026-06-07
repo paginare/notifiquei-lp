@@ -1,0 +1,58 @@
+---
+// Barra de CTA fixa no rodapé — só mobile. Aparece após o hero, some no rodapé/planos.
+interface Props { href?: string; }
+const { href = "https://app.notifiquei.com.br/auth" } = Astro.props;
+---
+<div class="stickycta" id="stickycta" aria-hidden="true">
+  <div class="stickycta__info">
+    <b>Grátis pra sempre</b>
+    <span>sem cartão · planos a partir de R$ 99</span>
+  </div>
+  <a href={href} class="btn btn--brand stickycta__btn">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+</div>
+
+<style>
+  .stickycta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+    display: none; align-items: center; gap: 1rem;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 30px -12px rgba(20,16,14,0.22);
+    transform: translateY(120%);
+    transition: transform 0.4s var(--ease-spring);
+  }
+  .stickycta.is-on { transform: translateY(0); }
+  .stickycta__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .stickycta__info b { font-size: 0.98rem; font-weight: 700; }
+  .stickycta__info span { font-size: 0.72rem; line-height: 1.25; color: var(--ink-faint); text-wrap: balance; }
+  .stickycta__btn { flex: none; padding: 0.65rem 0.8rem 0.65rem 1.1rem; font-size: 0.92rem; }
+
+  @media (max-width: 760px) { .stickycta { display: flex; } }
+  @media (prefers-reduced-motion: reduce) { .stickycta { transition: none; } }
+</style>
+
+<script>
+  const bar = document.getElementById("stickycta");
+  if (bar && window.matchMedia("(max-width: 760px)").matches) {
+    // some quando planos ou rodapé estão à vista (evita CTA duplo)
+    let nearEnd = false;
+    const end = document.querySelector("#planos") || document.querySelector("footer");
+    if (end) {
+      const io = new IntersectionObserver(
+        (e) => { nearEnd = e[0].isIntersecting; update(); },
+        { rootMargin: "0px 0px -20% 0px" }
+      );
+      io.observe(end);
+    }
+    let shown = false;
+    function update() {
+      const show = window.scrollY > 640 && !nearEnd;
+      if (show !== shown) { shown = show; bar.classList.toggle("is-on", show); bar.setAttribute("aria-hidden", String(!show)); }
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+</script>

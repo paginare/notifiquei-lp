@@ -1,0 +1,75 @@
+---
+// Faixa de criadores — imagens ILUSTRATIVAS da audiência (por nicho), não depoimentos.
+const creators = [
+  { img: "c1-nutri.jpg", nicho: "Nutrição" },
+  { img: "c2-fitness.jpg", nicho: "Fitness" },
+  { img: "c3-beleza.jpg", nicho: "Beleza" },
+  { img: "c4-coach.jpg", nicho: "Infoproduto" },
+  { img: "c5-gastro.jpg", nicho: "Gastronomia" },
+  { img: "c6-moda.jpg", nicho: "Moda" },
+  { img: "c7-artesa.jpg", nicho: "Artesanato" },
+];
+const loop = [...creators, ...creators];
+---
+<section class="section cmq">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow">Quem usa</span>
+      <h2>Feito para criadores<br />como você.</h2>
+      <p class="lead">De fitness a gastronomia, de infoproduto a loja de bairro — o Notifiquei já responde por mais de <strong>2.000 criadores brasileiros</strong> enquanto eles criam (ou dormem).</p>
+    </div>
+  </div>
+
+  <div class="cmq__rail reveal" aria-label="Criadores que usam o Notifiquei">
+    <div class="cmq__track">
+      {loop.map((c) => (
+        <figure class="cmq__card">
+          <img src={`/assets/creators/${c.img}`} alt={`Criador de conteúdo de ${c.nicho}`} loading="lazy" width="288" height="360" />
+          <figcaption class="cmq__tag">{c.nicho}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmq { padding-bottom: clamp(3rem, 6vw, 5rem); overflow: clip; }
+  .section-head--center { margin-inline: auto; text-align: center; }
+  .section-head--center .eyebrow { justify-content: center; }
+
+  .cmq__rail {
+    margin-top: 3rem; overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .cmq__track { display: flex; gap: 1.25rem; width: max-content; animation: cmq-scroll 55s linear infinite; }
+  .cmq__rail:hover .cmq__track { animation-play-state: paused; }
+
+  .cmq__card {
+    position: relative; flex: none; width: 288px; aspect-ratio: 4 / 5; border-radius: var(--r-lg);
+    overflow: hidden; box-shadow: var(--shadow-md); margin: 0;
+    transition: transform 0.4s var(--ease-out);
+  }
+  .cmq__card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) contrast(1.02) sepia(0.06); }
+  .cmq__card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(20,16,14,0.55), transparent 42%),
+                linear-gradient(rgba(255,31,109,0.05), rgba(255,31,109,0.05));
+  }
+  .cmq__card:hover { transform: translateY(-6px) scale(1.015); }
+  .cmq__tag {
+    position: absolute; left: 14px; bottom: 14px; z-index: 1;
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #fff;
+    background: rgba(255,255,255,0.14); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25); padding: 0.4rem 0.8rem; border-radius: var(--r-pill);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cmq__track { animation: none; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-inline: var(--gutter); }
+    .cmq__track::-webkit-scrollbar { display: none; }
+  }
+  @media (max-width: 640px) { .cmq__card { width: 220px; } }
+
+  @keyframes cmq-scroll { to { transform: translateX(-50%); } }
+</style>

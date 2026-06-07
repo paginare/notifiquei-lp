@@ -1,0 +1,46 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  titleHl?: string;
+  lead: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
+  glyph?: string;
+}
+const {
+  eyebrow, title, titleHl, lead,
+  primaryHref, primaryLabel, secondaryHref, secondaryLabel,
+  glyph = "“",
+} = Astro.props;
+---
+<section class="section section--brand on-brand finalcta">
+  <span class="finalcta__glyph" aria-hidden="true">{glyph}</span>
+  <div class="container container--narrow finalcta__inner reveal">
+    <span class="eyebrow is-plain">{eyebrow}</span>
+    <h2 class="finalcta__title">{title} {titleHl && <span class="hl">{titleHl}</span>}</h2>
+    <p class="lead">{lead}</p>
+    <div class="finalcta__actions">
+      <a href={primaryHref} class="btn btn--inverse btn--lg">{primaryLabel}<span class="arr" aria-hidden="true">→</span></a>
+      <a href={secondaryHref} class="btn btn--ghost btn--lg">{secondaryLabel}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section--brand { background: linear-gradient(135deg, var(--brand-ink), var(--brand) 65%); color: #fff; }
+  .finalcta { text-align: center; position: relative; overflow: clip; }
+  .finalcta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 120% at 50% -10%, rgba(255,255,255,0.22), transparent 60%); }
+  .finalcta__glyph { position: absolute; top: -0.15em; left: 50%; transform: translateX(-50%); font-family: var(--font-display); font-weight: 800; font-size: 20rem; line-height: 1; color: rgba(255,255,255,0.10); pointer-events: none; user-select: none; }
+  .finalcta__inner { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+  .finalcta__inner .eyebrow { justify-content: center; color: rgba(255,255,255,0.85); }
+  .finalcta__inner .eyebrow::before { background: rgba(255,255,255,0.6); }
+  .finalcta__title { margin-top: 1rem; font-size: var(--fs-display-l); color: #fff; }
+  .on-brand .hl { color: var(--ink); }
+  .finalcta .lead { margin-top: 1.25rem; max-width: 34rem; color: rgba(255,255,255,0.92); }
+  .finalcta__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2rem; }
+  .on-brand .btn--ghost { --btn-fg: #fff; border-color: rgba(255,255,255,0.45); }
+  .on-brand .btn--ghost:hover { background: rgba(255,255,255,0.12); }
+</style>

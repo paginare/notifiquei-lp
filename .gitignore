@@ -1,0 +1,16 @@
+# deps / build
+node_modules/
+dist/
+.astro/
+
+# vercel / ferramentas
+.vercel
+.superpowers/
+.agents/
+skills-lock.json
+
+# fontes de geração (não fazem parte do site publicado)
+video/
+
+# OS
+.DS_Store

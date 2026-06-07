@@ -1,0 +1,53 @@
+---
+interface Props {
+  bg?: "paper" | "paper2";
+  eyebrow?: string;
+  title?: string; // pode conter <br>
+  lead?: string;
+}
+const {
+  bg = "paper2",
+  eyebrow = "O que você ganha",
+  title = "Tudo que precisa. <br class='br-r' />Nada que não precisa.",
+  lead = "A gente cortou a gordura. Cada função existe porque te faz vender mais — não porque fica bonita na tabela comparativa.",
+} = Astro.props;
+
+const caps = [
+  { t: "Comentário → DM → venda", d: "Alguém comenta “quero”. Ele puxa pro privado, manda o link, qualifica e te avisa só na hora de fechar." },
+  { t: "Agente de IA com a sua voz", d: "Responde DMs e comentários sozinho, na sua voz, com a base que você ensina e memória da conversa — sem parecer robô." },
+  { t: "Funil que qualifica sozinho", d: "Perguntas inteligentes, respostas salvas, exportação pro CRM. Você fala só com quem já quer comprar." },
+  { t: "Moderação com IA", d: "Esconde spam, ofensa e negatividade antes de qualquer seguidor ver — e responde os comentários bons sozinho." },
+  { t: "Sorteios pelos comentários", d: "Quem comenta a palavra entra no sorteio automaticamente. Você clica e a gente sorteia — sem caçar comentário." },
+  { t: "Times e agência", d: "Múltiplas contas, equipe organizada, acessos separados. Ideal pra quem gerencia várias marcas." },
+  { t: "TikTok DM automático", d: "Boas-vindas, palavras-chave e resposta padrão no TikTok Business — ninguém fica sem retorno." },
+  { t: "Controle pelo celular", d: "App nativo no iPhone e Android: crie, pause e acompanhe suas automações de onde estiver." },
+];
+---
+<section class={`section ${bg === "paper2" ? "section--paper2" : ""}`}>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 set:html={title} />
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="caps">
+      {caps.map((c, i) => (
+        <article class="cap reveal" style={`--reveal-delay:${(i % 4) * 70}ms`}>
+          <h3 class="cap__title">{c.t}</h3>
+          <p class="cap__body">{c.d}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .caps { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3rem; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  .cap { background: var(--paper); padding: 1.75rem; transition: background 0.25s var(--ease-out); }
+  .section--paper2 .cap { background: var(--paper-2); }
+  .cap:hover { background: var(--card); }
+  .cap__title { font-size: 1.18rem; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
+  .cap__body { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.55; }
+  @media (min-width: 640px) { .caps { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .caps { grid-template-columns: repeat(4, 1fr); } }
+</style>

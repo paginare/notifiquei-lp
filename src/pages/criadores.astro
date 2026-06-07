@@ -1,0 +1,252 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PlatformShowcase from "../components/PlatformShowcase.astro";
+import Capabilities from "../components/Capabilities.astro";
+
+const APP = "https://app.notifiquei.com.br";
+
+const steps = [
+  { n: "01", t: "Conecte em 3 cliques", d: "Login pela Meta oficial. A gente não pede sua senha (e nem podia). Zero risco de bloqueio, conta segura." },
+  { n: "02", t: "Escolha a palavra", d: "“Quero”, “preço”, “link”… você define. Quem comentar ou mandar DM com ela recebe a resposta na hora." },
+  { n: "03", t: "Volta a criar", d: "Os DMs respondem sozinhos, os leads chegam qualificados, e você só entra quando o cliente já quer comprar." },
+];
+
+const perks = [
+  { t: "Aguenta o tranco do viral", d: "800 comentários “quero” num reel que explodiu? Cada um vira uma conversa no DM, em segundos — sem você travar." },
+  { t: "Responde na sua voz", d: "Nada de robô engessado. O agente de IA fala do seu jeito, com a base que você ensina." },
+  { t: "Você dorme, ele vende", d: "Resposta automática 24h, mesmo de madrugada. Quem responde primeiro fica com o cliente." },
+  { t: "Sem risco pro perfil", d: "API oficial da Meta, parceiro certificado. Seu alcance e seus anúncios seguem normais." },
+  { t: "Só te chama quando importa", d: "Ele filtra e qualifica. Quando o lead esquenta, te marca pra você fechar — sem garimpar DM." },
+  { t: "Configura sem dev", d: "Você é criador, não programador. Arrasta, solta, salva. Sem tutorial de duas horas." },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Notifiquei para criadores",
+    url: "https://www.notifiquei.com.br/criadores",
+    isPartOf: { "@id": "https://www.notifiquei.com.br/#org" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://www.notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Para criadores", item: "https://www.notifiquei.com.br/criadores" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      { "@type": "Question", name: "Funciona com poucos seguidores?", acceptedAnswer: { "@type": "Answer", text: "Sim. O Notifiquei funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores." } },
+      { "@type": "Question", name: "Preciso saber programar para usar?", acceptedAnswer: { "@type": "Answer", text: "Não. É tudo visual: você escolhe a palavra-chave e a resposta. Se sabe mandar mensagem no Instagram, sabe usar o Notifiquei." } },
+      { "@type": "Question", name: "O Notifiquei pode bloquear meu Instagram?", acceptedAnswer: { "@type": "Answer", text: "Não. O Notifiquei usa a API oficial da Meta e não pede sua senha. Não há risco de banimento." } },
+    ],
+  },
+];
+---
+
+<Base
+  title="Notifiquei para criadores — seu post viraliza, a gente responde"
+  description="Pro criador que não dá conta dos DMs: o Notifiquei responde cada “quero” do seu post em segundos, com a sua voz, pela API oficial da Meta. Você cria, ele converte."
+  path="/criadores"
+  jsonLd={jsonLd}
+>
+  <Nav />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow is-plain">Criadores de 10k a 1M seguidores</span>
+          <h1 class="hero__title">Seu post viraliza.<br />A gente <span class="hl">responde</span>.</h1>
+          <p class="lead hero__lead">
+            Você postou aquele reel que explodiu. Agora tem 800 comentários “quero” esperando.
+            O Notifiquei manda o link pra cada um em segundos — você só acorda e vê o resultado.
+          </p>
+          <div class="hero__actions">
+            <a href={APP} class="btn btn--brand btn--lg">Automatizar meu Instagram<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#como" class="btn btn--ghost btn--lg">Ver como funciona</a>
+          </div>
+          <ul class="hero__trust">
+            <li><span class="tick" aria-hidden="true">✓</span> API oficial Meta</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Não parece robô</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Responde em 3 segundos</li>
+          </ul>
+        </div>
+
+        <div class="hero__demo">
+          <div class="rcard">
+            <div class="rcard__core">
+              <div class="rcard__bar"><span class="pill"><span class="dot is-live"></span> Automação ativa</span><span class="rcard__m">847 respostas hoje</span></div>
+              <div class="rbub rbub--in"><span class="rbub__who">@mariana.fit comentou no seu reel</span><p>“quero saber o preço do curso 😍”</p></div>
+              <div class="rcard__flow"><span></span>resposta automática no privado<span></span></div>
+              <div class="rbub rbub--out"><p>Oii! 😊 Tá <strong>R$ 297</strong> à vista. Te mando o link?</p></div>
+              <div class="rcard__done"><span class="rcard__check">✓</span> Mariana abriu o link · <strong>3s</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="section section--paper2" id="como">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Você é criador,<br />não desenvolvedor.</h2>
+          <p class="lead">Por isso a gente fez simples: sem configuração infinita, sem tutorial de duas horas, sem chamar o sobrinho que mexe com tecnologia.</p>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li class="step reveal" style={`--reveal-delay:${i * 110}ms`}>
+              <span class="step__n">{s.n}</span>
+              <h3 class="step__t">{s.t}</h3>
+              <p class="step__d">{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTRASTE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Veja a diferença</span>
+          <h2>Quem responde primeiro<br />fica com o cliente.</h2>
+        </div>
+        <div class="contrast__grid">
+          <article class="convo convo--lose reveal">
+            <header class="convo__head"><span class="convo__tag">Sem Notifiquei</span></header>
+            <div class="convo__body">
+              <div class="msg msg--them">Oi! Quanto tá o curso? 😍</div>
+              <div class="convo__gap">⋯ 6 horas depois</div>
+              <div class="msg msg--them">Deixa, comprei de outra pessoa.</div>
+            </div>
+            <footer class="convo__foot convo__foot--lose">Cliente foi embora em 6 horas.</footer>
+          </article>
+          <article class="convo convo--win reveal" style="--reveal-delay:120ms">
+            <header class="convo__head"><span class="convo__tag convo__tag--win">Com Notifiquei</span></header>
+            <div class="convo__body">
+              <div class="msg msg--them">Oi! Quanto tá o curso? 😍</div>
+              <div class="msg msg--me">Oii! 😊 R$ 297 à vista. Te mando o link?<span class="msg__meta">14:32 · automático</span></div>
+              <div class="msg msg--them">Manda! Quero comprar agora 🔥</div>
+            </div>
+            <footer class="convo__foot convo__foot--win">Respondido em 1 minuto.</footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <PlatformShowcase bg="paper2" title="Por dentro,<br />feito pra criador." />
+    <Capabilities bg="paper" eyebrow="Tudo num lugar" title="Mais que responder DM." lead="O que você precisa pra transformar audiência em venda — sem juntar cinco ferramentas." />
+
+    <!-- PERKS -->
+    <section class="section section--paper2">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Feito pra rodar sozinho</span>
+          <h2>Escala sua audiência<br />sem escalar seu tempo.</h2>
+        </div>
+        <div class="perks">
+          {perks.map((p, i) => (
+            <article class="perk reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
+              <h3 class="perk__t">{p.t}</h3>
+              <p class="perk__d">{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FinalCta
+      eyebrow="Enquanto você lia isso…"
+      title="Alguém comentou"
+      titleHl="“quero”."
+      lead="Teste 7 dias. Se não rolar, devolvemos 100%. Sem pegadinha."
+      primaryHref={APP}
+      primaryLabel="Começar agora"
+      secondaryHref="/#planos"
+      secondaryLabel="Ver planos"
+    />
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  /* HERO (compartilha tokens; visual próprio) */
+  .hero { position: relative; padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) var(--space-section); overflow: clip; }
+  .hero__bg { position: absolute; inset: -10% -20% auto; height: 70%; z-index: 0; background: radial-gradient(60% 60% at 80% 0%, var(--brand-wash), transparent 70%); pointer-events: none; }
+  .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+  .hero__title { margin-top: 1.4rem; font-size: clamp(2.9rem, 1.4rem + 7vw, 6.5rem); line-height: 0.92; letter-spacing: -0.04em; }
+  .hero__title .hl { color: var(--brand-ink); white-space: nowrap; }
+  .hero__lead { margin-top: 1.5rem; max-width: 32rem; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); }
+  .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
+  .hero__trust .tick { color: var(--brand-ink); font-weight: 800; }
+  @media (min-width: 940px) { .hero__inner { grid-template-columns: 1.05fr 0.95fr; } }
+
+  /* reply card (double-bezel, igual ao hero da home) */
+  .hero__demo { justify-self: center; width: 100%; max-width: 410px; }
+  .rcard { background: linear-gradient(180deg, var(--paper-2), var(--paper-3)); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 7px; box-shadow: var(--shadow-lg); animation: rfloat 7s var(--ease-in-out) infinite; }
+  @keyframes rfloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { .rcard { animation: none; } }
+  .rcard__core { background: var(--card); border-radius: calc(var(--r-xl) - 7px); padding: 1.1rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 1px 2px rgba(22,18,16,0.04); display: flex; flex-direction: column; gap: 0.65rem; }
+  .rcard__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.3rem; }
+  .rcard__m { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); white-space: nowrap; }
+  .rbub { padding: 0.7rem 0.9rem; border-radius: 14px; font-size: 0.9rem; line-height: 1.4; max-width: 90%; }
+  .rbub__who { display: block; font-size: 0.7rem; font-weight: 700; color: var(--ink-faint); margin-bottom: 0.2rem; }
+  .rbub--in { background: var(--paper-2); align-self: flex-start; border-bottom-left-radius: 5px; }
+  .rbub--out { background: var(--ink); color: var(--on-ink); align-self: flex-end; border-bottom-right-radius: 5px; }
+  .rbub--out strong { color: var(--brand-lift); }
+  .rcard__flow { display: flex; align-items: center; gap: 0.6rem; align-self: stretch; font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-ink); }
+  .rcard__flow span { flex: 1; height: 1px; background: var(--line); }
+  .rcard__done { display: flex; align-items: center; gap: 0.5em; padding: 0.7rem 0.9rem; border-radius: 12px; background: var(--positive-wash); color: #0f6b48; font-size: 0.85rem; font-weight: 600; }
+  .rcard__check { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--positive); color: #fff; display: inline-grid; place-items: center; font-size: 0.7rem; }
+  .rcard__done strong { color: #0f6b48; }
+
+  /* steps (igual index) */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .step { padding: 2rem 1.75rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8); }
+  .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
+  .step__t { font-size: 1.4rem; margin-top: 1rem; }
+  .step__d { margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.97rem; }
+  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+  /* contraste (igual index) */
+  .contrast__grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .convo { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .convo--win { box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--brand) 30%, var(--line)); }
+  .convo__head { padding: 1rem 1.25rem; border-bottom: 1px solid var(--line-soft); }
+  .convo__tag { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-faint); }
+  .convo__tag--win { color: var(--brand-ink); }
+  .convo__body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; min-height: 180px; }
+  .msg { max-width: 80%; padding: 0.65rem 0.9rem; border-radius: 14px; font-size: 0.92rem; line-height: 1.4; }
+  .msg--them { background: var(--paper-2); align-self: flex-start; border-bottom-left-radius: 5px; }
+  .msg--me { background: var(--brand); color: #fff; align-self: flex-end; border-bottom-right-radius: 5px; }
+  .msg__meta { display: block; font-size: 0.66rem; opacity: 0.8; margin-top: 0.25rem; }
+  .convo__gap { align-self: center; font-size: 0.74rem; color: var(--ink-faint); font-style: italic; }
+  .convo__foot { padding: 0.9rem 1.25rem; font-weight: 700; font-size: 0.9rem; border-top: 1px solid var(--line-soft); }
+  .convo__foot--lose { color: var(--ink-faint); }
+  .convo__foot--win { color: #0f6b48; background: var(--positive-wash); }
+  @media (min-width: 760px) { .contrast__grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+
+  /* perks */
+  .perks { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3rem; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  .perk { background: var(--paper); padding: 1.75rem; transition: background 0.25s var(--ease-out); }
+  .perk:hover { background: var(--card); }
+  .perk__t { font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; letter-spacing: -0.01em; }
+  .perk__d { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.55; }
+  @media (min-width: 640px) { .perks { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .perks { grid-template-columns: repeat(3, 1fr); } }
+</style>

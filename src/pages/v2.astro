@@ -1,0 +1,511 @@
+---
+// VARIANTE B (A/B test) — hero escuro + aversão à perda no topo.
+// noindex + canonical "/" para não competir com a Home real na busca.
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import PlatformShowcase from "../components/PlatformShowcase.astro";
+import Capabilities from "../components/Capabilities.astro";
+import ZoomReveal from "../components/ZoomReveal.astro";
+import CreatorsMarquee from "../components/CreatorsMarquee.astro";
+import StickyCta from "../components/StickyCta.astro";
+
+// Variante B do teste A/B: src=v2 identifica a landing no webhook da Cakto / signup do free.
+const SRC = "v2";
+const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
+const WPP = "https://wa.me/551231995949";
+
+const steps = [
+  { n: "01", title: "Conecte seu Instagram", body: "Login pela Meta oficial, em poucos cliques. Zero senha exposta, zero risco, zero enrolação." },
+  { n: "02", title: "Escolha os gatilhos", body: "Palavra no comentário, DM recebido, resposta de story — você decide o que ativa cada automação." },
+  { n: "03", title: "Relaxe e venda", body: "Ele responde, qualifica, manda o link e só te chama quando o cliente já está pronto pra comprar." },
+];
+
+const plans = [
+  { name: "Solo", price: "99", blurb: "Criador iniciante, operação pequena.", hrefM: "https://pay.cakto.com.br/yqe9jrb", hrefA: "https://pay.cakto.com.br/iddrcgp", cta: "Começar com Solo", featured: true, features: ["1 conta — Instagram + TikTok", "Automações ilimitadas", "Templates básicos", "Atendimento via chat", "Novidades antes de todo mundo"] },
+  { name: "Pro", price: "499", blurb: "Pra quem já escalou um pouco.", hrefM: "https://pay.cakto.com.br/n9pdz5r", hrefA: "https://pay.cakto.com.br/e5nq458", cta: "Começar com Pro", featured: false, features: ["5 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"] },
+  { name: "Business", price: "799", blurb: "Agência e operação grande.", hrefM: "https://pay.cakto.com.br/vpo6p5e", hrefA: "https://pay.cakto.com.br/vtwuf4v", cta: "Começar com Business", featured: false, features: ["10 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento VIP no WhatsApp", "Controle pelo WhatsApp"] },
+];
+
+const faqs = [
+  { q: "Isso pode bloquear meu Instagram?", a: "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." },
+  { q: "Preciso saber programar?", a: "Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual." },
+  { q: "O Notifiquei responde sozinho, com IA?", a: "Sim. O Agente de IA responde DMs e comentários na sua voz, usando uma base de conhecimento que você ensina — e lembra do contexto da conversa. Quando o lead esquenta, ele te avisa pra você fechar." },
+  { q: "Funciona pra e-commerce?", a: "Sim. Temos clientes vendendo moda, cosméticos, suplementos e produtos físicos em geral. O fluxo ideal muda um pouco, mas tem template pronto pra isso." },
+  { q: "Qual a diferença pro ManyChat?", a: "Mais barato, suporte em português, interface mais simples e foco no mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você." },
+  { q: "Funciona com poucos seguidores?", a: "Funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores. Conta menor costuma sentir o resultado primeiro." },
+  { q: "Preciso de conta comercial ou profissional?", a: "Sim, uma conta Profissional ou de Criador no Instagram — gratuita de ativar e leva 1 minuto. É exigência da própria API oficial da Meta." },
+  { q: "Funciona com TikTok?", a: "Sim. O Notifiquei automatiza as DMs do TikTok (conta Business) — e cada plano já conecta 1 Instagram + 1 TikTok no mesmo preço. Você automatiza os dois canais sem pagar dobrado." },
+  { q: "Posso cancelar quando quiser?", a: "Sim. Você começa com 7 dias grátis e cancela a qualquer momento, direto pelo painel — sem fidelidade." },
+];
+
+const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophistique.png", "cikiy.svg", "debran.svg"];
+---
+
+<Base
+  title="Notifiquei — Pare de perder venda no comentário"
+  description="Cada comentário sem resposta é uma venda saindo pela porta. O Notifiquei responde em segundos, pela API oficial da Meta. 7 dias grátis."
+  path="/v2"
+  noindex={true}
+  canonicalPath="/"
+  heroPoster="/assets/hero-poster.jpg"
+>
+  <Nav />
+
+  <main>
+    <!-- ============ HERO ESCURO (aversão à perda) ============ -->
+    <section class="section--ink on-ink hero hero--dark">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow is-plain hero__eyebrow">Instagram + TikTok · API oficial</span>
+          <h1 class="hero__title">
+            Cada comentário sem resposta <br class="br-r" />é uma venda <span class="hl">no lixo</span>.
+          </h1>
+          <p class="lead hero__lead">
+            No Instagram, quem responde primeiro fica com o cliente. O Notifiquei
+            responde comentários, DMs e stories em segundos — na <em>sua</em> voz,
+            pela API oficial da Meta. Você para de perder. Ele fecha por você.
+          </p>
+          <div class="hero__actions">
+            <a href={FREE} class="btn btn--brand btn--lg">Parar de perder venda<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#como" class="btn btn--ghost btn--lg">Ver como funciona</a>
+          </div>
+          <p class="hero__price"><strong>Grátis pra sempre</strong> · sem cartão · planos a partir de R$ 99/mês</p>
+          <ul class="hero__trust">
+            <li><span class="tick" aria-hidden="true">✓</span> Provedor oficial Meta</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Grátis pra sempre</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Sem cartão de crédito</li>
+          </ul>
+        </div>
+        <div class="hero__demo" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
+          <video class="hero__video" src="/assets/hero.mp4" poster="/assets/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ O PREÇO DE NÃO RESPONDER (contraste no topo) ============ -->
+    <section class="section loss">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">A mesma pergunta, dois finais</span>
+          <h2>Um “quanto custa?” <br class="br-r" />vale uma venda — ou um vácuo.</h2>
+          <p class="lead">A diferença entre fechar e perder costuma ser o tempo de resposta. Veja os dois caminhos lado a lado.</p>
+        </div>
+        <div class="loss__grid reveal">
+          <article class="loss__card loss__card--lose">
+            <span class="loss__tag">Sem Notifiquei</span>
+            <p class="loss__line">Comentário às 22h. Você só vê de manhã.</p>
+            <p class="loss__line">O cliente já comprou com outro perfil.</p>
+            <b class="loss__verdict loss__verdict--bad">🥲 Venda perdida em 6 horas</b>
+          </article>
+          <article class="loss__card loss__card--win">
+            <span class="loss__tag loss__tag--win">Com Notifiquei</span>
+            <p class="loss__line">Comentário às 22h. Resposta em 3 segundos.</p>
+            <p class="loss__line">Link no direct, lead qualificado, você fecha.</p>
+            <b class="loss__verdict loss__verdict--good">🎉 Venda fechada em 1 minuto</b>
+          </article>
+        </div>
+        <div class="inaction__video reveal">
+          <video class="conversa-video" src="/assets/demo-conversa.mp4" poster="/assets/demo-conversa-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROVA SOCIAL ============ -->
+    <section class="proof">
+      <div class="container proof__inner">
+        <p class="proof__count"><strong>+2.000 criadores</strong> brasileiros já transformam comentários em vendas no automático.</p>
+        <div class="proof__stats">
+          <div><span class="proof__num">3s</span><span class="proof__lbl">tempo médio de resposta</span></div>
+          <div><span class="proof__num">24h</span><span class="proof__lbl">vendendo, mesmo dormindo</span></div>
+          <div><span class="proof__num">98%</span><span class="proof__lbl">dos comentários respondidos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <CreatorsMarquee />
+
+    <!-- ============ COMO FUNCIONA ============ -->
+    <section class="section section--paper2" id="como">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Três passos. <br class="br-r" />Cinco minutos. Zero código.</h2>
+          <p class="lead">Você não precisa de dev, time técnico ou tutorial de duas horas. Se a gente soubesse que era tão simples, teria cobrado mais caro.</p>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li class="step reveal" style={`--reveal-delay:${i * 90}ms`}>
+              <span class="step__n">{s.n}</span>
+              <h3 class="step__title">{s.title}</h3>
+              <p class="step__body">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <PlatformShowcase />
+    <ZoomReveal />
+    <Capabilities />
+
+    <!-- ============ POR QUE API OFICIAL ============ -->
+    <section class="section section--ink on-ink risk">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Por que API oficial importa</span>
+          <h2>Ferramenta não-oficial <br class="br-r" />é roleta-russa com seu perfil.</h2>
+          <p class="lead" style="color:var(--on-ink-soft)">Milhares de criadores já perderam alcance, pagaram anúncio mais caro ou foram banidos por usar automação que a Meta proíbe. Não é teoria.</p>
+        </div>
+        <div class="risk__grid">
+          <article class="risk__card risk__card--bad reveal">
+            <h3 class="risk__title">⚠ Ferramentas não-oficiais</h3>
+            <ul class="risk__list">
+              <li>Punições silenciosas — menos alcance, menos visualizações</li>
+              <li>Anúncios até 3× mais caros depois de uma punição</li>
+              <li>Risco real de banimento temporário ou permanente</li>
+              <li>Acesso revogado sem aviso prévio</li>
+            </ul>
+          </article>
+          <article class="risk__card risk__card--good reveal" style="--reveal-delay:120ms">
+            <h3 class="risk__title">✓ Com Notifiquei (API oficial)</h3>
+            <ul class="risk__list">
+              <li>Integração 100% aprovada pela Meta — dentro das regras</li>
+              <li>Sem risco de punição, banimento ou perda de alcance</li>
+              <li>Suas métricas e anúncios seguem normais</li>
+              <li>Atualiza sozinho quando a Meta muda as regras</li>
+            </ul>
+          </article>
+        </div>
+        <p class="risk__seal reveal">
+          <span class="risk__seal-dot"></span> Notifiquei é parceiro certificado da Meta. Cada automação aqui está dentro das regras — e seu perfil fica protegido enquanto você vende.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ DEPOIMENTOS ============ -->
+    <section class="section section--ink on-ink testi">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Quem já usa</span>
+          <h2>Criadores reais. <br class="br-r" />Resultados reais.</h2>
+        </div>
+        <figure class="quote reveal">
+          <blockquote>“Antes eu perdia vários comentários porque não conseguia responder rápido. Hoje o Notifiquei faz isso por mim e eu só falo com quem já quer comprar. Muito mais simples e acessível que o ManyChat.”</blockquote>
+          <figcaption>
+            <span class="tcard__ava" data-initial="L"></span>
+            <span class="quote__who"><strong>Leid Medeiros</strong><span>@leidconsultoria</span></span>
+          </figcaption>
+        </figure>
+        <div class="tgrid reveal">
+          <figure class="tcard"><blockquote>“A gente vivia perdendo venda no comentário porque não dava conta de responder todo mundo a tempo. Agora chega um ‘quero’ e o cliente já recebe o link no direct na hora. Foi o pulo do gato pra gente.”</blockquote><figcaption><span class="tcard__ava" data-initial="G"></span><span class="tcard__who"><strong>Gummy</strong><span>@gummy</span></span></figcaption></figure>
+          <figure class="tcard"><blockquote>“O que me convenceu foi não parecer robô. Configurei a resposta do meu jeito e meu público nem desconfia que não sou eu ali. Voltei a ter tempo pra gravar em vez de ficar grudado no direct.”</blockquote><figcaption><span class="tcard__ava" data-initial="S"></span><span class="tcard__who"><strong>Sucesso na Rede</strong><span>@sucessonarede</span></span></figcaption></figure>
+          <figure class="tcard"><blockquote>“Achei que ia ser complicado de montar e em uns 5 minutos já tava rodando. O cliente comenta no post e recebe o orçamento na DM sozinho. Pra quem vende todo dia, isso é ouro.”</blockquote><figcaption><span class="tcard__ava" data-initial="B"></span><span class="tcard__who"><strong>Sul Battery</strong><span>@sulbattery</span></span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARCAS ============ -->
+    <section class="logostrip">
+      <div class="container">
+        <p class="logostrip__label reveal">Marcas e criadores que já usam</p>
+        <div class="logos reveal" aria-label="Marcas que usam o Notifiquei">
+          <div class="logos__track">
+            {[...clientes, ...clientes, ...clientes].map((file) => (
+              <img class="logos__item" src={`/assets/clientes/${file}`} alt={`${file.replace(/\.(png|svg|jpg)$/, "").replace(/-/g, " ")} — usa o Notifiquei`} loading="lazy" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANOS ============ -->
+    <section class="section" id="planos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Planos</span>
+          <h2>Mais barato que perder <br class="br-r" />um lead quente.</h2>
+          <p class="lead">Um funcionário custa R$ 2.500/mês. O Notifiquei começa em R$ 99 e não tira férias.</p>
+          <p class="plans__note"><strong>2 em 1:</strong> cada conta já conecta <strong>Instagram + TikTok</strong> no mesmo plano — automatize os dois sem pagar a mais.</p>
+          <div class="billtoggle reveal" id="billtoggle" role="group" aria-label="Ciclo de cobrança">
+            <button type="button" class="billtoggle__opt is-on" data-cycle="m">Mensal</button>
+            <button type="button" class="billtoggle__opt" data-cycle="a">Anual <span class="billtoggle__save">2 meses grátis</span></button>
+          </div>
+        </div>
+        <div class="plans" id="plans-grid">
+          {plans.map((p, i) => (
+            <article class={`plan reveal ${p.featured ? "plan--featured" : ""}`} style={`--reveal-delay:${i * 90}ms`}>
+              {p.featured && <span class="plan__badge">Mais popular</span>}
+              <h3 class="plan__name">{p.name}</h3>
+              <p class="plan__blurb">{p.blurb}</p>
+              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={String(Math.round(Number(p.price) * 10 / 12))}>{p.price}</span><span class="plan__per">/mês</span></p>
+              <p class="plan__bill" data-bill={`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}></p>
+              <a href={`${p.hrefM}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              <ul class="plan__features">{p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}</ul>
+              <span class="plan__guarantee">7 dias grátis · cancele quando quiser</span>
+            </article>
+          ))}
+        </div>
+
+        <!-- Plano grátis para sempre (separado dos pagos) -->
+        <article class="freeplan reveal">
+          <div class="freeplan__head">
+            <span class="freeplan__tag">Grátis para sempre</span>
+            <h3 class="freeplan__name">Plano Grátis</h3>
+            <p class="freeplan__blurb">Quer só experimentar, sem cartão e sem prazo? Comece de graça e suba de plano quando quiser.</p>
+          </div>
+          <ul class="freeplan__features">
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Para sempre, sem cartão</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Só Instagram (sem TikTok nem WhatsApp)</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Até 200 envios automáticos por mês</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Mensagens com marca d’água “⚡ Enviado com Notifiquei”</li>
+          </ul>
+          <div class="freeplan__cta">
+            <a href={FREE} class="btn btn--ghost btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section--paper2" id="faq">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Dúvidas comuns</span>
+          <h2>Respostas diretas. <br class="br-r" />Sem rodeio.</h2>
+        </div>
+        <div class="faq reveal">
+          {faqs.map((f) => (
+            <details class="faq__item">
+              <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="section section--brand on-brand finalcta">
+      <span class="finalcta__glyph" aria-hidden="true">“</span>
+      <div class="container container--narrow finalcta__inner reveal">
+        <span class="eyebrow is-plain">Enquanto você lia isso…</span>
+        <h2 class="finalcta__title">Alguém comentou <span class="hl">“quero”</span> no seu post.</h2>
+        <p class="lead">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Comece de graça — sem cartão, sem prazo.</p>
+        <div class="finalcta__actions">
+          <a href={FREE} class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href={WPP} class="btn btn--ghost btn--lg">Falar com a gente</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <StickyCta href={FREE} />
+
+  <script>
+    const toggle = document.getElementById("billtoggle");
+    const grid = document.getElementById("plans-grid");
+    if (toggle && grid) {
+      toggle.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".billtoggle__opt");
+        if (!btn) return;
+        const annual = btn.dataset.cycle === "a";
+        toggle.querySelectorAll(".billtoggle__opt").forEach((o) => o.classList.toggle("is-on", o === btn));
+        grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
+          const amt = card.querySelector<HTMLElement>(".plan__amount");
+          const bill = card.querySelector<HTMLElement>(".plan__bill");
+          const cta = card.querySelector<HTMLAnchorElement>(".plan__cta");
+          if (amt) amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
+          if (bill) bill.textContent = annual ? bill.dataset.bill! : "";
+          if (cta) cta.href = annual ? cta.dataset.hrefA! : cta.dataset.hrefM!;
+        });
+      });
+    }
+  </script>
+</Base>
+
+<style>
+  /* ===================== HERO ESCURO ===================== */
+  .hero--dark { position: relative; padding-block: clamp(2.75rem, 1.5rem + 4vw, 5.5rem) clamp(3rem, 4vw, 5rem); overflow: clip; }
+  .hero--dark .hero__bg {
+    position: absolute; inset: -10% -20% auto; height: 80%; z-index: 0;
+    background:
+      radial-gradient(55% 60% at 82% 0%, color-mix(in srgb, var(--brand) 32%, transparent), transparent 70%),
+      radial-gradient(45% 50% at 10% 10%, rgba(255,31,109,0.14), transparent 70%);
+    pointer-events: none;
+  }
+  .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+  .hero__eyebrow { color: color-mix(in srgb, var(--brand-lift) 65%, #fff); font-weight: 600; text-wrap: balance; }
+  .hero__title { margin-top: 1.4rem; font-size: clamp(2.7rem, 1.2rem + 7vw, 6.25rem); line-height: 0.94; letter-spacing: -0.04em; }
+  .hero--dark .hero__title .hl { color: var(--brand-lift); white-space: nowrap; }
+  .hero__lead { margin-top: 1.5rem; max-width: 32rem; color: var(--on-ink-soft); }
+  .hero__lead em { font-style: italic; color: var(--on-ink); }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .hero__price { margin-top: 1.1rem; font-size: 0.92rem; color: var(--on-ink-soft); }
+  .hero__price strong { color: var(--on-ink); font-weight: 700; }
+  .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--on-ink-soft); }
+  .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
+  .hero__trust .tick { color: var(--brand-lift); font-weight: 800; }
+  /* vídeo emoldurado claro sobre o fundo escuro */
+  .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; background: var(--card); padding: 10px; border-radius: calc(var(--r-lg) + 10px); border: 1px solid var(--line-ink); box-shadow: var(--shadow-lg); }
+  .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1280 / 960; background: var(--paper); }
+  @media (min-width: 940px) {
+    .hero__inner { grid-template-columns: 1fr 1.12fr; align-items: center; gap: clamp(2.5rem, 4vw, 4.5rem); }
+    .hero__demo { max-width: 680px; }
+  }
+
+  /* ===================== LOSS (contraste topo) ===================== */
+  .loss__grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .loss__card { padding: 1.9rem; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 0.7rem; }
+  .loss__card--win { border-color: color-mix(in srgb, var(--brand) 32%, var(--line)); box-shadow: var(--shadow-md); }
+  .loss__tag { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-faint); }
+  .loss__tag--win { color: var(--brand-ink); }
+  .loss__line { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.5; }
+  .loss__verdict { margin-top: 0.4rem; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+  .loss__verdict--bad { color: var(--ink-soft); }
+  .loss__verdict--good { color: #0f6b48; }
+  .inaction__video { justify-self: center; width: 100%; max-width: 380px; margin: 2.5rem auto 0; }
+  .conversa-video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1080 / 1350; background: var(--paper); box-shadow: var(--shadow-md); }
+  @media (min-width: 760px) { .loss__grid { grid-template-columns: 1fr 1fr; } }
+
+  /* ===================== PROVA SOCIAL ===================== */
+  .proof { border-block: 1px solid var(--line-soft); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
+  .proof__inner { display: grid; gap: 2rem; align-items: center; }
+  .proof__count { font-size: var(--fs-lead); line-height: 1.45; max-width: 26rem; color: var(--ink-soft); }
+  .proof__count strong { color: var(--ink); font-weight: 700; }
+  .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .proof__num { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; color: var(--brand-ink); line-height: 1; }
+  .proof__lbl { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--ink-faint); }
+  @media (min-width: 820px) { .proof__inner { grid-template-columns: 1fr 1.3fr; gap: 3rem; } }
+
+  /* ===================== STEPS ===================== */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .step { padding: 2rem 1.75rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); position: relative; box-shadow: var(--shadow-sm); }
+  .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
+  .step__title { font-size: 1.35rem; margin-top: 1rem; }
+  .step__body { margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.97rem; }
+  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ===================== RISCO ===================== */
+  .risk__grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .risk__card { padding: 2rem; border-radius: var(--r-lg); border: 1px solid var(--line-ink); }
+  .risk__card--bad { background: rgba(255,255,255,0.02); }
+  .risk__card--good { background: var(--brand-wash); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+  .risk__title { font-size: 1.3rem; }
+  .risk__card--good .risk__title { color: var(--brand-lift); }
+  .risk__list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+  .risk__list li { position: relative; padding-left: 1.4rem; color: var(--on-ink-soft); font-size: 0.95rem; line-height: 1.5; }
+  .risk__list li::before { content: "—"; position: absolute; left: 0; color: var(--brand-lift); }
+  .risk__seal { display: flex; align-items: center; gap: 0.7rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line-ink); color: var(--on-ink-soft); font-size: 0.95rem; }
+  .risk__seal-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--brand-wash); }
+  @media (min-width: 820px) { .risk__grid { grid-template-columns: 1fr 1fr; } }
+
+  /* ===================== DEPOIMENTOS ===================== */
+  .quote { margin-top: 3rem; max-width: 48rem; }
+  .quote blockquote { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 1rem + 2vw, 2.1rem); line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance; }
+  .quote figcaption { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.85rem; }
+  .quote__who { display: flex; flex-direction: column; gap: 1px; }
+  .quote__who strong { font-size: 1.05rem; }
+  .quote__who span { color: var(--brand-lift); font-size: 0.9rem; }
+  .tcard__ava { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-wash); color: var(--brand-lift); font-weight: 800; font-size: 1.05rem; border: 1px solid rgba(255,255,255,0.14); }
+  .tcard__ava::before { content: attr(data-initial); }
+  .tgrid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3.25rem; }
+  .tcard { background: rgba(255,255,255,0.04); border: 1px solid var(--line-ink); border-radius: var(--r-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .tcard blockquote { font-size: 1rem; line-height: 1.55; color: var(--on-ink); }
+  .tcard figcaption { display: flex; align-items: center; gap: 0.75rem; margin-top: auto; }
+  .tcard__who { display: flex; flex-direction: column; gap: 1px; }
+  .tcard__who strong { font-size: 0.95rem; }
+  .tcard__who span { color: var(--on-ink-soft); font-size: 0.82rem; }
+  @media (min-width: 760px) { .tgrid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ===================== MARCAS ===================== */
+  .logostrip { padding-block: clamp(2.5rem, 5vw, 3.5rem); border-bottom: 1px solid var(--line-soft); }
+  .logostrip__label { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2rem; }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos__track { display: flex; align-items: center; gap: clamp(2.5rem, 5vw, 4.5rem); width: max-content; animation: marquee 42s linear infinite; }
+  .logos__item { height: 30px; width: auto; object-fit: contain; opacity: 0.5; filter: grayscale(1); transition: opacity 0.25s, filter 0.25s; }
+  .logos__item:hover { opacity: 1; filter: grayscale(0); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; } }
+
+  /* ===================== PLANOS ===================== */
+  .plans__note { margin-top: 1rem; display: inline-block; font-size: 0.92rem; color: var(--ink-soft); background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--line)); border-radius: var(--r-pill); padding: 0.6rem 1.1rem; }
+  .plans__note strong { color: var(--brand-ink); font-weight: 700; }
+  .billtoggle { display: inline-flex; gap: 4px; margin-top: 1.75rem; padding: 4px; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .billtoggle__opt { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.5rem 1.1rem; border-radius: var(--r-pill); font-weight: 600; font-size: 0.9rem; color: var(--ink-soft); transition: background 0.2s var(--ease-out), color 0.2s; }
+  .billtoggle__opt.is-on { background: var(--ink); color: var(--on-ink); }
+  .billtoggle__save { font-size: 0.68rem; font-weight: 700; background: var(--brand); color: #fff; padding: 0.15rem 0.45rem; border-radius: var(--r-pill); }
+  .billtoggle__opt.is-on .billtoggle__save { background: var(--brand-lift); }
+  .plan__bill { font-size: 0.78rem; color: var(--ink-faint); margin-top: -0.6rem; margin-bottom: 1.25rem; min-height: 1.1em; }
+  .plans { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; align-items: start; }
+  .plan { position: relative; padding: 2rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); display: flex; flex-direction: column; box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8); transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-out); }
+  .plan:hover { box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.8); }
+  .plan--featured { border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 4%, var(--card)), var(--card)); box-shadow: var(--shadow-brand), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .plan__badge { position: absolute; top: -0.8rem; left: 2rem; background: var(--brand); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.35rem 0.85rem; border-radius: var(--r-pill); }
+  .plan__name { font-size: 1.5rem; }
+  .plan__blurb { color: var(--ink-soft); font-size: 0.92rem; margin-top: 0.35rem; min-height: 2.6em; }
+  .plan__price { font-family: var(--font-display); font-weight: 800; font-size: 3rem; letter-spacing: -0.03em; margin: 1rem 0 1.25rem; line-height: 1; }
+  .plan__cur { font-size: 1.1rem; vertical-align: super; margin-right: 0.15rem; color: var(--ink-soft); }
+  .plan__per { font-size: 0.95rem; font-weight: 600; color: var(--ink-faint); font-family: var(--font-body); letter-spacing: 0; }
+  .plan__cta { width: 100%; }
+  .plan__features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+  .plan__features li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: var(--ink-soft); }
+  .plan__tick { flex: none; color: var(--brand-ink); font-weight: 800; }
+  .plan__guarantee { margin-top: 1.5rem; font-size: 0.8rem; color: var(--ink-faint); text-align: center; }
+  @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } .plan--featured { transform: translateY(-12px); } }
+
+  /* plano grátis — card largura cheia, separado dos pagos */
+  .freeplan {
+    margin-top: 1.25rem; padding: 1.9rem; border-radius: var(--r-lg);
+    border: 1px dashed color-mix(in srgb, var(--brand) 30%, var(--line));
+    background: var(--paper-2);
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center;
+  }
+  .freeplan__tag { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand-ink); margin-bottom: 0.6rem; }
+  .freeplan__name { font-size: 1.4rem; }
+  .freeplan__blurb { margin-top: 0.4rem; color: var(--ink-soft); font-size: 0.92rem; max-width: 32rem; }
+  .freeplan__features { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+  .freeplan__features li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.9rem; color: var(--ink-soft); }
+  .freeplan__cta { justify-self: start; }
+  .freeplan__cta .btn { width: 100%; }
+  @media (min-width: 720px) { .freeplan__features { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 940px) {
+    .freeplan { grid-template-columns: 1.1fr 1.3fr auto; gap: 2.5rem; }
+    .freeplan__cta { justify-self: end; }
+    .freeplan__cta .btn { width: auto; }
+  }
+
+  /* ===================== FAQ ===================== */
+  .section-head--center { margin-inline: auto; text-align: center; }
+  .section-head--center .eyebrow { justify-content: center; }
+  .faq { margin-top: 2.5rem; border-top: 1px solid var(--line); }
+  .faq__item { border-bottom: 1px solid var(--line); }
+  .faq__q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 0; font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; cursor: pointer; list-style: none; }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__icon { flex: none; position: relative; width: 16px; height: 16px; }
+  .faq__icon::before, .faq__icon::after { content: ""; position: absolute; background: var(--brand-ink); border-radius: 2px; transition: transform 0.25s var(--ease-out); }
+  .faq__icon::before { top: 50%; left: 0; width: 16px; height: 2px; transform: translateY(-50%); }
+  .faq__icon::after { left: 50%; top: 0; width: 2px; height: 16px; transform: translateX(-50%); }
+  .faq__item[open] .faq__icon::after { transform: translateX(-50%) scaleY(0); }
+  .faq__a { overflow: hidden; }
+  .faq__a p { padding-bottom: 1.3rem; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.6; max-width: 46rem; }
+  .faq__item[open] .faq__a { animation: faq-open 0.3s var(--ease-out); }
+  @keyframes faq-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  /* ===================== CTA FINAL ===================== */
+  .section--brand { background: var(--brand); color: #fff; }
+  .finalcta { text-align: center; position: relative; overflow: clip; }
+  .finalcta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 120% at 50% -10%, rgba(255,255,255,0.22), transparent 60%); }
+  .finalcta__glyph { position: absolute; top: -0.35em; left: 50%; transform: translateX(-50%); font-family: var(--font-display); font-weight: 800; font-size: 22rem; line-height: 1; color: rgba(255,255,255,0.10); pointer-events: none; user-select: none; }
+  .finalcta__inner { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+  .finalcta__inner .eyebrow { justify-content: center; color: rgba(255,255,255,0.85); }
+  .finalcta__inner .eyebrow::before { background: rgba(255,255,255,0.6); }
+  .finalcta__title { margin-top: 1rem; font-size: var(--fs-display-l); color: #fff; }
+  .on-brand .hl { color: var(--ink); }
+  .finalcta .lead { margin-top: 1.25rem; max-width: 34rem; color: rgba(255,255,255,0.92); }
+  .finalcta__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2rem; }
+  .on-brand .btn--ghost { --btn-fg: #fff; border-color: rgba(255,255,255,0.45); }
+  .on-brand .btn--ghost:hover { background: rgba(255,255,255,0.12); }
+</style>

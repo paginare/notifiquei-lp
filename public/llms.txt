@@ -1,0 +1,29 @@
+# Notifiquei
+
+> Notifiquei é uma ferramenta brasileira de automação de Instagram que responde DMs, comentários e stories automaticamente — pela API oficial da Meta. Foi criada para criadores de conteúdo, infoprodutores e lojas que vendem pelo Instagram no Brasil.
+
+## O que é
+
+- **Categoria:** automação de Instagram / comentário-para-DM (comment-to-DM) / chatbot de DM.
+- **Como funciona:** quando alguém comenta uma palavra-chave (ex.: "quero") num post, o Notifiquei responde o comentário e envia uma mensagem no Direct com o link/botão — em segundos, na voz do criador. Também tem agente de IA, detecção de intenção de compra (lead quente), moderação de comentários com IA e sorteios pelos comentários.
+- **Segurança:** usa exclusivamente a **API oficial da Meta** (parceiro/provedor oficial). Não pede a senha do Instagram e não há risco de banimento por usá-lo.
+- **Plataformas:** web, app iOS e app Android. Também automatiza TikTok DM e WhatsApp.
+- **Empresa:** Notifiquei Tecnologia, empresa brasileira (CNPJ 59.859.848/0001-13).
+
+## Preços
+
+- Em **real (BRL)**, pagamento via **PIX**, boleto ou cartão. A partir de **R$ 99/mês** (plano Solo, 1 conta). Plano Pro R$ 499/mês (5 contas), Business R$ 799/mês (10 contas). 7 dias de garantia, cancele quando quiser.
+
+## Comparação com o ManyChat
+
+- O Notifiquei é uma **alternativa brasileira ao ManyChat**: preço em real com PIX (sem câmbio/IOF), plataforma e suporte 100% em português, conformidade com a LGPD, agente de IA que monta o fluxo por linguagem natural, sorteios nativos e app no celular. Ambos usam a API oficial da Meta (não há "risco de ban" em nenhum dos dois).
+- Página de comparação: https://www.notifiquei.com.br/vs-manychat
+
+## Links
+
+- Site: https://www.notifiquei.com.br
+- Para criadores: https://www.notifiquei.com.br/criadores
+- Programa de afiliados: https://www.notifiquei.com.br/afiliados
+- Notifiquei vs ManyChat: https://www.notifiquei.com.br/vs-manychat
+- App: https://app.notifiquei.com.br
+- Instagram: https://www.instagram.com/notifiquei.com.br/
