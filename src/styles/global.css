@@ -59,10 +59,10 @@ h3 { font-size: var(--fs-display-m); letter-spacing: -0.018em; }
 
 p { text-wrap: pretty; }
 
-/* Quebra de linha só no desktop: no mobile o text-wrap:balance reequilibra
-   o título sozinho, evitando palavra órfã (viúva) na última linha. */
+/* Quebras forçadas desativadas: deixamos o text-wrap:balance equilibrar os
+   títulos em TODOS os tamanhos. O <br class="br-r"> no markup vira no-op —
+   evita palavra órfã (viúva) tanto no mobile quanto no desktop. */
 .br-r { display: none; }
-@media (min-width: 600px) { .br-r { display: inline; } }
 
 .lead {
   font-size: var(--fs-lead);

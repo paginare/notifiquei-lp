@@ -11,7 +11,7 @@
 - Sorteios pelos comentários: quem comenta a palavra entra no sorteio automaticamente; sorteia o ganhador em 1 clique.
 - TikTok DM automático: boas-vindas, palavras-chave e resposta padrão no TikTok Business.
 - Agendamento de posts no Instagram.
-- App nativo iOS e Android; também integra WhatsApp (Cloud API).
+- App nativo iOS e Android.
 
 ## Segurança / risco de ban
 
@@ -20,9 +20,9 @@
 ## Planos e preços (recorrente, em real, via PIX/boleto/cartão)
 
 - 2 em 1: cada conta conecta 1 Instagram + 1 TikTok no mesmo plano (sem pagar dobrado).
-- Solo — R$ 99/mês — 1 conta (Instagram + TikTok), automações ilimitadas, templates básicos, suporte por chat.
+- Solo — R$ 99/mês — 1 conta (Instagram + TikTok), automações ilimitadas, templates completos, suporte por chat.
 - Pro — R$ 499/mês — 5 contas (Instagram + TikTok), times e divisão por equipe, automações ilimitadas, templates completos, suporte por chat. (Plano mais popular.)
-- Business — R$ 799/mês — 10 contas (Instagram + TikTok), times, automações ilimitadas, templates completos, atendimento VIP no WhatsApp, controle pelo WhatsApp.
+- Business — R$ 799/mês — 10 contas (Instagram + TikTok), times, automações ilimitadas, templates completos, atendimento VIP prioritário.
 - 7 dias de garantia (devolução de 100%), cancele quando quiser, sem fidelidade.
 - Programa de afiliados: 40% de comissão recorrente, cookie de 60 dias, pago via Kiwify ou Cakto.
 

@@ -22,9 +22,9 @@ const steps = [
 ];
 
 const plans = [
-  { name: "Solo", price: "99", blurb: "Criador iniciante, operação pequena.", hrefM: "https://pay.cakto.com.br/yqe9jrb", hrefA: "https://pay.cakto.com.br/iddrcgp", cta: "Começar com Solo", featured: true, features: ["1 conta — Instagram + TikTok", "Automações ilimitadas", "Templates básicos", "Atendimento via chat", "Novidades antes de todo mundo"] },
+  { name: "Solo", price: "99", blurb: "Criador iniciante, operação pequena.", hrefM: "https://pay.cakto.com.br/yqe9jrb", hrefA: "https://pay.cakto.com.br/iddrcgp", cta: "Começar com Solo", featured: true, features: ["1 conta — Instagram + TikTok", "Automações ilimitadas", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"] },
   { name: "Pro", price: "499", blurb: "Pra quem já escalou um pouco.", hrefM: "https://pay.cakto.com.br/n9pdz5r", hrefA: "https://pay.cakto.com.br/e5nq458", cta: "Começar com Pro", featured: false, features: ["5 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"] },
-  { name: "Business", price: "799", blurb: "Agência e operação grande.", hrefM: "https://pay.cakto.com.br/vpo6p5e", hrefA: "https://pay.cakto.com.br/vtwuf4v", cta: "Começar com Business", featured: false, features: ["10 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento VIP no WhatsApp", "Controle pelo WhatsApp"] },
+  { name: "Business", price: "799", blurb: "Agência e operação grande.", hrefM: "https://pay.cakto.com.br/vpo6p5e", hrefA: "https://pay.cakto.com.br/vtwuf4v", cta: "Começar com Business", featured: false, features: ["10 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento VIP prioritário"] },
 ];
 
 const faqs = [
@@ -214,8 +214,8 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           <p class="lead">Um funcionário custa R$ 2.500/mês. O Notifiquei começa em R$ 99 e não tira férias.</p>
           <p class="plans__note"><strong>2 em 1:</strong> cada conta já conecta <strong>Instagram + TikTok</strong> no mesmo plano — automatize os dois sem pagar a mais.</p>
           <div class="billtoggle reveal" id="billtoggle" role="group" aria-label="Ciclo de cobrança">
-            <button type="button" class="billtoggle__opt is-on" data-cycle="m">Mensal</button>
-            <button type="button" class="billtoggle__opt" data-cycle="a">Anual <span class="billtoggle__save">2 meses grátis</span></button>
+            <button type="button" class="billtoggle__opt" data-cycle="m">Mensal</button>
+            <button type="button" class="billtoggle__opt is-on" data-cycle="a">Anual <span class="billtoggle__save">2 meses grátis</span></button>
           </div>
         </div>
         <div class="plans" id="plans-grid">
@@ -224,9 +224,9 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
               {p.featured && <span class="plan__badge">Mais popular</span>}
               <h3 class="plan__name">{p.name}</h3>
               <p class="plan__blurb">{p.blurb}</p>
-              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={String(Math.round(Number(p.price) * 10 / 12))}>{p.price}</span><span class="plan__per">/mês</span></p>
-              <p class="plan__bill" data-bill={`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}></p>
-              <a href={`${p.hrefM}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={String(Math.round(Number(p.price) * 10 / 12))}>{String(Math.round(Number(p.price) * 10 / 12))}</span><span class="plan__per">/mês</span></p>
+              <p class="plan__bill" data-bill={`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}>{`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}</p>
+              <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
               <ul class="plan__features">{p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}</ul>
               <span class="plan__guarantee">7 dias grátis · cancele quando quiser</span>
             </article>
@@ -242,7 +242,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           </div>
           <ul class="freeplan__features">
             <li><span class="plan__tick" aria-hidden="true">✓</span> Para sempre, sem cartão</li>
-            <li><span class="plan__tick" aria-hidden="true">✓</span> Só Instagram (sem TikTok nem WhatsApp)</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Só Instagram (sem TikTok)</li>
             <li><span class="plan__tick" aria-hidden="true">✓</span> Até 200 envios automáticos por mês</li>
             <li><span class="plan__tick" aria-hidden="true">✓</span> Mensagens com marca d’água “⚡ Enviado com Notifiquei”</li>
           </ul>
@@ -349,7 +349,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .outcome--win .outcome__tag { color: var(--brand-ink); }
   .outcome--win b { color: #0f6b48; }
   .inaction__video { justify-self: center; width: 100%; max-width: 400px; }
-  .conversa-video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1080 / 1350; background: var(--paper); box-shadow: var(--shadow-md); }
+  .conversa-video { width: 100%; height: auto; display: block; aspect-ratio: 1080 / 1350; background: transparent; }
   @media (min-width: 560px) { .outcomes { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 860px) {
     .inaction__inner { grid-template-columns: 1.05fr 0.95fr; }
@@ -441,7 +441,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .plan__features li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: var(--ink-soft); }
   .plan__tick { flex: none; color: var(--brand-ink); font-weight: 800; }
   .plan__guarantee { margin-top: 1.5rem; font-size: 0.8rem; color: var(--ink-faint); text-align: center; }
-  @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } .plan--featured { transform: translateY(-12px); } }
+  @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } }
 
   /* plano grátis — card largura cheia, separado dos pagos */
   .freeplan {

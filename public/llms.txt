@@ -7,7 +7,7 @@
 - **Categoria:** automação de Instagram / comentário-para-DM (comment-to-DM) / chatbot de DM.
 - **Como funciona:** quando alguém comenta uma palavra-chave (ex.: "quero") num post, o Notifiquei responde o comentário e envia uma mensagem no Direct com o link/botão — em segundos, na voz do criador. Também tem agente de IA, detecção de intenção de compra (lead quente), moderação de comentários com IA e sorteios pelos comentários.
 - **Segurança:** usa exclusivamente a **API oficial da Meta** (parceiro/provedor oficial). Não pede a senha do Instagram e não há risco de banimento por usá-lo.
-- **Plataformas:** web, app iOS e app Android. Também automatiza TikTok DM e WhatsApp.
+- **Plataformas:** web, app iOS e app Android. Também automatiza DMs do TikTok.
 - **Empresa:** Notifiquei Tecnologia, empresa brasileira (CNPJ 59.859.848/0001-13).
 
 ## Preços
