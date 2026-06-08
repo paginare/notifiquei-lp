@@ -142,7 +142,7 @@ const jsonLd = [
   description="O Notifiquei responde DMs, comentários e stories no Instagram em segundos, com a sua voz, pela API oficial da Meta. Você cria. Ele converte."
   path="/"
   jsonLd={jsonLd}
-  heroPoster="/assets/hero-poster.jpg"
+  heroPoster="/assets/hero-poster.webp"
 >
   <Nav />
 
@@ -167,21 +167,21 @@ const jsonLd = [
           </div>
           <div class="hero__proof">
             <span class="hero__avatars" aria-hidden="true">
-              <img src="/assets/creators/c1-nutri.jpg" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c3-beleza.jpg" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c6-moda.jpg" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c2-fitness.jpg" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c1-nutri.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c3-beleza.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c6-moda.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c2-fitness.webp" alt="" width="40" height="40" loading="lazy" />
             </span>
             <span class="hero__proof-txt"><strong>+2.000 criadores</strong> já vendem no automático · pela API oficial da Meta</span>
           </div>
         </div>
 
         <!-- Cartão de automação ao vivo (peça-assinatura) -->
-        <div class="hero__demo" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
+        <div class="hero__demo" role="img" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
           <video
             class="hero__video"
             src="/assets/hero.mp4"
-            poster="/assets/hero-poster.jpg"
+            poster="/assets/hero-poster.webp"
             autoplay
             muted
             loop
@@ -227,7 +227,7 @@ const jsonLd = [
             ))}
           </ol>
           <div class="como__media reveal">
-            <img src="/assets/creators/day-morning.jpg" alt="Criadora gravando um reel no celular pela manhã" width="720" height="900" loading="lazy" />
+            <img src="/assets/creators/day-morning.webp" alt="Criadora gravando um reel no celular pela manhã" width="720" height="900" loading="lazy" />
             <span class="como__cap"><span class="como__cap-dot"></span> Você grava. Ele responde.</span>
           </div>
         </div>
@@ -258,7 +258,7 @@ const jsonLd = [
           <video
             class="conversa-video"
             src="/assets/demo-conversa.mp4"
-            poster="/assets/demo-conversa-poster.jpg"
+            poster="/assets/demo-conversa-poster.webp"
             autoplay muted loop playsinline preload="metadata" aria-hidden="true"
           ></video>
         </div>
@@ -635,7 +635,7 @@ const jsonLd = [
   .proof__count strong { color: var(--ink); font-weight: 700; }
   .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .proof__num { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; color: var(--brand-ink); line-height: 1; }
-  .proof__lbl { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--ink-faint); }
+  .proof__lbl { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--ink-soft); }
   @media (min-width: 820px) { .proof__inner { grid-template-columns: 1fr 1.3fr; gap: 3rem; } }
 
   /* ===================== STEPS ===================== */

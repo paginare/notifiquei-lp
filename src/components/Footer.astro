@@ -42,7 +42,7 @@ const cols = [
           Feito no Brasil, pra quem vende em português.
         </p>
         <div class="footer__badges">
-          <span class="footer__seal"><img src="/assets/meta-business-partner.png" alt="Notifiquei — Meta Business Partner (parceiro oficial da Meta)" width="555" height="318" loading="lazy" /></span>
+          <span class="footer__seal"><img src="/assets/meta-business-partner.webp" alt="Notifiquei — Meta Business Partner (parceiro oficial da Meta)" width="555" height="318" loading="lazy" /></span>
           <span class="footer__seal"><img src="/assets/tiktok-marketing-partner.svg" alt="Notifiquei — TikTok Marketing Partner" width="119" height="61" loading="lazy" /></span>
         </div>
       </div>
@@ -50,7 +50,7 @@ const cols = [
       <div class="footer__cols">
         {cols.map((col) => (
           <nav class="footer__col" aria-label={col.title}>
-            <h4 class="footer__col-title">{col.title}</h4>
+            <p class="footer__col-title">{col.title}</p>
             <ul>
               {col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
             </ul>

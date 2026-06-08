@@ -3,7 +3,7 @@
 interface Props { href?: string; }
 const { href = "https://app.notifiquei.com.br/auth" } = Astro.props;
 ---
-<div class="stickycta" id="stickycta" aria-hidden="true">
+<div class="stickycta" id="stickycta" inert>
   <div class="stickycta__info">
     <b>Grátis pra sempre</b>
     <span>sem cartão · planos a partir de R$ 99</span>
@@ -50,7 +50,7 @@ const { href = "https://app.notifiquei.com.br/auth" } = Astro.props;
     let shown = false;
     function update() {
       const show = window.scrollY > 640 && !nearEnd;
-      if (show !== shown) { shown = show; bar.classList.toggle("is-on", show); bar.setAttribute("aria-hidden", String(!show)); }
+      if (show !== shown) { shown = show; bar.classList.toggle("is-on", show); bar.toggleAttribute("inert", !show); }
     }
     window.addEventListener("scroll", update, { passive: true });
     update();
