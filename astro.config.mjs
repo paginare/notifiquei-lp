@@ -8,7 +8,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.notifiquei.com.br',
   trailingSlash: 'never',
-  // inlineStylesheets: 'always' embute o CSS no HTML (sem <link> render-blocking) — FCP mais rápido
+  // inlineStylesheets: 'always' embute o CSS no HTML (sem <link> render-blocking).
+  // Testado em 4G throttled: bate 'auto' (link de CSS adiciona RTT e piora o LCP).
   build: { format: 'file', inlineStylesheets: 'always' },
   devToolbar: { enabled: false },
   // variantes A/B (/v2, /v3) ficam fora do sitemap — são páginas de teste, não indexáveis.

@@ -81,6 +81,11 @@ const clientes = [
   "gummy.png", "responda.png", "rosa-selvagem.png",
   "vert-sophistique.png", "cikiy.svg", "debran.svg",
 ];
+// largura intrínseca de cada logo quando renderizado a 30px de altura — evita CLS (unsized-images)
+const logoDims: Record<string, number> = {
+  "gummy.png": 83, "responda.png": 178, "rosa-selvagem.png": 318,
+  "vert-sophistique.png": 51, "cikiy.svg": 59, "debran.svg": 100,
+};
 
 // ---- SEO structured data ----
 const jsonLd = [
@@ -182,11 +187,11 @@ const jsonLd = [
             class="hero__video"
             src="/assets/hero.mp4"
             poster="/assets/hero-poster.webp"
-            autoplay
+            data-autoplay
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="none"
             aria-hidden="true"
           ></video>
         </div>
@@ -259,7 +264,7 @@ const jsonLd = [
             class="conversa-video"
             src="/assets/demo-conversa.mp4"
             poster="/assets/demo-conversa-poster.webp"
-            autoplay muted loop playsinline preload="metadata" aria-hidden="true"
+            data-autoplay muted loop playsinline preload="none" aria-hidden="true"
           ></video>
         </div>
       </div>
@@ -365,7 +370,7 @@ const jsonLd = [
         <div class="logos reveal" aria-label="Marcas que usam o Notifiquei">
           <div class="logos__track">
             {[...clientes, ...clientes, ...clientes].map((file) => (
-              <img class="logos__item" src={`/assets/clientes/${file}`} alt={`${file.replace(/\.(png|svg|jpg)$/, "").replace(/-/g, " ")} — usa o Notifiquei`} loading="lazy" />
+              <img class="logos__item" src={`/assets/clientes/${file}`} alt={`${file.replace(/\.(png|svg|jpg)$/, "").replace(/-/g, " ")} — usa o Notifiquei`} loading="lazy" width={logoDims[file]} height={30} />
             ))}
           </div>
         </div>

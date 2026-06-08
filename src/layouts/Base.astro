@@ -61,7 +61,7 @@ const ogImage = site + "/assets/og-image.jpg";
   <link rel="preload" href="/assets/fonts/bricolage-800.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/jakarta-400.woff2" as="font" type="font/woff2" crossorigin />
 
-  <!-- Poster do hero como prioridade (melhora o LCP, sobretudo no mobile) -->
+  <!-- Poster do hero como prioridade — preenche a área do hero cedo (melhora Speed Index) -->
   {heroPoster && <link rel="preload" href={heroPoster} as="image" fetchpriority="high" />}
 
   {jsonLd.map((node) => (
@@ -100,12 +100,25 @@ const ogImage = site + "/assets/og-image.jpg";
     // Reveal no scroll — robusto em todo navegador, respeita reduced-motion.
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Respeita reduced-motion: pausa vídeos autoplay e mostra o poster.
-    if (prefersReduced) {
-      document.querySelectorAll<HTMLVideoElement>("video[autoplay]").forEach((v) => {
-        v.removeAttribute("autoplay");
-        v.pause();
-      });
+    // Vídeos: preload="none" + data-autoplay. Só começam a carregar/tocar quando
+    // entram na tela, e a observação só arranca quando a thread fica ociosa — assim
+    // o vídeo não disputa banda nem main-thread com a fonte/LCP no carregamento inicial.
+    // reduced-motion: ficam pausados, mostrando o poster.
+    const vids = document.querySelectorAll<HTMLVideoElement>("video[data-autoplay]");
+    if (!prefersReduced && vids.length) {
+      const start = (v: HTMLVideoElement) => v.play().catch(() => {});
+      if ("IntersectionObserver" in window) {
+        const vio = new IntersectionObserver((entries, obs) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { start(e.target as HTMLVideoElement); obs.unobserve(e.target); }
+          });
+        }, { rootMargin: "200px 0px" });
+        const kick = () => vids.forEach((v) => vio.observe(v));
+        if ("requestIdleCallback" in window) (window as any).requestIdleCallback(kick, { timeout: 2000 });
+        else window.addEventListener("load", () => setTimeout(kick, 200), { once: true });
+      } else {
+        vids.forEach(start);
+      }
     }
 
     const els = document.querySelectorAll<HTMLElement>(".reveal");
