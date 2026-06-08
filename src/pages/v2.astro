@@ -356,6 +356,14 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .hero__avatars img:first-child { margin-left: 0; }
   .hero__proof-txt { font-size: 0.92rem; line-height: 1.35; color: var(--on-ink-soft); max-width: 22rem; }
   .hero__proof-txt strong { color: var(--on-ink); font-weight: 700; }
+  /* mobile (hero empilhado): centralizado igual à referência */
+  @media (max-width: 939px) {
+    .hero__copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero__eyebrow { justify-content: center; }
+    .hero__lead { margin-inline: auto; }
+    .hero__actions { justify-content: center; }
+    .hero__proof { justify-content: center; }
+  }
   .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--on-ink-soft); }
   .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
   .hero__trust .tick { color: var(--brand-lift); font-weight: 800; }

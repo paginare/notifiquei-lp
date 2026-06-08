@@ -526,6 +526,14 @@ const jsonLd = [
   .hero__avatars img:first-child { margin-left: 0; }
   .hero__proof-txt { font-size: 0.92rem; line-height: 1.35; color: var(--ink-soft); max-width: 22rem; }
   .hero__proof-txt strong { color: var(--ink); font-weight: 700; }
+  /* mobile (hero empilhado): centralizado igual à referência */
+  @media (max-width: 939px) {
+    .hero__copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero__eyebrow { justify-content: center; }
+    .hero__lead { margin-inline: auto; }
+    .hero__actions { justify-content: center; }
+    .hero__proof { justify-content: center; }
+  }
 
   /* Cartão demo */
   .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; }
