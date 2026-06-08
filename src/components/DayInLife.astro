@@ -88,15 +88,20 @@ const beats = [
 </style>
 
 <script>
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-
+  // GSAP carregado sob demanda (dynamic import) só quando a seção se aproxima —
+  // tira o ScrollTrigger (~46KB) do caminho crítico do carregamento inicial.
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const stage = document.querySelector<HTMLElement>(".dil__stage");
 
   if (stage && !reduce && window.innerWidth > 760) {
-    const img = stage.querySelector<HTMLElement>(".dil__img");
+    const io = new IntersectionObserver(async (entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const img = stage.querySelector<HTMLElement>(".dil__img");
     const beats = Array.from(stage.querySelectorAll<HTMLElement>(".dil__beat"));
     const dots = Array.from(stage.querySelectorAll<HTMLElement>(".dil__dot"));
     gsap.set(beats, { autoAlpha: 0 });
@@ -117,9 +122,11 @@ const beats = [
 
     // dots acompanham
     const setDot = (idx: number) => dots.forEach((d, i) => d.classList.toggle("is-on", i === idx));
-    tl.scrollTrigger?.vars && ScrollTrigger.create({
-      trigger: stage, start: "top top", end: "+=165%",
-      onUpdate: (s) => setDot(s.progress < 0.33 ? 0 : s.progress < 0.66 ? 1 : 2),
-    });
+      ScrollTrigger.create({
+        trigger: stage, start: "top top", end: "+=165%",
+        onUpdate: (s) => setDot(s.progress < 0.33 ? 0 : s.progress < 0.66 ? 1 : 2),
+      });
+    }, { rootMargin: "300px 0px" });
+    io.observe(stage);
   }
 </script>

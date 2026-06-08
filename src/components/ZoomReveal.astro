@@ -94,15 +94,19 @@
 </style>
 
 <script>
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-
+  // GSAP sob demanda — só carrega quando a seção do zoom se aproxima.
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const stage = document.querySelector<HTMLElement>(".zoompin__stage");
 
   if (stage && !reduce && window.innerWidth > 760) {
-    const shot = stage.querySelector<HTMLElement>(".zoompin__shot");
+    const io = new IntersectionObserver(async (entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const shot = stage.querySelector<HTMLElement>(".zoompin__shot");
     const caps = stage.querySelector<HTMLElement>(".zoompin__caps");
     const cap2 = stage.querySelector<HTMLElement>('[data-cap="2"]');
     const cap1 = stage.querySelector<HTMLElement>('[data-cap="1"]');
@@ -124,5 +128,7 @@
     tl.to(caps, { scale: 1.14, ease: "none" }, 0);          // título vai crescendo
     tl.to(cap1, { autoAlpha: 0, ease: "none" }, 0.5);
     tl.fromTo(cap2, { autoAlpha: 0 }, { autoAlpha: 1, ease: "none" }, 0.52);
+    }, { rootMargin: "300px 0px" });
+    io.observe(stage);
   }
 </script>
