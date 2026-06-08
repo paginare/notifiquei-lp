@@ -58,6 +58,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__copy">
+          <span class="hero__badge"><span class="hero__badge-ic" aria-hidden="true">✦</span> Comece grátis · sem cartão</span>
           <span class="eyebrow is-plain hero__eyebrow">Instagram + TikTok · API oficial</span>
           <h1 class="hero__title">
             Cada comentário sem resposta <br class="br-r" />é uma venda <span class="hl">no lixo</span>.
@@ -70,12 +71,15 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           <div class="hero__actions">
             <a href="#planos" class="btn btn--brand btn--lg">Parar de perder venda<span class="arr" aria-hidden="true">→</span></a>
           </div>
-          <p class="hero__price"><strong>Grátis pra sempre</strong> · sem cartão · planos a partir de R$ 99/mês</p>
-          <ul class="hero__trust">
-            <li><span class="tick" aria-hidden="true">✓</span> Provedor oficial Meta</li>
-            <li><span class="tick" aria-hidden="true">✓</span> Grátis pra sempre</li>
-            <li><span class="tick" aria-hidden="true">✓</span> Sem cartão de crédito</li>
-          </ul>
+          <div class="hero__proof">
+            <span class="hero__avatars" aria-hidden="true">
+              <img src="/assets/creators/c1-nutri.jpg" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c3-beleza.jpg" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c6-moda.jpg" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c2-fitness.jpg" alt="" width="40" height="40" loading="lazy" />
+            </span>
+            <span class="hero__proof-txt"><strong>+2.000 criadores</strong> já vendem no automático · pela API oficial da Meta</span>
+          </div>
         </div>
         <div class="hero__demo" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
           <video class="hero__video" src="/assets/hero.mp4" poster="/assets/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
@@ -344,6 +348,14 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
   .hero__price { margin-top: 1.1rem; font-size: 0.92rem; color: var(--on-ink-soft); }
   .hero__price strong { color: var(--on-ink); font-weight: 700; }
+  .hero__badge { display: flex; width: fit-content; align-items: center; gap: 0.5em; margin-bottom: 1.1rem; font-size: 0.82rem; font-weight: 700; color: var(--brand-lift); background: color-mix(in srgb, var(--brand) 16%, transparent); border: 1px solid color-mix(in srgb, var(--brand) 40%, transparent); padding: 0.45rem 0.95rem; border-radius: var(--r-pill); }
+  .hero__badge-ic { color: var(--brand-lift); font-size: 0.9em; }
+  .hero__proof { display: flex; align-items: center; gap: 0.85rem; margin-top: 1.7rem; flex-wrap: wrap; }
+  .hero__avatars { display: inline-flex; }
+  .hero__avatars img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ink); margin-left: -12px; box-shadow: 0 1px 3px rgba(0,0,0,0.35); }
+  .hero__avatars img:first-child { margin-left: 0; }
+  .hero__proof-txt { font-size: 0.92rem; line-height: 1.35; color: var(--on-ink-soft); max-width: 22rem; }
+  .hero__proof-txt strong { color: var(--on-ink); font-weight: 700; }
   .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--on-ink-soft); }
   .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
   .hero__trust .tick { color: var(--brand-lift); font-weight: 800; }
