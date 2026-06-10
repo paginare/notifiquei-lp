@@ -11,6 +11,7 @@
 - Sorteios pelos comentários: quem comenta a palavra entra no sorteio automaticamente; sorteia o ganhador em 1 clique.
 - TikTok DM automático: boas-vindas, palavras-chave e resposta padrão no TikTok Business.
 - Agendamento de posts no Instagram.
+- Para afiliados de marketplace: entrega o seu link de afiliado (Shopee, Mercado Livre, Amazon, AliExpress, Magalu) no Direct no automático — a pessoa comenta a palavra-chave no post e recebe o link na hora, sem você copiar e colar link o dia inteiro.
 - App nativo iOS e Android.
 
 ## Segurança / risco de ban
@@ -23,8 +24,8 @@
 - Solo — R$ 99/mês — 1 conta (Instagram + TikTok), automações ilimitadas, templates completos, suporte por chat.
 - Pro — R$ 499/mês — 5 contas (Instagram + TikTok), times e divisão por equipe, automações ilimitadas, templates completos, suporte por chat. (Plano mais popular.)
 - Business — R$ 799/mês — 10 contas (Instagram + TikTok), times, automações ilimitadas, templates completos, atendimento VIP prioritário.
-- 7 dias de garantia (devolução de 100%), cancele quando quiser, sem fidelidade.
-- Programa de afiliados: 40% de comissão recorrente, cookie de 60 dias, pago via Kiwify ou Cakto.
+- 7 dias grátis para testar: você só é cobrado no 8º dia, cancele quando quiser, sem fidelidade nem multa. No plano anual, ganha 2 meses grátis. Há também um plano grátis (sem cartão) para começar.
+- Programa de afiliados (para divulgar o Notifiquei): 40% de comissão recorrente, cookie de 60 dias, pago via Kiwify ou Cakto.
 
 ## Notifiquei vs ManyChat (comparação)
 
@@ -66,7 +67,7 @@ P: Preciso de conta comercial ou profissional?
 R: Sim, uma conta Profissional ou de Criador no Instagram (gratuita, leva 1 minuto). É exigência da API oficial da Meta.
 
 P: Posso cancelar quando quiser?
-R: Sim, a qualquer momento pelo painel. Nos primeiros 7 dias, devolução de 100%.
+R: Sim, a qualquer momento pelo painel, sem multa. Os 7 primeiros dias são grátis — você só é cobrado se continuar depois disso.
 
 ## Empresa
 

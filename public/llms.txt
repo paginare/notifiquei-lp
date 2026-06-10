@@ -8,11 +8,14 @@
 - **Como funciona:** quando alguém comenta uma palavra-chave (ex.: "quero") num post, o Notifiquei responde o comentário e envia uma mensagem no Direct com o link/botão — em segundos, na voz do criador. Também tem agente de IA, detecção de intenção de compra (lead quente), moderação de comentários com IA e sorteios pelos comentários.
 - **Segurança:** usa exclusivamente a **API oficial da Meta** (parceiro/provedor oficial). Não pede a senha do Instagram e não há risco de banimento por usá-lo.
 - **Plataformas:** web, app iOS e app Android. Também automatiza DMs do TikTok.
+- **Para afiliados:** afiliados de marketplaces (Shopee, Mercado Livre, Amazon, AliExpress e Magalu) usam o Notifiquei para entregar o link de afiliado no Direct automaticamente — a pessoa comenta a palavra-chave no post e recebe o link na hora, sem copiar e colar link o dia inteiro.
+- **Para quem é:** criadores de vários nichos (nutrição, fitness, beleza, estética, moda, gastronomia, confeitaria, pet, decoração, fotografia, infoprodutos, artesanato), lojas que vendem pelo Instagram e afiliados de marketplaces.
 - **Empresa:** Notifiquei Tecnologia, empresa brasileira (CNPJ 59.859.848/0001-13).
 
 ## Preços
 
-- Em **real (BRL)**, pagamento via **PIX**, boleto ou cartão. A partir de **R$ 99/mês** (plano Solo, 1 conta). Plano Pro R$ 499/mês (5 contas), Business R$ 799/mês (10 contas). 7 dias de garantia, cancele quando quiser.
+- **7 dias grátis** para testar (você só é cobrado no 8º dia; cancele quando quiser, sem multa). Pagamento em **real (BRL)** via **PIX**, boleto ou cartão.
+- A partir de **R$ 99/mês** (plano Solo, 1 conta). Plano Pro R$ 499/mês (5 contas), Business R$ 799/mês (10 contas). No plano anual ganha 2 meses grátis. Há também um **plano grátis** (sem cartão) para começar.
 
 ## Comparação com o ManyChat
 
