@@ -421,6 +421,46 @@ const jsonLd = [
       </div>
     </section>
 
+    <!-- ============ COMPARATIVO DE PREÇOS ============ -->
+    <section class="section section--paper2 compare" id="comparativo">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Compare</span>
+          <h2>Eles cobram mais a cada contato. <br class="br-r" />A gente cobra <span class="hl">o mesmo</span>.</h2>
+          <p class="lead">No ManyChat e no Gaio, a fatura sobe junto com a sua audiência. Aqui é preço fixo e contatos ilimitados — veja quanto você economiza quando cresce.</p>
+        </div>
+
+        <div class="ctable reveal">
+          <table>
+            <thead>
+              <tr>
+                <th class="ctable__feat"></th>
+                <th>ManyChat</th>
+                <th>Gaio</th>
+                <th class="ctable__us">Notifiquei</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ctable__price">
+                <th class="ctable__feat">Preço por mês</th>
+                <td>de R$ 249 a R$ 4.309<span class="ctable__sub">sobe com os contatos · em dólar</span></td>
+                <td>de R$ 74,90 a R$ 3.774<span class="ctable__sub">sobe com os contatos</span></td>
+                <td class="ctable__us"><strong>R$ 99 fixo</strong><span class="ctable__sub">não importa quantos contatos</span></td>
+              </tr>
+              <tr><th class="ctable__feat">Contatos ilimitados</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">Preço fixo em real</th><td class="no">✗</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">Instagram + TikTok no mesmo plano</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">App nativo (iPhone e Android)</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">Sorteios pelos comentários</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">Suporte e produto em português</th><td class="no">✗</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
+              <tr><th class="ctable__feat">API oficial da Meta</th><td class="yes">✓</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ctable__note">Preços de ManyChat e Gaio conforme tabelas públicas (jun/2026), por faixa de contatos. No Notifiquei, contatos são ilimitados em todos os planos.</p>
+      </div>
+    </section>
+
     <!-- ============ PLANOS ============ -->
     <section class="section" id="planos">
       <div class="container">
@@ -794,6 +834,25 @@ const jsonLd = [
   .logos__item:hover { opacity: 1; filter: grayscale(0); }
   @keyframes marquee { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; } }
+
+  /* ===================== COMPARATIVO ===================== */
+  .ctable { margin-top: 3rem; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-lg); }
+  .ctable table { width: 100%; min-width: 660px; border-collapse: collapse; }
+  .ctable th, .ctable td { padding: 0.95rem 1.1rem; text-align: center; border-bottom: 1px solid var(--line); }
+  .ctable thead th { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; padding-block: 0.4rem 1.1rem; }
+  .ctable__feat { text-align: left !important; font-weight: 600; color: var(--ink-soft); font-size: 0.93rem; }
+  .ctable thead .ctable__feat { color: var(--ink); }
+  .ctable td { color: var(--ink-soft); font-size: 0.93rem; }
+  .ctable .yes { color: #0f6b48; font-weight: 800; font-size: 1.15rem; }
+  .ctable .no { color: var(--ink-faint); font-weight: 700; font-size: 1.05rem; }
+  .ctable__sub { display: block; margin-top: 0.25rem; font-size: 0.7rem; color: var(--ink-faint); font-weight: 400; line-height: 1.3; }
+  /* coluna Notifiquei destacada */
+  .ctable__us { background: color-mix(in srgb, var(--brand) 7%, var(--card)); }
+  .ctable thead .ctable__us { color: var(--brand-ink); }
+  .ctable .ctable__us.yes { color: var(--brand-ink); }
+  .ctable__price td { color: var(--ink); font-weight: 600; vertical-align: top; }
+  .ctable__price strong { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--brand-ink); letter-spacing: -0.02em; }
+  .ctable__note { margin-top: 1.1rem; text-align: center; font-size: 0.78rem; color: var(--ink-faint); }
 
   /* ===================== PLANOS ===================== */
   .plans__note { margin-top: 1rem; display: inline-block; font-size: 0.92rem; color: var(--ink-soft); background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--line)); border-radius: var(--r-pill); padding: 0.6rem 1.1rem; }
