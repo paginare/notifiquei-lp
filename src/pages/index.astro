@@ -383,9 +383,9 @@ const jsonLd = [
     <!-- ============ POR QUE API OFICIAL ============ -->
     <section class="section section--ink on-ink risk">
       <div class="container">
-        <div class="section-head reveal">
+        <div class="section-head section-head--center reveal">
           <span class="eyebrow">Por que API oficial importa</span>
-          <h2>Você já foi punido por usar ferramenta não-oficial.<br class="br-r" />Aqui, isso não existe.</h2>
+          <h2>Você já foi punido por usar ferramenta não-oficial. <br class="br-r" />Aqui, isso não existe.</h2>
           <p class="lead" style="color:var(--on-ink-soft)">Menos alcance, anúncio até 3× mais caro, conta banida — é o preço de automação que a Meta proíbe. O Notifiquei é 100% API oficial: você vende sem arriscar seu perfil.</p>
         </div>
         <div class="risk__grid">
@@ -964,7 +964,8 @@ const jsonLd = [
   @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; } }
 
   /* ===================== COMPARATIVO ===================== */
-  .ctable { margin-top: 3rem; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-lg); }
+  .ctable { margin-top: 3rem; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-lg); border: 1px solid var(--line); background: #FCFAF5; box-shadow: var(--shadow-sm); }
+  .ctable tbody tr:last-child td { border-bottom: none; }
   .ctable table { width: 100%; min-width: 660px; border-collapse: collapse; }
   .ctable th, .ctable td { padding: 0.95rem 1.1rem; text-align: center; border-bottom: 1px solid var(--line); }
   .ctable thead th { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; padding-block: 0.4rem 1.1rem; }
