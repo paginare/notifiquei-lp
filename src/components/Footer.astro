@@ -42,8 +42,8 @@ const cols = [
           Feito no Brasil, pra quem vende em português.
         </p>
         <div class="footer__badges">
-          <span class="footer__seal"><img src="/assets/meta-business-partner.webp" alt="Notifiquei — Meta Business Partner (parceiro oficial da Meta)" width="555" height="318" loading="lazy" /></span>
-          <span class="footer__seal"><img src="/assets/tiktok-marketing-partner.svg" alt="Notifiquei — TikTok Marketing Partner" width="119" height="61" loading="lazy" /></span>
+          <img class="footer__seal" src="/assets/meta-partner-white.svg" alt="Notifiquei — Meta Business Partner" width="148" height="32" loading="lazy" />
+          <img class="footer__seal" src="/assets/tiktok-partner-white.svg" alt="Notifiquei — TikTok Marketing Partner" width="100" height="32" loading="lazy" />
         </div>
       </div>
 
@@ -81,14 +81,9 @@ const cols = [
   }
   .footer__brand { color: var(--on-ink); max-width: 30rem; }
   .footer__pitch { margin-top: 1.25rem; color: var(--on-ink-soft); font-size: 0.975rem; line-height: 1.6; }
-  .footer__badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
-  /* selos oficiais em chip branco (logos pretos/escuros precisam de fundo claro) */
-  .footer__seal {
-    display: inline-flex; align-items: center;
-    background: #fff; border-radius: var(--r-md);
-    padding: 0.5rem 0.85rem; box-shadow: var(--shadow-sm);
-  }
-  .footer__seal img { height: 38px; width: auto; display: block; }
+  .footer__badges { display: flex; flex-wrap: wrap; align-items: center; gap: 1.75rem; margin-top: 1.5rem; }
+  /* selos oficiais brancos, direto sobre o fundo escuro do rodapé */
+  .footer__seal { height: 26px; width: auto; opacity: 0.92; }
   .footer__dot {
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--positive); display: inline-block;
