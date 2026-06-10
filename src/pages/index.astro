@@ -629,7 +629,7 @@ const jsonLd = [
       setStage(0);
 
       let cycle: number | undefined;
-      const start = () => { if (cycle || reduce) return; cycle = window.setInterval(() => setStage((active + 1) % stages.length), 2400); };
+      const start = () => { if (cycle || reduce) return; cycle = window.setInterval(() => setStage((active + 1) % stages.length), 1400); };
       const stop = () => { if (cycle) { clearInterval(cycle); cycle = undefined; } };
 
       if ("IntersectionObserver" in window && !reduce) {
