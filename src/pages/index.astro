@@ -732,13 +732,15 @@ const jsonLd = [
   .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
   .step__title { font-size: 1.35rem; margin-top: 1rem; }
   .step__body { margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.97rem; }
-  /* setinha ligando um passo no outro (sobre os boxes) */
+  /* setas curvas (estilo desenho) ligando os passos, alternando os lados */
   .steps .step:not(:last-child)::after {
-    content: ""; position: absolute; left: 50%; bottom: -1.5rem; z-index: 2;
-    width: 30px; height: 30px; transform: translate(-50%, 50%);
-    border-radius: 50%; border: 3px solid var(--paper-2); box-shadow: var(--shadow-md);
-    background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12l7 7 7-7'/%3E%3C/svg%3E") center/15px no-repeat;
+    content: ""; position: absolute; bottom: -2.5rem; z-index: 3;
+    width: 78px; height: 66px; background-repeat: no-repeat; background-size: contain; background-position: center;
   }
+  .steps .step:nth-child(odd):not(:last-child)::after { right: 5%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 80' fill='none' stroke='%23FF1F6D' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10,8 C58,4 86,28 70,62'/%3E%3Cpath d='M57,51 L71,64 L82,49'/%3E%3C/svg%3E"); }
+  .steps .step:nth-child(even):not(:last-child)::after { left: 5%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 80' fill='none' stroke='%23FF1F6D' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M80,8 C32,4 4,28 20,62'/%3E%3Cpath d='M33,51 L19,64 L8,49'/%3E%3C/svg%3E"); }
   @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 
   /* split do Como funciona com a foto */
