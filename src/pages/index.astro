@@ -799,7 +799,11 @@ const jsonLd = [
   .proof__ic svg { width: 26px; height: 26px; fill: none; stroke: var(--brand-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .proof__num { grid-column: 2; display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; color: var(--brand-ink); line-height: 1; }
   .proof__lbl { grid-column: 2; display: block; margin-top: 0.25rem; font-size: 0.8rem; color: var(--ink-soft); max-width: 12rem; line-height: 1.25; }
-  @media (max-width: 620px) { .proof__stats { grid-template-columns: 1fr; gap: 1.1rem; } }
+  @media (max-width: 620px) {
+    /* 1 coluna: alinhar todos os ícones na MESMA vertical (bloco centralizado, itens à esquerda) */
+    .proof__stats { grid-template-columns: 1fr; gap: 1.1rem; width: max-content; max-width: 100%; margin-inline: auto; }
+    .proof__stats > div { justify-self: start; }
+  }
 
   /* ===================== STEPS ===================== */
   .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; counter-reset: s; }
