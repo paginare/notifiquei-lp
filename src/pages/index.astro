@@ -194,13 +194,6 @@ const jsonLd = [
             preload="none"
             aria-hidden="true"
           ></video>
-          <!-- notificações subindo (atividade ao vivo, estilo Instagram) -->
-          <div class="hero__notifs" aria-hidden="true">
-            <div class="hnotif" style="--i:0"><span class="hnotif__ic">💬</span><span><b>"quero!"</b> — novo comentário</span></div>
-            <div class="hnotif" style="--i:1"><span class="hnotif__ic">📩</span><span>Link enviado no <b>direct</b> <span class="hnotif__ok">✓</span></span></div>
-            <div class="hnotif" style="--i:2"><span class="hnotif__ic">❤️</span><span><b>ana.fit</b> curtiu seu reel</span></div>
-            <div class="hnotif" style="--i:3"><span class="hnotif__ic">🛒</span><span>Venda fechada · <b>R$ 97</b></span></div>
-          </div>
         </div>
       </div>
     </section>
@@ -586,34 +579,6 @@ const jsonLd = [
   /* Cartão demo */
   .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; }
   .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1280 / 960; background: transparent; }
-
-  /* notificações subindo sobre a área vazia do canvas (atividade ao vivo) */
-  .hero__notifs { position: absolute; left: 50%; bottom: 13%; transform: translateX(-50%); width: min(82%, 300px); height: 52%; pointer-events: none; z-index: 3; overflow: hidden; }
-  .hnotif {
-    position: absolute; left: 0; right: 0; bottom: 0;
-    display: flex; align-items: center; gap: 0.6rem;
-    background: rgba(255,255,255,0.94); backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
-    border: 1px solid var(--line-soft); border-radius: 14px;
-    padding: 0.55rem 0.75rem; box-shadow: 0 14px 30px -14px rgba(22,18,16,0.32);
-    font-size: 0.8rem; font-weight: 600; color: var(--ink); white-space: nowrap;
-    opacity: 0; will-change: transform, opacity;
-    animation: hnotif-rise 9s var(--ease-out) infinite;
-    animation-delay: calc(var(--i) * 2.25s);
-  }
-  .hnotif b { font-weight: 800; }
-  .hnotif__ic { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-wash); font-size: 0.95rem; }
-  .hnotif__ok { color: var(--positive); font-weight: 800; }
-  @keyframes hnotif-rise {
-    0%   { opacity: 0; transform: translateY(34px) scale(0.96); }
-    7%   { opacity: 1; transform: translateY(0) scale(1); }
-    20%  { opacity: 1; transform: translateY(-40px) scale(1); }
-    27%  { opacity: 0; transform: translateY(-64px) scale(0.98); }
-    100% { opacity: 0; transform: translateY(-64px) scale(0.98); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hnotif { animation: none; opacity: 0; }
-    .hnotif[style*="--i:1"] { opacity: 1; transform: none; }
-  }
 
   /* ===================== VEJA EM AÇÃO ===================== */
   .inaction__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
