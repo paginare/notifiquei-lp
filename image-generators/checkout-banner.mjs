@@ -77,12 +77,12 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
     <div class="glow"></div>
     <img class="photo" src="${person}" alt="" />
     <div class="photo-fade"></div>
-    <div class="pill"><b>✓</b> 7 dias grátis</div>
+    <div class="pill"><b>✓</b> Devolução 100%</div>
 
     <div class="pad">
       <div class="logo">${WORDMARK}</div>
-      <h1 class="head">Comece <span class="hl">grátis${SWASH}</span>.<br>7 dias por nossa conta.</h1>
-      <p class="sub">Você só paga no <b>8º dia</b> — cancele quando quiser, em 1 clique.</p>
+      <h1 class="head">Comece <span class="hl">sem risco${SWASH}</span>.<br>Garantia de 7 dias.</h1>
+      <p class="sub">Não funcionou pra você? <b>Devolvemos 100%</b> — sem perguntas, sem pegadinha.</p>
       <div class="trust">
         <span class="seal-chip"><img class="meta" src="${metaBadge}" alt="Meta Business Partner" /></span>
         <span class="seal-chip"><img class="tt" src="${tiktokBadge}" alt="TikTok Marketing Partner" /></span>
