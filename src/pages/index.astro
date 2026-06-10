@@ -218,10 +218,7 @@ const jsonLd = [
       </div>
     </section>
 
-    <!-- ============ CRIADORES (faces) ============ -->
-    <CreatorsMarquee />
-
-    <!-- ============ AFILIADOS ============ -->
+    <!-- ============ AFILIADOS (subido pra perto do topo) ============ -->
     <section class="section affil" id="afiliados">
       <div class="container affil__inner">
         <div class="affil__copy reveal">
@@ -256,6 +253,9 @@ const jsonLd = [
         </div>
       </div>
     </section>
+
+    <!-- ============ CRIADORES (faces) ============ -->
+    <CreatorsMarquee />
 
     <!-- ============ COMO FUNCIONA ============ -->
     <section class="section section--paper2" id="como">
@@ -732,6 +732,13 @@ const jsonLd = [
   .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
   .step__title { font-size: 1.35rem; margin-top: 1rem; }
   .step__body { margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.97rem; }
+  /* setinha ligando um passo no outro (sobre os boxes) */
+  .steps .step:not(:last-child)::after {
+    content: ""; position: absolute; left: 50%; bottom: -1.5rem; z-index: 2;
+    width: 30px; height: 30px; transform: translate(-50%, 50%);
+    border-radius: 50%; border: 3px solid var(--paper-2); box-shadow: var(--shadow-md);
+    background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12l7 7 7-7'/%3E%3C/svg%3E") center/15px no-repeat;
+  }
   @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 
   /* split do Como funciona com a foto */

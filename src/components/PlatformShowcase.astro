@@ -9,8 +9,8 @@ interface Props {
 const {
   bg = "paper",
   eyebrow = "Dentro da plataforma",
-  title = "É bonita de olhar. <br class='br-r' />E melhor ainda de usar.",
-  lead = "Nada de painel confuso com mil abas. Tudo que você precisa, onde você espera encontrar.",
+  title = "É barato. E ainda mais <br class='br-r' />fácil de usar.",
+  lead = "Nada de painel confuso com mil abas. Tudo que você precisa, onde você espera encontrar — e por um preço que cabe no bolso.",
   id = "plataforma",
 } = Astro.props;
 
@@ -27,6 +27,7 @@ const platform = [
       <span class="eyebrow">{eyebrow}</span>
       <h2 set:html={title} />
       <p class="lead">{lead}</p>
+      <p class="pshow__price"><strong>A partir de R$ 99/mês</strong> · contatos ilimitados · 7 dias grátis · <a href="#comparativo">ver comparação</a></p>
     </div>
     <div class="platform">
       <!-- 1 · Montagem visual -->
@@ -179,6 +180,9 @@ const platform = [
 </section>
 
 <style>
+  .pshow__price { margin-top: 1.1rem; font-size: 0.95rem; color: var(--ink-soft); }
+  .pshow__price strong { color: var(--brand-ink); font-weight: 800; }
+  .pshow__price a { color: var(--brand-ink); font-weight: 700; border-bottom: 1px solid color-mix(in srgb, var(--brand) 30%, transparent); }
   .platform { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 5.5rem); margin-top: 3.5rem; }
   .prow { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
   .prow > * { min-width: 0; }
