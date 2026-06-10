@@ -320,7 +320,6 @@ const jsonLd = [
                 </div>
               </div>
             </div>
-            <span class="como__cap"><span class="como__cap-dot"></span> Você monta. Ele cuida do resto.</span>
           </div>
         </div>
       </div>
@@ -825,9 +824,7 @@ const jsonLd = [
   /* split do Como funciona com a demo da plataforma */
   .como__split { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); margin-top: 3rem; align-items: start; }
   .steps--stack { margin-top: 0; }
-  .como__media { position: relative; justify-self: center; width: 100%; max-width: 400px; }
-  .como__cap { display: inline-flex; align-items: center; gap: 0.5em; margin-top: 0.9rem; padding: 0.5rem 0.9rem; border-radius: var(--r-pill); background: rgba(20,16,14,0.06); border: 1px solid var(--line); color: var(--ink-soft); font-size: 0.82rem; font-weight: 600; }
-  .como__cap-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--brand-wash); }
+  .como__media { position: relative; justify-self: center; width: 100%; max-width: 480px; }
 
   /* mockup da plataforma (3 estágios em cross-fade, sincronizados ao scroll dos passos) */
   .cdemo { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
@@ -838,7 +835,7 @@ const jsonLd = [
   .cdemo__rail b { width: 26px; text-align: center; padding: 0.18rem 0; border-radius: var(--r-pill); font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; color: var(--ink-faint); background: var(--paper-2); transition: color 0.35s var(--ease-out), background 0.35s var(--ease-out); }
   .cdemo__rail b.is-on { color: #fff; background: var(--brand); }
   .cdemo__screen { position: relative; display: grid; align-content: center; padding: 1.15rem; min-height: 284px; }
-  @media (min-width: 880px) { .cdemo__screen { min-height: 318px; } }
+  @media (min-width: 880px) { .cdemo__screen { min-height: 360px; } }
   .cstage { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 0.7rem; opacity: 0; transform: translateY(14px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); pointer-events: none; }
   .cstage.is-on { opacity: 1; transform: none; }
   .cstage__kicker { font-family: var(--font-mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--brand-ink); }
@@ -875,7 +872,7 @@ const jsonLd = [
   @media (min-width: 880px) {
     .como__split { grid-template-columns: 1.05fr 0.95fr; }
     .steps--stack { grid-template-columns: 1fr; }
-    .como__media { justify-self: end; max-width: 420px; position: sticky; top: clamp(5.5rem, 14vh, 9rem); }
+    .como__media { justify-self: end; max-width: 520px; position: sticky; top: clamp(5.5rem, 14vh, 9rem); }
   }
 
   /* ===================== RISCO (API OFICIAL) ===================== */
