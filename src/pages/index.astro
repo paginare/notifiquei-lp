@@ -807,8 +807,10 @@ const jsonLd = [
   /* o filter:blur(0) do .reveal.in cria stacking context e prendia a seta dentro do card —
      zerar o filter nos passos deixa a ::after subir acima do card seguinte */
   .steps .step.reveal.in { filter: none; }
-  /* passo em destaque (glow alternando — sincronizado com a demo); z-index mantém o glow acima dos vizinhos */
-  .step.is-active { z-index: 2; border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent), 0 10px 30px -10px var(--brand-glow); transform: translateY(-2px); }
+  /* passo em destaque (glow alternando — sincronizado com a demo). Só borda + sombra:
+     NÃO usar z-index nem transform aqui — ambos criam stacking context e fariam a seta
+     "piscar" (ir pra trás e voltar) toda vez que o passo é ativado. */
+  .step.is-active { border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent), 0 12px 32px -12px var(--brand-glow); }
   .step.is-active .step__n { color: var(--brand); }
   .step__n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.1em; }
   .step__title { font-size: 1.35rem; margin-top: 1rem; }
