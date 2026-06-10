@@ -200,12 +200,20 @@ const jsonLd = [
 
     <!-- ============ PROVA SOCIAL ============ -->
     <section class="proof">
-      <div class="container proof__inner">
-        <p class="proof__count"><strong>+2.000 criadores</strong> brasileiros já transformam comentários em vendas no automático.</p>
+      <div class="container">
         <div class="proof__stats">
-          <div><span class="proof__num">3s</span><span class="proof__lbl">tempo médio de resposta</span></div>
-          <div><span class="proof__num">24h</span><span class="proof__lbl">vendendo, mesmo dormindo</span></div>
-          <div><span class="proof__num">98%</span><span class="proof__lbl">dos comentários respondidos</span></div>
+          <div>
+            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
+            <span class="proof__num">3s</span><span class="proof__lbl">tempo médio de resposta</span>
+          </div>
+          <div>
+            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+            <span class="proof__num">24h</span><span class="proof__lbl">vendendo, mesmo dormindo</span>
+          </div>
+          <div>
+            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-4-.9L3 20l1.3-4.3A8.4 8.4 0 0 1 3 11.5 8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></span>
+            <span class="proof__num">98%</span><span class="proof__lbl">dos comentários respondidos</span>
+          </div>
         </div>
       </div>
     </section>
@@ -335,8 +343,8 @@ const jsonLd = [
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Por que API oficial importa</span>
-          <h2>Ferramenta não-oficial <br class="br-r" />é roleta-russa com seu perfil.</h2>
-          <p class="lead" style="color:var(--on-ink-soft)">Milhares de criadores já perderam alcance, pagaram anúncio mais caro ou foram banidos por usar automação que a Meta proíbe. Não é teoria.</p>
+          <h2>Você já foi punido por usar ferramenta não-oficial.<br class="br-r" />Aqui, isso não existe.</h2>
+          <p class="lead" style="color:var(--on-ink-soft)">Menos alcance, anúncio até 3× mais caro, conta banida — é o preço de automação que a Meta proíbe. O Notifiquei é 100% API oficial: você vende sem arriscar seu perfil.</p>
         </div>
         <div class="risk__grid">
           <article class="risk__card risk__card--bad reveal">
@@ -471,8 +479,8 @@ const jsonLd = [
           <h2>Respostas diretas. <br class="br-r" />Sem rodeio.</h2>
         </div>
         <div class="faq reveal">
-          {faqs.map((f) => (
-            <details class="faq__item">
+          {faqs.map((f, i) => (
+            <details class="faq__item" name="faq" open={i === 0}>
               <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
               <div class="faq__a"><p>{f.a}</p></div>
             </details>
@@ -540,8 +548,8 @@ const jsonLd = [
   .hero__eyebrow { color: var(--brand-ink); text-wrap: balance; }
   .hero__title {
     margin-top: 1.4rem;
-    font-size: clamp(3.1rem, 1.4rem + 7.6vw, 7.25rem);
-    line-height: 0.9;
+    font-size: clamp(3rem, 1.6rem + 6vw, 6rem);
+    line-height: 0.92;
     letter-spacing: -0.045em;
   }
   .hero__title .hl { position: relative; white-space: nowrap; }
@@ -558,7 +566,7 @@ const jsonLd = [
   .hero__price strong { color: var(--ink); font-weight: 700; }
 
   /* badge de oferta no topo (estilo referência) */
-  .hero__badge { display: flex; width: fit-content; align-items: center; gap: 0.5em; margin-bottom: 1.1rem; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.01em; color: var(--brand-ink); background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--line)); padding: 0.45rem 0.95rem; border-radius: var(--r-pill); }
+  .hero__badge { display: flex; width: fit-content; align-items: center; gap: 0.5em; margin-bottom: 1.1rem; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.01em; color: var(--brand-ink); background: color-mix(in srgb, var(--brand-wash) 45%, transparent); border: 1px dashed color-mix(in srgb, var(--brand) 38%, var(--line)); padding: 0.45rem 0.95rem; border-radius: var(--r-pill); }
   .hero__badge-ic { color: var(--brand); font-size: 0.9em; }
   /* prova social com avatares perto do CTA */
   .hero__proof { display: flex; align-items: center; gap: 0.85rem; margin-top: 1.7rem; flex-wrap: wrap; }
@@ -571,7 +579,7 @@ const jsonLd = [
   @media (max-width: 939px) {
     .hero__copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .hero__eyebrow { justify-content: center; }
-    .hero__lead { margin-inline: auto; }
+    .hero__lead { margin-inline: auto; font-size: 0.98rem; line-height: 1.5; }
     .hero__actions { justify-content: center; }
     .hero__proof { justify-content: center; }
   }
@@ -671,13 +679,12 @@ const jsonLd = [
 
   /* ===================== PROVA SOCIAL ===================== */
   .proof { border-block: 1px solid var(--line-soft); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
-  .proof__inner { display: grid; gap: 2rem; align-items: center; }
-  .proof__count { font-size: var(--fs-lead); line-height: 1.45; max-width: 26rem; color: var(--ink-soft); }
-  .proof__count strong { color: var(--ink); font-weight: 700; }
-  .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 60rem; margin-inline: auto; }
+  .proof__stats > div { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .proof__ic { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--brand-wash); margin-bottom: 0.7rem; }
+  .proof__ic svg { width: 22px; height: 22px; fill: none; stroke: var(--brand-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .proof__num { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; color: var(--brand-ink); line-height: 1; }
-  .proof__lbl { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--ink-soft); }
-  @media (min-width: 820px) { .proof__inner { grid-template-columns: 1fr 1.3fr; gap: 3rem; } }
+  .proof__lbl { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--ink-soft); max-width: 12rem; }
 
   /* ===================== STEPS ===================== */
   .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; counter-reset: s; }
@@ -708,8 +715,10 @@ const jsonLd = [
   .risk__title { font-size: 1.3rem; }
   .risk__card--good .risk__title { color: var(--brand-lift); }
   .risk__list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
-  .risk__list li { position: relative; padding-left: 1.4rem; color: var(--on-ink-soft); font-size: 0.95rem; line-height: 1.5; }
-  .risk__list li::before { content: "—"; position: absolute; left: 0; color: var(--brand-lift); }
+  .risk__list li { position: relative; padding-left: 1.6rem; color: var(--on-ink-soft); font-size: 0.95rem; line-height: 1.5; }
+  .risk__list li::before { position: absolute; left: 0; font-weight: 800; }
+  .risk__card--good .risk__list li::before { content: "✓"; color: var(--brand-lift); }
+  .risk__card--bad .risk__list li::before { content: "✗"; color: rgba(255,249,243,0.4); }
   .risk__seal { display: flex; align-items: center; gap: 0.7rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line-ink); color: var(--on-ink-soft); font-size: 0.95rem; }
   .risk__seal-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--brand-wash); }
   @media (min-width: 820px) { .risk__grid { grid-template-columns: 1fr 1fr; } }
