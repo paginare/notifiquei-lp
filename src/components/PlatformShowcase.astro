@@ -38,39 +38,12 @@ const platform = [
           <p class="pcard__body">{platform[0].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
-          <div class="ui ui--flow">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · automações</span></div>
-            <div class="canvas">
-              <article class="fnode fnode--trigger">
-                <span class="hdl hdl--out"></span>
-                <div class="fnode__top">
-                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-                  <span class="fnode__lbl"><b>Comentário em Post</b><small>palavra “quero”</small></span>
-                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-                </div>
-                <div class="fnode__prev">Quando alguém comenta no post</div>
-              </article>
-              <svg class="edge" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M20 0 C20 13 20 17 20 30"/></svg>
-              <article class="fnode fnode--action">
-                <span class="hdl hdl--in"></span><span class="hdl hdl--out"></span>
-                <div class="fnode__top">
-                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg></span>
-                  <span class="fnode__lbl"><b>Responder no DM</b><small>com o link</small></span>
-                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-                </div>
-                <div class="fnode__prev">“Oii! Tá R$ 297 à vista 💸”</div>
-              </article>
-              <svg class="edge" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M20 0 C20 13 20 17 20 30"/></svg>
-              <article class="fnode fnode--tag">
-                <span class="hdl hdl--in"></span>
-                <div class="fnode__top">
-                  <span class="fnode__ic"><svg viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1"/></svg></span>
-                  <span class="fnode__lbl"><b>Adicionar Tag</b><small>lead quente</small></span>
-                  <span class="fnode__chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-                </div>
-              </article>
-            </div>
-          </div>
+          <video
+            class="flowvid"
+            src="/assets/flow-build.mp4"
+            poster="/assets/flow-build-poster.webp"
+            data-autoplay muted loop playsinline preload="none"
+          ></video>
         </div>
       </article>
 
@@ -203,27 +176,8 @@ const platform = [
   .ui__url { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.01em; }
   .ui > :not(.ui__bar) { background: var(--card); border-radius: calc(var(--r-xl) - 7px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); }
 
-  /* 1 · flow builder */
-  .ui--flow .canvas { position: relative; padding: 1.5rem 1.1rem; display: flex; flex-direction: column; align-items: center; gap: 0; background-color: var(--card); background-image: radial-gradient(var(--line) 1.1px, transparent 1.1px); background-size: 18px 18px; }
-  .fnode { position: relative; width: 100%; max-width: 244px; padding: 0.7rem 0.8rem; border-radius: 12px; border: 2px solid var(--ok); background: linear-gradient(135deg, rgba(255,31,109,0.10), rgba(255,31,109,0.015)); box-shadow: var(--shadow-sm); }
-  .fnode--tag { background: linear-gradient(135deg, rgba(124,58,237,0.13), rgba(124,58,237,0.02)); }
-  .fnode__top { display: flex; align-items: center; gap: 0.55rem; }
-  .fnode__ic { flex: none; width: 24px; height: 24px; display: grid; place-items: center; }
-  .fnode__ic svg { width: 18px; height: 18px; fill: none; stroke: var(--brand-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .fnode--tag .fnode__ic svg { stroke: var(--purple); }
-  .fnode__lbl { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.15; }
-  .fnode__lbl b { font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .fnode__lbl small { font-size: 0.66rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .fnode__chk { flex: none; }
-  .fnode__chk svg { width: 15px; height: 15px; fill: none; stroke: var(--ok); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-  .fnode__prev { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--line-soft); font-size: 0.7rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .fnode__plus { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; box-shadow: var(--shadow-md); }
-  .fnode__plus svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; }
-  .hdl { position: absolute; left: 50%; transform: translateX(-50%); width: 9px; height: 9px; border-radius: 50%; background: var(--brand); border: 2px solid var(--card); }
-  .hdl--out { bottom: -6px; }
-  .hdl--in { top: -6px; }
-  .edge { width: 40px; height: 30px; margin: 0; }
-  .edge path { fill: none; stroke: var(--line); stroke-width: 2; }
+  /* 1 · flow builder (vídeo: cursor arrastando os blocos) */
+  .flowvid { width: 100%; height: auto; display: block; aspect-ratio: 1280 / 960; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-lg); background: var(--paper-2); }
 
   /* 2 · dashboard */
   .ui--stats .dash { padding: 0.85rem; }
