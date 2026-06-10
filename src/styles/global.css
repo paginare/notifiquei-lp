@@ -28,6 +28,10 @@ body {
   overflow-x: clip;
 }
 
+/* Nav é fixo (flutua desde o topo). O conteúdo limpa a altura dele aqui, em TODAS
+   as páginas; o fundo creme do body preenche a faixa sob o cabeçalho flutuante. */
+main { padding-top: clamp(4.5rem, 4rem + 1.5vw, 5.5rem); }
+
 img, svg, video { display: block; max-width: 100%; }
 img { height: auto; }
 
