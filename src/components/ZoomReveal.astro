@@ -48,7 +48,7 @@
   .zoompin { position: relative; }
   .zoompin__stage { height: 100vh; min-height: 640px; display: grid; place-items: center; overflow: hidden; position: relative; background: linear-gradient(180deg, var(--paper), var(--paper-2)); }
   .zoompin__caps { position: absolute; top: clamp(6rem, 14vh, 9.5rem); left: 0; right: 0; text-align: center; z-index: 3; pointer-events: none; }
-  .zoompin__cap { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 0.7rem; font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2.3rem, 1.3rem + 3.8vw, 4.75rem); line-height: 0.98; text-wrap: balance; }
+  .zoompin__cap { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 0.7rem; font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2rem, 1.1rem + 3vw, 3.7rem); line-height: 0.98; text-wrap: balance; }
   .zoompin__cap .eyebrow { color: var(--brand-ink); }
   .zoompin__cap[data-cap="2"] { opacity: 0; }
 
@@ -111,8 +111,8 @@
     const cap2 = stage.querySelector<HTMLElement>('[data-cap="2"]');
     const cap1 = stage.querySelector<HTMLElement>('[data-cap="1"]');
 
-    gsap.set(shot, { scale: 0.86, transformOrigin: "50% 60%", autoAlpha: 1, clearProps: "filter" });
-    gsap.set(caps, { scale: 0.82, transformOrigin: "50% 0%", autoAlpha: 1, clearProps: "filter" });
+    gsap.set(shot, { scale: 0.9, transformOrigin: "50% 60%", autoAlpha: 1, clearProps: "filter" });
+    gsap.set(caps, { scale: 0.94, transformOrigin: "50% 0%", autoAlpha: 1, clearProps: "filter" });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -124,10 +124,12 @@
         anticipatePin: 1,
       },
     });
-    tl.to(shot, { scale: 1.16, ease: "none" }, 0);
-    tl.to(caps, { scale: 1.14, ease: "none" }, 0);          // título vai crescendo
-    tl.to(cap1, { autoAlpha: 0, ease: "none" }, 0.5);
-    tl.fromTo(cap2, { autoAlpha: 0 }, { autoAlpha: 1, ease: "none" }, 0.52);
+    // zoom suave ao longo de TODO o scroll; o texto cresce só um pouco (não invade o painel)
+    tl.to(shot, { scale: 1.08, ease: "none", duration: 1 }, 0);
+    tl.to(caps, { scale: 1.02, ease: "none", duration: 1 }, 0);
+    // troca LIMPA: cap1 sai por completo antes de cap2 entrar (janela curta + intervalo)
+    tl.to(cap1, { autoAlpha: 0, ease: "none", duration: 0.12 }, 0.42);
+    tl.fromTo(cap2, { autoAlpha: 0 }, { autoAlpha: 1, ease: "none", duration: 0.12 }, 0.56);
     };
     const boot = () => ("requestIdleCallback" in window)
       ? (window as any).requestIdleCallback(() => init(), { timeout: 1500 })
