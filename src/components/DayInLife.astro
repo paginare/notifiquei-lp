@@ -88,15 +88,16 @@ const beats = [
 </style>
 
 <script>
-  // GSAP carregado sob demanda (dynamic import) só quando a seção se aproxima —
-  // tira o ScrollTrigger (~46KB) do caminho crítico do carregamento inicial.
+  // GSAP carregado sob demanda (dynamic import) após o load — tira o ScrollTrigger
+  // (~46KB) do caminho crítico, mas cria o pin assim que a página fica ociosa.
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const stage = document.querySelector<HTMLElement>(".dil__stage");
 
   if (stage && !reduce && window.innerWidth > 760) {
-    const io = new IntersectionObserver(async (entries, obs) => {
-      if (!entries[0].isIntersecting) return;
-      obs.disconnect();
+    // O pin precisa existir ANTES de cliques em âncora: se ele inicializasse só ao
+    // entrar na tela (IntersectionObserver), o spacer surgia no meio do salto e a
+    // rolagem travava ao cruzar a seção. Por isso criamos no load/idle.
+    const init = async () => {
       const gsap = (await import("gsap")).default;
       const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
       gsap.registerPlugin(ScrollTrigger);
@@ -126,7 +127,11 @@ const beats = [
         trigger: stage, start: "top top", end: "+=165%",
         onUpdate: (s) => setDot(s.progress < 0.33 ? 0 : s.progress < 0.66 ? 1 : 2),
       });
-    }, { rootMargin: "300px 0px" });
-    io.observe(stage);
+    };
+    const boot = () => ("requestIdleCallback" in window)
+      ? (window as any).requestIdleCallback(() => init(), { timeout: 1500 })
+      : init();
+    if (document.readyState === "complete") boot();
+    else window.addEventListener("load", boot, { once: true });
   }
 </script>
