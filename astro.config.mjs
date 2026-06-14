@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // servidos como /, /criadores, /afiliados pela Vercel (cleanUrls). Páginas legais em public/
 // passam intactas. Sem adapter SSR — saída 100% estática.
 export default defineConfig({
-  site: 'https://www.notifiquei.com.br',
+  site: 'https://notifiquei.com.br',
   trailingSlash: 'never',
   // inlineStylesheets: 'always' embute o CSS no HTML (sem <link> render-blocking).
   // Testado em 4G throttled: bate 'auto' (link de CSS adiciona RTT e piora o LCP).

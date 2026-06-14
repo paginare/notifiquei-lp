@@ -16,7 +16,7 @@ O favicon é o **símbolo das ondas** da logo em cream sobre fundo rosa brand (#
 
 ### `servidores-turbo.png`
 Badge que já existe no site atual:
-→ https://www.notifiquei.com.br/servidores-turbo.png
+→ https://notifiquei.com.br/servidores-turbo.png
 
 Download dessa URL e salva como `servidores-turbo.png` nesta pasta.
 

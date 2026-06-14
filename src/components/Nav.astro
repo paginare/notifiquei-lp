@@ -8,7 +8,7 @@ const links = [
   { href: "/#planos", label: "Planos" },
 ];
 ---
-<header class="nav">
+<header class="nav" id="siteNav">
   <div class="container nav__inner">
     <a href="/" class="nav__brand" aria-label="Notifiquei — início">
       <Logo height={24} />
@@ -21,7 +21,27 @@ const links = [
     <div class="nav__cta">
       <a href="https://app.notifiquei.com.br" class="nav__login">Entrar</a>
       <a href="/#planos" class="btn btn--brand nav__start">Começar<span class="arr" aria-hidden="true">→</span></a>
+      <button
+        type="button"
+        class="nav__burger"
+        id="navBurger"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="navMobile"
+      >
+        <span class="nav__burger-box" aria-hidden="true">
+          <span class="nav__burger-bar"></span>
+        </span>
+      </button>
     </div>
+  </div>
+
+  <div class="nav__mobile" id="navMobile" hidden>
+    <nav class="nav__mobile-nav" aria-label="Navegação principal (mobile)">
+      {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
+    </nav>
+    <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">Entrar</a>
+    <a href="/#planos" class="btn btn--brand nav__mobile-start">Começar agora<span class="arr" aria-hidden="true">→</span></a>
   </div>
 </header>
 
@@ -80,8 +100,141 @@ const links = [
   .nav__login:hover { color: var(--brand-ink); }
   .nav__start { padding: 0.6rem 1.15rem; font-size: 0.9rem; }
 
+  /* ── Botão hambúrguer (mobile) ── */
+  .nav__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: 0.25rem;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: var(--r-md, 12px);
+  }
+  .nav__burger-box {
+    position: relative;
+    width: 22px;
+    height: 2px;
+  }
+  .nav__burger-bar,
+  .nav__burger-bar::before,
+  .nav__burger-bar::after {
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-out), opacity 0.2s var(--ease-out);
+  }
+  .nav__burger-bar { top: 0; }
+  .nav__burger-bar::before { content: ""; top: -7px; }
+  .nav__burger-bar::after { content: ""; top: 7px; }
+  .nav.is-open .nav__burger-bar { background: transparent; }
+  .nav.is-open .nav__burger-bar::before { transform: translateY(7px) rotate(45deg); }
+  .nav.is-open .nav__burger-bar::after { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Painel mobile ── */
+  .nav__mobile {
+    pointer-events: auto;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: var(--r-lg, 20px);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .nav__mobile[hidden] { display: none; }
+  .nav__mobile-nav { display: flex; flex-direction: column; }
+  .nav__mobile-link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 0.85rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    border-radius: var(--r-md, 12px);
+  }
+  .nav__mobile-link:hover,
+  .nav__mobile-link:focus-visible { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+  .nav__mobile-login { color: var(--ink-soft); }
+  .nav__mobile-start {
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 0.35rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav__mobile:not([hidden]) { animation: navMobileIn 0.22s var(--ease-out); }
+    @keyframes navMobileIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
   @media (min-width: 860px) {
     .nav__links { display: flex; }
     .nav__login { display: inline-block; }
+    .nav__burger { display: none; }
+    .nav__mobile { display: none; }
   }
 </style>
+
+<script>
+  const nav = document.getElementById("siteNav");
+  const burger = document.getElementById("navBurger");
+  const panel = document.getElementById("navMobile");
+
+  if (nav && burger && panel) {
+    const setOpen = (open: boolean) => {
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      nav.classList.toggle("is-open", open);
+      if (open) {
+        panel.hidden = false;
+      } else {
+        panel.hidden = true;
+      }
+    };
+
+    burger.addEventListener("click", () => {
+      setOpen(burger.getAttribute("aria-expanded") !== "true");
+    });
+
+    // fecha ao clicar num link
+    panel.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => setOpen(false)),
+    );
+
+    // ESC fecha
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) setOpen(false);
+    });
+
+    // clique fora fecha
+    document.addEventListener("click", (e) => {
+      if (
+        nav.classList.contains("is-open") &&
+        e.target instanceof Node &&
+        !nav.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    });
+
+    // volta ao desktop fecha o menu
+    const mq = window.matchMedia("(min-width: 860px)");
+    mq.addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>

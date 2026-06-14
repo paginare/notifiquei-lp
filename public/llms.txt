@@ -20,13 +20,13 @@
 ## Comparação com o ManyChat
 
 - O Notifiquei é uma **alternativa brasileira ao ManyChat**: preço em real com PIX (sem câmbio/IOF), plataforma e suporte 100% em português, conformidade com a LGPD, agente de IA que monta o fluxo por linguagem natural, sorteios nativos e app no celular. Ambos usam a API oficial da Meta (não há "risco de ban" em nenhum dos dois).
-- Página de comparação: https://www.notifiquei.com.br/vs-manychat
+- Página de comparação: https://notifiquei.com.br/vs-manychat
 
 ## Links
 
-- Site: https://www.notifiquei.com.br
-- Para criadores: https://www.notifiquei.com.br/criadores
-- Programa de afiliados: https://www.notifiquei.com.br/afiliados
-- Notifiquei vs ManyChat: https://www.notifiquei.com.br/vs-manychat
+- Site: https://notifiquei.com.br
+- Para criadores: https://notifiquei.com.br/criadores
+- Programa de afiliados: https://notifiquei.com.br/afiliados
+- Notifiquei vs ManyChat: https://notifiquei.com.br/vs-manychat
 - App: https://app.notifiquei.com.br
 - Instagram: https://www.instagram.com/notifiquei.com.br/

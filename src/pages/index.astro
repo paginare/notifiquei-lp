@@ -92,11 +92,11 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://www.notifiquei.com.br/#org",
+    "@id": "https://notifiquei.com.br/#org",
     name: "Notifiquei",
     legalName: "Notifiquei Tecnologia",
-    url: "https://www.notifiquei.com.br",
-    logo: "https://www.notifiquei.com.br/assets/favicon-180.png",
+    url: "https://notifiquei.com.br",
+    logo: "https://notifiquei.com.br/assets/favicon-180.png",
     description: "Ferramenta brasileira de automação de Instagram (DMs, comentários e stories) pela API oficial da Meta, para criadores e negócios.",
     taxID: "59.859.848/0001-13",
     sameAs: [
@@ -112,8 +112,8 @@ const jsonLd = [
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
     description: "Automação de Instagram e TikTok pela API oficial da Meta: responde comentários e DMs automaticamente, com agente de IA. Alternativa brasileira ao ManyChat.",
-    url: "https://www.notifiquei.com.br",
-    publisher: { "@id": "https://www.notifiquei.com.br/#org" },
+    url: "https://notifiquei.com.br",
+    publisher: { "@id": "https://notifiquei.com.br/#org" },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "BRL",
@@ -245,11 +245,11 @@ const jsonLd = [
       <div class="container affil__marks reveal">
         <span class="affil__marks-label">Funciona com os links de afiliado de</span>
         <div class="affil__logos">
-          <img src="/assets/marketplaces/shopee.svg" alt="Shopee" loading="lazy" />
-          <img src="/assets/marketplaces/mercadolivre.svg" alt="Mercado Livre" loading="lazy" />
-          <img src="/assets/marketplaces/amazon.svg" alt="Amazon" loading="lazy" />
-          <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" loading="lazy" />
-          <img src="/assets/marketplaces/magalu.svg" alt="Magalu" loading="lazy" />
+          <img src="/assets/marketplaces/shopee.svg" alt="Shopee" width="1000" height="320" loading="lazy" />
+          <img src="/assets/marketplaces/mercadolivre.svg" alt="Mercado Livre" width="948" height="373" loading="lazy" />
+          <img src="/assets/marketplaces/amazon.svg" alt="Amazon" width="603" height="182" loading="lazy" />
+          <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" width="1719" height="372" loading="lazy" />
+          <img src="/assets/marketplaces/magalu.svg" alt="Magalu" width="490" height="140" loading="lazy" />
         </div>
       </div>
     </section>
@@ -997,7 +997,7 @@ const jsonLd = [
   .plans__note strong { color: var(--brand-ink); font-weight: 700; }
   /* toggle mensal/anual */
   .billtoggle { display: inline-flex; gap: 4px; margin-top: 1.75rem; padding: 4px; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-pill); }
-  .billtoggle__opt { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.5rem 1.1rem; border-radius: var(--r-pill); font-weight: 600; font-size: 0.9rem; color: var(--ink-soft); transition: background 0.2s var(--ease-out), color 0.2s; }
+  .billtoggle__opt { display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; min-height: 44px; padding: 0.5rem 1.1rem; border-radius: var(--r-pill); font-weight: 600; font-size: 0.9rem; color: var(--ink-soft); transition: background 0.2s var(--ease-out), color 0.2s; }
   .billtoggle__opt.is-on { background: var(--ink); color: var(--on-ink); }
   /* --brand-ink garante ≥4.5:1 do texto branco (o badge é texto pequeno → AA normal) */
   .billtoggle__save { font-size: 0.68rem; font-weight: 700; background: var(--brand-ink); color: #fff; padding: 0.15rem 0.45rem; border-radius: var(--r-pill); }

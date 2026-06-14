@@ -1,0 +1,2 @@
+# Caminho convencional do sitemap -> sitemap real do Astro
+/sitemap.xml   /sitemap-index.xml   301
