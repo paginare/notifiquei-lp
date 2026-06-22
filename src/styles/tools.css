@@ -1,0 +1,75 @@
+/* ============================================================
+   Notifiquei — estilos compartilhados das ferramentas grátis
+   Usado por todas as páginas em /ferramentas/*
+   ============================================================ */
+.tool { padding-top: clamp(2rem, 1rem + 4vw, 4rem); }
+.tool .section-head { margin-bottom: 2.5rem; }
+.tool h1 { font-size: var(--fs-display-l); }
+
+.tool__card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.25rem, 1rem + 2vw, 2rem);
+}
+.tool__form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.5rem; }
+.field__label { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+.field__hint { color: var(--ink-faint); font-weight: 500; }
+.field__input {
+  width: 100%; padding: 0.8rem 0.95rem; font: inherit; font-size: 1rem;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+.field__input::placeholder { color: var(--ink-faint); }
+.field__input:focus-visible { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-wash); }
+.field__textarea { resize: vertical; min-height: 9.5rem; line-height: 1.5; }
+
+.tool__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.tool__check { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; color: var(--ink-soft); cursor: pointer; }
+.tool__check input { width: 1.1rem; height: 1.1rem; accent-color: var(--brand); }
+
+.tool__bar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-top: 0.25rem; }
+.tool__count { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+.tool__result { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.tool__result[hidden] { display: none; }
+.tool__sub { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand-ink); margin-bottom: 0.85rem; }
+.tool__again { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.tool__error { color: var(--brand-ink); font-weight: 600; }
+
+.tool__fair { display: flex; gap: 0.6rem; margin-top: 1.5rem; font-size: 0.85rem; color: var(--ink-faint); line-height: 1.5; }
+.tool__fair code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink-soft); }
+.tool__fair-dot { flex: none; width: 8px; height: 8px; margin-top: 0.45em; border-radius: 50%; background: var(--positive); }
+
+/* número grande p/ calculadoras */
+.stat { text-align: center; }
+.stat__num { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 1.8rem + 3vw, 4rem); line-height: 1; letter-spacing: -0.03em; color: var(--brand-ink); }
+.stat__label { margin-top: 0.5rem; font-size: 0.95rem; color: var(--ink-soft); }
+
+.statgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-top: 1.25rem; }
+.statcard { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--paper); }
+.statcard__num { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink); }
+.statcard__num.is-brand { color: var(--brand-ink); }
+.statcard__label { margin-top: 0.2rem; font-size: 0.82rem; color: var(--ink-soft); }
+.tool__note { margin-top: 1.25rem; font-size: 0.82rem; color: var(--ink-faint); line-height: 1.5; }
+
+/* veredito (faixa de benchmark) */
+.verdict { display: inline-flex; align-items: center; gap: 0.5em; margin-top: 1rem; padding: 0.45rem 0.9rem; border-radius: var(--r-pill); font-weight: 700; font-size: 0.9rem; }
+.verdict--low { background: color-mix(in srgb, #E8A23D 18%, transparent); color: #9a6212; }
+.verdict--ok { background: var(--positive-wash); color: var(--positive); }
+.verdict--great { background: var(--brand-wash); color: var(--brand-ink); }
+
+/* CTA Notifiquei (rodapé de cada ferramenta) */
+.toolcta { text-align: center; }
+.toolcta__inner { display: flex; flex-direction: column; align-items: center; }
+.toolcta__inner .eyebrow { justify-content: center; }
+.toolcta__title { margin-top: 1rem; font-size: var(--fs-display-l); }
+.toolcta__inner .lead { margin-top: 1rem; max-width: 34rem; }
+.toolcta__actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; margin-top: 1.75rem; }
+
+@media (max-width: 480px) { .tool__grid, .statgrid { grid-template-columns: 1fr; } }

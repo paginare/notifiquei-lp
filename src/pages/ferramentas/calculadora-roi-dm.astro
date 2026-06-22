@@ -1,0 +1,167 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/tools.css";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Calculadora de ROI de automação de DM do Instagram",
+    url: "https://notifiquei.com.br/ferramentas/calculadora-roi-dm",
+    description:
+      "Calcule quanto tempo e dinheiro você economiza respondendo DMs e comentários do Instagram no automático.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+    publisher: { "@type": "Organization", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+];
+---
+
+<Base
+  title="Calculadora de ROI de automação de DM — grátis | Notifiquei"
+  description="Veja quanto tempo e dinheiro você economiza respondendo os DMs e comentários do Instagram no automático. Calculadora grátis, sem login."
+  path="/ferramentas/calculadora-roi-dm"
+  jsonLd={jsonLd}
+>
+  <Nav />
+  <main>
+    <section class="section tool">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Ferramenta grátis</span>
+          <h1>Vale a pena automatizar seus <span class="hl">DMs</span>?</h1>
+          <p class="lead">
+            Coloque seus números e veja quanto tempo e dinheiro você ganha respondendo
+            comentários e DMs no automático em vez de na mão.
+          </p>
+        </div>
+
+        <div class="tool__card reveal">
+          <form id="roi" class="tool__form" novalidate>
+            <div class="tool__grid">
+              <label class="field">
+                <span class="field__label">DMs e comentários por semana</span>
+                <input id="dms" class="field__input" type="number" min="0" placeholder="ex.: 120" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span class="field__label">Minutos por resposta na mão</span>
+                <input id="mins" class="field__input" type="number" min="0" step="0.5" placeholder="ex.: 3" inputmode="decimal" />
+              </label>
+            </div>
+            <div class="tool__grid">
+              <label class="field">
+                <span class="field__label">Valor da sua hora (R$)</span>
+                <input id="rate" class="field__input" type="number" min="0" placeholder="ex.: 50" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span class="field__label">Ticket médio de venda (R$)</span>
+                <input id="ticket" class="field__input" type="number" min="0" placeholder="ex.: 197" inputmode="numeric" />
+              </label>
+            </div>
+            <label class="field">
+              <span class="field__label">Hoje você responde em quanto tempo?</span>
+              <select id="response" class="field__input">
+                <option value="0.04">Em menos de 1 hora</option>
+                <option value="0.10">De 1 a 6 horas</option>
+                <option value="0.20" selected>De 6 a 24 horas</option>
+                <option value="0.30">Mais de 24 horas (às vezes nem respondo)</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Custo da ferramenta por mês (R$)</span>
+              <input id="cost" class="field__input" type="number" min="0" value="99" inputmode="numeric" />
+            </label>
+            <div class="tool__bar">
+              <span class="tool__count">Estimativa em segundos</span>
+              <button type="submit" class="btn btn--brand btn--lg">Calcular<span class="arr" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+          <div class="tool__result" id="result" aria-live="polite" hidden></div>
+        </div>
+
+        <p class="tool__fair reveal">
+          <span class="tool__fair-dot" aria-hidden="true"></span>
+          O tempo economizado é cálculo direto (volume × minutos × valor da sua hora). A receita
+          adicional é uma estimativa: assume que ~15% dos contatos têm intenção de compra e que
+          responder na hora aumenta a conversão conforme o seu tempo de resposta atual.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--ink on-ink toolcta">
+      <div class="container container--narrow toolcta__inner reveal">
+        <span class="eyebrow is-plain">Da conta certa pra prática</span>
+        <h2 class="toolcta__title">O Notifiquei faz esse trabalho <span class="hl">por você</span>.</h2>
+        <p class="lead" style="color:var(--on-ink-soft)">
+          Responde cada comentário e DM na hora, com a sua voz, manda o link e te chama só quando
+          o cliente está pronto pra fechar. Você economiza o tempo e ganha a venda.
+        </p>
+        <div class="toolcta__actions">
+          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="/ferramentas" class="tlink">Ver todas as ferramentas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    const form = document.getElementById("roi") as HTMLFormElement | null;
+    if (form) {
+      const val = (id: string) =>
+        Math.max(0, parseFloat((document.getElementById(id) as HTMLInputElement).value) || 0);
+      const result = document.getElementById("result") as HTMLElement;
+      const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+      const intNum = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const dms = val("dms");
+        const mins = val("mins");
+        const rate = val("rate");
+        const ticket = val("ticket");
+        const lift = parseFloat((document.getElementById("response") as HTMLSelectElement).value);
+        const cost = val("cost");
+
+        if (dms <= 0 || mins <= 0 || rate <= 0 || ticket <= 0) {
+          result.hidden = false;
+          result.innerHTML = `<p class="tool__error">Preencha DMs por semana, minutos por resposta, valor da sua hora e ticket médio.</p>`;
+          return;
+        }
+
+        const hoursYear = dms * (mins / 60) * 52;
+        const timeValue = hoursYear * rate;
+        const INTENT = 0.15;
+        const intentContactsYear = dms * 52 * INTENT;
+        const addRevenue = intentContactsYear * lift * ticket;
+        const costYear = cost * 12;
+        const totalGain = timeValue + addRevenue - costYear;
+        const roi = costYear > 0 ? (totalGain / costYear) * 100 : 0;
+        const paybackDays = totalGain > 0 ? Math.max(1, Math.ceil(costYear / (totalGain / 365))) : null;
+
+        let tier = "", cls = "";
+        if (totalGain <= 0) { tier = "No seu cenário, talvez não compense ainda"; cls = "verdict--low"; }
+        else if (roi < 200) { tier = "Compensa"; cls = "verdict--ok"; }
+        else { tier = "Compensa — e muito"; cls = "verdict--great"; }
+
+        result.hidden = false;
+        result.innerHTML = `
+          <div class="stat">
+            <div class="stat__num">${roi > 0 ? "+" : ""}${intNum.format(Math.round(roi))}%</div>
+            <div class="stat__label">retorno sobre o custo da ferramenta, por ano</div>
+            <div><span class="verdict ${cls}">${tier}</span></div>
+          </div>
+          <div class="statgrid">
+            <div class="statcard"><div class="statcard__num">${intNum.format(Math.round(hoursYear))} h</div><div class="statcard__label">economizadas por ano</div></div>
+            <div class="statcard"><div class="statcard__num">${brl.format(timeValue)}</div><div class="statcard__label">em tempo economizado/ano</div></div>
+            <div class="statcard"><div class="statcard__num is-brand">${brl.format(addRevenue)}</div><div class="statcard__label">receita adicional estimada/ano</div></div>
+            <div class="statcard"><div class="statcard__num">${paybackDays ? paybackDays + " dias" : "—"}</div><div class="statcard__label">pra a ferramenta se pagar</div></div>
+          </div>`;
+        result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
+  </script>
+</Base>

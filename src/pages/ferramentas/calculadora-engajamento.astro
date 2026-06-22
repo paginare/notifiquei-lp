@@ -1,0 +1,157 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/tools.css";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Calculadora de engajamento do Instagram",
+    url: "https://notifiquei.com.br/ferramentas/calculadora-engajamento",
+    description:
+      "Calcule a taxa de engajamento de um perfil ou post do Instagram de graça, com a referência do que é um bom engajamento.",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+    publisher: { "@type": "Organization", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Como calcular a taxa de engajamento do Instagram?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Some as interações médias por post (curtidas + comentários + salvamentos + compartilhamentos), divida pelo número de seguidores e multiplique por 100.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Qual é um bom engajamento no Instagram?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Em geral, abaixo de 1% é baixo, de 1% a 3,5% é a média, de 3,5% a 6% é ótimo e acima de 6% é excelente. Contas menores costumam ter engajamento maior.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title="Calculadora de engajamento do Instagram — grátis | Notifiquei"
+  description="Calcule a taxa de engajamento de um perfil ou post do Instagram de graça. Coloque seus números e veja na hora, com a referência do que é um bom engajamento."
+  path="/ferramentas/calculadora-engajamento"
+  jsonLd={jsonLd}
+>
+  <Nav />
+  <main>
+    <section class="section tool">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Ferramenta grátis</span>
+          <h1>Calculadora de <span class="hl">engajamento</span> do Instagram</h1>
+          <p class="lead">
+            Descubra a taxa de engajamento de um perfil ou post. Coloque seus números e veja
+            na hora — já com a referência do que é um bom engajamento no Instagram.
+          </p>
+        </div>
+
+        <div class="tool__card reveal">
+          <form id="eng" class="tool__form" novalidate>
+            <label class="field">
+              <span class="field__label">Seguidores</span>
+              <input id="followers" class="field__input" type="number" min="1" placeholder="ex.: 10000" inputmode="numeric" />
+            </label>
+            <div class="tool__grid">
+              <label class="field">
+                <span class="field__label">Curtidas médias por post</span>
+                <input id="likes" class="field__input" type="number" min="0" placeholder="ex.: 350" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span class="field__label">Comentários médios por post</span>
+                <input id="comments" class="field__input" type="number" min="0" placeholder="ex.: 25" inputmode="numeric" />
+              </label>
+            </div>
+            <div class="tool__grid">
+              <label class="field">
+                <span class="field__label">Salvamentos <span class="field__hint">(opcional)</span></span>
+                <input id="saves" class="field__input" type="number" min="0" placeholder="ex.: 40" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span class="field__label">Compartilhamentos <span class="field__hint">(opcional)</span></span>
+                <input id="shares" class="field__input" type="number" min="0" placeholder="ex.: 15" inputmode="numeric" />
+              </label>
+            </div>
+            <div class="tool__bar">
+              <span class="tool__count">(interações ÷ seguidores) × 100</span>
+              <button type="submit" class="btn btn--brand btn--lg">Calcular<span class="arr" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+          <div class="tool__result" id="result" aria-live="polite" hidden></div>
+        </div>
+
+        <p class="tool__fair reveal">
+          <span class="tool__fair-dot" aria-hidden="true"></span>
+          Usa o cálculo padrão de taxa de engajamento. Tudo roda no seu navegador — nada é enviado pra nenhum servidor.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--ink on-ink toolcta">
+      <div class="container container--narrow toolcta__inner reveal">
+        <span class="eyebrow is-plain">Engajamento que vira venda</span>
+        <h2 class="toolcta__title">Responder rápido é o que <span class="hl">converte</span>.</h2>
+        <p class="lead" style="color:var(--on-ink-soft)">
+          Engajamento alto é ótimo, mas quem paga o boleto é a venda. O Notifiquei responde cada
+          comentário e DM na hora, com a sua voz, e transforma quem interage em cliente — pela API oficial da Meta.
+        </p>
+        <div class="toolcta__actions">
+          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="/ferramentas" class="tlink">Ver todas as ferramentas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    const form = document.getElementById("eng") as HTMLFormElement | null;
+    if (form) {
+      const val = (id: string) =>
+        Math.max(0, parseFloat((document.getElementById(id) as HTMLInputElement).value) || 0);
+      const result = document.getElementById("result") as HTMLElement;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const followers = val("followers");
+        if (followers <= 0) {
+          result.hidden = false;
+          result.innerHTML = `<p class="tool__error">Coloque quantos seguidores o perfil tem.</p>`;
+          return;
+        }
+        const interactions = val("likes") + val("comments") + val("saves") + val("shares");
+        const er = (interactions / followers) * 100;
+
+        let tier = "", cls = "";
+        if (er < 1) { tier = "Baixo — dá pra melhorar"; cls = "verdict--low"; }
+        else if (er < 3.5) { tier = "Bom — na média do Instagram"; cls = "verdict--ok"; }
+        else if (er < 6) { tier = "Ótimo — acima da média"; cls = "verdict--great"; }
+        else { tier = "Excelente — engajamento de elite"; cls = "verdict--great"; }
+
+        result.hidden = false;
+        result.innerHTML = `
+          <div class="stat">
+            <div class="stat__num">${er.toFixed(2)}%</div>
+            <div class="stat__label">taxa de engajamento por post</div>
+            <div><span class="verdict ${cls}">${tier}</span></div>
+          </div>`;
+        result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
+  </script>
+</Base>

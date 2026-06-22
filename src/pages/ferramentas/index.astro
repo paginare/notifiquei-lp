@@ -1,0 +1,106 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/tools.css";
+
+const tools = [
+  {
+    href: "/ferramentas/sorteador",
+    name: "Sorteador de comentários",
+    desc: "Sorteie ganhadores a partir dos comentários do seu post, de forma aleatória e justa.",
+  },
+  {
+    href: "/ferramentas/calculadora-engajamento",
+    name: "Calculadora de engajamento",
+    desc: "Descubra a taxa de engajamento de um perfil ou post, com a referência do que é bom.",
+  },
+  {
+    href: "/ferramentas/calculadora-roi-dm",
+    name: "Calculadora de ROI de DM",
+    desc: "Veja quanto tempo e dinheiro você economiza respondendo DMs no automático.",
+  },
+  {
+    href: "/ferramentas/gerador-link-direct",
+    name: "Gerador de link de direct + QR",
+    desc: "Crie um link e um QR Code que abrem direto na sua DM do Instagram.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Ferramentas grátis para Instagram",
+    url: "https://notifiquei.com.br/ferramentas",
+    description:
+      "Ferramentas grátis para quem vende pelo Instagram: sorteador de comentários, calculadora de engajamento, calculadora de ROI de DM e gerador de link de direct.",
+    isPartOf: { "@type": "WebSite", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+];
+---
+
+<Base
+  title="Ferramentas grátis para Instagram | Notifiquei"
+  description="Ferramentas grátis pra quem vende pelo Instagram: sorteador de comentários, calculadora de engajamento, calculadora de ROI de DM e gerador de link de direct. Sem login."
+  path="/ferramentas"
+  jsonLd={jsonLd}
+>
+  <Nav />
+  <main>
+    <section class="section tool">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Grátis · sem login</span>
+          <h1>Ferramentas pra quem <span class="hl">vende</span> pelo Instagram</h1>
+          <p class="lead">
+            Um punhado de ferramentas grátis que rodam direto no navegador — sem cadastro,
+            sem instalar nada. Feitas pelo Notifiquei pra te ajudar no dia a dia.
+          </p>
+        </div>
+
+        <div class="hubgrid">
+          {tools.map((t) => (
+            <a class="hubcard reveal" href={t.href}>
+              <h2 class="hubcard__name">{t.name}</h2>
+              <p class="hubcard__desc">{t.desc}</p>
+              <span class="hubcard__go">Abrir <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ink on-ink toolcta">
+      <div class="container container--narrow toolcta__inner reveal">
+        <span class="eyebrow is-plain">Pronto pra automatizar de verdade?</span>
+        <h2 class="toolcta__title">As ferramentas ajudam. O Notifiquei <span class="hl">vende por você</span>.</h2>
+        <p class="lead" style="color:var(--on-ink-soft)">
+          Responda cada comentário e DM do Instagram na hora, com a sua voz, e transforme quem
+          interage em cliente — tudo pela API oficial da Meta.
+        </p>
+        <div class="toolcta__actions">
+          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="/#como" class="tlink">Ver como funciona</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <style>
+    .hubgrid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .hubcard {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      padding: 1.5rem; background: var(--card);
+      border: 1px solid var(--line); border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+    .hubcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--brand) 30%, var(--line)); }
+    .hubcard__name { font-size: 1.2rem; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
+    .hubcard__desc { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+    .hubcard__go { margin-top: 0.4rem; font-weight: 700; color: var(--brand-ink); font-size: 0.95rem; }
+    @media (min-width: 640px) { .hubgrid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</Base>

@@ -1,0 +1,183 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/tools.css";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Gerador de link de direct do Instagram + QR Code",
+    url: "https://notifiquei.com.br/ferramentas/gerador-link-direct",
+    description:
+      "Crie um link e um QR Code que abrem direto na sua DM do Instagram. Grátis, sem login.",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+    publisher: { "@type": "Organization", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "O que é um link de direct do Instagram?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "É um link (ig.me) que abre uma conversa no direct com o seu perfil. A pessoa clica e já cai na sua DM, sem precisar procurar seu @.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Para que serve o QR Code do direct?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "O QR Code leva direto pra sua DM ao ser escaneado. É ótimo para material impresso, embalagens, vitrine e telas em eventos.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title="Gerador de link de direct do Instagram + QR Code — grátis | Notifiquei"
+  description="Crie um link e um QR Code que abrem direto na sua DM do Instagram. Cole na bio, em stories ou em anúncios. Grátis e sem login."
+  path="/ferramentas/gerador-link-direct"
+  jsonLd={jsonLd}
+>
+  <Nav />
+  <main>
+    <section class="section tool">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Ferramenta grátis</span>
+          <h1>Gerador de link de <span class="hl">direct</span> + QR Code</h1>
+          <p class="lead">
+            Crie um link e um QR Code que abrem direto na sua DM do Instagram. Cole na bio,
+            em stories, em anúncios ou imprima — quem clicar cai na sua conversa.
+          </p>
+        </div>
+
+        <div class="tool__card reveal">
+          <form id="gen" class="tool__form" novalidate>
+            <label class="field">
+              <span class="field__label">Seu @ do Instagram</span>
+              <input id="user" class="field__input" type="text" placeholder="ex.: notifiquei.com.br" autocomplete="off" spellcheck="false" />
+            </label>
+            <div class="tool__bar">
+              <span class="tool__count">Gera link ig.me + QR Code</span>
+              <button type="submit" class="btn btn--brand btn--lg">Gerar link<span class="arr" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+          <div class="tool__result" id="result" aria-live="polite" hidden></div>
+        </div>
+
+        <p class="tool__fair reveal">
+          <span class="tool__fair-dot" aria-hidden="true"></span>
+          O link e o QR são gerados no seu navegador, sem enviar nada pra nenhum servidor.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--ink on-ink toolcta">
+      <div class="container container--narrow toolcta__inner reveal">
+        <span class="eyebrow is-plain">Levou pro direct, e agora?</span>
+        <h2 class="toolcta__title">Quem chega na DM, o Notifiquei <span class="hl">responde na hora</span>.</h2>
+        <p class="lead" style="color:var(--on-ink-soft)">
+          Não adianta levar gente pro direct e demorar pra responder. O Notifiquei atende cada
+          pessoa na hora, com a sua voz, e conduz até a venda — pela API oficial da Meta.
+        </p>
+        <div class="toolcta__actions">
+          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="/ferramentas" class="tlink">Ver todas as ferramentas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    // @ts-ignore — qrcode-generator não tem tipos
+    import qrcode from "qrcode-generator";
+
+    const form = document.getElementById("gen") as HTMLFormElement | null;
+    if (form) {
+      const userEl = document.getElementById("user") as HTMLInputElement;
+      const result = document.getElementById("result") as HTMLElement;
+
+      const cleanUser = (raw: string) => {
+        let u = raw.trim();
+        const m = u.match(/instagram\.com\/([A-Za-z0-9._]+)/i);
+        if (m) u = m[1];
+        return u.replace(/^@/, "").replace(/[^A-Za-z0-9._]/g, "");
+      };
+
+      const makeQR = (text: string) => {
+        const qr = qrcode(0, "M");
+        qr.addData(text);
+        qr.make();
+        return qr.createSvgTag({ cellSize: 5, margin: 1 });
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const user = cleanUser(userEl.value);
+        if (!user) {
+          result.hidden = false;
+          result.innerHTML = `<p class="tool__error">Digite o seu @ do Instagram.</p>`;
+          return;
+        }
+        const link = `https://ig.me/m/${user}`;
+        const svg = makeQR(link);
+
+        result.hidden = false;
+        result.innerHTML = `
+          <p class="tool__sub">Seu link de direct</p>
+          <div class="gen__linkrow">
+            <input id="out" class="field__input" readonly value="${link}" />
+            <button class="btn btn--ghost" id="copylink" type="button">Copiar</button>
+          </div>
+          <div class="gen__qr" id="qrbox">${svg}</div>
+          <div class="tool__again">
+            <a class="btn btn--brand" href="${link}" target="_blank" rel="noopener">Abrir no Instagram<span class="arr" aria-hidden="true">→</span></a>
+            <button class="btn btn--ghost" id="dlqr" type="button">Baixar QR (SVG)</button>
+          </div>
+          <p class="tool__note">Cole o link na bio, em stories ou em anúncios. O QR é ótimo pra material impresso, embalagem e tela em eventos.</p>`;
+
+        document.getElementById("copylink")?.addEventListener("click", () => {
+          navigator.clipboard?.writeText(link);
+          const b = document.getElementById("copylink");
+          if (b) { b.textContent = "Copiado ✓"; setTimeout(() => (b.textContent = "Copiar"), 1600); }
+        });
+        document.getElementById("dlqr")?.addEventListener("click", () => {
+          const blob = new Blob([svg], { type: "image/svg+xml" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `qr-direct-${user}.svg`;
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+        result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
+  </script>
+
+  <style>
+    .gen__linkrow { display: flex; gap: 0.6rem; align-items: stretch; }
+    .gen__linkrow .field__input { flex: 1; min-width: 0; }
+    .gen__linkrow .btn { flex: none; }
+    .gen__qr {
+      display: grid; place-items: center;
+      width: fit-content; margin: 1.5rem auto 0;
+      padding: 1rem; background: #fff;
+      border: 1px solid var(--line); border-radius: var(--r-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .gen__qr :global(svg) { width: 180px; height: 180px; display: block; }
+    @media (max-width: 480px) { .gen__linkrow { flex-direction: column; } }
+  </style>
+</Base>

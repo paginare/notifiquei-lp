@@ -1,0 +1,391 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Sorteador de comentários do Instagram",
+    url: "https://notifiquei.com.br/ferramentas/sorteador",
+    description:
+      "Ferramenta grátis para sortear ganhadores a partir dos comentários de um post do Instagram. Aleatória, justa e 100% no navegador.",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+    publisher: { "@type": "Organization", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "O sorteio é confiável e aleatório?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Sim. O sorteio usa um gerador aleatório criptográfico do próprio navegador (crypto.getRandomValues), com embaralhamento Fisher-Yates sem viés. Cada participante tem exatamente a mesma chance.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Preciso conectar minha conta do Instagram?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Não. Você cola os comentários ou os @ dos participantes. Nada é enviado para nenhum servidor — o sorteio acontece no seu navegador.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Dá pra sortear só quem comentou uma palavra-chave?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Sim. Digite a palavra (ex.: QUERO) no filtro e só entram no sorteio os comentários que contêm essa palavra.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title="Sorteador de comentários do Instagram — grátis | Notifiquei"
+  description="Sorteie ganhadores dos comentários do seu post do Instagram de graça. Cole os @s, escolha quantos ganham e sorteie na hora — aleatório, justo e sem login."
+  path="/ferramentas/sorteador"
+  jsonLd={jsonLd}
+>
+  <Nav />
+
+  <main>
+    <section class="section tool">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">Ferramenta grátis</span>
+          <h1>Sorteador de <span class="hl">comentários</span> do Instagram</h1>
+          <p class="lead">
+            Cole os comentários (ou os @ dos participantes), escolha quantos ganhadores e
+            sorteie na hora. É aleatório, justo e roda 100% no seu navegador — sem login,
+            sem instalar nada.
+          </p>
+        </div>
+
+        <div class="tool__card reveal">
+          <form id="raffle" class="tool__form" novalidate>
+            <label class="field">
+              <span class="field__label">Comentários ou @ dos participantes <span class="field__hint">(um por linha)</span></span>
+              <textarea
+                id="entries"
+                class="field__input field__textarea"
+                rows="8"
+                placeholder={"@maria.fit\n@joao.suplementos quero!\n@bia.estetica\n@pedro_oficial"}
+                spellcheck="false"
+              ></textarea>
+            </label>
+
+            <div class="tool__grid">
+              <label class="field">
+                <span class="field__label">Ganhadores</span>
+                <input id="winners" class="field__input" type="number" min="1" value="1" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span class="field__label">Suplentes <span class="field__hint">(opcional)</span></span>
+                <input id="alts" class="field__input" type="number" min="0" value="0" inputmode="numeric" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Só quem comentou a palavra <span class="field__hint">(opcional)</span></span>
+              <input id="keyword" class="field__input" type="text" placeholder="ex.: QUERO" autocomplete="off" />
+            </label>
+
+            <label class="tool__check">
+              <input id="dedup" type="checkbox" checked />
+              <span>Contar cada participante só uma vez</span>
+            </label>
+
+            <div class="tool__bar">
+              <span class="tool__count" id="count">0 participantes válidos</span>
+              <button type="submit" class="btn btn--brand btn--lg">Sortear<span class="arr" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+
+          <div class="tool__result" id="result" aria-live="polite" hidden></div>
+        </div>
+
+        <p class="tool__fair reveal">
+          <span class="tool__fair-dot" aria-hidden="true"></span>
+          Sorteio aleatório de verdade: usa o gerador criptográfico do navegador
+          (<code>crypto.getRandomValues</code>), sem viés e sem mandar seus dados pra lugar nenhum.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA Notifiquei -->
+    <section class="section section--ink on-ink toolcta">
+      <div class="container container--narrow toolcta__inner reveal">
+        <span class="eyebrow is-plain">Cansou de copiar comentário na mão?</span>
+        <h2 class="toolcta__title">No Notifiquei o sorteio acontece <span class="hl">sozinho</span>.</h2>
+        <p class="lead" style="color:var(--on-ink-soft)">
+          A pessoa comenta a palavra-chave e já entra no sorteio automaticamente — e ainda
+          recebe uma resposta no direct na hora. Você clica, a gente sorteia e responde todo mundo,
+          pela API oficial da Meta.
+        </p>
+        <div class="toolcta__actions">
+          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="/#como" class="tlink">Ver como funciona</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    const form = document.getElementById("raffle") as HTMLFormElement | null;
+    const entriesEl = document.getElementById("entries") as HTMLTextAreaElement;
+    const winnersEl = document.getElementById("winners") as HTMLInputElement;
+    const altsEl = document.getElementById("alts") as HTMLInputElement;
+    const keywordEl = document.getElementById("keyword") as HTMLInputElement;
+    const dedupEl = document.getElementById("dedup") as HTMLInputElement;
+    const countEl = document.getElementById("count") as HTMLElement;
+    const resultEl = document.getElementById("result") as HTMLElement;
+
+    if (form) {
+      // @handle a partir de uma linha (pega o primeiro identificador válido)
+      const handleOf = (line: string) => {
+        const m = line.match(/@?([A-Za-z0-9._]+)/);
+        return m ? m[1].toLowerCase() : line.trim().toLowerCase();
+      };
+      const display = (line: string) => "@" + handleOf(line);
+      const esc = (s: string) =>
+        s.replace(/[&<>"']/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!),
+        );
+
+      // inteiro aleatório [0, max) sem viés, via CSPRNG
+      const randInt = (max: number) => {
+        const buf = new Uint32Array(1);
+        const limit = 0xffffffff - (0xffffffff % max);
+        let x = 0;
+        do {
+          crypto.getRandomValues(buf);
+          x = buf[0];
+        } while (x >= limit);
+        return x % max;
+      };
+      const shuffle = <T,>(arr: T[]) => {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = randInt(i + 1);
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      };
+
+      const parse = () => {
+        const kw = keywordEl.value.trim().toLowerCase();
+        let lines = entriesEl.value
+          .split("\n")
+          .map((l) => l.trim())
+          .filter(Boolean);
+        if (kw) lines = lines.filter((l) => l.toLowerCase().includes(kw));
+        if (dedupEl.checked) {
+          const seen = new Set<string>();
+          lines = lines.filter((l) => {
+            const k = handleOf(l);
+            if (seen.has(k)) return false;
+            seen.add(k);
+            return true;
+          });
+        }
+        return lines;
+      };
+
+      const updateCount = () => {
+        const n = parse().length;
+        countEl.textContent = `${n} participante${n === 1 ? "" : "s"} válido${n === 1 ? "" : "s"}`;
+      };
+
+      const showError = (msg: string) => {
+        resultEl.hidden = false;
+        resultEl.className = "tool__result is-error";
+        resultEl.innerHTML = `<p class="tool__error">${esc(msg)}</p>`;
+      };
+
+      const render = (winners: string[], alts: string[]) => {
+        const win = winners
+          .map(
+            (w, i) =>
+              `<li class="win" style="--i:${i}"><span class="win__medal" aria-hidden="true">🏆</span><span class="win__name">${esc(display(w))}</span></li>`,
+          )
+          .join("");
+        const alt = alts.length
+          ? `<p class="tool__sub">Suplentes</p><ul class="alts">${alts
+              .map((a, i) => `<li class="alt" style="--i:${i}">${esc(display(a))}</li>`)
+              .join("")}</ul>`
+          : "";
+        resultEl.hidden = false;
+        resultEl.className = "tool__result";
+        resultEl.innerHTML = `
+          <p class="tool__sub">${winners.length === 1 ? "Ganhador" : "Ganhadores"}</p>
+          <ul class="wins">${win}</ul>
+          ${alt}
+          <div class="tool__again">
+            <button type="button" class="btn btn--ghost" id="again">Sortear de novo<span class="arr" aria-hidden="true">↻</span></button>
+            <button type="button" class="btn btn--ghost" id="copy">Copiar resultado</button>
+          </div>`;
+
+        document.getElementById("again")?.addEventListener("click", run);
+        document.getElementById("copy")?.addEventListener("click", () => {
+          const lines = [
+            (winners.length === 1 ? "Ganhador:" : "Ganhadores:"),
+            ...winners.map(display),
+            ...(alts.length ? ["", "Suplentes:", ...alts.map(display)] : []),
+          ].join("\n");
+          navigator.clipboard?.writeText(lines);
+          const btn = document.getElementById("copy");
+          if (btn) {
+            btn.textContent = "Copiado ✓";
+            setTimeout(() => (btn.textContent = "Copiar resultado"), 1600);
+          }
+        });
+        resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      };
+
+      const run = () => {
+        const pool = parse();
+        const w = Math.max(1, parseInt(winnersEl.value, 10) || 1);
+        const s = Math.max(0, parseInt(altsEl.value, 10) || 0);
+        if (pool.length === 0) {
+          showError("Cole pelo menos alguns comentários ou @ dos participantes.");
+          return;
+        }
+        if (pool.length < w + s) {
+          showError(
+            `Você pediu ${w} ganhador(es)${s ? ` e ${s} suplente(s)` : ""}, mas só há ${pool.length} participante(s) válido(s).`,
+          );
+          return;
+        }
+        const picked = shuffle(pool);
+        render(picked.slice(0, w), picked.slice(w, w + s));
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        run();
+      });
+      ["input", "change"].forEach((ev) => {
+        entriesEl.addEventListener(ev, updateCount);
+        keywordEl.addEventListener(ev, updateCount);
+        dedupEl.addEventListener(ev, updateCount);
+      });
+      updateCount();
+    }
+  </script>
+
+  <style>
+    .tool { padding-top: clamp(2rem, 1rem + 4vw, 4rem); }
+    .tool .section-head { margin-bottom: 2.5rem; }
+    .tool h1 { font-size: var(--fs-display-l); }
+
+    .tool__card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-md);
+      padding: clamp(1.25rem, 1rem + 2vw, 2rem);
+    }
+    .tool__form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .field { display: flex; flex-direction: column; gap: 0.5rem; }
+    .field__label { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+    .field__hint { color: var(--ink-faint); font-weight: 500; }
+    .field__input {
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      font: inherit;
+      font-size: 1rem;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+    .field__input::placeholder { color: var(--ink-faint); }
+    .field__input:focus-visible {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-wash);
+    }
+    .field__textarea { resize: vertical; min-height: 9.5rem; line-height: 1.5; }
+
+    .tool__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .tool__check {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.95rem; color: var(--ink-soft); cursor: pointer;
+    }
+    .tool__check input { width: 1.1rem; height: 1.1rem; accent-color: var(--brand); }
+
+    .tool__bar {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+      margin-top: 0.25rem;
+    }
+    .tool__count { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+    /* resultado */
+    .tool__result { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .tool__result[hidden] { display: none; }
+    .tool__sub {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand-ink);
+      margin-bottom: 0.85rem;
+    }
+    .wins { display: flex; flex-direction: column; gap: 0.6rem; }
+    .win {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--brand-wash);
+      border: 1px solid color-mix(in srgb, var(--brand) 28%, var(--line));
+      border-radius: var(--r-md);
+      opacity: 0; transform: translateY(8px);
+      animation: winpop 0.45s var(--ease-spring) forwards;
+      animation-delay: calc(var(--i) * 90ms);
+    }
+    .win__medal { font-size: 1.1rem; }
+    .win__name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ink); }
+    @keyframes winpop { to { opacity: 1; transform: none; } }
+
+    .alts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .alt {
+      padding: 0.4rem 0.8rem; border-radius: var(--r-pill);
+      border: 1px solid var(--line); background: var(--paper);
+      font-size: 0.9rem; font-weight: 600; color: var(--ink-soft);
+    }
+    .tool__again { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .tool__error { color: var(--brand-ink); font-weight: 600; }
+    @media (prefers-reduced-motion: reduce) { .win { opacity: 1; transform: none; animation: none; } }
+
+    .tool__fair {
+      display: flex; gap: 0.6rem; margin-top: 1.5rem;
+      font-size: 0.85rem; color: var(--ink-faint); line-height: 1.5;
+    }
+    .tool__fair code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink-soft); }
+    .tool__fair-dot {
+      flex: none; width: 8px; height: 8px; margin-top: 0.45em;
+      border-radius: 50%; background: var(--positive);
+    }
+
+    /* CTA */
+    .toolcta { text-align: center; }
+    .toolcta__inner { display: flex; flex-direction: column; align-items: center; }
+    .toolcta__inner .eyebrow { justify-content: center; }
+    .toolcta__title { margin-top: 1rem; font-size: var(--fs-display-l); }
+    .toolcta__inner .lead { margin-top: 1rem; max-width: 34rem; }
+    .toolcta__actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; margin-top: 1.75rem; }
+
+    @media (max-width: 480px) { .tool__grid { grid-template-columns: 1fr; } }
+  </style>
+</Base>
