@@ -239,3 +239,15 @@ const links = [
     });
   }
 </script>
+
+<script is:inline>
+  // PostHog: track nav login and start CTA clicks
+  document.addEventListener('DOMContentLoaded', function () {
+    var loginLinks = document.querySelectorAll('.nav__login, .nav__mobile-login');
+    loginLinks.forEach(function (el) {
+      el.addEventListener('click', function () {
+        window.posthog?.capture('nav_login_clicked');
+      });
+    });
+  });
+</script>

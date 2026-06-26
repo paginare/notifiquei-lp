@@ -103,4 +103,27 @@ const jsonLd = [
     .hubcard__go { margin-top: 0.4rem; font-weight: 700; color: var(--brand-ink); font-size: 0.95rem; }
     @media (min-width: 640px) { .hubgrid { grid-template-columns: 1fr 1fr; } }
   </style>
+
+  <script is:inline>
+    // PostHog: track tool card clicks
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.hubcard').forEach(function (card) {
+        card.addEventListener('click', function () {
+          var toolName = (card.querySelector('.hubcard__name') || {}).textContent;
+          window.posthog?.capture('tool_card_clicked', {
+            tool_name: toolName ? toolName.trim() : null,
+            tool_href: card.getAttribute('href'),
+          });
+        });
+      });
+
+      // Tools page signup CTA
+      var toolCta = document.querySelector('.toolcta .btn--inverse');
+      if (toolCta) {
+        toolCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'tools_hub' });
+        });
+      }
+    });
+  </script>
 </Base>

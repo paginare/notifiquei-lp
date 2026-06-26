@@ -151,7 +151,25 @@ const jsonLd = [
             <div><span class="verdict ${cls}">${tier}</span></div>
           </div>`;
         result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        // PostHog: track engagement calculation
+        (window as any).posthog?.capture('engagement_calculator_used', {
+          followers: followers,
+          engagement_rate: parseFloat(er.toFixed(2)),
+          tier: tier,
+        });
       });
     }
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolCta = document.querySelector('.toolcta .btn--inverse');
+      if (toolCta) {
+        toolCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'engagement_calculator_cta' });
+        });
+      }
+    });
   </script>
 </Base>

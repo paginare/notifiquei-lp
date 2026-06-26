@@ -161,7 +161,30 @@ const jsonLd = [
             <div class="statcard"><div class="statcard__num">${paybackDays ? paybackDays + " dias" : "—"}</div><div class="statcard__label">pra a ferramenta se pagar</div></div>
           </div>`;
         result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        // PostHog: track ROI calculation
+        (window as any).posthog?.capture('roi_calculator_calculated', {
+          dms_per_week: dms,
+          mins_per_reply: mins,
+          hourly_rate: rate,
+          avg_ticket: ticket,
+          current_response_time: (document.getElementById("response") as HTMLSelectElement).value,
+          tool_cost: cost,
+          roi_percent: Math.round(roi),
+          total_gain: Math.round(totalGain),
+        });
       });
     }
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolCta = document.querySelector('.toolcta .btn--inverse');
+      if (toolCta) {
+        toolCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'roi_calculator_cta' });
+        });
+      }
+    });
   </script>
 </Base>

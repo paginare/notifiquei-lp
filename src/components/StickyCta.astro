@@ -54,5 +54,13 @@ const { href = "https://app.notifiquei.com.br/auth" } = Astro.props;
     }
     window.addEventListener("scroll", update, { passive: true });
     update();
+
+    // PostHog: track sticky CTA click
+    var btn = bar.querySelector('.stickycta__btn');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        (window as any).posthog?.capture('sticky_cta_clicked');
+      });
+    }
   }
 </script>

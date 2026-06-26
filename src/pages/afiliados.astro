@@ -192,6 +192,17 @@ const jsonLd = [
   </main>
 
   <Footer />
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var wppCta = document.querySelector('.hero__actions .btn--brand');
+      if (wppCta) {
+        wppCta.addEventListener('click', function () {
+          window.posthog?.capture('affiliate_wpp_clicked', { section: 'affiliate_hero' });
+        });
+      }
+    });
+  </script>
 </Base>
 
 <script>
@@ -229,6 +240,22 @@ const jsonLd = [
     update();
   });
   update();
+
+  // PostHog: track calculator interactions
+  let calcDebounce: ReturnType<typeof setTimeout> | undefined;
+  n?.addEventListener("input", () => {
+    clearTimeout(calcDebounce);
+    calcDebounce = setTimeout(() => {
+      const per = parseInt(n!.value, 10);
+      const active = per * ACTIVE_FACTOR;
+      const month = 0.4 * price * active;
+      (window as any).posthog?.capture('affiliate_calculator_used', {
+        clients_per_month: per,
+        plan_price: price,
+        estimated_monthly_commission: Math.round(month),
+      });
+    }, 1000);
+  });
 </script>
 
 <style>

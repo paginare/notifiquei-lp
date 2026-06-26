@@ -44,3 +44,16 @@ const {
   .on-brand .btn--ghost { --btn-fg: #fff; border-color: rgba(255,255,255,0.45); }
   .on-brand .btn--ghost:hover { background: rgba(255,255,255,0.12); }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.finalcta__actions .btn--inverse').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.posthog?.capture('signup_cta_clicked', {
+          section: 'final_cta',
+          pathname: window.location.pathname,
+        });
+      });
+    });
+  });
+</script>

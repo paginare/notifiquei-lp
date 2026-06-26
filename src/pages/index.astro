@@ -641,6 +641,69 @@ const jsonLd = [
       }
     }
   </script>
+
+  <script is:inline>
+    // PostHog event tracking
+    document.addEventListener('DOMContentLoaded', function () {
+      // Hero CTA
+      var heroCta = document.querySelector('.hero__actions .btn--brand');
+      if (heroCta) {
+        heroCta.addEventListener('click', function () {
+          window.posthog?.capture('hero_cta_clicked');
+        });
+      }
+
+      // Mid-page CTA
+      var midCta = document.querySelector('.midcta__actions .btn--brand');
+      if (midCta) {
+        midCta.addEventListener('click', function () {
+          window.posthog?.capture('hero_cta_clicked', { section: 'mid_page' });
+        });
+      }
+
+      // Final CTA (Começar grátis)
+      var finalCtas = document.querySelectorAll('.finalcta__actions .btn--inverse');
+      finalCtas.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          window.posthog?.capture('hero_cta_clicked', { section: 'final_cta' });
+        });
+      });
+
+      // Plan CTAs
+      var planGrid = document.getElementById('plans-grid');
+      if (planGrid) {
+        planGrid.addEventListener('click', function (e) {
+          var cta = e.target.closest('.plan__cta');
+          if (!cta) return;
+          var card = cta.closest('.plan');
+          var planName = card ? (card.querySelector('.plan__name') || {}).textContent : null;
+          var toggle = document.getElementById('billtoggle');
+          var activeBtn = toggle ? toggle.querySelector('.billtoggle__opt.is-on') : null;
+          var cycle = activeBtn ? activeBtn.dataset.cycle : 'a';
+          window.posthog?.capture('plan_cta_clicked', {
+            plan_name: planName ? planName.trim() : null,
+            billing_cycle: cycle === 'a' ? 'annual' : 'monthly',
+          });
+        });
+      }
+
+      // Free plan CTA (signup)
+      var freeCta = document.querySelector('.freeplan__cta .btn');
+      if (freeCta) {
+        freeCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { plan_name: 'Grátis', section: 'plans' });
+        });
+      }
+
+      // Affiliate section CTA
+      var affilCta = document.querySelector('.affil .btn--brand');
+      if (affilCta) {
+        affilCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'affiliate' });
+        });
+      }
+    });
+  </script>
 </Base>
 
 <style>

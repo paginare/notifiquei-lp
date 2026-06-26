@@ -180,6 +180,17 @@ const jsonLd = [
   </main>
 
   <Footer />
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var heroCta = document.querySelector('.hero__actions .btn--brand');
+      if (heroCta) {
+        heroCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'creators_hero' });
+        });
+      }
+    });
+  </script>
 </Base>
 
 <style>

@@ -162,8 +162,22 @@ const jsonLd = [
           URL.revokeObjectURL(url);
         });
         result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        // PostHog: track link generation
+        (window as any).posthog?.capture('direct_link_created', { instagram_user: user });
       });
     }
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolCta = document.querySelector('.toolcta .btn--inverse');
+      if (toolCta) {
+        toolCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'direct_link_generator_cta' });
+        });
+      }
+    });
   </script>
 
   <style>

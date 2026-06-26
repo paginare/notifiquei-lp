@@ -281,7 +281,32 @@ const jsonLd = [
         dedupEl.addEventListener(ev, updateCount);
       });
       updateCount();
+
+      // PostHog: track raffle runs
+      form.addEventListener("submit", function () {
+        var pool = parse();
+        var w = Math.max(1, parseInt(winnersEl.value, 10) || 1);
+        var kw = keywordEl.value.trim();
+        (window as any).posthog?.capture('raffle_run', {
+          participants_count: pool.length,
+          winners_count: w,
+          alternates_count: Math.max(0, parseInt(altsEl.value, 10) || 0),
+          has_keyword_filter: kw.length > 0,
+          dedup_enabled: dedupEl.checked,
+        });
+      });
     }
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolCta = document.querySelector('.toolcta .btn--inverse');
+      if (toolCta) {
+        toolCta.addEventListener('click', function () {
+          window.posthog?.capture('signup_cta_clicked', { section: 'raffle_tool_cta' });
+        });
+      }
+    });
   </script>
 
   <style>
