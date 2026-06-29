@@ -1,0 +1,756 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import FinalCta from "../../components/FinalCta.astro";
+
+// Normaliza texto pra busca (minúsculo + sem acento), usado nos data-search.
+const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+const WPP = "https://wa.me/551231995949";
+const YT = "https://www.youtube.com/@notifiqueicombr";
+const FREE = "https://app.notifiquei.com.br/auth";
+
+// Pitch pronto pra copiar (voz natural, sem cacoete de copy).
+const pitch =
+  "O Notifiquei responde os comentários e as DMs do seu Instagram automaticamente, na sua voz, pela API oficial da Meta — então não tem risco de bloqueio. Alguém comenta “quero” num post e em segundos recebe no direct o link, o preço, o que você quiser. Funciona também no TikTok, no mesmo plano. Dá pra testar de graça e custa a partir de R$ 99 por mês, preço fixo em real — diferente do ManyChat, que cobra por contato e em dólar.";
+
+// Os 3 ganchos de venda.
+const ganchos = [
+  { t: "Zero risco de bloqueio", d: "É a API oficial da Meta, não automação disfarçada. O cliente não corre risco de tomar bloqueio." },
+  { t: "Preço fixo em real", d: "R$ 99 por mês não importa quantos contatos. O ManyChat e o Gaio cobram por contato — a conta sobe junto com a audiência." },
+  { t: "Instagram + TikTok juntos", d: "Cada conta do plano já conecta um Instagram e um TikTok. O cliente automatiza os dois sem pagar a mais." },
+];
+
+// Planos — só MENSAL (a comissão de afiliado hoje é nos planos mensais).
+const planos = [
+  {
+    name: "Solo", price: "99", contas: "1 conta (Instagram + TikTok)",
+    blurb: "Criador iniciante, operação pequena.",
+    href: "https://pay.cakto.com.br/35rmdfj", featured: true,
+    features: ["Automações ilimitadas", "Contatos ilimitados", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"],
+  },
+  {
+    name: "Pro", price: "499", contas: "5 contas (Instagram + TikTok)",
+    blurb: "Pra quem já escalou um pouco.",
+    href: "https://pay.cakto.com.br/52z4k9u", featured: false,
+    features: ["Times e divisão por equipe", "Automações ilimitadas", "Contatos ilimitados", "Templates completos", "Atendimento via chat"],
+  },
+  {
+    name: "Business", price: "799", contas: "10 contas (Instagram + TikTok)",
+    blurb: "Agência e operação grande.",
+    href: "https://pay.cakto.com.br/3e8f2ba", featured: false,
+    features: ["Times e divisão por equipe", "Automações ilimitadas", "Contatos ilimitados", "Templates completos", "Atendimento VIP prioritário"],
+  },
+];
+
+// Comparativo curto vs concorrentes (jun/2026, tabelas públicas).
+const compara = [
+  { f: "Preço por mês", mc: "R$ 249 a R$ 4.309 (em dólar)", ga: "R$ 74,90 a R$ 3.774", us: "R$ 99 fixo" },
+  { f: "Contatos ilimitados", mc: false, ga: false, us: true },
+  { f: "Preço fixo em real", mc: false, ga: true, us: true },
+  { f: "Instagram + TikTok no mesmo plano", mc: false, ga: false, us: true },
+  { f: "App nativo (iPhone e Android)", mc: false, ga: false, us: true },
+  { f: "Sorteios pelos comentários", mc: false, ga: false, us: true },
+  { f: "Suporte e produto em português", mc: false, ga: true, us: true },
+];
+
+// ===== Funções do Instagram (inventário + "por que vende") =====
+const funcoesIG = [
+  { area: "Gatilhos — o que dispara a automação", itens: [
+    { n: "Mensagem na DM", v: "Responde quem chama no direct sem o cliente ficar grudado no celular." },
+    { n: "Comentário em post", v: "Comentou “quero”? Vira conversa no direct na hora, antes do lead esfriar." },
+    { n: "Resposta a story", v: "Quem responde o story já entra num fluxo de venda automático." },
+    { n: "Comentário em live", v: "Durante a live a galera comenta e recebe o link no direct sozinha." },
+    { n: "Botão de quebra-gelo no menu", v: "Dá um atalho pronto no direct pra pessoa começar a conversa." },
+    { n: "Campanha (envio em massa)", v: "Dispara pra uma lista segmentada quando o cliente quiser reativar a base." },
+    { n: "Filtros por palavra-chave e por post", v: "A automação só dispara onde e quando faz sentido, sem bagunçar os outros posts." },
+    { n: "Condição “é seguidor?”", v: "Trata seguidor e não-seguidor de formas diferentes — dá pra pedir o follow antes de entregar." },
+    { n: "Condição “tem a etiqueta X?”", v: "Mostra caminhos diferentes pra quem já é cliente e pra quem é lead novo." },
+  ]},
+  { area: "Ações de mensagem", itens: [
+    { n: "Texto, imagem, áudio e vídeo", v: "Manda no formato que mais converte, não só texto seco." },
+    { n: "Card (imagem + título + botão)", v: "Mostra o produto com cara de loja e um botão de comprar." },
+    { n: "Carrossel de cards", v: "Apresenta vários produtos numa mensagem só, deslizando." },
+    { n: "Botões e respostas rápidas", v: "O lead escolhe no toque e o fluxo segue sozinho." },
+    { n: "Responder comentário automaticamente", v: "Responde em público e ainda puxa a pessoa pro direct." },
+    { n: "Perguntar e salvar a resposta", v: "Coleta nome, e-mail ou o que precisar dentro da conversa." },
+  ]},
+  { area: "Construtor de automações", itens: [
+    { n: "Editor visual em blocos + modo guiado", v: "Monta o fluxo arrastando blocos, sem código — ou no modo simples passo a passo." },
+    { n: "Ativar, pausar, duplicar e validar", v: "Testa, clona e ajusta uma automação em segundos." },
+    { n: "Histórico de execuções", v: "Mostra o que disparou e se deu certo." },
+    { n: "Esperas: fixa, aleatória e agendada", v: "Programa follow-up pra horas ou dias depois." },
+    { n: "Etiquetar pela automação", v: "Organiza o contato sozinho conforme ele reage." },
+    { n: "Pastas de automação", v: "Mantém dezenas de fluxos organizados." },
+    { n: "Assistente de IA que monta o fluxo (beta)", v: "Descreve o que quer e a IA monta o rascunho." },
+    { n: "Biblioteca de templates", v: "Começa de um modelo pronto em vez do zero." },
+  ]},
+  { area: "Atendimento e Inbox", itens: [
+    { n: "Caixa de entrada das DMs", v: "Todas as conversas num lugar só." },
+    { n: "Responder manual, com histórico e busca", v: "Assume a conversa quando quiser, com todo o contexto na mão." },
+    { n: "Pausar e retomar a IA no meio", v: "Entra no manual e devolve pra IA sem perder o fio." },
+  ]},
+  { area: "Comentários", itens: [
+    { n: "Listar e filtrar comentários (posts e lives)", v: "Acompanha tudo que comentaram sem ficar rolando o feed." },
+    { n: "Responder, auto-responder e ocultar", v: "Responde rápido e esconde o que for spam ou ataque." },
+    { n: "Análise de sentimento", v: "Vê na hora se o comentário é elogio ou reclamação." },
+  ]},
+  { area: "Quebra-gelos", itens: [
+    { n: "Criar, editar e reordenar (até 4)", v: "Coloca atalhos no direct que já puxam a conversa pro lado da venda." },
+  ]},
+  { area: "Inteligência Artificial (add-on)", itens: [
+    { n: "Agente de IA (Gemini, GPT ou Sonnet)", v: "Responde sozinho, na voz do criador, a qualquer hora." },
+    { n: "Base de conhecimento + memória", v: "A IA responde com as infos reais do negócio e lembra do papo." },
+    { n: "Detecção de intenção de compra + alerta", v: "Avisa quando o lead está quente pra fechar na hora certa." },
+  ]},
+  { area: "Crescimento", itens: [
+    { n: "Campanhas segmentadas por etiqueta", v: "Reativa a base inteira com uma mensagem certeira, agendada e com relatório." },
+    { n: "Sorteios pelos comentários", v: "Coleta os @, sorteia e re-sorteia o vencedor num clique." },
+  ]},
+  { area: "Organização", itens: [
+    { n: "Contatos com perfil e filtros", v: "Conhece quem fala com o perfil e segmenta fácil." },
+    { n: "Etiquetas", v: "Marca lead, cliente, quente ou frio — e dispara diferente pra cada." },
+    { n: "Exportar CSV", v: "Leva os contatos pra onde o cliente quiser." },
+  ]},
+  { area: "Análise", itens: [
+    { n: "Painel de métricas", v: "Mostra mensagens, respostas e cliques num olhar." },
+    { n: "Estatísticas por conta e automação", v: "Vê qual automação está vendendo e qual não." },
+    { n: "Rastreamento de links + CTR", v: "Sabe exatamente o que foi clicado." },
+    { n: "Analytics avançado: funil e conversão (add-on)", v: "Acompanha do comentário até a venda." },
+  ]},
+  { area: "Integrações", itens: [
+    { n: "Webhook, n8n, FunilOnline e Responda.me", v: "Conecta o Notifiquei com o resto das ferramentas do cliente." },
+  ]},
+  { area: "Conta e Times", itens: [
+    { n: "Conectar conta Business ou Creator", v: "Conecta pela Meta oficial, sem senha exposta." },
+    { n: "Times com papéis (dono e membro)", v: "Agência gerencia vários clientes em painéis separados." },
+    { n: "Mover conta entre times", v: "Reorganiza clientes sem refazer nada." },
+    { n: "Assinaturas, add-ons e painel admin", v: "Controla plano, extras e notificações num lugar só." },
+  ]},
+];
+
+// ===== Funções do TikTok (mais enxuto) =====
+const funcoesTT = [
+  { area: "Automações por palavra-chave", itens: [
+    { n: "DM automática por palavra-chave", v: "Responde no direct do TikTok quando alguém manda a palavra combinada." },
+    { n: "Correspondência: contém, igual ou começa com", v: "Decide com que precisão a palavra ativa a resposta." },
+  ]},
+  { area: "Mensagens automáticas", itens: [
+    { n: "Resposta por palavra-chave", v: "Manda o link ou recado certo pra cada palavra." },
+    { n: "Boas-vindas na primeira DM", v: "Recebe quem chega no direct com uma mensagem pronta." },
+    { n: "Resposta padrão (fallback)", v: "Quando nada bate, ainda responde algo útil." },
+  ]},
+  { area: "Atendimento e contatos", itens: [
+    { n: "Base de quem mandou DM", v: "Guarda quem já falou com o perfil." },
+    { n: "Enviar texto na conversa", v: "Assume a conversa manualmente quando precisar." },
+  ]},
+  { area: "Conta e Times", itens: [
+    { n: "Conectar conta de negócio", v: "Conecta o TikTok Business sem gastar uma vaga a mais." },
+    { n: "Mesmo pool de vagas e acesso por time", v: "Uma vaga já cobre 1 Instagram + 1 TikTok." },
+  ]},
+];
+
+// ===== Dúvidas e objeções (oficiais da LP + reais de cliente), agrupadas =====
+const faqGrupos = [
+  { tema: "Segurança e como funciona", itens: [
+    { q: "Isso pode bloquear o Instagram do meu cliente?", a: "Não. O Notifiquei é provedor oficial da Meta e usa só a API oficial do Instagram. Não é automação disfarçada, então não há risco de banimento." },
+    { q: "Precisa saber programar?", a: "Nada. Zero código. Quem sabe mandar mensagem no Instagram sabe usar — a interface é toda visual." },
+    { q: "Ele responde sozinho, com IA?", a: "Sim. O agente de IA responde DMs e comentários na voz do criador, com uma base de conhecimento que você ensina, e lembra do contexto da conversa. Quando o lead esquenta, ele avisa pra você fechar." },
+    { q: "Precisa de conta profissional ou de criador?", a: "Sim, uma conta Profissional ou de Criador no Instagram. É grátis de ativar, leva 1 minuto, e é exigência da própria API oficial da Meta." },
+  ]},
+  { tema: "Automação no Instagram", itens: [
+    { q: "Dá pra mandar mensagem pra quem comentou mas não me segue?", a: "Dá. A janela de conversa abre quando a pessoa comenta. Você consegue enviar uma mensagem; pra mandar mais, ela precisa de uma segunda interação (clicar num botão, por exemplo)." },
+    { q: "Por que depois do comentário só vai botão e não texto direto? Como mando a página de vendas?", a: "É uma definição da Meta pro primeiro contato. Mas dá pra mandar o texto junto do botão, e assim que a pessoa clica o fluxo segue livre — aí você manda link, imagem, o que quiser." },
+    { q: "Tem DM automática de boas-vindas pra novo seguidor?", a: "Hoje não. É uma limitação técnica da Meta (chegou a liberar só pro ManyChat, que também está com problema). Sem previsão por enquanto." },
+    { q: "Dá pra programar follow-up, tipo dois dias depois?", a: "Dá, desde que a pessoa tenha interagido. A janela é de 7 dias e basta colocar um nó de espera na automação." },
+    { q: "Se a pessoa mandar a palavra-chave de novo, dispara outra vez?", a: "Só dispara de novo depois de 24 horas, pra não floodar quem já recebeu." },
+    { q: "Consigo disparar pra quem comenta em anúncios, não só nos posts do feed?", a: "É o esperado, e está em ajuste fino. Provavelmente vai exigir conectar o login do Facebook. Se for decisivo pro seu lead, fala com a gente que confirmamos o status atual." },
+    { q: "Dá pra disparar mensagem durante a live?", a: "Dá. Ele não responde dentro da live, mas responde no direct de quem comentou." },
+  ]},
+  { tema: "Sorteios", itens: [
+    { q: "Dá pra fazer sorteio na própria plataforma?", a: "Dá. O Notifiquei salva os @ de quem participou pelos comentários, sorteia o vencedor e re-sorteia num clique. Você ativa por palavra-chave ou escolhendo o post." },
+  ]},
+  { tema: "Editor de fluxo e configuração", itens: [
+    { q: "Como deleto ou duplico um nó? Posso ter mais de um gatilho?", a: "Delete apaga o nó e Ctrl+C / Ctrl+V duplica. Dá pra ter a mesma palavra ativando em story, DM e comentário — só monta uma automação separada pra cada gatilho." },
+    { q: "Nas regras de moderação é palavra por palavra ou lista por vírgula? Onde vejo quem quer comprar?", a: "Pode separar as palavras por vírgula numa lista só. E quem demonstra intenção de compra aparece no Inbox." },
+  ]},
+  { tema: "Inteligência Artificial", itens: [
+    { q: "Dá pra treinar a IA com o meu conteúdo e usar a minha própria chave de API?", a: "Por enquanto não. Hoje você ensina a IA por uma base de conhecimento dentro da plataforma. O treino com base no tom dos próprios comentários vem mais pra frente." },
+  ]},
+  { tema: "Contas, times e agência", itens: [
+    { q: "Quero usar a ferramenta pro meu cliente. Crio um time e ele configura? Preciso da senha do Instagram dele?", a: "Você cria o time, configura e envia um convite. O cliente conecta o Instagram dele pela Meta, sem precisar passar senha pra ninguém." },
+    { q: "No plano Solo dá pra dar um acesso separado pro cliente gerir?", a: "No Solo não — só compartilhando o login. Acesso separado por equipe vem a partir do Pro. O upgrade paga só a diferença de valor." },
+    { q: "A conta do TikTok consome uma vaga separada da do Instagram? Dá pra montar fluxos no TikTok?", a: "Não consome vaga separada: uma vaga já cobre 1 Instagram + 1 TikTok. No TikTok hoje é só automação de DM por palavra-chave, sem o construtor visual de fluxos." },
+    { q: "Funciona pra e-commerce?", a: "Funciona. Tem cliente vendendo moda, cosméticos, suplementos e produtos físicos em geral. O fluxo ideal muda um pouco e tem template pronto pra isso." },
+    { q: "Funciona com TikTok?", a: "Sim. O Notifiquei automatiza as DMs do TikTok (conta Business), e cada plano já conecta 1 Instagram + 1 TikTok pelo mesmo preço." },
+  ]},
+  { tema: "Conta e login", itens: [
+    { q: "Meu cliente não consegue acessar (e-mail ou senha inválidos). Como resolve?", a: "Quase sempre é a URL: o acesso é em app.notifiquei.com.br. O código de login expira rápido, então é só pedir um novo. Se persistir, o suporte resolve no privado." },
+    { q: "Já tinha conta na versão antiga. Perco tudo?", a: "As contas e a assinatura continuam valendo, mas é preciso revincular os Instagrams, porque a Meta exige um novo vínculo. A versão antiga foi descontinuada." },
+    { q: "Reautentiquei e as automações sumiram. É normal?", a: "Isso foi ajustado: os tokens agora se atualizam sem forçar reconexão, então não some mais." },
+  ]},
+  { tema: "Integrações e o que vem por aí", itens: [
+    { q: "Tem API ou webhook pra puxar as mensagens, tipo um alerta no Slack?", a: "Tem. Já existe webhook em perguntas e respostas, e o push por intenção de compra está implementado." },
+    { q: "Dá pra integrar com checkout (Kiwify, Hotmart, Cakto, Greenn) e rastrear as vendas?", a: "Sim, está em configuração, com um dashboard que acompanha do contato até a venda." },
+    { q: "Vai ter WhatsApp, marketplaces ou agendamento em outras redes?", a: "WhatsApp talvez, pela API oficial. Marketplaces é mais difícil. Outras redes, sem promessa por enquanto." },
+  ]},
+  { tema: "Agendamento de posts", itens: [
+    { q: "O Notifiquei agenda Reels, posts, carrossel e stories ou só automação? Dá pra agendar com música e link no story?", a: "Agenda tudo isso. Áudio em Reels (precisa conectar a conta de negócio) e música no carrossel são próximas etapas. Link no story está em estudo, porque depende da Meta." },
+  ]},
+  { tema: "Planos, preço e garantia", itens: [
+    { q: "Qual a diferença pro ManyChat?", a: "Mais barato, suporte em português, interface mais simples e foco no Brasil. E o preço é fixo em real — o ManyChat cobra por contato e em dólar, então a conta sobe com a audiência." },
+    { q: "Funciona com poucos seguidores?", a: "Funciona com conta de qualquer tamanho. Quem responde rápido vende mais, tendo 500 ou 500 mil seguidores. Conta menor costuma sentir o resultado primeiro." },
+    { q: "Pode cancelar quando quiser?", a: "Pode, sem fidelidade, direto pelo painel. E todo plano pago tem garantia de 7 dias: se não rolar, devolvemos 100% do valor." },
+    { q: "Vai rolar promoção ou plano vitalício?", a: "Vitalício não temos mais. O que vem são planos anuais com valores bem agressivos." },
+  ]},
+  { tema: "Tutoriais e suporte", itens: [
+    { q: "Tem vídeos tutoriais?", a: "Tem, no canal do YouTube (@notifiqueicombr). E pra qualquer dúvida o suporte ajuda direto." },
+  ]},
+];
+
+// Perfis que vendem bem (apoio pro afiliado).
+const perfis = [
+  { t: "Infoprodutor", d: "Vende curso ou mentoria pra quem também vende no Instagram. A indicação vira escala natural pros dois lados." },
+  { t: "Consultor de marketing", d: "Atende cliente que precisa automatizar o Instagram. Em vez de montar do zero, indica e recebe todo mês." },
+  { t: "Agência digital", d: "Gerencia o Instagram de vários clientes. Cada conta nova rende 40% do plano, de forma recorrente." },
+  { t: "Influencer de marketing", d: "Fala de vendas, copy e tráfego. A audiência precisa de ferramenta prática — você indica e lucra." },
+  { t: "Gestor de tráfego", d: "Toca anúncio de lançamento e o Notifiquei responde o lead que veio do ad. Você ganha dos dois lados." },
+  { t: "Comunidade ou grupo", d: "Lidera grupo no Telegram, WhatsApp ou Discord. A recomendação tem peso — dá pra monetizar sem perder a confiança." },
+];
+
+// ---- SEO ----
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Central do afiliado Notifiquei",
+    url: "https://notifiquei.com.br/afiliados/central",
+    isPartOf: { "@id": "https://notifiquei.com.br/#org" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Afiliados", item: "https://notifiquei.com.br/afiliados" },
+      { "@type": "ListItem", position: 3, name: "Central do afiliado", item: "https://notifiquei.com.br/afiliados/central" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqGrupos.flatMap((g) => g.itens).map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Base
+  title="Central do afiliado Notifiquei — funções, preços e dúvidas pra vender"
+  description="Tudo o que o afiliado precisa pra vender o Notifiquei num lugar só: pitch pronto, todas as funções do sistema, planos e preços, e as dúvidas mais comuns com resposta pronta."
+  path="/afiliados/central"
+  jsonLd={jsonLd}
+>
+  <Nav />
+
+  <main>
+    <!-- HERO / PITCH -->
+    <section class="hero" id="pitch">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <span class="eyebrow is-plain">Central do afiliado</span>
+        <h1 class="hero__title">Tudo pra <span class="hl">vender</span> o Notifiquei,<br />num lugar só.</h1>
+        <p class="lead hero__lead">
+          Funções do sistema, planos, custos e as dúvidas que todo lead faz — com resposta pronta.
+          Use a busca, copie o pitch e mande pro seu contato.
+        </p>
+
+        <div class="pitch">
+          <div class="pitch__head">
+            <span class="pitch__label">Pitch de 30 segundos</span>
+            <button type="button" class="pitch__copy" id="pitch-copy" data-text={pitch}>Copiar</button>
+          </div>
+          <p class="pitch__text">{pitch}</p>
+        </div>
+
+        <div class="ganchos">
+          {ganchos.map((g) => (
+            <article class="gancho">
+              <h2 class="gancho__t">{g.t}</h2>
+              <p class="gancho__d">{g.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TOC + BUSCA (fixa) -->
+    <div class="toc" id="toc">
+      <div class="container toc__inner">
+        <nav class="toc__links" aria-label="Seções da central">
+          <a href="#funcoes" class="toc__chip">Funções</a>
+          <a href="#planos" class="toc__chip">Planos e preços</a>
+          <a href="#duvidas" class="toc__chip">Dúvidas</a>
+          <a href="#comissao" class="toc__chip">Comissão</a>
+          <a href="#materiais" class="toc__chip">Materiais</a>
+        </nav>
+        <div class="toc__searchwrap">
+          <input
+            type="search"
+            id="central-search"
+            class="toc__search"
+            placeholder="Buscar função ou dúvida…"
+            aria-label="Buscar função ou dúvida"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNÇÕES -->
+    <section class="section" id="funcoes">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Funções do sistema</span>
+          <h2>Tudo que o cliente ganha,<br /><span class="hl">e por que cada coisa vende</span>.</h2>
+          <p class="lead">Inventário completo, separado por plataforma. Cada função vem com o motivo de venda — é só usar como argumento.</p>
+        </div>
+
+        <div class="platnote">
+          <strong>Instagram</strong> é o produto completo. <strong>TikTok</strong> é mais enxuto (só DM por palavra-chave).
+          Uma vaga do plano já conecta <strong>1 Instagram + 1 TikTok</strong> — não consome vaga separada.
+        </div>
+
+        <h3 class="plathead" data-group>📷 Instagram</h3>
+        <div class="fngrid">
+          {funcoesIG.map((grp) => (
+            <section class="fngroup" data-group>
+              <h4 class="fngroup__t">{grp.area}</h4>
+              <ul class="fnlist">
+                {grp.itens.map((it) => (
+                  <li class="fn" data-search={norm(it.n + " " + it.v)}>
+                    <span class="fn__n">{it.n}</span>
+                    <span class="fn__v">{it.v}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <h3 class="plathead" data-group>🎵 TikTok</h3>
+        <div class="fngrid">
+          {funcoesTT.map((grp) => (
+            <section class="fngroup" data-group>
+              <h4 class="fngroup__t">{grp.area}</h4>
+              <ul class="fnlist">
+                {grp.itens.map((it) => (
+                  <li class="fn" data-search={norm(it.n + " " + it.v)}>
+                    <span class="fn__n">{it.n}</span>
+                    <span class="fn__v">{it.v}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <p class="emptystate" data-empty="funcoes" hidden>Nenhuma função bate com a busca.</p>
+      </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section class="section section--paper2" id="planos">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Planos e preços</span>
+          <h2>Preço fixo em real,<br /><span class="hl">contatos ilimitados</span>.</h2>
+          <p class="lead">Os valores que o afiliado divulga hoje são os mensais. Cada conta conecta Instagram + TikTok. Todo plano pago tem garantia de 7 dias.</p>
+        </div>
+
+        <div class="plans">
+          {planos.map((p) => (
+            <article class={`plan ${p.featured ? "plan--featured" : ""}`}>
+              {p.featured && <span class="plan__badge">Mais popular</span>}
+              <h3 class="plan__name">{p.name}</h3>
+              <p class="plan__blurb">{p.blurb}</p>
+              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount">{p.price}</span><span class="plan__per">/mês</span></p>
+              <p class="plan__contas">{p.contas}</p>
+              <ul class="plan__features">
+                {p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
+              </ul>
+              <span class="plan__guarantee">Garantia de 7 dias · devolução 100%</span>
+            </article>
+          ))}
+        </div>
+
+        <article class="freeplan">
+          <div>
+            <span class="freeplan__tag">Grátis para sempre</span>
+            <h3 class="freeplan__name">Plano Grátis</h3>
+            <p class="freeplan__blurb">Bom pra tirar a objeção de "vou testar primeiro". Sem cartão, sem prazo.</p>
+          </div>
+          <ul class="freeplan__features">
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Só Instagram (sem TikTok)</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Até 200 envios automáticos por mês</li>
+            <li><span class="plan__tick" aria-hidden="true">✓</span> Mensagens com marca d'água "⚡ Enviado com Notifiquei"</li>
+          </ul>
+        </article>
+
+        <div class="compara">
+          <h3 class="compara__t">Como fica lado a lado</h3>
+          <div class="compara__scroll">
+            <table>
+              <thead>
+                <tr><th></th><th>ManyChat</th><th>Gaio</th><th class="compara__us">Notifiquei</th></tr>
+              </thead>
+              <tbody>
+                {compara.map((row) => (
+                  <tr>
+                    <th>{row.f}</th>
+                    {[row.mc, row.ga, row.us].map((cell, ci) => (
+                      <td class={ci === 2 ? "compara__us" : ""}>
+                        {typeof cell === "string"
+                          ? <span set:html={cell}></span>
+                          : (cell ? <span class="yes">✓</span> : <span class="no">✗</span>)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="compara__note">Preços de ManyChat e Gaio conforme tabelas públicas (jun/2026), por faixa de contatos. No Notifiquei os contatos são ilimitados em todos os planos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÚVIDAS -->
+    <section class="section" id="duvidas">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center">
+          <span class="eyebrow is-plain">Dúvidas e objeções</span>
+          <h2>O que o lead pergunta,<br /><span class="hl">com resposta pronta</span>.</h2>
+          <p class="lead">Reúne as dúvidas do site e as que os clientes mais mandam no grupo. É só copiar a resposta e enviar.</p>
+        </div>
+
+        <div class="faqwrap">
+          {faqGrupos.map((grp) => (
+            <div class="faqgroup" data-group>
+              <h3 class="faqgroup__t">{grp.tema}</h3>
+              {grp.itens.map((f) => (
+                <details class="faq__item" data-search={norm(f.q + " " + f.a)}>
+                  <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                  <div class="faq__a"><p>{f.a}</p></div>
+                </details>
+              ))}
+            </div>
+          ))}
+          <p class="emptystate" data-empty="duvidas" hidden>Nenhuma dúvida bate com a busca.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMISSÃO -->
+    <section class="section section--paper2" id="comissao">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Quanto o afiliado ganha</span>
+          <h2>40% recorrente,<br /><span class="hl">enquanto o cliente pagar</span>.</h2>
+          <p class="lead">Diferente de afiliado de curso, que ganha uma vez e acabou. Aqui a comissão pinga todo mês enquanto o cliente continuar ativo.</p>
+        </div>
+
+        <div class="comm">
+          <div class="comm__card">
+            <span class="comm__big">40%</span>
+            <span class="comm__lbl">do pagamento mensal de cada indicado, recorrente e sem teto</span>
+          </div>
+          <ul class="comm__facts">
+            <li><strong>Cookie de 60 dias</strong> — se a pessoa clicar no seu link e assinar em até 60 dias, a venda é sua.</li>
+            <li><strong>Pago via Kiwify ou Cakto</strong> — você escolhe por onde recebe; cai todo mês, sem precisar cobrar.</li>
+            <li><strong>Cadastro em ~2 minutos</strong> — aprovação em até 48h e o painel libera com link e materiais.</li>
+            <li><strong>Use sempre o seu link</strong> — ele carrega o rastreio até o checkout, então a comissão fica registrada.</li>
+          </ul>
+        </div>
+
+        <h3 class="perfis__t">Quem indica com resultado</h3>
+        <div class="perfis">
+          {perfis.map((p) => (
+            <article class="perfil">
+              <h4 class="perfil__t">{p.t}</h4>
+              <p class="perfil__d">{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERIAIS -->
+    <section class="section" id="materiais">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Materiais e links rápidos</span>
+          <h2>Pra mandar pro <span class="hl">lead agora</span>.</h2>
+          <p class="lead">Os links que você mais vai usar na hora de vender. Lembre de divulgar com o seu link de afiliado.</p>
+        </div>
+        <div class="links">
+          <a class="linkcard" href="/" >
+            <span class="linkcard__t">Conhecer o produto →</span>
+            <span class="linkcard__d">A landing principal, pra mandar pra quem quer entender o Notifiquei.</span>
+          </a>
+          <a class="linkcard" href="/vs-manychat">
+            <span class="linkcard__t">Comparativo vs ManyChat →</span>
+            <span class="linkcard__d">Pro lead que já usa ou cogita o ManyChat.</span>
+          </a>
+          <a class="linkcard" href={FREE}>
+            <span class="linkcard__t">Começar grátis →</span>
+            <span class="linkcard__d">Pra tirar a objeção de "quero testar antes".</span>
+          </a>
+          <a class="linkcard" href={YT} target="_blank" rel="noopener">
+            <span class="linkcard__t">Vídeos tutoriais (YouTube) →</span>
+            <span class="linkcard__d">Pro cliente que comprou e quer aprender a usar.</span>
+          </a>
+          <a class="linkcard" href="/afiliados">
+            <span class="linkcard__t">Programa de afiliados →</span>
+            <span class="linkcard__d">Como funciona o programa e o cadastro.</span>
+          </a>
+          <a class="linkcard" href={WPP} target="_blank" rel="noopener">
+            <span class="linkcard__t">Falar com o suporte →</span>
+            <span class="linkcard__d">Dúvida que não está aqui? A gente responde rápido.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <FinalCta
+      eyebrow="Renda recorrente de verdade"
+      title="Indica hoje."
+      titleHl="Recebe todo mês."
+      lead="40% do pagamento mensal de cada cliente, enquanto ele continuar ativo. Sem teto, sem vencimento de comissão."
+      primaryHref="/afiliados"
+      primaryLabel="Quero me afiliar"
+      secondaryHref="/"
+      secondaryLabel="Conhecer o produto"
+      glyph="%"
+    />
+  </main>
+
+  <Footer />
+
+  <script>
+    // ---- Busca: filtra funções e dúvidas ao vivo ----
+    const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    const input = document.getElementById("central-search");
+    const items = Array.from(document.querySelectorAll("[data-search]"));
+    const groups = Array.from(document.querySelectorAll("[data-group]"));
+    const empties = Array.from(document.querySelectorAll("[data-empty]"));
+
+    function sectionOf(el) {
+      const sec = el.closest("section[id]");
+      return sec ? sec.id : "";
+    }
+
+    function applyFilter(raw) {
+      const q = norm(raw).trim();
+      items.forEach((el) => {
+        const match = !q || (el.getAttribute("data-search") || "").includes(q);
+        el.classList.toggle("is-hidden", !match);
+      });
+      // esconde grupos/cabeçalhos sem nenhum item visível
+      groups.forEach((g) => {
+        if (g.hasAttribute("data-search")) return; // item, não grupo
+        const visible = g.querySelector("[data-search]:not(.is-hidden)");
+        const isItselfSearchable = g.matches("[data-search]");
+        if (!isItselfSearchable) g.classList.toggle("is-hidden", !!q && !visible);
+      });
+      // estado vazio por seção
+      empties.forEach((e) => {
+        const id = e.getAttribute("data-empty");
+        const anyVisible = items.some((el) => sectionOf(el) === id && !el.classList.contains("is-hidden"));
+        e.hidden = !q || anyVisible;
+      });
+    }
+
+    if (input) {
+      input.addEventListener("input", () => applyFilter(input.value));
+      input.addEventListener("search", () => applyFilter(input.value));
+    }
+
+    // ---- Copiar pitch ----
+    const copyBtn = document.getElementById("pitch-copy");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        const text = copyBtn.getAttribute("data-text") || "";
+        try {
+          await navigator.clipboard.writeText(text);
+          const old = copyBtn.textContent;
+          copyBtn.textContent = "Copiado ✓";
+          copyBtn.classList.add("is-done");
+          setTimeout(() => { copyBtn.textContent = old; copyBtn.classList.remove("is-done"); }, 1800);
+        } catch {
+          copyBtn.textContent = "Selecione e copie";
+        }
+      });
+    }
+
+    // ---- Scrollspy nos chips da TOC ----
+    const chips = Array.from(document.querySelectorAll(".toc__chip"));
+    const targets = chips
+      .map((c) => document.querySelector(c.getAttribute("href")))
+      .filter(Boolean);
+    if (targets.length && "IntersectionObserver" in window) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            chips.forEach((c) => c.classList.toggle("is-on", c.getAttribute("href") === "#" + id));
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+      targets.forEach((t) => spy.observe(t));
+    }
+  </script>
+</Base>
+
+<style>
+  /* HERO */
+  .hero { position: relative; padding-block: clamp(6rem, 4rem + 8vw, 9rem) var(--space-section); overflow: clip; }
+  .hero__bg { position: absolute; inset: -10% -20% auto; height: 70%; z-index: 0; background: radial-gradient(60% 60% at 80% 0%, var(--brand-wash), transparent 70%); pointer-events: none; }
+  .hero__inner { position: relative; z-index: 1; }
+  .hero__title { margin-top: 1rem; font-size: var(--fs-display-xl); line-height: 0.95; letter-spacing: -0.035em; }
+  .hero__lead { margin-top: 1.4rem; max-width: 40rem; }
+
+  /* PITCH */
+  .pitch { margin-top: 2.25rem; max-width: 46rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.4rem 1.5rem; box-shadow: var(--shadow-sm); }
+  .pitch__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .pitch__label { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand-ink); }
+  .pitch__copy { font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.9rem; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--paper); cursor: pointer; transition: all 0.2s var(--ease-out); }
+  .pitch__copy:hover { border-color: var(--brand); color: var(--brand-ink); }
+  .pitch__copy.is-done { background: var(--positive-wash); border-color: var(--positive); color: var(--positive); }
+  .pitch__text { margin-top: 0.9rem; font-size: 1.02rem; line-height: 1.6; color: var(--ink); }
+
+  /* GANCHOS */
+  .ganchos { margin-top: 2rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .gancho { padding: 1.3rem 1.35rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--shadow-sm); }
+  .gancho__t { font-size: 1.08rem; font-family: var(--font-display); font-weight: 700; }
+  .gancho__d { margin-top: 0.45rem; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; }
+  @media (min-width: 760px) { .ganchos { grid-template-columns: repeat(3, 1fr); } }
+
+  /* TOC fixa */
+  .toc { position: sticky; top: 70px; z-index: 40; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(180%) blur(10px); border-block: 1px solid var(--line); }
+  .toc__inner { display: flex; align-items: center; gap: 1rem; padding-block: 0.7rem; flex-wrap: wrap; }
+  .toc__links { display: flex; gap: 0.5rem; overflow-x: auto; flex: 1 1 auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .toc__links::-webkit-scrollbar { display: none; }
+  .toc__chip { white-space: nowrap; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); padding: 0.45rem 0.85rem; border-radius: var(--r-pill); border: 1px solid transparent; transition: all 0.2s var(--ease-out); }
+  .toc__chip:hover { color: var(--ink); background: var(--paper-2); }
+  .toc__chip.is-on { color: var(--brand-ink); background: var(--brand-wash); border-color: color-mix(in srgb, var(--brand) 30%, transparent); }
+  .toc__searchwrap { flex: 0 0 auto; }
+  .toc__search { width: min(260px, 56vw); font: inherit; font-size: 0.9rem; padding: 0.55rem 0.95rem; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+  .toc__search:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-wash); }
+
+  /* FUNÇÕES */
+  .platnote { margin-top: 1.75rem; padding: 1rem 1.25rem; background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent); border-radius: var(--r-md); font-size: 0.94rem; color: var(--ink); line-height: 1.55; }
+  .plathead { margin-top: 2.75rem; font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; }
+  .fngrid { margin-top: 1.25rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 720px) { .fngrid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px) { .fngrid { grid-template-columns: repeat(3, 1fr); } }
+  .fngroup { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.25rem 1.3rem; box-shadow: var(--shadow-sm); }
+  .fngroup__t { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; color: var(--brand-ink); letter-spacing: -0.01em; }
+  .fnlist { margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.85rem; }
+  .fn { display: flex; flex-direction: column; gap: 0.15rem; padding-left: 0.9rem; border-left: 2px solid var(--line); }
+  .fn__n { font-weight: 650; font-size: 0.94rem; color: var(--ink); }
+  .fn__v { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* PLANOS */
+  .plans { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 760px) { .plans { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+  .plan { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.75rem 1.6rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+  .plan--featured { border-color: var(--brand); box-shadow: var(--shadow-brand); }
+  .plan__badge { position: absolute; top: -0.75rem; left: 1.5rem; background: var(--brand-ink); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: var(--r-pill); }
+  .plan__name { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; }
+  .plan__blurb { margin-top: 0.25rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .plan__price { margin-top: 1rem; display: flex; align-items: baseline; gap: 0.2rem; }
+  .plan__cur { font-weight: 700; color: var(--ink-soft); }
+  .plan__amount { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; letter-spacing: -0.03em; line-height: 1; }
+  .plan__per { color: var(--ink-soft); font-size: 0.9rem; }
+  .plan__contas { margin-top: 0.5rem; font-size: 0.86rem; font-weight: 600; color: var(--brand-ink); }
+  .plan__features { margin-top: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .plan__features li { display: flex; gap: 0.5rem; }
+  .plan__tick { color: var(--brand-ink); font-weight: 800; }
+  .plan__guarantee { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--line-soft); font-size: 0.78rem; color: var(--ink-faint); }
+
+  .freeplan { margin-top: 1.25rem; background: var(--card); border: 1px dashed var(--line); border-radius: var(--r-lg); padding: 1.5rem 1.6rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 760px) { .freeplan { grid-template-columns: 1fr 1.4fr; align-items: center; } }
+  .freeplan__tag { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); }
+  .freeplan__name { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; margin-top: 0.3rem; }
+  .freeplan__blurb { margin-top: 0.3rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .freeplan__features { display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .freeplan__features li { display: flex; gap: 0.5rem; }
+
+  /* COMPARATIVO */
+  .compara { margin-top: 2.5rem; }
+  .compara__t { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+  .compara__scroll { margin-top: 1rem; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--card); }
+  .compara table { width: 100%; border-collapse: collapse; min-width: 540px; }
+  .compara th, .compara td { text-align: left; padding: 0.85rem 1rem; font-size: 0.88rem; border-bottom: 1px solid var(--line-soft); }
+  .compara thead th { font-family: var(--font-display); font-weight: 700; color: var(--ink); }
+  .compara tbody th { font-weight: 600; color: var(--ink-soft); }
+  .compara td { color: var(--ink-soft); }
+  .compara .compara__us { background: var(--brand-wash); color: var(--ink); font-weight: 600; }
+  .compara .yes { color: var(--positive); font-weight: 800; }
+  .compara .no { color: var(--ink-faint); }
+  .compara__note { margin-top: 0.85rem; font-size: 0.78rem; color: var(--ink-faint); }
+
+  /* DÚVIDAS */
+  .faqwrap { margin-top: 2.5rem; }
+  .faqgroup { margin-top: 1.75rem; }
+  .faqgroup__t { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--brand-ink); margin-bottom: 0.6rem; }
+  .faq__item { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--card); margin-bottom: 0.6rem; overflow: hidden; }
+  .faq__q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; padding: 1rem 1.2rem; font-weight: 600; font-size: 0.96rem; list-style: none; }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__icon { position: relative; flex: 0 0 auto; width: 14px; height: 14px; }
+  .faq__icon::before, .faq__icon::after { content: ""; position: absolute; background: var(--brand-ink); border-radius: 2px; transition: transform 0.2s var(--ease-out); }
+  .faq__icon::before { top: 6px; left: 0; width: 14px; height: 2px; }
+  .faq__icon::after { top: 0; left: 6px; width: 2px; height: 14px; }
+  .faq__item[open] .faq__icon::after { transform: scaleY(0); }
+  .faq__a { padding: 0 1.2rem 1.1rem; }
+  .faq__a p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* COMISSÃO */
+  .comm { margin-top: 2.25rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 820px) { .comm { grid-template-columns: 0.8fr 1.2fr; align-items: center; } }
+  .comm__card { background: var(--ink); color: var(--on-ink); border-radius: var(--r-lg); padding: 2rem 1.75rem; box-shadow: var(--shadow-md); text-align: center; }
+  .comm__big { display: block; font-family: var(--font-display); font-weight: 800; font-size: 4.5rem; line-height: 1; color: var(--brand-lift); letter-spacing: -0.03em; }
+  .comm__lbl { display: block; margin-top: 0.6rem; font-size: 0.9rem; color: var(--on-ink-soft); }
+  .comm__facts { display: flex; flex-direction: column; gap: 0.85rem; }
+  .comm__facts li { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.55; padding-left: 1rem; border-left: 2px solid var(--line); }
+  .comm__facts strong { color: var(--ink); }
+
+  .perfis__t { margin-top: 3rem; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+  .perfis { margin-top: 1.25rem; display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  @media (min-width: 640px) { .perfis { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .perfis { grid-template-columns: repeat(3, 1fr); } }
+  .perfil { background: var(--card); padding: 1.4rem 1.4rem; }
+  .perfil__t { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; }
+  .perfil__d { margin-top: 0.45rem; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55; }
+
+  /* MATERIAIS */
+  .links { margin-top: 2.25rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 680px) { .links { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .links { grid-template-columns: repeat(3, 1fr); } }
+  .linkcard { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.4rem 1.4rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+  .linkcard:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--brand); }
+  .linkcard__t { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; color: var(--ink); }
+  .linkcard__d { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* utilidades de busca */
+  .is-hidden { display: none !important; }
+  .emptystate { margin-top: 1.5rem; font-size: 0.95rem; color: var(--ink-faint); }
+
+  /* scroll-margin pra âncoras não ficarem embaixo da nav + toc */
+  #pitch, #funcoes, #planos, #duvidas, #comissao, #materiais { scroll-margin-top: 140px; }
+</style>
