@@ -1,0 +1,92 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Blog do Notifiquei",
+    url: "https://notifiquei.com.br/blog",
+    publisher: { "@id": "https://notifiquei.com.br/#org" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://notifiquei.com.br/blog" },
+    ],
+  },
+];
+---
+
+<Base
+  title="Blog do Notifiquei — automação de vendas no Instagram"
+  description="Artigos sobre automação de Instagram e TikTok, vendas no direct, API oficial da Meta e estratégia de conteúdo — pra quem vende pelas redes."
+  path="/blog"
+  jsonLd={jsonLd}
+>
+  <Nav />
+  <main>
+    <section class="section bloghero">
+      <div class="container container--narrow">
+        <span class="eyebrow is-plain">Blog</span>
+        <h1 class="bloghero__title">Como <span class="hl">vender mais</span> pelo Instagram, sem gambiarra.</h1>
+        <p class="lead">Estratégia, automação e bastidores do que funciona pra quem usa o Instagram e o TikTok como canal de vendas.</p>
+      </div>
+    </section>
+
+    <section class="section section--paper2">
+      <div class="container">
+        <ul class="postlist">
+          {posts.map((post) => (
+            <li class="postcard">
+              <a class="postcard__link" href={`/blog/${post.id}`}>
+                {post.data.cover && (
+                  <img class="postcard__cover" src={post.data.cover} alt={post.data.coverAlt ?? ""} loading="lazy" width="600" height="338" />
+                )}
+                <div class="postcard__body">
+                  <span class="postcard__cat">{post.data.category}</span>
+                  <h2 class="postcard__title">{post.data.title}</h2>
+                  <p class="postcard__desc">{post.data.description}</p>
+                  <span class="postcard__date">{fmtDate(post.data.date)}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .bloghero { padding-block: clamp(6rem, 4rem + 8vw, 9rem) var(--space-section); }
+  .bloghero__title { margin-top: 1rem; font-size: var(--fs-display-l); line-height: 1.0; letter-spacing: -0.03em; }
+  .bloghero .lead { margin-top: 1.2rem; }
+
+  .postlist { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 680px) { .postlist { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .postlist { grid-template-columns: repeat(3, 1fr); } }
+
+  .postcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+  .postcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--brand); }
+  .postcard__link { display: flex; flex-direction: column; height: 100%; }
+  .postcard__cover { width: 100%; height: 180px; object-fit: cover; }
+  .postcard__body { padding: 1.25rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .postcard__cat { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-ink); }
+  .postcard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; line-height: 1.2; letter-spacing: -0.01em; }
+  .postcard__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; flex: 1; }
+  .postcard__date { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.25rem; }
+</style>
