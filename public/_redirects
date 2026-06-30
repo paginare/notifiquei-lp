@@ -1,6 +1,10 @@
 # Caminho convencional do sitemap -> sitemap real do Astro
 /sitemap.xml   /sitemap-index.xml   301
 
-# Blog: URLs antigas (categoria/slug) -> novo /blog/slug. Só ativa após o cutover
-# do /blog pro Cloudflare Pages. Uma linha por artigo migrado.
-/estrategia/api-oficial-meta-automacao-instagram   /blog/api-oficial-meta-automacao-instagram   301
+# Blog: URLs antigas (categoria/slug) -> novo /blog/slug. Uma linha por artigo migrado.
+/estrategia/api-oficial-meta-automacao-instagram      /blog/api-oficial-meta-automacao-instagram      301
+/copywriting/como-qualificar-lead-antes-de-mandar-preco  /blog/como-qualificar-lead-antes-de-mandar-preco  301
+/estrategia/como-um-comentario-no-instagram-vira-venda   /blog/como-um-comentario-no-instagram-vira-venda   301
+/estrategia/instagram-com-e-sem-automacao-o-que-muda     /blog/instagram-com-e-sem-automacao-o-que-muda     301
+/estrategia/quantas-vendas-voce-perde-demorando-responder-dm  /blog/quantas-vendas-voce-perde-demorando-responder-dm  301
+/copywriting/seguidores-que-curtem-mas-nao-compram       /blog/seguidores-que-curtem-mas-nao-compram       301
