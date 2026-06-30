@@ -1,0 +1,171 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const url = `https://notifiquei.com.br/blog/${post.id}`;
+const published = d.date.toISOString();
+const modified = (d.updated ?? d.date).toISOString();
+
+const fmtDate = (date: Date) =>
+  date.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+
+// Posts relacionados: mesma categoria primeiro, completa com recentes. Máx 3.
+const all = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const related = [
+  ...all.filter((p) => p.data.category === d.category),
+  ...all.filter((p) => p.data.category !== d.category),
+].slice(0, 3);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    headline: d.title,
+    description: d.description,
+    ...(d.cover ? { image: d.cover } : {}),
+    datePublished: published,
+    dateModified: modified,
+    author: { "@type": "Person", name: d.author },
+    publisher: { "@id": "https://notifiquei.com.br/#org" },
+    ...(d.keywords.length ? { keywords: d.keywords.join(", ") } : {}),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://notifiquei.com.br/blog" },
+      { "@type": "ListItem", position: 3, name: d.title, item: url },
+    ],
+  },
+  ...(d.faq.length
+    ? [{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: d.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }]
+    : []),
+];
+---
+
+<Base title={`${d.title} — Notifiquei`} description={d.description} path={`/blog/${post.id}`} jsonLd={jsonLd}>
+  <Nav />
+  <main>
+    <article class="article">
+      <div class="container container--narrow">
+        <nav class="crumbs" aria-label="Você está em"><a href="/blog">Blog</a> · <span>{d.category}</span></nav>
+        <h1 class="article__title">{d.title}</h1>
+        <p class="article__meta">Por {d.author} · {fmtDate(d.date)}{d.updated ? ` · atualizado em ${fmtDate(d.updated)}` : ""}</p>
+
+        {d.tldr && (
+          <aside class="tldr">
+            <span class="tldr__label">Resumo</span>
+            <p>{d.tldr}</p>
+          </aside>
+        )}
+
+        {d.cover && <img class="article__cover" src={d.cover} alt={d.coverAlt ?? ""} width="780" height="439" />}
+
+        <div class="article__body">
+          <Content />
+        </div>
+
+        {d.faq.length > 0 && (
+          <section class="afaq">
+            <h2 class="afaq__t">Perguntas frequentes</h2>
+            {d.faq.map((f) => (
+              <details class="afaq__item">
+                <summary>{f.q}</summary>
+                <div class="afaq__a"><p>{f.a}</p></div>
+              </details>
+            ))}
+          </section>
+        )}
+
+        <aside class="acta">
+          <h2 class="acta__t">Automatize suas vendas no Instagram com a API oficial da Meta</h2>
+          <p>O Notifiquei responde DMs e comentários na sua voz, sem risco de bloqueio. Comece de graça.</p>
+          <div class="acta__btns">
+            <a class="btn btn--brand btn--lg" href="/">Conhecer o Notifiquei<span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost btn--lg" href="/vs-manychat">Comparar com o ManyChat</a>
+          </div>
+        </aside>
+      </div>
+
+      {related.length > 0 && (
+        <div class="container">
+          <section class="related">
+            <h2 class="related__t">Leia também</h2>
+            <ul class="related__list">
+              {related.map((p) => (
+                <li><a href={`/blog/${p.id}`}><span class="related__cat">{p.data.category}</span><span class="related__title">{p.data.title}</span></a></li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      )}
+    </article>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .article { padding-block: clamp(5.5rem, 4rem + 7vw, 8rem) var(--space-section); }
+  .crumbs { font-size: 0.85rem; color: var(--ink-soft); }
+  .crumbs a { color: var(--brand-ink); font-weight: 600; }
+  .article__title { margin-top: 0.8rem; font-size: var(--fs-display-m); line-height: 1.1; letter-spacing: -0.02em; }
+  .article__meta { margin-top: 0.8rem; font-size: 0.85rem; color: var(--ink-faint); font-family: var(--font-mono); }
+
+  .tldr { margin-top: 1.75rem; background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent); border-radius: var(--r-md); padding: 1.1rem 1.3rem; }
+  .tldr__label { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand-ink); }
+  .tldr p { margin-top: 0.4rem; font-size: 1rem; line-height: 1.55; color: var(--ink); }
+
+  .article__cover { width: 100%; border-radius: var(--r-lg); margin-top: 1.75rem; }
+
+  .article__body { margin-top: 2rem; font-size: 1.0625rem; line-height: 1.75; color: var(--ink); }
+  .article__body :global(h2) { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.01em; margin-top: 2.4rem; margin-bottom: 0.5rem; }
+  .article__body :global(h3) { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-top: 1.8rem; margin-bottom: 0.4rem; }
+  .article__body :global(p) { margin-top: 1rem; }
+  .article__body :global(ul), .article__body :global(ol) { margin-top: 1rem; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .article__body :global(a) { color: var(--brand-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .article__body :global(hr) { margin-block: 2rem; border: none; border-top: 1px solid var(--line); }
+  .article__body :global(strong) { font-weight: 700; }
+
+  .afaq { margin-top: 3rem; }
+  .afaq__t { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; margin-bottom: 0.8rem; }
+  .afaq__item { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--card); margin-bottom: 0.6rem; padding: 0.5rem 0; }
+  .afaq__item summary { cursor: pointer; padding: 0.7rem 1.1rem; font-weight: 600; }
+  .afaq__a { padding: 0 1.1rem 0.9rem; }
+  .afaq__a p { color: var(--ink-soft); line-height: 1.6; }
+
+  .acta { margin-top: 3rem; background: var(--ink); color: var(--on-ink); border-radius: var(--r-lg); padding: 2rem 1.75rem; box-shadow: var(--shadow-md); }
+  .acta__t { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: #fff; line-height: 1.15; }
+  .acta p { margin-top: 0.6rem; color: var(--on-ink-soft); }
+  .acta__btns { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+  .related { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .related__t { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; }
+  .related__list { margin-top: 1.25rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 760px) { .related__list { grid-template-columns: repeat(3, 1fr); } }
+  .related__list a { display: flex; flex-direction: column; gap: 0.4rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.3rem; box-shadow: var(--shadow-sm); transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out); }
+  .related__list a:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .related__cat { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-ink); }
+  .related__title { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; line-height: 1.2; }
+</style>
