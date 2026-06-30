@@ -17,7 +17,7 @@ const published = d.date.toISOString();
 const modified = (d.updated ?? d.date).toISOString();
 
 const fmtDate = (date: Date) =>
-  date.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+  date.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
 
 // Posts relacionados: mesma categoria primeiro, completa com recentes. Máx 3.
 const all = (await getCollection("blog", ({ data }) => !data.draft))
