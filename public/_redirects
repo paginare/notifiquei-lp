@@ -1,2 +1,6 @@
 # Caminho convencional do sitemap -> sitemap real do Astro
 /sitemap.xml   /sitemap-index.xml   301
+
+# Blog: URLs antigas (categoria/slug) -> novo /blog/slug. Só ativa após o cutover
+# do /blog pro Cloudflare Pages. Uma linha por artigo migrado.
+/estrategia/api-oficial-meta-automacao-instagram   /blog/api-oficial-meta-automacao-instagram   301
