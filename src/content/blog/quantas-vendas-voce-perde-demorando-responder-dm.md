@@ -5,8 +5,8 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Vendas", "Atendimento", "Instagram"]
-cover: "https://images.unsplash.com/photo-1611162616305-c69b3037c7bb?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Mão segurando um celular com o app de mensagens aberto"
+cover: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=1200&auto=format&fit=crop"
+coverAlt: "Pessoa de camisa mexendo no celular"
 keywords: ["tempo de resposta DM", "responder DM Instagram", "automação de DM", "lead quente", "conversão Instagram"]
 tldr: "Quem responde uma DM em até 5 minutos tem 21 vezes mais chance de fechar do que quem demora 30 minutos, e 78% das pessoas compram de quem responde primeiro. Por isso, automatizar a primeira resposta pela API oficial do Instagram evita perder venda por demora."
 faq:

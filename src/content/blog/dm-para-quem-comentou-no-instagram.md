@@ -5,8 +5,8 @@ date: 2026-06-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "DM", "Instagram"]
-cover: "https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa segurando um celular com o aplicativo do Instagram aberto"
+cover: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=1200&auto=format&fit=crop"
+coverAlt: "Ícone do Instagram em 3D sobre fundo escuro"
 keywords: ["mandar DM pra quem comentou", "janela de mensagem do Instagram", "responder comentário com DM", "automação de DM Instagram", "API oficial da Meta"]
 tldr: "Dá sim: quando alguém comenta, abre uma janela pra você mandar uma DM automática, mesmo pra quem não te segue. A Meta libera uma mensagem no primeiro contato; quando a pessoa toca num botão, a conversa segue livre e você manda link, preço e o que mais quiser."
 faq:

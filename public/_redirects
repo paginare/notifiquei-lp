@@ -1,5 +1,6 @@
-# Caminho convencional do sitemap -> sitemap real do Astro
-/sitemap.xml   /sitemap-index.xml   301
+# Caminho convencional do sitemap -> serve o sitemap real do Astro com 200 (rewrite),
+# pra validadores que não seguem 301.
+/sitemap.xml   /sitemap-index.xml   200
 
 # Blog: URLs antigas (categoria/slug) -> novo /blog/slug. Uma linha por artigo migrado.
 /estrategia/api-oficial-meta-automacao-instagram      /blog/api-oficial-meta-automacao-instagram      301

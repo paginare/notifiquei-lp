@@ -28,6 +28,17 @@ const canonicalTarget = canonicalPath ?? path;
 const canonical = canonicalTarget === "/" ? site : site + canonicalTarget;
 // ?v=2 força WhatsApp/Facebook a re-buscar a imagem (eles cacheiam por URL)
 const ogImage = site + "/assets/og-image.jpg?v=2";
+
+// Schema WebSite (site inteiro) — ajuda buscadores e IAs a entender a marca.
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": site + "/#website",
+  url: site,
+  name: "Notifiquei",
+  publisher: { "@id": site + "/#org" },
+  inLanguage: "pt-BR",
+};
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -69,6 +80,7 @@ const ogImage = site + "/assets/og-image.jpg?v=2";
   {jsonLd.map((node) => (
     <script type="application/ld+json" set:html={JSON.stringify(node)} />
   ))}
+  <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
   <PostHog />
 </head>
 <body>

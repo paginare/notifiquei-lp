@@ -5,8 +5,8 @@ date: 2026-06-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "DM", "TikTok"]
-cover: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa usando o aplicativo do TikTok no celular"
+cover: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1200&auto=format&fit=crop"
+coverAlt: "Mão segurando um celular com a tela inicial"
 keywords: ["automação de DM no TikTok", "automação TikTok", "responder DM TikTok automático", "DM por palavra-chave TikTok", "conta business TikTok"]
 tldr: "No TikTok dá pra automatizar DM por palavra-chave, mandar boas-vindas na primeira mensagem e ter uma resposta padrão quando nada bate. O que ainda não dá (construtor de fluxos, automação por comentário, campanhas, IA) continua só no Instagram. No Notifiquei, IG e TikTok ficam na mesma vaga, mesmo preço."
 faq:
