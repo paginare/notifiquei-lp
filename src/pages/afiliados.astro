@@ -20,7 +20,7 @@ const steps = [
 const who = [
   { t: "Infoprodutor", d: "Você vende curso, mentoria ou e-book pra quem também vende no Instagram. Sua indicação vira escala natural pros dois lados." },
   { t: "Consultor de marketing", d: "Atende cliente que precisa automatizar Instagram? Em vez de montar do zero, indica o Notifiquei e recebe todo mês." },
-  { t: "Agência digital", d: "Gerencia o Instagram de vários clientes. Cada conta nova que entrar, você ganha 40% do plano — pra sempre." },
+  { t: "Agência digital", d: "Gerencia o Instagram de vários clientes. Cada conta nova que entrar, você ganha 30% do plano — pra sempre." },
   { t: "Influencer de marketing", d: "Cria conteúdo sobre vendas, copy, tráfego. Sua audiência precisa de ferramenta prática — você indica e lucra." },
   { t: "Gestor de tráfego", d: "Toca anúncio de lançamento. O Notifiquei responde o lead que veio do ad. Você vira ponte — e recebe dos dois lados." },
   { t: "Comunidade / grupo", d: "Lidera grupo no Telegram, WhatsApp ou Discord. Sua recomendação tem peso — monetize sem perder a confiança." },
@@ -46,7 +46,7 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: [
-      { "@type": "Question", name: "Quanto é a comissão do afiliado Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você recebe 40% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." } },
+      { "@type": "Question", name: "Quanto é a comissão do afiliado Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você recebe 30% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." } },
       { "@type": "Question", name: "Quando o afiliado recebe?", acceptedAnswer: { "@type": "Answer", text: "Todo mês. A comissão é paga via Kiwify ou Cakto, com cookie de 60 dias." } },
       { "@type": "Question", name: "Como me afilio ao Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você preenche o formulário (leva 2 minutos), a gente aprova em até 48h e libera seu painel com link personalizado e materiais prontos." } },
     ],
@@ -55,8 +55,8 @@ const jsonLd = [
 ---
 
 <Base
-  title="Programa de afiliados Notifiquei — 40% recorrente, pra sempre"
-  description="Indique o Notifiquei e receba 40% do pagamento mensal de cada cliente, enquanto ele continuar ativo. Comissão recorrente, sem teto, paga via Kiwify ou Cakto."
+  title="Programa de afiliados Notifiquei — 30% recorrente, pra sempre"
+  description="Indique o Notifiquei e receba 30% do pagamento mensal de cada cliente, enquanto ele continuar ativo. Comissão recorrente, sem teto, paga via Kiwify ou Cakto."
   path="/afiliados"
   jsonLd={jsonLd}
 >
@@ -71,7 +71,7 @@ const jsonLd = [
           <span class="eyebrow is-plain">Comissão recorrente enquanto o cliente pagar</span>
           <h1 class="hero__title">Indica uma vez.<br /><span class="hl">Recebe</span> todo mês.</h1>
           <p class="lead hero__lead">
-            Você indica, o cliente assina e você recebe <strong>40% do pagamento mensal dele</strong> —
+            Você indica, o cliente assina e você recebe <strong>30% do pagamento mensal dele</strong> —
             enquanto ele continuar ativo. Sem teto, sem pegadinha, sem data de vencimento da comissão.
           </p>
           <div class="hero__actions">
@@ -80,7 +80,7 @@ const jsonLd = [
             <a href="/afiliados/central" class="btn btn--ghost btn--lg">Central de apoio pra vender</a>
           </div>
           <ul class="hero__trust">
-            <li><span class="tick" aria-hidden="true">✓</span> 40% recorrente</li>
+            <li><span class="tick" aria-hidden="true">✓</span> 30% recorrente</li>
             <li><span class="tick" aria-hidden="true">✓</span> Cookie de 60 dias</li>
             <li><span class="tick" aria-hidden="true">✓</span> Via Kiwify ou Cakto</li>
           </ul>
@@ -89,8 +89,8 @@ const jsonLd = [
         <div class="hero__demo">
           <div class="ecard">
             <span class="ecard__label">Ganhos neste mês</span>
-            <span class="ecard__big">R$ 4.788</span>
-            <span class="ecard__sub">12 clientes ativos · 40% recorrente</span>
+            <span class="ecard__big">R$ 3.591</span>
+            <span class="ecard__sub">12 clientes ativos · 30% recorrente</span>
             <div class="ecard__row"><span>Próximo pagamento</span><b>05/05 · via Kiwify</b></div>
             <div class="ecard__bars" aria-hidden="true">
               <span style="height:38%"></span><span style="height:52%"></span><span style="height:46%"></span>
@@ -128,7 +128,7 @@ const jsonLd = [
         <div class="section-head reveal">
           <span class="eyebrow">Quanto dá pra ganhar</span>
           <h2>Comissão que não<br />para de pingar.</h2>
-          <p class="lead">Diferente de afiliado de curso que ganha uma vez e acabou. Aqui você recebe 40% do pagamento mensal — todo mês — enquanto o cliente continuar ativo.</p>
+          <p class="lead">Diferente de afiliado de curso que ganha uma vez e acabou. Aqui você recebe 30% do pagamento mensal — todo mês — enquanto o cliente continuar ativo.</p>
         </div>
 
         <div class="calc reveal">
@@ -223,11 +223,11 @@ const jsonLd = [
     const per = parseInt(n.value, 10);
     if (nOut) nOut.textContent = String(per);
     const active = per * ACTIVE_FACTOR;
-    const month = 0.4 * price * active;
+    const month = 0.3 * price * active;
     // acumulado no 1º ano: soma das comissões mês a mês (cohortes crescendo)
     let yearTotal = 0;
     let base = 0;
-    for (let mth = 0; mth < 12; mth++) { base = base * 0.85 + per; yearTotal += 0.4 * price * base; }
+    for (let mth = 0; mth < 12; mth++) { base = base * 0.85 + per; yearTotal += 0.3 * price * base; }
     if (monthEl) monthEl.textContent = fmt(month);
     if (yearEl) yearEl.textContent = fmt(yearTotal);
   }
@@ -249,7 +249,7 @@ const jsonLd = [
     calcDebounce = setTimeout(() => {
       const per = parseInt(n!.value, 10);
       const active = per * ACTIVE_FACTOR;
-      const month = 0.4 * price * active;
+      const month = 0.3 * price * active;
       (window as any).posthog?.capture('affiliate_calculator_used', {
         clients_per_month: per,
         plan_price: price,
