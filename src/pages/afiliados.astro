@@ -13,7 +13,7 @@ const WPP = "https://wa.me/551231995949?text=" + encodeURIComponent("Olá! Quero
 const steps = [
   { n: "01", t: "Preenche o formulário", d: "Leva 2 minutos. A gente quer saber seu nicho, audiência estimada e onde pretende divulgar." },
   { n: "02", t: "Aprovação em até 48h", d: "Revisamos seu cadastro pra garantir alinhamento. Aprovado, seu painel libera na hora." },
-  { n: "03", t: "Pega link + materiais", d: "Link personalizado, banners, copy pronto pra e-mail e posts. Tudo já feito pra você." },
+  { n: "03", t: "Pega link, cupom + materiais", d: "Link personalizado, um cupom exclusivo de 10% pro seu público, banners e copy pronto pra e-mail e posts. Tudo já feito pra você." },
   { n: "04", t: "Recebe todo mês", d: "Comissão paga via Kiwify ou Cakto — você escolhe. Cai direto, sem pedir, sem cobrar." },
 ];
 
@@ -49,6 +49,7 @@ const jsonLd = [
       { "@type": "Question", name: "Quanto é a comissão do afiliado Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você recebe 30% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." } },
       { "@type": "Question", name: "Quando o afiliado recebe?", acceptedAnswer: { "@type": "Answer", text: "Todo mês. A comissão é paga via Kiwify ou Cakto, com cookie de 60 dias." } },
       { "@type": "Question", name: "Como me afilio ao Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você preenche o formulário (leva 2 minutos), a gente aprova em até 48h e libera seu painel com link personalizado e materiais prontos." } },
+      { "@type": "Question", name: "O afiliado tem cupom de desconto pra oferecer?", acceptedAnswer: { "@type": "Answer", text: "Tem. Cada afiliado recebe um cupom exclusivo de 10% de desconto recorrente pra oferecer pro público. O desconto vale enquanto a pessoa continuar cliente, o que ajuda a fechar a indicação." } },
     ],
   },
 ];
@@ -73,6 +74,7 @@ const jsonLd = [
           <p class="lead hero__lead">
             Você indica, o cliente assina e você recebe <strong>30% do pagamento mensal dele</strong> —
             enquanto ele continuar ativo. Sem teto, sem pegadinha, sem data de vencimento da comissão.
+            E ainda leva um cupom exclusivo de <strong>10% de desconto recorrente</strong> pra oferecer pro seu público.
           </p>
           <div class="hero__actions">
             <a href={WPP} class="btn btn--brand btn--lg">Quero me afiliar<span class="arr" aria-hidden="true">→</span></a>
@@ -83,6 +85,7 @@ const jsonLd = [
             <li><span class="tick" aria-hidden="true">✓</span> 30% recorrente</li>
             <li><span class="tick" aria-hidden="true">✓</span> Cookie de 60 dias</li>
             <li><span class="tick" aria-hidden="true">✓</span> Via Kiwify ou Cakto</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Cupom de 10% pro seu público</li>
           </ul>
         </div>
 
