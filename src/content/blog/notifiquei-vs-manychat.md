@@ -57,7 +57,7 @@ Vale o mesmo aviso pro Gaio, outro brasileiro: ele vai de R$ 74,90 a R$ 3.774, e
 
 Tem uma parte que não aparece na tabela de preço, mas pesa no dia a dia. O ManyChat é uma ferramenta global, com interface mais complexa e pensada pra um público do mundo inteiro. Dá pra usar no Brasil, muita gente usa, mas você está num produto que não foi desenhado pra cá.
 
-O Notifiquei foi feito pra quem vende no Brasil. O produto é em português, o suporte é em português, e a cobrança é em real, sem variação de câmbio surpreendendo a sua fatura no fim do mês. Tem app nativo pra iPhone e Android, então dá pra acompanhar tudo do celular. E roda 100% pela API oficial da Meta, que é a forma segura de automatizar mensagem no Instagram sem arriscar a sua conta. Ainda dá pra fazer sorteio pelos comentários, uma forma simples de movimentar a audiência.
+O Notifiquei foi feito pra quem vende no Brasil. O produto é em português, o suporte é em português, e a cobrança é em real, sem variação de câmbio surpreendendo a sua fatura no fim do mês. Tem app nativo pra iPhone e Android, então dá pra acompanhar tudo do celular. E roda 100% pela API oficial da Meta, que é a forma segura de [automatizar mensagem no Instagram](/blog/api-oficial-meta-automacao-instagram) sem arriscar a sua conta. Ainda dá pra [fazer sorteio pelos comentários](/blog/sorteio-no-instagram-pelos-comentarios), uma forma simples de movimentar a audiência.
 
 ## quando o manychat ainda faz sentido
 

@@ -40,7 +40,7 @@ Uma loja com 5 posts por semana pode receber 200, 300 comentários por dia se o 
 
 Então o que acontece na prática é que o dono da loja responde o que consegue, quando consegue. Às vezes horas depois, às vezes no dia seguinte. Os comentários com intenção de compra se misturam com os de curiosidade e com os de troll. Não tem como separar rápido.
 
-Resultado: a pessoa que perguntou "tem no azul?" às 14h e não recebeu resposta comprou de outro lugar às 17h.
+Resultado: a pessoa que perguntou "tem no azul?" às 14h e [não recebeu resposta comprou de outro lugar](/blog/quantas-vendas-voce-perde-demorando-responder-dm) às 17h.
 
 ## o que falar — e o que não falar
 
@@ -76,7 +76,7 @@ Existe um limite no que você consegue fazer num comentário público. Tem coisa
 
 Então o objetivo do comentário não é fechar a venda; é abrir a conversa privada.
 
-E aí entra uma virada que muita marca ainda não percebeu: você não precisa esperar a pessoa ir até o Direct. Você pode acionar o Direct automaticamente, no momento em que ela comentou, com uma mensagem já personalizada.
+E aí entra uma virada que muita marca ainda não percebeu: você não precisa esperar a pessoa ir até o Direct. Você pode [acionar o Direct automaticamente](/blog/dm-para-quem-comentou-no-instagram), no momento em que ela comentou, com uma mensagem já personalizada.
 
 ## a lógica do comentário como gatilho
 

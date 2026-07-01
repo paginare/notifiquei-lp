@@ -54,7 +54,7 @@ Aqui é onde a coisa normalmente trava, e onde dá pra virar o jogo. Em vez de v
 
 Faz a conta do tempo que isso economiza. Um post que puxa 300 comentários levaria fácil uma hora pra você conferir um por um, anotar quem marcou amigo, riscar quem comentou repetido. A lista montada sozinha tira essa hora inteira do seu dia e ainda elimina o erro humano de pular um nome sem querer.
 
-E como tudo isso roda dentro da API oficial da Meta, não tem gambiarra simulando humano nem risco de a conta entrar no radar. É a forma oficial de ler os comentários do seu próprio post.
+E como tudo isso roda dentro da [API oficial da Meta](/blog/api-oficial-meta-automacao-instagram), não tem gambiarra simulando humano nem risco de a conta entrar no radar. É a forma oficial de ler os comentários do seu próprio post.
 
 ## como sortear e re-sortear sem refazer tudo
 
@@ -68,7 +68,7 @@ Isso muda o jogo na hora de cobrar a regra. Se o primeiro ganhador não cumpriu 
 
 Tem um detalhe que quase todo mundo deixa passar. Aquela gente que comentou "eu quero" não está ali por acaso. Eles levantaram a mão dizendo que querem algo seu. Seria um desperdício o sorteio acabar e você nunca mais falar com eles.
 
-Quando o sorteio acontece dentro de uma plataforma de vendas, e não num site de terceiro que só sorteia e esquece, cada participante pode virar um contato. Aquele monte de gente que comentou no seu post deixa de ser só número de engajamento e passa a ser uma lista de pessoas interessadas, que você pode chamar no direct, avisar do próximo lançamento ou puxar pra uma oferta.
+Quando o sorteio acontece dentro de uma plataforma de vendas, e não num site de terceiro que só sorteia e esquece, cada participante pode virar um contato. Aquele monte de [gente que comentou no seu post](/blog/como-um-comentario-no-instagram-vira-venda) deixa de ser só número de engajamento e passa a ser uma lista de pessoas interessadas, que você pode chamar no direct, avisar do próximo lançamento ou puxar pra uma oferta.
 
 É a diferença entre fazer um sorteio que dá um pico de likes e some, e fazer um sorteio que ainda te deixa uma base de gente quente pra conversar depois.
 

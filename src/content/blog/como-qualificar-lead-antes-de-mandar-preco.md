@@ -46,7 +46,7 @@ A qualificação real não começa pelo bolso. Começa pelo problema.
 
 Antes de qualquer número, você precisa de três informações: o que a pessoa está tentando resolver, por que ela está tentando resolver agora, e o que acontece se ela não resolver.
 
-Essas três respostas juntas te dizem se você está falando com alguém que vai comprar ou com alguém que está apenas olhando.
+Essas três respostas juntas te dizem se você está falando com alguém que vai comprar ou com [alguém que está apenas olhando](/blog/seguidores-que-curtem-mas-nao-compram).
 
 Na prática, dentro de uma DM, isso pode soar assim:
 
@@ -106,7 +106,7 @@ A qualificação resolve isso porque ela cria contexto antes do preço. Quando a
 
 ## o volume de DMs inviabiliza fazer isso na mão
 
-Aqui tem um ponto prático que não dá pra ignorar: se você tem volume de mensagens chegando, fazer esse processo manualmente em cada DM é insustentável. Você vai cansar, vai acabar mandando o preço direto pra não demorar, e o ciclo de leads sumindo vai se repetir.
+Aqui tem um ponto prático que não dá pra ignorar: se você tem volume de mensagens chegando, fazer esse processo manualmente em cada DM é insustentável. Você vai cansar, vai acabar mandando o preço direto pra não demorar, e [o ciclo de leads sumindo](/blog/quantas-vendas-voce-perde-demorando-responder-dm) vai se repetir.
 
 A saída é automatizar a qualificação sem perder o tom humano. Fluxos de conversa bem construídos conseguem fazer as perguntas certas, identificar os sinais de intenção e separar os leads prontos dos que ainda precisam de mais contexto — tudo isso antes de qualquer pessoa da sua equipe entrar na conversa.
 

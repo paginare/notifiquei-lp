@@ -50,7 +50,7 @@ Isso existe pra te proteger. Imagina disparar a mesma DM cinco vezes seguidas pr
 
 Todas essas regras, a janela, a primeira mensagem, o limite de 24 horas, vêm da API oficial da Meta. Não é firula de ferramenta. É a forma oficial e segura de automatizar mensagem no Instagram.
 
-Existe ferramenta por aí que promete furar isso, mandar texto direto, disparar sem limite, ignorar a janela. O problema é que, pra fazer isso, ela opera fora da API oficial, simulando um humano. E é exatamente esse tipo de comportamento que faz o Instagram bloquear ou banir conta. Você ganha um atalho hoje e arrisca perder o perfil amanhã.
+Existe ferramenta por aí que promete furar isso, mandar texto direto, disparar sem limite, ignorar a janela. O problema é que, pra fazer isso, ela opera fora da API oficial, simulando um humano. E é exatamente esse tipo de comportamento que faz o Instagram [bloquear ou banir conta](/blog/api-oficial-meta-automacao-instagram). Você ganha um atalho hoje e arrisca perder o perfil amanhã.
 
 Quem trata o Instagram como canal de vendas não pode correr esse risco. As regras existem, e dá pra vender muito bem dentro delas.
 
@@ -58,6 +58,6 @@ Quem trata o Instagram como canal de vendas não pode correr esse risco. As regr
 
 O Notifiquei cuida desse fluxo pra você. Você escolhe o post e a palavra-chave, escreve a mensagem com o botão, e ele faz o resto: responde quem comentou em segundos, na sua voz, e libera o link assim que a pessoa toca no botão. Tudo pela API oficial da Meta, então sua conta não corre risco.
 
-Dá pra fazer o mesmo com quem responde seu story ou te chama no direct. E o atendimento que precisar de você de verdade aparece organizado numa caixa de entrada só, sem você ficar caçando conversa perdida.
+Dá pra fazer o mesmo com [quem responde seu story](/blog/automatizar-resposta-a-stories-no-instagram) ou te chama no direct. E o atendimento que precisar de você de verdade aparece organizado numa caixa de entrada só, sem você ficar caçando conversa perdida.
 
 Se você vive perdendo comentário de "quero" por não dar conta de responder na hora, vale conhecer como o Notifiquei resolve isso. Dá pra começar de graça em [notifiquei.com.br](https://notifiquei.com.br).

@@ -42,7 +42,7 @@ E se um cliente mudar de responsável na equipe, ou se você quiser reorganizar 
 
 A parte que resolve a dor de verdade é como o cliente entra. Quando ele recebe o convite, ele conecta o Instagram pelo login oficial da Meta, do lado dele, com a conta dele. A senha continua sendo só dele, e você recebe o acesso pra configurar e rodar as automações daquele perfil.
 
-Isso funciona porque o Notifiquei roda pela API oficial da Meta, o mesmo caminho aprovado que a plataforma usa pra liberar acesso a parceiros. Não é uma brecha nem um robô fingindo ser você logado na conta do cliente. É o cliente autorizando o acesso dentro da própria Meta, do jeito que a plataforma pede.
+Isso funciona porque o Notifiquei roda pela [API oficial da Meta](/blog/api-oficial-meta-automacao-instagram), o mesmo caminho aprovado que a plataforma usa pra liberar acesso a parceiros. Não é uma brecha nem um robô fingindo ser você logado na conta do cliente. É o cliente autorizando o acesso dentro da própria Meta, do jeito que a plataforma pede.
 
 Na prática, você para de guardar senha de cliente, para de sair correndo atrás de login quando alguém troca a verificação, e cada perfil fica conectado de forma estável enquanto o cliente mantém a autorização.
 
@@ -52,7 +52,7 @@ Vale entender onde esse acesso por time aparece nos planos, porque muda dependen
 
 O acesso por time começa a partir do Pro, que conecta 5 contas, e vai até o Business, que conecta 10 contas. É a partir desses planos que você monta os times, distribui os papéis de dono e membro, e trabalha sem depender de senha compartilhada. Se você começou no Solo e a carteira de clientes cresceu, dá pra subir de plano pagando só a diferença de valor, sem começar uma assinatura do zero.
 
-Um detalhe que ajuda na conta: cada conta do plano conecta 1 Instagram e 1 TikTok pelo mesmo preço. Então o número de contas do plano não é só quantos clientes você atende, é quantos perfis no total você consegue rodar dentro do mesmo valor.
+Um detalhe que ajuda na conta: cada conta do plano conecta [1 Instagram e 1 TikTok](/blog/automacao-de-dm-no-tiktok) pelo mesmo preço. Então o número de contas do plano não é só quantos clientes você atende, é quantos perfis no total você consegue rodar dentro do mesmo valor.
 
 ## a conta que fecha a decisão
 

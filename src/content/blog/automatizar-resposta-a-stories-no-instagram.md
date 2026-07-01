@@ -53,7 +53,7 @@ Respondendo na mão, sendo honesto, você chega em umas 30 pessoas antes da maio
 
 Com a resposta automática chegando em segundos nas 120, mantendo os mesmos 10%, são 12 vendas, R$ 2.364. Mesma enquete, mesma audiência, mesmo produto. A única coisa que mudou foi todo mundo ter recebido retorno enquanto ainda estava quente.
 
-O ponto não é responder mais rápido por vaidade. É que resposta de story tem prazo de validade curto. A pessoa está com o celular na mão, no clima, decidindo naquele momento. Quem responde de tarde perde a maior parte dessa janela de decisão.
+O ponto não é responder mais rápido por vaidade. É que resposta de story tem prazo de validade curto. A pessoa está com o celular na mão, no clima, decidindo naquele momento. [Quem responde de tarde perde](/blog/quantas-vendas-voce-perde-demorando-responder-dm) a maior parte dessa janela de decisão.
 
 ## pra quem isso faz mais diferença
 
@@ -67,6 +67,6 @@ Automatizar isso não tira o seu toque pessoal. As conversas que precisam de voc
 
 No Notifiquei você escolhe o story, escreve a mensagem com o botão e define o que a pessoa recebe depois que toca nele. O gatilho de resposta a story faz o resto: identifica quem respondeu, entrega a primeira mensagem em segundos e libera o link assim que a pessoa interage.
 
-Tudo isso roda pela API oficial da Meta, então a sua conta não corre risco de bloqueio por automação. Não é gambiarra simulando um humano digitando, é a forma oficial e segura de responder mensagem no Instagram.
+Tudo isso [roda pela API oficial da Meta](/blog/api-oficial-meta-automacao-instagram), então a sua conta não corre risco de bloqueio por automação. Não é gambiarra simulando um humano digitando, é a forma oficial e segura de responder mensagem no Instagram.
 
 Se você recebe mais resposta de story do que consegue dar conta, vale ver como a gente resolve isso. Dá pra começar de graça em [notifiquei.com.br](https://notifiquei.com.br).

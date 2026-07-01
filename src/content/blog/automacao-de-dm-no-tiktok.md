@@ -36,7 +36,7 @@ Pra tudo isso rodar, a conta precisa ser de negócio do TikTok. Conta pessoal é
 
 Aqui é a parte honesta. O TikTok hoje é mais enxuto, e tem recurso que existe só do lado do Instagram.
 
-No TikTok ainda não tem o construtor visual de fluxos em blocos, aquele de montar caminhos com botões e condições arrastando as peças. Também não tem automação por comentário, ou seja, a resposta dispara pela DM, não por quem comenta no vídeo. Ficam de fora ainda as campanhas em massa, os sorteios, o agente de IA, a detecção de intenção de compra, as etiquetas e os contatos avançados, o rastreamento de links e o analytics mais detalhado.
+No TikTok ainda não tem o construtor visual de fluxos em blocos, aquele de montar caminhos com botões e condições arrastando as peças. Também não tem automação por comentário, ou seja, a resposta dispara pela DM, não por quem comenta no vídeo. Ficam de fora ainda as campanhas em massa, os sorteios, [o agente de IA](/blog/agente-de-ia-que-responde-dm-no-instagram), a detecção de intenção de compra, as etiquetas e os contatos avançados, o rastreamento de links e o analytics mais detalhado.
 
 Tudo isso é o que faz o Instagram ser o produto completo. O TikTok cobre o essencial, que é responder DM por palavra-chave sem você ficar grudado no celular, e faz isso bem. Mas se a sua estratégia depende de fluxo ramificado ou de capturar quem comenta, esse pedaço por enquanto mora no Instagram.
 
@@ -48,7 +48,7 @@ Quem produz conteúdo hoje quase nunca está em uma rede só. Você grava um ví
 
 É aí que estar nas duas redes com a mesma ferramenta pesa. No Notifiquei, cada vaga do plano conecta 1 Instagram e 1 TikTok juntos, no mesmo plano e pelo mesmo preço. O TikTok não consome uma vaga separada. Na prática, você cobre as duas redes sem pagar a mais por isso.
 
-Faz a conta do que isso significa. Imagine um vídeo que viralizou nas duas plataformas e te trouxe 200 mensagens pedindo o link, com um produto de R$ 120. Respondendo na mão, sendo realista, você alcança umas 60 antes de a maioria esfriar e converte 10%, o que dá 6 vendas e R$ 720. Com a DM por palavra-chave respondendo as 200 na hora, mantendo os mesmos 10%, são 20 vendas e R$ 2.400. Mesmo conteúdo, mesma audiência. A diferença foi responder todo mundo enquanto ainda estava quente, dos dois lados.
+Faz a conta do que isso significa. Imagine um vídeo que viralizou nas duas plataformas e te trouxe 200 mensagens pedindo o link, com um produto de R$ 120. Respondendo na mão, sendo realista, você alcança umas 60 antes de a maioria esfriar e converte 10%, o que dá 6 vendas e R$ 720. Com a DM por palavra-chave respondendo as 200 na hora, mantendo os mesmos 10%, são 20 vendas e R$ 2.400. Mesmo conteúdo, mesma audiência. A diferença foi [responder todo mundo enquanto ainda estava quente](/blog/quantas-vendas-voce-perde-demorando-responder-dm), dos dois lados.
 
 ## como o notifiquei junta as duas pontas
 

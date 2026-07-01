@@ -60,7 +60,7 @@ Parece óbvio, mas muita gente tem vergonha de vender. Fica subindo conteúdo po
 
 **Não tem continuidade depois do interesse**
 
-Alguém comentou, mandou mensagem perguntando o preço, clicou no link. E depois? Ficou no vácuo? Não teve acompanhamento? Esse é o ponto mais crítico e mais ignorado: a maioria das vendas não acontece no primeiro contato. Ela acontece no segundo, no terceiro, no quinto.
+Alguém comentou, mandou mensagem perguntando o preço, clicou no link. E depois? Ficou no vácuo? Não teve acompanhamento? Esse é o ponto mais crítico e mais ignorado: a maioria das vendas [não acontece no primeiro contato](/blog/follow-up-automatico-no-direct-do-instagram). Ela acontece no segundo, no terceiro, no quinto.
 
 Se você não tem um processo pra continuar a conversa com quem demonstrou interesse, você tá deixando dinheiro na mesa todo dia.
 
@@ -91,7 +91,7 @@ Isso não significa ficar mandando mensagem manual pra todo mundo que comentou. 
 
 ## o ponto onde a automação muda o jogo
 
-Pensa no seguinte cenário: você faz um post, coloca um CTA pedindo pra pessoa comentar uma palavra-chave. Alguém comenta. E ali, naquele segundo exato, uma mensagem personalizada vai direto no DM dela com a oferta, o link, a informação que ela precisa.
+Pensa no seguinte cenário: você faz um post, coloca um CTA pedindo pra pessoa [comentar uma palavra-chave](/blog/como-um-comentario-no-instagram-vira-venda). Alguém comenta. E ali, naquele segundo exato, uma mensagem personalizada vai direto no DM dela com a oferta, o link, a informação que ela precisa.
 
 Tudo isso sem depender de você estar online, sem perder o timing e sem deixar a pessoa no vácuo esperando.
 

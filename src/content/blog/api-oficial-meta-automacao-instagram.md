@@ -22,7 +22,7 @@ Você já deve ter visto alguma ferramenta de automação pro Instagram prometen
 
 Mas tem uma pergunta que muita gente não faz antes de assinar: essa ferramenta usa a API oficial da Meta ou tá rodando numa gambiarra que o Instagram vai barrar qualquer hora?
 
-A diferença entre as duas respostas pode ser a diferença entre uma operação de vendas funcionando de madrugada enquanto você dorme — e acordar com a sua conta de 50 mil seguidores desativada sem explicação.
+A diferença entre as duas respostas pode ser a diferença entre [uma operação de vendas funcionando de madrugada](/blog/instagram-com-e-sem-automacao-o-que-muda) enquanto você dorme — e acordar com a sua conta de 50 mil seguidores desativada sem explicação.
 
 ## o que é essa tal de API oficial
 
@@ -92,7 +92,7 @@ O Notifiquei é uma plataforma de automação de vendas no Instagram que opera 1
 
 Na prática, isso significa que você pode configurar respostas automáticas pra DMs, enviar catálogo quando alguém comentar numa palavra específica, acompanhar leads e fechar vendas — tudo sem colocar sua conta em risco, sem gambiarras, sem torcer pra ferramenta continuar funcionando semana que vem.
 
-Se você vende pelo Instagram e quer escalar o atendimento de um jeito que não vai te deixar na mão, faz sentido conhecer o que o Notifiquei faz. Não precisa ser agora, mas quando a pergunta vier — essa ferramenta é segura? — você vai saber exatamente o que perguntar pra qualquer plataforma que considerar.
+Se você vende pelo Instagram e quer escalar o atendimento de um jeito que não vai te deixar na mão, faz sentido conhecer o que o Notifiquei faz. Não precisa ser agora, mas quando a pergunta vier — essa ferramenta é segura? — você vai saber exatamente o que perguntar pra [qualquer plataforma que considerar](/blog/notifiquei-vs-manychat).
 
 ---
 

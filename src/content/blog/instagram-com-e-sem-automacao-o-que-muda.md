@@ -26,7 +26,7 @@ Essa história não é metáfora, é o dia a dia de quem ainda não tem automaç
 
 ## o cenário sem automação: você contra o relógio
 
-Sem automação, tudo depende de você estar online, não tem jeito. O Instagram pode até ter a melhor audiência do planeta pra você, mas se a pessoa manda DM às 23h e recebe resposta só às 9h do dia seguinte, a janela de compra fechou.
+Sem automação, tudo depende de você estar online, não tem jeito. O Instagram pode até ter a melhor audiência do planeta pra você, mas se a pessoa manda DM às 23h e recebe resposta só às 9h do dia seguinte, [a janela de compra fechou](/blog/quantas-vendas-voce-perde-demorando-responder-dm).
 
 Pesquisas de comportamento de consumo mostram que leads respondidos em mais de 5 minutos têm até 10 vezes menos chance de converter do que os respondidos em tempo real. No Instagram, esse número é ainda mais brutal porque a plataforma é de estímulo imediato: a pessoa está no feed, empolgada, curiosa, com o dedo no gatilho, e qualquer distração interrompe o ciclo.
 
@@ -50,7 +50,7 @@ Na prática, o que muda são algumas coisas concretas:
 
 ## mas tem um detalhe que a maioria ignora: nem toda automação é igual
 
-Aqui é onde a conversa fica mais honesta. Existe uma diferença enorme entre usar automação via API oficial da Meta e usar ferramentas que operam por fora das regras.
+Aqui é onde a conversa fica mais honesta. Existe uma diferença enorme entre usar [automação via API oficial da Meta](/blog/api-oficial-meta-automacao-instagram) e usar ferramentas que operam por fora das regras.
 
 Ferramentas não oficiais costumam funcionar acessando sua conta de forma clandestina, simulando cliques, fazendo scraping, operando como se fossem você logado. Isso pode até dar resultados no curto prazo, mas o risco é real: shadowban, restrição temporária, ou simplesmente perder a conta. Não é papo de vendedor assustando cliente, é o que acontece quando o algoritmo do Instagram detecta comportamento fora do padrão humano.
 

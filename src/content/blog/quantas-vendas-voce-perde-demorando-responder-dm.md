@@ -98,7 +98,7 @@ O tempo de resposta não é só logística, é comunicação. Ele diz algo sobre
 
 Automação de DM no Instagram não é sobre mandar mensagem robótica e sem personalidade. É sobre garantir que nenhuma janela de intenção feche sem uma resposta.
 
-Quando você configura automação pela API oficial do Instagram, a primeira mensagem chega em segundos. O cliente sente que foi atendido, que alguém está ali. Você pode personalizar esse fluxo para já qualificar o lead, entender o que ele precisa, enviar informações básicas sobre produto ou serviço — tudo antes de qualquer humano da sua equipe entrar na conversa.
+Quando você configura automação pela API oficial do Instagram, a primeira mensagem chega em segundos. O cliente sente que foi atendido, que alguém está ali. Você pode personalizar esse fluxo para [já qualificar o lead](/blog/como-qualificar-lead-antes-de-mandar-preco), entender o que ele precisa, enviar informações básicas sobre produto ou serviço — tudo antes de qualquer humano da sua equipe entrar na conversa.
 
 Isso muda completamente a equação. Você para de perder leads por demora e começa a atender no momento exato em que o cliente está mais disposto a comprar.
 
@@ -108,6 +108,6 @@ Além disso, automação bem configurada segmenta. Dá pra saber quem perguntou 
 
 Se você ainda responde DM no braço, já sabe o custo disso. Cada hora de demora é dinheiro indo embora em silêncio.
 
-O Notifiquei foi criado exatamente pra acabar com isso. Com a API oficial do Instagram, você automatiza suas DMs sem risco de ban, sem gambiarra, com fluxos inteligentes que atendem seu cliente na hora certa, na velocidade que o mercado exige.
+O Notifiquei foi criado exatamente pra acabar com isso. Com a API oficial do Instagram, você automatiza suas DMs [sem risco de ban](/blog/api-oficial-meta-automacao-instagram), sem gambiarra, com fluxos inteligentes que atendem seu cliente na hora certa, na velocidade que o mercado exige.
 
 Quer ver na prática como funciona? Acesse o [Notifiquei](https://notifiquei.com.br) e configure sua primeira automação hoje. O lead que vai chegar amanhã não pode esperar.

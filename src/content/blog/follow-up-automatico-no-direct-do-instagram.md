@@ -18,7 +18,7 @@ faq:
     a: "Não. Se a pessoa mandar a mesma palavra-chave de novo, o disparo só acontece outra vez depois de 24 horas. E a ideia do follow-up é justamente lembrar quem sumiu, não insistir com quem já respondeu."
 ---
 
-Você manda o preço pro cliente no direct e ele responde na hora: "boa, vou ver aqui e te falo". Você fica confiante, era uma venda quase fechada. Aí passa o dia, passa o outro, e nada. A conversa fica lá parada, aquele "vou ver" no fim da tela, e você nem sabe se a pessoa esqueceu, desistiu ou só tá esperando um empurrãozinho.
+Você [manda o preço pro cliente no direct](/blog/como-qualificar-lead-antes-de-mandar-preco) e ele responde na hora: "boa, vou ver aqui e te falo". Você fica confiante, era uma venda quase fechada. Aí passa o dia, passa o outro, e nada. A conversa fica lá parada, aquele "vou ver" no fim da tela, e você nem sabe se a pessoa esqueceu, desistiu ou só tá esperando um empurrãozinho.
 
 Na maioria das vezes é a terceira opção. A pessoa se interessou de verdade, mas a vida atravessou, ela fechou o app pra fazer outra coisa e nunca mais voltou naquela conversa. Não foi o preço que matou a venda, foi o silêncio depois dele. E o que resolveria isso é bobo: um lembrete no tempo certo, um "e aí, ainda quer?" chegando quando fizer sentido.
 
@@ -46,7 +46,7 @@ Repare que isso só acontece pra quem já interagiu com você. Não é disparo p
 
 ## até quando dá pra mandar: a janela de 7 dias
 
-Aqui entra a regra que você precisa ter na cabeça pra montar o timing certo. Depois que a pessoa interage com você, abre uma janela de 7 dias pra continuar mandando mensagem. Dentro desse prazo, o follow-up funciona. Passou dos 7 dias sem nova interação, a janela fecha e não dá mais pra retomar aquela conversa por ali.
+Aqui entra a regra que você precisa ter na cabeça pra montar o timing certo. Depois que a pessoa interage com você, abre [uma janela de 7 dias](/blog/dm-para-quem-comentou-no-instagram) pra continuar mandando mensagem. Dentro desse prazo, o follow-up funciona. Passou dos 7 dias sem nova interação, a janela fecha e não dá mais pra retomar aquela conversa por ali.
 
 Na prática, isso é bom pra você. Significa que o lembrete certo é o que chega logo, enquanto o interesse ainda tá quente, e não duas semanas depois quando a pessoa nem lembra mais do que pediu. Um follow-up no segundo ou terceiro dia cai perfeitamente dentro da janela e ainda pega a pessoa no momento em que a decisão ainda tá fresca.
 

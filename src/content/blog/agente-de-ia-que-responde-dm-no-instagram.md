@@ -44,7 +44,7 @@ Tem outra coisa que faz diferença: o agente tem memória da conversa. Ele não 
 
 Responder rápido é metade do jogo. A outra metade é saber a hora de entrar você mesmo.
 
-O agente lê a conversa e classifica a intenção de compra em alta, média ou baixa. Alguém que só perguntou "vocês têm isso?" está num nível. Alguém que já perguntou o preço, o prazo de entrega e como parcelar está em outro bem diferente. Esse segundo é um lead quente.
+O agente lê a conversa e [classifica a intenção de compra](/blog/como-qualificar-lead-antes-de-mandar-preco) em alta, média ou baixa. Alguém que só perguntou "vocês têm isso?" está num nível. Alguém que já perguntou o preço, o prazo de entrega e como parcelar está em outro bem diferente. Esse segundo é um lead quente.
 
 Quando isso acontece, o Notifiquei te avisa. Aí você entra na conversa no momento certo, com o cliente já aquecido, pra fechar. Você não fica caçando quem tá pronto pra comprar no meio de cinquenta conversas paradas. O agente aponta pra você.
 
@@ -60,7 +60,7 @@ Ou seja, o jeito de deixar o agente com a sua cara agora é preenchendo bem essa
 
 Vale fazer a conta pra ver o tamanho do problema. Digamos que entre DM e comentário cheguem 60 mensagens por dia, quase todas com as mesmas perguntas. Achar a conversa, lembrar do contexto e responder direito leva uns 3 minutos em cada uma. São 180 minutos por dia. Três horas repetindo o que você já sabe de cor, todo santo dia.
 
-E o tempo é só metade do prejuízo. Dessas 60, sendo realista, umas 15 chegam de madrugada ou no meio do seu corre e esfriam antes de você responder. Se seu produto custa R$ 150 e um terço dessa gente fecharia com resposta na hora, são 5 vendas por dia indo embora. R$ 750 por dia. No mês, passa de R$ 20 mil que sumiram só porque a resposta demorou.
+E o tempo é só metade do prejuízo. Dessas 60, sendo realista, umas 15 chegam de madrugada ou no meio do seu corre e esfriam antes de você responder. Se seu produto custa R$ 150 e um terço dessa gente fecharia com resposta na hora, são 5 vendas por dia indo embora. R$ 750 por dia. No mês, passa de R$ 20 mil que sumiram [só porque a resposta demorou](/blog/quantas-vendas-voce-perde-demorando-responder-dm).
 
 Um agente de IA respondendo na hora, na sua voz, mata os dois problemas de uma vez. Você recupera as três horas e para de perder venda por demora. E quando o lead esquenta, você entra pra fechar, que é onde você faz falta de verdade.
 
