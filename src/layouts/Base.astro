@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import PostHog from '../components/posthog.astro';
+import Gtm from '../components/Gtm.astro';
 
 interface Props {
   title?: string;
@@ -45,6 +46,7 @@ const websiteLd = {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <Gtm />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
@@ -84,6 +86,9 @@ const websiteLd = {
   <PostHog />
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-577WSF49" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="grain" aria-hidden="true"></div>
   <slot />
 
