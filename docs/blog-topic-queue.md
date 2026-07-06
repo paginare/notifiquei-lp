@@ -6,43 +6,40 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-1. **Como disparar mensagem durante a live do Instagram** · slug: `disparar-mensagem-na-live-do-instagram` · Estratégia · capa B
-   Fatos: dá pra automatizar a partir de quem comenta na live. Ele não responde dentro da live, responde no direct de quem comentou. Roda pela API oficial da Meta.
-
-2. **Como integrar o Notifiquei com seu checkout e rastrear vendas** · slug: `integrar-notifiquei-com-checkout-kiwify-hotmart` · Estratégia · capa G
+1. **Como integrar o Notifiquei com seu checkout e rastrear vendas** · slug: `integrar-notifiquei-com-checkout-kiwify-hotmart` · Estratégia · capa G
    Fatos: integra com Kiwify, Hotmart, Cakto e Greenn. Está em configuração/lançamento (falar disso com honestidade, não como pronto), com um dashboard que acompanha do contato até a venda. Já existe webhook em perguntas/respostas e push por intenção de compra.
 
-3. **Vale a pena automatizar com poucos seguidores?** · slug: `automacao-de-instagram-com-poucos-seguidores` · Estratégia · capa A
+2. **Vale a pena automatizar com poucos seguidores?** · slug: `automacao-de-instagram-com-poucos-seguidores` · Estratégia · capa A
    Fatos: funciona com conta de qualquer tamanho. Quem responde rápido vende mais, tendo 500 ou 50 mil seguidores. Conta menor costuma sentir o resultado primeiro.
 
-4. **Como o Notifiquei detecta intenção de compra e avisa quando o lead está quente** · slug: `deteccao-de-intencao-de-compra-no-instagram` · Estratégia · capa H
+3. **Como o Notifiquei detecta intenção de compra e avisa quando o lead está quente** · slug: `deteccao-de-intencao-de-compra-no-instagram` · Estratégia · capa H
    Fatos: o agente de IA (add-on) detecta intenção de compra em alta, média e baixa, e avisa quando o lead está quente pra você fechar na hora certa. Funciona com base de conhecimento + memória da conversa. Roda pela API oficial.
 
-5. **O que dá pra agendar no Notifiquei: Reels, posts, carrossel e stories** · slug: `agendar-posts-reels-e-stories-no-instagram` · Estratégia · capa F
+4. **O que dá pra agendar no Notifiquei: Reels, posts, carrossel e stories** · slug: `agendar-posts-reels-e-stories-no-instagram` · Estratégia · capa F
    Fatos: agenda Reels, posts, carrossel e stories. Áudio em Reels (precisa conectar a conta de negócio) e música no carrossel são próximas etapas. Link no story está em estudo, porque depende da Meta.
 
-6. **Como responder comentários do Instagram automaticamente sem parecer robô** · slug: `responder-comentarios-do-instagram-automaticamente` · Copywriting · capa B
+5. **Como responder comentários do Instagram automaticamente sem parecer robô** · slug: `responder-comentarios-do-instagram-automaticamente` · Copywriting · capa B
    Fatos: dá pra auto-responder o comentário em público e ainda puxar a pessoa pro direct, tudo na voz do criador. Dá pra ocultar comentário de spam ou ataque. Roda pela API oficial.
 
-7. **Migrei da versão antiga do Notifiquei: o que muda e como revincular** · slug: `migrar-da-versao-antiga-do-notifiquei` · Estratégia · capa J
+6. **Migrei da versão antiga do Notifiquei: o que muda e como revincular** · slug: `migrar-da-versao-antiga-do-notifiquei` · Estratégia · capa J
    Fatos: as contas e a assinatura continuam valendo, mas é preciso revincular os Instagrams (a Meta exige um novo vínculo). A versão antiga foi descontinuada. Os tokens agora se atualizam sem forçar reconexão.
 
-8. **E-commerce no Instagram: como automatizar o atendimento e vender mais** · slug: `automacao-de-instagram-para-e-commerce` · Estratégia · capa G
+7. **E-commerce no Instagram: como automatizar o atendimento e vender mais** · slug: `automacao-de-instagram-para-e-commerce` · Estratégia · capa G
    Fatos: funciona pra e-commerce (moda, cosméticos, suplementos, produtos físicos). Tem template pronto. O fluxo ideal muda um pouco. Responde DM e comentário pela API oficial.
 
-9. **Etiquetas e segmentação: como organizar seus contatos do Instagram** · slug: `etiquetas-e-segmentacao-no-instagram` · Estratégia · capa H
+8. **Etiquetas e segmentação: como organizar seus contatos do Instagram** · slug: `etiquetas-e-segmentacao-no-instagram` · Estratégia · capa H
    Fatos: dá pra criar etiquetas (lead, cliente, quente, frio), ver contatos com perfil e filtros, e exportar CSV. Dá pra disparar mensagem diferente pra cada etiqueta, e a automação pode etiquetar sozinha conforme a pessoa reage.
 
-10. **Campanhas no Instagram: como reativar sua base com mensagem em massa** · slug: `campanhas-de-mensagem-em-massa-no-instagram` · Estratégia · capa C
+9. **Campanhas no Instagram: como reativar sua base com mensagem em massa** · slug: `campanhas-de-mensagem-em-massa-no-instagram` · Estratégia · capa C
     Fatos: dá pra fazer campanha (envio em massa) segmentada por etiqueta, com agendamento e relatório. Funciona pra quem já interagiu, dentro das regras da Meta. Roda pela API oficial.
 
-11. **Webhook e integrações: conectando o Notifiquei às suas ferramentas** · slug: `webhook-e-integracoes-do-notifiquei` · Estratégia · capa J
+10. **Webhook e integrações: conectando o Notifiquei às suas ferramentas** · slug: `webhook-e-integracoes-do-notifiquei` · Estratégia · capa J
     Fatos: já existe webhook em perguntas/respostas e push por intenção de compra. Integra com n8n, FunilOnline e Responda.me. Dá pra montar alertas (ex: no Slack) e automações externas.
 
-12. **Quebra-gelos no direct: atalhos que puxam a conversa pra venda** · slug: `quebra-gelos-no-direct-do-instagram` · Copywriting · capa C
+11. **Quebra-gelos no direct: atalhos que puxam a conversa pra venda** · slug: `quebra-gelos-no-direct-do-instagram` · Copywriting · capa C
     Fatos: dá pra criar até 4 quebra-gelos (botões de atalho no menu do direct) que já puxam a conversa pro lado da venda. A pessoa toca e entra num fluxo. Roda pela API oficial.
 
-13. **Caixa de entrada unificada: como não perder DM no Instagram** · slug: `caixa-de-entrada-unificada-do-instagram` · Estratégia · capa D
+12. **Caixa de entrada unificada: como não perder DM no Instagram** · slug: `caixa-de-entrada-unificada-do-instagram` · Estratégia · capa D
     Fatos: o Inbox reúne todas as conversas de DM num lugar só, com histórico e busca. Dá pra pausar e retomar a IA no meio da conversa. O atendimento que precisa de você aparece organizado, sem caçar conversa perdida.
 
 ---

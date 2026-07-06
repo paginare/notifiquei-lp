@@ -20,3 +20,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | follow-up-automatico-no-direct-do-instagram | Follow-up automático no direct do Instagram | Estratégia | follow-up, janela de 7 dias, lembrete |
 | precisa-de-conta-profissional-no-instagram | Precisa de conta profissional no Instagram pra automatizar? | Estratégia | conta profissional, conta criador, API oficial Meta, pré-requisito automação |
 | limites-de-envio-da-api-do-instagram | Quantas mensagens por hora a API do Instagram deixa enviar | Estratégia | limite de DMs, API Meta, 200 mensagens por hora, envio sustentável |
+| disparar-mensagem-na-live-do-instagram | Como disparar mensagem durante a live do Instagram | Estratégia | live, comentário live, DM automático na live, API oficial Meta |
