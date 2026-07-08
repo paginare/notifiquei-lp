@@ -21,3 +21,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | precisa-de-conta-profissional-no-instagram | Precisa de conta profissional no Instagram pra automatizar? | Estratégia | conta profissional, conta criador, API oficial Meta, pré-requisito automação |
 | limites-de-envio-da-api-do-instagram | Quantas mensagens por hora a API do Instagram deixa enviar | Estratégia | limite de DMs, API Meta, 200 mensagens por hora, envio sustentável |
 | disparar-mensagem-na-live-do-instagram | Como disparar mensagem durante a live do Instagram | Estratégia | live, comentário live, DM automático na live, API oficial Meta |
+| integrar-notifiquei-com-checkout-kiwify-hotmart | Como integrar o Notifiquei com seu checkout e rastrear vendas | Estratégia | integração checkout, Kiwify, Hotmart, Cakto, Greenn, rastrear vendas, webhook |
