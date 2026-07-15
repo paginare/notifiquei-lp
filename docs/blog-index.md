@@ -24,3 +24,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | integrar-notifiquei-com-checkout-kiwify-hotmart | Como integrar o Notifiquei com seu checkout e rastrear vendas | Estratégia | integração checkout, Kiwify, Hotmart, Cakto, Greenn, rastrear vendas, webhook |
 | automacao-de-instagram-com-poucos-seguidores | Vale a pena automatizar com poucos seguidores? | Estratégia | automação conta pequena, velocidade de resposta, qualquer tamanho de conta |
 | deteccao-de-intencao-de-compra-no-instagram | Como detectar intenção de compra no direct antes de perder o lead | Estratégia | intenção de compra, lead quente, agente de IA, base de conhecimento, memória da conversa |
+| agendar-posts-reels-e-stories-no-instagram | Agendamento no Notifiquei: Reels, posts, carrossel e stories | Estratégia | agendamento, Reels, posts, carrossel, stories, API oficial Meta |
