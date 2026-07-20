@@ -6,10 +6,7 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-1. **Migrei da versão antiga do Notifiquei: o que muda e como revincular** · slug: `migrar-da-versao-antiga-do-notifiquei` · Estratégia · capa J
-   Fatos: as contas e a assinatura continuam valendo, mas é preciso revincular os Instagrams (a Meta exige um novo vínculo). A versão antiga foi descontinuada. Os tokens agora se atualizam sem forçar reconexão.
-
-2. **E-commerce no Instagram: como automatizar o atendimento e vender mais** · slug: `automacao-de-instagram-para-e-commerce` · Estratégia · capa G
+1. **E-commerce no Instagram: como automatizar o atendimento e vender mais** · slug: `automacao-de-instagram-para-e-commerce` · Estratégia · capa G
    Fatos: funciona pra e-commerce (moda, cosméticos, suplementos, produtos físicos). Tem template pronto. O fluxo ideal muda um pouco. Responde DM e comentário pela API oficial.
 
 3. **Etiquetas e segmentação: como organizar seus contatos do Instagram** · slug: `etiquetas-e-segmentacao-no-instagram` · Estratégia · capa H
