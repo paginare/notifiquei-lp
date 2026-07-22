@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-1. **E-commerce no Instagram: como automatizar o atendimento e vender mais** · slug: `automacao-de-instagram-para-e-commerce` · Estratégia · capa G
-   Fatos: funciona pra e-commerce (moda, cosméticos, suplementos, produtos físicos). Tem template pronto. O fluxo ideal muda um pouco. Responde DM e comentário pela API oficial.
-
 3. **Etiquetas e segmentação: como organizar seus contatos do Instagram** · slug: `etiquetas-e-segmentacao-no-instagram` · Estratégia · capa H
    Fatos: dá pra criar etiquetas (lead, cliente, quente, frio), ver contatos com perfil e filtros, e exportar CSV. Dá pra disparar mensagem diferente pra cada etiqueta, e a automação pode etiquetar sozinha conforme a pessoa reage.
 
