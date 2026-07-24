@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-3. **Etiquetas e segmentação: como organizar seus contatos do Instagram** · slug: `etiquetas-e-segmentacao-no-instagram` · Estratégia · capa H
-   Fatos: dá pra criar etiquetas (lead, cliente, quente, frio), ver contatos com perfil e filtros, e exportar CSV. Dá pra disparar mensagem diferente pra cada etiqueta, e a automação pode etiquetar sozinha conforme a pessoa reage.
-
 4. **Campanhas no Instagram: como reativar sua base com mensagem em massa** · slug: `campanhas-de-mensagem-em-massa-no-instagram` · Estratégia · capa C
    Fatos: dá pra fazer campanha (envio em massa) segmentada por etiqueta, com agendamento e relatório. Funciona pra quem já interagiu, dentro das regras da Meta. Roda pela API oficial.
 

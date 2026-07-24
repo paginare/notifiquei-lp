@@ -28,3 +28,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | responder-comentarios-do-instagram-automaticamente | Como responder comentários do Instagram automaticamente sem parecer robô | Copywriting | resposta automática comentário, puxar lead pro direct, ocultar spam, API oficial Meta |
 | migrar-da-versao-antiga-do-notifiquei | Migrei da versão antiga do Notifiquei: o que muda e como revincular | Estratégia | migração, revincular Instagram, tokens automáticos, versão antiga descontinuada |
 | automacao-de-instagram-para-e-commerce | E-commerce no Instagram: como automatizar o atendimento e vender mais | Estratégia | e-commerce, moda, cosméticos, suplementos, produto físico, automação DM, template |
+| etiquetas-e-segmentacao-no-instagram | Etiquetas e segmentação: como organizar seus contatos do Instagram | Estratégia | etiquetas, segmentação de leads, organizar contatos, DM segmentado, base de contatos |
