@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-4. **Campanhas no Instagram: como reativar sua base com mensagem em massa** · slug: `campanhas-de-mensagem-em-massa-no-instagram` · Estratégia · capa C
-   Fatos: dá pra fazer campanha (envio em massa) segmentada por etiqueta, com agendamento e relatório. Funciona pra quem já interagiu, dentro das regras da Meta. Roda pela API oficial.
-
 5. **Webhook e integrações: conectando o Notifiquei às suas ferramentas** · slug: `webhook-e-integracoes-do-notifiquei` · Estratégia · capa J
    Fatos: já existe webhook em perguntas/respostas e push por intenção de compra. Integra com n8n, FunilOnline e Responda.me. Dá pra montar alertas (ex: no Slack) e automações externas.
 
