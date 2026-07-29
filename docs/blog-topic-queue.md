@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-5. **Webhook e integrações: conectando o Notifiquei às suas ferramentas** · slug: `webhook-e-integracoes-do-notifiquei` · Estratégia · capa J
-   Fatos: já existe webhook em perguntas/respostas e push por intenção de compra. Integra com n8n, FunilOnline e Responda.me. Dá pra montar alertas (ex: no Slack) e automações externas.
-
 6. **Quebra-gelos no direct: atalhos que puxam a conversa pra venda** · slug: `quebra-gelos-no-direct-do-instagram` · Copywriting · capa C
    Fatos: dá pra criar até 4 quebra-gelos (botões de atalho no menu do direct) que já puxam a conversa pro lado da venda. A pessoa toca e entra num fluxo. Roda pela API oficial.
 
