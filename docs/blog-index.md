@@ -31,3 +31,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | etiquetas-e-segmentacao-no-instagram | Etiquetas e segmentação: como organizar seus contatos do Instagram | Estratégia | etiquetas, segmentação de leads, organizar contatos, DM segmentado, base de contatos |
 | campanhas-de-mensagem-em-massa-no-instagram | Campanhas no Instagram: como reativar sua base com mensagem em massa | Estratégia | campanha, envio em massa, disparo segmentado, reativar base, agendamento, relatório |
 | webhook-e-integracoes-do-notifiquei | Webhook e integrações: conectando o Notifiquei às suas ferramentas | Estratégia | webhook, integração, n8n, FunilOnline, Responda.me, alerta intenção de compra |
+| quebra-gelos-no-direct-do-instagram | Quebra-gelos no direct: atalhos que puxam a conversa pra venda | Copywriting | quebra-gelo, botões de atalho direct, fluxo de vendas, início de conversa automático |

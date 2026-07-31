@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-6. **Quebra-gelos no direct: atalhos que puxam a conversa pra venda** · slug: `quebra-gelos-no-direct-do-instagram` · Copywriting · capa C
-   Fatos: dá pra criar até 4 quebra-gelos (botões de atalho no menu do direct) que já puxam a conversa pro lado da venda. A pessoa toca e entra num fluxo. Roda pela API oficial.
-
 7. **Caixa de entrada unificada: como não perder DM no Instagram** · slug: `caixa-de-entrada-unificada-do-instagram` · Estratégia · capa D
    Fatos: o Inbox reúne todas as conversas de DM num lugar só, com histórico e busca. Dá pra pausar e retomar a IA no meio da conversa. O atendimento que precisa de você aparece organizado, sem caçar conversa perdida.
 
