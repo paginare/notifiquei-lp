@@ -6,9 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-7. **Caixa de entrada unificada: como não perder DM no Instagram** · slug: `caixa-de-entrada-unificada-do-instagram` · Estratégia · capa D
-   Fatos: o Inbox reúne todas as conversas de DM num lugar só, com histórico e busca. Dá pra pausar e retomar a IA no meio da conversa. O atendimento que precisa de você aparece organizado, sem caçar conversa perdida.
-
 ---
 
 ## Pool de capas verificadas (use SÓ estas — já foram conferidas visualmente)
