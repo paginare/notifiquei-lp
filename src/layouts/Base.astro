@@ -95,11 +95,22 @@ const websiteLd = {
   <script>
     // Encaminha params de tracking da URL de ENTRADA (afiliado/anúncio) para os CTAs
     // de checkout Cakto e signup, sem pisar no que a pessoa já usa. Se a entrada traz
-    // um param (ex.: src de afiliado), ele VENCE o nosso fallback (src=home/v2/v3).
+    // um param (ex.: affiliate/src de afiliado), ele VENCE o nosso fallback (src=home/v2/v3).
     (() => {
-      const TRACK_KEYS = ["src", "sck", "xcode", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "ttclid", "gad_source"];
+      const TRACK_KEYS = ["affiliate", "src", "sck", "xcode", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "ttclid", "gad_source"];
       const incoming = new URLSearchParams(window.location.search);
-      const carry = TRACK_KEYS.filter((k) => incoming.get(k));
+      let carry = TRACK_KEYS.filter((k) => incoming.get(k));
+      // Site é MPA: a query não acompanha a navegação interna. Guarda os params da
+      // entrada na sessão e restaura em páginas sem query, pra atribuição não se perder.
+      try {
+        if (carry.length) {
+          sessionStorage.setItem("nf_track", JSON.stringify(Object.fromEntries(carry.map((k) => [k, incoming.get(k)]))));
+        } else {
+          const saved = JSON.parse(sessionStorage.getItem("nf_track") || "{}");
+          TRACK_KEYS.forEach((k) => { if (saved[k]) incoming.set(k, String(saved[k])); });
+          carry = TRACK_KEYS.filter((k) => incoming.get(k));
+        }
+      } catch {}
       if (!carry.length) return;
       const merge = (raw: string) => {
         try {
