@@ -6,23 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-## Tema 1 — Fluxo de boas-vindas no direct do Instagram
-
-**Slug:** fluxo-de-boas-vindas-no-direct-do-instagram
-**Categoria:** Estratégia
-**Capa:** F
-
-**Fatos travados:**
-- Quando alguém envia a primeira mensagem pra um perfil, a conversa abre e uma automação pode ser disparada imediatamente pela API oficial da Meta
-- No Notifiquei, dá pra configurar uma mensagem automática de boas-vindas pra qualquer contato que inicia conversa no direct, sem ter comentado em nenhum post específico
-- O primeiro DM pode incluir botões de atalho (quebra-gelos) pra guiar o lead sem precisar digitar livremente
-- Sem automação, muitos primeiros contatos esfriam enquanto aguardam resposta manual
-- A meta API permite disparar o DM de boas-vindas mesmo pra quem não segue o perfil, desde que tenha iniciado a conversa
-
-**Ângulo:** Mostrar como configurar um fluxo de primeiro contato que já qualifica e direciona o lead antes de qualquer interação humana, com exemplo de estrutura de fluxo.
-
----
-
 ## Tema 2 — Palavras-chave nos comentários: como configurar os gatilhos certos
 
 **Slug:** palavras-chave-em-comentarios-para-acionar-automacao
