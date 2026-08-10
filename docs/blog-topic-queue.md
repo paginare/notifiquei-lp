@@ -6,23 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-## Tema 2 — Palavras-chave nos comentários: como configurar os gatilhos certos
-
-**Slug:** palavras-chave-em-comentarios-para-acionar-automacao
-**Categoria:** Estratégia
-**Capa:** A
-
-**Fatos travados:**
-- No Notifiquei, é possível configurar palavras-chave específicas que acionam o DM automaticamente quando aparecem num comentário (ex: "quero", "preço", "link", "info")
-- Dá pra ter fluxos diferentes para palavras-chave diferentes no mesmo post
-- A automação só dispara quando a API da Meta libera a janela de contato, o que exige que o usuário tenha comentado no post de um perfil autorizado
-- Se a mesma pessoa mandar a mesma palavra-chave novamente, o limite de 24 horas evita que receba o mesmo DM de novo
-- Configurar palavras muito genéricas (ex: "oi") pode acionar DMs em comentários que não têm intenção de compra
-
-**Ângulo:** Guia prático de como escolher e configurar as palavras-chave certas, com exemplos de palavras que funcionam e armadilhas comuns a evitar.
-
----
-
 ## Tema 3 — O que escrever no primeiro DM automático (script que vende sem forçar)
 
 **Slug:** script-do-primeiro-dm-automatico-no-instagram
