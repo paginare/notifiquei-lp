@@ -6,23 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-## Tema 3 — O que escrever no primeiro DM automático (script que vende sem forçar)
-
-**Slug:** script-do-primeiro-dm-automatico-no-instagram
-**Categoria:** Copywriting
-**Capa:** D
-
-**Fatos travados:**
-- O texto do primeiro DM automático é configurado pelo usuário dentro do Notifiquei e pode usar variáveis como o nome do contato
-- Mensagens longas no primeiro contato costumam ter baixa taxa de resposta
-- O primeiro DM pode incluir botões de atalho (quebra-gelos) com opções pré-definidas, reduzindo a necessidade de o lead escrever livremente
-- A API oficial da Meta garante que a mensagem chegue imediatamente após o comentário, independente do volume
-- O tom da mensagem é definido inteiramente por quem configurou o fluxo, não por template padrão do sistema
-
-**Ângulo:** Post de copywriting com estrutura de script curto para o primeiro DM: como abrir sem pressão, como usar botões para conduzir, e o que evitar no texto.
-
----
-
 ## Tema 4 — Black Friday no Instagram: preparar automações antes do pico
 
 **Slug:** black-friday-no-instagram-automacao

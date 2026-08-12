@@ -35,3 +35,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | caixa-de-entrada-unificada-do-instagram | Caixa de entrada unificada: como não perder DM no Instagram | Estratégia | inbox unificado, caixa de entrada, histórico de DM, pausar IA, atendimento organizado |
 | fluxo-de-boas-vindas-no-direct-do-instagram | Fluxo de boas-vindas no direct do Instagram: como montar | Estratégia | boas-vindas, primeiro DM automático, fluxo de entrada, qualificação inicial, API oficial Meta |
 | palavras-chave-em-comentarios-para-acionar-automacao | Palavras-chave nos comentários: como configurar os gatilhos certos | Estratégia | palavras-chave, gatilho comentário, automação DM, intenção de compra |
+| script-do-primeiro-dm-automatico-no-instagram | O que escrever no primeiro DM automático do Instagram | Copywriting | script DM, primeiro contato, botões de atalho, variável de nome, copywriting automação |
