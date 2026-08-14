@@ -4,8 +4,8 @@ Este arquivo é auto-suficiente: contém tudo que o agente precisa pra escrever 
 
 ## Passo a passo do agente
 
-1. Ler `docs/blog-topic-queue.md` (fila de temas), `docs/blog-index.md` (posts já publicados) e este guia.
-2. Pegar o **primeiro tema** da fila que ainda não foi publicado (confira no índice pra não repetir).
+1. Ler `docs/seo/search-console-2026-08.md` (dados reais de busca), `docs/blog-topic-queue.md` (fila de temas), `docs/blog-index.md` (posts já publicados) e este guia.
+2. Pegar o **primeiro tema** da fila que ainda não foi publicado (confira no índice pra não repetir). Os temas marcados **[demanda confirmada]** vêm de consulta real no Search Console e ficam no topo de propósito: sempre saem antes dos demais.
 3. Escrever o arquivo `src/content/blog/<slug>.md` seguindo o formato abaixo, usando SÓ os fatos que o tema traz na fila (não inventar número, preço nem recurso).
 4. Rodar `npm install` e `npm run build`. O build tem que passar (ele valida o frontmatter). Se falhar, corrigir o frontmatter e rodar de novo. **Não publicar build quebrado.**
 5. Conferir no HTML gerado: `grep -c '"@type":"BlogPosting"' dist/blog/<slug>.html` e o mesmo pra `FAQPage` e `class="tldr"` (cada um = 1).
@@ -36,6 +36,18 @@ faq:
 
 **Capa:** use SÓ uma URL do pool de capas verificadas listado no fim de `docs/blog-topic-queue.md` (ou a capa sugerida no próprio tema). NUNCA escolher um ID aleatório do Unsplash — já deu problema (caiu logo do Twitter). Sempre `?q=80&w=1200&auto=format&fit=crop`.
 
+### `title` e `description`: é aí que se ganha ou se perde o clique
+
+O CTR do site pra busca que não é de marca está em 1%. Tem post com 626 impressões e 1,28% de clique. Parte disso é posição (média 7,65 quer dizer que ele cai bastante na página 2), mas a outra parte é título que não convence quem viu. O título é o pedaço barato de consertar, então trate ele como parte do trabalho, não como enfeite. Regras:
+
+- **A consulta que o tema persegue tem que estar no `title`**, o mais perto possível do começo. Se o tema traz um campo `Consulta-alvo`, ela entra literal.
+- **Até 60 caracteres.** Acima disso o Google corta e a promessa some.
+- **Prometa a resposta, não o assunto.** "Automação no Instagram: um guia" descreve o tema; "Automação no Instagram: o que dá pra automatizar sem arriscar a conta" entrega o resultado.
+- **Um diferencial concreto quando couber**: sem planilha, em 5 minutos, sem risco de banimento, sem pagar por seguidor.
+- **`description` de 140-160 caracteres**, com a consulta e uma razão pra clicar. Ela aparece na SERP, então escreva pra convencer, não pra resumir.
+- **Sem clickbait.** O texto entrega o que o título prometeu, senão o clique sobe e a posição cai depois.
+- Em `keywords`, use os termos como as pessoas digitam de verdade (estão em `docs/seo/dados/Consultas.csv`), incluindo a versão sem acento quando ela tiver impressão própria.
+
 ## Corpo (markdown)
 
 1. **Abertura (sem heading):** uma cena concreta que o leitor reconhece. 2-3 parágrafos. Nada de "neste artigo vamos ver".
@@ -56,6 +68,9 @@ faq:
 
 ## Checklist antes do push
 
+- [ ] `docs/seo/search-console-2026-08.md` lido; tema `[demanda confirmada]` foi priorizado se havia algum na fila.
+- [ ] `Consulta-alvo` do tema aparece literal no `title`, perto do começo, com até 60 caracteres.
+- [ ] `description` de 140-160 caracteres, com a consulta e uma razão pra clicar.
 - [ ] Frontmatter completo no schema exato; `cover` do pool verificado; `date` = hoje.
 - [ ] Abre com cena; ao menos 1 conta de receita; produto citado com naturalidade + CTA.
 - [ ] 2 links internos contextuais no corpo.
