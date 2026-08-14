@@ -1,66 +1,68 @@
 ---
-title: "Agendamento no Notifiquei: Reels, posts, carrossel e stories"
-description: "Entenda o que dá pra agendar no Notifiquei hoje: Reels, posts, carrossel e stories, e o que ainda está por vir."
+title: "Agendar posts, Reels e stories no Instagram: o que usar hoje"
+description: "O Notifiquei não agenda publicação — a permissão da Meta não foi aprovada. Veja com o que agendar de graça e como ligar isso às suas automações."
 date: 2026-07-15
+updated: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Agendamento", "Reels"]
 keywords: ["agendar posts instagram", "agendamento reels instagram", "agendar stories instagram", "Notifiquei agendamento", "agendar carrossel instagram"]
-tldr: "No Notifiquei, você já agenda Reels, posts, carrossel e stories. Áudio em Reels e música no carrossel estão chegando nas próximas etapas; link no story ainda depende de liberação da Meta."
+tldr: "O Notifiquei não agenda publicação hoje. A permissão de publicação da Meta não foi aprovada e, sem ela, quase metade dos agendamentos falhava — então a área saiu do ar. Para agendar, o caminho é o Planner do Meta Business Suite, que é gratuito e oficial. O Notifiquei cuida da parte seguinte: responder quem comenta e manda DM no post que você publicou."
 faq:
-  - q: "Dá pra agendar stories no Notifiquei?"
-    a: "Sim, o agendamento de stories já está disponível. Você sobe a mídia, define o horário e o story vai ao ar sozinho. O link no story ainda não está disponível porque depende de uma liberação específica da Meta."
-  - q: "Preciso de conta de negócio pra agendar Reels com áudio?"
-    a: "Sim. O recurso de áudio em Reels via Notifiquei vai funcionar com conta de negócio conectada. Esse recurso ainda está nas próximas etapas da plataforma e não está disponível no momento."
-  - q: "Quando chegam áudio em Reels e música no carrossel?"
-    a: "São as próximas funcionalidades no roadmap do Notifiquei. A data exata ainda não foi divulgada, mas ambas estão confirmadas como próximas etapas."
+  - q: "O Notifiquei agenda Reels, posts, carrossel e stories?"
+    a: "Não. Chegou a existir, mas dependia de uma permissão de publicação da Meta que não foi aprovada. Sem ela, quase metade das publicações agendadas falhava — e falhar em silêncio no horário de pico é pior do que não oferecer. A área saiu do produto e volta se a permissão sair."
+  - q: "Com o que eu agendo meus posts então?"
+    a: "Com o Planner do Meta Business Suite, que é gratuito, é da própria Meta e agenda feed, Reels e stories. Como é a ferramenta nativa, ela tem acesso a coisas que ferramentas de terceiros não têm, como link no story e a biblioteca de áudios completa."
+  - q: "Se eu agendar por fora, as automações do Notifiquei ainda funcionam nesse post?"
+    a: "Funcionam normalmente. A automação escuta os comentários da sua conta, não importa por onde o post foi publicado. Você agenda no Business Suite e configura a automação no Notifiquei — as duas coisas convivem sem conflito."
 ---
 
 Você tem um Reel gravado, editado e pronto pra postar às 19h de sexta, o horário em que seu público costuma aparecer. Mas às 19h você está em reunião, ou com a família, ou simplesmente longe do celular. Então publica às 17h e o alcance cai pela metade, ou publica às 21h e a maioria já passou pela tela.
 
-O agendamento existe pra resolver isso. No Notifiquei, você define data, hora e legenda com antecedência, e o conteúdo vai ao ar na hora certa, mesmo que você não esteja online naquele momento.
+Agendar resolve isso. Mas vale começar pela parte que interessa a quem chegou aqui procurando o Notifiquei: **ele não agenda publicação.**
 
-Aqui está o que já funciona hoje, o que está chegando nas próximas etapas e o que ainda depende de uma liberação da Meta.
+## por que o agendamento saiu do produto
 
-## o que já dá pra agendar
+Publicar no Instagram por fora do aplicativo exige uma permissão específica da Meta, concedida caso a caso. O Notifiquei pediu essa permissão duas vezes e foi recusado nas duas.
 
-Quatro tipos de conteúdo já estão disponíveis para agendamento no Notifiquei:
+Sem ela, o agendamento até existia na tela, mas a publicação falhava com frequência — quase metade dos posts agendados não ia ao ar. E falhar em silêncio é o pior tipo de falha: você programou o Reel pro horário de pico, foi viver a sua vida confiando que estava resolvido, e descobriu no dia seguinte que não saiu nada.
 
-- Reels
-- Posts de imagem
-- Carrossel
-- Stories
+Por isso a área foi desligada em vez de mantida com um aviso de "instável". Prometer o que a plataforma não deixa entregar custa mais caro do que assumir que não faz. Se a permissão for aprovada, o recurso volta.
 
-Você programa com antecedência, escolhe o horário e a publicação sai sozinha. Sem notificação, sem precisar lembrar de abrir o app.
+## o que usar pra agendar hoje
 
-Pra ter uma ideia do impacto: uma conta com 2.000 seguidores que agenda um Reel por semana no horário de pico e três stories por semana consegue preparar duas semanas de conteúdo em uma única sessão. Se cada Reel gera, em média, três contatos no direct e cada contato fecha R$ 120, são R$ 720 encaminhados antes de você precisar estar on uma única vez.
+A recomendação honesta é o **Planner do Meta Business Suite**. É gratuito, é da própria Meta, e agenda post de feed, carrossel, Reels e stories.
 
-## agendamento de stories: o que funciona e o que ainda não
+Por ser a ferramenta nativa, ela tem acesso a coisas que nenhuma ferramenta de terceiros consegue oferecer de forma confiável:
 
-Stories já funcionam bem. Você sobe a imagem ou o vídeo, define quando vai ao ar e o Notifiquei publica pelo horário programado.
+- **Link no story**, que depende de permissão que a Meta não abre pra fora.
+- **A biblioteca de áudios completa**, incluindo faixas comerciais em Reels.
+- **Publicação que não falha** por questão de permissão, porque é a casa da Meta.
 
-O que ainda não está disponível é o link no story. Esse recurso depende de uma liberação específica da API da Meta, e o Notifiquei acompanha de perto. Quando a Meta liberar, a funcionalidade entra na plataforma. Por enquanto, se o story precisa de link, ele vai precisar ser publicado manualmente.
+Dá pra acessar pelo computador ou pelo aplicativo do Business Suite no celular. Se você já tem conta profissional — e [precisa ter uma pra automatizar](/blog/precisa-de-conta-profissional-no-instagram) —, o Planner já está disponível pra você sem custo nenhum.
 
-Vale saber que [automatizar a resposta a stories no Instagram](/blog/automatizar-resposta-a-stories-no-instagram) já é possível, separado do agendamento. Você agenda o story e ainda configura um fluxo automático pra quem responder a ele, sem precisar ficar na cola do direct.
+## o que o notifiquei faz depois que o post sai
 
-## áudio em Reels e música no carrossel
+Aqui é onde as duas coisas se encontram, e por que agendar por fora não atrapalha em nada.
 
-Os dois recursos estão nas próximas etapas do Notifiquei e ainda não estão disponíveis.
+A automação do Notifiquei não depende de ter publicado o post. Ela escuta o que acontece **depois**: os comentários que chegam, as respostas de story, as DMs. Não importa se aquele Reel foi publicado pelo aplicativo, pelo Business Suite ou agendado por outra ferramenta — quando alguém comenta a palavra-chave, a automação dispara igual.
 
-Áudio em Reels vai depender de conta de negócio conectada. Se você ainda não conectou ou está usando uma conta de criador, vale entender [o que muda entre conta de criador e conta de negócio e como isso afeta a automação no Instagram](/blog/precisa-de-conta-profissional-no-instagram) antes que o recurso chegue. Essa diferença impacta o que você vai conseguir usar assim que estiver disponível.
+Então o fluxo de trabalho fica assim:
 
-Música no carrossel também está a caminho.
+1. **Agende no Business Suite** o Reel pra sexta às 19h.
+2. **Configure a automação no Notifiquei** pra responder quem comentar "QUERO" naquele post.
+3. **Sexta às 19h** o Reel sai, os comentários chegam, e cada pessoa recebe o link no direct em segundos — com você em reunião, no jantar ou dormindo.
 
-Enquanto isso, dá pra agendar posts de imagem, carrossel e stories sem restrições. Reels sem áudio também funcionam direto.
+O post sobre [como um comentário no Instagram vira venda](/blog/como-um-comentario-no-instagram-vira-venda) mostra esse segundo passo em detalhe.
 
-## por que agendar pela API oficial faz diferença
+## a parte que realmente muda o resultado
 
-O agendamento no Notifiquei usa a API oficial da Meta, o que significa que o conteúdo publicado entra no mesmo ecossistema das suas automações.
+Vale uma observação sobre onde está o gargalo de verdade.
 
-Um Reel agendado que recebe comentários pode disparar um fluxo automático pro direct. Um story publicado pode iniciar uma sequência de resposta. Tudo conectado, porque está tudo dentro da mesma estrutura.
+Agendar economiza o seu tempo de publicação — um trabalho que leva dois minutos por post. Responder economiza o seu tempo de atendimento, que é onde vão as horas: 40 DMs por dia com o mesmo "quanto custa?" consomem mais de uma hora diária, todo dia.
 
-Quando você usa um app de agendamento separado, esse elo se quebra. As publicações saem, mas as automações ficam sem visibilidade sobre o que foi publicado e quando.
+E há uma assimetria: um post publicado 40 minutos fora do horário ideal perde algum alcance. Uma DM respondida 4 horas depois perde a venda, porque [a janela de compra fecha rápido](/blog/quantas-vendas-voce-perde-demorando-responder-dm).
 
----
+Se você precisa escolher por onde começar a automatizar, comece pela conversa. O agendamento é conveniência; a resposta é receita.
 
-Quer testar o agendamento junto com as automações de DM e comentário? Acesse https://notifiquei.com.br e conecte sua conta.
+Pra montar a parte que responde, acesse [https://notifiquei.com.br](https://notifiquei.com.br) e conecte sua conta.

@@ -1,59 +1,68 @@
 ---
 title: "Webhook e integrações: conectando o Notifiquei às suas ferramentas"
-description: "Veja como usar os webhooks do Notifiquei para conectar com n8n, FunilOnline e Responda.me e criar alertas em tempo real de intenção de compra."
+description: "Veja como usar o nó de webhook do Notifiquei para mandar dados da conversa pro n8n, pro seu CRM ou pro Slack — no ponto exato do fluxo que você escolher."
 date: 2026-07-29
+updated: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Integração", "Webhook", "n8n"]
 keywords: ["webhook instagram", "integração notifiquei", "n8n instagram", "automação externa instagram"]
-tldr: "O Notifiquei envia webhooks em tempo real quando alguém responde uma qualificação ou demonstra intenção de compra no direct, permitindo conectar com n8n, FunilOnline e Responda.me para criar alertas e automações externas sem depender de ferramentas caras."
+tldr: "O webhook do Notifiquei é um nó que você coloca dentro da automação, no ponto do fluxo que quiser: quando a pessoa responde uma pergunta, toca num botão ou chega no fim do funil, os dados daquele momento vão pro endereço que você configurou. Dá pra ligar com n8n, Slack, CRM ou planilha. Para quem tem sistema próprio, existe também a API de parceiros, com chave própria."
 faq:
-  - q: "O que é um webhook no Notifiquei?"
-    a: "É uma notificação automática que o Notifiquei envia para um endereço externo sempre que um evento específico acontece no direct, como uma resposta numa sequência de qualificação ou a detecção de intenção de compra. Você usa essa URL em ferramentas como n8n, Make ou Zapier para disparar ações em sequência."
+  - q: "O que é o webhook no Notifiquei?"
+    a: "É um nó da automação, como qualquer outro. Você o arrasta pro ponto do fluxo em que quer o disparo — depois de uma pergunta respondida, depois de um botão, no fim do funil — e a partir dali cada pessoa que passa por ali gera uma chamada para o endereço que você configurou."
   - q: "Posso integrar o Notifiquei com n8n?"
-    a: "Sim. O Notifiquei envia um webhook com os dados da conversa e você configura o n8n para receber essa chamada e executar o que quiser: mandar uma mensagem no Slack, criar uma tarefa no CRM, atualizar uma planilha. Além do n8n, há integração nativa com FunilOnline e Responda.me, sem precisar montar o fluxo do zero."
-  - q: "Consigo receber um alerta quando alguém demonstra intenção de compra?"
-    a: "Sim, esse é um dos eventos disponíveis. Quando o agente de IA detecta intenção de compra no direct, o Notifiquei dispara um webhook em tempo real. Você configura o destino para notificar o time de vendas no Slack, por exemplo, antes que o lead esfrie."
+    a: "Pode. Existe o nó de webhook genérico, que serve pra qualquer ferramenta que aceite chamada HTTP, e um nó de n8n específico. Você cria o nó de Webhook do lado do n8n, cola o endereço no nó do Notifiquei, e cada pessoa que chega naquele ponto do fluxo vira um dado no seu fluxo do n8n."
+  - q: "E se eu tiver um sistema próprio?"
+    a: "Aí o caminho é a API de parceiros. Você gera uma chave dentro da sua conta, no menu API, e integra direto — sem depender de um intermediário no meio. É o canal usado por quem constrói em cima do Notifiquei."
 ---
 
-Você configurou o fluxo de perguntas, o agente de IA está respondendo no direct, e aí vem a dúvida de sempre: isso funciona sozinho ou precisa conversar com o resto das ferramentas que você usa?
+Você configurou o fluxo de perguntas, a automação está respondendo no direct, e aí vem a dúvida de sempre: isso funciona sozinho ou consegue conversar com o resto das ferramentas que você usa?
 
-O Notifiquei não precisa ficar numa ilha. Ele tem webhooks que disparam em eventos específicos do direct, e com isso você consegue amarrar a automação do Instagram com o CRM, o Slack, a planilha, ou qualquer outra ferramenta que já faz parte do seu processo.
+O Notifiquei não precisa ficar numa ilha. Ele tem um nó de webhook que você coloca dentro da automação, e com isso dá pra amarrar o que acontece no Instagram com o CRM, o Slack, a planilha, ou qualquer coisa que já faça parte do seu processo.
 
-A diferença na prática é considerável. Em vez de checar o painel o tempo todo esperando aparecer um lead quente, você recebe o aviso no lugar certo, na hora certa, e entra na conversa quando ainda faz diferença.
+## o webhook aqui é um nó, não um evento fixo
 
-## para que serve um webhook aqui?
+Essa é a diferença que costuma pegar quem já usou outras ferramentas. Em boa parte delas, o webhook dispara em eventos pré-definidos: "novo contato", "conversa encerrada". Você escolhe de uma lista fechada.
 
-Um webhook é, em essência, um aviso automático em tempo real. Quando acontece alguma coisa no direct, o Notifiquei manda uma requisição para um endereço que você configurou, carregando os dados daquele evento. Você usa esse endereço no n8n, no Make ou em qualquer ferramenta que aceite chamadas HTTP para executar o próximo passo sem intervenção manual.
+No Notifiquei, o webhook é uma peça do fluxo. Você arrasta ele pro ponto exato onde quer o disparo, do mesmo jeito que arrastaria um "enviar texto" ou uma "espera".
 
-No Notifiquei, os dois eventos que disparam webhook hoje são respostas dentro de sequências de perguntas e respostas, e a detecção de intenção de compra no direct. São exatamente os momentos em que o lead está mais perto de comprar, o que torna o timing do alerta bastante relevante.
+Na prática, isso quer dizer que **você define o evento**. Quer avisar o time só quando a pessoa passa da terceira pergunta? Põe o nó ali. Quer registrar todo mundo que tocou no botão "quero fechar hoje", mas ignorar quem tocou em "só pesquisando"? Põe o nó só naquele braço do fluxo. Quem não chega naquele ponto não dispara nada.
 
-## o que dá pra fazer na prática?
+É bem mais preciso do que receber tudo e filtrar depois.
 
-O exemplo mais direto é o alerta no Slack. Quando alguém demonstra interesse alto durante uma qualificação, o webhook dispara e cai como mensagem no canal do time de vendas. Nenhuma janela de direct perdida, nenhum lead esfriando enquanto espera alguém checar o inbox.
+## o que dá pra fazer na prática
 
-Mas a lista de possibilidades vai além do alerta. Dependendo do que você já usa, dá pra criar uma tarefa no CRM assim que o lead qualifica, atualizar uma planilha com as respostas da sequência de perguntas, ou acionar um fluxo externo quando a conversa chega em determinado ponto, como o disparo de uma sequência de e-mails.
+O exemplo mais direto é o alerta no Slack. Você coloca o webhook logo depois do botão que indica decisão de compra e manda a chamada pro canal do time de vendas. Quem tocou naquele botão vira uma linha no Slack, na hora, e alguém entra na conversa enquanto ela ainda está quente.
 
-A conta de impacto aparece rápido quando você faz as contas: um produto de R$ 497 com 10 leads demonstrando intenção de compra por semana tem um resultado muito diferente dependendo de você entrar na conversa em 5 minutos ou em 3 horas. Com o alerta chegando no Slack, você não precisa ficar de olho no direct durante o dia todo para não perder esses momentos.
+Além do alerta, dá pra:
 
-## integrações nativas: FunilOnline e Responda.me
+- **Criar uma tarefa no CRM** quando alguém termina a sequência de qualificação.
+- **Alimentar uma planilha** com as respostas que a automação coletou, pergunta por pergunta.
+- **Disparar uma sequência de e-mail** quando a pessoa deixa o e-mail dentro do direct.
 
-Para quem usa ferramentas específicas do mercado brasileiro, o Notifiquei tem integração nativa com FunilOnline e Responda.me. Isso significa que você não precisa montar o fluxo no n8n do zero: a conexão já está prevista na plataforma.
-
-O Responda.me centraliza o atendimento de vários canais num só lugar. Quando a conversa no Instagram chega num ponto que precisa de uma pessoa, a integração faz a mensagem aparecer no painel do time de suporte sem ninguém precisar copiar e colar ou alternar de tela.
-
-Essa estrutura combina bem com o modelo de quem [integra o Notifiquei com o checkout e rastreia vendas](/blog/integrar-notifiquei-com-checkout-kiwify-hotmart) pelo mesmo webhook, porque você consegue ligar os eventos do direct com as confirmações de compra e montar um funil mais completo sem depender de intermediários caros.
+Esse último é o mais valioso e o menos usado. Como a Meta fecha a janela de conversa em poucos dias — o que a gente explica em [por que mensagem em massa no Instagram não funciona](/blog/campanhas-de-mensagem-em-massa-no-instagram) —, tirar o contato do direct e levar pro seu sistema é o que permite falar com aquela pessoa daqui a um mês. O webhook é a ponte.
 
 ## conectando com n8n
 
-Se você prefere montar as automações no seu ritmo, o n8n é a escolha pra quem quer flexibilidade total. O processo é direto: você cria um nó do tipo Webhook no n8n, cola o endereço nos ajustes do Notifiquei, e a partir daí cada evento relevante no direct vira um dado disponível para você encadear da forma que fizer sentido.
+Se você prefere montar as automações no seu ritmo, o n8n dá flexibilidade total. O processo é direto: você cria um nó do tipo Webhook no n8n, copia o endereço que ele gera, e cola no nó de webhook dentro da sua automação do Notifiquei.
 
-Uma das vantagens de operar pela API oficial da Meta é a consistência dos dados que chegam no webhook. Não é raspagem de tela nem automação que depende do layout da plataforma continuar igual: são dados reais da conversa, o que dá uma estabilidade que ferramentas fora da API simplesmente não têm.
+A partir daí, cada pessoa que passa por aquele ponto do fluxo vira um dado disponível no n8n, e você encadeia o que quiser do lado de lá.
 
-## quando usar o webhook de intenção de compra?
+Uma vantagem de operar pela API oficial da Meta é a consistência do que chega. Não é raspagem de tela nem automação que depende do layout da plataforma continuar igual: são dados reais da conversa, com a estabilidade que ferramentas fora da API não têm.
 
-Esse é o evento que gera retorno mais direto. Quando o agente de IA detecta sinais de compra no direct, o webhook dispara antes mesmo de o lead perguntar o preço. Você ou alguém do time recebe o aviso e pode entrar na conversa no momento certo, em vez de só aparecer depois que a pessoa já decidiu comprar em outro lugar ou simplesmente perdeu o interesse.
+## quando o webhook não basta: a api de parceiros
 
-Para entender melhor como o Notifiquei identifica esses sinais, a lógica de [detectar intenção de compra no direct](/blog/deteccao-de-intencao-de-compra-no-instagram) explica o que o agente avalia durante a conversa e o que acontece na sequência da detecção.
+Webhook é bom para empurrar informação pra fora. Quando você precisa do contrário — consultar, criar, integrar de forma mais profunda — o caminho é a API de parceiros.
 
-Se você quer testar como o webhook funciona na prática, acessa [notifiquei.com.br](https://notifiquei.com.br) e configura pelo painel. A documentação com os endpoints de cada evento fica disponível dentro da conta.
+Ela fica no menu **API**, dentro da sua conta, e é lá que você gera a chave. É o canal de quem tem sistema próprio e quer plugar direto, sem intermediário no meio. Agência com painel próprio, infoprodutor com área de membros, plataforma que quer oferecer automação de Instagram pros próprios clientes: é esse o caso de uso.
+
+## onde colocar o nó pra ter o dado mais útil
+
+Uma dica que economiza retrabalho: quanto mais fundo no fluxo o webhook estiver, mais qualificado é o dado que chega.
+
+Um webhook logo na entrada te manda todo mundo que comentou uma palavra, inclusive quem só passou. Um webhook depois de duas perguntas e um botão te manda quem se interessou de verdade. O primeiro gera volume, o segundo gera lista de trabalho.
+
+A lógica é a mesma que a gente descreve em [como saber quem está pronto pra fechar](/blog/deteccao-de-intencao-de-compra-no-instagram): o valor não está em capturar tudo, está em capturar quem agiu.
+
+Se você quer testar como o webhook funciona na prática, acessa [notifiquei.com.br](https://notifiquei.com.br), monta uma automação e arrasta o nó pro ponto que fizer sentido.

@@ -63,10 +63,8 @@ const funcoesIG = [
     { n: "Resposta a story", v: "Quem responde o story já entra num fluxo de venda automático." },
     { n: "Comentário em live", v: "Durante a live a galera comenta e recebe o link no direct sozinha." },
     { n: "Botão de quebra-gelo no menu", v: "Dá um atalho pronto no direct pra pessoa começar a conversa." },
-    { n: "Campanha (envio em massa)", v: "Dispara pra uma lista segmentada quando o cliente quiser reativar a base." },
     { n: "Filtros por palavra-chave e por post", v: "A automação só dispara onde e quando faz sentido, sem bagunçar os outros posts." },
     { n: "Condição “é seguidor?”", v: "Trata seguidor e não-seguidor de formas diferentes — dá pra pedir o follow antes de entregar." },
-    { n: "Condição “tem a etiqueta X?”", v: "Mostra caminhos diferentes pra quem já é cliente e pra quem é lead novo." },
   ]},
   { area: "Ações de mensagem", itens: [
     { n: "Texto, imagem, áudio e vídeo", v: "Manda no formato que mais converte, não só texto seco." },
@@ -81,15 +79,9 @@ const funcoesIG = [
     { n: "Ativar, pausar, duplicar e validar", v: "Testa, clona e ajusta uma automação em segundos." },
     { n: "Histórico de execuções", v: "Mostra o que disparou e se deu certo." },
     { n: "Esperas: fixa, aleatória e agendada", v: "Programa follow-up pra horas ou dias depois." },
-    { n: "Etiquetar pela automação", v: "Organiza o contato sozinho conforme ele reage." },
     { n: "Pastas de automação", v: "Mantém dezenas de fluxos organizados." },
-    { n: "Assistente de IA que monta o fluxo (beta)", v: "Descreve o que quer e a IA monta o rascunho." },
+    { n: "Assistente que monta o fluxo (beta)", v: "Descreve o que quer em português e ele monta o rascunho da automação." },
     { n: "Biblioteca de templates", v: "Começa de um modelo pronto em vez do zero." },
-  ]},
-  { area: "Atendimento e Inbox", itens: [
-    { n: "Caixa de entrada das DMs", v: "Todas as conversas num lugar só." },
-    { n: "Responder manual, com histórico e busca", v: "Assume a conversa quando quiser, com todo o contexto na mão." },
-    { n: "Pausar e retomar a IA no meio", v: "Entra no manual e devolve pra IA sem perder o fio." },
   ]},
   { area: "Comentários", itens: [
     { n: "Listar e filtrar comentários (posts e lives)", v: "Acompanha tudo que comentaram sem ficar rolando o feed." },
@@ -99,28 +91,18 @@ const funcoesIG = [
   { area: "Quebra-gelos", itens: [
     { n: "Criar, editar e reordenar (até 4)", v: "Coloca atalhos no direct que já puxam a conversa pro lado da venda." },
   ]},
-  { area: "Inteligência Artificial (add-on)", itens: [
-    { n: "Agente de IA (Gemini, GPT ou Sonnet)", v: "Responde sozinho, na voz do criador, a qualquer hora." },
-    { n: "Base de conhecimento + memória", v: "A IA responde com as infos reais do negócio e lembra do papo." },
-    { n: "Detecção de intenção de compra + alerta", v: "Avisa quando o lead está quente pra fechar na hora certa." },
-  ]},
   { area: "Crescimento", itens: [
-    { n: "Campanhas segmentadas por etiqueta", v: "Reativa a base inteira com uma mensagem certeira, agendada e com relatório." },
     { n: "Sorteios pelos comentários", v: "Coleta os @, sorteia e re-sorteia o vencedor num clique." },
-  ]},
-  { area: "Organização", itens: [
-    { n: "Contatos com perfil e filtros", v: "Conhece quem fala com o perfil e segmenta fácil." },
-    { n: "Etiquetas", v: "Marca lead, cliente, quente ou frio — e dispara diferente pra cada." },
-    { n: "Exportar CSV", v: "Leva os contatos pra onde o cliente quiser." },
+    { n: "Links dinâmicos por apelido", v: "Troca o destino do link num lugar só e todas as automações passam a mandar o novo." },
   ]},
   { area: "Análise", itens: [
     { n: "Painel de métricas", v: "Mostra mensagens, respostas e cliques num olhar." },
     { n: "Estatísticas por conta e automação", v: "Vê qual automação está vendendo e qual não." },
-    { n: "Rastreamento de links + CTR", v: "Sabe exatamente o que foi clicado." },
-    { n: "Analytics avançado: funil e conversão (add-on)", v: "Acompanha do comentário até a venda." },
+    { n: "Rastreamento de links + CTR", v: "Sabe exatamente o que foi clicado, automação por automação." },
   ]},
   { area: "Integrações", itens: [
-    { n: "Webhook, n8n, FunilOnline e Responda.me", v: "Conecta o Notifiquei com o resto das ferramentas do cliente." },
+    { n: "Webhook e n8n", v: "Conecta o Notifiquei com o resto das ferramentas do cliente." },
+    { n: "API de parceiros", v: "Quem tem sistema próprio pluga direto, com chave de API." },
   ]},
   { area: "Conta e Times", itens: [
     { n: "Conectar conta Business ou Creator", v: "Conecta pela Meta oficial, sem senha exposta." },
@@ -156,7 +138,7 @@ const faqGrupos = [
   { tema: "Segurança e como funciona", itens: [
     { q: "Isso pode bloquear o Instagram do meu cliente?", a: "Não. O Notifiquei é provedor oficial da Meta e usa só a API oficial do Instagram. Não é automação disfarçada, então não há risco de banimento." },
     { q: "Precisa saber programar?", a: "Nada. Zero código. Quem sabe mandar mensagem no Instagram sabe usar — a interface é toda visual." },
-    { q: "Ele responde sozinho, com IA?", a: "Sim. O agente de IA responde DMs e comentários na voz do criador, com uma base de conhecimento que você ensina, e lembra do contexto da conversa. Quando o lead esquenta, ele avisa pra você fechar." },
+    { q: "Ele responde sozinho?", a: "Responde. Você monta a automação uma vez — o que dispara e o que ele manda — e a partir daí ela roda sozinha, 24h, respondendo comentário e direct em segundos. Não é uma IA solta atendendo por você: é o fluxo que você desenhou, do jeito que você escreveu." },
     { q: "Precisa de conta profissional ou de criador?", a: "Sim, uma conta Profissional ou de Criador no Instagram. É grátis de ativar, leva 1 minuto, e é exigência da própria API oficial da Meta." },
   ]},
   { tema: "Automação no Instagram", itens: [
@@ -173,10 +155,7 @@ const faqGrupos = [
   ]},
   { tema: "Editor de fluxo e configuração", itens: [
     { q: "Como deleto ou duplico um nó? Posso ter mais de um gatilho?", a: "Delete apaga o nó e Ctrl+C / Ctrl+V duplica. Dá pra ter a mesma palavra ativando em story, DM e comentário — só monta uma automação separada pra cada gatilho." },
-    { q: "Nas regras de moderação é palavra por palavra ou lista por vírgula? Onde vejo quem quer comprar?", a: "Pode separar as palavras por vírgula numa lista só. E quem demonstra intenção de compra aparece no Inbox." },
-  ]},
-  { tema: "Inteligência Artificial", itens: [
-    { q: "Dá pra treinar a IA com o meu conteúdo e usar a minha própria chave de API?", a: "Por enquanto não. Hoje você ensina a IA por uma base de conhecimento dentro da plataforma. O treino com base no tom dos próprios comentários vem mais pra frente." },
+    { q: "Nas regras de moderação é palavra por palavra ou lista por vírgula?", a: "Pode separar as palavras por vírgula numa lista só. Cada regra decide se esconde ou apaga o comentário, e roda automaticamente em tudo que chega." },
   ]},
   { tema: "Contas, times e agência", itens: [
     { q: "Quero usar a ferramenta pro meu cliente. Crio um time e ele configura? Preciso da senha do Instagram dele?", a: "Você cria o time, configura e envia um convite. O cliente conecta o Instagram dele pela Meta, sem precisar passar senha pra ninguém." },
@@ -191,12 +170,10 @@ const faqGrupos = [
     { q: "Reautentiquei e as automações sumiram. É normal?", a: "Isso foi ajustado: os tokens agora se atualizam sem forçar reconexão, então não some mais." },
   ]},
   { tema: "Integrações e o que vem por aí", itens: [
-    { q: "Tem API ou webhook pra puxar as mensagens, tipo um alerta no Slack?", a: "Tem. Já existe webhook em perguntas e respostas, e o push por intenção de compra está implementado." },
-    { q: "Dá pra integrar com checkout (Kiwify, Hotmart, Cakto, Greenn) e rastrear as vendas?", a: "Sim, está em configuração, com um dashboard que acompanha do contato até a venda." },
+    { q: "Tem API ou webhook pra puxar as mensagens, tipo um alerta no Slack?", a: "Tem. Dá pra pôr um nó de webhook dentro da automação e mandar o que quiser pro sistema do cliente. E existe uma API de parceiros, com chave própria, pra quem tem sistema próprio e quer plugar direto." },
+    { q: "Dá pra integrar com checkout (Kiwify, Hotmart, Cakto, Greenn) e rastrear as vendas?", a: "Hoje não tem integração pronta de checkout. O caminho é o webhook dentro da automação, que manda o evento pro sistema do cliente. Não prometa dashboard de vendas — não existe." },
+    { q: "O Notifiquei agenda Reels, posts, carrossel e stories?", a: "Hoje não. O agendamento de publicação depende de uma permissão da Meta que ainda não foi aprovada pra gente, então a área saiu do ar até sair. Não venda como se tivesse — o Notifiquei é ferramenta de automação de conversa, não de publicação." },
     { q: "Vai ter WhatsApp, marketplaces ou agendamento em outras redes?", a: "WhatsApp talvez, pela API oficial. Marketplaces é mais difícil. Outras redes, sem promessa por enquanto." },
-  ]},
-  { tema: "Agendamento de posts", itens: [
-    { q: "O Notifiquei agenda Reels, posts, carrossel e stories ou só automação? Dá pra agendar com música e link no story?", a: "Agenda tudo isso. Áudio em Reels (precisa conectar a conta de negócio) e música no carrossel são próximas etapas. Link no story está em estudo, porque depende da Meta." },
   ]},
   { tema: "Planos, preço e garantia", itens: [
     { q: "Qual a diferença pro ManyChat?", a: "Mais barato, suporte em português, interface mais simples e foco no Brasil. E o preço é fixo em real — o ManyChat cobra por contato e em dólar, então a conta sobe com a audiência." },

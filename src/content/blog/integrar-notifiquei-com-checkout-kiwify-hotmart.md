@@ -1,57 +1,70 @@
 ---
-title: "Como integrar o Notifiquei com seu checkout e rastrear vendas"
-description: "Saiba como conectar o Notifiquei ao Kiwify, Hotmart, Cakto e Greenn para acompanhar cada contato do DM até a compra."
+title: "Ligar o direct ao checkout: como rastrear a venda que veio do Instagram"
+description: "Não existe integração pronta com Kiwify ou Hotmart no Notifiquei. Veja os dois caminhos que funcionam hoje pra saber qual conversa virou venda."
 date: 2026-07-08
+updated: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Vendas", "Checkout"]
 keywords: ["integrar notifiquei com checkout", "kiwify hotmart notifiquei", "rastrear vendas instagram", "webhook notifiquei"]
-tldr: "O Notifiquei está preparando integração direta com Kiwify, Hotmart, Cakto e Greenn para rastrear a jornada do lead do DM até a compra. Enquanto isso, webhook e push por intenção de compra já funcionam."
+tldr: "O Notifiquei não tem integração pronta com Kiwify, Hotmart, Cakto ou Greenn — e não há data pra ter. Os dois caminhos que funcionam hoje são o link rastreado, que mostra quantas pessoas de cada automação clicaram até o checkout, e o nó de webhook, que manda os dados da conversa pro seu sistema pra você cruzar com a venda do lado de lá."
 faq:
-  - q: "O Notifiquei já integra com Kiwify e Hotmart?"
-    a: "A integração com Kiwify, Hotmart, Cakto e Greenn está em configuração e será lançada em breve. Já funcionam o webhook em respostas e o push por intenção de compra, que ajudam a conectar o DM ao processo de venda."
-  - q: "O que é o push por intenção de compra?"
-    a: "É uma notificação que o Notifiquei envia quando detecta que um lead está sinalizando interesse em comprar durante a conversa. Assim você sabe a hora certa de agir, sem precisar monitorar cada DM manualmente."
-  - q: "Para que serve o dashboard de rastreamento do Notifiquei?"
-    a: "O dashboard vai mostrar o caminho que cada contato percorreu, da interação inicial no DM ou comentário até a compra. A previsão é que esteja disponível junto com a integração de checkout."
+  - q: "O Notifiquei integra com Kiwify, Hotmart, Cakto ou Greenn?"
+    a: "Não. Não existe integração pronta com nenhum checkout, e a área de rastreamento de vendas saiu do produto porque não estava sendo usada. Quem precisa fechar esse ciclo faz pelo webhook, mandando os dados da conversa pro próprio sistema."
+  - q: "Então dá pra saber qual automação está vendendo?"
+    a: "Dá, pelo relatório de cliques por automação. Ele mostra quantas pessoas receberam o link em cada automação e quantas clicaram. Não é a venda confirmada, mas é o indicador mais próximo — e costuma bastar pra decidir qual post e qual palavra-chave valem a pena repetir."
+  - q: "Como faço pra saber a venda confirmada, e não só o clique?"
+    a: "Cruzando do lado do seu sistema. Você usa um link com parâmetro de origem para cada automação e olha esse parâmetro no relatório do seu checkout, ou manda os dados da conversa por webhook e casa com o pedido quando ele entra. Nos dois casos, o cruzamento acontece fora do Notifiquei."
 ---
 
 Você investe numa campanha, aquela pessoa comenta no post, entra pro seu direct, conversa, demonstra interesse e desaparece do seu radar. Você não sabe se ela comprou, se desistiu no meio do checkout ou se simplesmente esqueceu. Aí no mês seguinte você repete a campanha com a mesma dúvida.
 
-Esse buraco entre o DM e a venda é onde a maioria do dinheiro some. Fechar esse ciclo, conseguir ver de verdade o que cada contato fez depois da primeira mensagem, é exatamente o que a integração do Notifiquei com checkout vem resolver.
+Esse buraco entre o DM e a venda é onde a maior parte do dinheiro some. Vale começar pela parte que costuma frustrar: **não existe integração pronta de checkout no Notifiquei**, nem com Kiwify, nem com Hotmart, Cakto ou Greenn. Chegou a estar em construção, mas a área de rastreamento de vendas saiu do produto — em produção ela não registrou nenhuma atribuição, e manter uma tela que ninguém usa custa mais do que rende.
 
-## o que já funciona hoje
+O que existe são dois caminhos que funcionam, e que na prática respondem a maior parte da pergunta.
 
-Antes de falar da integração de checkout, vale entender o que já está disponível. O Notifiquei já opera com webhook em perguntas/respostas e com push por intenção de compra, tudo pela API oficial da Meta.
+## caminho 1: o clique, que resolve 80% da dúvida
 
-Isso significa que você consegue conectar o Notifiquei a ferramentas externas assim que alguém responde uma pergunta específica no fluxo. E quando o agente de IA detecta que um lead está com intenção de compra alta, você recebe um aviso para agir na hora certa.
+Antes de perseguir a venda confirmada, vale perguntar o que você vai fazer com o número. Quase sempre a resposta é: decidir o que postar de novo e qual palavra-chave usar.
 
-Pra quem vende com volume, isso já muda bastante a operação. Se você quer entender como esse sinal de intenção funciona na prática, vale ler sobre [como descobrir se alguém quer comprar antes de mandar o preço](/blog/como-qualificar-lead-antes-de-mandar-preco): o princípio é parecido e se encaixa bem no fluxo de DM.
+Para isso, o clique basta. O relatório de cliques por automação mostra, automação por automação, quantas pessoas receberam o link e quantas foram até ele. Com isso você descobre:
 
-## a integração com kiwify, hotmart, cakto e greenn
+- Qual **post** trouxe gente que realmente clicou, e qual só rendeu comentário.
+- Qual **palavra-chave** atrai comprador e qual atrai curioso.
+- Qual **mensagem** faz a pessoa avançar e qual faz ela parar.
 
-A novidade que está chegando é a conexão direta com os principais checkouts usados por quem vende produtos digitais no Brasil: Kiwify, Hotmart, Cakto e Greenn. A integração ainda está em fase de configuração e não tem data de lançamento confirmada, mas já está no roadmap.
+Se um Reel gerou 400 comentários e 12 cliques, e outro gerou 90 comentários e 60 cliques, você já sabe qual dos dois repetir — sem precisar da confirmação de pagamento pra chegar nessa conclusão.
 
-Quando estiver no ar, o fluxo fica fechado de verdade: uma pessoa comenta no seu Reel, entra no direct, percorre o fluxo automatizado, chega ao checkout e compra. O Notifiquei vai conseguir puxar essa informação da plataforma de venda e registrar que aquele contato virou cliente.
+É o mesmo raciocínio de [como saber quem está pronto pra fechar](/blog/deteccao-de-intencao-de-compra-no-instagram): o clique é o sinal mais honesto que o direct te dá.
 
-Sem isso, você fica no escuro. Com isso, você consegue separar quem comprou de quem sumiu, e trabalhar cada grupo de forma diferente.
+## caminho 2: o link com origem, pra casar no seu checkout
 
-## o que o dashboard vai mostrar
+Se você quer a venda confirmada, o cruzamento acontece do lado do checkout — e o truque é levar a informação de origem junto com a pessoa.
 
-Junto com a integração de checkout, está previsto um dashboard que mostra a jornada completa, do primeiro contato até a venda. A ideia é que você veja em um lugar só quantas pessoas entraram no fluxo, quantas chegaram a iniciar o checkout e quantas de fato compraram.
+Você monta um link diferente para cada automação, com um parâmetro que identifica de onde veio, no formato que a sua plataforma aceita. Depois, no relatório do seu checkout, você filtra por esse parâmetro e vê quantas vendas cada origem gerou.
 
-Esse nível de visibilidade muda como você toma decisões. Se 200 pessoas entram no fluxo num fim de semana e 12 compram, o número absoluto parece pequeno. Mas se você descobre que 150 delas sequer chegaram ao checkout, o problema está na conversa, não no produto. Isso direciona onde melhorar sem precisar adivinhar.
+Vale usar os **links dinâmicos por apelido** aqui. Você cadastra o link uma vez com um apelido, usa esse apelido dentro das automações e, quando o destino mudar — mudou a oferta, mudou a página, acabou a promoção —, troca num lugar só e todas as automações passam a mandar o novo. Sem isso, cada troca de campanha vira uma caçada por automações desatualizadas.
+
+## caminho 3: o webhook, pra quem tem sistema
+
+Quem tem CRM ou sistema próprio consegue fechar o ciclo de verdade.
+
+Você coloca um nó de webhook dentro da automação, no ponto em que a pessoa está prestes a receber o link, e manda os dados daquela conversa pro seu sistema. Do lado de lá, quando o pedido entra, você casa o contato com a venda.
+
+O post sobre [webhook e integrações](/blog/webhook-e-integracoes-do-notifiquei) mostra onde posicionar o nó pra o dado chegar já qualificado, em vez de vir todo mundo que passou pelo topo do funil.
 
 ## por que fechar esse ciclo importa no número
 
-Pensa num produto de R$ 297. Se você tem 500 conversas no direct por mês e converte 5%, são 25 vendas e R$ 7.425. Mas se você identifica os leads que quase compraram e envia um [follow-up automático no direct](/blog/follow-up-automatico-no-direct-do-instagram) dois dias depois, com uma mensagem diferente, e eleva a conversão pra 7%, isso são mais 10 vendas, R$ 2.970 a mais no mês. Sem tráfego novo, sem anúncio novo.
+Pensa num produto de R$ 297. Se você tem 500 conversas no direct por mês e converte 5%, são 25 vendas e R$ 7.425.
 
-O rastreamento do checkout não é recurso técnico por vaidade. É a base pra você saber onde o dinheiro parou de caminhar.
+Agora imagine que, olhando os cliques, você descobre que duas das suas seis automações concentram quase todo o clique — e as outras quatro estão gastando alcance à toa. Trocar o conteúdo das quatro pelo formato das duas que funcionam costuma mexer mais no resultado do que qualquer dashboard de atribuição.
 
-## como se preparar enquanto a integração não chega
+O rastreamento não é vaidade técnica. É saber onde o dinheiro parou de caminhar — e para isso você não precisa de integração de checkout, precisa de olhar o que já está sendo medido.
 
-Enquanto a integração com checkout está sendo finalizada, você pode começar a estruturar o seu fluxo de DM de um jeito que facilite a conexão futura. Isso significa criar perguntas que qualificam o lead dentro do direct, usar as etiquetas disponíveis e configurar o webhook pra registrar quem respondeu o quê.
+## o que fazer enquanto isso
 
-Quando a integração do checkout entrar no ar, você não vai precisar reconstruir do zero: só conectar o checkout ao que já está rodando.
+A recomendação honesta: comece pelo clique. Monte as automações com links rastreados, use apelido pra não se perder quando a oferta mudar, e leia o relatório uma vez por semana.
 
-O Notifiquei já cuida da parte da conversa e do fluxo. A peça do checkout está a caminho. Se você quer começar agora e não perder o timing quando a integração estiver pronta, acesse [https://notifiquei.com.br](https://notifiquei.com.br) e configure o seu fluxo.
+Se em algum momento o volume justificar a atribuição completa, o webhook está lá — e você não vai precisar refazer nada, porque o fluxo já vai estar montado.
+
+Pra começar, acesse [https://notifiquei.com.br](https://notifiquei.com.br) e monte o seu primeiro fluxo com link rastreado.

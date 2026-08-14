@@ -17,8 +17,8 @@ const {
 const platform = [
   { tag: "Montagem visual", title: "Monte o fluxo arrastando.", body: "Escolhe o gatilho, define o que acontece depois e salva. Sem código, sem manual, sem “configurador avançado” escondido." },
   { tag: "Números em tempo real", title: "Veja cada clique acontecendo.", body: "Quantos DMs respondidos, quantos leads receberam o link, quantos clicaram. Dados simples que respondem “tá engajando?”." },
-  { tag: "Inbox unificada", title: "Só aparece quem precisa de você.", body: "Ele filtra, qualifica e responde o simples. Quando chega o lead que vale ouro, ele te marca e você entra pra fechar." },
-  { tag: "Intenção de compra · IA", title: "Saiba quem está pronto pra comprar.", body: "A IA lê cada conversa em tempo real e te avisa no momento certo — antes de você perder a venda." },
+  { tag: "Sorteios pelos comentários", title: "Sorteie sem garimpar comentário.", body: "Quem comenta a palavra entra sozinho na lista. Você clica em sortear e ele mostra os ganhadores — sem planilha, sem print, sem contar na mão." },
+  { tag: "Links e cliques", title: "Troque o link sem mexer nas automações.", body: "Cada link ganha um apelido. Mudou o destino? Você troca num lugar só e toda automação já manda o novo — e vê quantos clicaram em cada uma." },
 ];
 ---
 <section class={`section ${bg === "paper2" ? "section--paper2" : ""}`} id={id}>
@@ -85,7 +85,7 @@ const platform = [
         </div>
       </article>
 
-      <!-- 3 · Inbox unificada -->
+      <!-- 3 · Sorteios pelos comentários -->
       <article class="prow reveal">
         <div class="prow__copy">
           <span class="eyebrow pcard__tag">{platform[2].tag}</span>
@@ -93,38 +93,25 @@ const platform = [
           <p class="pcard__body">{platform[2].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
-          <div class="ui ui--inbox">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · conversas</span></div>
-            <div class="inbox2">
-              <ul class="inbox2__list">
-                <li class="ic is-active">
-                  <span class="ava" data-ava="mariana"></span>
-                  <span class="ic__txt"><b>mariana.fit</b><em>Sim, quero fechar hoje!</em></span>
-                  <span class="ic__un">2</span>
-                </li>
-                <li class="ic">
-                  <span class="ava" data-ava="joao"></span>
-                  <span class="ic__txt"><b>joao.suplementos</b><em>Qual o valor do kit?</em></span>
-                </li>
-                <li class="ic">
-                  <span class="ava" data-ava="bia"></span>
-                  <span class="ic__txt"><b>bia.estetica</b><em>Recebi, obrigada! 🧡</em></span>
-                </li>
-              </ul>
-              <div class="thread">
-                <div class="thread__head"><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="tag-hot">Alta intenção</span></div>
-                <div class="thread__body">
-                  <div class="tb tb--them">Quanto tá o curso? 😍</div>
-                  <div class="tb tb--me">Oii! 😊 R$ 297 à vista. Te mando o link?<i>auto</i></div>
-                  <div class="tb tb--them">Sim, quero fechar hoje! Pode mandar o Pix?</div>
-                </div>
+          <div class="ui ui--draw">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · sorteios</span></div>
+            <div class="draw">
+              <div class="draw__head">
+                <span class="draw__kw">Comentou <b>“EUQUERO”</b></span>
+                <span class="draw__count"><b>1.842</b> participantes</span>
               </div>
+              <div class="draw__winners">
+                <div class="dw"><span class="dw__pos">1</span><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="dw__tag">ganhou</span></div>
+                <div class="dw"><span class="dw__pos">2</span><span class="ava ava--sm" data-ava="joao"></span><b>joao.suplementos</b><span class="dw__tag">ganhou</span></div>
+                <div class="dw dw--ghost"><span class="dw__pos">3</span><span class="ava ava--sm" data-ava="bia"></span><b>bia.estetica</b><span class="dw__tag">ganhou</span></div>
+              </div>
+              <div class="draw__btn">Sortear <span class="draw__btn-ic">🎲</span></div>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 4 · Intenção de compra · IA -->
+      <!-- 4 · Links dinâmicos + cliques por automação -->
       <article class="prow prow--rev reveal">
         <div class="prow__copy">
           <span class="eyebrow pcard__tag">{platform[3].tag}</span>
@@ -132,18 +119,21 @@ const platform = [
           <p class="pcard__body">{platform[3].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
-          <div class="ui ui--intent">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · intenção de compra</span></div>
-            <div class="intent">
-              <div class="intent__alert">
-                <span class="intent__spark"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
-                <span><b>mariana.fit</b> está pronta pra fechar — entre agora</span>
+          <div class="ui ui--links">
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · links</span></div>
+            <div class="lks">
+              <div class="lk">
+                <span class="lk__alias">{"{{link:promo}}"}</span>
+                <span class="lk__url">loja.com/black-friday</span>
+                <span class="lk__edit">trocar</span>
               </div>
-              <div class="chatmini">
-                <div class="cm"><span class="cm__txt">“Vi seu post. Interessante…”</span><span class="lvl lvl--low">Baixa</span></div>
-                <div class="cm"><span class="cm__txt">“Quanto custa? Tem parcelamento?”</span><span class="lvl lvl--mid">Média</span></div>
-                <div class="cm"><span class="cm__txt">“Sim, quero fechar hoje! Pode mandar o Pix?”</span><span class="lvl lvl--high">Alta</span></div>
+              <p class="lks__hint">Usado em <b>7 automações</b> — troca aqui e todas passam a mandar o novo.</p>
+              <div class="lkbars">
+                <div class="lkbar"><span class="lkbar__n">Comentário → DM</span><i style="--w:100%"></i><b>512</b></div>
+                <div class="lkbar"><span class="lkbar__n">Resposta de story</span><i style="--w:52%"></i><b>266</b></div>
+                <div class="lkbar"><span class="lkbar__n">Quebra Gelo</span><i style="--w:13%"></i><b>69</b></div>
               </div>
+              <p class="lks__foot">847 cliques esta semana</p>
             </div>
           </div>
         </div>
@@ -194,42 +184,43 @@ const platform = [
   .scard__delta.up { color: var(--ok); }
   .ui--stats .spark { display: block; width: 100%; height: 64px; margin-top: 0.85rem; }
 
-  /* 3 · inbox */
+  /* avatares (usados no mockup de sorteio) */
   .ava { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--paper-3); background-size: cover; background-position: center; box-shadow: inset 0 0 0 1px var(--line); }
   .ava--sm { width: 26px; height: 26px; }
   .ava[data-ava="mariana"] { background-image: url("/assets/avatars/mariana.webp"); }
   .ava[data-ava="joao"] { background-image: url("/assets/avatars/joao.webp"); }
   .ava[data-ava="bia"] { background-image: url("/assets/avatars/bia.webp"); }
-  .inbox2 { display: grid; grid-template-columns: 1fr; }
-  .inbox2__list { padding: 0.4rem; border-bottom: 1px solid var(--line-soft); }
-  .ic { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.55rem; border-radius: 10px; min-width: 0; }
-  .ic.is-active { background: var(--brand-wash); }
-  .ic__txt { display: flex; flex-direction: column; gap: 0.05rem; flex: 1; min-width: 0; }
-  .ic__txt b { font-size: 0.78rem; }
-  .ic__txt em { font-style: normal; font-size: 0.72rem; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .ic__un { flex: none; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--r-pill); background: var(--brand); color: #fff; font-size: 0.65rem; font-weight: 800; display: grid; place-items: center; }
-  .thread { padding: 0.7rem 0.8rem 0.9rem; }
-  .thread__head { display: flex; align-items: center; gap: 0.45rem; padding-bottom: 0.6rem; }
-  .thread__head b { font-size: 0.78rem; }
-  .tag-hot { margin-left: auto; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-ink); background: var(--brand-wash); padding: 0.2rem 0.5rem; border-radius: var(--r-pill); }
-  .thread__body { display: flex; flex-direction: column; gap: 0.45rem; }
-  .tb { max-width: 82%; padding: 0.5rem 0.75rem; border-radius: 14px; font-size: 0.8rem; line-height: 1.35; }
-  .tb--them { align-self: flex-start; background: var(--paper-2); border-bottom-left-radius: 5px; }
-  .tb--me { align-self: flex-end; background: var(--brand); color: #fff; border-bottom-right-radius: 5px; position: relative; }
-  .tb--me i { display: block; font-style: normal; font-size: 0.58rem; opacity: 0.85; margin-top: 0.15rem; text-align: right; }
 
-  /* 4 · intent */
-  .ui--intent .intent { padding: 0.85rem; }
-  .intent__alert { display: flex; align-items: center; gap: 0.55rem; padding: 0.7rem 0.8rem; background: var(--ink); color: var(--on-ink); border-radius: 12px; font-size: 0.82rem; }
-  .intent__alert b { color: #fff; }
-  .intent__spark { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); }
-  .intent__spark svg { width: 12px; height: 12px; }
-  .intent__spark svg path { fill: #fff; stroke: none; }
-  .chatmini { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.7rem; }
-  .cm { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.7rem; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); }
-  .cm__txt { flex: 1; min-width: 0; font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lvl { flex: none; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.18rem 0.5rem; border-radius: var(--r-pill); }
-  .lvl--low { background: var(--paper-3); color: var(--ink-faint); }
-  .lvl--mid { background: color-mix(in srgb, #E8A23D 20%, transparent); color: #9a6212; }
-  .lvl--high { background: var(--brand); color: #fff; }
+  /* 3 · sorteio */
+  .ui--draw .draw { padding: 0.85rem; }
+  .draw__head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line-soft); }
+  .draw__kw { font-size: 0.78rem; color: var(--ink-soft); }
+  .draw__kw b { color: var(--brand-ink); font-weight: 800; }
+  .draw__count { font-size: 0.72rem; color: var(--ink-faint); }
+  .draw__count b { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); letter-spacing: -0.02em; margin-right: 0.25em; }
+  .draw__winners { display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; }
+  .dw { display: flex; align-items: center; gap: 0.55rem; padding: 0.5rem 0.6rem; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); min-width: 0; }
+  .dw b { font-size: 0.78rem; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dw--ghost { opacity: 0.45; }
+  .dw__pos { flex: none; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; background: var(--paper-3); color: var(--ink-faint); font-size: 0.6rem; font-weight: 800; }
+  .dw__tag { flex: none; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-ink); background: var(--brand-wash); padding: 0.2rem 0.5rem; border-radius: var(--r-pill); }
+  .draw__btn { display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: 0.8rem; padding: 0.6rem; border-radius: 12px; background: var(--brand); color: #fff; font-size: 0.8rem; font-weight: 700; }
+  .draw__btn-ic { font-size: 0.9em; }
+
+  /* 4 · links dinâmicos + cliques */
+  .ui--links .lks { padding: 0.85rem; }
+  .lk { display: flex; align-items: center; gap: 0.55rem; padding: 0.6rem 0.7rem; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); min-width: 0; }
+  .lk__alias { flex: none; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--brand-ink); background: var(--brand-wash); padding: 0.22rem 0.45rem; border-radius: 7px; }
+  .lk__url { flex: 1; min-width: 0; font-size: 0.74rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lk__edit { flex: none; font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); border: 1px solid var(--line); padding: 0.2rem 0.5rem; border-radius: var(--r-pill); }
+  .lks__hint { margin-top: 0.6rem; font-size: 0.72rem; color: var(--ink-faint); line-height: 1.4; }
+  .lks__hint b { color: var(--ink); font-weight: 700; }
+  .lkbars { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.85rem; }
+  .lkbar { display: grid; grid-template-columns: 8.5rem 1fr auto; align-items: center; gap: 0.6rem; }
+  .lkbar__n { font-size: 0.72rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lkbar i { height: 8px; border-radius: var(--r-pill); background: var(--paper-3); position: relative; overflow: hidden; }
+  .lkbar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: var(--r-pill); background: var(--brand); }
+  .lkbar b { font-family: var(--font-display); font-size: 0.82rem; letter-spacing: -0.02em; }
+  .lks__foot { margin-top: 0.8rem; padding-top: 0.7rem; border-top: 1px solid var(--line-soft); font-size: 0.7rem; color: var(--ink-faint); }
+  @media (max-width: 420px) { .lkbar { grid-template-columns: 6.5rem 1fr auto; } }
 </style>

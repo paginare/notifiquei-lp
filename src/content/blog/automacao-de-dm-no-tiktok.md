@@ -34,7 +34,7 @@ Pra tudo isso rodar, a conta precisa ser de negócio do TikTok. Conta pessoal é
 
 Aqui é a parte honesta. O TikTok hoje é mais enxuto, e tem recurso que existe só do lado do Instagram.
 
-No TikTok ainda não tem o construtor visual de fluxos em blocos, aquele de montar caminhos com botões e condições arrastando as peças. Também não tem automação por comentário, ou seja, a resposta dispara pela DM, não por quem comenta no vídeo. Ficam de fora ainda as campanhas em massa, os sorteios, [o agente de IA](/blog/agente-de-ia-que-responde-dm-no-instagram), a detecção de intenção de compra, as etiquetas e os contatos avançados, o rastreamento de links e o analytics mais detalhado.
+No TikTok ainda não tem o construtor visual de fluxos em blocos, aquele de montar caminhos com botões e condições arrastando as peças. Também não tem automação por comentário, ou seja, a resposta dispara pela DM, não por quem comenta no vídeo. Ficam de fora ainda os [sorteios pelos comentários](/blog/sorteio-no-instagram-pelos-comentarios), os quebra-gelos no direct, o rastreamento de cliques por automação e o relatório mais detalhado — tudo isso hoje é só do lado do Instagram.
 
 Tudo isso é o que faz o Instagram ser o produto completo. O TikTok cobre o essencial, que é responder DM por palavra-chave sem você ficar grudado no celular, e faz isso bem. Mas se a sua estratégia depende de fluxo ramificado ou de capturar quem comenta, esse pedaço por enquanto mora no Instagram.
 
