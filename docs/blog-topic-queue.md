@@ -6,24 +6,6 @@ Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim
 
 ---
 
-## Tema 4 — Black Friday no Instagram: preparar automações antes do pico
-
-**Slug:** black-friday-no-instagram-automacao
-**Categoria:** Estratégia
-**Capa:** G
-
-**Fatos travados:**
-- A Black Friday gera picos de comentários e DMs que são inviáveis de responder manualmente no tempo certo
-- Com automação via API oficial da Meta, o DM chega no mesmo momento que o comentário, independente do volume simultâneo
-- O Notifiquei tem limite de envio definido pela API da Meta; picos acima desse volume ficam em fila e são enviados em sequência
-- Campanhas podem ser agendadas com antecedência no Notifiquei para disparar num horário específico
-- Com etiquetas, é possível segmentar quem já comprou antes e enviar oferta diferente para essa base
-- Leads que interagiram antes da Black Friday mas não compraram podem ser reativados por campanha segmentada
-
-**Ângulo:** Checklist prático de preparação: o que configurar com antecedência, como segmentar, e como usar o agendamento de campanha para o timing certo.
-
----
-
 ## Tema 5 — Como usar automação durante o lançamento de um produto
 
 **Slug:** automacao-no-lancamento-de-produto-no-instagram

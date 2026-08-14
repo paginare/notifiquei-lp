@@ -36,3 +36,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | fluxo-de-boas-vindas-no-direct-do-instagram | Fluxo de boas-vindas no direct do Instagram: como montar | Estratégia | boas-vindas, primeiro DM automático, fluxo de entrada, qualificação inicial, API oficial Meta |
 | palavras-chave-em-comentarios-para-acionar-automacao | Palavras-chave nos comentários: como configurar os gatilhos certos | Estratégia | palavras-chave, gatilho comentário, automação DM, intenção de compra |
 | script-do-primeiro-dm-automatico-no-instagram | O que escrever no primeiro DM automático do Instagram | Copywriting | script DM, primeiro contato, botões de atalho, variável de nome, copywriting automação |
+| black-friday-no-instagram-automacao | Black Friday no Instagram: prepare as automações antes do pico | Estratégia | Black Friday, automação DM, campanha agendada, segmentação por etiqueta, pico de comentários |
