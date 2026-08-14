@@ -5,8 +5,6 @@ date: 2026-08-12
 author: "Carlos Duarte"
 category: "Copywriting"
 tags: ["Copywriting", "DM", "Instagram", "Automação"]
-cover: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "pessoa de camisa mexendo no celular"
 keywords: ["primeiro DM automático", "script DM Instagram", "copywriting automação", "botões de atalho direct"]
 tldr: "O primeiro DM automático deve ser curto, usar o nome do lead e oferecer botões de atalho para guiar a resposta. O texto é definido inteiramente por quem configurou o fluxo no Notifiquei, não pelo sistema."
 faq:

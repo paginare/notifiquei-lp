@@ -5,8 +5,6 @@ date: 2026-07-31
 author: "Carlos Duarte"
 category: "Copywriting"
 tags: ["Copywriting", "Instagram", "DM", "Automação"]
-cover: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "celular com apps de mensagem abertos na tela"
 keywords: ["quebra-gelo instagram", "atalho direct instagram", "automação DM", "fluxo de vendas direct"]
 tldr: "Dá pra criar até 4 quebra-gelos no direct do Instagram: botões que, quando o seguidor toca, já disparam um fluxo de vendas configurado por você. Tudo roda pela API oficial da Meta."
 faq:

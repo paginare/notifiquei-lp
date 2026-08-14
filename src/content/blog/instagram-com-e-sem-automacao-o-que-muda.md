@@ -5,8 +5,6 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Vendas"]
-cover: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa usando o celular para responder mensagens"
 keywords: ["automação Instagram", "responder DM Instagram", "API oficial da Meta", "vendas pelo Instagram", "automação de comentários"]
 tldr: "A automação no Instagram não troca você por um robô: ela garante que as mensagens e comentários sejam respondidos na hora, inclusive de madrugada e fim de semana, pra você parar de perder venda por timing. Feita pela API oficial da Meta, isso acontece dentro das regras e sem risco pra conta."
 faq:

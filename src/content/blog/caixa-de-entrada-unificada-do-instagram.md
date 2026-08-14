@@ -5,8 +5,6 @@ date: 2026-08-03
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["DM", "Instagram", "Automação", "Atendimento"]
-cover: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "pessoa de camisa mexendo no celular"
 keywords: ["caixa de entrada instagram", "inbox instagram", "DM instagram", "automação instagram", "atendimento instagram"]
 tldr: "O Inbox unificado do Notifiquei reúne todas as conversas de DM do Instagram num lugar só, com histórico completo e busca. Você pausa a IA quando precisar e retoma quando quiser, sem perder o fio da meada."
 faq:

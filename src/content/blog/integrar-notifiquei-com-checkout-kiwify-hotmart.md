@@ -5,8 +5,6 @@ date: 2026-07-08
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Vendas", "Checkout"]
-cover: "https://images.unsplash.com/photo-1607082349566-187342175e2f?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "etiquetas de promoção penduradas em varais"
 keywords: ["integrar notifiquei com checkout", "kiwify hotmart notifiquei", "rastrear vendas instagram", "webhook notifiquei"]
 tldr: "O Notifiquei está preparando integração direta com Kiwify, Hotmart, Cakto e Greenn para rastrear a jornada do lead do DM até a compra. Enquanto isso, webhook e push por intenção de compra já funcionam."
 faq:

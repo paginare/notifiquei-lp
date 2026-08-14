@@ -2,7 +2,7 @@
 
 O agente pega o **primeiro tema ainda não publicado** (confere no `docs/blog-index.md`), escreve o post seguindo o `docs/blog-writing-guide.md`, e **remove o tema desta fila** depois de publicar. Se a fila esvaziar, publicar nada e reportar "fila vazia — precisa de temas novos" (dá pra tirar novos temas das dúvidas reais em `../Marketing-Notifiquei/conteudo/duvidas-clientes/lista.md` se o repo tiver acesso, senão só avisar).
 
-Use SÓ os fatos de cada tema. A capa é uma letra do **pool verificado** no fim do arquivo.
+Use SÓ os fatos de cada tema. **Capa não se escolhe mais**: ela é gerada no build a partir do título e da categoria (ver `src/lib/og-image.ts`).
 
 ## Ordem da fila (leia antes de pegar tema)
 
@@ -16,7 +16,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** transformar-seguidores-em-clientes-no-instagram
 **Categoria:** Estratégia
-**Capa:** B
 **Consulta-alvo:** `como transformar seguidores em clientes no instagram` (16 impressões no cluster, posição média 66)
 **Variações pra cobrir:** transformar seguidores em clientes, funil de vendas instagram, como transformar seguidores em fãs
 
@@ -36,7 +35,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** automacao-no-lancamento-de-produto-no-instagram
 **Categoria:** Estratégia
-**Capa:** E
 
 **Fatos travados:**
 - Durante um lançamento, os posts concentram muitos comentários em pouco tempo e a janela de oportunidade de resposta é curta
@@ -54,7 +52,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** dm-automatico-parece-robo-como-evitar
 **Categoria:** Copywriting
-**Capa:** D
 
 **Fatos travados:**
 - O tom do DM automático depende 100% do texto configurado no Notifiquei, não de template padrão do sistema
@@ -72,7 +69,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** funil-de-vendas-pelo-direct-do-instagram
 **Categoria:** Estratégia
-**Capa:** H
 
 **Fatos travados:**
 - Um funil pelo direct tem etapas: atrair (post, story ou anúncio), capturar (comentário ou DM inicial), qualificar (pergunta automática), apresentar (DM com oferta) e fechar (link pro checkout)
@@ -90,7 +86,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** como-vender-servicos-pelo-direct-do-instagram
 **Categoria:** Estratégia
-**Capa:** I
 
 **Fatos travados:**
 - Vendas de serviço costumam exigir qualificação mais profunda antes de apresentar preço (diferente de produto físico de valor fixo)
@@ -107,7 +102,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** reativar-contatos-que-pararam-de-responder-no-direct
 **Categoria:** Estratégia
-**Capa:** C
 
 **Fatos travados:**
 - A janela de follow-up da API da Meta é de 7 dias após a última mensagem do usuário; fora desse prazo, só é possível contato se o usuário interagir novamente
@@ -124,7 +118,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** instagram-para-coaches-e-infoprodutores
 **Categoria:** Estratégia
-**Capa:** I
 
 **Fatos travados:**
 - Coaches e infoprodutores geralmente têm picos de DMs após publicar conteúdo orgânico de autoridade ou story de bastidores
@@ -141,7 +134,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** stories-com-interacao-e-dm-automatico
 **Categoria:** Estratégia
-**Capa:** B
 
 **Fatos travados:**
 - Quando alguém responde a um story com uma mensagem, abre uma janela de conversa no direct que pode ser automatizada pelo Notifiquei
@@ -158,7 +150,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** promocao-relampago-com-automacao-no-instagram
 **Categoria:** Estratégia
-**Capa:** G
 
 **Fatos travados:**
 - Promoções relâmpago (12h, 24h) criam urgência e geram pico de interações nos comentários e DMs
@@ -175,7 +166,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** profissoes-regulamentadas-automacao-instagram
 **Categoria:** Estratégia
-**Capa:** I
 
 **Fatos travados:**
 - Médicos, dentistas, advogados e nutricionistas têm restrições éticas sobre publicidade em suas áreas (CFM, CFO, OAB, CFN)
@@ -193,7 +183,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** relatorios-e-metricas-do-notifiquei
 **Categoria:** Estratégia
-**Capa:** H
 
 **Fatos travados:**
 - O Notifiquei gera relatórios de campanhas com dados de mensagens entregues e de respostas geradas
@@ -209,7 +198,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** templates-de-mensagem-no-direct-do-instagram
 **Categoria:** Copywriting
-**Capa:** D
 
 **Fatos travados:**
 - Templates são textos pré-configurados que podem ser disparados em automações do Notifiquei
@@ -226,7 +214,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** primeiros-passos-no-notifiquei-guia-completo
 **Categoria:** Estratégia
-**Capa:** F
 
 **Fatos travados:**
 - Para conectar o Instagram ao Notifiquei é necessário ter conta profissional ou de criador de conteúdo (conta pessoal não é suportada pela API da Meta)
@@ -243,7 +230,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** produto-de-entrada-e-upsell-pelo-direct-do-instagram
 **Categoria:** Estratégia
-**Capa:** G
 
 **Fatos travados:**
 - Um produto de entrada com preço mais baixo atrai mais compradores e qualifica quem tem perfil de compra
@@ -260,7 +246,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** tratar-objecoes-pelo-direct-do-instagram
 **Categoria:** Copywriting
-**Capa:** C
 
 **Fatos travados:**
 - As objeções mais comuns no direct são: preço, tempo ("vou pensar"), dúvida se funciona para o meu caso, e falta de urgência
@@ -277,7 +262,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** quanto-tempo-leva-resultado-automacao-instagram
 **Categoria:** Estratégia
-**Capa:** E
 
 **Fatos travados:**
 - A automação de DM aumenta a velocidade de resposta imediatamente após a ativação; não existe período de aprendizado da ferramenta
@@ -294,7 +278,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** capturar-leads-de-trafego-pago-no-direct
 **Categoria:** Tráfego Pago
-**Capa:** B
 
 **Fatos travados:**
 - Anúncios no Instagram podem ter como destino o direct (objetivo "mensagens") ao invés de uma landing page
@@ -311,7 +294,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** ajustar-base-de-conhecimento-do-agente-de-ia
 **Categoria:** Estratégia
-**Capa:** J
 
 **Fatos travados:**
 - O agente de IA do Notifiquei usa uma base de conhecimento configurada pelo usuário para responder perguntas no direct
@@ -329,7 +311,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** diferenca-entre-bot-e-api-oficial-meta-instagram
 **Categoria:** Estratégia
-**Capa:** A
 
 **Fatos travados:**
 - "Bot" no sentido popular é uma ferramenta não-oficial que automatiza o Instagram simulando comportamento humano (curtidas automáticas, DM em massa para estranhos)
@@ -347,7 +328,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** metricas-de-automacao-no-instagram
 **Categoria:** Estratégia
-**Capa:** H
 
 **Fatos travados:**
 - As principais métricas de uma automação de DM são: taxa de DMs entregues, taxa de resposta, e quantos leads avançaram para a etapa seguinte do fluxo
@@ -364,7 +344,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** organizar-multiplas-automacoes-no-instagram
 **Categoria:** Estratégia
-**Capa:** E
 
 **Fatos travados:**
 - Um perfil pode ter múltiplas automações ativas ao mesmo tempo: automação de comentários em posts diferentes, fluxo de boas-vindas, follow-up
@@ -381,7 +360,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** lancamento-perpetuo-vs-pontual-automacao-instagram
 **Categoria:** Estratégia
-**Capa:** J
 
 **Fatos travados:**
 - Lançamento pontual tem janela definida (ex: carrinho aberto por 5 dias) com urgência real e pico de interações
@@ -398,7 +376,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** automacao-no-instagram-para-negocios-locais
 **Categoria:** Estratégia
-**Capa:** F
 
 **Fatos travados:**
 - Negócios locais recebem no direct perguntas repetitivas: endereço, horário de funcionamento, preço de serviço, disponibilidade de agenda
@@ -415,7 +392,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** pergunta-qualificadora-no-direct-do-instagram
 **Categoria:** Copywriting
-**Capa:** C
 
 **Fatos travados:**
 - A pergunta qualificadora é a mensagem que determina se o lead tem intenção, perfil ou orçamento adequado antes de apresentar a oferta
@@ -432,7 +408,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** pedir-avaliacao-pelo-direct-apos-compra
 **Categoria:** Copywriting
-**Capa:** I
 
 **Fatos travados:**
 - Após a compra confirmada via integração com checkout, o Notifiquei pode disparar um DM automático para o comprador
@@ -449,7 +424,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** sequencia-de-aquecimento-antes-da-oferta-no-direct
 **Categoria:** Copywriting
-**Capa:** C
 
 **Fatos travados:**
 - Apresentar a oferta no primeiro DM reduz a conversão: o lead não tem contexto suficiente para decidir
@@ -466,7 +440,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 **Slug:** vender-pelo-direct-sem-landing-page
 **Categoria:** Estratégia
-**Capa:** B
 
 **Fatos travados:**
 - É possível vender pelo direct sem landing page: o link do checkout vai diretamente na mensagem, após a qualificação do lead
@@ -478,18 +451,3 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 **Ângulo:** Mostrar quando faz sentido vender pelo direct sem landing page, como montar o fluxo do comentário ao link de pagamento, e quais tipos de produto e público se adaptam melhor a esse modelo.
 
 ---
-
-## Pool de capas verificadas (use SÓ estas — já foram conferidas visualmente)
-
-Formato final: `https://images.unsplash.com/photo-<ID>?q=80&w=1200&auto=format&fit=crop`
-
-- **A** = `1611262588024-d12430b98920` — ícone do Instagram em 3D
-- **B** = `1516251193007-45ef944ab0c6` — mão com celular mostrando o Instagram, cidade ao fundo
-- **C** = `1611746872915-64382b5c76da` — celular com apps de mensagem (WhatsApp, Telegram)
-- **D** = `1512428559087-560fa5ceab42` — pessoa de camisa mexendo no celular
-- **E** = `1522202176988-66273c2fd55f` — equipe com laptops numa mesa
-- **F** = `1523206489230-c012c64b2b48` — mão segurando um celular com a tela inicial
-- **G** = `1607082349566-187342175e2f` — etiquetas de "SALE" (promoção/preço)
-- **H** = `1556155092-490a1ba16284` — laptop com dashboard/analytics e pessoa digitando
-- **I** = `1580894732444-8ecded7900cd` — pessoa sorrindo apresentando (equipe/consultoria)
-- **J** = `1622547748225-3fc4abd2cca0` — formas 3D abstratas em tom pastel (tech/IA)

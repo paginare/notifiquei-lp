@@ -5,8 +5,6 @@ date: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Passo a passo"]
-cover: "https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "pessoa digitando em laptop com painel de dados na tela"
 keywords: ["como automatizar o instagram", "como automatizar instagram", "como fazer automação no instagram", "automatizar instagram", "automação instagram passo a passo", "api oficial meta"]
 tldr: "Pra automatizar o Instagram você precisa de conta profissional vinculada a uma página, conectar pela API oficial da Meta com login oficial (sem entregar senha), ligar o acesso a mensagens nas configurações e montar um fluxo simples de palavra-chave no comentário que responde e manda o direct. Dá pra deixar o primeiro no ar em poucos minutos."
 faq:

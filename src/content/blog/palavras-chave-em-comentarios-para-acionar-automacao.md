@@ -5,8 +5,6 @@ date: 2026-08-10
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Palavras-chave"]
-cover: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "ícone do Instagram em 3D"
 keywords: ["palavras-chave comentários instagram", "automação DM instagram", "gatilho comentário instagram", "automação de comentários"]
 tldr: "Configurar palavras-chave específicas como 'quero', 'preço' ou 'link' no Notifiquei garante que o DM automático só dispara para quem tem intenção de compra real. Palavras genéricas como 'oi' ou 'amei' geram ruído e desgastam o fluxo."
 faq:

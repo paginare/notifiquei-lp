@@ -5,8 +5,6 @@ date: 2026-07-29
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Integração", "Webhook", "n8n"]
-cover: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "formas 3D abstratas em tons pastéis representando tecnologia e conexão"
 keywords: ["webhook instagram", "integração notifiquei", "n8n instagram", "automação externa instagram"]
 tldr: "O Notifiquei envia webhooks em tempo real quando alguém responde uma qualificação ou demonstra intenção de compra no direct, permitindo conectar com n8n, FunilOnline e Responda.me para criar alertas e automações externas sem depender de ferramentas caras."
 faq:

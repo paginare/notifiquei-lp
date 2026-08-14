@@ -5,8 +5,6 @@ date: 2026-06-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Comparativo", "ManyChat", "Instagram"]
-cover: "https://images.unsplash.com/photo-1556656793-08538906a9f8?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Calculadora e anotações sobre uma mesa de trabalho"
 keywords: ["Notifiquei vs ManyChat", "alternativa ManyChat", "ManyChat preço", "ManyChat em dólar", "automação Instagram Brasil"]
 tldr: "Se a fatura do ManyChat sobe junto com a sua audiência, o Notifiquei resolve isso com preço fixo em real e contatos ilimitados em todos os planos, feito pra quem vende no Brasil."
 faq:

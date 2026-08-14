@@ -5,8 +5,6 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Copywriting"
 tags: ["Copywriting", "Qualificação de leads", "Vendas no Instagram"]
-cover: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa usando o celular para conversar por mensagem"
 keywords: ["qualificar lead Instagram", "intenção de compra", "vender pela DM", "qualificação de leads", "preço no Instagram"]
 tldr: "Antes de mandar o preço, descubra o que a pessoa está tentando resolver, por que ela quer resolver agora e o que acontece se ela não resolver. Preço com contexto vira decisão; preço sem contexto vira objeção."
 faq:

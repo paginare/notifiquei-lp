@@ -5,8 +5,6 @@ date: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "API Oficial"]
-cover: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "ícone do Instagram em 3D sobre fundo claro"
 keywords: ["automação no instagram", "automação de instagram", "automação para instagram", "automacao de instagram", "automação instagram", "automação de marketing instagram", "api oficial meta"]
 tldr: "Automação no Instagram, no que a API oficial da Meta permite, é responder comentário, mandar DM e reagir a quem responde seu story de forma automática. Não é postar por robô nem inflar seguidor. Feito pelo caminho oficial, funciona dentro das regras da plataforma e não coloca a conta em risco."
 faq:

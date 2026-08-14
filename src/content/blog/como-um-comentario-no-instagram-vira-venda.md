@@ -5,8 +5,6 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Vendas", "Instagram", "Automação"]
-cover: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa usando o Instagram no celular"
 keywords: ["comentário Instagram", "vendas no Instagram", "automação de DM", "tempo de resposta lead", "Instagram Direct"]
 tldr: "Comentário no Instagram é sinal de interesse no pico. Quem responde rápido e com uma mensagem que oferece um próximo passo concreto (não só 'manda DM') converte muito mais — e a automação pela API oficial leva o comentário pro Direct em segundos, no momento certo."
 faq:

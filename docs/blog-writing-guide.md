@@ -23,8 +23,6 @@ date: 2026-01-01            # USE A DATA DE HOJE (formato YYYY-MM-DD). Nunca for
 author: "Carlos Duarte"
 category: "Estratégia"      # Estratégia | Copywriting | Tráfego Pago
 tags: ["Automação", "Instagram", "DM"]
-cover: "https://images.unsplash.com/photo-XXXX?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "alt curto e literal em português"
 keywords: ["palavra 1", "palavra 2", "palavra 3"]
 tldr: "1-2 frases citáveis com a resposta central (aparece no topo e ajuda a IA a citar)."
 faq:
@@ -34,7 +32,9 @@ faq:
 ---
 ```
 
-**Capa:** use SÓ uma URL do pool de capas verificadas listado no fim de `docs/blog-topic-queue.md` (ou a capa sugerida no próprio tema). NUNCA escolher um ID aleatório do Unsplash — já deu problema (caiu logo do Twitter). Sempre `?q=80&w=1200&auto=format&fit=crop`.
+**Capa: não existe mais campo pra preencher.** A imagem de cada post é gerada no build (`src/lib/og-image.ts`) a partir do `title` e da `category`, e serve de miniatura no índice e de imagem de compartilhamento (og:image). Não adicionar `cover` nem `coverAlt` no frontmatter.
+
+Efeito colateral que importa pro texto: **o `title` vira a arte que a pessoa vê quando o link é compartilhado no WhatsApp ou no direct.** Título comprido encolhe a fonte da capa, então até 60 caracteres também é regra visual, não só de SERP.
 
 ### `title` e `description`: é aí que se ganha ou se perde o clique
 
@@ -71,7 +71,7 @@ O CTR do site pra busca que não é de marca está em 1%. Tem post com 626 impre
 - [ ] `docs/seo/search-console-2026-08.md` lido; tema `[demanda confirmada]` foi priorizado se havia algum na fila.
 - [ ] `Consulta-alvo` do tema aparece literal no `title`, perto do começo, com até 60 caracteres.
 - [ ] `description` de 140-160 caracteres, com a consulta e uma razão pra clicar.
-- [ ] Frontmatter completo no schema exato; `cover` do pool verificado; `date` = hoje.
+- [ ] Frontmatter completo no schema exato (sem `cover`); `date` = hoje.
 - [ ] Abre com cena; ao menos 1 conta de receita; produto citado com naturalidade + CTA.
 - [ ] 2 links internos contextuais no corpo.
 - [ ] Sem travessão, sem clichê de IA, headings minúsculos.

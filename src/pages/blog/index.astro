@@ -52,9 +52,7 @@ const jsonLd = [
           {posts.map((post) => (
             <li class="postcard">
               <a class="postcard__link" href={`/blog/${post.id}`}>
-                {post.data.cover && (
-                  <img class="postcard__cover" src={post.data.cover} alt={post.data.coverAlt ?? ""} loading="lazy" width="600" height="338" />
-                )}
+                <img class="postcard__cover" src={`/blog/og/${post.id}.png`} alt="" loading="lazy" width="600" height="315" />
                 <div class="postcard__body">
                   <span class="postcard__cat">{post.data.category}</span>
                   <h2 class="postcard__title">{post.data.title}</h2>

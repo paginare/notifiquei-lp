@@ -5,8 +5,6 @@ date: 2026-07-24
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Segmentação", "Instagram", "DM", "Leads", "Automação"]
-cover: "https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "laptop com dashboard de analytics e pessoa digitando"
 keywords: ["etiquetas instagram", "segmentação de leads instagram", "organizar contatos instagram", "DM segmentado", "base de contatos instagram"]
 tldr: "Com etiquetas no Notifiquei, você agrupa contatos por etapa do funil e envia mensagens diferentes pra cada grupo. A automação etiqueta os contatos sozinha conforme a pessoa reage no direct, pela API oficial da Meta."
 faq:

@@ -5,8 +5,6 @@ date: 2026-07-01
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Stories", "Instagram"]
-cover: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa mexendo no celular com o Instagram aberto"
 keywords: ["automatizar resposta a story", "automação de story Instagram", "responder story automático", "gatilho de resposta a story", "API oficial da Meta"]
 tldr: "Dá pra automatizar sim: quando alguém responde seu story, isso vira um gatilho que puxa a pessoa pra um fluxo no direct. A Meta libera uma mensagem no primeiro contato; quando a pessoa toca num botão, a conversa segue livre e você manda o link, a oferta ou o que quiser."
 faq:

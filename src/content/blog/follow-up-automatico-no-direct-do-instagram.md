@@ -5,8 +5,6 @@ date: 2026-07-01
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Follow-up", "Instagram"]
-cover: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa digitando uma mensagem no celular com o Instagram aberto"
 keywords: ["follow-up automático Instagram", "mensagem de acompanhamento direct", "janela de 7 dias Instagram", "nó de espera automação", "API oficial da Meta"]
 tldr: "Dá pra deixar um follow-up programado dentro da mesma automação: uma segunda mensagem alguns dias depois pra quem demonstrou interesse e sumiu. Você tem uma janela de 7 dias pra continuar a conversa, e o limite de 24 horas por palavra-chave evita floodar quem já recebeu."
 faq:

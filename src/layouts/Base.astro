@@ -11,6 +11,8 @@ interface Props {
   noindex?: boolean;
   canonicalPath?: string; // força o canonical p/ outra rota (ex.: variantes A/B → "/")
   heroPoster?: string; // pré-carrega o poster do vídeo do hero (LCP) quando informado
+  ogImagePath?: string; // imagem de compartilhamento própria da página (ex.: capa gerada do post)
+  ogType?: string; // "article" nos posts do blog, "website" no resto
 }
 
 const {
@@ -21,6 +23,8 @@ const {
   noindex = false,
   canonicalPath,
   heroPoster,
+  ogImagePath,
+  ogType = "website",
 } = Astro.props;
 
 const site = "https://notifiquei.com.br";
@@ -28,7 +32,8 @@ const site = "https://notifiquei.com.br";
 const canonicalTarget = canonicalPath ?? path;
 const canonical = canonicalTarget === "/" ? site : site + canonicalTarget;
 // ?v=2 força WhatsApp/Facebook a re-buscar a imagem (eles cacheiam por URL)
-const ogImage = site + "/assets/og-image.jpg?v=2";
+// Posts do blog passam ogImagePath com a capa gerada; o resto usa a imagem padrão.
+const ogImage = site + (ogImagePath ?? "/assets/og-image.jpg?v=2");
 
 // Schema WebSite (site inteiro) — ajuda buscadores e IAs a entender a marca.
 const websiteLd = {
@@ -58,7 +63,7 @@ const websiteLd = {
   <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Notifiquei" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:title" content={title} />

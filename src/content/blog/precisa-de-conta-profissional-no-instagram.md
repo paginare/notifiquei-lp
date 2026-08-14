@@ -5,8 +5,6 @@ date: 2026-07-01
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Conta Profissional"]
-cover: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "pessoa de camisa mexendo no celular"
 keywords: ["conta profissional instagram", "automação instagram", "api oficial meta", "conta criador instagram", "automatizar dm instagram"]
 tldr: "Sim, você precisa de conta Profissional ou de Criador pra conectar qualquer ferramenta de automação no Instagram. A mudança é gratuita e leva menos de 1 minuto nas configurações do app."
 faq:

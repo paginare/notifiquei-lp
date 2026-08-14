@@ -5,8 +5,6 @@ date: 2026-07-03
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "API"]
-cover: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "formas 3D abstratas em tons pastéis representando tecnologia"
 keywords: ["limite de mensagens Instagram", "API Meta Instagram", "DM automático Instagram"]
 tldr: "A API oficial da Meta permite cerca de 200 mensagens por hora por conta. Ferramentas que prometem envio ilimitado operam fora da API e colocam sua conta em risco de bloqueio."
 faq:

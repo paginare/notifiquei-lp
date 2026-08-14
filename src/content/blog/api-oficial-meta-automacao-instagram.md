@@ -5,8 +5,6 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Segurança", "Instagram"]
-cover: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Tela de celular com o app do Instagram aberto"
 keywords: ["API oficial da Meta", "automação Instagram", "banimento Instagram", "Instagram Graph API", "Messaging API"]
 tldr: "Ferramenta de automação que não usa a API oficial da Meta simula um humano e pode derrubar seu perfil sem aviso. A API oficial é aprovada pela Meta, nunca pede sua senha e não coloca a conta em risco — é assim que o Notifiquei opera."
 faq:

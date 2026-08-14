@@ -5,8 +5,6 @@ date: 2026-07-10
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM"]
-cover: "https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "ícone do Instagram em 3D sobre fundo colorido"
 keywords: ["automação instagram poucos seguidores", "automatizar conta pequena instagram", "vender no instagram com poucos seguidores"]
 tldr: "Automação funciona com contas de qualquer tamanho. Quem responde rápido vende mais, tendo 500 ou 50 mil seguidores, e conta menor costuma sentir o resultado primeiro."
 faq:

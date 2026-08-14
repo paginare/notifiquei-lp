@@ -5,8 +5,6 @@ date: 2026-07-17
 author: "Carlos Duarte"
 category: "Copywriting"
 tags: ["Automação", "Instagram", "Comentários", "Direct", "Copywriting"]
-cover: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "mão segurando celular com Instagram aberto, cidade ao fundo"
 keywords: ["responder comentários instagram automaticamente", "automação comentários instagram", "resposta automática comentário instagram", "puxar lead pro direct"]
 tldr: "Dá pra configurar uma resposta automática em comentários do Instagram que soa na sua voz e ainda puxa a pessoa pro direct ao mesmo tempo, tudo pela API oficial da Meta. Você também pode ocultar comentários de spam sem precisar monitorar o feed o dia inteiro."
 faq:

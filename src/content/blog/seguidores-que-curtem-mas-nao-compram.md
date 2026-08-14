@@ -5,8 +5,6 @@ date: 2026-04-20
 author: "Carlos Duarte"
 category: "Copywriting"
 tags: ["Funil de vendas", "Instagram", "Conversão"]
-cover: "https://images.unsplash.com/photo-1579869847557-1f67382cc158?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa mexendo no celular com redes sociais abertas"
 keywords: ["seguidores que não compram", "funil de vendas no Instagram", "transformar seguidores em clientes", "engajamento alto e poucas vendas", "automação de DM no Instagram"]
 tldr: "Curtir e comprar são comportamentos diferentes: o like é gratuito e impulsivo, a compra exige confiança. Se você não construiu um funil que leva o seguidor da descoberta até a venda, com oferta clara e um jeito de continuar a conversa com quem demonstra interesse, engajamento alto vira venda baixa."
 faq:

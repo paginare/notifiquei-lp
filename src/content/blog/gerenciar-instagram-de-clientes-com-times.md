@@ -5,8 +5,6 @@ date: 2026-07-01
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Agência", "Times", "Instagram"]
-cover: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Equipe de agência reunida em frente a telas com o Instagram aberto"
 keywords: ["gerenciar Instagram de clientes", "ferramenta para agência Instagram", "automação Instagram sem senha", "acesso por time no Instagram", "gestão de redes sociais"]
 tldr: "No Notifiquei você cria um time, configura as automações e envia um convite pro cliente conectar o Instagram dele pelo login oficial da Meta, sem te passar a senha. O acesso separado por equipe vem a partir do plano Pro."
 faq:

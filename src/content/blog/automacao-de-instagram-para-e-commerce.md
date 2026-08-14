@@ -5,8 +5,6 @@ date: 2026-07-22
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["E-commerce", "Instagram", "Automação", "DM"]
-cover: "https://images.unsplash.com/photo-1607082349566-187342175e2f?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "etiquetas de promoção coloridas sobre produtos"
 keywords: ["e-commerce no Instagram", "automatizar atendimento Instagram", "DM automático loja", "automação Instagram e-commerce"]
 tldr: "Lojas de e-commerce no Instagram que automatizam DM e comentário pela API oficial da Meta respondem em segundos, qualificam o lead antes de enviar o catálogo e vendem mais sem precisar de atendente disponível o tempo todo."
 faq:

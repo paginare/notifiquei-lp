@@ -13,6 +13,8 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const d = post.data;
 const url = `https://notifiquei.com.br/blog/${post.id}`;
+// Capa gerada no build (satori) — serve de og:image e de imagem do schema.
+const ogPath = `/blog/og/${post.id}.png`;
 const published = d.date.toISOString();
 const modified = (d.updated ?? d.date).toISOString();
 
@@ -35,7 +37,7 @@ const jsonLd = [
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     headline: d.title,
     description: d.description,
-    ...(d.cover ? { image: d.cover } : {}),
+    image: `https://notifiquei.com.br${ogPath}`,
     datePublished: published,
     dateModified: modified,
     author: { "@type": "Person", name: d.author },
@@ -65,7 +67,7 @@ const jsonLd = [
 ];
 ---
 
-<Base title={`${d.title} — Notifiquei`} description={d.description} path={`/blog/${post.id}`} jsonLd={jsonLd}>
+<Base title={`${d.title} — Notifiquei`} description={d.description} path={`/blog/${post.id}`} jsonLd={jsonLd} ogImagePath={ogPath} ogType="article">
   <Nav />
   <main>
     <article class="article">
@@ -80,8 +82,6 @@ const jsonLd = [
             <p>{d.tldr}</p>
           </aside>
         )}
-
-        {d.cover && <img class="article__cover" src={d.cover} alt={d.coverAlt ?? ""} width="780" height="439" />}
 
         <div class="article__body">
           <Content />

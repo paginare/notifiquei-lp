@@ -5,8 +5,6 @@ date: 2026-08-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Black Friday", "Automação", "Instagram", "Campanha", "DM"]
-cover: "https://images.unsplash.com/photo-1607082349566-187342175e2f?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Etiquetas de promoção e desconto penduradas"
 keywords: ["black friday instagram", "automação black friday", "DM automático instagram", "campanha black friday", "notifiquei black friday"]
 tldr: "Responder manualmente durante a Black Friday é inviável quando centenas de comentários chegam ao mesmo tempo. Com automação pelo Notifiquei via API oficial da Meta, o DM é disparado no instante do comentário, independente do volume, e campanhas podem ser agendadas com antecedência para o horário certo."
 faq:

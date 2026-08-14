@@ -5,8 +5,6 @@ date: 2026-07-06
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Live", "Instagram", "DM", "Automação"]
-cover: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "mão segurando celular com Instagram aberto, cidade ao fundo"
 keywords: ["disparar mensagem live instagram", "automação live instagram", "dm durante live instagram", "comentário live instagram direct", "API oficial da Meta live"]
 tldr: "Quem comenta durante sua live no Instagram pode receber uma DM automática no direct em tempo real. A resposta não vai pro chat público da live, vai pra conversa privada com a pessoa. Roda pela API oficial da Meta."
 faq:

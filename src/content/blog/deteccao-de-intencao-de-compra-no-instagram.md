@@ -5,8 +5,6 @@ date: 2026-07-13
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Inteligência Artificial", "Vendas"]
-cover: "https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "laptop com dashboard e pessoa digitando"
 keywords: ["intenção de compra instagram", "lead quente instagram", "agente de IA instagram", "detectar interesse compra direct"]
 tldr: "O agente de IA do Notifiquei classifica a intenção de compra do lead em alta, média ou baixa e avisa você no momento certo pra fechar. Funciona com base de conhecimento e memória da conversa, rodando pela API oficial da Meta."
 faq:

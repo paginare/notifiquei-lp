@@ -5,8 +5,6 @@ date: 2026-07-01
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["IA", "Automação", "Instagram"]
-cover: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Notebook aberto mostrando gráficos e dados de vendas"
 keywords: ["agente de IA Instagram", "IA responde DM", "chatbot Instagram", "automação de DM Instagram", "API oficial da Meta"]
 tldr: "O agente de IA do Notifiquei responde DM e comentário sozinho, na sua voz, com memória da conversa e uma base de conhecimento que você ensina. Ele ainda detecta quando o lead quer comprar e te avisa pra você entrar e fechar."
 faq:

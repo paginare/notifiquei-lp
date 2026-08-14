@@ -5,8 +5,6 @@ date: 2026-08-07
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Boas-vindas"]
-cover: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "mão segurando celular com tela inicial"
 keywords: ["automação direct instagram", "fluxo de boas-vindas", "dm automático instagram", "primeiro dm automático", "api oficial meta"]
 tldr: "Quando alguém inicia uma conversa no direct, a API da Meta permite acionar uma mensagem automática imediata. No Notifiquei, você configura o texto, os botões de atalho e o fluxo inteiro, sem depender de atendente disponível pra não perder o lead."
 faq:

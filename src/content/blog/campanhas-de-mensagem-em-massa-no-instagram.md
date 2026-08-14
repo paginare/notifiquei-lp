@@ -5,8 +5,6 @@ date: 2026-07-27
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Campanhas", "Mensagem em Massa"]
-cover: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "celular com apps de mensagem abertos"
 keywords: ["campanha instagram", "mensagem em massa instagram", "disparo de mensagem instagram", "reativar base instagram", "envio em massa direct"]
 tldr: "Campanhas no Notifiquei permitem enviar mensagens segmentadas por etiqueta no Instagram, com agendamento e relatório, dentro das regras da API oficial da Meta. Funciona para contatos que já interagiram com sua conta."
 faq:

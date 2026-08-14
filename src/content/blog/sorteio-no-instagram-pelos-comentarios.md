@@ -5,8 +5,6 @@ date: 2026-06-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Sorteio", "Engajamento", "Instagram"]
-cover: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "Pessoa comemorando com o celular na mão"
 keywords: ["sorteio no Instagram", "como fazer sorteio Instagram", "sorteio pelos comentários", "sortear comentários Instagram", "ferramenta de sorteio Instagram"]
 tldr: "Dá pra fazer sorteio no Instagram direto pelos comentários, sem site de terceiro: a plataforma junta todo mundo que participou, mostra a lista, sorteia o vencedor e re-sorteia num clique se a pessoa some."
 faq:

@@ -5,8 +5,6 @@ date: 2026-07-15
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Agendamento", "Reels"]
-cover: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "mão segurando celular com tela inicial"
 keywords: ["agendar posts instagram", "agendamento reels instagram", "agendar stories instagram", "Notifiquei agendamento", "agendar carrossel instagram"]
 tldr: "No Notifiquei, você já agenda Reels, posts, carrossel e stories. Áudio em Reels e música no carrossel estão chegando nas próximas etapas; link no story ainda depende de liberação da Meta."
 faq:

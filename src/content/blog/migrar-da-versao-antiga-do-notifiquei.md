@@ -5,8 +5,6 @@ date: 2026-07-20
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Migração"]
-cover: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1200&auto=format&fit=crop"
-coverAlt: "formas 3D abstratas em tons pastel representando tecnologia"
 keywords: ["migrar notifiquei", "revincular instagram", "versão antiga notifiquei", "reconectar instagram notifiquei"]
 tldr: "Sua conta e assinatura continuam valendo na versão nova. O único passo obrigatório é revincular seu Instagram, porque a Meta exige uma nova autorização quando o sistema muda de infraestrutura."
 faq:
