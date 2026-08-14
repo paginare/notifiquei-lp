@@ -67,6 +67,7 @@ const plans = [
 const faqs = [
   { q: "Isso pode bloquear meu Instagram?", a: "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." },
   { q: "Preciso saber programar?", a: "Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual." },
+  { q: "Dá pra criar automação conversando com o Claude?", a: "Dá. Todo plano tem uma chave de API, e o painel entrega um kit pronto com a sua chave dentro. Você cola esse kit nas instruções de um Projeto no Claude e passa a pedir em português: ele acha o post, monta a automação, mostra o resumo pra você confirmar e liga. Também dá pra listar, ativar e desativar automações pela conversa." },
   { q: "Dá pra usar como afiliado?", a: "Dá, e é um dos usos mais comuns. Você posta o produto, pede pra comentarem a palavra-chave e o Notifiquei manda o seu link de afiliado no direct de cada pessoa que comentou. Funciona com link de Shopee, Mercado Livre, Amazon, AliExpress, Magalu ou qualquer outro." },
   { q: "Funciona pra e-commerce?", a: "Sim. Temos clientes vendendo moda, cosméticos, suplementos e produtos físicos em geral. O fluxo ideal muda um pouco, mas tem template pronto pra isso." },
   { q: "Qual a diferença pro ManyChat?", a: "Mais barato, suporte em português, interface mais simples e foco no mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você." },
@@ -367,6 +368,51 @@ const jsonLd = [
 
     <!-- ============ CAPACIDADES ============ -->
     <Capabilities />
+
+    <!-- ============ MONTE PELO CLAUDE (API de parceiros) ============ -->
+    <section class="section claudeai" id="claude">
+      <div class="container claudeai__inner">
+        <div class="claudeai__copy reveal">
+          <span class="eyebrow">Novo · pra quem usa IA</span>
+          <h2 class="claudeai__title">Não quer nem montar o fluxo? <span class="hl">Peça pro Claude</span>.</h2>
+          <p class="lead">
+            Todo plano tem uma chave de API. Você copia o kit pronto no painel, cola nas
+            instruções de um Projeto no <strong>Claude</strong>, e a partir dali é só conversar
+            em português: ele escolhe o post, monta a automação e liga pra você.
+          </p>
+          <ul class="claudeai__list">
+            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Um botão no painel copia o kit com a sua chave dentro</li>
+            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Ele sempre mostra o resumo e pede seu OK antes de criar</li>
+            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Dá pra listar, ligar e desligar automação pela conversa</li>
+            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, inclusive no grátis</li>
+          </ul>
+          <p class="claudeai__note">
+            Tem sistema próprio? A mesma chave serve pra plugar direto na sua aplicação.
+          </p>
+        </div>
+
+        <div class="claudeai__demo reveal" aria-hidden="true">
+          <div class="cwin">
+            <div class="cwin__bar"><span class="cwin__dots"><i></i><i></i><i></i></span><span class="cwin__url">claude · automações instagram</span></div>
+            <div class="cchat">
+              <div class="cbub cbub--me">cria uma automação no meu último reel: quem comentar QUERO recebe o link da promo no direct</div>
+              <div class="cbub cbub--ai">
+                Achei o Reel de ontem — “kit verão com 30% off”. Antes de criar, confirma:
+                <span class="crec">
+                  <span class="crec__l"><b>Conta</b><i>@sua.loja</i></span>
+                  <span class="crec__l"><b>Dispara com</b><i>QUERO</i></span>
+                  <span class="crec__l"><b>No comentário</b><i>“te chamei no direct 💛”</i></span>
+                  <span class="crec__l"><b>No direct</b><i>link + botão “quero esse”</i></span>
+                </span>
+                Pode criar?
+              </div>
+              <div class="cbub cbub--me">pode</div>
+              <div class="cbub cbub--ai cbub--ok"><span class="cbub__ic">✓</span> Criada e ativa. Já está valendo pros próximos comentários.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============ CTA DO MEIO ============ -->
     <section class="section midcta">
@@ -763,6 +809,43 @@ const jsonLd = [
   /* Cartão demo */
   .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; }
   .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1280 / 960; background: transparent; }
+
+  /* ===================== MONTE PELO CLAUDE ===================== */
+  .claudeai__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+  .claudeai__inner > * { min-width: 0; }
+  .claudeai__title { font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem); margin-top: 0.9rem; letter-spacing: -0.02em; }
+  .claudeai .lead { margin-top: 1.1rem; max-width: 32rem; }
+  .claudeai__list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.6rem; }
+  .claudeai__list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.94rem; color: var(--ink-soft); line-height: 1.45; }
+  .claudeai__tick { flex: none; display: grid; place-items: center; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%; background: var(--brand-wash); color: var(--brand-ink); font-size: 0.7rem; font-weight: 800; }
+  .claudeai__note { margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--line-soft); font-size: 0.88rem; color: var(--ink-faint); }
+
+  /* chrome da janela (local: o CSS do PlatformShowcase é escopado e não vale aqui) */
+  .cwin { --ok: #1B9A5F; background: linear-gradient(180deg, var(--paper-2), var(--paper-3)); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 7px; box-shadow: var(--shadow-lg); max-width: 100%; overflow: hidden; }
+  .cwin__bar { display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0.85rem; }
+  .cwin__dots { display: inline-flex; gap: 5px; }
+  .cwin__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--paper-3); border: 1px solid var(--line); }
+  .cwin__url { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.01em; }
+  .cwin > :not(.cwin__bar) { background: var(--card); border-radius: calc(var(--r-xl) - 7px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); }
+
+  .cchat { display: flex; flex-direction: column; gap: 0.6rem; padding: 0.9rem; }
+  .cbub { max-width: 88%; padding: 0.65rem 0.85rem; border-radius: 14px; font-size: 0.84rem; line-height: 1.45; }
+  .cbub--me { align-self: flex-end; background: var(--brand); color: #fff; border-bottom-right-radius: 5px; }
+  .cbub--ai { align-self: flex-start; background: var(--paper-2); border: 1px solid var(--line); border-bottom-left-radius: 5px; color: var(--ink-soft); }
+  .cbub--ok { display: flex; align-items: center; gap: 0.5em; background: color-mix(in srgb, var(--ok) 12%, var(--card)); border-color: color-mix(in srgb, var(--ok) 35%, var(--line)); color: var(--ink); font-weight: 600; }
+  .cbub__ic { flex: none; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--ok); color: #fff; font-size: 0.62rem; font-weight: 800; }
+  .crec { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.65rem 0; padding: 0.65rem 0.7rem; background: var(--card); border: 1px solid var(--line); border-radius: 11px; box-shadow: var(--shadow-sm); }
+  .crec__l { display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.76rem; }
+  .crec__l b { flex: none; width: 6.4rem; color: var(--ink-faint); font-weight: 600; }
+  .crec__l i { font-style: normal; color: var(--ink); font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+  @media (min-width: 900px) {
+    .claudeai__inner { grid-template-columns: 1fr 0.95fr; }
+    .crec__l b { width: 7rem; }
+  }
+  @media (max-width: 430px) {
+    .crec__l { flex-direction: column; gap: 0.1rem; }
+    .crec__l b { width: auto; }
+  }
 
   /* ===================== VEJA EM AÇÃO ===================== */
   .inaction__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
