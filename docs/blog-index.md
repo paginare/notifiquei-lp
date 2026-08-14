@@ -37,3 +37,5 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | palavras-chave-em-comentarios-para-acionar-automacao | Palavras-chave nos comentários: como configurar os gatilhos certos | Estratégia | palavras-chave, gatilho comentário, automação DM, intenção de compra |
 | script-do-primeiro-dm-automatico-no-instagram | O que escrever no primeiro DM automático do Instagram | Copywriting | script DM, primeiro contato, botões de atalho, variável de nome, copywriting automação |
 | black-friday-no-instagram-automacao | Black Friday no Instagram: prepare as automações antes do pico | Estratégia | Black Friday, automação DM, campanha agendada, segmentação por etiqueta, pico de comentários |
+| automacao-no-instagram-guia | Automação no Instagram: como fazer sem arriscar sua conta | Estratégia | POST-PILAR do termo-mãe "automação no instagram"; o que da e o que nao da pra automatizar, API oficial, pre-requisitos |
+| como-automatizar-o-instagram-passo-a-passo | Como automatizar o Instagram: do zero ao primeiro fluxo | Estratégia | tutorial passo a passo; conta profissional, conexao pela API, acesso a mensagens, primeiro fluxo, teste |

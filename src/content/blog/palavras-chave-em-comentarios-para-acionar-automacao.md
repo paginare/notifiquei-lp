@@ -28,7 +28,7 @@ O detalhe que faz essa automação funcionar de verdade, porém, está na escolh
 
 Dentro do Notifiquei, você configura quais palavras, quando aparecem num comentário de um post específico, acionam o envio de DM automático para quem comentou. O sistema lê o comentário assim que a API da Meta libera, identifica a palavra configurada e dispara o fluxo vinculado a ela.
 
-Esse processo depende de um detalhe importante: a automação só funciona para comentários em posts de perfis autorizados pela API da Meta, ou seja, perfis conectados ao Notifiquei com conta profissional ou de criador de conteúdo. Conta pessoal não tem acesso a essa janela de automação.
+Esse processo depende de um detalhe importante: a automação só funciona para comentários em posts de perfis autorizados pela API da Meta, ou seja, perfis conectados ao Notifiquei com conta profissional ou de criador de conteúdo. Conta pessoal não tem acesso a essa janela de automação. Se você ainda não fez essa conexão, o caminho completo está no [passo a passo pra automatizar o Instagram](/blog/como-automatizar-o-instagram-passo-a-passo).
 
 Quando o gatilho dispara, a mesma pessoa não vai receber o mesmo DM de novo dentro de 24 horas, mesmo que comente de novo com a mesma palavra. Esse controle é feito pela API e evita envio duplicado para o mesmo lead.
 

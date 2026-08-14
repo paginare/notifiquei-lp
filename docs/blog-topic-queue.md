@@ -12,46 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema P1 — Automação no Instagram: o guia de quem quer vender pelo direct **[demanda confirmada]**
-
-**Slug:** automacao-no-instagram-guia
-**Categoria:** Estratégia
-**Capa:** A
-**Consulta-alvo:** `automação no instagram` (107 impressões somando as 11 variações, posição média 47,8, zero clique)
-**Variações pra cobrir no corpo e nas keywords:** automação de instagram, automação para instagram, automacao de instagram (sem acento), automação de marketing instagram, automação instagram seguidores
-
-**Fatos travados:**
-- Automação no Instagram, no sentido que a API oficial da Meta permite, é responder comentário, mandar DM e reagir a story de forma automática. Não é postar por robô nem inflar seguidor
-- A automação roda pela API oficial da Meta, o que significa que a conta não corre o risco de bloqueio que existe em ferramenta não oficial que simula o app
-- É preciso conta profissional (comercial ou criador) vinculada a uma página, porque a API oficial só libera automação nesse tipo de conta
-- Os gatilhos disponíveis são: comentário em post ou Reels, mensagem recebida no direct, resposta a story, menção e comentário em live
-- A Meta impõe janela de resposta: depois que o contato interage, existe um prazo pra resposta automática, e fora dele o envio precisa de outro caminho
-- O Notifiquei faz esse conjunto pela API oficial, com editor de fluxo visual, e cobre Instagram e TikTok
-
-**Ângulo:** Post-pilar. Responder "o que é e o que dá pra fazer com automação no Instagram" do começo ao fim, e usar cada seção pra linkar o recorte que já existe no blog (comentário vira venda, resposta a story, follow-up, sorteio, boas-vindas). É o artigo que deve absorver o termo-mãe e distribuir autoridade pros outros.
-
----
-
-## Tema P2 — Como automatizar o Instagram passo a passo **[demanda confirmada]**
-
-**Slug:** como-automatizar-o-instagram-passo-a-passo
-**Categoria:** Estratégia
-**Capa:** F
-**Consulta-alvo:** `como automatizar o instagram` (posição média 37,8)
-**Variações pra cobrir:** como automatizar instagram, como fazer automação no instagram
-
-**Fatos travados:**
-- O primeiro pré-requisito é a conta ser profissional (comercial ou criador) e estar vinculada a uma página, exigência da API oficial da Meta
-- A conexão é feita por login oficial da Meta, autorizando o acesso; não se entrega senha do Instagram pra ferramenta nenhuma
-- É preciso deixar ligada a permissão de acesso a mensagens nas configurações do Instagram, senão o DM automático não sai
-- O fluxo mais simples que já dá resultado é: gatilho de palavra-chave no comentário, resposta pública curta no comentário e DM com o link
-- No Notifiquei o fluxo é montado num editor visual, sem escrever código, e dá pra testar antes de deixar no ar
-- Depois de publicado, o acompanhamento é pelos relatórios de execução, que mostram o que disparou e o que falhou
-
-**Ângulo:** Tutorial de verdade, numerado, do zero até o primeiro fluxo no ar. Formato how-to porque a consulta é how-to. Termina apontando pro guia-pilar (Tema P1) pra quem quer entender o resto.
-
----
-
 ## Tema P3 — Como transformar seguidor em cliente pelo direct **[demanda confirmada]**
 
 **Slug:** transformar-seguidores-em-clientes-no-instagram

@@ -20,7 +20,7 @@ faq:
 
 Você já deve ter visto alguma ferramenta de automação pro Instagram prometendo responder DMs sozinha, enviar mensagem pra quem comentou no post, mandar catálogo automático, essas coisas. Algumas parecem até boas. Têm dashboard bonito, plano baratinho, suporte no WhatsApp.
 
-Mas tem uma pergunta que muita gente não faz antes de assinar: essa ferramenta usa a API oficial da Meta ou tá rodando numa gambiarra que o Instagram vai barrar qualquer hora?
+Mas tem uma pergunta que muita gente não faz antes de assinar: essa ferramenta usa a API oficial da Meta ou tá rodando numa gambiarra que o Instagram vai barrar qualquer hora? Antes de entrar nessa distinção, vale ter claro [o que dá e o que não dá pra automatizar no Instagram](/blog/automacao-no-instagram-guia), porque boa parte das promessas dessas ferramentas está fora do que a plataforma autoriza.
 
 A diferença entre as duas respostas pode ser a diferença entre [uma operação de vendas funcionando de madrugada](/blog/instagram-com-e-sem-automacao-o-que-muda) enquanto você dorme — e acordar com a sua conta de 50 mil seguidores desativada sem explicação.
 
