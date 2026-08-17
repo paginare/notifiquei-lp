@@ -13,6 +13,8 @@ interface Props {
   heroPoster?: string; // pré-carrega o poster do vídeo do hero (LCP) quando informado
   ogImagePath?: string; // imagem de compartilhamento própria da página (ex.: capa gerada do post)
   ogType?: string; // "article" nos posts do blog, "website" no resto
+  lang?: "pt-BR" | "en" | "es"; // idioma da página (só a home tem /en e /es)
+  hreflangOf?: string; // rota-base que tem traduções, p/ emitir os alternates (ex.: "/")
 }
 
 const {
@@ -25,6 +27,8 @@ const {
   heroPoster,
   ogImagePath,
   ogType = "website",
+  lang = "pt-BR",
+  hreflangOf,
 } = Astro.props;
 
 const site = "https://notifiquei.com.br";
@@ -43,11 +47,25 @@ const websiteLd = {
   url: site,
   name: "Notifiquei",
   publisher: { "@id": site + "/#org" },
-  inLanguage: "pt-BR",
+  inLanguage: lang,
 };
+
+// hreflang recíproco. Só emitido nas páginas que realmente têm tradução — apontar
+// alternate pra rota inexistente é pior que não ter alternate nenhum.
+const IDIOMAS = [
+  { code: "pt-BR", prefixo: "" },
+  { code: "en", prefixo: "/en" },
+  { code: "es", prefixo: "/es" },
+];
+const alternates = hreflangOf
+  ? IDIOMAS.map((i) => ({
+      code: i.code,
+      href: site + (hreflangOf === "/" ? i.prefixo || "/" : i.prefixo + hreflangOf),
+    }))
+  : [];
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,6 +74,8 @@ const websiteLd = {
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {noindex && <meta name="robots" content="noindex, follow" />}
+  {alternates.map((a) => <link rel="alternate" hreflang={a.code} href={a.href} />)}
+  {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={site} />}
   <meta name="theme-color" content="#FBF7F0" />
 
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
