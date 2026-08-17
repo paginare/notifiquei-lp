@@ -8,6 +8,8 @@ interface Props {
   platform?: { tag: string; title: string; body: string }[];
   precoNota?: string;      // linha "A partir de …" (a versão PT tem variantes por moeda)
   mock?: Record<string, string>; // rótulos dentro dos mockups
+  flowVideo?: string;
+  flowPoster?: string;
 }
 const {
   bg = "paper",
@@ -18,6 +20,8 @@ const {
   platform,
   precoNota,
   mock = {},
+  flowVideo = "/assets/flow-build-ago26b.mp4",
+  flowPoster = "/assets/flow-build-ago26b-poster.webp",
 } = Astro.props;
 
 const PLATFORM_PT = [
@@ -38,6 +42,8 @@ const M = {
   trocaAqui: "— troca aqui e todas passam a mandar o novo.", trocar: "trocar",
   cliquesSemana: "847 cliques esta semana",
   exemploUrl: "loja.com/black-friday",
+  palavra: "EUQUERO", qtdParticipantes: "1.842",
+  g1: "mariana.fit", g2: "joao.suplementos", g3: "bia.estetica",
   comentarioDm: "Comentário → DM", respostaStory: "Resposta de story", quebraGelo: "Quebra Gelo",
   ...mock,
 };
@@ -62,8 +68,8 @@ const M = {
         <div class="prow__art" aria-hidden="true">
           <video
             class="flowvid"
-            src="/assets/flow-build-ago26b.mp4"
-            poster="/assets/flow-build-ago26b-poster.webp"
+            src={flowVideo}
+            poster={flowPoster}
             data-autoplay muted loop playsinline preload="none"
           ></video>
         </div>
@@ -119,13 +125,13 @@ const M = {
             <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">{M.sorteios}</span></div>
             <div class="draw">
               <div class="draw__head">
-                <span class="draw__kw">{M.comentou} <b>“EUQUERO”</b></span>
-                <span class="draw__count"><b>1.842</b> {M.participantes}</span>
+                <span class="draw__kw">{M.comentou} <b>“{M.palavra}”</b></span>
+                <span class="draw__count"><b>{M.qtdParticipantes}</b> {M.participantes}</span>
               </div>
               <div class="draw__winners">
-                <div class="dw"><span class="dw__pos">1</span><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="dw__tag">{M.ganhou}</span></div>
-                <div class="dw"><span class="dw__pos">2</span><span class="ava ava--sm" data-ava="joao"></span><b>joao.suplementos</b><span class="dw__tag">ganhou</span></div>
-                <div class="dw dw--ghost"><span class="dw__pos">3</span><span class="ava ava--sm" data-ava="bia"></span><b>bia.estetica</b><span class="dw__tag">ganhou</span></div>
+                <div class="dw"><span class="dw__pos">1</span><span class="ava ava--sm" data-ava="mariana"></span><b>{M.g1}</b><span class="dw__tag">{M.ganhou}</span></div>
+                <div class="dw"><span class="dw__pos">2</span><span class="ava ava--sm" data-ava="joao"></span><b>{M.g2}</b><span class="dw__tag">ganhou</span></div>
+                <div class="dw dw--ghost"><span class="dw__pos">3</span><span class="ava ava--sm" data-ava="bia"></span><b>{M.g3}</b><span class="dw__tag">ganhou</span></div>
               </div>
               <div class="draw__btn">{M.sortear} <span class="draw__btn-ic">🎲</span></div>
             </div>

@@ -117,6 +117,8 @@ export const en = {
       trocaAqui: "— swap it here and they all send the new one.", trocar: "swap",
       cliquesSemana: "847 clicks this week",
       exemploUrl: "shop.com/black-friday",
+      palavra: "IWANTIT", qtdParticipantes: "1,842",
+      g1: "mariana.fit", g2: "john.supplements", g3: "bia.skincare",
       comentarioDm: "Comment → DM", respostaStory: "Story reply", quebraGelo: "Ice breaker",
     } as Record<string, string>,
   },
