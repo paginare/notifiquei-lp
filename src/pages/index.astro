@@ -8,6 +8,7 @@ import ZoomReveal from "../components/ZoomReveal.astro";
 import CreatorsMarquee from "../components/CreatorsMarquee.astro";
 import DayInLife from "../components/DayInLife.astro";
 import StickyCta from "../components/StickyCta.astro";
+import LangBanner from "../components/LangBanner.astro";
 import { intlHref } from "../i18n/planos";
 import "../styles/home-sections.css";
 
@@ -174,6 +175,10 @@ const jsonLd = [
   heroPoster="/assets/hero-ago26c-poster.webp"
 >
   <Nav lang="pt-BR" langLabel="Escolher idioma" />
+  {/* Convite de idioma pra quem chega de fora. Qual aparece depende do
+      data-suggest que a Pages Function estampa a partir do país. */}
+  <div data-suggest-only="en"><LangBanner texto="View this page in English" href="/en" /></div>
+  <div data-suggest-only="es"><LangBanner texto="Ver esta página en español" href="/es" /></div>
 
   <main>
     <!-- ============ HERO ============ -->

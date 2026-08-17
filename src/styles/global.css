@@ -272,3 +272,9 @@ html[data-market="INTL"] .br-only { display: none !important; }
 
 /* só fora do Brasil: preço em dólar/euro, CTA "Começar agora" */
 html:not([data-market="INTL"]) .intl-only { display: none !important; }
+
+/* Convite de idioma na home em português: só aparece pra quem chega de fora, e
+   só o do idioma sugerido. Sem data-suggest (brasileiro), nenhum aparece. */
+[data-suggest-only] { display: none; }
+html[data-suggest="en"] [data-suggest-only="en"],
+html[data-suggest="es"] [data-suggest-only="es"] { display: block; }

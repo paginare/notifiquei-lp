@@ -8,10 +8,14 @@
  */
 interface Props { texto: string; href: string; }
 const { texto, href } = Astro.props;
+// A home em português renderiza DOIS convites (en e es) e mostra um pelo
+// data-suggest. Com id fixo o segundo ficaria preso em hidden — o mesmo erro
+// que o seletor de idioma já teve.
+const uid = `lb-${Math.random().toString(36).slice(2, 8)}`;
 ---
-<div class="langbanner" id="langbanner" hidden>
+<div class="langbanner" id={uid} hidden data-langbanner>
   <a href={href} class="langbanner__link">{texto}</a>
-  <button type="button" class="langbanner__x" id="langbannerX" aria-label="Dispensar">×</button>
+  <button type="button" class="langbanner__x" aria-label="Dispensar">×</button>
 </div>
 
 <style>
@@ -35,11 +39,15 @@ const { texto, href } = Astro.props;
 </style>
 
 <script>
+  // Por instância: nada de getElementById, que só acharia a primeira.
   const CHAVE = "notifiquei:lang-dispensado";
-  const el = document.getElementById("langbanner");
-  const x = document.getElementById("langbannerX");
-  if (el && x && localStorage.getItem(CHAVE) !== "1") {
+  document.querySelectorAll<HTMLElement>("[data-langbanner]").forEach((el) => {
+    const x = el.querySelector<HTMLButtonElement>(".langbanner__x");
+    if (localStorage.getItem(CHAVE) === "1") return;
     el.hidden = false;
-    x.addEventListener("click", () => { el.hidden = true; localStorage.setItem(CHAVE, "1"); });
-  }
+    x?.addEventListener("click", () => {
+      el.hidden = true;
+      localStorage.setItem(CHAVE, "1");
+    });
+  });
 </script>

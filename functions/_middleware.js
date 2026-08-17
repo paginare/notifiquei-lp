@@ -15,6 +15,13 @@
  * Ou seja, o pior caso é o site se comportar exatamente como antes desta mudança.
  */
 
+// Países de língua espanhola — decidem qual idioma SUGERIR a quem cai na home
+// em português vindo de fora. Não redireciona: só alimenta o convite.
+const ESPANHOL = new Set([
+  'ES', 'MX', 'AR', 'CO', 'CL', 'PE', 'VE', 'EC', 'GT', 'CU', 'BO', 'DO',
+  'HN', 'PY', 'SV', 'NI', 'CR', 'PA', 'UY', 'GQ', 'PR',
+]);
+
 // Zona do euro + microestados que usam euro. Fora daqui (e fora do BR) é dólar.
 const EURO = new Set([
   'AT', 'BE', 'CY', 'DE', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR',
@@ -83,6 +90,11 @@ export async function onRequest(context) {
         el.setAttribute('data-market', alvo.market);
         el.setAttribute('data-currency', alvo.currency);
         el.setAttribute('data-lang', idioma);
+        // Idioma sugerido a quem está na home em português vindo de fora.
+        // Só um convite: o CSS mostra o banner certo, ninguém é redirecionado.
+        if (alvo.market === 'INTL') {
+          el.setAttribute('data-suggest', ESPANHOL.has(pais) ? 'es' : 'en');
+        }
       },
     })
     .transform(resposta);
