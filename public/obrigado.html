@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
+<script src="/assets/cookie-consent.js?v=58cf79e0fb"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Notifiquei — Pedido confirmado!</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -379,7 +380,7 @@
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2025 Notifiquei · <a href="/">Página inicial</a> · <a href="mailto:suporte@notifiquei.com.br">Suporte</a></p>
+    <p>&copy; 2026 Notifiquei · <a href="/">Página inicial</a> · <a href="mailto:suporte@notifiquei.com.br">Suporte</a></p>
   </div>
 </footer>
 
@@ -396,12 +397,18 @@
     fbq('track', 'Purchase');
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-577WSF49');
   }
-  window._nfInitAnalytics = init;
+  // Registra no consentimento: dispara na hora se o visitante ja tinha
+  // aceitado, ou no clique em "aceitar". O gancho antigo (_nfInitAnalytics)
+  // deixou de existir, e o `init` checava window.notifiqueiConsent — que
+  // nesta pagina era SEMPRE undefined, porque ela nao carregava o script de
+  // consentimento. Resultado: o pixel de Purchase nunca disparava.
+  if (typeof window.nfAoConsentir === 'function') window.nfAoConsentir(init);
   ['click','scroll','touchstart','keydown'].forEach(function(ev) {
     window.addEventListener(ev, init, {once: true, passive: true});
   });
 })();
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4197456147066821&ev=Purchase&noscript=1"/></noscript>
+<!-- <noscript> do pixel removido: dispara sem passar pelo consentimento e sem
+     como ser bloqueado, justamente porque nao ha JS pra perguntar nada. -->
 </body>
 </html>

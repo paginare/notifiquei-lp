@@ -349,4 +349,14 @@ for (const doc of DOCS) {
     console.log(`  ✓ /${doc.slug[lang]}`);
   }
 }
-console.log(`\n${escritos} arquivos escritos (3 PT com hreflang + 6 traduzidos).`);
+// A pagina de obrigado tambem carrega o cookie-consent.js direto (nao passa pelo
+// Astro), entao precisa do mesmo ?v= — senao cai na mesma armadilha de cache que
+// derrubou o rastreamento por 40 minutos.
+const obrigado = join(PUB, "obrigado.html");
+if (existsSync(obrigado)) {
+  writeFileSync(obrigado, comVersaoDoConsent(readFileSync(obrigado, "utf8")));
+  escritos++;
+  console.log("  ✓ /obrigado (versão do consent)");
+}
+
+console.log(`\n${escritos} arquivos escritos (3 PT + 6 traduzidos + obrigado).`);
