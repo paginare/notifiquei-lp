@@ -1,0 +1,106 @@
+---
+/**
+ * /en/vs-manychat — NÃO é tradução da página brasileira.
+ *
+ * Seis dos 16 argumentos de lá só valem no Brasil (real sem câmbio, PIX,
+ * plataforma em português, suporte em português, LGPD, "feito pra criador BR").
+ * Traduzidos, argumentariam CONTRA o produto: o americano paga em dólar, não
+ * tem PIX e quer GDPR, e "100% em português" vira desvantagem.
+ * A comparação aqui é a que se sustenta fora: preço fixo vs por contato,
+ * dois canais num plano, sorteios nativos, apps e a API com o kit do Claude.
+ */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Capabilities from "../../components/Capabilities.astro";
+import PlatformShowcase from "../../components/PlatformShowcase.astro";
+import "../../styles/home-sections.css";
+import "../../styles/vs-sections.css";
+import { en as home } from "../../i18n/en";
+import { vsEn as t } from "../../i18n/paginas-en";
+
+const WPP = "https://wa.me/551231995949";
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/en" },
+    { "@type": "ListItem", position: 2, name: "Notifiquei vs ManyChat", item: "https://notifiquei.com.br/en/vs-manychat" },
+  ]},
+];
+---
+<Base title={t.title} description={t.description} path="/en/vs-manychat" lang="en" jsonLd={jsonLd}>
+  <Nav lang="en" langLabel="Choose language" links={home.nav.links} entrar={home.nav.entrar} comecar={home.nav.comecar} />
+  <main>
+    <section class="section vs-hero">
+      <div class="container container--narrow vs-hero__inner reveal">
+        <span class="eyebrow is-plain">{t.eyebrow}</span>
+        <h1 class="vs-hero__title">{t.headline}</h1>
+        <p class="lead">{t.subhead}</p>
+        <div class="vs-hero__actions">
+          <a href="/en#plans" class="btn btn--brand btn--lg">{t.finalcta.cta}<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#table" class="btn btn--ghost btn--lg">See the comparison</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper2" id="table">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Honest comparison</span>
+          <h2>{t.tabelaTitulo}<br />{t.tabelaTitulo2}</h2>
+        </div>
+        <table class="vstable reveal">
+          <caption class="visually-hidden">Notifiquei compared with ManyChat</caption>
+          <thead>
+            <tr class="vstable__row vstable__row--head">
+              <th class="vstable__c vstable__crit" scope="col">{t.th.criterio}</th>
+              <th class="vstable__c vstable__nq" scope="col">{t.th.nq}</th>
+              <th class="vstable__c vstable__mc" scope="col">{t.th.mc}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {t.rows.map((r) => (
+              <tr class={`vstable__row ${r.hl ? "is-hl" : ""}`}>
+                <th class="vstable__c vstable__crit" scope="row">{r.c}</th>
+                <td class="vstable__c vstable__nq">{r.n}</td>
+                <td class="vstable__c vstable__mc">{r.m}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="vs-honest reveal">{t.honestidade}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--center reveal"><h2>{t.reasonsTitulo}</h2></div>
+        <div class="caps">
+          {t.reasons.map((r, i) => (
+            <article class="cap reveal" style={`--reveal-delay:${i * 80}ms`}>
+              <h3 class="cap__t">{r.t}</h3><p class="cap__d">{r.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <PlatformShowcase eyebrow={home.platform.eyebrow} title={home.platform.title} lead={home.platform.lead}
+      platform={home.platform.cards} precoNota={home.platform.precoNota} mock={home.platform.mock}
+      flowVideo="/assets/flow-build-en.mp4" flowPoster="/assets/flow-build-en-poster.webp" id="platform" />
+    <Capabilities eyebrow={home.capabilities.eyebrow} title={home.capabilities.title} lead={home.capabilities.lead} caps={home.capabilities.caps} />
+
+    <section class="section section--brand on-brand finalcta">
+      <span class="finalcta__glyph" aria-hidden="true">“</span>
+      <div class="container container--narrow finalcta__inner reveal">
+        <span class="eyebrow is-plain">{t.finalcta.eyebrow}</span>
+        <h2 class="finalcta__title">{t.finalcta.title} <span class="hl">{t.finalcta.titleHl}</span>.</h2>
+        <p class="lead">{t.finalcta.lead}</p>
+        <div class="finalcta__actions">
+          <a href="/en#plans" class="btn btn--inverse btn--lg">{t.finalcta.cta}<span class="arr" aria-hidden="true">→</span></a>
+          <a href={WPP} class="btn btn--ghost btn--lg">{t.finalcta.talk}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer cols={home.footer.cols} pitch={home.footer.pitch} legal={home.footer.legal} status={home.footer.status} />
+</Base>

@@ -1,0 +1,116 @@
+---
+/** /es/creadores — tradução direta da página brasileira: o argumento ("seu post
+ *  viraliza e você não dá conta dos DMs") vale em qualquer país. */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Capabilities from "../../components/Capabilities.astro";
+import PlatformShowcase from "../../components/PlatformShowcase.astro";
+import "../../styles/home-sections.css";
+import "../../styles/creators-sections.css";
+import { es as home } from "../../i18n/es";
+import { creatorsEs as t } from "../../i18n/paginas-es";
+
+const APP = "https://app.notifiquei.com.br";
+const WPP = "https://wa.me/551231995949";
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: t.title,
+    url: "https://notifiquei.com.br/es/creadores", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+];
+---
+<Base title={t.title} description={t.description} path="/es/creadores" lang="es" jsonLd={jsonLd}>
+  <Nav lang="es" langLabel="Elegir idioma" links={home.nav.links} entrar={home.nav.entrar} comecar={home.nav.comecar} />
+  <main>
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow is-plain">{t.eyebrow}</span>
+          <h1 class="hero__title">{t.h1a}<br />{t.h1b} <span class="hl">{t.h1hl}</span>.</h1>
+          <p class="lead hero__lead">{t.lead}</p>
+          <div class="hero__actions">
+            <a href={APP} class="btn btn--brand btn--lg">{t.cta}<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#how" class="btn btn--ghost btn--lg">{t.cta2}</a>
+          </div>
+          <ul class="hero__trust">
+            {t.trust.map((x) => <li><span class="tick" aria-hidden="true">✓</span> {x}</li>)}
+          </ul>
+        </div>
+        <div class="hero__demo">
+          <div class="rcard"><div class="rcard__core">
+            <div class="rcard__bar"><span class="pill"><span class="dot is-live"></span> {t.demo.pill}</span><span class="rcard__m">{t.demo.metric}</span></div>
+            <div class="rbub rbub--in"><span class="rbub__who">{t.demo.who}</span><p>{t.demo.comment}</p></div>
+            <div class="rcard__flow"><span></span>{t.demo.flow}<span></span></div>
+            <div class="rbub rbub--out"><p set:html={t.demo.answer} /></div>
+            <div class="rcard__done"><span class="rcard__check">✓</span> {t.demo.done} <strong>{t.demo.secs}</strong></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper2" id="how">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">{t.how.eyebrow}</span>
+          <h2>{t.how.t1}<br />{t.how.t2}</h2>
+          <p class="lead">{t.how.lead}</p>
+        </div>
+        <ol class="steps">
+          {t.how.steps.map((s, i) => (
+            <li class="step reveal" style={`--reveal-delay:${i * 110}ms`}>
+              <span class="step__n">{s.n}</span><h3 class="step__t">{s.t}</h3><p class="step__d">{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">{t.contrast.eyebrow}</span>
+          <h2>{t.contrast.t1}<br />{t.contrast.t2}</h2>
+        </div>
+        <div class="contrast__grid">
+          <article class="convo convo--lose reveal">
+            <header class="convo__head"><span class="convo__tag">{t.contrast.lose.tag}</span></header>
+            <div class="convo__body">
+              <div class="msg msg--them">{t.contrast.lose.m1}</div>
+              <div class="convo__gap">{t.contrast.lose.gap}</div>
+              <div class="msg msg--them">{t.contrast.lose.m2}</div>
+            </div>
+            <footer class="convo__foot convo__foot--lose">{t.contrast.lose.foot}</footer>
+          </article>
+          <article class="convo convo--win reveal" style="--reveal-delay:120ms">
+            <header class="convo__head"><span class="convo__tag convo__tag--win">{t.contrast.win.tag}</span></header>
+            <div class="convo__body">
+              <div class="msg msg--them">{t.contrast.win.m1}</div>
+              <div class="msg msg--me">{t.contrast.win.m2}<span class="msg__meta">{t.contrast.win.meta}</span></div>
+              <div class="msg msg--them">{t.contrast.win.m3}</div>
+            </div>
+            <footer class="convo__foot convo__foot--win">{t.contrast.win.foot}</footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <PlatformShowcase eyebrow={home.platform.eyebrow} title={home.platform.title} lead={home.platform.lead}
+      platform={home.platform.cards} precoNota={home.platform.precoNota} mock={home.platform.mock}
+      flowVideo="/assets/flow-build-es.mp4" flowPoster="/assets/flow-build-es-poster.webp" id="platform" />
+    <Capabilities eyebrow={home.capabilities.eyebrow} title={home.capabilities.title} lead={home.capabilities.lead} caps={t.perks.map((p) => ({ t: p.t, d: p.d }))} />
+
+    <section class="section section--brand on-brand finalcta">
+      <span class="finalcta__glyph" aria-hidden="true">“</span>
+      <div class="container container--narrow finalcta__inner reveal">
+        <span class="eyebrow is-plain">{t.finalcta.eyebrow}</span>
+        <h2 class="finalcta__title">{t.finalcta.title} <span class="hl">{t.finalcta.titleHl}</span>.</h2>
+        <p class="lead">{t.finalcta.lead}</p>
+        <div class="finalcta__actions">
+          <a href="/es#planes" class="btn btn--inverse btn--lg">{t.finalcta.cta}<span class="arr" aria-hidden="true">→</span></a>
+          <a href={WPP} class="btn btn--ghost btn--lg">{t.finalcta.talk}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer cols={home.footer.cols} pitch={home.footer.pitch} legal={home.footer.legal} status={home.footer.status} />
+</Base>

@@ -1,0 +1,35 @@
+/* Seções do comparativo — compartilhado entre /vs-manychat, /en e /es.
+   Extraído do <style> escopado em 17/08/2026. */
+
+  .vs-hero { padding-top: clamp(3rem, 2rem + 5vw, 6rem); text-align: center; }
+  .vs-hero__inner { display: flex; flex-direction: column; align-items: center; }
+  .vs-hero__inner .eyebrow { justify-content: center; }
+  .vs-hero__title { margin: 1.2rem 0 0; font-size: clamp(2.4rem, 1.4rem + 4.5vw, 4.25rem); line-height: 0.98; }
+  .vs-hero .lead { margin-top: 1.4rem; max-width: 36rem; }
+  .vs-hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2rem; }
+
+  /* tabela */
+  .vstable { width: 100%; margin-top: 3rem; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--card); box-shadow: var(--shadow-sm); border-collapse: collapse; }
+  .vstable thead, .vstable tbody { display: block; }
+  .vstable__row { display: grid; grid-template-columns: 1.1fr 1.3fr 1fr; border-top: 1px solid var(--line-soft); }
+  .vstable thead .vstable__row { border-top: none; }
+  .vstable__c { padding: 0.95rem 1.1rem; font-size: 0.92rem; display: flex; align-items: center; min-width: 0; text-align: left; font-weight: 400; }
+  .vstable__crit { font-weight: 600; color: var(--ink); }
+  .vstable__nq { font-weight: 600; }
+  .vstable__mc { color: var(--ink-faint); }
+  .vstable__row.is-hl .vstable__nq { background: var(--brand-wash); color: var(--brand-ink); }
+  .vstable__row--head .vstable__c { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; padding-block: 0.85rem; background: var(--paper); }
+  .vstable__row--head .vstable__nq { color: var(--brand-ink); }
+  .vstable__note { margin: 1.75rem auto 0; max-width: 46rem; font-size: 0.88rem; color: var(--ink-faint); line-height: 1.6; text-align: center; }
+  @media (max-width: 600px) {
+    .vstable__c { padding: 0.7rem 0.65rem; font-size: 0.78rem; }
+    .vstable__row { grid-template-columns: 1fr 1.2fr 0.9fr; }
+  }
+
+  /* reasons */
+  .vs-reasons { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3rem; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden; }
+  .vs-reason { background: var(--paper); padding: 1.9rem; transition: background 0.25s var(--ease-out); }
+  .vs-reason:hover { background: var(--card); }
+  .vs-reason__t { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+  .vs-reason__d { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
+  @media (min-width: 760px) { .vs-reasons { grid-template-columns: 1fr 1fr; } }
