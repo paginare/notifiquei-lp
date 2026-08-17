@@ -193,7 +193,7 @@ const jsonLd = [
 
     <DayInLife eyebrow={t.day.eyebrow} title={t.day.title} beats={t.day.beats} alt={t.day.alt} badge={t.day.badge} />
     <PlatformShowcase eyebrow={t.platform.eyebrow} title={t.platform.title} lead={t.platform.lead} platform={t.platform.cards} precoNota={t.platform.precoNota} mock={t.platform.mock} id="platform" />
-    <ZoomReveal />
+    <ZoomReveal z={t.zoom} />
     <Capabilities eyebrow={t.capabilities.eyebrow} title={t.capabilities.title} lead={t.capabilities.lead} caps={t.capabilities.caps} />
 
     <!-- CLAUDE -->
@@ -336,7 +336,7 @@ const jsonLd = [
     </section>
   </main>
 
-  <Footer cols={t.footer.cols} pitch={t.footer.pitch} />
+  <Footer cols={t.footer.cols} pitch={t.footer.pitch} legal={t.footer.legal} status={t.footer.status} />
   <StickyCta href="#plans" intl titulo={t.sticky.titulo} sub={t.sticky.sub} cta={t.sticky.cta} />
 
   <script>

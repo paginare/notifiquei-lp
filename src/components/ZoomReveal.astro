@@ -1,37 +1,50 @@
 ---
 // Seção com scroll travado (pin) + zoom no painel do app (GSAP ScrollTrigger).
+// Textos por prop, com o português como padrão (a home PT não muda).
+interface Props { z?: Record<string, string>; }
+const { z = {} } = Astro.props;
+const Z = {
+  cap1a: "Por dentro", cap1b: "Tudo num painel só.",
+  cap2a: "Em tempo real", cap2b: "E você vê cada lead quente chegar.",
+  url: "notifiquei · painel",
+  ola: "Olá, Mariana 👋", resumo: "aqui está o resumo de hoje", periodo: "Últimos 30 dias",
+  seguidores: "Seguidores ativos", interacoes: "Interações automáticas", taxa: "Taxa de resposta",
+  desdeMes: "desde o último mês",
+  cliques: "Cliques no link", semana: "esta semana",
+  ...z,
+};
 ---
 <section class="zoompin">
   <div class="zoompin__stage">
     <div class="zoompin__caps reveal">
-      <p class="zoompin__cap" data-cap="1"><span class="eyebrow is-plain">Por dentro</span>Tudo num painel só.</p>
-      <p class="zoompin__cap" data-cap="2"><span class="eyebrow is-plain">Em tempo real</span>E você vê cada lead quente chegar.</p>
+      <p class="zoompin__cap" data-cap="1"><span class="eyebrow is-plain">{Z.cap1a}</span>{Z.cap1b}</p>
+      <p class="zoompin__cap" data-cap="2"><span class="eyebrow is-plain">{Z.cap2a}</span>{Z.cap2b}</p>
     </div>
 
     <div class="zoompin__shot reveal" aria-hidden="true">
       <div class="appwin">
-        <div class="appwin__bar"><span class="appwin__dots"><i></i><i></i><i></i></span><span class="appwin__url">notifiquei · painel</span></div>
+        <div class="appwin__bar"><span class="appwin__dots"><i></i><i></i><i></i></span><span class="appwin__url">{Z.url}</span></div>
         <div class="appwin__body">
           <div class="appwin__head">
-            <div><b>Olá, Mariana 👋</b><small>aqui está o resumo de hoje</small></div>
-            <span class="appwin__chip">Últimos 30 dias</span>
+            <div><b>{Z.ola}</b><small>{Z.resumo}</small></div>
+            <span class="appwin__chip">{Z.periodo}</span>
           </div>
           <div class="appwin__cards">
             <div class="acard">
-              <div class="acard__head"><span>Seguidores ativos</span><span class="acard__ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span></div>
-              <b class="acard__num">8.412</b><span class="acard__delta">+12% desde o último mês</span>
+              <div class="acard__head"><span>{Z.seguidores}</span><span class="acard__ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span></div>
+              <b class="acard__num">8.412</b><span class="acard__delta">+12% {Z.desdeMes}</span>
             </div>
             <div class="acard">
-              <div class="acard__head"><span>Interações automáticas</span><span class="acard__ic"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span></div>
-              <b class="acard__num">1.284</b><span class="acard__delta">+18% desde o último mês</span>
+              <div class="acard__head"><span>{Z.interacoes}</span><span class="acard__ic"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span></div>
+              <b class="acard__num">1.284</b><span class="acard__delta">+18% {Z.desdeMes}</span>
             </div>
             <div class="acard">
-              <div class="acard__head"><span>Taxa de resposta</span><span class="acard__ic"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span></div>
-              <b class="acard__num">98%</b><span class="acard__delta">+3% desde o último mês</span>
+              <div class="acard__head"><span>{Z.taxa}</span><span class="acard__ic"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span></div>
+              <b class="acard__num">98%</b><span class="acard__delta">+3% {Z.desdeMes}</span>
             </div>
           </div>
           <div class="appwin__chart">
-            <div class="appwin__chart-head"><b>Cliques no link</b><span>esta semana</span></div>
+            <div class="appwin__chart-head"><b>{Z.cliques}</b><span>{Z.semana}</span></div>
             <svg viewBox="0 0 600 150" preserveAspectRatio="none">
               <defs><linearGradient id="zg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--brand)" stop-opacity="0.25"/><stop offset="1" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs>
               <path d="M0,120 C70,112 110,70 170,76 C230,82 270,38 340,46 C410,54 450,18 600,12 L600,150 L0,150 Z" fill="url(#zg)"/>

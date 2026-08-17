@@ -116,6 +116,7 @@ export const en = {
       usadoEm: "Used in", automacoes: "7 automations",
       trocaAqui: "— swap it here and they all send the new one.", trocar: "swap",
       cliquesSemana: "847 clicks this week",
+      exemploUrl: "shop.com/black-friday",
       comentarioDm: "Comment → DM", respostaStory: "Story reply", quebraGelo: "Ice breaker",
     } as Record<string, string>,
   },
@@ -254,9 +255,21 @@ export const en = {
 
   sticky: { titulo: "7-day guarantee", sub: "plans from {p}/mo", cta: "Get started" },
 
+  zoom: {
+    cap1a: "Under the hood", cap1b: "Everything in one dashboard.",
+    cap2a: "In real time", cap2b: "And you watch every hot lead arrive.",
+    url: "notifiquei · dashboard",
+    ola: "Hi Mariana 👋", resumo: "here's today's summary", periodo: "Last 30 days",
+    seguidores: "Active followers", interacoes: "Automated interactions", taxa: "Reply rate",
+    desdeMes: "vs. last month",
+    cliques: "Link clicks", semana: "this week",
+  } as Record<string, string>,
+
   langBanner: { texto: "Ver esta página em português", href: "/" },
 
   footer: {
+    legal: "© 2026 Notifiquei. All rights reserved. · Company ID 59.859.848/0001-13 (Brazil)",
+    status: "All systems operational",
     pitch: "Instagram sales automation on Meta's official API. Built in Brazil, running worldwide.",
     cols: [
       { title: "Product", links: [

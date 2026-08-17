@@ -5,7 +5,7 @@ import Logo from "./Logo.astro";
 const APP_STORE_URL = "https://apps.apple.com/br/app/notifiquei/id6774645360";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.notifiquei.android";
 
-interface Props { cols?: { title: string; links: { href: string; label: string }[] }[]; pitch?: string; }
+interface Props { cols?: { title: string; links: { href: string; label: string }[] }[]; pitch?: string; legal?: string; status?: string; }
 const COLS_PT = [
   {
     title: "Produto",
@@ -42,6 +42,8 @@ const COLS_PT = [
 const {
   cols = COLS_PT,
   pitch = "Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.",
+  legal = "© 2026 Notifiquei. Todos os direitos reservados. · CNPJ 59.859.848/0001-13",
+  status = "Todos os sistemas operando",
 } = Astro.props;
 ---
 <footer class="footer section--ink on-ink">
@@ -78,10 +80,10 @@ const {
 
     <div class="footer__bottom">
       <p class="footer__legal">
-        © 2026 Notifiquei. Todos os direitos reservados. · CNPJ 59.859.848/0001-13
+        {legal}
       </p>
       <div class="footer__meta">
-        <span class="footer__status"><span class="footer__dot"></span> Todos os sistemas operando</span>
+        <span class="footer__status"><span class="footer__dot"></span> {status}</span>
       </div>
     </div>
   </div>
