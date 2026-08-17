@@ -22,8 +22,18 @@ const EURO = new Set([
   'AD', 'MC', 'SM', 'VA',
 ]);
 
-/** País → mercado e moeda. País vazio devolve nulo (o CSS assume Brasil). */
-function decidir(pais) {
+/**
+ * País → mercado e moeda.
+ *
+ * `traduzida` = a rota é /en ou /es. Essas páginas são internacionais POR
+ * DEFINIÇÃO: não têm preço em real nem plano grátis. Sem esta regra, um
+ * brasileiro que abre /en recebia data-currency="BRL" e não via preço nenhum,
+ * porque as únicas variantes ali são USD e EUR.
+ */
+function decidir(pais, traduzida) {
+  if (traduzida) {
+    return { market: 'INTL', currency: EURO.has(pais) ? 'EUR' : 'USD' };
+  }
   if (!pais || pais === 'XX') return null; // XX = Cloudflare não sabe (Tor, etc.)
   if (pais === 'BR') return { market: 'BR', currency: 'BRL' };
   return { market: 'INTL', currency: EURO.has(pais) ? 'EUR' : 'USD' };
@@ -38,11 +48,13 @@ export async function onRequest(context) {
   if (!tipo.includes('text/html')) return resposta;
 
   const req = context.request;
+  const url = new URL(req.url);
   // `?pais=US` força o mercado — usado nos testes e pra conferir em produção.
-  const forcado = new URL(req.url).searchParams.get('pais');
+  const forcado = url.searchParams.get('pais');
   const pais = (forcado || req.headers.get('CF-IPCountry') || '').toUpperCase();
+  const traduzida = /^\/(en|es)(\/|$)/.test(url.pathname);
 
-  const alvo = decidir(pais);
+  const alvo = decidir(pais, traduzida);
   if (!alvo) return resposta;
 
   const saida = new HTMLRewriter()

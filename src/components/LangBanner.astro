@@ -1,0 +1,45 @@
+---
+/**
+ * Sugestão de idioma — NÃO redireciona.
+ *
+ * Redirecionar por IP faria o Googlebot (que rastreia dos EUA) enxergar o site
+ * como se fosse só a versão gringa, ameaçando o ranking dos posts em português.
+ * Aqui é só um convite, dispensável, gravado no localStorage.
+ */
+interface Props { texto: string; href: string; }
+const { texto, href } = Astro.props;
+---
+<div class="langbanner" id="langbanner" hidden>
+  <a href={href} class="langbanner__link">{texto}</a>
+  <button type="button" class="langbanner__x" id="langbannerX" aria-label="Dispensar">×</button>
+</div>
+
+<style>
+  .langbanner {
+    position: fixed; z-index: 90; left: 50%; transform: translateX(-50%);
+    bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.95rem; border-radius: var(--r-pill);
+    background: color-mix(in srgb, var(--ink) 92%, transparent); color: var(--on-ink);
+    box-shadow: var(--shadow-lg); font-size: 0.85rem;
+    backdrop-filter: blur(8px);
+  }
+  .langbanner[hidden] { display: none; }
+  .langbanner__link { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .langbanner__x {
+    border: 0; background: transparent; color: var(--on-ink-soft);
+    font-size: 1.15rem; line-height: 1; cursor: pointer; padding: 0 0.35rem;
+  }
+  .langbanner__x:hover { color: #fff; }
+  /* no mobile a barra de CTA já ocupa o rodapé */
+  @media (max-width: 760px) { .langbanner { bottom: auto; top: 5rem; } }
+</style>
+
+<script>
+  const CHAVE = "notifiquei:lang-dispensado";
+  const el = document.getElementById("langbanner");
+  const x = document.getElementById("langbannerX");
+  if (el && x && localStorage.getItem(CHAVE) !== "1") {
+    el.hidden = false;
+    x.addEventListener("click", () => { el.hidden = true; localStorage.setItem(CHAVE, "1"); });
+  }
+</script>

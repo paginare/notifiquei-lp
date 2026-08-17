@@ -1,0 +1,361 @@
+---
+/**
+ * Home em inglês. Mercado internacional por definição:
+ *  - nunca mostra real nem o plano grátis (que é só do Brasil)
+ *  - botões vão pros Payment Links do Stripe
+ *  - a escolha entre dólar e euro continua vindo do `data-currency` que a
+ *    Pages Function estampa no <html>
+ *
+ * O CSS das seções vem de src/styles/home-sections.css, compartilhado com a
+ * home em português — não duplicar aqui, senão os idiomas divergem em silêncio.
+ */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import PlatformShowcase from "../../components/PlatformShowcase.astro";
+import Capabilities from "../../components/Capabilities.astro";
+import ZoomReveal from "../../components/ZoomReveal.astro";
+import CreatorsMarquee from "../../components/CreatorsMarquee.astro";
+import DayInLife from "../../components/DayInLife.astro";
+import StickyCta from "../../components/StickyCta.astro";
+import LangBanner from "../../components/LangBanner.astro";
+import "../../styles/home-sections.css";
+import { en as t } from "../../i18n/en";
+import { PLANOS_INTL, mensalNoAnual, totalAnual, intlHref } from "../../i18n/planos";
+
+const WPP = "https://wa.me/551231995949";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Notifiquei",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    description: t.description,
+    url: "https://notifiquei.com.br/en",
+    publisher: { "@id": "https://notifiquei.com.br/#org" },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      lowPrice: "19",
+      highPrice: "129",
+      offerCount: PLANOS_INTL.length,
+      offers: PLANOS_INTL.map((p) => ({
+        "@type": "Offer",
+        name: `${p.name} plan`,
+        price: p.usd,
+        priceCurrency: "USD",
+        url: intlHref(p.slug, "USD", "m"),
+        availability: "https://schema.org/InStock",
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: t.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Base
+  title={t.title}
+  description={t.description}
+  path="/en"
+  lang="en"
+  hreflangOf="/"
+  jsonLd={jsonLd}
+  heroPoster="/assets/hero-poster.webp"
+>
+  <Nav links={t.nav.links} entrar={t.nav.entrar} comecar={t.nav.comecar} />
+  <LangBanner texto={t.langBanner.texto} href={t.langBanner.href} />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="hero__badge"><span class="hero__badge-ic" aria-hidden="true">✦</span> {t.hero.badge}</span>
+          <span class="eyebrow is-plain hero__eyebrow">{t.hero.eyebrow}</span>
+          <h1 class="hero__title">{t.hero.title} <span class="hl">{t.hero.titleHl}</span>.</h1>
+          <p class="lead hero__lead" set:html={t.hero.lead} />
+          <div class="hero__actions">
+            <a href="#plans" class="btn btn--brand btn--lg">{t.hero.cta}<span class="arr" aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero__proof">
+            <span class="hero__avatars" aria-hidden="true">
+              <img src="/assets/creators/c1-nutri.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c3-beleza.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c6-moda.webp" alt="" width="40" height="40" loading="lazy" />
+              <img src="/assets/creators/c2-fitness.webp" alt="" width="40" height="40" loading="lazy" />
+            </span>
+            <span class="hero__proof-txt" set:html={t.hero.proof} />
+          </div>
+        </div>
+        <div class="hero__demo" role="img" aria-label="Automation replying to a comment and closing the sale">
+          <video class="hero__video" src="/assets/hero.mp4" poster="/assets/hero-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="proof">
+      <div class="container">
+        <div class="proof__stats">
+          {t.proof.map((s) => (
+            <div>
+              <span class="proof__num">{s.num}</span><span class="proof__lbl">{s.lbl}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- AFILIADOS -->
+    <section class="section affil">
+      <div class="container affil__inner">
+        <div class="affil__copy reveal">
+          <span class="eyebrow is-plain">{t.affiliate.eyebrow}</span>
+          <h2 class="affil__title">{t.affiliate.title} <span class="hl">{t.affiliate.titleHl}</span>.</h2>
+          <p class="lead" set:html={t.affiliate.lead} />
+          <a href="#plans" class="btn btn--brand btn--lg">{t.affiliate.cta}<span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <div class="affil__demo reveal" aria-hidden="true">
+          <div class="afcard afcard--comment">
+            <span class="afcard__ava">J</span>
+            <div class="afcard__who"><b>joana_deals</b> commented<br /><span class="afcard__txt">"send me the link! 🔗"</span></div>
+          </div>
+          <div class="afcard__arrow"><span>automatic reply, instantly</span></div>
+          <div class="afcard afcard--dm">
+            <div class="afcard__dm-top"><span class="afcard__ava afcard__ava--brand">N</span> Direct</div>
+            <p class="afcard__bubble">Hey! 💕 Here's your link, just tap 👇</p>
+            <span class="afcard__link">🔗 shop.com/your-affiliate-link</span>
+          </div>
+        </div>
+      </div>
+      <div class="container affil__marks reveal">
+        <span class="affil__marks-label">{t.affiliate.marks}</span>
+        <div class="affil__logos">
+          <img src="/assets/marketplaces/amazon.svg" alt="Amazon" width="603" height="182" loading="lazy" />
+          <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" width="1719" height="372" loading="lazy" />
+          <img src="/assets/marketplaces/shopee.svg" alt="Shopee" width="1000" height="320" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <CreatorsMarquee eyebrow={t.creators.eyebrow} title={t.creators.title} lead={t.creators.lead} nichos={t.creators.nichos} />
+
+    <!-- COMO FUNCIONA -->
+    <section class="section section--paper2" id="how">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">{t.how.eyebrow}</span>
+          <h2>{t.how.title} <span class="hl">{t.how.titleHl}</span>.</h2>
+          <p class="lead">{t.how.lead}</p>
+        </div>
+        <ol class="steps steps--stack">
+          {t.how.steps.map((s, i) => (
+            <li class="step reveal" style={`--reveal-delay:${i * 90}ms`}>
+              <span class="step__n">{s.n}</span>
+              <h3 class="step__title">{s.title}</h3>
+              <p class="step__body">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- VEJA EM AÇÃO -->
+    <section class="section inaction">
+      <div class="container inaction__inner">
+        <div class="inaction__copy">
+          <div class="section-head reveal">
+            <span class="eyebrow">{t.inaction.eyebrow}</span>
+            <h2>{t.inaction.title}</h2>
+            <p class="lead">{t.inaction.lead}</p>
+          </div>
+          <div class="outcomes reveal">
+            <div class="outcome outcome--lose"><span class="outcome__tag">{t.inaction.lose.tag}</span><b>{t.inaction.lose.text}</b></div>
+            <div class="outcome outcome--win"><span class="outcome__tag">{t.inaction.win.tag}</span><b>{t.inaction.win.text}</b></div>
+          </div>
+        </div>
+        <div class="inaction__video reveal">
+          <video class="conversa-video" src="/assets/demo-conversa.mp4" poster="/assets/demo-conversa-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <DayInLife eyebrow={t.day.eyebrow} title={t.day.title} beats={t.day.beats} alt={t.day.alt} badge={t.day.badge} />
+    <PlatformShowcase eyebrow={t.platform.eyebrow} title={t.platform.title} lead={t.platform.lead} id="platform" />
+    <ZoomReveal />
+    <Capabilities eyebrow={t.capabilities.eyebrow} title={t.capabilities.title} lead={t.capabilities.lead} caps={t.capabilities.caps} />
+
+    <!-- CLAUDE -->
+    <section class="section claudeai" id="claude">
+      <div class="container claudeai__inner">
+        <div class="claudeai__copy reveal">
+          <span class="eyebrow">{t.claude.eyebrow}</span>
+          <h2 class="claudeai__title">{t.claude.title} <span class="hl">{t.claude.titleHl}</span>.</h2>
+          <p class="lead" set:html={t.claude.lead} />
+          <ul class="claudeai__list">
+            {t.claude.bullets.map((b) => (
+              <li><span class="claudeai__tick" aria-hidden="true">✓</span> {b}</li>
+            ))}
+          </ul>
+          <p class="claudeai__note">{t.claude.note}</p>
+        </div>
+        <div class="claudeai__demo reveal" aria-hidden="true">
+          <div class="cwin">
+            <div class="cwin__bar"><span class="cwin__dots"><i></i><i></i><i></i></span><span class="cwin__url">claude · instagram automations</span></div>
+            <div class="cchat">
+              <div class="cbub cbub--me">{t.claude.chat.me1}</div>
+              <div class="cbub cbub--ai">
+                {t.claude.chat.ai1}
+                <span class="crec">
+                  {t.claude.chat.rec.map(([k, v]) => (<span class="crec__l"><b>{k}</b><i>{v}</i></span>))}
+                </span>
+                {t.claude.chat.ask}
+              </div>
+              <div class="cbub cbub--me">{t.claude.chat.me2}</div>
+              <div class="cbub cbub--ai cbub--ok"><span class="cbub__ic">✓</span> {t.claude.chat.done}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA DO MEIO -->
+    <section class="section midcta">
+      <div class="container container--narrow midcta__inner reveal">
+        <span class="eyebrow is-plain">{t.midcta.eyebrow}</span>
+        <h2 class="midcta__title" set:html={`${t.midcta.title} <span class="hl">${t.midcta.titleHl}</span>.`} />
+        <div class="midcta__actions">
+          <a href="#plans" class="btn btn--brand btn--lg">{t.midcta.cta}<span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <p class="midcta__sub">{t.midcta.sub}</p>
+      </div>
+    </section>
+
+    <!-- API OFICIAL -->
+    <section class="section section--ink on-ink risk">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow">{t.risk.eyebrow}</span>
+          <h2 set:html={t.risk.title} />
+          <p class="lead" style="color:var(--on-ink-soft)">{t.risk.lead}</p>
+        </div>
+        <div class="risk__grid">
+          <article class="risk__card risk__card--bad reveal">
+            <h3 class="risk__title">{t.risk.bad.title}</h3>
+            <ul class="risk__list">{t.risk.bad.items.map((i) => <li>{i}</li>)}</ul>
+          </article>
+          <article class="risk__card risk__card--good reveal" style="--reveal-delay:120ms">
+            <h3 class="risk__title">{t.risk.good.title}</h3>
+            <ul class="risk__list">{t.risk.good.items.map((i) => <li>{i}</li>)}</ul>
+          </article>
+        </div>
+        <p class="risk__seal reveal"><span class="risk__seal-dot"></span> {t.risk.seal}</p>
+      </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section class="section" id="plans">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow">{t.plans.eyebrow}</span>
+          <h2>{t.plans.title} <span class="hl">{t.plans.titleHl}</span>.</h2>
+          <p class="lead">{t.plans.lead}</p>
+          <p class="plans__note" set:html={t.plans.note} />
+          <div class="billtoggle reveal" id="billtoggle" role="group" aria-label="Billing cycle">
+            <button type="button" class="billtoggle__opt" data-cycle="m">{t.plans.monthly}</button>
+            <button type="button" class="billtoggle__opt is-on" data-cycle="a">{t.plans.yearly} <span class="billtoggle__save">{t.plans.save}</span></button>
+          </div>
+        </div>
+        <div class="plans" id="plans-grid">
+          {PLANOS_INTL.map((p, i) => (
+            <article class={`plan reveal ${p.featured ? "plan--featured" : ""}`} style={`--reveal-delay:${i * 90}ms`}>
+              {p.featured && <span class="plan__badge">Most popular</span>}
+              <h3 class="plan__name">{p.name}</h3>
+              <p class="plan__blurb">{t.plans.blurbs[p.slug]}</p>
+
+              <p class="plan__price" data-cur="USD"><span class="plan__cur">$</span><span class="plan__amount" data-m={p.usd} data-a={mensalNoAnual(p.usd)}>{mensalNoAnual(p.usd)}</span><span class="plan__per">{t.plans.per}</span></p>
+              <p class="plan__price" data-cur="EUR"><span class="plan__cur">€</span><span class="plan__amount" data-m={p.eur} data-a={mensalNoAnual(p.eur)}>{mensalNoAnual(p.eur)}</span><span class="plan__per">{t.plans.per}</span></p>
+
+              <p class="plan__bill" data-cur="USD" data-bill={t.plans.billed.replace("{v}", `$${totalAnual(p.usd).toLocaleString("en-US")}`)}>{t.plans.billed.replace("{v}", `$${totalAnual(p.usd).toLocaleString("en-US")}`)}</p>
+              <p class="plan__bill" data-cur="EUR" data-bill={t.plans.billed.replace("{v}", `€${totalAnual(p.eur).toLocaleString("en-US")}`)}>{t.plans.billed.replace("{v}", `€${totalAnual(p.eur).toLocaleString("en-US")}`)}</p>
+
+              <a href={intlHref(p.slug, "USD", "a")} data-href-m={intlHref(p.slug, "USD", "m")} data-href-a={intlHref(p.slug, "USD", "a")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "EUR", "a")} data-href-m={intlHref(p.slug, "EUR", "m")} data-href-a={intlHref(p.slug, "EUR", "a")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
+
+              <ul class="plan__features">
+                {t.plans.features[p.slug].map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
+              </ul>
+              <span class="plan__guarantee">{t.plans.guarantee}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--paper2" id="faq">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow is-plain">{t.faqEyebrow}</span>
+          <h2>{t.faqTitle} <br class="br-r" /><span class="hl">{t.faqTitleHl}</span>.</h2>
+        </div>
+        <div class="faq reveal">
+          {t.faqs.map((f, i) => (
+            <details class="faq__item" name="faq" open={i === 0}>
+              <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--brand on-brand finalcta">
+      <span class="finalcta__glyph" aria-hidden="true">“</span>
+      <div class="container container--narrow finalcta__inner reveal">
+        <span class="eyebrow is-plain">{t.finalcta.eyebrow}</span>
+        <h2 class="finalcta__title">{t.finalcta.title} <span class="hl">{t.finalcta.titleHl}</span> {t.finalcta.titleEnd}</h2>
+        <p class="lead">{t.finalcta.lead}</p>
+        <div class="finalcta__actions">
+          <a href="#plans" class="btn btn--inverse btn--lg">{t.finalcta.cta}<span class="arr" aria-hidden="true">→</span></a>
+          <a href={WPP} class="btn btn--ghost btn--lg">{t.finalcta.talk}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer cols={t.footer.cols} pitch={t.footer.pitch} />
+  <StickyCta href="#plans" intl titulo={t.sticky.titulo} sub={t.sticky.sub} cta={t.sticky.cta} />
+
+  <script>
+    // Mesmo toggle da home PT: querySelectorAll porque cada card tem preço e
+    // botão em duas moedas — no singular só o primeiro (USD) seria atualizado.
+    const toggle = document.getElementById("billtoggle");
+    const grid = document.getElementById("plans-grid");
+    if (toggle && grid) {
+      toggle.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".billtoggle__opt");
+        if (!btn) return;
+        const annual = btn.dataset.cycle === "a";
+        toggle.querySelectorAll(".billtoggle__opt").forEach((o) => o.classList.toggle("is-on", o === btn));
+        grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
+          card.querySelectorAll<HTMLElement>(".plan__amount").forEach((a) => { a.textContent = annual ? a.dataset.a! : a.dataset.m!; });
+          card.querySelectorAll<HTMLElement>(".plan__bill").forEach((b) => { b.textContent = annual ? b.dataset.bill! : ""; });
+          card.querySelectorAll<HTMLAnchorElement>(".plan__cta").forEach((c) => { c.href = annual ? c.dataset.hrefA! : c.dataset.hrefM!; });
+        });
+      });
+    }
+  </script>
+</Base>
