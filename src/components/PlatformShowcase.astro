@@ -15,7 +15,7 @@ const {
 } = Astro.props;
 
 const platform = [
-  { tag: "Montagem visual", title: "Monte o fluxo arrastando.", body: "Escolhe o gatilho, define o que acontece depois e salva. Sem código, sem manual, sem “configurador avançado” escondido." },
+  { tag: "Criação guiada", title: "Escolha o gatilho, ele faz o resto.", body: "Escolhe o gatilho: comentário, story ou palavra na DM. Diz o que a pessoa recebe e confere tudo num celular, igual fica no Instagram de verdade. Editor visual? Segue ali, a um clique." },
   { tag: "Números em tempo real", title: "Veja cada clique acontecendo.", body: "Quantos DMs respondidos, quantos leads receberam o link, quantos clicaram. Dados simples que respondem “tá engajando?”." },
   { tag: "Sorteios pelos comentários", title: "Sorteie sem garimpar comentário.", body: "Quem comenta a palavra entra sozinho na lista. Você clica em sortear e ele mostra os ganhadores — sem planilha, sem print, sem contar na mão." },
   { tag: "Links e cliques", title: "Troque o link sem mexer nas automações.", body: "Cada link ganha um apelido. Mudou o destino? Você troca num lugar só e toda automação já manda o novo — e vê quantos clicaram em cada uma." },
@@ -27,7 +27,8 @@ const platform = [
       <span class="eyebrow">{eyebrow}</span>
       <h2 set:html={title} />
       <p class="lead">{lead}</p>
-      <p class="pshow__price"><strong>A partir de R$ 99/mês</strong> · contatos ilimitados · garantia de 7 dias · <a href="#comparativo">ver comparação</a></p>
+      <p class="pshow__price br-only"><strong>A partir de R$ 99/mês</strong> · contatos ilimitados · garantia de 7 dias · <a href="#comparativo">ver comparação</a></p>
+      <p class="pshow__price intl-only"><strong><span data-cur="USD">A partir de $19/mês</span><span data-cur="EUR">A partir de €18/mês</span></strong> · contatos ilimitados · garantia de 7 dias · <a href="#planos">ver planos</a></p>
     </div>
     <div class="platform">
       <!-- 1 · Montagem visual -->
@@ -40,8 +41,8 @@ const platform = [
         <div class="prow__art" aria-hidden="true">
           <video
             class="flowvid"
-            src="/assets/flow-build.mp4"
-            poster="/assets/flow-build-poster.webp"
+            src="/assets/flow-build-ago26b.mp4"
+            poster="/assets/flow-build-ago26b-poster.webp"
             data-autoplay muted loop playsinline preload="none"
           ></video>
         </div>
@@ -166,7 +167,7 @@ const platform = [
   .ui__url { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.01em; }
   .ui > :not(.ui__bar) { background: var(--card); border-radius: calc(var(--r-xl) - 7px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); }
 
-  /* 1 · flow builder (vídeo: cursor arrastando os blocos) */
+  /* 1 · criação guiada (vídeo: assistente por gatilho + prévia ao vivo do Instagram) */
   .flowvid { width: 100%; height: auto; display: block; aspect-ratio: 1280 / 960; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-lg); background: var(--paper-2); }
 
   /* 2 · dashboard */

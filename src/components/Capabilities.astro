@@ -14,6 +14,7 @@ const {
 
 const caps = [
   { t: "Comentário → DM → venda", d: "Alguém comenta “quero”. Ele puxa pro privado, manda o link, qualifica e te avisa só na hora de fechar." },
+  { t: "Vitrine de produtos no direct", d: "Cola os links dos produtos e ele busca a foto e o nome de cada um sozinho. Uma vitrine de verdade no direct — não só um link solto." },
   { t: "Quebra Gelo no direct", d: "Perguntas prontas no topo do seu direct. O seguidor toca numa delas e já entra na automação — sem precisar pensar no que escrever." },
   { t: "Funil que qualifica sozinho", d: "Perguntas, botões e respostas rápidas dentro do fluxo. Você fala só com quem já quer comprar." },
   { t: "Moderação automática", d: "Você define as palavras e ele esconde ou apaga spam e ofensa antes de qualquer seguidor ver." },
@@ -32,7 +33,7 @@ const caps = [
     </div>
     <div class="caps">
       {caps.map((c, i) => (
-        <article class="cap reveal" style={`--reveal-delay:${(i % 4) * 70}ms`}>
+        <article class="cap reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
           <span class="cap__n">{String(i + 1).padStart(2, "0")}</span>
           <h3 class="cap__title">{c.t}</h3>
           <p class="cap__body">{c.d}</p>
@@ -51,5 +52,5 @@ const caps = [
   .cap__title { margin-top: 0.7rem; font-size: 1.12rem; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
   .cap__body { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.55; }
   @media (min-width: 640px) { .caps { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 980px) { .caps { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 980px) { .caps { grid-template-columns: repeat(3, 1fr); } }
 </style>

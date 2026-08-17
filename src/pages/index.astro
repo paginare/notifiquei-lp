@@ -31,10 +31,16 @@ const steps = [
   },
 ];
 
+// Preços por moeda. BRL é o de sempre (Cakto). USD/EUR batem com o catálogo criado
+// no Stripe em 14/08 — se mexer aqui, mexer lá também, senão a LP promete um valor
+// e o checkout cobra outro.
 const plans = [
   {
     name: "Solo",
+    slug: "solo",
     price: "99",
+    usd: "19",
+    eur: "18",
     blurb: "Criador iniciante, operação pequena.",
     hrefM: "https://pay.cakto.com.br/jghakt9_1023509",
     hrefA: "https://pay.cakto.com.br/ccwxocu",
@@ -44,7 +50,10 @@ const plans = [
   },
   {
     name: "Pro",
+    slug: "pro",
     price: "499",
+    usd: "79",
+    eur: "75",
     blurb: "Pra quem já escalou um pouco.",
     hrefM: "https://pay.cakto.com.br/3c939t6",
     hrefA: "https://pay.cakto.com.br/pesb7su",
@@ -54,7 +63,10 @@ const plans = [
   },
   {
     name: "Business",
+    slug: "business",
     price: "799",
+    usd: "129",
+    eur: "125",
     blurb: "Agência e operação grande.",
     hrefM: "https://pay.cakto.com.br/zkdgyvq",
     hrefA: "https://pay.cakto.com.br/dfycche",
@@ -63,6 +75,18 @@ const plans = [
     features: ["10 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento VIP prioritário"],
   },
 ];
+
+// Mensalidade exibida no ciclo anual = anual (10x) dividido por 12. Mesma conta das
+// três moedas, pra promessa dos "2 meses grátis" bater em qualquer mercado.
+const mensalNoAnual = (v: string) => String(Math.round((Number(v) * 10) / 12));
+const totalAnual = (v: string) => Number(v) * 10;
+
+// Fora do Brasil não existe link de pagamento estático como o da Cakto: o Stripe
+// só abre checkout pra usuário logado. Então o botão leva ao cadastro carregando o
+// plano e o ciclo, e o app abre o checkout certo depois do login.
+const APP = "https://app.notifiquei.com.br/auth";
+const intlHref = (slug: string, ciclo: "m" | "a") =>
+  `${APP}?plan=${slug}&cycle=${ciclo}&src=intl`;
 
 const faqs = [
   { q: "Isso pode bloquear meu Instagram?", a: "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." },
@@ -148,7 +172,7 @@ const jsonLd = [
   description="O Notifiquei responde DMs, comentários e stories no Instagram em segundos, com a sua voz, pela API oficial da Meta. Você cria e ele converte."
   path="/"
   jsonLd={jsonLd}
-  heroPoster="/assets/hero-poster.webp"
+  heroPoster="/assets/hero-ago26c-poster.webp"
 >
   <Nav />
 
@@ -158,7 +182,8 @@ const jsonLd = [
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="hero__badge"><span class="hero__badge-ic" aria-hidden="true">✦</span> Comece grátis · sem cartão</span>
+          <span class="hero__badge br-only"><span class="hero__badge-ic" aria-hidden="true">✦</span> Comece grátis · sem cartão</span>
+          <span class="hero__badge intl-only"><span class="hero__badge-ic" aria-hidden="true">✦</span> Garantia de 7 dias · cancele quando quiser</span>
           <span class="eyebrow is-plain hero__eyebrow">Instagram + TikTok · API oficial</span>
           <h1 class="hero__title">
             Responda seus directs e comentários do Instagram <span class="hl">no automático</span>!
@@ -169,7 +194,8 @@ const jsonLd = [
             o cliente já está pronto pra comprar. Você cria e ele converte.
           </p>
           <div class="hero__actions">
-            <a href="#planos" class="btn btn--brand btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+            <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
           </div>
           <div class="hero__proof">
             <span class="hero__avatars" aria-hidden="true">
@@ -186,8 +212,8 @@ const jsonLd = [
         <div class="hero__demo" role="img" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
           <video
             class="hero__video"
-            src="/assets/hero.mp4"
-            poster="/assets/hero-poster.webp"
+            src="/assets/hero-ago26c.mp4"
+            poster="/assets/hero-ago26c-poster.webp"
             data-autoplay
             muted
             loop
@@ -226,7 +252,8 @@ const jsonLd = [
           <span class="eyebrow is-plain">Para afiliados</span>
           <h2 class="affil__title">Quem comenta no seu post recebe o seu link de afiliado no direct, <span class="hl">na hora</span>.</h2>
           <p class="lead">Posta o produto, pede pra comentarem a palavra-chave, e o Notifiquei manda o <strong>seu link de afiliado</strong> no direct de cada pessoa — na hora, sem você copiar e colar link o dia inteiro.</p>
-          <a href="#planos" class="btn btn--brand btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
         </div>
 
         <div class="affil__demo reveal" aria-hidden="true">
@@ -349,8 +376,8 @@ const jsonLd = [
         <div class="inaction__video reveal">
           <video
             class="conversa-video"
-            src="/assets/demo-conversa.mp4"
-            poster="/assets/demo-conversa-poster.webp"
+            src="/assets/demo-conversa-ago26.mp4"
+            poster="/assets/demo-conversa-ago26-poster.webp"
             data-autoplay muted loop playsinline preload="none" aria-hidden="true"
           ></video>
         </div>
@@ -384,7 +411,8 @@ const jsonLd = [
             <li><span class="claudeai__tick" aria-hidden="true">✓</span> Um botão no painel copia o kit com a sua chave dentro</li>
             <li><span class="claudeai__tick" aria-hidden="true">✓</span> Ele sempre mostra o resumo e pede seu OK antes de criar</li>
             <li><span class="claudeai__tick" aria-hidden="true">✓</span> Dá pra listar, ligar e desligar automação pela conversa</li>
-            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, inclusive no grátis</li>
+            <li class="br-only"><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, inclusive no grátis</li>
+            <li class="intl-only"><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, sem custo extra</li>
           </ul>
           <p class="claudeai__note">
             Tem sistema próprio? A mesma chave serve pra plugar direto na sua aplicação.
@@ -420,9 +448,11 @@ const jsonLd = [
         <span class="eyebrow is-plain">Pronto quando você estiver</span>
         <h2 class="midcta__title">Quem responde primeiro leva a venda,<br class="br-r" /> e essa pessoa pode <span class="hl">ser você</span>.</h2>
         <div class="midcta__actions">
-          <a href="#planos" class="btn btn--brand btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
         </div>
-        <p class="midcta__sub">Grátis pra sempre · sem cartão</p>
+        <p class="midcta__sub br-only">Grátis pra sempre · sem cartão</p>
+        <p class="midcta__sub intl-only">Garantia de 7 dias · devolução 100%</p>
       </div>
     </section>
 
@@ -510,7 +540,7 @@ const jsonLd = [
     </section>
 
     <!-- ============ COMPARATIVO DE PREÇOS ============ -->
-    <section class="section section--paper2 compare" id="comparativo">
+    <section class="section section--paper2 compare br-only" id="comparativo">
       <div class="container">
         <div class="section-head section-head--center reveal">
           <span class="eyebrow is-plain">Compare</span>
@@ -555,7 +585,8 @@ const jsonLd = [
         <div class="section-head section-head--center reveal">
           <span class="eyebrow">Planos</span>
           <h2>Planos com preço fixo e<br class="br-r" /> <span class="hl">contatos ilimitados</span>.</h2>
-          <p class="lead">O ManyChat cobra por contato e em dólar — sua conta cresce junto com a audiência. Aqui é preço fixo em real, com contatos ilimitados: você cresce sem a fatura crescer.</p>
+          <p class="lead br-only">O ManyChat cobra por contato e em dólar — sua conta cresce junto com a audiência. Aqui é preço fixo em real, com contatos ilimitados: você cresce sem a fatura crescer.</p>
+          <p class="lead intl-only">O ManyChat cobra por contato — sua fatura cresce junto com a audiência. Aqui o preço é fixo, com contatos ilimitados: você cresce sem a fatura crescer.</p>
           <p class="plans__note"><strong>2 em 1:</strong> cada conta já conecta <strong>Instagram + TikTok</strong> no mesmo plano — automatize os dois sem pagar a mais.</p>
           <div class="billtoggle reveal" id="billtoggle" role="group" aria-label="Ciclo de cobrança">
             <button type="button" class="billtoggle__opt" data-cycle="m">Mensal</button>
@@ -568,9 +599,17 @@ const jsonLd = [
               {p.featured && <span class="plan__badge">Mais popular</span>}
               <h3 class="plan__name">{p.name}</h3>
               <p class="plan__blurb">{p.blurb}</p>
-              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={String(Math.round(Number(p.price) * 10 / 12))}>{String(Math.round(Number(p.price) * 10 / 12))}</span><span class="plan__per">/mês</span></p>
-              <p class="plan__bill" data-bill={`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}>{`cobrado R$ ${(Number(p.price) * 10).toLocaleString("pt-BR")}/ano`}</p>
-              <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              {/* As três moedas saem no HTML; o CSS mostra a do país (ver global.css). */}
+              <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{mensalNoAnual(p.price)}</span><span class="plan__per">/mês</span></p>
+              <p class="plan__price" data-cur="USD"><span class="plan__cur">$</span><span class="plan__amount" data-m={p.usd} data-a={mensalNoAnual(p.usd)}>{mensalNoAnual(p.usd)}</span><span class="plan__per">/mês</span></p>
+              <p class="plan__price" data-cur="EUR"><span class="plan__cur">€</span><span class="plan__amount" data-m={p.eur} data-a={mensalNoAnual(p.eur)}>{mensalNoAnual(p.eur)}</span><span class="plan__per">/mês</span></p>
+
+              <p class="plan__bill" data-cur="BRL" data-bill={`cobrado R$ ${totalAnual(p.price).toLocaleString("pt-BR")}/ano`}>{`cobrado R$ ${totalAnual(p.price).toLocaleString("pt-BR")}/ano`}</p>
+              <p class="plan__bill" data-cur="USD" data-bill={`cobrado $${totalAnual(p.usd).toLocaleString("en-US")}/ano`}>{`cobrado $${totalAnual(p.usd).toLocaleString("en-US")}/ano`}</p>
+              <p class="plan__bill" data-cur="EUR" data-bill={`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}>{`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}</p>
+
+              <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "a")} data-href-m={intlHref(p.slug, "m")} data-href-a={intlHref(p.slug, "a")} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
               <ul class="plan__features">
                 {p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
               </ul>
@@ -580,7 +619,7 @@ const jsonLd = [
         </div>
 
         <!-- Plano grátis para sempre (separado dos pagos) -->
-        <article class="freeplan reveal">
+        <article class="freeplan reveal br-only">
           <div class="freeplan__head">
             <span class="freeplan__tag">Grátis para sempre</span>
             <h3 class="freeplan__name">Plano Grátis</h3>
@@ -623,9 +662,11 @@ const jsonLd = [
       <div class="container container--narrow finalcta__inner reveal">
         <span class="eyebrow is-plain">Enquanto você lia isso…</span>
         <h2 class="finalcta__title">Alguém comentou <span class="hl">“quero”</span> no seu post.</h2>
-        <p class="lead">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Comece de graça — sem cartão, sem prazo.</p>
+        <p class="lead br-only">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Comece de graça — sem cartão, sem prazo.</p>
+        <p class="lead intl-only">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Garantia de 7 dias — se não rolar, devolvemos 100%.</p>
         <div class="finalcta__actions">
-          <a href="#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--inverse btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
+          <a href="#planos" class="btn btn--inverse btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
           <a href={WPP} class="btn btn--ghost btn--lg">Falar com a gente</a>
         </div>
       </div>
@@ -645,13 +686,20 @@ const jsonLd = [
         if (!btn) return;
         const annual = btn.dataset.cycle === "a";
         toggle.querySelectorAll(".billtoggle__opt").forEach((o) => o.classList.toggle("is-on", o === btn));
+        // querySelectorAll, não querySelector: desde que o card virou multi-moeda,
+        // cada um carrega 3 preços e 2 botões (Brasil + internacional). No singular,
+        // o toggle só mexia no primeiro — o BRL, que fica escondido lá fora — e o
+        // gringo via o preço travado no anual. Atualiza todos; o CSS mostra o certo.
         grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
-          const amt = card.querySelector<HTMLElement>(".plan__amount");
-          const bill = card.querySelector<HTMLElement>(".plan__bill");
-          const cta = card.querySelector<HTMLAnchorElement>(".plan__cta");
-          if (amt) amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
-          if (bill) bill.textContent = annual ? bill.dataset.bill! : "";
-          if (cta) cta.href = annual ? cta.dataset.hrefA! : cta.dataset.hrefM!;
+          card.querySelectorAll<HTMLElement>(".plan__amount").forEach((amt) => {
+            amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
+          });
+          card.querySelectorAll<HTMLElement>(".plan__bill").forEach((bill) => {
+            bill.textContent = annual ? bill.dataset.bill! : "";
+          });
+          card.querySelectorAll<HTMLAnchorElement>(".plan__cta").forEach((cta) => {
+            cta.href = annual ? cta.dataset.hrefA! : cta.dataset.hrefM!;
+          });
         });
       });
     }
@@ -807,8 +855,8 @@ const jsonLd = [
   }
 
   /* Cartão demo */
-  .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; }
-  .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1280 / 960; background: transparent; }
+  .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 480px; }
+  .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 960 / 1200; background: transparent; }
 
   /* ===================== MONTE PELO CLAUDE ===================== */
   .claudeai__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
@@ -933,7 +981,7 @@ const jsonLd = [
 
   @media (min-width: 940px) {
     .hero__inner { grid-template-columns: 1fr 1.18fr; align-items: center; gap: clamp(2.5rem, 4vw, 4.5rem); }
-    .hero__demo { max-width: 760px; }
+    .hero__demo { max-width: 700px; }
   }
 
   /* ===================== PROVA SOCIAL ===================== */

@@ -248,3 +248,27 @@ p { text-wrap: pretty; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ===================== MERCADO E MOEDA (geo na borda) =====================
+   `functions/_middleware.js` estampa data-market e data-currency no <html>.
+   Aqui é onde isso vira comportamento. As três variantes de preço vêm no HTML;
+   só uma aparece.
+
+   REGRA DE OURO: o padrão é o Brasil. Se a function não rodar, o <html> fica sem
+   atributo e o site se comporta como antes.
+
+   POR QUE SÓ ESCONDEMOS: a regra só age no elemento que deve SUMIR. O que fica
+   visível não recebe `display` nenhum e mantém o valor da própria classe. Se em vez
+   disso a gente forçasse `display: revert` no visível, um `.btn` (inline-flex)
+   viraria `inline` e o botão quebrava. Nunca force display no lado visível. */
+
+html[data-currency="BRL"] [data-cur]:not([data-cur="BRL"]),
+html[data-currency="USD"] [data-cur]:not([data-cur="USD"]),
+html[data-currency="EUR"] [data-cur]:not([data-cur="EUR"]),
+html:not([data-currency]) [data-cur]:not([data-cur="BRL"]) { display: none !important; }
+
+/* só no Brasil: plano grátis, comparativo em real, CTA "grátis" */
+html[data-market="INTL"] .br-only { display: none !important; }
+
+/* só fora do Brasil: preço em dólar/euro, CTA "Começar agora" */
+html:not([data-market="INTL"]) .intl-only { display: none !important; }

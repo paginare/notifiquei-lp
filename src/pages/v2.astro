@@ -48,7 +48,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   path="/v2"
   noindex={true}
   canonicalPath="/"
-  heroPoster="/assets/hero-poster.webp"
+  heroPoster="/assets/hero-ago26c-poster.webp"
 >
   <Nav />
 
@@ -82,7 +82,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           </div>
         </div>
         <div class="hero__demo" role="img" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
-          <video class="hero__video" src="/assets/hero.mp4" poster="/assets/hero-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+          <video class="hero__video" src="/assets/hero-ago26c.mp4" poster="/assets/hero-ago26c-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
         </div>
       </div>
     </section>
@@ -110,7 +110,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           </article>
         </div>
         <div class="inaction__video reveal">
-          <video class="conversa-video" src="/assets/demo-conversa.mp4" poster="/assets/demo-conversa-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+          <video class="conversa-video" src="/assets/demo-conversa-ago26.mp4" poster="/assets/demo-conversa-ago26-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
         </div>
       </div>
     </section>
@@ -368,11 +368,11 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
   .hero__trust .tick { color: var(--brand-lift); font-weight: 800; }
   /* vídeo emoldurado claro sobre o fundo escuro */
-  .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 560px; background: var(--card); padding: 10px; border-radius: calc(var(--r-lg) + 10px); border: 1px solid var(--line-ink); box-shadow: var(--shadow-lg); }
-  .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 1280 / 960; background: var(--paper); }
+  .hero__demo { position: relative; justify-self: center; width: 100%; max-width: 480px; background: var(--card); padding: 10px; border-radius: calc(var(--r-lg) + 10px); border: 1px solid var(--line-ink); box-shadow: var(--shadow-lg); }
+  .hero__video { width: 100%; height: auto; display: block; border-radius: var(--r-lg); aspect-ratio: 960 / 1200; background: var(--paper); }
   @media (min-width: 940px) {
     .hero__inner { grid-template-columns: 1fr 1.12fr; align-items: center; gap: clamp(2.5rem, 4vw, 4.5rem); }
-    .hero__demo { max-width: 680px; }
+    .hero__demo { max-width: 620px; }
   }
 
   /* ===================== LOSS (contraste topo) ===================== */

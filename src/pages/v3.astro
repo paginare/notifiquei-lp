@@ -48,7 +48,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   path="/v3"
   noindex={true}
   canonicalPath="/"
-  heroPoster="/assets/hero-poster.webp"
+  heroPoster="/assets/hero-ago26c-poster.webp"
 >
   <Nav />
 
@@ -79,7 +79,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
 
         <figure class="heroC__stage reveal">
           <div class="heroC__window">
-            <video class="heroC__video" src="/assets/hero.mp4" poster="/assets/hero-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video class="heroC__video" src="/assets/hero-ago26c.mp4" poster="/assets/hero-ago26c-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
           </div>
           <figcaption class="heroC__cap"><span class="heroC__cap-dot"></span> Comentário → resposta → link no direct, no automático.</figcaption>
         </figure>
@@ -115,7 +115,7 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
           </div>
         </div>
         <div class="inaction__video reveal">
-          <video class="conversa-video" src="/assets/demo-conversa.mp4" poster="/assets/demo-conversa-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+          <video class="conversa-video" src="/assets/demo-conversa-ago26.mp4" poster="/assets/demo-conversa-ago26-poster.webp" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
         </div>
       </div>
     </section>
@@ -347,8 +347,8 @@ const clientes = ["gummy.png", "responda.png", "rosa-selvagem.png", "vert-sophis
   .hero__proof-txt strong { color: var(--ink); font-weight: 700; }
   /* vitrine */
   .heroC__stage { margin-top: clamp(2.5rem, 5vw, 4rem); width: 100%; display: flex; flex-direction: column; align-items: center; }
-  .heroC__window { width: 100%; max-width: 920px; background: linear-gradient(180deg, var(--paper-2), var(--paper-3)); border: 1px solid var(--line); border-radius: calc(var(--r-xl) + 6px); padding: 10px; box-shadow: var(--shadow-lg); }
-  .heroC__video { width: 100%; height: auto; display: block; border-radius: var(--r-xl); aspect-ratio: 1280 / 960; background: var(--card); }
+  .heroC__window { width: 100%; max-width: 640px; background: linear-gradient(180deg, var(--paper-2), var(--paper-3)); border: 1px solid var(--line); border-radius: calc(var(--r-xl) + 6px); padding: 10px; box-shadow: var(--shadow-lg); }
+  .heroC__video { width: 100%; height: auto; display: block; border-radius: var(--r-xl); aspect-ratio: 960 / 1200; background: var(--card); }
   .heroC__cap { margin-top: 1.1rem; display: inline-flex; align-items: center; gap: 0.5em; font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); }
   .heroC__cap-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--brand-wash); }
 
