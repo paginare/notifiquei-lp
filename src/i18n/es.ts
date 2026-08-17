@@ -286,9 +286,9 @@ export const es = {
         { href: "mailto:contato@notifiquei.com.br", label: "contato@notifiquei.com.br" },
       ]},
       { title: "Legal", links: [
-        { href: "/termos-de-uso", label: "Términos de uso" },
-        { href: "/politica-de-privacidade", label: "Privacidad" },
-        { href: "/dpa", label: "Acuerdo de datos (DPA)" },
+        { href: "/es/terminos-de-uso", label: "Términos de uso" },
+        { href: "/es/politica-de-privacidad", label: "Privacidad" },
+        { href: "/es/dpa", label: "Acuerdo de datos (DPA)" },
       ]},
     ],
   },

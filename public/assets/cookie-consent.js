@@ -1,10 +1,62 @@
 /**
- * Notifiquei — Cookie Consent (LGPD + Google Consent Mode v2)
+ * Notifiquei — Cookie Consent (LGPD + GDPR + Google Consent Mode v2)
  * Carrega antes do analytics. Bloqueia rastreamento até consentimento.
+ *
+ * Fala o idioma da página: tanto a LGPD quanto o GDPR exigem consentimento
+ * INFORMADO, e um banner em português numa página em inglês não informa nada —
+ * o visitante clica em "Aceitar todos" sem ter lido o que aceitou. O idioma sai
+ * do <html lang>, com a URL (/en, /es) como rede de segurança.
  */
 (function () {
   var STORAGE_KEY = 'notifiquei_consent';
   var stored = localStorage.getItem(STORAGE_KEY);
+
+  var TEXTOS = {
+    'pt-BR': {
+      aria: 'Aviso de cookies',
+      texto: 'Usamos cookies essenciais para o funcionamento da plataforma e, com seu consentimento,'
+        + ' cookies analíticos e de marketing para melhorar sua experiência.'
+        + ' Consulte nossa ',
+      politica: 'Política de Privacidade',
+      href: '/politica-de-privacidade',
+      essenciais: 'Apenas essenciais',
+      aceitar: 'Aceitar todos'
+    },
+    en: {
+      aria: 'Cookie notice',
+      texto: 'We use essential cookies to run the platform and, with your consent,'
+        + ' analytics and marketing cookies to improve your experience.'
+        + ' See our ',
+      politica: 'Privacy Policy',
+      href: '/en/privacy-policy',
+      essenciais: 'Essential only',
+      aceitar: 'Accept all'
+    },
+    es: {
+      aria: 'Aviso de cookies',
+      texto: 'Usamos cookies esenciales para el funcionamiento de la plataforma y, con su consentimiento,'
+        + ' cookies analíticas y de marketing para mejorar su experiencia.'
+        + ' Consulte nuestra ',
+      politica: 'Política de Privacidad',
+      href: '/es/politica-de-privacidad',
+      essenciais: 'Solo esenciales',
+      aceitar: 'Aceptar todo'
+    }
+  };
+
+  function idioma() {
+    var lang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    if (lang.indexOf('en') === 0) return 'en';
+    if (lang.indexOf('es') === 0) return 'es';
+    if (lang.indexOf('pt') === 0) return 'pt-BR';
+    // sem lang no <html>: cai pra URL
+    var p = location.pathname;
+    if (p === '/en' || p.indexOf('/en/') === 0) return 'en';
+    if (p === '/es' || p.indexOf('/es/') === 0) return 'es';
+    return 'pt-BR';
+  }
+
+  var t = TEXTOS[idioma()];
 
   // Expõe o estado de consentimento globalmente
   window.notifiqueiConsent = stored || null;
@@ -71,16 +123,15 @@
     var banner = document.createElement('div');
     banner.id = 'nf-cookie-banner';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Aviso de cookies');
+    banner.setAttribute('aria-label', t.aria);
     banner.innerHTML = [
       '<div id="nf-cookie-text">',
-      '<p>Usamos cookies essenciais para o funcionamento da plataforma e, com seu consentimento,',
-      ' cookies analíticos e de marketing para melhorar sua experiência.',
-      ' Consulte nossa <a href="/politica-de-privacidade">Política de Privacidade</a>.</p>',
+      '<p>', t.texto,
+      '<a href="', t.href, '">', t.politica, '</a>.</p>',
       '</div>',
       '<div id="nf-cookie-btns">',
-      '<button class="nf-btn-essential" id="nf-btn-essential">Apenas essenciais</button>',
-      '<button class="nf-btn-accept" id="nf-btn-accept">Aceitar todos</button>',
+      '<button class="nf-btn-essential" id="nf-btn-essential">', t.essenciais, '</button>',
+      '<button class="nf-btn-accept" id="nf-btn-accept">', t.aceitar, '</button>',
       '</div>'
     ].join('');
     return banner;
