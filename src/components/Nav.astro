@@ -1,6 +1,9 @@
 ---
 import Logo from "./Logo.astro";
+import LangSwitcher from "./LangSwitcher.astro";
 interface Props {
+  lang?: "pt-BR" | "en" | "es";
+  langLabel?: string;
   links?: { href: string; label: string }[];
   entrar?: string;
   comecar?: string;
@@ -15,7 +18,7 @@ const LINKS_PT = [
   { href: "/ferramentas", label: "Ferramentas" },
   { href: "/#planos", label: "Planos" },
 ];
-const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.props;
+const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.props;
 ---
 <header class="nav" id="siteNav">
   <div class="container nav__inner">
@@ -28,6 +31,7 @@ const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.prop
     </nav>
 
     <div class="nav__cta">
+      <LangSwitcher atual={lang} label={langLabel} />
       <a href="https://app.notifiquei.com.br" class="nav__login">{entrar}</a>
       <a href="/#planos" class="btn btn--brand nav__start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
       <button
@@ -49,6 +53,7 @@ const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.prop
     <nav class="nav__mobile-nav" aria-label="Navegação principal (mobile)">
       {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
     </nav>
+    <div class="nav__mobile-lang"><LangSwitcher atual={lang} label={langLabel} /></div>
     <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">{entrar}</a>
     <a href="/#planos" class="btn btn--brand nav__mobile-start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
   </div>
@@ -175,6 +180,7 @@ const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.prop
   }
   .nav__mobile-link:hover,
   .nav__mobile-link:focus-visible { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+  .nav__mobile-lang { padding: 0.35rem 0.85rem 0.15rem; }
   .nav__mobile-login { color: var(--ink-soft); }
   .nav__mobile-start {
     justify-content: center;
@@ -192,6 +198,7 @@ const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.prop
 
   @media (min-width: 860px) {
     .nav__links { display: flex; }
+    .nav__cta > .lang { display: block; }
     .nav__login { display: inline-block; }
     .nav__burger { display: none; }
     .nav__mobile { display: none; }

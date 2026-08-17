@@ -1,0 +1,149 @@
+---
+/**
+ * Seletor de idioma do menu.
+ *
+ * Bandeira + NOME do idioma de propósito: bandeira sozinha representa país, não
+ * língua — um mexicano não se reconhece na bandeira da Espanha, nem um indiano
+ * na do Reino Unido. Com o nome ao lado, a ambiguidade some.
+ *
+ * Não redireciona nada: é escolha explícita do visitante. A sugestão automática
+ * (dispensável) fica no LangBanner. Redirect por IP arriscaria o SEO das páginas
+ * em português — ver docs/superpowers/specs/2026-08-17-mercado-internacional-design.md
+ */
+interface Props {
+  atual: "pt-BR" | "en" | "es";
+  /** rótulo acessível, no idioma da página */
+  label?: string;
+}
+const { atual, label = "Escolher idioma" } = Astro.props;
+
+const IDIOMAS = [
+  { code: "pt-BR", href: "/",    flag: "🇧🇷", nome: "Português", curto: "PT" },
+  { code: "en",    href: "/en",  flag: "🇺🇸", nome: "English",   curto: "EN" },
+  { code: "es",    href: "/es",  flag: "🇪🇸", nome: "Español",   curto: "ES" },
+];
+const ativo = IDIOMAS.find((i) => i.code === atual) ?? IDIOMAS[0];
+// O componente é renderizado duas vezes (desktop + painel mobile). IDs fixos
+// gerariam duplicata no HTML — inválido, e o getElementById pegaria só o
+// primeiro, deixando o seletor do mobile morto.
+const uid = `lang-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="lang" data-lang-switcher>
+  <button
+    type="button"
+    class="lang__btn"
+    id={`${uid}-btn`}
+    aria-label={label}
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls={`${uid}-menu`}
+  >
+    <span class="lang__flag" aria-hidden="true">{ativo.flag}</span>
+    <span class="lang__code">{ativo.curto}</span>
+    <svg class="lang__chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </button>
+
+  <ul class="lang__menu" id={`${uid}-menu`} role="menu" hidden>
+    {IDIOMAS.map((i) => (
+      <li role="none">
+        <a
+          role="menuitem"
+          href={i.href}
+          class={`lang__item ${i.code === atual ? "is-on" : ""}`}
+          hreflang={i.code}
+          lang={i.code}
+          aria-current={i.code === atual ? "true" : undefined}
+        >
+          <span class="lang__flag" aria-hidden="true">{i.flag}</span>
+          <span>{i.nome}</span>
+          {i.code === atual && <span class="lang__check" aria-hidden="true">✓</span>}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .lang { position: relative; }
+
+  .lang__btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    height: 38px; padding: 0 0.6rem;
+    border: 1px solid var(--line); border-radius: var(--r-pill);
+    background: transparent; color: var(--ink);
+    font-family: inherit; font-size: 0.85rem; font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+  }
+  .lang__btn:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); border-color: var(--ink-faint); }
+  .lang__btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .lang__flag { font-size: 1rem; line-height: 1; }
+  .lang__code { letter-spacing: 0.02em; }
+  .lang__chev { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.55; transition: transform 0.2s var(--ease-out); }
+  .lang.is-open .lang__chev { transform: rotate(180deg); }
+
+  .lang__menu {
+    position: absolute; top: calc(100% + 0.45rem); right: 0; z-index: 120;
+    min-width: 11rem; padding: 0.3rem;
+    list-style: none; margin: 0;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--r-md, 12px); box-shadow: var(--shadow-lg);
+  }
+  .lang__menu[hidden] { display: none; }
+
+  .lang__item {
+    display: flex; align-items: center; gap: 0.55rem;
+    min-height: 40px; padding: 0 0.6rem;
+    border-radius: 9px; color: var(--ink);
+    font-size: 0.9rem; font-weight: 600;
+  }
+  .lang__item:hover,
+  .lang__item:focus-visible { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+  .lang__item.is-on { color: var(--brand-ink); }
+  .lang__check { margin-left: auto; font-weight: 800; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lang__menu:not([hidden]) { animation: langIn 0.16s var(--ease-out); }
+    @keyframes langIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<script>
+  // Cada instância se resolve sozinha a partir da própria raiz — nada de
+  // getElementById, que quebraria com o componente repetido na página.
+  document.querySelectorAll<HTMLElement>("[data-lang-switcher]").forEach((raiz) => {
+    const btn = raiz.querySelector<HTMLButtonElement>(".lang__btn");
+    const menu = raiz.querySelector<HTMLElement>(".lang__menu");
+    if (!btn || !menu) return;
+
+    const abrir = (v: boolean) => {
+      btn.setAttribute("aria-expanded", String(v));
+      raiz.classList.toggle("is-open", v);
+      menu.hidden = !v;
+    };
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      abrir(btn.getAttribute("aria-expanded") !== "true");
+    });
+
+    // ESC fecha e devolve o foco pro botão — senão o teclado fica preso no menu.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+        abrir(false);
+        btn.focus();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        btn.getAttribute("aria-expanded") === "true" &&
+        e.target instanceof Node &&
+        !raiz.contains(e.target)
+      ) {
+        abrir(false);
+      }
+    });
+  });
+</script>
