@@ -4,15 +4,17 @@ interface Props {
   eyebrow?: string;
   title?: string; // pode conter <br>
   lead?: string;
+  caps?: { t: string; d: string }[];
 }
 const {
   bg = "paper2",
   eyebrow = "O que você ganha",
   title = "Tudo que o Notifiquei <br class='br-r' /><span class='hl'>faz por você</span>.",
   lead = "Nada de funcionalidade que você nunca vai usar. A gente colocou só o que te ajuda a vender — e cortou todo o resto.",
+  caps,
 } = Astro.props;
 
-const caps = [
+const CAPS_PT = [
   { t: "Comentário → DM → venda", d: "Alguém comenta “quero”. Ele puxa pro privado, manda o link, qualifica e te avisa só na hora de fechar." },
   { t: "Vitrine de produtos no direct", d: "Cola os links dos produtos e ele busca a foto e o nome de cada um sozinho. Uma vitrine de verdade no direct — não só um link solto." },
   { t: "Quebra Gelo no direct", d: "Perguntas prontas no topo do seu direct. O seguidor toca numa delas e já entra na automação — sem precisar pensar no que escrever." },
@@ -23,6 +25,7 @@ const caps = [
   { t: "TikTok DM automático", d: "Boas-vindas, palavras-chave e resposta padrão no TikTok Business — ninguém fica sem retorno." },
   { t: "Controle pelo celular", d: "App nativo no iPhone e Android: crie, pause e acompanhe suas automações de onde estiver." },
 ];
+const capsFinal = caps ?? CAPS_PT;
 ---
 <section class={`section ${bg === "paper2" ? "section--paper2" : ""}`}>
   <div class="container">
@@ -32,7 +35,7 @@ const caps = [
       <p class="lead">{lead}</p>
     </div>
     <div class="caps">
-      {caps.map((c, i) => (
+      {capsFinal.map((c, i) => (
         <article class="cap reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
           <span class="cap__n">{String(i + 1).padStart(2, "0")}</span>
           <h3 class="cap__title">{c.t}</h3>

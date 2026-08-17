@@ -1,5 +1,11 @@
 ---
 // Faixa de criadores — imagens ILUSTRATIVAS da audiência (por nicho), não depoimentos.
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  nichos?: Record<string, string>; // traduz o rótulo do nicho sem trocar a imagem
+}
 const creators = [
   { img: "c1-nutri.webp", nicho: "Nutrição" },
   { img: "c2-fitness.webp", nicho: "Fitness" },
@@ -14,14 +20,21 @@ const creators = [
   { img: "c12-foto.webp", nicho: "Fotografia" },
   { img: "c7-artesa.webp", nicho: "Artesanato" },
 ];
+const {
+  eyebrow = "Quem usa",
+  title = "Feito para criadores<br />como você.",
+  lead = "De fitness a gastronomia, de infoproduto a loja de bairro — o Notifiquei já responde por mais de <strong>2.000 criadores brasileiros</strong> enquanto eles criam (ou dormem).",
+  nichos = {},
+} = Astro.props;
+const rotulo = (n: string) => nichos[n] ?? n;
 const loop = [...creators, ...creators];
 ---
 <section class="section cmq">
   <div class="container">
     <div class="section-head section-head--center reveal">
-      <span class="eyebrow">Quem usa</span>
-      <h2>Feito para criadores<br />como você.</h2>
-      <p class="lead">De fitness a gastronomia, de infoproduto a loja de bairro — o Notifiquei já responde por mais de <strong>2.000 criadores brasileiros</strong> enquanto eles criam (ou dormem).</p>
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 set:html={title} />
+      <p class="lead" set:html={lead} />
     </div>
   </div>
 
@@ -29,8 +42,8 @@ const loop = [...creators, ...creators];
     <div class="cmq__track">
       {loop.map((c) => (
         <figure class="cmq__card">
-          <img src={`/assets/creators/${c.img}`} alt={`Criador de conteúdo de ${c.nicho}`} loading="lazy" width="288" height="360" />
-          <figcaption class="cmq__tag">{c.nicho}</figcaption>
+          <img src={`/assets/creators/${c.img}`} alt={`Criador de conteúdo de ${rotulo(c.nicho)}`} loading="lazy" width="288" height="360" />
+          <figcaption class="cmq__tag">{rotulo(c.nicho)}</figcaption>
         </figure>
       ))}
     </div>

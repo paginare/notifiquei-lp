@@ -1,17 +1,31 @@
 ---
 // Seção dividida com scroll travado: imagem fixa (pin) que dá zoom + texto que troca.
-const beats = [
+interface Props {
+  eyebrow?: string;
+  title?: string; // pode conter <br> e <span class='hl'>
+  beats?: { k: string; t: string }[];
+  alt?: string;
+  badge?: string;
+}
+const BEATS_PT = [
   { k: "08h", t: "Você posta o reel e vai viver a sua vida." },
   { k: "14h", t: "Choveu “quero” no comentário. Ele já respondeu cada um — no Instagram e no TikTok." },
   { k: "22h", t: "Você abre o app na cama: a venda aconteceu sem você." },
 ];
+const {
+  eyebrow = "Um dia comum",
+  title = "Ele responde e vende o dia inteiro,<br /><span class='hl'>mesmo quando você está offline</span>.",
+  beats = BEATS_PT,
+  alt = "Criadora vendo as vendas chegarem pelo celular, à noite",
+  badge = "12 vendas hoje · no automático",
+} = Astro.props;
 ---
 <section class="dil">
   <div class="dil__stage">
     <div class="container dil__inner">
       <div class="dil__text">
-        <span class="eyebrow is-plain dil__eyebrow">Um dia comum</span>
-        <h2 class="dil__title">Ele responde e vende o dia inteiro,<br /><span class="hl">mesmo quando você está offline</span>.</h2>
+        <span class="eyebrow is-plain dil__eyebrow">{eyebrow}</span>
+        <h2 class="dil__title" set:html={title} />
         <div class="dil__beats">
           {beats.map((b, i) => (
             <p class={`dil__beat ${i === 0 ? "is-on" : ""}`} data-b={i}>
@@ -26,8 +40,8 @@ const beats = [
 
       <div class="dil__media reveal">
         <div class="dil__frame">
-          <img class="dil__img" src="/assets/creators/day-night.webp" alt="Criadora vendo as vendas chegarem pelo celular, à noite" width="900" height="1125" />
-          <div class="dil__badge"><span class="dil__badge-dot"></span> 12 vendas hoje · no automático</div>
+          <img class="dil__img" src="/assets/creators/day-night.webp" alt={alt} width="900" height="1125" />
+          <div class="dil__badge"><span class="dil__badge-dot"></span> {badge}</div>
         </div>
       </div>
     </div>

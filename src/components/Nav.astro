@@ -1,6 +1,11 @@
 ---
 import Logo from "./Logo.astro";
-const links = [
+interface Props {
+  links?: { href: string; label: string }[];
+  entrar?: string;
+  comecar?: string;
+}
+const LINKS_PT = [
   { href: "/#como", label: "Como funciona" },
   { href: "/#plataforma", label: "Plataforma" },
   { href: "/#claude", label: "API + Claude" },
@@ -10,6 +15,7 @@ const links = [
   { href: "/ferramentas", label: "Ferramentas" },
   { href: "/#planos", label: "Planos" },
 ];
+const { links = LINKS_PT, entrar = "Entrar", comecar = "Começar" } = Astro.props;
 ---
 <header class="nav" id="siteNav">
   <div class="container nav__inner">
@@ -22,8 +28,8 @@ const links = [
     </nav>
 
     <div class="nav__cta">
-      <a href="https://app.notifiquei.com.br" class="nav__login">Entrar</a>
-      <a href="/#planos" class="btn btn--brand nav__start">Começar<span class="arr" aria-hidden="true">→</span></a>
+      <a href="https://app.notifiquei.com.br" class="nav__login">{entrar}</a>
+      <a href="/#planos" class="btn btn--brand nav__start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
       <button
         type="button"
         class="nav__burger"
@@ -43,8 +49,8 @@ const links = [
     <nav class="nav__mobile-nav" aria-label="Navegação principal (mobile)">
       {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
     </nav>
-    <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">Entrar</a>
-    <a href="/#planos" class="btn btn--brand nav__mobile-start">Começar agora<span class="arr" aria-hidden="true">→</span></a>
+    <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">{entrar}</a>
+    <a href="/#planos" class="btn btn--brand nav__mobile-start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
   </div>
 </header>
 
