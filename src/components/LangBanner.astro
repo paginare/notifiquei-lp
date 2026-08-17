@@ -45,6 +45,10 @@ const uid = `lb-${Math.random().toString(36).slice(2, 8)}`;
     const x = el.querySelector<HTMLButtonElement>(".langbanner__x");
     if (localStorage.getItem(CHAVE) === "1") return;
     el.hidden = false;
+    // Aceitar o convite também é escolha explícita.
+    el.querySelector("a")?.addEventListener("click", () => {
+      document.cookie = "nq_lang_escolhido=1; path=/; max-age=31536000; SameSite=Lax";
+    });
     x?.addEventListener("click", () => {
       el.hidden = true;
       localStorage.setItem(CHAVE, "1");

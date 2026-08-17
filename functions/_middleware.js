@@ -46,6 +46,17 @@ function decidir(pais, traduzida) {
   return { market: 'INTL', currency: EURO.has(pais) ? 'EUR' : 'USD' };
 }
 
+/**
+ * Buscadores e crawlers de IA. Eles NUNCA são redirecionados: o Googlebot
+ * rastreia majoritariamente de IPs dos EUA, e mandá-lo pra /en faria o site ser
+ * indexado como se fosse só a versão gringa — o que ameaça o ranking dos posts
+ * do blog em português, que são a maior fonte de tráfego orgânico.
+ */
+const BOTS = /bot|crawler|spider|crawling|slurp|facebookexternalhit|whatsapp|telegram|discord|preview|embed|lighthouse|pagespeed|gptbot|chatgpt|oai-search|claude|perplexity|applebot|ahrefs|semrush/i;
+
+/** Só a home tem tradução. Redirecionar blog ou ferramentas levaria a lugar nenhum. */
+const REDIRECIONAVEL = new Set(['/', '/index.html']);
+
 export async function onRequest(context) {
   const resposta = await context.next();
 
@@ -62,6 +73,27 @@ export async function onRequest(context) {
   const traduzida = /^\/(en|es)(\/|$)/.test(url.pathname);
 
   const alvo = decidir(pais, traduzida);
+
+  // ---- Redirecionamento por idioma (só a home, só gente, só quem não escolheu) ----
+  const ua = req.headers.get('User-Agent') || '';
+  const escolheu = /(?:^|;\s*)nq_lang_escolhido=1/.test(req.headers.get('Cookie') || '');
+  if (
+    REDIRECIONAVEL.has(url.pathname) &&
+    alvo?.market === 'INTL' &&
+    !BOTS.test(ua) &&          // buscador nunca é redirecionado
+    !escolheu &&               // quem já escolheu um idioma manda no próprio destino
+    !forcado                   // ?pais= é ferramenta de teste; não deve saltar
+  ) {
+    const destino = ESPANHOL.has(pais) ? '/es' : '/en';
+    const u = new URL(url);
+    u.pathname = destino;
+    // 302: temporário de propósito. 301 gruda no cache do navegador e do
+    // buscador, e um brasileiro viajando ficaria preso no /en.
+    return new Response(null, {
+      status: 302,
+      headers: { Location: u.toString(), 'Cache-Control': 'private, no-store', Vary: 'User-Agent, Cookie' },
+    });
+  }
 
   // Idioma: nas rotas traduzidas vem da própria rota; no resto, do cookie que a
   // LP grava quando o visitante clica em comprar. É assim que o /obrigado sabe

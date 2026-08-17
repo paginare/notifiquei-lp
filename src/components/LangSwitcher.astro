@@ -123,6 +123,15 @@ const uid = `lang-${Math.random().toString(36).slice(2, 8)}`;
       menu.hidden = !v;
     };
 
+    // Clicar num idioma é escolha explícita: grava e o middleware para de
+    // redirecionar. Sem isto, um gringo que escolhesse Português seria jogado
+    // de volta pro /en no próximo carregamento — o seletor viraria decoração.
+    raiz.querySelectorAll("a.lang__item").forEach((a) =>
+      a.addEventListener("click", () => {
+        document.cookie = "nq_lang_escolhido=1; path=/; max-age=31536000; SameSite=Lax";
+      }),
+    );
+
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       abrir(btn.getAttribute("aria-expanded") !== "true");
