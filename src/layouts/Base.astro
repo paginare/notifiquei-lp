@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import PostHog from '../components/posthog.astro';
 import Gtm from '../components/Gtm.astro';
+import { versaoConsent } from "../lib/versao-asset";
 
 interface Props {
   title?: string;
@@ -75,7 +76,7 @@ const alternates = hreflangOf
     ordem, o GTM sobe com o default "granted" e o cookie já foi gravado
     quando o banner aparece — o banner viraria enfeite.
   -->
-  <script is:inline src="/assets/cookie-consent.js"></script>
+  <script is:inline src={`/assets/cookie-consent.js?v=${versaoConsent}`}></script>
   <Gtm />
   <title>{title}</title>
   <meta name="description" content={description} />

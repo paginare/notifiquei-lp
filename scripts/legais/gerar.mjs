@@ -16,6 +16,7 @@
  * Rodar:  node scripts/legais/gerar.mjs
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -168,6 +169,55 @@ function slugDe(id, lang) {
   return d.slug[lang];
 }
 
+/**
+ * ?v= com o hash do cookie-consent.js. Mesmo motivo do src/lib/versao-asset.ts:
+ * a Cloudflare serviu a versão antiga do script por 42 min junto com o HTML
+ * novo, e o rastreamento parou de subir até pra quem aceitava. Conteúdo novo
+ * tem que virar URL nova.
+ */
+const VERSAO_CONSENT = createHash("sha1")
+  .update(readFileSync(join(PUB, "assets", "cookie-consent.js")))
+  .digest("hex")
+  .slice(0, 10);
+
+function comVersaoDoConsent(html) {
+  return html.replace(
+    /src="\/assets\/cookie-consent\.js(\?v=[a-f0-9]+)?"/g,
+    `src="/assets/cookie-consent.js?v=${VERSAO_CONSENT}"`,
+  );
+}
+
+/**
+ * Prende o GTM ao consentimento, igual ao Gtm.astro.
+ *
+ * Estas páginas traziam o snippet cru do GTM no topo do <head> — e, pior,
+ * ANTES do cookie-consent.js, então nem os defaults do Consent Mode chegavam
+ * a tempo. Medido: 11 requisições e 3 cookies (_clck, _clsk, _fbp) antes de o
+ * visitante responder qualquer coisa.
+ */
+const RE_GTM_CRU = /<!-- Google Tag Manager -->\n<script>\(function\(w,d,s,l,i\)[\s\S]*?<!-- End Google Tag Manager -->\n/;
+const RE_GTM_NOSCRIPT = /<!-- Google Tag Manager \(noscript\) -->\n<noscript>[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->\n/;
+const MARCA_GTM = "<!-- GTM preso ao consentimento -->";
+
+const GTM_GATED = `${MARCA_GTM}
+<script>(function(){var c=false;function carrega(){if(c)return;c=true;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-577WSF49');}
+if(typeof window.nfAoConsentir==='function')window.nfAoConsentir(carrega);})();</script>
+`;
+
+function comGtmPresoAoConsentimento(html) {
+  let out = html.replace(RE_GTM_CRU, "").replace(RE_GTM_NOSCRIPT, "");
+  // o <noscript> some de vez: é pixel que dispara sem passar pelo Consent Mode
+  // e sem como ser bloqueado, justamente porque não há JS pra perguntar nada.
+  out = out.replace(new RegExp(`${MARCA_GTM}[\\s\\S]*?<\\/script>\\n`), "");
+  const tagConsent = out.match(/<script src="\/assets\/cookie-consent\.js[^"]*"><\/script>\n/);
+  if (!tagConsent) throw new Error("não achei a tag do cookie-consent.js");
+  return out.replace(tagConsent[0], tagConsent[0] + GTM_GATED);
+}
+
 const MARCA_INICIO = "<!-- hreflang:início -->";
 const MARCA_FIM = "<!-- hreflang:fim -->";
 
@@ -278,7 +328,7 @@ function traduzir(htmlPt, doc, lang) {
     out = out.replace("</style>", `${CSS_CONSENT}</style>`);
   }
 
-  return comBotaoCookies(out, lang);
+  return comGtmPresoAoConsentimento(comVersaoDoConsent(comBotaoCookies(out, lang)));
 }
 
 let escritos = 0;
@@ -287,7 +337,7 @@ for (const doc of DOCS) {
   const htmlPt = readFileSync(origem, "utf8");
 
   // recíproco: o PT também precisa apontar pros irmãos
-  writeFileSync(origem, comBotaoCookies(comHreflang(htmlPt, doc), "pt-BR"));
+  writeFileSync(origem, comGtmPresoAoConsentimento(comVersaoDoConsent(comBotaoCookies(comHreflang(htmlPt, doc), "pt-BR"))));
   escritos++;
 
   for (const lang of ["en", "es"]) {
