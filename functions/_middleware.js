@@ -55,13 +55,34 @@ export async function onRequest(context) {
   const traduzida = /^\/(en|es)(\/|$)/.test(url.pathname);
 
   const alvo = decidir(pais, traduzida);
-  if (!alvo) return resposta;
+
+  // Idioma: nas rotas traduzidas vem da própria rota; no resto, do cookie que a
+  // LP grava quando o visitante clica em comprar. É assim que o /obrigado sabe
+  // em que idioma falar com quem acabou de pagar — a URL de retorno do Payment
+  // Link é fixa e não consegue variar por idioma.
+  const cookie = req.headers.get('Cookie') || '';
+  const doCookie = (cookie.match(/(?:^|;\s*)nq_lang=([a-zA-Z-]+)/) || [])[1];
+  const idioma = url.pathname.startsWith('/en')
+    ? 'en'
+    : url.pathname.startsWith('/es')
+      ? 'es'
+      : doCookie || 'pt-BR';
+
+  if (!alvo) {
+    // Sem mercado definido ainda pode haver idioma a estampar (ex.: /obrigado).
+    if (idioma === 'pt-BR') return resposta;
+    const so = new HTMLRewriter()
+      .on('html', { element: (el) => el.setAttribute('data-lang', idioma) })
+      .transform(resposta);
+    return new Response(so.body, { status: so.status, statusText: so.statusText, headers: new Headers(so.headers) });
+  }
 
   const saida = new HTMLRewriter()
     .on('html', {
       element(el) {
         el.setAttribute('data-market', alvo.market);
         el.setAttribute('data-currency', alvo.currency);
+        el.setAttribute('data-lang', idioma);
       },
     })
     .transform(resposta);

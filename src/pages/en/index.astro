@@ -46,7 +46,7 @@ const jsonLd = [
         name: `${p.name} plan`,
         price: p.usd,
         priceCurrency: "USD",
-        url: intlHref(p.slug, "USD", "m"),
+        url: intlHref(p.slug, "USD", "m", "en"),
         availability: "https://schema.org/InStock",
       })),
     },
@@ -290,8 +290,8 @@ const jsonLd = [
               <p class="plan__bill" data-cur="USD" data-bill={t.plans.billed.replace("{v}", `$${totalAnual(p.usd).toLocaleString("en-US")}`)}>{t.plans.billed.replace("{v}", `$${totalAnual(p.usd).toLocaleString("en-US")}`)}</p>
               <p class="plan__bill" data-cur="EUR" data-bill={t.plans.billed.replace("{v}", `€${totalAnual(p.eur).toLocaleString("en-US")}`)}>{t.plans.billed.replace("{v}", `€${totalAnual(p.eur).toLocaleString("en-US")}`)}</p>
 
-              <a href={intlHref(p.slug, "USD", "a")} data-href-m={intlHref(p.slug, "USD", "m")} data-href-a={intlHref(p.slug, "USD", "a")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
-              <a href={intlHref(p.slug, "EUR", "a")} data-href-m={intlHref(p.slug, "EUR", "m")} data-href-a={intlHref(p.slug, "EUR", "a")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "USD", "a", "en")} data-href-m={intlHref(p.slug, "USD", "m", "en")} data-href-a={intlHref(p.slug, "USD", "a", "en")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "EUR", "a", "en")} data-href-m={intlHref(p.slug, "EUR", "m", "en")} data-href-a={intlHref(p.slug, "EUR", "a", "en")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta`}>{t.plans.cta} {p.name}<span class="arr" aria-hidden="true">→</span></a>
 
               <ul class="plan__features">
                 {t.plans.features[p.slug].map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
@@ -357,5 +357,17 @@ const jsonLd = [
         });
       });
     }
+  </script>
+
+  <script is:inline>
+    // Grava o idioma antes de sair pro Stripe. A URL de retorno do Payment Link
+    // é fixa e não varia por idioma; o /obrigado lê este cookie (via a Pages
+    // Function) pra falar com o comprador na língua dele.
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+      if (!a) return;
+      var m = a.getAttribute('href').match(/nqlang_([a-zA-Z-]+)/);
+      if (m) document.cookie = 'nq_lang=' + m[1] + '; path=/; max-age=3600; SameSite=Lax';
+    }, true);
   </script>
 </Base>

@@ -29,7 +29,22 @@ const LINKS: Record<string, Record<"USD" | "EUR", { m: string; a: string }>> = {
   },
 };
 
-export const intlHref = (slug: string, moeda: "USD" | "EUR", ciclo: "m" | "a") => LINKS[slug][moeda][ciclo];
+/**
+ * Link de pagamento + idioma do comprador.
+ *
+ * O `client_reference_id` viaja do link até o webhook. O prefixo `nqlang_` marca
+ * que ali vai IDIOMA, não userId — o checkout de quem já está logado usa o mesmo
+ * campo pra carregar o id do usuário (ver StripeService.processEvent).
+ *
+ * É o que faz o e-mail de ativação sair no idioma certo. Sem isso o gringo paga
+ * e recebe as instruções de acesso em português.
+ */
+export const intlHref = (
+  slug: string,
+  moeda: "USD" | "EUR",
+  ciclo: "m" | "a",
+  idioma: "pt-BR" | "en" | "es" = "pt-BR",
+) => `${LINKS[slug][moeda][ciclo]}?client_reference_id=nqlang_${idioma}`;
 
 /** Mensalidade exibida no ciclo anual = anual (10x) / 12. Mesma conta em toda moeda. */
 export const mensalNoAnual = (v: string) => String(Math.round((Number(v) * 10) / 12));

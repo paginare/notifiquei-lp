@@ -252,7 +252,15 @@
     .step { padding: 20px; gap: 16px; }
     main { padding: 56px 0 80px; }
   }
-</style>
+
+    /* Idioma: a Pages Function estampa data-lang no <html> a partir do cookie
+       gravado quando o visitante clicou em comprar. Padrão é português. */
+    [data-l] { display: none; }
+    html[data-lang="en"] [data-l="en"],
+    html[data-lang="es"] [data-l="es"],
+    html:not([data-lang]) [data-l="pt-BR"],
+    html[data-lang="pt-BR"] [data-l="pt-BR"] { display: inline; }
+  </style>
 </head>
 <body>
 
@@ -283,7 +291,7 @@
     <a href="/" style="display:inline-flex;align-items:center;text-decoration:none;">
       <svg class="logo-svg" viewBox="0 0 290 50" aria-label="Notifiquei"><use href="#notifiquei-logo"/></svg>
     </a>
-    <span class="nav-support">Precisa de ajuda? <a href="mailto:suporte@notifiquei.com.br">suporte@notifiquei.com.br</a></span>
+    <span class="nav-support"><span data-l="pt-BR">Precisa de ajuda?</span><span data-l="en">Need help?</span><span data-l="es">¿Necesitas ayuda?</span> <a href="mailto:suporte@notifiquei.com.br">suporte@notifiquei.com.br</a></span>
   </div>
 </nav>
 
@@ -296,9 +304,9 @@
       </svg>
     </div>
 
-    <p class="page-eyebrow">Assinatura confirmada</p>
+    <p class="page-eyebrow"><span data-l="pt-BR">Assinatura confirmada</span><span data-l="en">Subscription confirmed</span><span data-l="es">Suscripción confirmada</span></p>
 
-    <h1 class="page-title">Bem-vindo ao Notifiquei!</h1>
+    <h1 class="page-title"><span data-l="pt-BR">Bem-vindo ao Notifiquei!</span><span data-l="en">Welcome to Notifiquei!</span><span data-l="es">¡Bienvenido a Notifiquei!</span></h1>
 
     <p class="page-sub">
       Seu plano está ativo. Veja o que acontece agora e como acessar sua conta.
@@ -309,12 +317,12 @@
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <div class="step-title">Verifique sua caixa de entrada</div>
+          <div class="step-title"><span data-l="pt-BR">Verifique sua caixa de entrada</span><span data-l="en">Check your inbox</span><span data-l="es">Revisa tu bandeja de entrada</span></div>
           <div class="step-desc">
-            Enviamos um e-mail com seus <strong>dados de acesso e o link para criar sua senha</strong>.
+            Enviamos um e-mail com seus <strong><span data-l="pt-BR">dados de acesso e o link para criar sua senha</span><span data-l="en">your sign-in details and the link to create your password</span><span data-l="es">tus datos de acceso y el enlace para crear tu contraseña</span></strong>.
             Confira também a pasta de spam — às vezes ele vai parar lá.
           </div>
-          <span class="step-tag">Chega em até 5 minutos</span>
+          <span class="step-tag"><span data-l="pt-BR">Chega em até 5 minutos</span><span data-l="en">Arrives within 5 minutes</span><span data-l="es">Llega en hasta 5 minutos</span></span>
         </div>
       </div>
 
