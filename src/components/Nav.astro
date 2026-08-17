@@ -73,7 +73,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
     height: 60px;
     padding-inline: 0.5rem 0.5rem;
     border-radius: var(--r-pill);
@@ -93,9 +93,12 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
   .nav__brand { color: var(--ink); display: inline-flex; }
   .nav__links {
     display: none;
-    gap: 2rem;
-    font-size: 0.95rem;
+    gap: 1.35rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    /* Sem isto os rótulos de duas palavras ("Como funciona", "vs ManyChat")
+       quebram em duas linhas e a barra fica com cara de apertada. */
+    white-space: nowrap;
   }
   .nav__links a {
     color: var(--ink-soft);
@@ -103,7 +106,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
     position: relative;
   }
   .nav__links a:hover { color: var(--ink); }
-  .nav__cta { display: flex; align-items: center; gap: 0.75rem; }
+  .nav__cta { display: flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
   .nav__login {
     display: none;
     font-weight: 600;
@@ -196,7 +199,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
     }
   }
 
-  @media (min-width: 860px) {
+  @media (min-width: 1120px) {
     .nav__links { display: flex; }
     .nav__cta > .lang { display: block; }
     .nav__login { display: inline-block; }
