@@ -81,12 +81,31 @@ const plans = [
 const mensalNoAnual = (v: string) => String(Math.round((Number(v) * 10) / 12));
 const totalAnual = (v: string) => Number(v) * 10;
 
-// Fora do Brasil não existe link de pagamento estático como o da Cakto: o Stripe
-// só abre checkout pra usuário logado. Então o botão leva ao cadastro carregando o
-// plano e o ciclo, e o app abre o checkout certo depois do login.
-const APP = "https://app.notifiquei.com.br/auth";
-const intlHref = (slug: string, ciclo: "m" | "a") =>
-  `${APP}?plan=${slug}&cycle=${ciclo}&src=intl`;
+// Payment Links do Stripe — o equivalente internacional dos links da Cakto: o
+// comprador paga sem ter conta, e o webhook descobre quem é pelo e-mail do customer
+// (StripeService.resolverUsuarioPorEmail) e manda o link de ativação.
+//
+// POR QUE DOIS CONJUNTOS: o Payment Link FIXA a moeda do Price. Testado em 17/08
+// pelo método oficial (prefilled_email=test+location_DE@…): o link em USD cobra
+// US$ 19 do alemão mesmo com EUR no currency_options do Price. Ou seja, um link só
+// mostraria €18 na LP e cobraria $19 no checkout. Como a LP já sabe o país, ela
+// escolhe o link certo. Se recriar os links no Stripe, atualizar aqui.
+const STRIPE_LINKS: Record<string, Record<"USD" | "EUR", { m: string; a: string }>> = {
+  solo: {
+    USD: { m: "https://buy.stripe.com/8x25kD9Ew4za04AaAk8N200", a: "https://buy.stripe.com/3cI5kD6sk1mYaJe37S8N201" },
+    EUR: { m: "https://buy.stripe.com/7sYdR98As0iUcRmdMw8N206", a: "https://buy.stripe.com/cNi8wP8AsaXy4kQ6k48N207" },
+  },
+  pro: {
+    USD: { m: "https://buy.stripe.com/9B6bJ19Ew2r26sYbEo8N202", a: "https://buy.stripe.com/6oU7sL6sk0iUg3y6k48N203" },
+    EUR: { m: "https://buy.stripe.com/00wbJ1dUM7LmbNieQA8N208", a: "https://buy.stripe.com/eVqeVd03Wd5G5oUaAk8N209" },
+  },
+  business: {
+    USD: { m: "https://buy.stripe.com/4gMbJ1cQI7Lm6sY8sc8N204", a: "https://buy.stripe.com/6oU14naIA5DedVq7o88N205" },
+    EUR: { m: "https://buy.stripe.com/5kQfZhg2U7Lm18EgYI8N20a", a: "https://buy.stripe.com/7sY3cvbME3v64kQbEo8N20b" },
+  },
+};
+const intlHref = (slug: string, moeda: "USD" | "EUR", ciclo: "m" | "a") =>
+  STRIPE_LINKS[slug][moeda][ciclo];
 
 const faqs = [
   { q: "Isso pode bloquear meu Instagram?", a: "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." },
@@ -609,7 +628,8 @@ const jsonLd = [
               <p class="plan__bill" data-cur="EUR" data-bill={`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}>{`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}</p>
 
               <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
-              <a href={intlHref(p.slug, "a")} data-href-m={intlHref(p.slug, "m")} data-href-a={intlHref(p.slug, "a")} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "USD", "a")} data-href-m={intlHref(p.slug, "USD", "m")} data-href-a={intlHref(p.slug, "USD", "a")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
+              <a href={intlHref(p.slug, "EUR", "a")} data-href-m={intlHref(p.slug, "EUR", "m")} data-href-a={intlHref(p.slug, "EUR", "a")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
               <ul class="plan__features">
                 {p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
               </ul>
