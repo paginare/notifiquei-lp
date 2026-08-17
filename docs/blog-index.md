@@ -39,3 +39,4 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | black-friday-no-instagram-automacao | Black Friday no Instagram: prepare as automações antes do pico | Estratégia | Black Friday, automação DM, campanha agendada, segmentação por etiqueta, pico de comentários |
 | automacao-no-instagram-guia | Automação no Instagram: como fazer sem arriscar sua conta | Estratégia | POST-PILAR do termo-mãe "automação no instagram"; o que da e o que nao da pra automatizar, API oficial, pre-requisitos |
 | como-automatizar-o-instagram-passo-a-passo | Como automatizar o Instagram: do zero ao primeiro fluxo | Estratégia | tutorial passo a passo; conta profissional, conexao pela API, acesso a mensagens, primeiro fluxo, teste |
+| transformar-seguidores-em-clientes-no-instagram | Como transformar seguidores em clientes no Instagram | Estratégia | seguidor vs lead, comentário abre DM, qualificação antes da oferta, base própria, funil de vendas instagram |

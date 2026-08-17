@@ -12,25 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema P3 — Como transformar seguidor em cliente pelo direct **[demanda confirmada]**
-
-**Slug:** transformar-seguidores-em-clientes-no-instagram
-**Categoria:** Estratégia
-**Consulta-alvo:** `como transformar seguidores em clientes no instagram` (16 impressões no cluster, posição média 66)
-**Variações pra cobrir:** transformar seguidores em clientes, funil de vendas instagram, como transformar seguidores em fãs
-
-**Fatos travados:**
-- Seguidor não é lead: enquanto a pessoa só curte, não existe conversa aberta nem forma de falar com ela individualmente
-- O comentário é o que abre a porta, porque uma vez que a pessoa comenta a Meta permite iniciar o DM dentro de uma janela
-- O caminho que converte é comentário, DM automático, pergunta de qualificação e só então a oferta
-- Perguntar antes de mandar preço separa quem tem intenção real de quem só está curioso, e evita queimar o lead
-- O Notifiquei registra o contato, aplica etiqueta e permite retomar a conversa depois, o que transforma audiência em base própria
-- Existe uma versão antiga deste conteúdo numa URL de WordPress que ainda acumula impressão na posição 33; este post substitui aquele
-
-**Ângulo:** Pegar a dor de quem tem seguidor e não tem venda, e mostrar o caminho concreto de audiência até conversa. Este post é o sucessor do guia antigo que ainda ranqueia numa URL morta, então precisa ser mais completo que ele. **Ao publicar, avisar no resumo que falta o 301** de `/uncategorized/automacao-no-instagram-o-guia-definitivo-para-transformar-seguidores-emclientes/` pra cá.
-
----
-
 ## Tema 5 — Como usar automação durante o lançamento de um produto
 
 **Slug:** automacao-no-lancamento-de-produto-no-instagram
