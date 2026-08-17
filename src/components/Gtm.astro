@@ -1,14 +1,34 @@
 ---
-// Google Tag Manager (server-side) — container GTM-577WSF49
+// Google Tag Manager — contêiner GTM-577WSF49
 // is:inline pra o Astro não processar/reescrever o snippet.
-// A parte <noscript> fica no Base.astro, logo após o <body>.
+//
+// O gtm.js só sobe DEPOIS do consentimento, e não é excesso de zelo: medido
+// com Chrome headless, o contêiner grava _clck e _clsk (Microsoft Clarity) e
+// _fbp (pixel da Meta) já no carregamento. O Consent Mode v2 do Google governa
+// as tags do Google — as de terceiros dentro do contêiner só param se cada uma
+// for configurada pra exigir consentimento no painel do GTM. Enquanto isso não
+// for feito lá, segurar o contêiner inteiro é o único jeito de a resposta do
+// visitante valer de fato.
+//
+// Custo consciente: quem escolher "apenas essenciais" não gera nem os pings
+// sem cookie do Consent Mode, então o GA4 perde as conversões modeladas desse
+// grupo. Pra recuperá-las, configurar consentimento nas tags do Clarity e da
+// Meta no painel do GTM e voltar a carregar o contêiner sempre.
 ---
-<!-- Google Tag Manager -->
 <script is:inline>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-577WSF49');
+(function () {
+  var carregado = false;
+  function carrega() {
+    if (carregado) return;
+    carregado = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-577WSF49');
+  }
+  // Se o script de consentimento não tiver carregado, não sobe nada: falhar
+  // sem rastrear é melhor que rastrear sem perguntar.
+  if (typeof window.nfAoConsentir === 'function') window.nfAoConsentir(carrega);
+})();
 </script>
-<!-- End Google Tag Manager -->

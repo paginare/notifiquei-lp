@@ -272,6 +272,7 @@ export const es = {
     legal: "© 2026 Notifiquei. Todos los derechos reservados. · CNPJ 59.859.848/0001-13 (Brasil)",
     status: "Todos los sistemas operativos",
     pitch: "Automatización de ventas en Instagram con la API oficial de Meta. Hecho en Brasil, funcionando en todo el mundo.",
+    cookies: "Preferencias de cookies",
     cols: [
       { title: "Producto", links: [
         { href: "/es#como", label: "Cómo funciona" },

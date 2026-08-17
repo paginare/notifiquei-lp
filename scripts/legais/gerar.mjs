@@ -126,6 +126,41 @@ const CSS_CONSENT = `  .consent-block {
   .consent-block strong { color: var(--ink); }
 `;
 
+/**
+ * Botão de retirar consentimento no rodapé. Estas páginas têm rodapé próprio
+ * (não passam pelo Footer.astro), e quem chega nelas direto da busca ficaria
+ * sem como voltar atrás — que é justamente o que o GDPR 7(3) exige.
+ */
+const BOTAO_COOKIES = {
+  "pt-BR": "Preferências de cookies",
+  en: "Cookie preferences",
+  es: "Preferencias de cookies",
+};
+const ANCORA_BADGE = '<span class="foot-bottom-badge"><span class="badge-dot"></span>';
+
+const RE_BOTAO = /<button type="button" data-abrir-cookies[\s\S]*?<\/button>\s*/g;
+const RE_SCRIPT = /<script>document\.querySelector\('\[data-abrir-cookies\]'\)[\s\S]*?<\/script>\n?/g;
+
+function comBotaoCookies(html, lang) {
+  // Remover antes de injetar, em vez de "já tem, pula": o PT é lido como
+  // template das traduções, e na segunda rodada do gerador ele já vinha com o
+  // botão — as versões EN e ES herdavam o rótulo em português.
+  html = html.replace(RE_BOTAO, "").replace(RE_SCRIPT, "");
+  if (!html.includes(ANCORA_BADGE)) throw new Error("rodapé sem o badge de status");
+  const botao =
+    '<button type="button" data-abrir-cookies style="background:none;border:0;padding:0;'
+    + "font:inherit;font-size:inherit;color:inherit;opacity:.75;cursor:pointer;"
+    + 'text-decoration:underline;text-underline-offset:3px">'
+    + BOTAO_COOKIES[lang]
+    + "</button>\n        ";
+  const script =
+    "<script>document.querySelector('[data-abrir-cookies]')"
+    + ".addEventListener('click',function(){"
+    + "if(typeof window.notifiqueiAbrirCookies==='function')window.notifiqueiAbrirCookies();});"
+    + "</script>\n</body>";
+  return html.replace(ANCORA_BADGE, botao + ANCORA_BADGE).replace("</body>", script);
+}
+
 /** slug de outro documento no mesmo idioma (pros links cruzados do rodapé). */
 function slugDe(id, lang) {
   const d = DOCS.find((x) => x.id === id);
@@ -243,7 +278,7 @@ function traduzir(htmlPt, doc, lang) {
     out = out.replace("</style>", `${CSS_CONSENT}</style>`);
   }
 
-  return out;
+  return comBotaoCookies(out, lang);
 }
 
 let escritos = 0;
@@ -252,7 +287,7 @@ for (const doc of DOCS) {
   const htmlPt = readFileSync(origem, "utf8");
 
   // recíproco: o PT também precisa apontar pros irmãos
-  writeFileSync(origem, comHreflang(htmlPt, doc));
+  writeFileSync(origem, comBotaoCookies(comHreflang(htmlPt, doc), "pt-BR"));
   escritos++;
 
   for (const lang of ["en", "es"]) {

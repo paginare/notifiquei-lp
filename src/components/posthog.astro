@@ -1,11 +1,46 @@
 ---
 // PostHog analytics snippet
 // Uses is:inline to prevent Astro from processing the script
+//
+// Preso ao consentimento: o PostHog NÃO obedece ao Google Consent Mode, então
+// o gating é manual — e `opt_out_capturing_by_default` NÃO basta.
+//
+// Medido com Chrome headless: com opt-out ligado, o init() ainda dispara
+// POST /flags/ e baixa surveys.js, dead-clicks-autocapture.js e web-vitals.js.
+// Ele só deixa de mandar EVENTO; a inicialização em si já é tráfego com dados
+// antes de a pessoa responder qualquer coisa.
+//
+// Por isso o init() nem é chamado até haver consentimento. O stub abaixo não
+// faz rede: a tag <script> do array.js é criada dentro do init(). Quem liga é
+// o cookie-consent.js, pelo gancho _nfInitAnalytics.
 ---
 <script is:inline define:vars={{ apiKey: import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN, apiHost: import.meta.env.PUBLIC_POSTHOG_HOST }}>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-  posthog.init(apiKey || '', {
-    api_host: apiHost || 'https://us.i.posthog.com',
-    defaults: '2026-01-30'
-  })
+  var nfLigado = false;
+
+  // Sem script de consentimento, não sobe: falhar sem rastrear é melhor que
+  // rastrear sem perguntar.
+  if (typeof window.nfAoConsentir === 'function') {
+    window.nfAoConsentir(function () {
+      if (nfLigado) return;
+      nfLigado = true;
+      try {
+        posthog.init(apiKey || '', {
+          api_host: apiHost || 'https://us.i.posthog.com',
+          defaults: '2026-01-30'
+        });
+      } catch (e) {}
+    });
+
+    // Retirada do consentimento: para de capturar e larga o que já estava
+    // guardado. Sem o reset(), o distinct_id continuaria no navegador depois
+    // de a pessoa ter dito não.
+    window.nfAoRecusar(function () {
+      if (!nfLigado) return;
+      try {
+        posthog.opt_out_capturing();
+        posthog.reset();
+      } catch (e) {}
+    });
+  }
 </script>

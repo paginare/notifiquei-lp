@@ -5,7 +5,7 @@ import Logo from "./Logo.astro";
 const APP_STORE_URL = "https://apps.apple.com/br/app/notifiquei/id6774645360";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.notifiquei.android";
 
-interface Props { cols?: { title: string; links: { href: string; label: string }[] }[]; pitch?: string; legal?: string; status?: string; }
+interface Props { cols?: { title: string; links: { href: string; label: string }[] }[]; pitch?: string; legal?: string; status?: string; cookies?: string; }
 const COLS_PT = [
   {
     title: "Produto",
@@ -44,6 +44,7 @@ const {
   pitch = "Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.",
   legal = "© 2026 Notifiquei. Todos os direitos reservados. · CNPJ 59.859.848/0001-13",
   status = "Todos os sistemas operando",
+  cookies = "Preferências de cookies",
 } = Astro.props;
 ---
 <footer class="footer section--ink on-ink">
@@ -83,6 +84,11 @@ const {
         {legal}
       </p>
       <div class="footer__meta">
+        <!--
+          Retirar o consentimento tem que ser tão fácil quanto dar (GDPR 7(3)).
+          Sem este botão, quem já respondeu nunca mais vê o banner.
+        -->
+        <button type="button" class="footer__cookies" data-abrir-cookies>{cookies}</button>
         <span class="footer__status"><span class="footer__dot"></span> {status}</span>
       </div>
     </div>
@@ -129,6 +135,14 @@ const {
   }
   .footer__legal { font-size: 0.85rem; color: var(--on-ink-soft); }
   .footer__meta { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+  .footer__cookies {
+    background: none; border: 0; padding: 0;
+    font-family: inherit; font-size: 0.85rem; color: var(--on-ink-soft);
+    cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+    transition: color 0.2s var(--ease-out);
+  }
+  .footer__cookies:hover { color: var(--on-ink); }
+  .footer__cookies:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
   .footer__status {
     display: inline-flex; align-items: center; gap: 0.5em;
     font-size: 0.82rem; color: var(--on-ink-soft);
@@ -139,3 +153,14 @@ const {
     .footer__cols { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
+
+<script>
+  // Um listener por instância; o rodapé é único por página, mas querySelectorAll
+  // evita repetir o erro do LangSwitcher (getElementById pega só o primeiro).
+  document.querySelectorAll("[data-abrir-cookies]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const abrir = (window as any).notifiqueiAbrirCookies;
+      if (typeof abrir === "function") abrir();
+    }),
+  );
+</script>

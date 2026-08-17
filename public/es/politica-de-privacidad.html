@@ -379,6 +379,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="foot-bottom">
       <div>© 2026 Notifiquei. Todos los derechos reservados. &nbsp;·&nbsp; CNPJ 59.859.848/0001-13</div>
       <div class="foot-bottom-badges">
+        <button type="button" data-abrir-cookies style="background:none;border:0;padding:0;font:inherit;font-size:inherit;color:inherit;opacity:.75;cursor:pointer;text-decoration:underline;text-underline-offset:3px">Preferencias de cookies</button>
         <span class="foot-bottom-badge"><span class="badge-dot"></span>Todos los sistemas operativos</span>
         <span class="foot-bottom-badge">Socio oficial de Meta</span>
       </div>
@@ -386,5 +387,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </footer>
 
+<script>document.querySelector('[data-abrir-cookies]').addEventListener('click',function(){if(typeof window.notifiqueiAbrirCookies==='function')window.notifiqueiAbrirCookies();});</script>
 </body>
 </html>

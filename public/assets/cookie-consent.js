@@ -61,6 +61,16 @@
   // Expõe o estado de consentimento globalmente
   window.notifiqueiConsent = stored || null;
 
+  // Fila de quem depende de consentimento. Quem quiser ligar algo se registra
+  // com nfAoConsentir() e é chamado na hora se o visitante já tinha aceitado.
+  var ligar = [];
+  var desligar = [];
+  window.nfAoConsentir = function (fn) {
+    ligar.push(fn);
+    if (window.notifiqueiConsent === 'all') { try { fn(); } catch (e) {} }
+  };
+  window.nfAoRecusar = function (fn) { desligar.push(fn); };
+
   // --- Google Consent Mode v2 defaults (nega tudo por padrão) ---
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
@@ -81,10 +91,11 @@
     });
   }
 
-  // Se já tem resposta, não mostra banner
-  if (stored) return;
-
   // --- Injeta CSS ---
+  var cssInjetado = false;
+  function injetaCss() {
+  if (cssInjetado) return;
+  cssInjetado = true;
   var style = document.createElement('style');
   style.textContent = [
     '#nf-cookie-banner{',
@@ -117,6 +128,7 @@
     '}'
   ].join('');
   document.head.appendChild(style);
+  }
 
   // --- Injeta HTML do banner ---
   function buildBanner() {
@@ -137,7 +149,37 @@
     return banner;
   }
 
+  // Cookies de rastreio conhecidos (GA, Clarity, pixel da Meta, PostHog).
+  var RASTREIO = /^(_ga|_gid|_gat|_clck|_clsk|_fbp|_fbc|ph_|__ph_)/;
+
+  function limpaCookies() {
+    var host = location.hostname;
+    var dominios = ['', host, '.' + host];
+    var partes = host.split('.');
+    if (partes.length > 2) dominios.push('.' + partes.slice(-2).join('.'));
+
+    document.cookie.split(';').forEach(function (c) {
+      var nome = c.split('=')[0].trim();
+      if (!RASTREIO.test(nome)) return;
+      dominios.forEach(function (d) {
+        document.cookie = nome + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'
+          + (d ? '; domain=' + d : '');
+      });
+    });
+
+    Object.keys(localStorage).forEach(function (k) {
+      if (RASTREIO.test(k)) localStorage.removeItem(k);
+    });
+  }
+
+  // Purga na carga: se o visitante não autorizou, nada de rastreio pode
+  // sobreviver no navegador — nem resto de quem já tinha aceitado e voltou
+  // atrás, nem cookie de antes deste banner existir. Roda antes de qualquer
+  // tag subir, então não há corrida com flush de persistência de ninguém.
+  if (stored !== 'all') limpaCookies();
+
   function setConsent(value) {
+    var anterior = window.notifiqueiConsent;
     localStorage.setItem(STORAGE_KEY, value);
     window.notifiqueiConsent = value;
 
@@ -149,10 +191,10 @@
       ad_personalization: granted ? 'granted' : 'denied'
     });
 
-    // Dispara analytics se aceito e função de init existir
-    if (granted && typeof window._nfInitAnalytics === 'function') {
-      window._nfInitAnalytics();
-    }
+    // Liga (ou desliga) o que não é essencial.
+    (granted ? ligar : desligar).forEach(function (fn) {
+      try { fn(); } catch (e) {}
+    });
 
     // Esconde banner
     var b = document.getElementById('nf-cookie-banner');
@@ -160,10 +202,24 @@
       b.style.transform = 'translateY(100%)';
       setTimeout(function () { b.remove(); }, 400);
     }
+
+    // Retirou depois de ter aceitado: recarregar. As tags do GTM que já
+    // subiram não têm como ser descarregadas — sem o reload elas seguem
+    // disparando e a retirada não teria efeito nenhum agora.
+    //
+    // Quem apaga os cookies é a purga no topo deste arquivo, na carga
+    // seguinte. Tentar apagar aqui não funcionava: o posthog.reset() gera um
+    // distinct_id novo e o flush de persistência dele regravava o cookie
+    // depois da limpeza (medido — o cookie voltava mesmo pós-reload).
+    if (!granted && anterior === 'all') {
+      setTimeout(function () { location.reload(); }, 450);
+    }
   }
 
   // --- Mostra banner após DOM ready ---
   function show() {
+    if (document.getElementById('nf-cookie-banner')) return;
+    injetaCss();
     var banner = buildBanner();
     document.body.appendChild(banner);
     // Força reflow antes de adicionar classe para animar entrada
@@ -174,9 +230,19 @@
     document.getElementById('nf-btn-essential').addEventListener('click', function () { setConsent('essential'); });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', show);
-  } else {
-    show();
-  }
+  // Retirar o consentimento tem que ser tão fácil quanto dar (GDPR art. 7(3)).
+  // Sem isto, quem clica em "Aceitar todos" fica preso pra sempre — o banner
+  // nunca mais aparece. O rodapé chama esta função.
+  window.notifiqueiAbrirCookies = function () {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', show);
+    } else {
+      show();
+    }
+  };
+
+  // Já respondeu antes: nada de banner, mas o link do rodapé continua valendo.
+  if (stored) return;
+
+  window.notifiqueiAbrirCookies();
 })();

@@ -69,6 +69,13 @@ const alternates = hreflangOf
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--
+    Consentimento ANTES do GTM, e sem async/defer de propósito: ele precisa
+    rodar e negar o Consent Mode v2 antes de o gtm.js existir. Invertida a
+    ordem, o GTM sobe com o default "granted" e o cookie já foi gravado
+    quando o banner aparece — o banner viraria enfeite.
+  -->
+  <script is:inline src="/assets/cookie-consent.js"></script>
   <Gtm />
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -111,9 +118,12 @@ const alternates = hreflangOf
   <PostHog />
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-577WSF49" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <!--
+    O <noscript> do GTM foi removido: é um pixel que dispara sem passar pelo
+    Consent Mode e sem como ser bloqueado (justamente porque não há JS pra
+    perguntar nada). Mantê-lo seria rastrear sem consentimento por um caminho
+    que o banner não alcança, e o que se perde é o tráfego sem JavaScript.
+  -->
   <div class="grain" aria-hidden="true"></div>
   <slot />
 
