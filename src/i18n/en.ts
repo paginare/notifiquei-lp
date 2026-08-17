@@ -101,6 +101,23 @@ export const en = {
     eyebrow: "Inside the platform",
     title: "A simple dashboard to build, track<br class='br-r' /> and <span class='hl'>tune your automations</span>.",
     lead: "No confusing panel with a thousand tabs. Everything you need, right where you expect it.",
+    precoNota: "<strong><span data-cur=\"USD\">From $19/mo</span><span data-cur=\"EUR\">From €18/mo</span></strong> · unlimited contacts · 7-day guarantee · <a href=\"#plans\">see plans</a>",
+    cards: [
+      { tag: "Guided setup", title: "Pick the trigger, it does the rest.", body: "Choose the trigger: a comment, a story reply or a keyword in DMs. Say what the person receives and preview it on a phone, exactly as it looks on Instagram. Prefer the visual editor? It's one click away." },
+      { tag: "Real-time numbers", title: "Watch every click happen.", body: "How many DMs answered, how many leads got the link, how many clicked. Simple numbers that answer “is this working?”." },
+      { tag: "Giveaways from comments", title: "Draw winners without scrolling comments.", body: "Anyone who comments the keyword joins automatically. You hit draw and it shows the winners — no spreadsheet, no screenshots, no counting by hand." },
+      { tag: "Links and clicks", title: "Swap the link without touching your automations.", body: "Every link gets a nickname. Destination changed? Swap it in one place and every automation sends the new one — and you see how many clicked in each." },
+    ],
+    mock: {
+      relatorios: "notifiquei · reports", sorteios: "notifiquei · giveaways", links: "notifiquei · links",
+      dmsRespondidos: "DMs answered", linksClicados: "Link clicks", taxaResposta: "Reply rate",
+      vsSemana: "vs. last week", tempoMedio: "avg. time · 3s",
+      comentou: "Commented", participantes: "entrants", ganhou: "winner", sortear: "Draw",
+      usadoEm: "Used in", automacoes: "7 automations",
+      trocaAqui: "— swap it here and they all send the new one.", trocar: "swap",
+      cliquesSemana: "847 clicks this week",
+      comentarioDm: "Comment → DM", respostaStory: "Story reply", quebraGelo: "Ice breaker",
+    } as Record<string, string>,
   },
 
   capabilities: {

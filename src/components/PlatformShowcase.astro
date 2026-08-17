@@ -5,6 +5,9 @@ interface Props {
   title?: string; // pode conter <br>
   lead?: string;
   id?: string;
+  platform?: { tag: string; title: string; body: string }[];
+  precoNota?: string;      // linha "A partir de …" (a versão PT tem variantes por moeda)
+  mock?: Record<string, string>; // rótulos dentro dos mockups
 }
 const {
   bg = "paper",
@@ -12,14 +15,31 @@ const {
   title = "Um painel simples pra criar, acompanhar<br class='br-r' /> e <span class='hl'>ajustar suas automações</span>.",
   lead = "Nada de painel confuso com mil abas. Tudo que você precisa, onde você espera encontrar — e por um preço que cabe no bolso.",
   id = "plataforma",
+  platform,
+  precoNota,
+  mock = {},
 } = Astro.props;
 
-const platform = [
+const PLATFORM_PT = [
   { tag: "Criação guiada", title: "Escolha o gatilho, ele faz o resto.", body: "Escolhe o gatilho: comentário, story ou palavra na DM. Diz o que a pessoa recebe e confere tudo num celular, igual fica no Instagram de verdade. Editor visual? Segue ali, a um clique." },
   { tag: "Números em tempo real", title: "Veja cada clique acontecendo.", body: "Quantos DMs respondidos, quantos leads receberam o link, quantos clicaram. Dados simples que respondem “tá engajando?”." },
   { tag: "Sorteios pelos comentários", title: "Sorteie sem garimpar comentário.", body: "Quem comenta a palavra entra sozinho na lista. Você clica em sortear e ele mostra os ganhadores — sem planilha, sem print, sem contar na mão." },
   { tag: "Links e cliques", title: "Troque o link sem mexer nas automações.", body: "Cada link ganha um apelido. Mudou o destino? Você troca num lugar só e toda automação já manda o novo — e vê quantos clicaram em cada uma." },
 ];
+const cards = platform ?? PLATFORM_PT;
+
+// Rótulos dos mockups. Padrão em português; /en e /es passam os seus.
+const M = {
+  relatorios: "notifiquei · relatórios", sorteios: "notifiquei · sorteios", links: "notifiquei · links",
+  dmsRespondidos: "DMs respondidos", linksClicados: "Links clicados", taxaResposta: "Taxa de resposta",
+  vsSemana: "vs. semana passada", tempoMedio: "tempo médio · 3s",
+  comentou: "Comentou", participantes: "participantes", ganhou: "ganhou", sortear: "Sortear",
+  usadoEm: "Usado em", automacoes: "7 automações",
+  trocaAqui: "— troca aqui e todas passam a mandar o novo.", trocar: "trocar",
+  cliquesSemana: "847 cliques esta semana",
+  comentarioDm: "Comentário → DM", respostaStory: "Resposta de story", quebraGelo: "Quebra Gelo",
+  ...mock,
+};
 ---
 <section class={`section ${bg === "paper2" ? "section--paper2" : ""}`} id={id}>
   <div class="container">
@@ -27,16 +47,16 @@ const platform = [
       <span class="eyebrow">{eyebrow}</span>
       <h2 set:html={title} />
       <p class="lead">{lead}</p>
-      <p class="pshow__price br-only"><strong>A partir de R$ 99/mês</strong> · contatos ilimitados · garantia de 7 dias · <a href="#comparativo">ver comparação</a></p>
-      <p class="pshow__price intl-only"><strong><span data-cur="USD">A partir de $19/mês</span><span data-cur="EUR">A partir de €18/mês</span></strong> · contatos ilimitados · garantia de 7 dias · <a href="#planos">ver planos</a></p>
+      {precoNota ? <p class="pshow__price" set:html={precoNota} /> : <><p class="pshow__price br-only"><strong>A partir de R$ 99/mês</strong> · contatos ilimitados · garantia de 7 dias · <a href="#comparativo">ver comparação</a></p>
+      <p class="pshow__price intl-only"><strong><span data-cur="USD">A partir de $19/mês</span><span data-cur="EUR">A partir de €18/mês</span></strong> · contatos ilimitados · garantia de 7 dias · <a href="#planos">ver planos</a></p></>}
     </div>
     <div class="platform">
       <!-- 1 · Montagem visual -->
       <article class="prow reveal">
         <div class="prow__copy">
-          <span class="eyebrow pcard__tag">{platform[0].tag}</span>
-          <h3 class="pcard__title">{platform[0].title}</h3>
-          <p class="pcard__body">{platform[0].body}</p>
+          <span class="eyebrow pcard__tag">{cards[0].tag}</span>
+          <h3 class="pcard__title">{cards[0].title}</h3>
+          <p class="pcard__body">{cards[0].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
           <video
@@ -51,29 +71,29 @@ const platform = [
       <!-- 2 · Números em tempo real -->
       <article class="prow prow--rev reveal">
         <div class="prow__copy">
-          <span class="eyebrow pcard__tag">{platform[1].tag}</span>
-          <h3 class="pcard__title">{platform[1].title}</h3>
-          <p class="pcard__body">{platform[1].body}</p>
+          <span class="eyebrow pcard__tag">{cards[1].tag}</span>
+          <h3 class="pcard__title">{cards[1].title}</h3>
+          <p class="pcard__body">{cards[1].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
           <div class="ui ui--stats">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · relatórios</span></div>
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">{M.relatorios}</span></div>
             <div class="dash">
               <div class="dash__cards">
                 <div class="scard">
-                  <div class="scard__head"><span>DMs respondidos</span><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                  <div class="scard__head"><span>{M.dmsRespondidos}</span><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                   <b class="scard__num">1.284</b>
-                  <span class="scard__delta up">+18% vs. semana passada</span>
+                  <span class="scard__delta up">+18% {M.vsSemana}</span>
                 </div>
                 <div class="scard">
-                  <div class="scard__head"><span>Links clicados</span><svg viewBox="0 0 24 24"><path d="m9 9 5 12 1.8-5.2L21 14z"/><path d="M7.2 2.2 8 5.1M5.1 8 2.2 7.2M14 4.1 12 6M6 12l-1.9 2"/></svg></div>
+                  <div class="scard__head"><span>{M.linksClicados}</span><svg viewBox="0 0 24 24"><path d="m9 9 5 12 1.8-5.2L21 14z"/><path d="M7.2 2.2 8 5.1M5.1 8 2.2 7.2M14 4.1 12 6M6 12l-1.9 2"/></svg></div>
                   <b class="scard__num">847</b>
-                  <span class="scard__delta up">+9% vs. semana passada</span>
+                  <span class="scard__delta up">+9% {M.vsSemana}</span>
                 </div>
                 <div class="scard scard--brand">
-                  <div class="scard__head"><span>Taxa de resposta</span><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                  <div class="scard__head"><span>{M.taxaResposta}</span><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
                   <b class="scard__num">98%</b>
-                  <span class="scard__delta up">tempo médio · 3s</span>
+                  <span class="scard__delta up">{M.tempoMedio}</span>
                 </div>
               </div>
               <svg class="spark" viewBox="0 0 320 64" preserveAspectRatio="none">
@@ -89,24 +109,24 @@ const platform = [
       <!-- 3 · Sorteios pelos comentários -->
       <article class="prow reveal">
         <div class="prow__copy">
-          <span class="eyebrow pcard__tag">{platform[2].tag}</span>
-          <h3 class="pcard__title">{platform[2].title}</h3>
-          <p class="pcard__body">{platform[2].body}</p>
+          <span class="eyebrow pcard__tag">{cards[2].tag}</span>
+          <h3 class="pcard__title">{cards[2].title}</h3>
+          <p class="pcard__body">{cards[2].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
           <div class="ui ui--draw">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · sorteios</span></div>
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">{M.sorteios}</span></div>
             <div class="draw">
               <div class="draw__head">
-                <span class="draw__kw">Comentou <b>“EUQUERO”</b></span>
-                <span class="draw__count"><b>1.842</b> participantes</span>
+                <span class="draw__kw">{M.comentou} <b>“EUQUERO”</b></span>
+                <span class="draw__count"><b>1.842</b> {M.participantes}</span>
               </div>
               <div class="draw__winners">
-                <div class="dw"><span class="dw__pos">1</span><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="dw__tag">ganhou</span></div>
+                <div class="dw"><span class="dw__pos">1</span><span class="ava ava--sm" data-ava="mariana"></span><b>mariana.fit</b><span class="dw__tag">{M.ganhou}</span></div>
                 <div class="dw"><span class="dw__pos">2</span><span class="ava ava--sm" data-ava="joao"></span><b>joao.suplementos</b><span class="dw__tag">ganhou</span></div>
                 <div class="dw dw--ghost"><span class="dw__pos">3</span><span class="ava ava--sm" data-ava="bia"></span><b>bia.estetica</b><span class="dw__tag">ganhou</span></div>
               </div>
-              <div class="draw__btn">Sortear <span class="draw__btn-ic">🎲</span></div>
+              <div class="draw__btn">{M.sortear} <span class="draw__btn-ic">🎲</span></div>
             </div>
           </div>
         </div>
@@ -115,26 +135,26 @@ const platform = [
       <!-- 4 · Links dinâmicos + cliques por automação -->
       <article class="prow prow--rev reveal">
         <div class="prow__copy">
-          <span class="eyebrow pcard__tag">{platform[3].tag}</span>
-          <h3 class="pcard__title">{platform[3].title}</h3>
-          <p class="pcard__body">{platform[3].body}</p>
+          <span class="eyebrow pcard__tag">{cards[3].tag}</span>
+          <h3 class="pcard__title">{cards[3].title}</h3>
+          <p class="pcard__body">{cards[3].body}</p>
         </div>
         <div class="prow__art" aria-hidden="true">
           <div class="ui ui--links">
-            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">notifiquei · links</span></div>
+            <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><span class="ui__url">{M.links}</span></div>
             <div class="lks">
               <div class="lk">
                 <span class="lk__alias">{"{{link:promo}}"}</span>
                 <span class="lk__url">loja.com/black-friday</span>
-                <span class="lk__edit">trocar</span>
+                <span class="lk__edit">{M.trocar}</span>
               </div>
-              <p class="lks__hint">Usado em <b>7 automações</b> — troca aqui e todas passam a mandar o novo.</p>
+              <p class="lks__hint">{M.usadoEm} <b>{M.automacoes}</b> {M.trocaAqui}</p>
               <div class="lkbars">
-                <div class="lkbar"><span class="lkbar__n">Comentário → DM</span><i style="--w:100%"></i><b>512</b></div>
-                <div class="lkbar"><span class="lkbar__n">Resposta de story</span><i style="--w:52%"></i><b>266</b></div>
-                <div class="lkbar"><span class="lkbar__n">Quebra Gelo</span><i style="--w:13%"></i><b>69</b></div>
+                <div class="lkbar"><span class="lkbar__n">{M.comentarioDm}</span><i style="--w:100%"></i><b>512</b></div>
+                <div class="lkbar"><span class="lkbar__n">{M.respostaStory}</span><i style="--w:52%"></i><b>266</b></div>
+                <div class="lkbar"><span class="lkbar__n">{M.quebraGelo}</span><i style="--w:13%"></i><b>69</b></div>
               </div>
-              <p class="lks__foot">847 cliques esta semana</p>
+              <p class="lks__foot">{M.cliquesSemana}</p>
             </div>
           </div>
         </div>
