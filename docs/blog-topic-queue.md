@@ -12,23 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 5 — Como usar automação durante o lançamento de um produto
-
-**Slug:** automacao-no-lancamento-de-produto-no-instagram
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Durante um lançamento, os posts concentram muitos comentários em pouco tempo e a janela de oportunidade de resposta é curta
-- É possível configurar automações diferentes para cada fase do lançamento: pré-aquecimento, abertura do carrinho, últimas horas
-- O Notifiquei permite agendamento de campanhas, então dá pra preparar os disparos com antecedência e ativar no horário certo
-- A automação de comentários dispara DM imediato para quem comentou, mesmo com centenas de comentários simultâneos
-- Leads capturados nos comentários podem ser etiquetados como "interessados no lançamento" para follow-up dentro da janela de 7 dias da API da Meta
-- Após o fechamento do carrinho, é preciso desativar as automações de oferta para não gerar promessas inválidas
-
-**Ângulo:** Mostrar como estruturar automações em fases durante um lançamento, com o que configurar em cada etapa e o cuidado de desativar após o encerramento.
-
----
-
 ## Tema 6 — Por que o DM automático parece robô (e como deixar mais natural)
 
 **Slug:** dm-automatico-parece-robo-como-evitar
