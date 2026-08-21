@@ -12,23 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 6 — Por que o DM automático parece robô (e como deixar mais natural)
-
-**Slug:** dm-automatico-parece-robo-como-evitar
-**Categoria:** Copywriting
-
-**Fatos travados:**
-- O tom do DM automático depende 100% do texto configurado no Notifiquei, não de template padrão do sistema
-- Mensagens genéricas, muito longas ou com jargão corporativo são percebidas como automatizadas
-- Usar a variável de nome do contato no texto ajuda a criar sensação de personalização
-- O agente de IA do Notifiquei gera respostas mais contextuais com base na base de conhecimento configurada e na memória da conversa
-- Quando a conversa avança e fica complexa, é possível pausar a IA e assumir o atendimento humano
-- A IA tem memória da conversa: não repete perguntas que já foram feitas ao lead na mesma interação
-
-**Ângulo:** Comparar DMs que parecem robô vs DMs que parecem humanos, identificar os padrões que causam essa percepção e mostrar os ajustes específicos de texto e fluxo que fazem diferença.
-
----
-
 ## Tema 7 — Como montar um funil de vendas completo pelo direct do Instagram
 
 **Slug:** funil-de-vendas-pelo-direct-do-instagram
