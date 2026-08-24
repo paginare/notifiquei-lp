@@ -12,23 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 7 — Como montar um funil de vendas completo pelo direct do Instagram
-
-**Slug:** funil-de-vendas-pelo-direct-do-instagram
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Um funil pelo direct tem etapas: atrair (post, story ou anúncio), capturar (comentário ou DM inicial), qualificar (pergunta automática), apresentar (DM com oferta) e fechar (link pro checkout)
-- No Notifiquei, cada etapa pode ser automatizada com fluxos encadeados e botões de atalho
-- Etiquetas permitem marcar em qual etapa do funil cada lead está
-- O follow-up automático pode ser configurado para reiniciar a conversa com quem não respondeu, dentro da janela de 7 dias da API da Meta
-- É possível integrar com o checkout (Kiwify, Hotmart, Cakto, Greenn) para saber quem comprou e pausar os DMs de oferta para esse contato
-- A caixa de entrada unificada mostra o histórico completo de cada conversa, facilitando a entrada do atendente humano no momento certo
-
-**Ângulo:** Passo a passo de como montar um funil de 4 etapas pelo direct, com o que automatizar em cada fase e onde a interação humana faz mais sentido.
-
----
-
 ## Tema 8 — Como vender serviços pelo direct (fluxo diferente de produto físico)
 
 **Slug:** como-vender-servicos-pelo-direct-do-instagram
