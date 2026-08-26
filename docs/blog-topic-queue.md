@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 8 — Como vender serviços pelo direct (fluxo diferente de produto físico)
-
-**Slug:** como-vender-servicos-pelo-direct-do-instagram
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Vendas de serviço costumam exigir qualificação mais profunda antes de apresentar preço (diferente de produto físico de valor fixo)
-- No direct, o fluxo de serviço geralmente vai: entender a dor, qualificar, agendar conversa — não fechar direto no DM
-- O Notifiquei permite configurar perguntas qualificadoras automáticas com botões de atalho antes de encaminhar para o atendente humano
-- Etiquetas permitem classificar leads de acordo com o tipo de serviço de interesse ou fase do processo
-- A IA pode responder perguntas iniciais sobre o serviço e encaminhar para humano quando a conversa exige julgamento
-
-**Ângulo:** Mostrar as diferenças entre um fluxo de produto e de serviço no direct, com estrutura de fluxo específica para quem vende consultoria, aula, atendimento ou serviço personalizado.
-
----
-
 ## Tema 9 — Como reativar contatos que pararam de responder no direct
 
 **Slug:** reativar-contatos-que-pararam-de-responder-no-direct
