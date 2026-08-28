@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 9 — Como reativar contatos que pararam de responder no direct
-
-**Slug:** reativar-contatos-que-pararam-de-responder-no-direct
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- A janela de follow-up da API da Meta é de 7 dias após a última mensagem do usuário; fora desse prazo, só é possível contato se o usuário interagir novamente
-- Campanhas de reativação no Notifiquei podem ser disparadas para contatos etiquetados como "sem resposta" ou "frio"
-- Campanhas funcionam apenas para contatos que já tiveram interação com a conta, dentro das regras da Meta
-- Um conteúdo novo no feed ou story pode provocar nova interação do usuário e reabrir a janela de comunicação
-- A mensagem de reativação funciona melhor quando é curta e referencia algo que o contato já perguntou ou viu antes
-
-**Ângulo:** Explicar o ciclo de reativação dentro das regras da Meta: o que fazer enquanto a janela ainda está aberta (follow-up automático) vs o que fazer quando já fechou (campanha de reativação por etiqueta).
-
----
-
 ## Tema 10 — Instagram para coaches e infoprodutores: estruturando a automação
 
 **Slug:** instagram-para-coaches-e-infoprodutores
