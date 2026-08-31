@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 10 — Instagram para coaches e infoprodutores: estruturando a automação
-
-**Slug:** instagram-para-coaches-e-infoprodutores
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Coaches e infoprodutores geralmente têm picos de DMs após publicar conteúdo orgânico de autoridade ou story de bastidores
-- O funil de infoproduto costuma ter etapas: captação de lead, entrega de conteúdo gratuito, apresentação de oferta
-- No Notifiquei, cada etapa pode ser automatizada e combinada com etiquetas para segmentar em qual estágio o lead está
-- O agente de IA pode responder perguntas sobre o conteúdo ou o programa 24 horas por dia, com base na base de conhecimento configurada
-- Integração com Kiwify, Hotmart e outras plataformas permite saber quem comprou e parar de enviar DMs de oferta para esse contato
-
-**Ângulo:** Mostrar o fluxo específico para infoprodutor ou coach: do comentário no post até a venda na plataforma, com exemplos de etiquetas para cada etapa.
-
----
-
 ## Tema 11 — Stories com enquete: como transformar interação em DM automático
 
 **Slug:** stories-com-interacao-e-dm-automatico
