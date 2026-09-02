@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 11 — Stories com enquete: como transformar interação em DM automático
-
-**Slug:** stories-com-interacao-e-dm-automatico
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Quando alguém responde a um story com uma mensagem, abre uma janela de conversa no direct que pode ser automatizada pelo Notifiquei
-- Stories têm alcance proporcional ao engajamento recente do perfil e costumam gerar interação mais próxima do que posts no feed
-- O Notifiquei permite configurar DM automático para quem respondeu ao story, com texto personalizado
-- Um story que pede uma resposta específica ("me diz qual é sua maior dúvida sobre X") pode gerar um volume de DMs que a automação resolve de forma imediata
-- Combinar story com automação de DM cria um ponto de entrada de funil sem depender de anúncio pago
-
-**Ângulo:** Mostrar como usar stories que pedem resposta como ponto de entrada de funil automatizado, com exemplos de perguntas que geram DMs qualificados.
-
----
-
 ## Tema 12 — Como montar uma promoção relâmpago com automação no Instagram
 
 **Slug:** promocao-relampago-com-automacao-no-instagram
