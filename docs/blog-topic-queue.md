@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 12 — Como montar uma promoção relâmpago com automação no Instagram
-
-**Slug:** promocao-relampago-com-automacao-no-instagram
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Promoções relâmpago (12h, 24h) criam urgência e geram pico de interações nos comentários e DMs
-- Com automação no Notifiquei, o DM com o link ou o código chega imediatamente após o comentário, sem esperar atendente disponível
-- Campanhas podem ser agendadas para disparar num horário de alto engajamento do perfil
-- Etiquetas permitem marcar quem participou para reativar essa base em promoções futuras
-- Os envios são distribuídos no ritmo que a API da Meta permite, então picos altos ficam em fila e saem em sequência
-
-**Ângulo:** Passo a passo de como planejar e executar uma promoção relâmpago com automação: do post ao DM com o link, com atenção ao timing e à fila de envio.
-
----
-
 ## Tema 13 — Profissões regulamentadas: o que dá para automatizar no Instagram?
 
 **Slug:** profissoes-regulamentadas-automacao-instagram
