@@ -12,23 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 13 — Profissões regulamentadas: o que dá para automatizar no Instagram?
-
-**Slug:** profissoes-regulamentadas-automacao-instagram
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Médicos, dentistas, advogados e nutricionistas têm restrições éticas sobre publicidade em suas áreas (CFM, CFO, OAB, CFN)
-- A automação de DM em si não é proibida por nenhum conselho; o que é regulado é o conteúdo das mensagens (ex: CFM proíbe divulgar preços de procedimentos e promessas de resultado)
-- Dá pra automatizar: resposta a perguntas frequentes não-clínicas, direcionamento para agendamento, confirmação de consulta, informações sobre localização e horário
-- Não é recomendado automatizar: diagnóstico, prescrição, promessa de resultado, divulgação de honorários em algumas especialidades
-- O Notifiquei não define o conteúdo; quem configura o fluxo é o profissional, que deve respeitar as regras de ética da sua área
-- A IA pode ser configurada para redirecionar perguntas clínicas ou jurídicas para o atendimento humano
-
-**Ângulo:** Esclarecer o que é permitido e o que não é por profissão, com exemplos de fluxos seguros para cada área.
-
----
-
 ## Tema 14 — Como ler os relatórios do Notifiquei e melhorar as campanhas
 
 **Slug:** relatorios-e-metricas-do-notifiquei
