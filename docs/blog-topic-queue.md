@@ -12,21 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 14 — Como ler os relatórios do Notifiquei e melhorar as campanhas
-
-**Slug:** relatorios-e-metricas-do-notifiquei
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- O Notifiquei gera relatórios de campanhas com dados de mensagens entregues e de respostas geradas
-- As métricas permitem identificar quais fluxos têm melhor taxa de resposta e quais mensagens convertem mais
-- Taxa de resposta baixa pode indicar: texto pouco atrativo, horário inadequado, mensagem muito longa, ou público mal segmentado
-- Comparar taxas de resposta entre campanhas diferentes com o mesmo produto revela qual abordagem funciona melhor para aquela audiência
-
-**Ângulo:** Guia prático de como interpretar os dados do painel de campanha e tomar decisões de otimização com base no que os números indicam.
-
----
-
 ## Tema 15 — Templates de mensagem no direct: como criar e quando usar cada um
 
 **Slug:** templates-de-mensagem-no-direct-do-instagram
