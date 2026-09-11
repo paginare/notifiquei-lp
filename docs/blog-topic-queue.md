@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 15 — Templates de mensagem no direct: como criar e quando usar cada um
-
-**Slug:** templates-de-mensagem-no-direct-do-instagram
-**Categoria:** Copywriting
-
-**Fatos travados:**
-- Templates são textos pré-configurados que podem ser disparados em automações do Notifiquei
-- Um template pode usar variáveis como o nome do contato, que são preenchidas automaticamente
-- Ter templates distintos por etapa do funil (boas-vindas, qualificação, oferta, follow-up) torna cada automação mais precisa
-- Templates também podem incluir botões de atalho para guiar o lead sem depender de resposta em texto livre
-- O texto do template define inteiramente o tom da automação; nada é gerado pelo sistema fora do que foi configurado
-
-**Ângulo:** Mostrar como criar uma biblioteca de templates por etapa, com exemplos concretos de cada tipo e o que torna um template mais provável de gerar resposta.
-
----
-
 ## Tema 16 — Do cadastro à primeira automação: começando do zero no Notifiquei
 
 **Slug:** primeiros-passos-no-notifiquei-guia-completo
