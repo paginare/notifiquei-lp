@@ -4,7 +4,7 @@ Este arquivo é auto-suficiente: contém tudo que o agente precisa pra escrever 
 
 ## Passo a passo do agente
 
-1. Ler `docs/seo/search-console-2026-08.md` (dados reais de busca), `docs/blog-topic-queue.md` (fila de temas), `docs/blog-index.md` (posts já publicados) e este guia.
+1. Ler `docs/seo/search-console-2026-09.md` (dados reais de busca), `docs/blog-topic-queue.md` (fila de temas), `docs/blog-index.md` (posts já publicados) e este guia.
 2. Pegar o **primeiro tema** da fila que ainda não foi publicado (confira no índice pra não repetir). Os temas marcados **[demanda confirmada]** vêm de consulta real no Search Console e ficam no topo de propósito: sempre saem antes dos demais.
 3. Escrever o arquivo `src/content/blog/<slug>.md` seguindo o formato abaixo, usando SÓ os fatos que o tema traz na fila (não inventar número, preço nem recurso).
 4. Rodar `npm install` e `npm run build`. O build tem que passar (ele valida o frontmatter). Se falhar, corrigir o frontmatter e rodar de novo. **Não publicar build quebrado.**
@@ -68,7 +68,7 @@ O CTR do site pra busca que não é de marca está em 1%. Tem post com 626 impre
 
 ## Checklist antes do push
 
-- [ ] `docs/seo/search-console-2026-08.md` lido; tema `[demanda confirmada]` foi priorizado se havia algum na fila.
+- [ ] `docs/seo/search-console-2026-09.md` lido; tema `[demanda confirmada]` foi priorizado se havia algum na fila.
 - [ ] `Consulta-alvo` do tema aparece literal no `title`, perto do começo, com até 60 caracteres.
 - [ ] `description` de 140-160 caracteres, com a consulta e uma razão pra clicar.
 - [ ] Frontmatter completo no schema exato (sem `cover`); `date` = hoje.

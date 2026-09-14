@@ -6,9 +6,9 @@ Use SÓ os fatos de cada tema. **Capa não se escolhe mais**: ela é gerada no b
 
 ## Ordem da fila (leia antes de pegar tema)
 
-Os temas **[demanda confirmada]** vêm de consulta real no Search Console (`docs/seo/search-console-2026-08.md`) e saem **sempre primeiro**, na ordem em que estão. Cada um traz uma `Consulta-alvo`, que precisa aparecer literal no `title` do post.
+Os temas **[demanda confirmada]** vêm de consulta real no Search Console (`docs/seo/search-console-2026-09.md`) e saem **sempre primeiro**, na ordem em que estão. Cada um traz uma `Consulta-alvo`, que precisa aparecer literal no `title` do post.
 
-Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem busca medida. Contexto que justifica a ordem: dos 33 posts no ar, 20 nunca tiveram uma impressão, e os que sumiram são justamente os de documentação de funcionalidade.
+Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem busca medida. Contexto que justifica a ordem: na leitura de 14/09, dos 48 posts no ar, 23 nunca tiveram uma impressão, e os que somem são justamente os de documentação de funcionalidade. Hoje a fila não tem nenhum tema [demanda confirmada]: tudo abaixo é hipótese.
 
 ---
 
