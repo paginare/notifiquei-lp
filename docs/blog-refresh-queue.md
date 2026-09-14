@@ -11,7 +11,7 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 5. Usar só os fatos do item e do próprio post. Não inventar número, prazo nem recurso.
 6. `npm install` e `npm run build`. O build tem que passar. Conferir `grep -c '"@type":"BlogPosting"' dist/blog/<slug>.html` (=1) em cada post alterado.
 7. Se o `title` mudou, atualizar a coluna de título do post em `docs/blog-index.md`.
-8. Remover o item desta fila.
+8. Remover o item desta fila e registrar uma linha na seção "Feito" (data e o que mudou).
 9. `git add -A && git commit -m "feat(blog): atualiza <slug principal>" && git push origin main`.
 10. Resumo final: item feito, posts alterados, título e description antes e depois, links adicionados, e se o push foi feito.
 
