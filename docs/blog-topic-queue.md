@@ -12,22 +12,6 @@ Só depois deles entram os Temas 5 em diante, que são hipótese de pauta sem bu
 
 ---
 
-## Tema 16 — Do cadastro à primeira automação: começando do zero no Notifiquei
-
-**Slug:** primeiros-passos-no-notifiquei-guia-completo
-**Categoria:** Estratégia
-
-**Fatos travados:**
-- Para conectar o Instagram ao Notifiquei é necessário ter conta profissional ou de criador de conteúdo (conta pessoal não é suportada pela API da Meta)
-- A vinculação é feita pelo painel do Notifiquei via autorização OAuth oficial da Meta, sem compartilhar senha
-- Novas vinculações são feitas pela versão atual da plataforma (a versão antiga foi descontinuada)
-- Após conectar, o primeiro fluxo mais simples é: comentário com palavra-chave no post → DM automático
-- Dá pra testar o fluxo antes de ativar comentando no post com uma conta de teste
-
-**Ângulo:** Tutorial passo a passo do primeiro acesso até a primeira automação funcionando, voltado para quem nunca usou automação no Instagram.
-
----
-
 ## Tema 17 — Produto de entrada mais upsell pelo direct: como montar o fluxo
 
 **Slug:** produto-de-entrada-e-upsell-pelo-direct-do-instagram
