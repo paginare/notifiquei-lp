@@ -18,7 +18,7 @@ faq:
 
 Você posta, o post vai bem, os comentários chegam — e aí? A maioria das marcas responde com um emoji de coração, talvez um "obrigado!" e segue em frente. Parece educado. Mas está deixando dinheiro na mesa.
 
-Comentário no Instagram não é só métrica de engajamento. É sinal de interesse. E interesse, quando ignorado ou respondido tarde, esfria rápido.
+Comentário no Instagram não é só métrica de engajamento. É sinal de interesse. E interesse, quando ignorado ou respondido tarde, esfria rápido. Vale até pra um [sorteio de comentários no Instagram](/blog/sorteio-no-instagram-pelos-comentarios): quem comenta ali está levantando a mão pra alguma coisa sua.
 
 ## o que acontece no cérebro de quem comenta
 

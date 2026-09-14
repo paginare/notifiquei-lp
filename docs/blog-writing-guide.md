@@ -1,5 +1,7 @@
 # Guia de escrita do blog (para a rotina automática)
 
+> **Desde 14/09/2026 a rotina automática trabalha pela fila de atualização (`docs/blog-refresh-queue.md`) e não publica post novo.** Este guia continua valendo pras regras de `title`, `description`, corpo e voz, e pra quando alguém pedir um post novo de propósito.
+
 Este arquivo é auto-suficiente: contém tudo que o agente precisa pra escrever e publicar UM post novo do blog do Notifiquei. Sobre o Notifiquei: ferramenta brasileira de automação de DM e comentário do Instagram e TikTok, pela **API oficial da Meta**. Público: quem vende no Instagram/TikTok no Brasil.
 
 ## Passo a passo do agente

@@ -54,7 +54,7 @@ Palavras que parecem úteis mas geram muito ruído:
 
 Quando você configura "amei" como gatilho, o DM dispara para quem está elogiando o post sem nenhuma intenção de compra. Isso não só gera DMs inúteis como pode incomodar a audiência e prejudicar a percepção da marca.
 
-A regra prática é simples: se a palavra pode aparecer num comentário sem que a pessoa queira comprar ou saber mais sobre o produto, ela não deve ser gatilho de vendas.
+A regra prática é simples: se a palavra pode aparecer num comentário sem que a pessoa queira comprar ou saber mais sobre o produto, ela não deve ser gatilho de vendas. A exceção é quando o post não é pra vender, como num [sorteio de comentários no Instagram](/blog/sorteio-no-instagram-pelos-comentarios), em que a palavra só serve pra marcar quem está participando.
 
 ## fluxos diferentes para palavras diferentes no mesmo post
 

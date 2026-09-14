@@ -12,7 +12,7 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | seguidores-que-curtem-mas-nao-compram | Seguidores que curtem tudo mas não compram nada | Copywriting | engajamento que não converte |
 | dm-para-quem-comentou-no-instagram | Dá pra mandar DM pra quem comentou no post? | Estratégia | DM pra quem comentou, janela da Meta |
 | notifiquei-vs-manychat | Notifiquei vs ManyChat: qual vale mais a pena no Brasil | Estratégia | comparação de preço/recursos vs ManyChat |
-| sorteio-no-instagram-pelos-comentarios | Como fazer sorteio no Instagram pelos comentários | Estratégia | sorteio pelos comentários |
+| sorteio-no-instagram-pelos-comentarios | Sorteio de comentários no Instagram: como fazer sem print | Estratégia | sorteio de comentários no Instagram |
 | automacao-de-dm-no-tiktok | Automação de DM no TikTok: o que dá e o que não dá | Estratégia | automação de DM no TikTok, IG+TikTok |
 | agente-de-ia-que-responde-dm-no-instagram | Agente de IA que responde DM no Instagram | Estratégia | agente de IA, responder DM sozinho |
 | gerenciar-instagram-de-clientes-com-times | Gerenciar o Instagram de vários clientes com times | Estratégia | times, agência, acesso sem senha |

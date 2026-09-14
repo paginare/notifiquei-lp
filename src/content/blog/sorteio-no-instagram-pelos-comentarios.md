@@ -1,14 +1,15 @@
 ---
-title: "Sorteio no Instagram pelos comentários: justo e automático"
-description: "Como fazer sorteio no Instagram pelos comentários de forma justa: junte os participantes, sorteie o vencedor e re-sorteie num clique se precisar."
+title: "Sorteio de comentários no Instagram: como fazer sem print"
+description: "Como fazer sorteio de comentários no Instagram de forma justa: a lista de quem comentou sai pronta, o vencedor é aleatório e o re-sorteio leva um clique."
 date: 2026-06-30
+updated: 2026-09-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Sorteio", "Engajamento", "Instagram"]
-keywords: ["sorteio no Instagram", "como fazer sorteio Instagram", "sorteio pelos comentários", "sortear comentários Instagram", "ferramenta de sorteio Instagram"]
-tldr: "Dá pra fazer sorteio no Instagram direto pelos comentários, sem site de terceiro: a plataforma junta todo mundo que participou, mostra a lista, sorteia o vencedor e re-sorteia num clique se a pessoa some."
+keywords: ["sorteio de comentários no Instagram", "sorteio de comentarios no instagram", "como fazer sorteio de comentários no Instagram", "sorteio no Instagram pelos comentários", "sortear comentários Instagram", "ferramenta de sorteio Instagram"]
+tldr: "Dá pra fazer sorteio de comentários no Instagram sem site de terceiro e sem print: a plataforma junta todo mundo que participou, mostra a lista, sorteia o vencedor e re-sorteia num clique se a pessoa some."
 faq:
-  - q: "Como escolher o ganhador de um sorteio no Instagram?"
+  - q: "Como fazer sorteio de comentários no Instagram de forma justa?"
     a: "O jeito mais justo é juntar todo mundo que comentou a palavra que você pediu e sortear de forma aleatória dentro dessa lista. Quando o sorteio é feito na plataforma, ela mostra a lista de participantes e escolhe o vencedor pra você, sem favorecer ninguém."
   - q: "Dá pra re-sortear se o ganhador sumir?"
     a: "Dá. Se o vencedor não responde, é perfil fake ou não cumpriu a regra, você re-sorteia num clique. O sorteio puxa outro nome da mesma lista na hora, então você não precisa começar tudo de novo nem refazer a apuração na mão."
@@ -22,9 +23,9 @@ Aí chega sexta. Você abre o post, começa a anotar os @ num caderno, ou tira p
 
 Dez minutos depois cai a mensagem no direct: "como assim ela ganhou? eu comentei primeiro e nem apareceu na sua lista". E agora você não tem como provar que foi justo, porque a apuração inteira aconteceu na sua cabeça e num caderno que ninguém viu.
 
-A boa notícia é que esse pedaço chato, o de juntar quem participou e sortear sem ser acusado de roubo, dá pra resolver direto pelos comentários, de um jeito que qualquer um confia. Bora ver como.
+A boa notícia é que esse pedaço chato, o de juntar quem participou e sortear sem ser acusado de roubo, dá pra resolver com um sorteio de comentários feito direto na plataforma, de um jeito que qualquer um confia. Bora ver como.
 
-## por que sorteio na mão sempre vira dor de cabeça
+## por que fazer sorteio de comentários no instagram na mão dá dor de cabeça
 
 O problema não é o sorteio em si. É a apuração. Quando você faz tudo manualmente, três coisas acontecem quase toda vez.
 
@@ -34,7 +35,7 @@ A segunda é a regra. Você pediu pra marcar dois amigos e seguir o perfil. Conf
 
 A terceira é a confiança. Quando a escolha do ganhador mora só na sua cabeça, você não tem como mostrar que foi aleatório. E é exatamente aí que aparece o comentário acusando você de ter favorecido a amiga.
 
-## como montar um sorteio que engaja de verdade
+## como fazer um sorteio de comentários que engaja de verdade
 
 Antes de pensar em sortear, vale montar o sorteio de um jeito que dê trabalho pra você do jeito certo, que é gerando alcance. A mecânica que mais funciona é simples e você já conhece.
 

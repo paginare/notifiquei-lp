@@ -1,5 +1,7 @@
 # Fila de temas do blog (para a rotina automática)
 
+> **Pausada desde 14/09/2026.** A rotina agora trabalha pela `docs/blog-refresh-queue.md` e não puxa tema daqui. Os temas abaixo são todos hipótese sem busca medida; só voltam a sair se uma leitura do Search Console apontar demanda pra eles.
+
 O agente pega o **primeiro tema ainda não publicado** (confere no `docs/blog-index.md`), escreve o post seguindo o `docs/blog-writing-guide.md`, e **remove o tema desta fila** depois de publicar. Se a fila esvaziar, publicar nada e reportar "fila vazia — precisa de temas novos" (dá pra tirar novos temas das dúvidas reais em `../Marketing-Notifiquei/conteudo/duvidas-clientes/lista.md` se o repo tiver acesso, senão só avisar).
 
 Use SÓ os fatos de cada tema. **Capa não se escolhe mais**: ela é gerada no build a partir do título e da categoria (ver `src/lib/og-image.ts`).
