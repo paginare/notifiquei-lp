@@ -1,7 +1,8 @@
 ---
 title: "Como automatizar a resposta a stories no Instagram"
-description: "Quando alguém responde seu story, dá pra disparar uma automação no direct. Veja como funciona o gatilho de resposta a story e a regra da janela da Meta."
+description: "Sim, dá pra automatizar: a resposta ao story aciona um fluxo no direct. A primeira mensagem vem com botão, pela regra da Meta, e depois a conversa segue livre."
 date: 2026-07-01
+updated: 2026-09-16
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Stories", "Instagram"]
@@ -60,6 +61,8 @@ Se você quase não usa story de interação, isso muda pouco pra você. Agora, 
 É o caso de quem tem uma base engajada e usa o story como vitrine. Você pergunta, a galera responde, e cada resposta é uma pessoa levantando a mão dizendo que tem interesse. Deixar essas mãos levantadas sem retorno por horas é dinheiro escorrendo pelo ralo todo dia.
 
 Automatizar isso não tira o seu toque pessoal. As conversas que precisam de você de verdade continuam existindo, e a gente organiza melhor o seu tempo pra elas. O que sai da sua mão é o trabalho repetitivo de mandar o mesmo link cinquenta vezes.
+
+Se o seu objetivo é [usar o story como ponto de entrada de um funil orgânico](/blog/stories-com-interacao-e-dm-automatico), a escolha do tipo de pergunta faz bastante diferença no perfil de quem chega no direct.
 
 ## como o Notifiquei monta esse fluxo
 

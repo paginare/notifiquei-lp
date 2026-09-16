@@ -1,15 +1,16 @@
 ---
-title: "Stories com enquete viram DM automático no Instagram"
-description: "Quando alguém responde ao seu story, o Notifiquei dispara um DM automático na hora. Veja como usar stories como ponto de entrada de funil sem gastar em anúncio."
+title: "Story que vira DM automático: como usar no seu funil"
+description: "Use stories como porta de entrada do funil: quem responde com mensagem recebe um DM automático em segundos, sem anúncio e sem atendente no celular."
 date: 2026-09-02
+updated: 2026-09-16
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Stories", "DM"]
-keywords: ["stories automação dm", "stories com enquete instagram", "dm automático para quem respondeu story", "automacao direct stories instagram", "story gera dm automatico"]
+keywords: ["stories automação dm", "dm automático para quem respondeu story", "automacao direct stories instagram", "story gera dm automatico", "story como funil instagram"]
 tldr: "Quando alguém responde a um story com uma mensagem, isso abre uma janela de conversa no direct que o Notifiquei automatiza em segundos. Você configura o DM uma vez e ele sai para todo mundo que interagir, sem precisar de atendente ou anúncio."
 faq:
   - q: "Qualquer resposta ao story aciona o DM automático?"
-    a: "Sim. Quando alguém responde seu story com uma mensagem, o Instagram abre uma conversa no direct e o Notifiquei dispara o DM configurado por você na hora. Vale para enquete, caixinha de perguntas ou qualquer story que gera resposta no direct."
+    a: "Sim. Quando alguém responde seu story com uma mensagem, o Instagram abre uma conversa no direct e o Notifiquei dispara o DM configurado por você na hora. Vale para qualquer story em que a pessoa escreva uma resposta. Voto em enquete e resposta na caixinha de perguntas não chegam no direct e não acionam a automação."
   - q: "Preciso de conta profissional para usar essa automação?"
     a: "Sim. A automação de direct pelo Notifiquei funciona apenas com contas profissionais ou de criador de conteúdo no Instagram. Contas pessoais não têm acesso à API oficial da Meta e não podem ser conectadas."
   - q: "Que tipo de pergunta no story gera leads mais qualificados?"

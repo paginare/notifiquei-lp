@@ -19,29 +19,6 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ---
 
-## Item 1 — Separar os dois posts de stories e corrigir a promessa de enquete
-
-**Posts:** `stories-com-interacao-e-dm-automatico` (81 impressões desde 02/09, posição 3,0) e `automatizar-resposta-a-stories-no-instagram` (131 impressões no mês, posição 7,2, zero clique).
-
-**Problema:** os dois disputam a mesma busca e as duas `description` abrem com quase a mesma frase ("Quando alguém responde seu story..."). Além disso, o título e a FAQ do post novo prometem enquete e caixinha de perguntas, e isso não existe.
-
-**Fatos travados:**
-- O gatilho de story que existe no Notifiquei é **resposta a story**: a pessoa escreve uma mensagem respondendo o story, a mensagem chega no direct e a automação dispara.
-- **Voto em enquete e resposta na caixinha de perguntas não chegam no direct e não disparam automação.** Um story com enquete só vira DM se pedir pra pessoa também responder o story com uma mensagem.
-- Pela regra da Meta, a primeira mensagem automática vai com botão (está explicado no post `automatizar-resposta-a-stories-no-instagram`).
-
-**O que fazer em `stories-com-interacao-e-dm-automatico`:**
-- `title` sem a palavra "enquete". O ângulo deste post é usar o story como porta de entrada de funil, pedindo pra pessoa responder o story com uma palavra. Exemplo que cabe: "Story que vira DM automático: como usar no seu funil".
-- `description` que comece diferente do outro post e fale de funil sem anúncio.
-- `keywords`: tirar "stories com enquete instagram".
-- FAQ: corrigir a resposta que diz "Vale para enquete, caixinha de perguntas ou qualquer story que gera resposta no direct". Passa a dizer que vale pra qualquer story em que a pessoa responda com mensagem, e que voto em enquete e caixinha não contam.
-- Corpo: procurar `enquete` e `caixinha` (`grep -n -i`) e corrigir qualquer trecho que trate isso como gatilho.
-
-**O que fazer em `automatizar-resposta-a-stories-no-instagram`:**
-- `description` começando diferente e entregando a resposta: sim, dá pra automatizar, e a primeira mensagem vai com botão pela regra da Meta.
-- `title` pode ficar como está ("Como automatizar a resposta a stories no Instagram", 50 caracteres) se não houver versão melhor com até 60 caracteres que mantenha "automatizar a resposta a stories no Instagram".
-- Adicionar 1 link contextual no corpo apontando pra `/blog/stories-com-interacao-e-dm-automatico` (hoje nenhum post aponta pra ele).
-
 ## Item 2 — Follow-up automático: título dentro do limite e consulta na description
 
 **Post:** `follow-up-automatico-no-direct-do-instagram` (31 impressões no mês, posição 8,3 e caindo, era 6,98; zero clique).
@@ -75,4 +52,5 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ## Feito
 
+- 16/09/2026: `stories-com-interacao-e-dm-automatico` (title, description, keywords, FAQ corrigidos — sem "enquete" como gatilho) e `automatizar-resposta-a-stories-no-instagram` (description, link contextual pra stories-com-interacao). Os dois posts agora abrem a description de forma diferente e a FAQ do post de stories corrige o mito do enquete/caixinha.
 - 14/09/2026: `sorteio-no-instagram-pelos-comentarios` com `title`, `description`, `tldr`, primeira pergunta da FAQ e dois H2 cobrindo "sorteio de comentários no Instagram"; links de entrada novos em `palavras-chave-em-comentarios-para-acionar-automacao` e `como-um-comentario-no-instagram-vira-venda`. Conferir o efeito na leitura de outubro.
