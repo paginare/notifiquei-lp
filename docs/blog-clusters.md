@@ -99,3 +99,18 @@ Não disputa busca genérica: são páginas de ajuda que existem pra quem já é
 ## Buraco conhecido
 
 Os 6 posts de nicho e ocasião do C1 (e-commerce, coaches, profissões regulamentadas, agências, Black Friday, lançamento) hoje penduram direto no pilar geral. Eles têm cara de cluster próprio ("automação no Instagram para *quem*"), mas **não existe pilar pra eles** e não há busca medida que justifique escrever um. Esse é o primeiro lugar onde entra dado de volume de palavra-chave externo.
+
+## Quando chegar dado de volume de busca
+
+O Search Console só mostra consulta em que o site **já** aparece (74 consultas, quase todas de marca), então ele não descobre cluster novo. Pra isso é preciso volume externo.
+
+**Onde colocar:** o CSV do Google Keyword Planner vai em `docs/seo/dados/keyword-planner-<aaaa-mm>.csv`, do jeito que sai da ferramenta (Ferramentas → Planejador de palavras-chave → Descobrir palavras-chave → Brasil, português → baixar).
+
+**O que fazer com ele, nesta ordem:**
+
+1. Agrupar as palavras por intenção e casar cada grupo com um cluster desta página. Palavra que não casa com nenhum é candidata a cluster novo.
+2. Pro buraco conhecido acima (nicho e ocasião), conferir se existe volume real em "automação de Instagram para *nicho*". Se existir, o **pilar vem antes** dos satélites que já estão no ar; se não existir, os 6 posts continuam pendurados no pilar geral e ninguém escreve mais nada nesse ângulo.
+3. Cluster novo só nasce com pilar. Registrar pilar e satélites planejados aqui antes de escrever a primeira linha.
+4. Volume sem clique não vale nada: a regra do `title` e da `description` do `blog-writing-guide.md` continua valendo, e o gargalo medido em 14/09/2026 era CTR, não falta de tema.
+
+Sem esse CSV dá pra montar a lista com autocomplete do Google, perguntas relacionadas e Trends. Sai a estrutura e a ordem relativa, não sai o número de buscas por mês.
