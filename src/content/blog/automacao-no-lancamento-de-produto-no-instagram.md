@@ -18,7 +18,7 @@ faq:
 
 O dia que o carrinho abre, o Instagram vira outro ambiente. Um post que normalmente recebe 80 comentários pode acumular 400 em duas horas. Quem responde na mão consegue atender talvez 30 antes de perder o ritmo. O resto vai embora sem o link.
 
-A automação resolve exatamente isso, mas só se estiver configurada antes do lançamento começar. Montar o fluxo às pressas, no meio do pico, é tarde.
+A [automação no Instagram](/blog/automacao-no-instagram-guia) resolve exatamente isso, mas só se estiver configurada antes do lançamento começar. Montar o fluxo às pressas, no meio do pico, é tarde.
 
 ## o que configurar antes do carrinho abrir
 

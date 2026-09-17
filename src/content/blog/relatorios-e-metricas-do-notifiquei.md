@@ -16,7 +16,7 @@ faq:
     a: "Ele mostra mensagens entregues e respostas geradas. Para rastrear vendas fechadas, é necessário integrar o Notifiquei com o checkout (Kiwify, Hotmart, Cakto ou Greenn), que confirma a compra e fecha o ciclo de conversão."
 ---
 
-Você ativa a automação, os DMs começam a sair, e então bate a dúvida: tá funcionando? A taxa de resposta dos seus fluxos conta essa história, mas só se você souber o que procurar nos relatórios.
+Você ativa a automação, os DMs começam a sair, e então bate a dúvida: tá funcionando? A taxa de resposta dos seus fluxos conta essa história, mas só se você souber o que procurar nos relatórios. Se a conta ainda nem está conectada, comece pelos [primeiros passos no Notifiquei](/blog/primeiros-passos-no-notifiquei-guia-completo).
 
 O painel de campanhas do Notifiquei exibe dois números principais: mensagens entregues e respostas geradas. Parece simples, mas é nessa combinação que está o diagnóstico de quase tudo que pode estar travando seus resultados.
 

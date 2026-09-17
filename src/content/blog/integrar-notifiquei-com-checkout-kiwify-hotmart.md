@@ -19,9 +19,9 @@ faq:
 
 Você investe numa campanha, aquela pessoa comenta no post, entra pro seu direct, conversa, demonstra interesse e desaparece do seu radar. Você não sabe se ela comprou, se desistiu no meio do checkout ou se simplesmente esqueceu. Aí no mês seguinte você repete a campanha com a mesma dúvida.
 
-Esse buraco entre o DM e a venda é onde a maior parte do dinheiro some. Vale começar pela parte que costuma frustrar: **não existe integração pronta de checkout no Notifiquei**, nem com Kiwify, nem com Hotmart, Cakto ou Greenn. Chegou a estar em construção, mas a área de rastreamento de vendas saiu do produto — em produção ela não registrou nenhuma atribuição, e manter uma tela que ninguém usa custa mais do que rende.
+Esse buraco entre o DM e a venda é onde a maior parte do dinheiro some. Vale começar pela parte que costuma frustrar: **não existe integração pronta de checkout no Notifiquei**, nem com Kiwify, nem com Hotmart, Cakto ou Greenn. Chegou a estar em construção, mas a área de rastreamento de vendas saiu do produto, porque em produção ela não registrou nenhuma atribuição, e manter uma tela que ninguém usa custa mais do que rende.
 
-O que existe são dois caminhos que funcionam, e que na prática respondem a maior parte da pergunta.
+O que existe são dois caminhos que funcionam, e que na prática respondem a maior parte da pergunta. Os dois pressupõem a conta já conectada, o que está nos [primeiros passos no Notifiquei](/blog/primeiros-passos-no-notifiquei-guia-completo).
 
 ## caminho 1: o clique, que resolve 80% da dúvida
 

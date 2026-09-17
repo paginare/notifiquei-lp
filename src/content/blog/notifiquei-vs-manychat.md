@@ -20,7 +20,7 @@ Você montou sua operação de vendas no Instagram, configurou as automações, 
 
 Aí a audiência cresceu, que era o plano desde o começo. Mais gente comentando, mais gente no direct, mais contato salvo na sua base. E quando a fatura do ManyChat chegou, ela tinha crescido junto. O que era R$ 249 virou R$ 600, depois mais. Você não mexeu em nada na ferramenta, só teve mais cliente, e mesmo assim pagou mais caro por isso.
 
-Essa é a parte que pega muita gente que vende pelo Instagram no Brasil: a ferramenta cobra você por crescer. Vale entender por que isso acontece e o que muda quando o preço é fixo.
+Essa é a parte que pega muita gente que vende pelo Instagram no Brasil: a ferramenta cobra você por crescer. As duas fazem [automação no Instagram](/blog/automacao-no-instagram-guia) pela API oficial da Meta, então o que separa uma da outra é preço, moeda e o que cada plano libera. Vale entender por que isso acontece e o que muda quando o preço é fixo.
 
 ## o que muda no preço
 

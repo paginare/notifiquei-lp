@@ -19,7 +19,7 @@ faq:
 
 Você configurou o fluxo de perguntas, a automação está respondendo no direct, e aí vem a dúvida de sempre: isso funciona sozinho ou consegue conversar com o resto das ferramentas que você usa?
 
-O Notifiquei não precisa ficar numa ilha. Ele tem um nó de webhook que você coloca dentro da automação, e com isso dá pra amarrar o que acontece no Instagram com o CRM, o Slack, a planilha, ou qualquer coisa que já faça parte do seu processo.
+O Notifiquei não precisa ficar numa ilha. Ele tem um nó de webhook que você coloca dentro da automação, depois que os [primeiros passos no Notifiquei](/blog/primeiros-passos-no-notifiquei-guia-completo) já estão feitos, e com isso dá pra amarrar o que acontece no Instagram com o CRM, o Slack, a planilha, ou qualquer coisa que já faça parte do seu processo.
 
 ## o webhook aqui é um nó, não um evento fixo
 

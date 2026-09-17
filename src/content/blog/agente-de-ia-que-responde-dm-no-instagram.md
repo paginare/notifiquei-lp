@@ -19,7 +19,7 @@ faq:
 
 São onze da noite e o Instagram ainda tá aberto no seu celular. Chega mais uma DM perguntando "quanto custa?". Você já respondeu isso umas trinta vezes hoje, então copia a resposta de sempre, cola e manda. Antes de fechar o app, aparece outra: "tem em outro tamanho?". Você faz de novo. Enquanto isso, três comentários novos no post de ontem, todos perguntando o preço que já tá na legenda.
 
-A ideia de colocar uma inteligência artificial pra assumir isso é sedutora, e por bons motivos. Mas antes de entregar seu direct pra ela, vale olhar o que você ganha e o que você abre mão.
+A ideia de colocar uma inteligência artificial pra assumir isso é sedutora, e por bons motivos. Mas antes de entregar seu direct pra ela, vale olhar o que você ganha e o que você abre mão em relação a uma [automação no Instagram](/blog/automacao-no-instagram-guia) com fluxo escrito por você.
 
 ## o que um agente de ia faz bem
 

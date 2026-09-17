@@ -20,7 +20,7 @@ Toda agência que cuida de mais de um perfil já viveu essa cena. Entra um clien
 
 Quando o cliente cede, começa o outro lado da bagunça. Você guarda o login num bloco de notas, joga a senha num grupo de WhatsApp da equipe, e quando são cinco, seis, dez clientes, cada um com seu usuário e sua senha, o dia vira um vai e volta de sair de um perfil e entrar em outro. Uma hora o cliente troca a senha e esquece de avisar, o Instagram pede a verificação em duas etapas que cai no celular dele, e você fica parado no meio de uma campanha esperando ele responder.
 
-Dá pra cuidar do Instagram de vários clientes sem passar por nada disso. A ideia é simples: cada cliente conecta a conta dele pelo login oficial, e você trabalha por time, sem senha trocando de mão.
+Dá pra cuidar do Instagram de vários clientes sem passar por nada disso. A ideia é simples: cada cliente conecta a conta dele pelo login oficial, e você trabalha por time, sem senha trocando de mão. É o mesmo caminho oficial que sustenta a [automação no Instagram](/blog/automacao-no-instagram-guia) de cada um desses perfis.
 
 ## o problema não é o cliente, é o login compartilhado
 

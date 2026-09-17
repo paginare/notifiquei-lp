@@ -54,7 +54,9 @@ Parece óbvio, mas é fácil deixar passar uma variável de nome errada ou um li
 
 Com o primeiro fluxo no ar, você tem uma base para crescer. O próximo passo natural é adicionar botões de atalho dentro do DM, para que o lead possa escolher "quero saber o preço" ou "quero ver mais detalhes" e receber informações diferentes dependendo do que clicar.
 
-A partir daí, o fluxo cresce conforme a sua necessidade, sem precisar reconfigurar tudo do zero. Cada automação nova se encaixa no que já está funcionando, e você vai ajustando os textos conforme vê o que gera mais resposta.
+A partir daí, o fluxo cresce conforme a sua necessidade, sem precisar reconfigurar tudo do zero. Cada automação nova se encaixa no que já está funcionando, e você vai ajustando os textos conforme vê o que gera mais resposta. Pra saber o que ajustar, vale ler [como ler os relatórios do Notifiquei](/blog/relatorios-e-metricas-do-notifiquei).
+
+Depois disso, tem duas coisas que costumam entrar: [ligar o direct ao seu checkout pra rastrear a venda](/blog/integrar-notifiquei-com-checkout-kiwify-hotmart) e usar o [nó de webhook pra conversar com as suas outras ferramentas](/blog/webhook-e-integracoes-do-notifiquei).
 
 ---
 

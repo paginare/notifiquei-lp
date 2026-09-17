@@ -19,7 +19,7 @@ faq:
 
 Você abre o direct na terça de manhã e tem 80 conversas. Em algum lugar dali tem três pessoas que estavam prontas pra comprar na noite anterior e não foram respondidas. Quando você chega nelas, o interesse já esfriou.
 
-Não é falta de disposição da sua parte. É timing. O lead estava pronto, você não estava disponível, e a janela fechou.
+Não é falta de disposição da sua parte. É timing. O lead estava pronto, você não estava disponível, e a janela fechou. É nesse ponto que [transformar seguidores em clientes](/blog/transformar-seguidores-em-clientes-no-instagram) trava.
 
 A saída que parece óbvia é colocar uma inteligência artificial lendo tudo e apontando quem está quente. Mas existe um caminho mais simples, mais barato e mais confiável — e ele começa por parar de tentar adivinhar.
 

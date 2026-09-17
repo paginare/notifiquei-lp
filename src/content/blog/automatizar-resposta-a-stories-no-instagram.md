@@ -21,7 +21,7 @@ Você postou uma enquete no story ontem à noite. Duas fotos do mesmo produto e 
 
 Você começa a responder de cima pra baixo. Copia o link, cola, volta, responde a próxima, se perde em quem já respondeu e quem não. No meio disso o dia começa, aparece reunião, cliente, filho pra levar na escola. Quando você volta, já é meio da tarde. Boa parte daquela galera que respondeu de madrugada esfriou, comprou de outro lugar ou nem lembra mais que votou.
 
-A pergunta que resolve isso é direta: dá pra automatizar a resposta a story, pra cada pessoa que responde receber o retorno na hora sem você ficar grudada no celular? Dá. E tem uma regra da Meta no caminho que vale entender pra montar do jeito certo.
+A pergunta que resolve isso é direta: dá pra automatizar a resposta a story, pra cada pessoa que responde receber o retorno na hora sem você ficar grudada no celular? Dá, e é assim que começa um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram). Tem uma regra da Meta no caminho que vale entender pra montar do jeito certo.
 
 ## dá pra automatizar a resposta a story?
 

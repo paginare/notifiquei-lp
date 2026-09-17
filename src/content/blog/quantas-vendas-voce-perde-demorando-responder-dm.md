@@ -24,6 +24,8 @@ E a resposta só chega seis horas depois.
 
 O problema é que, nessas seis horas, o cliente já pesquisou mais três concorrentes, escolheu um, comprou e já recebeu o link de confirmação no e-mail.
 
+Esse intervalo é o buraco que um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram) existe pra tapar.
+
 Você perdeu a venda e, pior, nem ficou sabendo.
 
 ## o lead quente esfria muito mais rápido do que você imagina

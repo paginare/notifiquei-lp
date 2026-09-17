@@ -1,5 +1,7 @@
 # Índice de posts do blog (para linkagem interna)
 
+Fonte de verdade pra escolher links **laterais**. A teia pilar/satélite (link obrigatório pro pilar do cluster) fica em `docs/blog-clusters.md`, verificada por `npm run check:blog`.
+
 Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicione uma linha aqui** (slug, título, categoria, tema). Use pra: (a) linkar 2-3 posts relevantes de dentro do novo post (outbound) e (b) editar 1-2 posts existentes pra apontar pro novo (inbound). URL = `/blog/<slug>`.
 
 | Slug | Título | Cat | Tema (pra decidir link) |

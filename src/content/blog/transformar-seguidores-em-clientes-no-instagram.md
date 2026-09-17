@@ -42,7 +42,7 @@ Na prática: a pessoa comenta "quero saber mais" e em segundos chega um DM com u
 
 Uma das maiores perdas de conversão no direct acontece quando a primeira mensagem já vai com o preço. A pessoa ainda não tem contexto suficiente pra decidir. O número aparece sem referência, a conversa trava ali, e o lead esfria antes de entender o valor do que você vende.
 
-O caminho que converte mais passa por uma pergunta antes da oferta. Algo simples: qual o seu produto principal, qual a maior dificuldade que você está enfrentando agora, o que você já tentou antes. Essa pergunta separa quem tem intenção real de quem estava só curioso, e evita queimar um contato que poderia avançar com a abordagem certa.
+O caminho que converte mais passa por uma pergunta antes da oferta. Algo simples: qual o seu produto principal, qual a maior dificuldade que você está enfrentando agora, o que você já tentou antes. Essa pergunta separa quem tem intenção real de quem estava só curioso, e evita queimar um contato que poderia avançar com a abordagem certa. Dá pra fazer isso sem adivinhação, e o caminho está em [como detectar intenção de compra](/blog/deteccao-de-intencao-de-compra-no-instagram).
 
 É exatamente esse raciocínio que o post sobre [descobrir se alguém quer comprar antes de mandar o preço](/blog/como-qualificar-lead-antes-de-mandar-preco) detalha: a qualificação vem antes da oferta, não depois.
 
@@ -62,7 +62,7 @@ O fluxo que funciona tem quatro etapas simples:
 
 O que separa quem vende com consistência de quem depende de picos eventuais de engajamento é a base própria. Não seguidor, mas contato com conversa aberta.
 
-O Notifiquei, que usa a API oficial da Meta, registra cada contato que passou pelo direct, aplica etiquetas por interesse ou etapa do funil, e permite retomar a conversa dentro da janela de 7 dias que a Meta disponibiliza. Um seguidor que comentou hoje pode estar no seu radar pra follow-up amanhã. Isso é base própria, não audiência emprestada de plataforma que pode mudar as regras.
+O Notifiquei, que usa a API oficial da Meta, registra cada contato que passou pelo direct, aplica [etiquetas por interesse ou etapa do funil](/blog/etiquetas-e-segmentacao-no-instagram), e permite retomar a conversa dentro da janela de 7 dias que a Meta disponibiliza. Isso não é [mensagem em massa](/blog/campanhas-de-mensagem-em-massa-no-instagram), que a Meta não permite, é retomada de conversa já aberta. Um seguidor que comentou hoje pode estar no seu radar pra follow-up amanhã. Isso é base própria, não audiência emprestada de plataforma que pode mudar as regras.
 
 Pra quem vende pelo Instagram, colocar esse ciclo pra funcionar, comentário, DM, qualificação e oferta, é o passo que transforma número de seguidor em lista de contatos com intenção de compra.
 

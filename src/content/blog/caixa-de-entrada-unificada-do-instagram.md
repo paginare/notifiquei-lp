@@ -21,7 +21,7 @@ Era uma quarta-feira de manhã e a Renata tinha seis DMs não respondidos do dia
 
 Isso acontece mais do que parece. Não é descuido, é o jeito que o Instagram funciona por padrão: as mensagens mais novas chegam primeiro, e quem não viu na hora certa corre o risco de perder a janela de compra.
 
-A reação natural é procurar uma caixa de entrada melhor. Um painel que junte tudo, com busca e histórico, pra nada sumir. Faz sentido — mas resolve o problema errado.
+A reação natural é procurar uma caixa de entrada melhor. Um painel que junte tudo, com busca e histórico, pra nada sumir. Faz sentido, mas resolve o problema errado: o que falta antes é um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram) que responda sozinho a primeira mensagem.
 
 ## organizar a fila não devolve a venda
 

@@ -18,7 +18,7 @@ faq:
 
 Você emplacou um vídeo no TikTok. Daquele jeito, 300 mil views em dois dias, gente comentando, gente salvando, e o direct vira uma avalanche. "Manda o link", "qual o valor?", "onde compro?", "ainda tem?". Você responde os primeiros vinte na empolgação, aí o vídeo continua rodando, chega mais DM, e quando você percebe tem 80 conversas esperando e metade já desistiu de você.
 
-A pergunta que aparece nessa hora é direta: dá pra automatizar a DM do TikTok do mesmo jeito que muita gente já faz no Instagram? Dá, mas não é igual. Vale entender o que dá pra fazer hoje e o que ainda não dá, pra você montar a operação com a expectativa certa.
+A pergunta que aparece nessa hora é direta: dá pra automatizar a DM do TikTok do mesmo jeito que muita gente já faz [automação no Instagram](/blog/automacao-no-instagram-guia)? Dá, mas não é igual. Vale entender o que dá pra fazer hoje e o que ainda não dá, pra você montar a operação com a expectativa certa.
 
 ## o que dá pra automatizar na dm do tiktok hoje
 

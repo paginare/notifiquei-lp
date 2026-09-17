@@ -20,7 +20,7 @@ Eram 22h de uma sexta quando ela postou o Reels anunciando 30% de desconto por 1
 
 Sem automação, ela teria passado a noite copiando e colando o link um por um, enquanto o telefone vibrava sem parar. Com automação, o DM saiu em sequência para cada pessoa que comentou, ela estava dormindo, e a campanha funcionou do jeito que foi planejada.
 
-O resultado não foi diferente por causa do Reels, que era simples. Foi diferente porque ninguém esperou.
+O resultado não foi diferente por causa do Reels, que era simples. Foi diferente porque ninguém esperou. É a mesma lógica de [como um comentário no Instagram vira venda](/blog/como-um-comentario-no-instagram-vira-venda), só que comprimida em poucas horas.
 
 ## por que a velocidade importa mais numa promoção curta
 

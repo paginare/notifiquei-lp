@@ -21,7 +21,7 @@ Você posta um story e pede que as pessoas respondam com uma palavra. Em meia ho
 
 O problema não é falta de interesse. É que stories geram interação num ritmo que atendimento manual não consegue acompanhar. Um story que perfoma bem num perfil com 10 mil seguidores pode gerar dezenas de mensagens em menos de uma hora, todas esperando a mesma resposta.
 
-Quando alguém responde ao seu story com uma mensagem, o Instagram abre automaticamente uma conversa no direct entre vocês. Essa conversa pode ser automatizada pelo Notifiquei, que dispara o DM configurado por você no momento em que a resposta chega, sem precisar que ninguém esteja online.
+Quando alguém responde ao seu story com uma mensagem, o Instagram abre automaticamente uma conversa no direct entre vocês. Essa conversa pode ser automatizada pelo Notifiquei, que dispara o DM configurado por você no momento em que a resposta chega, sem precisar que ninguém esteja online. É a porta de entrada mais barata pra um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram).
 
 ## por que o story cria um ponto de entrada melhor do que o post no feed
 

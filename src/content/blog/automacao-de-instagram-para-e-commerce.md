@@ -18,7 +18,7 @@ faq:
 
 A cliente viu o post do lote novo de vestidos às 22h de uma sexta, comentou "quero o azul" e mandou um DM perguntando tamanho e valor. Às 22h03, já tinha a resposta com as opções disponíveis e um link de pagamento. Às 22h11, a compra estava confirmada.
 
-Não foi nenhuma atendente acordada num plantão. Foi um fluxo automático rodando pelo Notifiquei, pela API oficial da Meta, sem intervenção humana.
+Não foi nenhuma atendente acordada num plantão. Foi um fluxo de [automação no Instagram](/blog/automacao-no-instagram-guia) rodando pelo Notifiquei, pela API oficial da Meta, sem intervenção humana.
 
 Pra uma loja de moda, cosméticos ou suplementos que vende pelo Instagram, esse tipo de atendimento não é diferencial, é o mínimo que o cliente espera hoje. Quem demora 3 horas pra responder perde a venda pra quem responde em 10 segundos.
 

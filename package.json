@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:blog": "node scripts/check-clusters.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

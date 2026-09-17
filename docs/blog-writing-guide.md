@@ -57,7 +57,11 @@ O CTR do site pra busca que não é de marca está em 1%. Tem post com 626 impre
 3. **Números:** ao menos uma conta concreta de impacto em receita (ex: X DMs, produto de R$Y, na mão vs automático).
 4. **Produto:** citar o Notifiquei com naturalidade (não como bloco de anúncio); mencionar "API oficial da Meta" quando fizer sentido.
 5. **CTA:** parágrafo final curto linkando `https://notifiquei.com.br`.
-6. **Linkagem interna (obrigatória):** inserir **2 links contextuais inline** pros posts mais relevantes do `docs/blog-index.md`, com markdown `[trecho real da frase](/blog/<slug>)`, dentro de frases naturais (âncora = pedaço real do texto, 3-6 palavras; nunca "clique aqui"). **Não** escrever seção "Leia também" (o template gera relacionados sozinho). **Não** repetir a FAQ no corpo.
+6. **Cluster (obrigatório):** antes de escrever, abrir `docs/blog-clusters.md` e achar o cluster do tema. O post novo é satélite de um pilar, e isso gera dois links que não são opcionais:
+   - **no post novo:** 1 link pro pilar do cluster, com a **consulta-alvo do pilar como âncora** (ex: `[automação no Instagram](/blog/automacao-no-instagram-guia)`), dentro de uma frase natural.
+   - **no pilar:** 1 link inline pro post novo, no trecho onde aquele subtópico já é citado.
+   Depois, adicionar a linha do post novo na tabela do cluster em `docs/blog-clusters.md` e rodar `npm run check:blog`, que falha se algum dos dois links faltar. Se o tema não couber em nenhum cluster, **não escrever**: cluster sem pilar não existe, e o pilar vem primeiro.
+7. **Links laterais:** além do link pro pilar, inserir **2 links contextuais inline** pros posts mais relevantes do `docs/blog-index.md`, com markdown `[trecho real da frase](/blog/<slug>)`, dentro de frases naturais (âncora = pedaço real do texto, 3-6 palavras; nunca "clique aqui"). **Não** escrever seção "Leia também" (o template gera relacionados sozinho). **Não** repetir a FAQ no corpo.
 
 ## Voz (inegociável)
 
@@ -75,8 +79,10 @@ O CTR do site pra busca que não é de marca está em 1%. Tem post com 626 impre
 - [ ] `description` de 140-160 caracteres, com a consulta e uma razão pra clicar.
 - [ ] Frontmatter completo no schema exato (sem `cover`); `date` = hoje.
 - [ ] Abre com cena; ao menos 1 conta de receita; produto citado com naturalidade + CTA.
-- [ ] 2 links internos contextuais no corpo.
+- [ ] Post entrou em `docs/blog-clusters.md`; linka pro pilar do cluster e o pilar linka de volta.
+- [ ] 2 links internos laterais contextuais no corpo.
 - [ ] Sem travessão, sem clichê de IA, headings minúsculos.
+- [ ] `npm run check:blog` passou (teia pilar/satélite sem pendência).
 - [ ] `npm run build` passou; BlogPosting + FAQPage + TL;DR presentes no HTML.
 - [ ] `docs/blog-index.md` e `docs/blog-topic-queue.md` atualizados.
 - [ ] commit + push na `main`.

@@ -18,7 +18,7 @@ faq:
 
 A conversa começa assim: alguém vê um story com um produto que chamou atenção, manda um DM perguntando o preço e você vê a mensagem três horas depois. Quando responde, o interesse já esfriou. O lead estava quente, mas a janela fechou.
 
-Esse intervalo entre o momento em que a pessoa se interessa e a sua resposta é onde a maioria das vendas pelo direct some. A automação fecha esse intervalo. Mas automação sem estrutura vira ruído. Antes de programar qualquer fluxo, você precisa de um funil, uma sequência de etapas que leva o interesse inicial até a compra.
+Esse intervalo entre o momento em que a pessoa se interessa e a sua resposta é onde a maioria das vendas pelo direct some. Dá pra medir [quantas vendas você perde por demorar a responder DM](/blog/quantas-vendas-voce-perde-demorando-responder-dm), e o número costuma assustar. A automação fecha esse intervalo. Mas automação sem estrutura vira ruído. Antes de programar qualquer fluxo, você precisa de um funil, uma sequência de etapas que leva o interesse inicial até a compra.
 
 O bom é que o direct já tem essa estrutura pronta, basta mapear as etapas e decidir o que automatizar em cada uma.
 
@@ -26,11 +26,11 @@ O bom é que o direct já tem essa estrutura pronta, basta mapear as etapas e de
 
 Um funil pelo direct tem etapas bem definidas, mesmo que a maioria das pessoas que vende assim não as tenha mapeado de forma explícita.
 
-**Atrair:** a porta de entrada é um post, um story, um Reel ou um anúncio. O objetivo aqui não é vender ainda. É gerar uma reação, um comentário, uma resposta ao story ou um DM inicial.
+**Atrair:** a porta de entrada é um post, um story, um Reel ou um anúncio. O objetivo aqui não é vender ainda. É gerar uma reação, um comentário, uma resposta ao story ou um DM inicial. O story costuma ser a porta mais barata, e tem artigo sobre [story que vira DM automático](/blog/stories-com-interacao-e-dm-automatico) e sobre [como automatizar a resposta a stories](/blog/automatizar-resposta-a-stories-no-instagram).
 
-**Capturar:** quando a pessoa comenta ou manda uma mensagem, isso abre a janela de conversa no direct. É aí que o funil começa de verdade. Um DM automático pode ir imediatamente, sem depender de você estar online.
+**Capturar:** quando a pessoa comenta ou manda uma mensagem, isso abre a janela de conversa no direct. É aí que o funil começa de verdade. Um DM automático pode ir imediatamente, sem depender de você estar online, e é o que o [fluxo de boas-vindas no direct](/blog/fluxo-de-boas-vindas-no-direct-do-instagram) faz.
 
-**Qualificar:** antes de apresentar a oferta, vale entender se o lead tem intenção e perfil de compra. Uma pergunta simples, com botões de atalho para guiar a resposta, já resolve isso sem exigir que um atendente humano entre na conversa.
+**Qualificar:** antes de apresentar a oferta, vale entender se o lead tem intenção e perfil de compra. Isso pesa mais ainda em [venda de serviço pelo direct](/blog/como-vender-servicos-pelo-direct-do-instagram), onde o preço depende do escopo. Uma pergunta simples, com botões de atalho para guiar a resposta, já resolve isso sem exigir que um atendente humano entre na conversa.
 
 **Apresentar e fechar:** depois de qualificado, o lead recebe o DM com a oferta e o link pro checkout. Se a conversa avançar com dúvida mais profunda, o atendente humano entra no momento certo, com o histórico completo na tela.
 
@@ -42,7 +42,7 @@ Na etapa de captura, o DM inicial vai automático assim que o comentário chega 
 
 Na etapa de qualificação, botões de atalho conduzem o lead sem exigir resposta em texto livre. Cada escolha aciona um fluxo diferente: quem indicou interesse em produto de ticket mais alto pode ir para um fluxo com mais perguntas; quem quer algo mais simples recebe o link direto.
 
-O [follow-up automático no direct do Instagram](/blog/follow-up-automatico-no-direct-do-instagram) entra quando o lead não respondeu. Dentro da janela de 7 dias que a API oficial da Meta permite, é possível mandar um lembrete, retomar a conversa ou apresentar outro ângulo da oferta. Esse recurso evita perder leads que ficaram com a mensagem em aberto sem responder.
+O [follow-up automático no direct do Instagram](/blog/follow-up-automatico-no-direct-do-instagram) entra quando o lead não respondeu. Dentro da janela de 7 dias que a API oficial da Meta permite, é possível mandar um lembrete, retomar a conversa ou apresentar outro ângulo da oferta. Esse recurso evita perder leads que ficaram com a mensagem em aberto sem responder. Quando a janela já fechou, o caminho é outro, e está em [como reativar contatos que pararam de responder](/blog/reativar-contatos-que-pararam-de-responder-no-direct).
 
 ## como as etiquetas organizam o funil
 
@@ -56,7 +56,7 @@ Etiquetas também permitem excluir quem já comprou das campanhas de oferta futu
 
 Automação cobre bem a parte previsível do funil. Mas tem momentos em que a conversa exige julgamento, negociação ou empatia que um fluxo automatizado não consegue entregar.
 
-A caixa de entrada unificada do Notifiquei mostra o histórico completo de cada conversa, então o atendente que assume sabe tudo que já foi dito antes. Não precisa perguntar de novo o que o lead precisa, o que já foi enviado ou em qual etapa do funil ele está.
+A [caixa de entrada unificada](/blog/caixa-de-entrada-unificada-do-instagram) do Notifiquei mostra o histórico completo de cada conversa, então o atendente que assume sabe tudo que já foi dito antes. Não precisa perguntar de novo o que o lead precisa, o que já foi enviado ou em qual etapa do funil ele está.
 
 Esse handoff funciona melhor quando é claro: a automação cobre até certo ponto e o humano é acionado a partir de um gatilho específico, seja uma resposta que indica dúvida mais profunda, seja uma pergunta que o fluxo não cobre. O Notifiquei permite pausar a automação e retomá-la depois, então a entrada humana não quebra a sequência.
 

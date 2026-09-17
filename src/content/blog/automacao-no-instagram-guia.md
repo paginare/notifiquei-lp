@@ -30,9 +30,9 @@ Automação no Instagram é a plataforma disparar uma resposta sua quando algué
 
 Pessoa comenta "quero" no seu post, ela recebe um direct com o link. Pessoa responde seu story, ela entra num fluxo de perguntas. Pessoa manda a primeira mensagem no direct, ela recebe as boas-vindas na hora.
 
-O que a automação não é: postar sozinho por robô, seguir gente em massa, curtir automático ou comprar seguidor. Nada disso está no que o Instagram autoriza, e é justamente esse pacote que derruba conta.
+O que a automação não é: postar sozinho por robô, seguir gente em massa, curtir automático ou comprar seguidor. Nada disso está no que o Instagram autoriza, e é justamente esse pacote que derruba conta. Publicação programada é outro assunto, e a gente explica [o que usar hoje pra agendar post, Reels e stories](/blog/agendar-posts-reels-e-stories-no-instagram).
 
-A diferença entre uma coisa e outra não é de grau, é de natureza. Um lado é a Meta oferecendo uma porta oficial pra empresa atender melhor. O outro é software fingindo ser você dentro do aplicativo.
+A diferença entre uma coisa e outra não é de grau, é de natureza. Um lado é a Meta oferecendo uma porta oficial pra empresa atender melhor. O outro é software fingindo ser você dentro do aplicativo. Se você quer ver o antes e o depois no dia a dia de quem vende, tem um artigo sobre [o que muda no Instagram com e sem automação](/blog/instagram-com-e-sem-automacao-o-que-muda).
 
 ## o que dá pra automatizar (e o que a meta não deixa)
 
@@ -48,9 +48,11 @@ A API oficial da Meta trabalha com cinco gatilhos. Sempre parte de uma ação da
 
 **Botão de atalho no menu.** São opções clicáveis no direct, que guiam a pessoa sem ela precisar formular a pergunta do zero.
 
+Em qualquer um dos cinco, a resposta pode seguir um fluxo que você escreveu, com caminhos definidos, ou ficar por conta de um [agente de IA que responde o DM](/blog/agente-de-ia-que-responde-dm-no-instagram). O fluxo é previsível e a IA cobre a pergunta que você não previu, e dá pra usar os dois no mesmo perfil.
+
 O que fica de fora: mandar mensagem pra quem nunca falou com você, escrever pra seguidor que só curtiu, e disparar promoção pra base inteira sem interação prévia. A Meta trata isso como spam e a porta oficial simplesmente não oferece esse caminho.
 
-Existe ainda uma janela de tempo. Depois que a pessoa interage, você tem um prazo pra responder de forma automática. Passou disso, o envio precisa de outro caminho. É uma regra da plataforma, não da ferramenta.
+Existe ainda uma janela de tempo. Depois que a pessoa interage, você tem um prazo pra responder de forma automática. Passou disso, o envio precisa de outro caminho. É uma regra da plataforma, não da ferramenta. Tem também um teto de envio por hora, e vale saber [quantas mensagens por hora a API do Instagram deixa enviar](/blog/limites-de-envio-da-api-do-instagram) antes de montar campanha grande.
 
 ## por que a api oficial da meta muda tudo
 
@@ -60,7 +62,7 @@ A API oficial é o contrário disso. Você autoriza o acesso por um login da pr�
 
 Na prática significa que você opera dentro do limite de envio que a plataforma define, com registro do que foi enviado, e sem depender de a ferramenta continuar enganando o aplicativo. Se quiser entender a diferença técnica com mais calma, tem um artigo dedicado a [por que a API oficial da Meta importa](/blog/api-oficial-meta-automacao-instagram).
 
-O Notifiquei trabalha só pelo caminho oficial, no Instagram e também no TikTok. Vale saber que no TikTok o produto ainda é mais enxuto: hoje cobre DM por palavra-chave, sem o construtor visual de fluxo que existe no Instagram.
+O Notifiquei trabalha só pelo caminho oficial, no Instagram e também no TikTok. Vale saber que no TikTok o produto ainda é mais enxuto: hoje cobre [automação de DM por palavra-chave](/blog/automacao-de-dm-no-tiktok), sem o construtor visual de fluxo que existe no Instagram. Se você está comparando ferramentas, tem uma [comparação com o ManyChat](/blog/notifiquei-vs-manychat) com os dois modelos de preço lado a lado.
 
 ## o que você precisa ter antes de começar
 
@@ -71,6 +73,20 @@ A conta precisa ser profissional, comercial ou de criador, vinculada a uma pági
 Precisa também deixar ligada a permissão de acesso a mensagens nas configurações do Instagram. É um botão só, fica escondido, e quando está desligado a automação roda mas o direct não sai. É o motivo número um de gente achar que a ferramenta não funciona.
 
 E precisa de uma palavra-chave definida. Alguma coisa que você vai pedir no post e que dispara o fluxo. Curta, fácil de digitar, difícil de aparecer por acidente.
+
+Com essas três coisas na mão, o caminho até o primeiro fluxo no ar está detalhado em [como automatizar o Instagram do zero](/blog/como-automatizar-o-instagram-passo-a-passo).
+
+## pra quem isso funciona
+
+O gatilho é o mesmo pra todo mundo. O que muda é o que vai escrito na mensagem.
+
+Loja que vende pelo feed usa pra mandar tamanho, preço e link de pagamento sem ninguém de plantão, e o caminho está em [automação de Instagram para e-commerce](/blog/automacao-de-instagram-para-e-commerce). Coach e infoprodutor usam pra capturar o lead do conteúdo gratuito antes de falar de preço, que é o assunto de [automação no Instagram para coaches e infoprodutores](/blog/instagram-para-coaches-e-infoprodutores).
+
+Médico, dentista, advogado e nutricionista também podem, desde que o conteúdo da mensagem respeite a regra do conselho, e isso está destrinchado em [o que dá pra automatizar em profissões regulamentadas](/blog/profissoes-regulamentadas-automacao-instagram). Agência que cuida de vários perfis faz o mesmo [por time, sem pedir a senha do cliente](/blog/gerenciar-instagram-de-clientes-com-times).
+
+Tamanho de conta não entra nessa conversa. [Vale a pena automatizar com poucos seguidores](/blog/automacao-de-instagram-com-poucos-seguidores) porque o que a automação corrige é o tempo de resposta, e isso pesa igual em qualquer audiência.
+
+Onde a diferença aparece inteira é nos picos. [Black Friday](/blog/black-friday-no-instagram-automacao) e [dia de abrir carrinho num lançamento](/blog/automacao-no-lancamento-de-produto-no-instagram) são os dois momentos em que o volume passa de qualquer capacidade manual, e nos dois o fluxo precisa estar no ar antes.
 
 ## uma conta de receita: o que a automação recupera
 

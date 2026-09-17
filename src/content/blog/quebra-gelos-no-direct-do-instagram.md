@@ -20,7 +20,7 @@ A pessoa clicou no link da bio, abriu o direct e ficou olhando pra tela em branc
 
 Isso acontece mais do que parece. Tem muito seguidor que abre o direct com intenção real de comprar e vai embora antes de digitar a primeira palavra, só porque não sabe o que dizer ou sente que vai incomodar.
 
-Os quebra-gelos existem pra remover esse atrito. Em vez de esperar que o lead comece a conversa do zero, você oferece até 4 botões de atalho assim que a janela do direct abre. A pessoa toca em um deles e a conversa já começa com rumo, do lado que você escolheu.
+Os quebra-gelos existem pra remover esse atrito. Em vez de esperar que o lead comece a conversa do zero, você oferece até 4 botões de atalho assim que a janela do direct abre. A pessoa toca em um deles e a conversa já começa com rumo, do lado que você escolheu. Vale a mesma regra de [o que escrever no primeiro DM automático](/blog/script-do-primeiro-dm-automatico-no-instagram): texto curto e um próximo passo só.
 
 ## o que são os quebra-gelos no direct?
 

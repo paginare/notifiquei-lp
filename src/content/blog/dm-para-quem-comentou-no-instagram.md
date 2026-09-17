@@ -18,7 +18,7 @@ faq:
 
 Você posta um story ou um Reels com uma oferta e pede pra galera comentar "quero". Funciona. Em uma hora, são quarenta comentários. "Quero", "preço?", "eu", "como compro".
 
-Aí começa o problema. Você abre o Instagram, vai respondendo um por um no direct, copia e cola o link, volta pros comentários, perde a conta de quem já respondeu. No meio do caminho o celular toca, você sai, volta duas horas depois. Metade daquela gente que comentou "quero" já esfriou, já comprou de outro, ou já nem lembra do post.
+Aí começa o problema. Você abre o Instagram, vai respondendo um por um no direct, copia e cola o link, volta pros comentários, perde a conta de quem já respondeu. No meio do caminho o celular toca, você sai, volta duas horas depois. Metade daquela gente que comentou "quero" já esfriou, já comprou de outro, ou já nem lembra do post. É nesse intervalo que o caminho de [como um comentário no Instagram vira venda](/blog/como-um-comentario-no-instagram-vira-venda) se perde.
 
 A pergunta que resolve isso é simples: dá pra mandar a DM pra quem comentou de forma automática, sem você ficar grudado no celular? Dá. Mas tem uma regra da Meta no meio do caminho que vale entender pra montar tudo do jeito certo.
 

@@ -20,7 +20,7 @@ Seu direct tem uns contatos que somem no meio da conversa. Pedem informação, v
 
 A maioria das pessoas ou esquece ou manda mensagem fora de hora e acaba quebrando as regras da API sem saber. Mas existe uma lógica clara de quando e como reativar, e ela depende de uma coisa só: a janela de comunicação ainda está aberta ou já fechou?
 
-As duas situações pedem ações diferentes, e misturar as duas é o principal erro de quem tenta reativar contatos no direct.
+As duas situações pedem ações diferentes, e misturar as duas é o principal erro de quem tenta reativar contatos no direct. Nos dois casos o objetivo é o mesmo: trazer a pessoa de volta pro [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram).
 
 ## o que é a janela de 7 dias e por que ela define tudo
 
