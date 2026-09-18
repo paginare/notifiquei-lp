@@ -19,7 +19,7 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | agente-de-ia-que-responde-dm-no-instagram | Agente de IA que responde DM no Instagram | Estratégia | agente de IA, responder DM sozinho |
 | gerenciar-instagram-de-clientes-com-times | Gerenciar o Instagram de vários clientes com times | Estratégia | times, agência, acesso sem senha |
 | automatizar-resposta-a-stories-no-instagram | Como automatizar a resposta a stories no Instagram | Estratégia | automação de resposta a story |
-| follow-up-automatico-no-direct-do-instagram | Follow-up automático no direct do Instagram | Estratégia | follow-up, janela de 7 dias, lembrete |
+| follow-up-automatico-no-direct-do-instagram | Follow-up automático no direct do Instagram sem ser chato | Estratégia | follow-up, janela de 7 dias, lembrete |
 | precisa-de-conta-profissional-no-instagram | Precisa de conta profissional no Instagram pra automatizar? | Estratégia | conta profissional, conta criador, API oficial Meta, pré-requisito automação |
 | limites-de-envio-da-api-do-instagram | Quantas mensagens por hora a API do Instagram deixa enviar | Estratégia | limite de DMs, API Meta, 200 mensagens por hora, envio sustentável |
 | disparar-mensagem-na-live-do-instagram | Como disparar mensagem durante a live do Instagram | Estratégia | live, comentário live, DM automático na live, API oficial Meta |
