@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:blog": "node scripts/check-clusters.mjs"
+    "check:blog": "node scripts/check-clusters.mjs",
+    "check:capi": "node scripts/check-capi.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
