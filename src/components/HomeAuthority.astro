@@ -1,5 +1,9 @@
 ---
 import { connectedAudience } from "../data/home";
+import { marcar, type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["autoridade"]; }
+const { t } = Astro.props;
 
 // Arredonda para baixo: o sinal + continua fiel ao total registrado.
 const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
@@ -10,13 +14,13 @@ const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
   <div class="container">
     <div class="authority__intro">
       <div class="authority__heading">
-        <span class="home-kicker">CONTAS CONECTADAS AO NOTIFIQUEI</span>
-        <h2 id="authority-title">Grandes perfis<br />já estão por aqui.</h2>
-        <p>O tamanho do público que já<br />conversa pela plataforma.</p>
+        <span class="home-kicker">{t.kicker}</span>
+        <h2 id="authority-title" set:html={marcar(t.titulo)} />
+        <p set:html={marcar(t.lead)} />
       </div>
       <div class="authority__total">
-        <p class="authority__metric"><span>+{formatMillions(connectedAudience.totalFollowers)}</span> <span>milhões</span></p>
-        <p class="authority__metric-label">de seguidores somados<br />nas contas conectadas</p>
+        <p class="authority__metric"><span>+{formatMillions(connectedAudience.totalFollowers)}</span> <span>{t.milhoes}</span></p>
+        <p class="authority__metric-label" set:html={marcar(t.legenda)} />
       </div>
     </div>
 

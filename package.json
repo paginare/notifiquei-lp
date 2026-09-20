@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:blog": "node scripts/check-clusters.mjs",
-    "check:capi": "node scripts/check-capi.mjs"
+    "check:capi": "node scripts/check-capi.mjs",
+    "pulso": "node scripts/pulso-lp.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

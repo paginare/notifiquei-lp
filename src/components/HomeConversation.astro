@@ -1,26 +1,28 @@
 ---
 import Icon from "./HomeIcon.astro";
-const conversations = [
-  { initial: "J", name: "julia", origin: "comentou no seu post", question: "QUERO! Me manda o link? 😍", answer: "Oii, Julia! Separei esse look pra você. Acho que você vai amar 💕", link: "Quero ver o look", label: "Seu próximo look favorito", thanks: "Era isso! Obrigada 💖", image: "/assets/home/creator-fashion-v2.webp" },
-  { initial: "M", name: "mateus", origin: "mandou um direct", question: "GUIA 🙌 Quero começar!", answer: "Oi, Mateus! Aqui está o guia que você pediu. Depois me conta o que achou!", link: "Acessar meu guia", label: "Seu conteúdo, a um toque", thanks: "Já salvei aqui. Valeu! 🙌", image: "/assets/home/creator-content-v2.webp" },
-  { initial: "B", name: "bia", origin: "respondeu ao seu story", question: "Amei! Onde eu encontro? 💕", answer: "Esse é um dos meus favoritos! Deixei o link aqui pra você conhecer ✨", link: "Quero conhecer", label: "A indicação que você queria", thanks: "Achei! Era esse mesmo 😍", image: "/assets/home/creator-business-v2.webp" },
-];
+import { type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["conversa"]; }
+const { t } = Astro.props;
+const conversations = t.exemplos;
+// As fotos do cartão de link não mudam com o idioma.
+const IMAGENS = ["/assets/home/creator-fashion-v2.webp", "/assets/home/creator-content-v2.webp", "/assets/home/creator-business-v2.webp"];
 ---
 
-<div class="hero-chat" data-chat-loop aria-label="Exemplos de conversas automáticas no Instagram">
+<div class="hero-chat" data-chat-loop aria-label={t.topo}>
   <div class="hero-chat__top">
-    <span><Icon name="instagram" size={16} /> A conversa acontece.</span>
-    <button type="button" data-chat-pause aria-label="Pausar animação" aria-pressed="false" hidden>
+    <span><Icon name="instagram" size={16} /> {t.topo}</span>
+    <button type="button" data-chat-pause aria-label={t.pausar} aria-pressed="false" hidden>
       <span data-pause-icon><Icon name="pause" size={14} /></span>
       <span data-play-icon hidden><Icon name="play" size={14} /></span>
     </button>
   </div>
   <div class="hero-chat__stage" aria-live="off">
-    {conversations.map((chat, index) => (
-      <article class="hero-chat__exchange" data-chat-exchange aria-hidden={index > 0 ? "true" : "false"}>
+    {conversations.map((chat, i) => (
+      <article class="hero-chat__exchange" data-chat-exchange aria-hidden={i > 0 ? "true" : "false"}>
         <div class="hero-chat__incoming" data-chat-incoming>
-          <span class="hero-chat__avatar" aria-hidden="true">{chat.initial}</span>
-          <div><small><b>{chat.name}</b> {chat.origin}</small><p>{chat.question}</p></div>
+          <span class="hero-chat__avatar" aria-hidden="true">{chat.inicial}</span>
+          <div><small><b>{chat.nome}</b> {chat.origem}</small><p>{chat.pergunta}</p></div>
           <Icon name="heart" size={18} />
         </div>
         <div class="hero-chat__typing" data-chat-typing aria-hidden="true">
@@ -28,21 +30,21 @@ const conversations = [
           <span><i></i><i></i><i></i></span>
         </div>
         <div class="hero-chat__answer" data-chat-answer>
-          <div class="hero-chat__sender"><Icon name="spark" size={14} /><span>Notifiquei respondeu por você</span></div>
-          <p>{chat.answer}</p>
+          <div class="hero-chat__sender"><Icon name="spark" size={14} /><span>{t.respondeu}</span></div>
+          <p>{chat.resposta}</p>
           <div class="hero-chat__link" data-chat-link>
-            <img src={chat.image} width="44" height="54" alt="" loading="lazy" />
-            <span><small>{chat.label}</small><b>{chat.link}</b></span>
+            <img src={IMAGENS[i]} width="44" height="54" alt="" loading="lazy" />
+            <span><small>{chat.rotulo}</small><b>{chat.link}</b></span>
             <Icon name="diagonal" size={19} />
           </div>
           <span class="hero-chat__reaction" data-chat-reaction aria-hidden="true">💖</span>
         </div>
-        <span class="hero-chat__receipt" data-chat-receipt><Icon name="check" size={12} /> Enviado automaticamente</span>
-        <div class="hero-chat__thanks" data-chat-thanks><span class="hero-chat__avatar" aria-hidden="true">{chat.initial}</span><p>{chat.thanks}</p></div>
+        <span class="hero-chat__receipt" data-chat-receipt><Icon name="check" size={12} /> {t.enviado}</span>
+        <div class="hero-chat__thanks" data-chat-thanks><span class="hero-chat__avatar" aria-hidden="true">{chat.inicial}</span><p>{chat.obrigada}</p></div>
       </article>
     ))}
   </div>
-  <div class="hero-chat__footer"><span aria-hidden="true"><i data-chat-dot class="is-active"></i><i data-chat-dot></i><i data-chat-dot></i></span><small>Conversas ilustrativas</small></div>
+  <div class="hero-chat__footer"><span aria-hidden="true"><i data-chat-dot class="is-active"></i><i data-chat-dot></i><i data-chat-dot></i></span><small>{t.rodape}</small></div>
 </div>
 
 <style>

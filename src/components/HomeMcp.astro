@@ -5,68 +5,65 @@
 // e o pedido de permissão existe mesmo: nada é criado sem confirmação.
 import Icon from "./HomeIcon.astro";
 import { FREE } from "../data/home";
+import { marcar, type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["mcp"]; }
+const { t } = Astro.props;
+const [pedidoAntes, pedidoDepois] = t.pedido.split(/\{hl\}|\{\/hl\}/).filter((_, i) => i !== 1);
+const cupom = (t.pedido.match(/\{hl\}([\s\S]*?)\{\/hl\}/) ?? [])[1] ?? "";
+const [permAntes, permDepois] = t.permissao.split("{tool}");
 ---
 
 <section class="home-section home-mcp" id="mcp" aria-labelledby="mcp-title">
   <div class="container home-mcp__grid">
     <div class="home-mcp__copy">
-      <span class="home-kicker">CONECTOR MCP</span>
-      <h2 id="mcp-title">Peça em português.<br /><span>A automação nasce pronta.</span></h2>
-      <p class="home-mcp__lead">
-        Todo plano tem uma chave que liga o Notifiquei ao Claude. A partir daí você conversa:
-        ele acha o post, monta a automação, mostra o resumo e só cria depois do seu sim.
-      </p>
+      <span class="home-kicker">{t.kicker}</span>
+      <h2 id="mcp-title" set:html={marcar(t.titulo)} />
+      <p class="home-mcp__lead">{t.lead}</p>
       <ul class="home-mcp__list">
-        <li><Icon name="check" size={16} /> Funciona no Claude e em qualquer app compatível com MCP</li>
-        <li><Icon name="check" size={16} /> Lista, cria, edita, liga e desliga automações</li>
-        <li><Icon name="check" size={16} /> Diagnostica o que não disparou, e diz por quê</li>
-        <li><Icon name="check" size={16} /> Pede sua permissão antes de mexer em qualquer coisa</li>
+        {t.itens.map((item) => <li><Icon name="check" size={16} /> {item}</li>)}
       </ul>
-      <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="mcp">Pegar minha chave <Icon name="arrow" size={21} /></a>
-      <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="mcp">Ver os planos <Icon name="arrow" size={21} /></a>
+      <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="mcp">{t.ctaBr} <Icon name="arrow" size={21} /></a>
+      <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="mcp">{t.ctaIntl} <Icon name="arrow" size={21} /></a>
     </div>
 
-    <figure class="mcp-app" aria-label="Simulação de uma conversa criando uma automação pelo conector">
+    <figure class="mcp-app" aria-label={t.aria}>
       <div class="mcp-app__bar">
         <span class="mcp-app__lights" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="mcp-app__title"><img src="/assets/home/claude-app-icon.png" width="18" height="18" alt="" loading="lazy" /> Claude</span>
-        <span class="mcp-app__badge"><i class="mcp-app__on" aria-hidden="true"></i> Notifiquei conectado</span>
+        <span class="mcp-app__badge"><i class="mcp-app__on" aria-hidden="true"></i> {t.conectado}</span>
       </div>
 
       <div class="mcp-app__body">
         <aside class="mcp-app__side" aria-hidden="true">
-          <span class="mcp-app__side-new">Nova conversa</span>
-          <span class="mcp-app__side-item is-on">Automação do reel</span>
-          <span class="mcp-app__side-item">Sorteio de sexta</span>
-          <span class="mcp-app__side-item">Palavra “guia”</span>
+          <span class="mcp-app__side-new">{t.novaConversa}</span>
+          {t.conversas.map((c, i) => <span class={`mcp-app__side-item ${i === 0 ? "is-on" : ""}`}>{c}</span>)}
         </aside>
 
         <div class="mcp-app__thread">
-          <p class="mcp-msg mcp-msg--you">no meu último reel: quem comentar <b>CUPOM</b> recebe o link da loja no direct</p>
+          <p class="mcp-msg mcp-msg--you">{pedidoAntes}<b>{cupom}</b>{pedidoDepois}</p>
 
-          <p class="mcp-say"><img class="mcp-avatar" src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" /><span>Achei o reel de ontem, “bastidores do lançamento”, com 312 comentários. Montei assim:</span></p>
+          <p class="mcp-say"><img class="mcp-avatar" src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" /><span>{t.achou}</span></p>
           <span class="mcp-tool"><Icon name="spark" size={12} /> notifiquei · listar_posts · prever_automacao</span>
 
           <div class="mcp-preview">
-            <div class="mcp-preview__row"><small>Gatilho</small><b>Comentário com “cupom”</b></div>
-            <div class="mcp-preview__row"><small>No post</small><b>Responde “Te mandei no direct”</b></div>
-            <div class="mcp-preview__row"><small>No direct</small><b>Mensagem + botão “Pegar meu cupom”</b></div>
+            {t.previa.map((linha) => <div class="mcp-preview__row"><small>{linha.rotulo}</small><b>{linha.valor}</b></div>)}
           </div>
 
           <div class="mcp-permit">
-            <p class="mcp-permit__q">Permitir que o Claude use <b>criar_automacao</b>?</p>
+            <p class="mcp-permit__q">{permAntes}<b>criar_automacao</b>{permDepois}</p>
             <span class="mcp-permit__btns" aria-hidden="true">
-              <span class="mcp-permit__btn is-primary">Permitir uma vez</span>
-              <span class="mcp-permit__btn">Sempre permitir</span>
+              <span class="mcp-permit__btn is-primary">{t.permitirUma}</span>
+              <span class="mcp-permit__btn">{t.permitirSempre}</span>
             </span>
           </div>
 
-          <p class="mcp-say mcp-say--done"><img class="mcp-avatar" src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" /><span><b>Pronto, está no ar.</b> Automação “CUPOM” ligada nesse reel. Quer que eu avise quando o primeiro comentário chegar?</span></p>
+          <p class="mcp-say mcp-say--done"><img class="mcp-avatar" src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" /><span set:html={t.pronto} /></p>
 
-          <div class="mcp-app__input" aria-hidden="true"><span>Responder ao Claude…</span><i></i></div>
+          <div class="mcp-app__input" aria-hidden="true"><span>{t.responder}</span><i></i></div>
         </div>
       </div>
-      <figcaption>Conversa ilustrativa. As ferramentas e o pedido de permissão são os do conector.</figcaption>
+      <figcaption>{t.legenda}</figcaption>
     </figure>
   </div>
 </section>

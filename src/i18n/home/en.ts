@@ -1,0 +1,241 @@
+import type { CopyHome } from "./pt";
+
+/** Copy da home em inglês. Mesmas chaves do pt.ts (ver as regras lá). */
+export const en: CopyHome = {
+  meta: {
+    title: "Notifiquei — Instagram comment and DM automation",
+    description:
+      "Auto-reply to Instagram comments, DMs and story replies in your own voice, on Meta's official API. Turn a comment into a DM with your link. Instagram + TikTok in one plan.",
+    skip: "Skip to content",
+    navLangLabel: "Choose language",
+    navComecar: "Get started",
+  },
+
+  nav: [
+    { href: "/en#plataforma", label: "Features" },
+    { href: "/en#como", label: "How it works" },
+    { href: "/en#mcp", label: "Claude + MCP" },
+    { href: "/en#planos", label: "Pricing" },
+  ],
+
+  hero: {
+    canais: { nota: "ON AUTOPILOT" },
+    titulo: ["Your next", "customer is", "in your DMs."],
+    lead: 'Turn comments into conversations that sell. Automate your Instagram and TikTok with messages that sound like <strong>you.</strong>',
+    ctaBr: "Start free",
+    ctaIntl: "Get started",
+    verNaPratica: "See it in action",
+    microBr: "Free forever. No card.",
+    microIntl: "7-day guarantee. Cancel anytime.",
+    fotoAlt: "Creator looking at her phone, lit by the screen, in a dark room",
+  },
+
+  conversa: {
+    topo: "The conversation happens.",
+    pausar: "Pause animation",
+    enviado: "Sent automatically",
+    rodape: "Illustrative conversations",
+    respondeu: "Notifiquei replied for you",
+    exemplos: [
+      { inicial: "J", nome: "julia", origem: "commented on your post", pergunta: "WANT IT! Can you send the link? 😍", resposta: "Hey Julia! Here's that look, picked out just for you. I think you'll love it 💕", link: "Show me the look", rotulo: "Your next favorite look", obrigada: "That's the one! Thank you 💖" },
+      { inicial: "M", nome: "matt", origem: "sent you a DM", pergunta: "GUIDE 🙌 I want to start!", resposta: "Hey Matt! Here's the guide you asked for. Tell me what you think!", link: "Open my guide", rotulo: "Your content, one tap away", obrigada: "Saved it already. Thanks! 🙌" },
+      { inicial: "B", nome: "bea", origem: "replied to your story", pergunta: "Love it! Where can I find it? 💕", resposta: "This one's a favorite of mine! Dropping the link here so you can take a look ✨", link: "Take a look", rotulo: "The recommendation you wanted", obrigada: "Found it! That's the one 😍" },
+    ],
+  },
+
+  autoridade: {
+    kicker: "ACCOUNTS CONNECTED TO NOTIFIQUEI",
+    titulo: "Big accounts\nare already here.",
+    lead: "The size of the audience already\ntalking through the platform.",
+    milhoes: "million",
+    legenda: "followers combined\nacross connected accounts",
+  },
+
+  provaMarcas: "More conversations in the daily routine of brands like",
+
+  publicos: {
+    kicker: "BUILT FOR ANYONE WITH SOMETHING TO SHARE",
+    titulo: "Someone out there wants\n{hl}exactly what you have.{/hl}",
+    lead: "Your next customer, student or fan could be one message away.",
+    verComo: "See how it works",
+    cards: [
+      { tag: "CREATORS", titulo: "Your content opens doors. And conversations.", texto: "Deliver your material, promote your course and get closer to the people who follow you.", alt: "Creator filming content on his phone in his workspace" },
+      { tag: "SHOPS AND BUSINESSES", titulo: "From “do you have my size?” to checkout.", texto: "Answer the interest right away and take the customer straight to the product they want.", alt: "Fashion creator showing a pink shirt and light-colored pants" },
+      { tag: "AFFILIATES", titulo: "You recommend. Your link goes with it.", texto: "Turn the curiosity on your post into a click on your affiliate link.", alt: "Affiliate filming a product recommendation on her phone" },
+    ],
+  },
+
+  demo: {
+    titulo: "Turn interest\ninto new sales.",
+    lead: "Take everyone who interacts with your content straight to your offer, with automatic replies on comments, stories and DMs.",
+    escolha: "Pick an option and see it in action",
+    ctaBr: "Build my automation",
+    ctaIntl: "Get started",
+    emAcao: "Your automation in action",
+    exemplo: "EXAMPLE",
+    marca: "your.brand",
+    legenda: "The look you all asked for.",
+    digitando: "Typing",
+    respondeuCom: "Replied with Notifiquei",
+    enviado: "Sent automatically",
+    fechoSub: "And you only find out later, in the dashboard.",
+    cenas: [
+      { chamada: "Comment WANT and I'll send you the link 💕", rotulo: "julia commented", texto: "WANT 😍", resposta: "Hey Julia! This look is so you 💕 Here's the link with all the details.", link: "Show me the look", fecho: "Commented. Received." },
+      { chamada: "Like the look? Reply to this story 💕", rotulo: "julia replied to the story", texto: "Where can I find it? 😍", resposta: "Hey Julia! So glad you liked it 💕 Here's the link to the look from the story, just for you.", link: "See the story look", fecho: "Replied. Received." },
+      { chamada: "DM me the word LOOK 💕", rotulo: "julia sent a DM", texto: "LOOK 💕", resposta: "Hey! Looking for the look from the last post? 💕 Just tap here to see all the details and pick yours.", link: "See all the details", fecho: "Messaged. Received." },
+    ],
+    gatilhos: [
+      { nome: "Comment", titulo: "They commented? The conversation started.", texto: "A “want”, “link” or “how much” becomes a message in the DMs. You choose the word and the reply." },
+      { nome: "Story", titulo: "Your story deserves a follow-up.", texto: "Someone replied to your story? Keep the conversation going automatically and hand your link to whoever showed interest." },
+      { nome: "DM", titulo: "One DM. Plenty of possibilities.", texto: "Answer keywords with the right message. Send an offer, a file or the next step." },
+    ],
+  },
+
+  mcp: {
+    kicker: "MCP CONNECTOR",
+    titulo: "Ask in plain English.\n{hl}The automation comes out ready.{/hl}",
+    lead: "Every plan comes with a key that connects Notifiquei to Claude. From there you just talk: it finds the post, builds the automation, shows you a summary and only creates it after your yes.",
+    itens: [
+      "Works in Claude and in any MCP-compatible app",
+      "Lists, creates, edits, turns automations on and off",
+      "Diagnoses what didn't fire, and tells you why",
+      "Asks your permission before touching anything",
+    ],
+    ctaBr: "Get my key",
+    ctaIntl: "See pricing",
+    conectado: "Notifiquei connected",
+    novaConversa: "New chat",
+    conversas: ["Reel automation", "Friday giveaway", "Keyword “guide”"],
+    pedido: "on my latest reel: anyone who comments {hl}COUPON{/hl} gets the shop link in their DMs",
+    achou: "Found yesterday's reel, “behind the scenes of the launch”, with 312 comments. Here's what I put together:",
+    previa: [
+      { rotulo: "Trigger", valor: "Comment with “coupon”" },
+      { rotulo: "On the post", valor: "Replies “Just sent you a DM”" },
+      { rotulo: "In the DMs", valor: "Message + “Get my coupon” button" },
+    ],
+    permissao: "Allow Claude to use {tool}?",
+    permitirUma: "Allow once",
+    permitirSempre: "Always allow",
+    pronto: "<b>Done, it's live.</b> The “COUPON” automation is on for that reel. Want me to let you know when the first comment lands?",
+    responder: "Reply to Claude…",
+    legenda: "Illustrative conversation. The tools and the permission prompt are the connector's own.",
+    aria: "Simulation of a conversation creating an automation through the connector",
+  },
+
+  antesDepois: {
+    kicker: "LESS COPY AND PASTE. MORE TIME FOR YOU.",
+    titulo: "Your DMs can\nrun {hl}a whole new way.{/hl}",
+    antesRotulo: "WITHOUT AUTOMATION",
+    antesTitulo: "Your post blew up.\nSo did your workload.",
+    esperando: ["Got the link?", "How much is it?", "Send me one too!"],
+    antesItens: [
+      "Answering the same question, again.",
+      "Dropping everything for every new DM.",
+      "Leaving interested people waiting.",
+    ],
+    depoisRotulo: "WITH NOTIFIQUEI",
+    depoisTitulo: "Your post blew up.\n{span}Go celebrate.{/span}",
+    enviado: "Link sent in the DMs.",
+    enviadoSub: "One more conversation happening.",
+    depoisItens: [
+      "Automatic replies in your own voice.",
+      "Links reaching everyone who wants to know more.",
+      "Your time back, to create and to sell.",
+    ],
+    cta: "I want that routine",
+  },
+
+  afiliados: {
+    kicker: "FOR ANYONE WHO EARNS BY RECOMMENDING",
+    titulo: "“Comment {hl}WANT{/hl}\nand I'll send it over.”\nThat's it.",
+    lead: "You post the find. Notifiquei delivers your affiliate link to the DMs of every single person who commented. No spending the day copying and pasting.",
+    cta: "Automate my links",
+    tag: "From the comment to your link",
+    comentarioRotulo: "COMMENT RECEIVED",
+    comentario: "I need this find! 😍",
+    respostaTitulo: "Hey! Here's your link 💕",
+    respostaSub: "Sent automatically in the DMs",
+    respostaBotao: "See the find",
+    fecho: "Your content. Your link. Your commission.",
+    marketplaces: "Works with your links from",
+    aria: "Example of an affiliate link being sent",
+  },
+
+  extras: {
+    titulo: "The conversation is only\n{hl}the beginning.{/hl}",
+    lead: "The tools to organize what happens next are right here too.",
+    cards: [
+      { titulo: "Understand every click", texto: "See which automations are taking your audience all the way to your offer." },
+      { titulo: "Change the link once", texto: "Update the destination and every automation you have starts sending the right link." },
+      { titulo: "Run giveaways, no spreadsheet", texto: "Gather everyone who commented the keyword and draw the winner right in the dashboard." },
+    ],
+    iaKicker: "PREFER TO TALK TO AI?",
+    iaTitulo: "Ask Claude for your next automation.",
+    iaTexto: "The dashboard hands you a ready-made kit to create and manage automations just by chatting.",
+    iaCtaBr: "Explore the platform",
+    iaCtaIntl: "See the plans",
+  },
+
+  como: {
+    titulo: "You don't need code.\n{hl}Just a good conversation.{/hl}",
+    lead: "Three steps between your idea and the first automatic reply.",
+    passos: [
+      { titulo: "Connect your account", texto: "Sign in with Instagram through Meta's official login. Your password stays with you." },
+      { titulo: "Make it your way", texto: "Pick a post, the keyword and the message. Or start from a ready-made template." },
+      { titulo: "Done. Go ahead and post.", texto: "Your audience comments, Notifiquei replies. And you follow it all from the dashboard." },
+    ],
+    ctaBr: "Start free",
+    ctaIntl: "Get started",
+    seguranca: "Official connection with Meta. Your password stays with you.",
+  },
+
+  planos: {
+    eyebrow: "Pricing",
+    titulo: "Your audience grows.\n{hl}Your price stays the same.{/hl}",
+    leadBr: "Pick the plan that fits where you are right now. Unlimited contacts on all of them, no surprises on the invoice.",
+    leadIntl: "Pick the plan that fits where you are right now. Unlimited contacts and a fixed price, no surprises on the invoice.",
+    nota: "<strong>2 in 1:</strong> every account connects <strong>Instagram + TikTok</strong> on the same plan — automate both without paying extra.",
+    ciclo: "Billing cycle",
+    mensal: "Monthly",
+    anual: "Yearly",
+    economia: "2 months free",
+    porMes: "/mo",
+    cobradoAno: "billed {valor}/year",
+    maisPopular: "Most popular",
+    garantia: "7-day guarantee · 100% refund",
+    gratisTag: "Free forever",
+    gratisNome: "Free plan",
+    gratisBlurb: "Just want to try it out, no card and no deadline? Start for free and move up whenever you want.",
+    gratisItens: [
+      "Free forever, no card",
+      "Instagram only (no TikTok)",
+      "Up to 200 automatic sends per month",
+      "Messages carry a “⚡ Sent with Notifiquei” watermark",
+    ],
+    gratisCta: "Start free",
+    cartoes: {
+      solo: { blurb: "Starting creator, small operation.", cta: "Start with Solo", itens: ["1 account — Instagram + TikTok", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
+      duo: { blurb: "Two fronts in the same operation.", cta: "Start with Duo", itens: ["2 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
+      pro: { blurb: "For those already scaling.", cta: "Start with Pro", itens: ["5 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
+      business: { blurb: "Agencies and larger operations.", cta: "Start with Business", itens: ["10 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Priority VIP support"] },
+    },
+  },
+
+  faq: {
+    kicker: "ASK AWAY",
+    titulo: "Let's clear up\n{hl}your questions.{/hl}",
+    lead: "If you'd rather talk to a real person, our team is right here.",
+    cta: "Talk to us",
+  },
+
+  final: {
+    bolha: "want it! 💕",
+    kicker: "YOUR NEXT CONVERSATION STARTS HERE",
+    titulo: "Less “I'll get back to you”.\nMore {span}“just sent it”.{/span}",
+    lead: "Your content gets the attention. Notifiquei takes care of the conversation.",
+    ctaBr: "Start free now",
+    ctaIntl: "Choose my plan",
+    microBr: "No card. No deadline. Your way.",
+    microIntl: "7-day guarantee. Your way.",
+  },
+};

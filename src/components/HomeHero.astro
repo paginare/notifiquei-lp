@@ -2,13 +2,17 @@
 import Icon from "./HomeIcon.astro";
 import HomeConversation from "./HomeConversation.astro";
 import { FREE } from "../data/home";
+import { type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["hero"]; conversa: CopyHome["conversa"]; }
+const { t, conversa } = Astro.props;
 ---
 
 <section class="home-hero" aria-labelledby="hero-title">
   <div class="home-hero__photo">
     <img
       src="/assets/home/creator-hero-v3.webp"
-      alt="Criadora olhando para o celular, iluminada pela tela, em um ambiente escuro"
+      alt={t.fotoAlt}
       width="1120"
       height="1400"
       fetchpriority="high"
@@ -20,30 +24,22 @@ import { FREE } from "../data/home";
         <span><Icon name="instagram" size={17} /> Instagram</span>
         <span class="home-hero__channel-dot" aria-hidden="true"></span>
         <span><Icon name="tiktok" size={17} /> TikTok</span>
-        <span class="home-hero__channel-note">NO AUTOMÁTICO</span>
+        <span class="home-hero__channel-note">{t.canais.nota}</span>
       </div>
-      <h1 id="hero-title">
-        <span>Seu próximo</span>
-        <span>cliente está</span>
-        <span>no direct.</span>
-      </h1>
-      <p class="home-hero__lead">
-        Transforme comentários em conversas que vendem.
-        Automatize seu Instagram e TikTok, com mensagens
-        que têm <strong>o seu jeito.</strong>
-      </p>
+      <h1 id="hero-title">{t.titulo.map((linha) => <span>{linha}</span>)}</h1>
+      <p class="home-hero__lead" set:html={t.lead} />
       <div class="home-actions hero__actions">
         <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="hero">
-          Começar grátis <Icon name="arrow" size={21} />
+          {t.ctaBr} <Icon name="arrow" size={21} />
         </a>
         <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="hero">
-          Começar agora <Icon name="arrow" size={21} />
+          {t.ctaIntl} <Icon name="arrow" size={21} />
         </a>
-        <a href="#plataforma" class="home-text-link">Ver na prática <Icon name="diagonal" size={18} /></a>
+        <a href="#plataforma" class="home-text-link">{t.verNaPratica} <Icon name="diagonal" size={18} /></a>
       </div>
-      <p class="home-hero__micro br-only"><Icon name="check" size={15} /> Grátis para sempre. Sem cartão.</p>
-      <p class="home-hero__micro intl-only"><Icon name="check" size={15} /> Garantia de 7 dias. Cancele quando quiser.</p>
-      <HomeConversation />
+      <p class="home-hero__micro br-only"><Icon name="check" size={15} /> {t.microBr}</p>
+      <p class="home-hero__micro intl-only"><Icon name="check" size={15} /> {t.microIntl}</p>
+      <HomeConversation t={conversa} />
       <div class="home-hero__trust">
         <img src="/assets/meta-partner-white.svg" alt="Meta Business Partner" width="148" height="32" />
         <span aria-hidden="true"></span>

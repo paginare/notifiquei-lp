@@ -1,91 +1,89 @@
 ---
 import Icon from "./HomeIcon.astro";
 import { FREE } from "../data/home";
-const triggers = [
-  { key: "comment", name: "Comentário", number: "01", title: "Comentou? A conversa já começou.", text: "Um “quero”, “link” ou “quanto custa” vira uma mensagem no direct. Você escolhe a palavra e a resposta." },
-  { key: "story", name: "Story", number: "02", title: "Seu story merece uma continuação.", text: "Respondeu ao story? Continue a conversa automaticamente e entregue seu link a quem se interessou." },
-  { key: "direct", name: "Direct", number: "03", title: "Um direct. Várias possibilidades.", text: "Responda às palavras-chave com a mensagem certa. Envie uma oferta, um material ou o próximo passo." },
-];
+import { marcar, type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["demo"]; }
+const { t } = Astro.props;
+// As chaves (comment/story/direct) e os números são estrutura, não texto.
+const triggers = t.gatilhos.map((g, i) => ({ ...g, key: ["comment", "story", "direct"][i], number: ["01", "02", "03"][i] }));
+const cena = t.cenas[0];
 ---
 <section class="home-section home-showcase" id="plataforma">
   <div class="container">
     <div class="home-centered-heading">
       <span class="home-section-symbol"><Icon name="chat" size={28} /></span>
-      <h2>Converta o interesse<br /><span class="hl">em novas vendas.</span></h2>
-      <p>Leve quem interage com seu conteúdo até sua oferta, com respostas automáticas em comentários, stories e directs.</p>
+      <h2 set:html={marcar(t.titulo)} />
+      <p>{t.lead}</p>
     </div>
     <div class="demo" id="demo">
       <div class="demo__choices">
-        <div class="demo__controls" role="group" aria-label="Escolha um exemplo de automação">
+        <div class="demo__controls" role="group" aria-label={t.escolha}>
           {triggers.map((trigger, i) => (
             <button
               type="button"
               data-demo={trigger.key}
-              aria-label={trigger.name}
+              aria-label={trigger.nome}
               aria-pressed={i === 0 ? "true" : "false"}
               aria-controls="demo-scene"
             >
-              <span class="demo__choice-heading"><span class="demo__number">{trigger.number}</span><strong>{trigger.title}</strong><span class="demo__choice-plus" aria-hidden="true"></span></span>
-              <span class="demo__choice-copy">{trigger.text}</span>
+              <span class="demo__choice-heading"><span class="demo__number">{trigger.number}</span><strong>{trigger.titulo}</strong><span class="demo__choice-plus" aria-hidden="true"></span></span>
+              <span class="demo__choice-copy">{trigger.texto}</span>
             </button>
           ))}
         </div>
-        <p class="demo__hint">Escolha uma opção e veja na prática <Icon name="diagonal" size={16} /></p>
-        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="demo">Criar minha automação <Icon name="arrow" size={20} /></a>
-        <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="demo">Começar agora <Icon name="arrow" size={20} /></a>
+        <p class="demo__hint">{t.escolha} <Icon name="diagonal" size={16} /></p>
+        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="demo">{t.ctaBr} <Icon name="arrow" size={20} /></a>
+        <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="demo">{t.ctaIntl} <Icon name="arrow" size={20} /></a>
       </div>
       <div class="demo-scene" id="demo-scene" data-active="comment">
-        <div class="demo-scene__top"><span><i></i> Sua automação em ação</span><div><span>EXEMPLO</span><button type="button" data-demo-replay aria-label="Repetir animação da demonstração" hidden><Icon name="replay" size={15} /></button></div></div>
+        <div class="demo-scene__top"><span><i></i> {t.emAcao}</span><div><span>{t.exemplo}</span><button type="button" data-demo-replay aria-label="Repetir animação da demonstração" hidden><Icon name="replay" size={15} /></button></div></div>
         <article class="demo__post" aria-label="Exemplo de publicação no Instagram">
-          <div class="demo__post-head"><img src="/assets/home/creator-fashion-v2.webp" width="32" height="32" alt="" loading="lazy" /><b>sua.marca</b><Icon name="instagram" size={19} /></div>
-          <div class="demo__photo"><img src="/assets/home/creator-fashion-v2.webp" width="480" height="600" alt="Criadora de moda apresentando uma camisa rosa e calça clara" loading="lazy" /><span>O look que vocês pediram.</span></div>
-          <p class="demo__caption" id="demo-caption">Comenta QUERO que eu te mando o link 💕</p>
+          <div class="demo__post-head"><img src="/assets/home/creator-fashion-v2.webp" width="32" height="32" alt="" loading="lazy" /><b>{t.marca}</b><Icon name="instagram" size={19} /></div>
+          <div class="demo__photo"><img src="/assets/home/creator-fashion-v2.webp" width="480" height="600" alt="Criadora de moda apresentando uma camisa rosa e calça clara" loading="lazy" /><span>{t.legenda}</span></div>
+          <p class="demo__caption" id="demo-caption">{cena.chamada}</p>
         </article>
         <div class="demo__comment" id="demo-trigger" aria-live="polite" aria-atomic="true">
           <span class="demo__avatar">J</span>
-          <div><b id="demo-trigger-label">julia comentou</b><span id="demo-trigger-text">QUERO 😍</span></div>
+          <div><b id="demo-trigger-label">{cena.rotulo}</b><span id="demo-trigger-text">{cena.texto}</span></div>
           <Icon name="heart" size={17} />
         </div>
         <div class="demo__connection" aria-hidden="true"><svg viewBox="0 0 115 112" fill="none"><path d="M8 4h53c55 0 44 82 8 82H40m12-12L40 86l12 12" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5" /></svg></div>
-        <div class="demo__typing" data-demo-typing aria-hidden="true"><img src="/assets/favicon.svg" width="27" height="27" alt="" /><span>Digitando</span><span class="demo__typing-dots"><i></i><i></i><i></i></span></div>
+        <div class="demo__typing" data-demo-typing aria-hidden="true"><img src="/assets/favicon.svg" width="27" height="27" alt="" /><span>{t.digitando}</span><span class="demo__typing-dots"><i></i><i></i><i></i></span></div>
         <article class="demo__message" aria-label="Exemplo de resposta automática no direct">
-          <div class="demo__message-head"><img src="/assets/favicon.svg" width="33" height="33" alt="" /><div><b>sua.marca</b><small>Respondeu com Notifiquei</small></div><Icon name="send" size={18} /></div>
+          <div class="demo__message-head"><img src="/assets/favicon.svg" width="33" height="33" alt="" /><div><b>{t.marca}</b><small>{t.respondeuCom}</small></div><Icon name="send" size={18} /></div>
           <div class="demo__bubble" aria-live="polite" aria-atomic="true">
-            <p id="demo-reply">Oii, Julia! Esse look é a sua cara 💕 Aqui está o link com todos os detalhes.</p>
-            <span class="demo__product-link"><Icon name="link" size={17} /><span id="demo-link">Quero ver o look</span><Icon name="diagonal" size={16} /></span>
+            <p id="demo-reply">{cena.resposta}</p>
+            <span class="demo__product-link"><Icon name="link" size={17} /><span id="demo-link">{cena.link}</span><Icon name="diagonal" size={16} /></span>
           </div>
-          <span class="demo__sent"><Icon name="check" size={13} /> Enviado automaticamente</span>
+          <span class="demo__sent"><Icon name="check" size={13} /> {t.enviado}</span>
         </article>
-        <div class="demo__notification"><span><Icon name="bolt" size={20} /></span><div><b>Comentou. Recebeu.</b><small>E você seguiu criando.</small></div><Icon name="check" size={18} /></div>
+        <div class="demo__notification"><span><Icon name="bolt" size={20} /></span><div><b>{cena.fecho}</b><small>{t.fechoSub}</small></div><Icon name="check" size={18} /></div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
+<script define:vars={{ cenas: t.cenas }}>
   const demo = document.getElementById("demo");
-  const examples = {
-    comment: { caption: "Comenta QUERO que eu te mando o link 💕", label: "julia comentou", text: "QUERO 😍", reply: "Oii, Julia! Esse look é a sua cara 💕 Aqui está o link com todos os detalhes.", link: "Quero ver o look", title: "Comentou. Recebeu." },
-    story: { caption: "Gostou do look? Responde esse story 💕", label: "julia respondeu ao story", text: "Onde eu encontro? 😍", reply: "Oi, Julia! Que bom que você gostou 💕 Separei o link do look que apareceu no story pra você.", link: "Ver o look do story", title: "Respondeu. Recebeu." },
-    direct: { caption: "Me chama no direct com a palavra LOOK 💕", label: "julia mandou um direct", text: "LOOK 💕", reply: "Oii! Procurando o look do último post? 💕 É só tocar aqui para ver os detalhes e escolher o seu.", link: "Ver todos os detalhes", title: "Chamou. Recebeu." },
-  };
-  demo?.querySelectorAll<HTMLButtonElement>("[data-demo]").forEach((button) => {
+  const chaves = ["comment", "story", "direct"];
+  demo?.querySelectorAll("[data-demo]").forEach((button) => {
     button.addEventListener("click", () => {
-      const key = button.dataset.demo as keyof typeof examples;
-      const example = examples[key];
-      if (!example) return;
+      const key = button.dataset.demo;
+      const cena = cenas[chaves.indexOf(key)];
+      if (!cena) return;
       demo.querySelectorAll("[data-demo]").forEach((el) => el.setAttribute("aria-pressed", String(el === button)));
-      const content = { "demo-caption": example.caption, "demo-trigger-label": example.label, "demo-trigger-text": example.text, "demo-reply": example.reply, "demo-link": example.link };
-      Object.entries(content).forEach(([id, value]) => {
+      const conteudo = { "demo-caption": cena.chamada, "demo-trigger-label": cena.rotulo, "demo-trigger-text": cena.texto, "demo-reply": cena.resposta, "demo-link": cena.link };
+      Object.entries(conteudo).forEach(([id, valor]) => {
         const el = document.getElementById(id);
-        if (el) el.textContent = value;
+        if (el) el.textContent = valor;
       });
       const scene = document.getElementById("demo-scene");
       if (scene) scene.dataset.active = key;
-      const title = demo.querySelector(".demo__notification b");
-      if (title) title.textContent = example.title;
+      const titulo = demo.querySelector(".demo__notification b");
+      if (titulo) titulo.textContent = cena.fecho;
       demo.dispatchEvent(new CustomEvent("home:demo-change"));
-      (window as any).posthog?.capture?.("home_demo_changed", { trigger: key });
+      window.posthog?.capture?.("home_demo_changed", { trigger: key });
     });
   });
 </script>
