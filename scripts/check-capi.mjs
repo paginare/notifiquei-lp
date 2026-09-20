@@ -39,7 +39,8 @@ const ok = {
   test_event_code: 'TEST123',
 };
 
-assert.equal(await chama(ok), 204);
+// chamada de teste responde 200 com o resultado da Meta e os campos preenchidos
+assert.equal(await chama(ok), 200);
 const { url, corpo } = enviados.pop();
 assert.match(url, /\/v26\.0\/4197456147066821\/events$/);
 assert.equal(corpo.access_token, 'tok'); // trim: pbpaste pode trazer quebra de linha
@@ -66,7 +67,7 @@ assert.equal(semGeo.ct, undefined);
 assert.equal(semGeo.country, undefined);
 
 // marco de rolagem é evento válido
-assert.equal(await chama({ ...ok, event_name: 'Scroll40', custom_data: {} }), 204);
+assert.equal(await chama({ ...ok, event_name: 'Scroll40', custom_data: {} }), 200);
 assert.equal(enviados.pop().corpo.data[0].event_name, 'Scroll40');
 assert.equal(await chama({ ...ok, event_name: 'Scroll30' }), 400);
 
@@ -75,6 +76,10 @@ await chama(ok, { Cookie: '_fbc=fb.1.9.XYZ' });
 assert.equal(enviados.pop().corpo.data[0].user_data.fbc, 'fb.1.9.XYZ');
 
 // o que não pode passar
+// sem código de teste a resposta é 204 e o envio fica em waitUntil
+assert.equal(await chama({ ...ok, test_event_code: undefined }), 204);
+assert.equal(enviados.pop().corpo.test_event_code, undefined);
+
 assert.equal(await chama(ok, { Origin: 'https://evil.com' }), 403);
 assert.equal(await chama({ ...ok, event_name: 'Purchase' }), 400);
 assert.equal(await chama({ ...ok, event_id: 'x' }), 400);

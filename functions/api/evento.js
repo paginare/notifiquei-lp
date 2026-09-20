@@ -85,6 +85,16 @@ export async function onRequestPost({ request, env, waitUntil }) {
     return new Response(null, { status: 204 });
   }
 
+  const user_data = {
+    client_ip_address: request.headers.get('CF-Connecting-IP') || undefined,
+    client_user_agent: request.headers.get('User-Agent') || undefined,
+    fbp: cookie(request, '_fbp'),
+    fbc,
+    ...(await geo(request.cf)),
+  };
+
+  // Código da aba "Testar eventos" do Gerenciador: evento de teste não conta pra campanha.
+  const teste = /^TEST\w{1,20}$/.test(b.test_event_code || '') ? b.test_event_code : undefined;
   const corpo = {
     data: [{
       event_name: b.event_name,
@@ -92,22 +102,29 @@ export async function onRequestPost({ request, env, waitUntil }) {
       event_id: b.event_id,
       action_source: 'website',
       event_source_url: pagina?.href || request.headers.get('Referer') || undefined,
-      user_data: {
-        client_ip_address: request.headers.get('CF-Connecting-IP') || undefined,
-        client_user_agent: request.headers.get('User-Agent') || undefined,
-        fbp: cookie(request, '_fbp'),
-        fbc,
-        ...(await geo(request.cf)),
-      },
+      user_data,
       custom_data,
     }],
-    // Código da aba "Testar eventos" do Gerenciador: evento de teste não conta pra campanha.
-    test_event_code: /^TEST\w{1,20}$/.test(b.test_event_code || '') ? b.test_event_code : undefined,
+    test_event_code: teste,
     access_token: token,
   };
 
+  const enviar = () =>
+    fetch(GRAPH, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
+
+  // Em chamada de teste a resposta da Meta volta pra quem chamou, junto com os
+  // campos de user_data preenchidos — é assim que se confere geolocalização e
+  // cookies sem precisar de log. Visitante de verdade nunca passa por aqui.
+  if (teste) {
+    const r = await enviar();
+    return Response.json(
+      { meta: await r.json().catch(() => null), campos: Object.keys(user_data).filter((k) => user_data[k]) },
+      { status: r.ok ? 200 : 502 },
+    );
+  }
+
   waitUntil(
-    fetch(GRAPH, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) })
+    enviar()
       .then(async (r) => { if (!r.ok) console.error('capi', r.status, await r.text()); })
       .catch((e) => console.error('capi', e.message)),
   );
