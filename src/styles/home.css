@@ -61,7 +61,8 @@
 /* Original campaign photography follows the brand palette, with conversational overlays. */
 .home-hero { position: relative; isolation: isolate; background: #24221f; color: var(--paper); min-height: 825px; overflow: hidden; }
 .home-hero__photo { position: absolute; z-index: -1; inset: 0 0 0 46%; }
-.home-hero__photo > img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
+/* 32%: desce o corte pra manter as mãos e o celular no quadro — é o assunto da foto. */
+.home-hero__photo > img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
 .home-hero__photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #24221f 0%, #24221f20 27%, transparent 60%), linear-gradient(0deg, #24221f80 0%, transparent 55%); }
 .home-hero__inner { position: relative; min-height: 825px; display: flex; align-items: center; padding-top: 138px; padding-bottom: 56px; }
 /* Sem position aqui de propósito: a .hero-chat mora dentro deste bloco (pra cair na
@@ -324,7 +325,7 @@
   .home-hero__inner { padding-top: 96px; padding-bottom: 300px; display: block; }
   .home-hero__copy { width: 100%; max-width: 540px; margin-inline: auto; }
   .home-hero__photo { inset: auto 0 0; height: 420px; }
-  .home-hero__photo > img { object-position: center 32%; }
+  .home-hero__photo > img { object-position: center 26%; }
   .home-hero__photo::after { background: linear-gradient(180deg, #24221f 0%, #24221f15 25%, transparent 55%, #24221f55); }
   .home-hero h1 { font-size: clamp(2.6rem, 11.9vw, 5.2rem); line-height: .95; margin-top: 16px; letter-spacing: -.05em; }
   .home-hero__channels { font-size: 11px; }

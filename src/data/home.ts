@@ -2,15 +2,10 @@ const SRC = "home"; // atribuição A/B: identifica a landing de origem (?src=) 
 export const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
 export const WPP = "https://wa.me/551231995949";
 
-// Snapshot fornecido pelo responsável em 08/09/2026. Sem nome de conta: não temos
-// autorização dos clientes para citá-los na página. Os números abaixo saem do mesmo
-// snapshot e falam de tamanho, não de identidade.
+// Snapshot fornecido pelo responsável em 08/09/2026. Só o total: sem nome de conta
+// e sem a régua de destaques, que o dono pediu para tirar.
 export const connectedAudience = {
   totalFollowers: 48_680_969,
-  maiorConta: 12_851_287,
-  destaques: 5,
-  somaDestaques: 23_204_029,
-  pisoDestaques: 1_873_129,
 };
 
 // Preços por moeda. BRL é o de sempre (Cakto). USD/EUR batem com o catálogo criado

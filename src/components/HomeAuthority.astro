@@ -20,20 +20,6 @@ const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
       </div>
     </div>
 
-    <ul class="authority__profiles" aria-label="Tamanho das contas conectadas">
-      <li>
-        <strong class="authority__name">+{formatMillions(connectedAudience.maiorConta)} milhões</strong>
-        <p class="authority__followers"><span>na maior conta</span> <span>conectada hoje</span></p>
-      </li>
-      <li>
-        <strong class="authority__name">{connectedAudience.destaques} contas</strong>
-        <p class="authority__followers"><span>passam de {formatMillions(connectedAudience.pisoDestaques)} milhões</span> <span>de seguidores cada</span></p>
-      </li>
-      <li>
-        <strong class="authority__name">+{formatMillions(connectedAudience.somaDestaques)} milhões</strong>
-        <p class="authority__followers"><span>somados só</span> <span>nessas cinco</span></p>
-      </li>
-    </ul>
   </div>
 </section>
 
@@ -48,20 +34,10 @@ const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
   .authority__metric > span:first-child { font-size: clamp(5.5rem, 9.4vw, 8.5rem); line-height: 1; letter-spacing: -.075em; }
   .authority__metric > span:last-child { font-size: clamp(1.9rem, 3.2vw, 2.8rem); letter-spacing: -.05em; }
   .authority__metric-label { font-size: 18px; line-height: 1.55; margin-top: 13px; }
-  .authority__profiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 49px; padding-block: 26px; border-block: 1px solid var(--line); }
-  .authority__profiles li { min-width: 0; padding-inline: 23px; border-left: 1px solid var(--line); }
-  .authority__profiles li:first-child { padding-left: 0; border-left: 0; }
-  .authority__profiles li:last-child { padding-right: 0; }
-  .authority__name { display: block; min-height: 2.3em; font-family: var(--font-display); font-size: 21px; font-weight: 700; line-height: 1.15; letter-spacing: -.03em; text-wrap: balance; }
-  .authority__followers { margin-top: 12px; font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
-  .authority__followers > span { display: block; }
-  .authority__followers > span:first-child { white-space: nowrap; }
   @media (max-width: 1100px) {
     .authority__intro { gap: 35px; }
     .authority__total { padding-left: 30px; }
     .authority__metric { gap: 12px; }
-    .authority__profiles li { padding-inline: 15px; }
-    .authority__name { font-size: 19px; }
   }
   @media (max-width: 900px) {
     .authority__intro { grid-template-columns: 1fr 1fr; gap: 25px; }
@@ -69,11 +45,6 @@ const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
     .authority__metric { display: block; }
     .authority__metric > span:last-child { display: block; margin-top: 1px; }
     .authority__metric-label { font-size: 16px; }
-    .authority__profiles { display: block; padding-block: 0; margin-top: 35px; }
-    .authority__profiles li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 20px 0; border-left: 0; }
-    .authority__profiles li + li { border-top: 1px solid var(--line-soft); }
-    .authority__name { min-height: 0; font-size: 21px; text-wrap: initial; }
-    .authority__followers { margin-top: 0; text-align: right; }
   }
   @media (max-width: 600px) {
     .home-authority { padding-block: 53px 22px; }
@@ -87,13 +58,5 @@ const formatMillions = (value: number) => (Math.floor(value / 100_000) / 10)
     .authority__metric > span:first-child { font-size: clamp(4.3rem, 20vw, 6.5rem); }
     .authority__metric > span:last-child { font-size: clamp(1.6rem, 7vw, 2.2rem); }
     .authority__metric-label { font-size: 15px; margin-top: 10px; }
-    .authority__profiles { margin-top: 29px; }
-    .authority__profiles li { gap: 18px; padding-block: 18px; }
-    .authority__name { font-size: 19px; }
-    .authority__followers { font-size: 12px; }
-  }
-  @media (max-width: 350px) {
-    .authority__name { font-size: 17px; }
-    .authority__followers { font-size: 11px; }
   }
 </style>
