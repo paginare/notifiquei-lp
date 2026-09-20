@@ -1,0 +1,96 @@
+---
+import Icon from "./HomeIcon.astro";
+const conversations = [
+  { initial: "J", name: "julia", origin: "comentou no seu post", question: "QUERO! Me manda o link? 😍", answer: "Oii, Julia! Separei esse look pra você. Acho que você vai amar 💕", link: "Quero ver o look", label: "Seu próximo look favorito", thanks: "Era isso! Obrigada 💖", image: "/assets/home/creator-fashion-v2.webp" },
+  { initial: "M", name: "mateus", origin: "mandou um direct", question: "GUIA 🙌 Quero começar!", answer: "Oi, Mateus! Aqui está o guia que você pediu. Depois me conta o que achou!", link: "Acessar meu guia", label: "Seu conteúdo, a um toque", thanks: "Já salvei aqui. Valeu! 🙌", image: "/assets/home/creator-content-v2.webp" },
+  { initial: "B", name: "bia", origin: "respondeu ao seu story", question: "Amei! Onde eu encontro? 💕", answer: "Esse é um dos meus favoritos! Deixei o link aqui pra você conhecer ✨", link: "Quero conhecer", label: "A indicação que você queria", thanks: "Achei! Era esse mesmo 😍", image: "/assets/home/creator-business-v2.webp" },
+];
+---
+
+<div class="hero-chat" data-chat-loop aria-label="Exemplos de conversas automáticas no Instagram">
+  <div class="hero-chat__top">
+    <span><Icon name="instagram" size={16} /> A conversa acontece.</span>
+    <button type="button" data-chat-pause aria-label="Pausar animação" aria-pressed="false" hidden>
+      <span data-pause-icon><Icon name="pause" size={14} /></span>
+      <span data-play-icon hidden><Icon name="play" size={14} /></span>
+    </button>
+  </div>
+  <div class="hero-chat__stage" aria-live="off">
+    {conversations.map((chat, index) => (
+      <article class="hero-chat__exchange" data-chat-exchange aria-hidden={index > 0 ? "true" : "false"}>
+        <div class="hero-chat__incoming" data-chat-incoming>
+          <span class="hero-chat__avatar" aria-hidden="true">{chat.initial}</span>
+          <div><small><b>{chat.name}</b> {chat.origin}</small><p>{chat.question}</p></div>
+          <Icon name="heart" size={18} />
+        </div>
+        <div class="hero-chat__typing" data-chat-typing aria-hidden="true">
+          <img src="/assets/favicon.svg" width="24" height="24" alt="" />
+          <span><i></i><i></i><i></i></span>
+        </div>
+        <div class="hero-chat__answer" data-chat-answer>
+          <div class="hero-chat__sender"><Icon name="spark" size={14} /><span>Notifiquei respondeu por você</span></div>
+          <p>{chat.answer}</p>
+          <div class="hero-chat__link" data-chat-link>
+            <img src={chat.image} width="44" height="54" alt="" loading="lazy" />
+            <span><small>{chat.label}</small><b>{chat.link}</b></span>
+            <Icon name="diagonal" size={19} />
+          </div>
+          <span class="hero-chat__reaction" data-chat-reaction aria-hidden="true">💖</span>
+        </div>
+        <span class="hero-chat__receipt" data-chat-receipt><Icon name="check" size={12} /> Enviado automaticamente</span>
+        <div class="hero-chat__thanks" data-chat-thanks><span class="hero-chat__avatar" aria-hidden="true">{chat.initial}</span><p>{chat.thanks}</p></div>
+      </article>
+    ))}
+  </div>
+  <div class="hero-chat__footer"><span aria-hidden="true"><i data-chat-dot class="is-active"></i><i data-chat-dot></i><i data-chat-dot></i></span><small>Conversas ilustrativas</small></div>
+</div>
+
+<style>
+  .hero-chat { position: absolute; width: 386px; right: var(--gutter); bottom: 29px; z-index: 3; }
+  .hero-chat__top { display: flex; align-items: center; justify-content: space-between; padding-inline: 17px 8px; height: 39px; }
+  .hero-chat__top > span { display: flex; align-items: center; gap: 8px; color: #fff9f4; font-size: 11px; text-shadow: 0 1px 10px #0008; }
+  .hero-chat__top button { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #fff5; border-radius: 50%; color: white; background: #24221f99; backdrop-filter: blur(8px); }
+  .hero-chat__top button:hover { background: #c40953; }
+  .hero-chat__top button[hidden], .hero-chat__top button span[hidden] { display: none; }
+  .hero-chat__top button span { display: flex; }
+  .hero-chat__stage { position: relative; height: 341px; overflow: hidden; margin-inline: -10px; padding-inline: 10px; }
+  .hero-chat__exchange { position: absolute; inset: 12px 10px 0; }
+  .hero-chat__exchange:not(:first-child) { visibility: hidden; opacity: 0; }
+  .hero-chat__incoming { position: absolute; top: 0; left: 0; right: 21px; display: flex; align-items: center; gap: 10px; padding: 15px; background: #fffdfa; color: #24221f; border-radius: 19px 19px 19px 5px; box-shadow: 0 9px 25px #14000c17; transform: rotate(-2deg); }
+  .hero-chat__avatar { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #efd5d8; color: #83515e; font-size: 12px; flex: none; }
+  .hero-chat__incoming > div { flex: 1; }
+  .hero-chat__incoming small { display: block; font-size: 9px; color: #817472; }
+  .hero-chat__incoming small b { font-weight: 600; color: #46363a; }
+  .hero-chat__incoming p { margin-top: 4px; font-size: 12px; line-height: 1.5; }
+  .hero-chat__incoming > svg { flex: none; color: #c40953; }
+  .hero-chat__typing { position: absolute; top: 92px; right: 8px; display: flex; align-items: center; gap: 11px; padding: 12px 17px 12px 12px; border-radius: 16px 16px 4px 16px; background: #fff9f4; opacity: 0; visibility: hidden; }
+  .hero-chat__typing img { border-radius: 7px; }
+  .hero-chat__typing > span { display: flex; align-items: center; gap: 4px; height: 16px; }
+  .hero-chat__typing i { width: 5px; height: 5px; border-radius: 50%; background: #c40953; }
+  .hero-chat__answer { position: absolute; top: 95px; right: 0; left: 34px; padding: 17px; color: #fff; background: linear-gradient(130deg, #921048, #6f0a36); border: 1px solid #f98cb63d; border-radius: 20px 20px 5px 20px; box-shadow: 0 14px 35px #3a021833; transform: rotate(1.3deg); }
+  .hero-chat__sender { display: flex; align-items: center; gap: 6px; color: #ffe3ee; font-size: 9px; }
+  .hero-chat__answer > p { font-size: 13px; line-height: 1.65; margin-top: 10px; min-height: 43px; }
+  .hero-chat__link { display: flex; align-items: center; gap: 10px; margin-top: 13px; padding: 8px; color: #25201f; background: #fffaf7; border-radius: 11px; }
+  .hero-chat__link img { border-radius: 6px; width: 40px; height: 47px; object-fit: cover; object-position: center 20%; }
+  .hero-chat__link > span { flex: 1; }
+  .hero-chat__link small { display: block; color: #82706f; font-size: 8px; line-height: 1.5; }
+  .hero-chat__link b { display: block; font-size: 11px; margin-top: 3px; color: #bc0c51; }
+  .hero-chat__link > svg { flex: none; color: #bc0c51; margin-right: 3px; }
+  .hero-chat__reaction { position: absolute; right: 14px; bottom: -13px; border: 2px solid #f9eff2; border-radius: 20px; background: white; padding: 1px 6px; font-size: 14px; }
+  .hero-chat__receipt { position: absolute; top: 285px; right: 7px; display: flex; align-items: center; gap: 4px; font-size: 8px; color: #fff5ee; }
+  .hero-chat__thanks { position: absolute; top: 280px; left: 8px; display: flex; align-items: center; gap: 7px; }
+  .hero-chat__thanks .hero-chat__avatar { width: 25px; height: 25px; font-size: 9px; }
+  .hero-chat__thanks p { padding: 10px 13px; color: #302421; background: #fffdfa; border-radius: 14px 14px 14px 4px; font-size: 11px; box-shadow: 0 6px 18px #0001; }
+  .hero-chat__footer { display: flex; align-items: center; justify-content: space-between; padding-inline: 15px 6px; }
+  .hero-chat__footer > span { display: flex; gap: 5px; }
+  .hero-chat__footer i { width: 5px; height: 5px; border-radius: 8px; background: #fff5; }
+  .hero-chat__footer i.is-active { width: 15px; background: #ff9abe; }
+  .hero-chat__footer small { font-size: 8px; color: #f4e9df; }
+  @media (max-width: 1100px) { .hero-chat { width: 337px; right: 29px; bottom: 24px; } .hero-chat__answer { left: 25px; } .hero-chat__receipt { top: 302px; } .hero-chat__thanks { top: 285px; } .hero-chat__incoming { right: 11px; padding: 13px; } .hero-chat__incoming p { font-size: 11px; } }
+  @media (min-width: 761px) and (max-width: 860px) { .hero-chat { width: 300px; right: 18px; } .hero-chat__incoming > svg { display: none; } .hero-chat__answer { padding: 14px; left: 17px; } .hero-chat__answer > p { font-size: 12px; } .hero-chat__receipt { top: 306px; } .hero-chat__thanks { top: 275px; } }
+  /* No celular a conversa sai do rodapé do hero e entra no fluxo, logo depois do
+     botão: é o único pedaço da página que mostra o produto funcionando, e antes
+     só aparecia rolando. */
+  @media (max-width: 760px) { .hero-chat { position: static; width: 100%; max-width: 360px; margin: 12px auto 0; right: auto; bottom: auto; } .hero-chat__top { height: 30px; } .hero-chat__top button { width: 30px; height: 30px; } .hero-chat__answer { top: 82px; } .hero-chat__typing { top: 79px; } .hero-chat__top { padding-left: 9px; } .hero-chat__answer { left: 23px; padding: 15px; } .hero-chat__answer > p { font-size: 12px; } .hero-chat__receipt { top: 304px; } .hero-chat__thanks { top: 274px; } .hero-chat__stage { height: 339px; } }
+  @media (max-width: 350px) { .hero-chat { max-width: calc(100% - 32px); right: 16px; } .hero-chat__incoming { padding: 11px; gap: 7px; right: 7px; } .hero-chat__incoming > svg { display: none; } .hero-chat__incoming small { font-size: 8px; } .hero-chat__answer { left: 16px; padding: 13px; } .hero-chat__link { padding: 7px; gap: 7px; } .hero-chat__link small { font-size: 7px; } .hero-chat__thanks p { font-size: 10px; } }
+</style>

@@ -1,0 +1,165 @@
+---
+import Icon from "./HomeIcon.astro";
+import { FREE } from "../data/home";
+const triggers = [
+  { key: "comment", name: "Comentário", number: "01", title: "Comentou? A conversa já começou.", text: "Um “quero”, “link” ou “quanto custa” vira uma mensagem no direct. Você escolhe a palavra e a resposta." },
+  { key: "story", name: "Story", number: "02", title: "Seu story merece uma continuação.", text: "Respondeu ao story? Continue a conversa automaticamente e entregue seu link a quem se interessou." },
+  { key: "direct", name: "Direct", number: "03", title: "Um direct. Várias possibilidades.", text: "Responda às palavras-chave com a mensagem certa. Envie uma oferta, um material ou o próximo passo." },
+];
+---
+<section class="home-section home-showcase" id="plataforma">
+  <div class="container">
+    <div class="home-centered-heading">
+      <span class="home-section-symbol"><Icon name="chat" size={28} /></span>
+      <h2>Converta o interesse<br /><span class="hl">em novas vendas.</span></h2>
+      <p>Leve quem interage com seu conteúdo até sua oferta, com respostas automáticas em comentários, stories e directs.</p>
+    </div>
+    <div class="demo" id="demo">
+      <div class="demo__choices">
+        <div class="demo__controls" role="group" aria-label="Escolha um exemplo de automação">
+          {triggers.map((trigger, i) => (
+            <button
+              type="button"
+              data-demo={trigger.key}
+              aria-label={trigger.name}
+              aria-pressed={i === 0 ? "true" : "false"}
+              aria-controls="demo-scene"
+            >
+              <span class="demo__choice-heading"><span class="demo__number">{trigger.number}</span><strong>{trigger.title}</strong><span class="demo__choice-plus" aria-hidden="true"></span></span>
+              <span class="demo__choice-copy">{trigger.text}</span>
+            </button>
+          ))}
+        </div>
+        <p class="demo__hint">Escolha uma opção e veja na prática <Icon name="diagonal" size={16} /></p>
+        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="demo">Criar minha automação <Icon name="arrow" size={20} /></a>
+        <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="demo">Começar agora <Icon name="arrow" size={20} /></a>
+      </div>
+      <div class="demo-scene" id="demo-scene" data-active="comment">
+        <div class="demo-scene__top"><span><i></i> Sua automação em ação</span><div><span>EXEMPLO</span><button type="button" data-demo-replay aria-label="Repetir animação da demonstração" hidden><Icon name="replay" size={15} /></button></div></div>
+        <article class="demo__post" aria-label="Exemplo de publicação no Instagram">
+          <div class="demo__post-head"><img src="/assets/home/creator-fashion-v2.webp" width="32" height="32" alt="" loading="lazy" /><b>sua.marca</b><Icon name="instagram" size={19} /></div>
+          <div class="demo__photo"><img src="/assets/home/creator-fashion-v2.webp" width="480" height="600" alt="Criadora de moda apresentando uma camisa rosa e calça clara" loading="lazy" /><span>O look que vocês pediram.</span></div>
+          <p class="demo__caption" id="demo-caption">Comenta QUERO que eu te mando o link 💕</p>
+        </article>
+        <div class="demo__comment" id="demo-trigger" aria-live="polite" aria-atomic="true">
+          <span class="demo__avatar">J</span>
+          <div><b id="demo-trigger-label">julia comentou</b><span id="demo-trigger-text">QUERO 😍</span></div>
+          <Icon name="heart" size={17} />
+        </div>
+        <div class="demo__connection" aria-hidden="true"><svg viewBox="0 0 115 112" fill="none"><path d="M8 4h53c55 0 44 82 8 82H40m12-12L40 86l12 12" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5" /></svg></div>
+        <div class="demo__typing" data-demo-typing aria-hidden="true"><img src="/assets/favicon.svg" width="27" height="27" alt="" /><span>Digitando</span><span class="demo__typing-dots"><i></i><i></i><i></i></span></div>
+        <article class="demo__message" aria-label="Exemplo de resposta automática no direct">
+          <div class="demo__message-head"><img src="/assets/favicon.svg" width="33" height="33" alt="" /><div><b>sua.marca</b><small>Respondeu com Notifiquei</small></div><Icon name="send" size={18} /></div>
+          <div class="demo__bubble" aria-live="polite" aria-atomic="true">
+            <p id="demo-reply">Oii, Julia! Esse look é a sua cara 💕 Aqui está o link com todos os detalhes.</p>
+            <span class="demo__product-link"><Icon name="link" size={17} /><span id="demo-link">Quero ver o look</span><Icon name="diagonal" size={16} /></span>
+          </div>
+          <span class="demo__sent"><Icon name="check" size={13} /> Enviado automaticamente</span>
+        </article>
+        <div class="demo__notification"><span><Icon name="bolt" size={20} /></span><div><b>Comentou. Recebeu.</b><small>E você seguiu criando.</small></div><Icon name="check" size={18} /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const demo = document.getElementById("demo");
+  const examples = {
+    comment: { caption: "Comenta QUERO que eu te mando o link 💕", label: "julia comentou", text: "QUERO 😍", reply: "Oii, Julia! Esse look é a sua cara 💕 Aqui está o link com todos os detalhes.", link: "Quero ver o look", title: "Comentou. Recebeu." },
+    story: { caption: "Gostou do look? Responde esse story 💕", label: "julia respondeu ao story", text: "Onde eu encontro? 😍", reply: "Oi, Julia! Que bom que você gostou 💕 Separei o link do look que apareceu no story pra você.", link: "Ver o look do story", title: "Respondeu. Recebeu." },
+    direct: { caption: "Me chama no direct com a palavra LOOK 💕", label: "julia mandou um direct", text: "LOOK 💕", reply: "Oii! Procurando o look do último post? 💕 É só tocar aqui para ver os detalhes e escolher o seu.", link: "Ver todos os detalhes", title: "Chamou. Recebeu." },
+  };
+  demo?.querySelectorAll<HTMLButtonElement>("[data-demo]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.demo as keyof typeof examples;
+      const example = examples[key];
+      if (!example) return;
+      demo.querySelectorAll("[data-demo]").forEach((el) => el.setAttribute("aria-pressed", String(el === button)));
+      const content = { "demo-caption": example.caption, "demo-trigger-label": example.label, "demo-trigger-text": example.text, "demo-reply": example.reply, "demo-link": example.link };
+      Object.entries(content).forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      });
+      const scene = document.getElementById("demo-scene");
+      if (scene) scene.dataset.active = key;
+      const title = demo.querySelector(".demo__notification b");
+      if (title) title.textContent = example.title;
+      demo.dispatchEvent(new CustomEvent("home:demo-change"));
+      (window as any).posthog?.capture?.("home_demo_changed", { trigger: key });
+    });
+  });
+</script>
+
+<style>
+  .demo { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 76px; margin-top: 65px; }
+  .demo__controls { border-top: 1px solid var(--line); }
+  .demo__controls button { width: 100%; text-align: left; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .demo__choice-heading { display: flex; align-items: flex-start; gap: 15px; }
+  .demo__number { font-family: var(--font-mono); font-size: 11px; margin-top: 5px; color: var(--ink-soft); }
+  .demo__choice-heading strong { font-family: var(--font-display); font-size: 25px; line-height: 1.18; letter-spacing: -.025em; font-weight: 700; flex: 1; }
+  .demo__choice-plus { position: relative; width: 14px; height: 14px; margin-top: 7px; flex: none; }
+  .demo__choice-plus::before, .demo__choice-plus::after { content: ''; position: absolute; background: currentColor; }
+  .demo__choice-plus::before { top: 6px; width: 14px; height: 2px; }
+  .demo__choice-plus::after { left: 6px; width: 2px; height: 14px; transition: transform .2s; }
+  .demo__choice-copy { display: none; margin: 15px 20px 0 30px; font-size: 15px; line-height: 1.75; color: var(--ink-soft); }
+  .demo__controls button[aria-pressed='true'] .demo__choice-copy { display: block; }
+  .demo__controls button[aria-pressed='true'] .demo__choice-heading { color: var(--brand-ink); }
+  .demo__controls button[aria-pressed='true'] .demo__choice-plus::after { transform: scaleY(0); }
+  .demo__controls button:hover .demo__choice-heading { color: var(--brand-ink); }
+  .demo__hint { display: flex; gap: 6px; align-items: center; font-size: 11px; margin: 22px 0 29px; color: var(--ink-soft); }
+  .demo-scene { position: relative; min-width: 0; height: 610px; border-radius: 28px; background: #f4d8e1; background-image: radial-gradient(ellipse at 20% 20%, #fff8, transparent 65%); border: 1px solid #ead1db; transition: background-color .4s; }
+  .demo-scene[data-active='story'] { background-color: #e8e0d5; }
+  .demo-scene[data-active='direct'] { background-color: #eadde6; }
+  .demo-scene__top { position: absolute; inset: 23px 25px auto; display: flex; align-items: center; justify-content: space-between; color: #70505b; }
+  .demo-scene__top > span:first-child { display: flex; align-items: center; gap: 7px; font-size: 10px; }
+  .demo-scene__top > div { display: flex; align-items: center; gap: 10px; }
+  .demo-scene__top > div > span { font-size: 8px; letter-spacing: .1em; }
+  .demo-scene__top button { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid #dcbac8; border-radius: 50%; background: #fff8; color: #8f3558; }
+  .demo-scene__top button[hidden] { display: none; }
+  .demo-scene__top button:hover { background: white; border-color: #b9567e; }
+  .demo-scene__top i { width: 6px; height: 6px; background: #296c49; border-radius: 50%; }
+  .demo__post { position: absolute; top: 65px; left: 30px; width: 262px; background: white; border: 1px solid #e6d3d8; border-radius: 15px; box-shadow: 0 14px 30px #67274312; overflow: hidden; }
+  .demo__post-head { display: flex; gap: 8px; align-items: center; padding: 12px; }
+  .demo__post-head img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .demo__post-head b { font-size: 11px; }
+  .demo__post-head svg { margin-left: auto; }
+  .demo__photo { position: relative; }
+  .demo__photo img { width: 100%; height: 245px; object-fit: cover; object-position: center 35%; }
+  .demo__photo > span { position: absolute; bottom: 14px; left: 13px; background: var(--paper); padding: 6px 10px; font-family: var(--font-display); font-size: 14px; font-weight: 700; transform: rotate(-3deg); }
+  .demo__caption { padding: 14px; font-size: 10px; line-height: 1.6; }
+  .demo__comment { position: absolute; top: 120px; right: 20px; width: 225px; display: flex; align-items: center; gap: 9px; padding: 14px; background: #fff; border: 1px solid #e6d3d8; border-radius: 12px; box-shadow: 0 8px 28px #67274312; transform: rotate(4deg); }
+  .demo__avatar { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #f6ded7; font-size: 13px; font-weight: 600; flex: none; }
+  .demo__comment div { flex: 1; }
+  .demo__comment b { display: block; font-size: 9px; }
+  .demo__comment div > span { display: block; font-size: 14px; margin-top: 4px; }
+  .demo__comment > svg { flex: none; }
+  .demo__connection { position: absolute; right: 37px; top: 199px; width: 88px; color: var(--brand-ink); }
+  .demo__typing { position: absolute; top: 306px; right: 25px; display: flex; align-items: center; gap: 10px; padding: 15px; background: white; border: 1px solid #e6d3d8; box-shadow: 0 14px 40px #6727431a; border-radius: 16px 16px 4px 16px; opacity: 0; visibility: hidden; }
+  .demo__typing img { border-radius: 8px; }
+  .demo__typing > span { font-size: 11px; color: var(--ink-soft); }
+  .demo__typing-dots { display: flex; gap: 4px; }
+  .demo__typing-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--brand-ink); }
+  .demo__message { position: absolute; right: 24px; top: 298px; width: 304px; border-radius: 15px; border: 1px solid #e6d3d8; box-shadow: 0 14px 40px #6727431a; background: #fff; padding: 16px; }
+  .demo__message-head { display: flex; align-items: center; gap: 8px; }
+  .demo__message-head img { border-radius: 9px; }
+  .demo__message-head b, .demo__message-head small { display: block; }
+  .demo__message-head b { font-size: 12px; }
+  .demo__message-head small { color: var(--ink-soft); font-size: 9px; margin-top: 2px; }
+  .demo__message-head > svg { margin-left: auto; }
+  .demo__bubble { margin-top: 15px; padding: 14px; background: #f9e8ef; border-radius: 12px 12px 2px 12px; font-size: 13px; line-height: 1.65; }
+  .demo__bubble p { min-height: 65px; }
+  .demo__product-link { display: flex; gap: 7px; align-items: center; padding: 10px; margin-top: 12px; background: white; border-radius: 7px; color: var(--brand-ink); font-size: 11px; font-weight: 600; }
+  .demo__product-link > :last-child { margin-left: auto; }
+  .demo__sent { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 10px; font-size: 9px; color: var(--ink-soft); }
+  .demo__notification { position: absolute; bottom: 20px; left: 25px; display: flex; gap: 10px; align-items: center; background: var(--ink); color: white; padding: 12px 16px 12px 12px; border-radius: 12px; transform: rotate(-3deg); box-shadow: 0 8px 25px #67274320; }
+  .demo__notification > span { padding: 8px; background: var(--brand); color: var(--ink); border-radius: 8px; }
+  .demo__notification b, .demo__notification small { display: block; }
+  .demo__notification b { font-size: 12px; }
+  .demo__notification small { font-size: 10px; margin-top: 2px; color: #cabdb4; }
+  .demo__notification > svg { margin-left: 10px; color: #a7d9bd; }
+  @media (max-width: 1100px) { .demo { gap: 35px; grid-template-columns: .9fr 1.1fr; } .demo__post { left: 20px; width: 235px; } .demo__comment { right: 13px; width: 202px; } .demo__message { right: 17px; width: 282px; } .demo__choice-heading strong { font-size: 23px; } }
+  @media (max-width: 800px) { .demo { grid-template-columns: 1fr; gap: 34px; margin-top: 35px; } .demo__choices { max-width: 570px; width: 100%; margin-inline: auto; } .demo__choices > .btn { display: none; } .demo__choices > .btn.intl-only { display: none !important; } .demo__hint { margin-bottom: 0; } .demo-scene { max-width: 570px; width: 100%; margin-inline: auto; } .demo__post { width: 270px; left: 30px; } .demo__comment { right: 25px; width: 226px; } .demo__message { width: 300px; right: 25px; } }
+  @media (max-width: 480px) { .demo-scene { height: 545px; border-radius: 20px; } .demo-scene__top { inset: 18px 17px auto; } .demo-scene__top > span:first-child { font-size: 9px; } .demo__post { top: 55px; left: 15px; width: 207px; } .demo__photo img { height: 203px; } .demo__photo > span { font-size: 11px; left: 8px; } .demo__post-head { padding: 10px; } .demo__caption { font-size: 9px; padding: 11px; } .demo__comment { top: 96px; right: 12px; width: 180px; padding: 11px; gap: 7px; } .demo__comment b { font-size: 8px; } .demo__comment div > span { font-size: 12px; } .demo__avatar { width: 28px; height: 28px; font-size: 11px; } .demo__connection { top: 172px; right: 14px; width: 76px; } .demo__message { top: 264px; right: 13px; width: 260px; padding: 13px; } .demo__bubble { font-size: 12px; padding: 11px; } .demo__bubble p { min-height: 60px; } .demo__product-link { font-size: 10px; padding: 8px; } .demo__notification { left: 15px; bottom: 18px; padding: 10px; } .demo__notification b { font-size: 11px; } .demo__notification small { font-size: 9px; } .demo__choice-heading strong { font-size: 22px; } .demo__choice-copy { font-size: 14px; } }
+  @media (max-width: 350px) { .demo__post { width: 181px; left: 12px; } .demo__photo img { height: 187px; } .demo__photo > span { font-size: 9px; } .demo__comment { width: 166px; right: 10px; } .demo__message { width: 238px; right: 11px; } .demo__bubble { font-size: 11px; } .demo__notification { bottom: 15px; } .demo__message-head small { font-size: 8px; } }
+  @media (prefers-reduced-motion: reduce) { .demo-scene, .demo__choice-plus::after { transition: none; } }
+</style>

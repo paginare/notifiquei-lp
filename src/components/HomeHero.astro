@@ -1,0 +1,54 @@
+---
+import Icon from "./HomeIcon.astro";
+import HomeConversation from "./HomeConversation.astro";
+import { FREE } from "../data/home";
+---
+
+<section class="home-hero" aria-labelledby="hero-title">
+  <div class="home-hero__photo">
+    <img
+      src="/assets/home/creator-hero-v2.webp"
+      alt="Criadora de blusa rosa gravando um vídeo com o celular em seu estúdio"
+      width="1120"
+      height="1400"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="container home-hero__inner">
+    <div class="home-hero__copy">
+      <div class="home-hero__channels">
+        <span><Icon name="instagram" size={17} /> Instagram</span>
+        <span class="home-hero__channel-dot" aria-hidden="true"></span>
+        <span><Icon name="tiktok" size={17} /> TikTok</span>
+        <span class="home-hero__channel-note">NO AUTOMÁTICO</span>
+      </div>
+      <h1 id="hero-title">
+        <span>Seu próximo</span>
+        <span>cliente está</span>
+        <span>no direct.</span>
+      </h1>
+      <p class="home-hero__lead">
+        Transforme comentários em conversas que vendem.
+        Automatize seu Instagram e TikTok, com mensagens
+        que têm <strong>o seu jeito.</strong>
+      </p>
+      <div class="home-actions hero__actions">
+        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="hero">
+          Começar grátis <Icon name="arrow" size={21} />
+        </a>
+        <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="hero">
+          Começar agora <Icon name="arrow" size={21} />
+        </a>
+        <a href="#plataforma" class="home-text-link">Ver na prática <Icon name="diagonal" size={18} /></a>
+      </div>
+      <p class="home-hero__micro br-only"><Icon name="check" size={15} /> Grátis para sempre. Sem cartão.</p>
+      <p class="home-hero__micro intl-only"><Icon name="check" size={15} /> Garantia de 7 dias. Cancele quando quiser.</p>
+      <HomeConversation />
+      <div class="home-hero__trust">
+        <img src="/assets/meta-partner-white.svg" alt="Meta Business Partner" width="148" height="32" />
+        <span aria-hidden="true"></span>
+        <img src="/assets/tiktok-partner-white.svg" alt="TikTok Marketing Partner" width="100" height="32" />
+      </div>
+    </div>
+  </div>
+</section>

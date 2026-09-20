@@ -2,821 +2,271 @@
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import PlatformShowcase from "../components/PlatformShowcase.astro";
-import Capabilities from "../components/Capabilities.astro";
-import ZoomReveal from "../components/ZoomReveal.astro";
-import CreatorsMarquee from "../components/CreatorsMarquee.astro";
-import DayInLife from "../components/DayInLife.astro";
-import StickyCta from "../components/StickyCta.astro";
+import Icon from "../components/HomeIcon.astro";
+import HomeHero from "../components/HomeHero.astro";
+import HomeAuthority from "../components/HomeAuthority.astro";
+import HomeDemo from "../components/HomeDemo.astro";
+import HomeMcp from "../components/HomeMcp.astro";
+import HomePricing from "../components/HomePricing.astro";
 import LangBanner from "../components/LangBanner.astro";
-import { intlHref } from "../i18n/planos";
-import "../styles/home-sections.css";
+import { FREE, WPP, faqs, clientes, logoDims, jsonLd } from "../data/home";
+import "../styles/home.css";
 
-const SRC = "home"; // atribuição A/B: identifica a landing de origem (?src=) p/ o webhook da Cakto
-const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
-const WPP = "https://wa.me/551231995949";
-
+const navigation = [
+  { href: "/#plataforma", label: "Recursos" },
+  { href: "/#como", label: "Como funciona" },
+  { href: "/criadores", label: "Para criadores" },
+  { href: "/#planos", label: "Planos" },
+];
+const audiences = [
+  { tag: "CRIADORES", title: "Seu conteúdo abre portas. E conversas.", body: "Entregue seu material, divulgue seu curso e aproxime quem acompanha você.", image: "/assets/home/creator-content-v2.webp", alt: "Criador gravando conteúdo com o celular em seu espaço de trabalho", theme: "pink", trigger: "direct" },
+  { tag: "LOJAS E NEGÓCIOS", title: "Do “tem meu tamanho?” ao seu carrinho.", body: "Responda o interesse na hora e leve o cliente até o produto que ele quer.", image: "/assets/home/creator-fashion-v2.webp", alt: "Criadora de moda apresentando uma camisa rosa e calça clara", theme: "cream", trigger: "comment" },
+  { tag: "AFILIADOS", title: "Você indica. Seu link chega junto.", body: "Transforme a curiosidade no seu post em um clique no seu link de afiliado.", image: "/assets/home/creator-business-v2.webp", alt: "Afiliada gravando uma recomendação de produto com o celular", theme: "dark", trigger: "story" },
+];
 const steps = [
-  {
-    n: "01",
-    title: "Conecte seu Instagram",
-    body: "Login pela Meta oficial, em poucos cliques. Zero senha exposta, zero risco, zero enrolação.",
-  },
-  {
-    n: "02",
-    title: "Escolha os gatilhos",
-    body: "Palavra no comentário, DM recebido, resposta de story — você decide o que ativa cada automação.",
-  },
-  {
-    n: "03",
-    title: "Relaxe e venda",
-    body: "Ele responde, qualifica, manda o link e só te chama quando o cliente já está pronto pra comprar.",
-  },
+  { n: "01", icon: "instagram", title: "Conecte sua conta", body: "Entre com seu Instagram pelo login oficial da Meta. Sua senha continua só com você." },
+  { n: "02", icon: "chat", title: "Faça do seu jeito", body: "Escolha um post, a palavra-chave e a mensagem. Ou comece com um template pronto." },
+  { n: "03", icon: "bolt", title: "Pronto. Pode publicar.", body: "Seu público comenta, o Notifiquei responde. E você acompanha tudo pelo painel." },
 ];
-
-// Preços por moeda. BRL é o de sempre (Cakto). USD/EUR batem com o catálogo criado
-// no Stripe em 14/08 — se mexer aqui, mexer lá também, senão a LP promete um valor
-// e o checkout cobra outro.
-const plans = [
-  {
-    name: "Solo",
-    slug: "solo",
-    price: "99",
-    usd: "19",
-    eur: "18",
-    blurb: "Criador iniciante, operação pequena.",
-    hrefM: "https://pay.cakto.com.br/jghakt9_1023509",
-    hrefA: "https://pay.cakto.com.br/ccwxocu",
-    cta: "Começar com Solo",
-    featured: true,
-    features: ["1 conta — Instagram + TikTok", "Automações ilimitadas", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"],
-  },
-  {
-    name: "Pro",
-    slug: "pro",
-    price: "499",
-    usd: "79",
-    eur: "75",
-    blurb: "Pra quem já escalou um pouco.",
-    hrefM: "https://pay.cakto.com.br/3c939t6",
-    hrefA: "https://pay.cakto.com.br/pesb7su",
-    cta: "Começar com Pro",
-    featured: false,
-    features: ["5 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento via chat", "Novidades antes de todo mundo"],
-  },
-  {
-    name: "Business",
-    slug: "business",
-    price: "799",
-    usd: "129",
-    eur: "125",
-    blurb: "Agência e operação grande.",
-    hrefM: "https://pay.cakto.com.br/zkdgyvq",
-    hrefA: "https://pay.cakto.com.br/dfycche",
-    cta: "Começar com Business",
-    featured: false,
-    features: ["10 contas — Instagram + TikTok", "Times e divisão por equipe", "Automações ilimitadas", "Templates completos", "Atendimento VIP prioritário"],
-  },
-];
-
-// Mensalidade exibida no ciclo anual = anual (10x) dividido por 12. Mesma conta das
-// três moedas, pra promessa dos "2 meses grátis" bater em qualquer mercado.
-const mensalNoAnual = (v: string) => String(Math.round((Number(v) * 10) / 12));
-const totalAnual = (v: string) => Number(v) * 10;
-
-// Links e preços internacionais: fonte única em src/i18n/planos.ts (compartilhada
-// com /en e /es). Duplicar aqui já causou divergência antes.
-
-const faqs = [
-  { q: "Isso pode bloquear meu Instagram?", a: "Não. Somos provedores oficiais da Meta e usamos exclusivamente a API oficial do Instagram. Zero automação disfarçada, zero quebra de regra, zero risco de banimento." },
-  { q: "Preciso saber programar?", a: "Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual." },
-  { q: "Dá pra criar automação conversando com o Claude?", a: "Dá. Todo plano tem uma chave de API, e o painel entrega um kit pronto com a sua chave dentro. Você cola esse kit nas instruções de um Projeto no Claude e passa a pedir em português: ele acha o post, monta a automação, mostra o resumo pra você confirmar e liga. Também dá pra listar, ativar e desativar automações pela conversa." },
-  { q: "Dá pra usar como afiliado?", a: "Dá, e é um dos usos mais comuns. Você posta o produto, pede pra comentarem a palavra-chave e o Notifiquei manda o seu link de afiliado no direct de cada pessoa que comentou. Funciona com link de Shopee, Mercado Livre, Amazon, AliExpress, Magalu ou qualquer outro." },
-  { q: "Funciona pra e-commerce?", a: "Sim. Temos clientes vendendo moda, cosméticos, suplementos e produtos físicos em geral. O fluxo ideal muda um pouco, mas tem template pronto pra isso." },
-  { q: "Qual a diferença pro ManyChat?", a: "Mais barato, suporte em português, interface mais simples e foco no mercado brasileiro. Se você já usa ManyChat e tá feliz, não precisa trocar. Se acha complicado ou caro, o Notifiquei foi feito pra você." },
-  { q: "Funciona com poucos seguidores?", a: "Funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores. Conta menor costuma sentir o resultado primeiro." },
-  { q: "Preciso de conta comercial ou profissional?", a: "Sim, uma conta Profissional ou de Criador no Instagram — gratuita de ativar e leva 1 minuto. É exigência da própria API oficial da Meta." },
-  { q: "Funciona com TikTok?", a: "Sim. O Notifiquei automatiza as DMs do TikTok (conta Business) — e cada plano já conecta 1 Instagram + 1 TikTok no mesmo preço. Você automatiza os dois canais sem pagar dobrado." },
-  { q: "Posso cancelar quando quiser?", a: "Sim, sem fidelidade — você cancela a qualquer momento direto pelo painel. E todo plano pago tem garantia de 7 dias: se não rolar, devolvemos 100% do valor." },
-];
-
-// Curado: só logos com fundo transparente e cor real (sem as brancas/fundo-branco).
-const clientes = [
-  "gummy.png", "responda.png", "rosa-selvagem.png",
-  "vert-sophistique.png", "cikiy.svg", "debran.svg",
-];
-// largura intrínseca de cada logo quando renderizado a 30px de altura — evita CLS (unsized-images)
-const logoDims: Record<string, number> = {
-  "gummy.png": 83, "responda.png": 178, "rosa-selvagem.png": 180,
-  "vert-sophistique.png": 51, "cikiy.svg": 59, "debran.svg": 100,
-};
-
-// ---- SEO structured data ----
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://notifiquei.com.br/#org",
-    name: "Notifiquei",
-    legalName: "Notifiquei Tecnologia",
-    url: "https://notifiquei.com.br",
-    logo: "https://notifiquei.com.br/assets/favicon-180.png",
-    description: "Ferramenta brasileira de automação de Instagram (DMs, comentários e stories) pela API oficial da Meta, para criadores e negócios.",
-    taxID: "59.859.848/0001-13",
-    sameAs: [
-      "https://www.instagram.com/notifiquei.com.br/",
-      "https://www.youtube.com/@notifiqueicombr",
-      "https://br.linkedin.com/company/notifiquei",
-    ],
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Notifiquei",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web, iOS, Android",
-    description: "Automação de Instagram e TikTok pela API oficial da Meta: responde comentários e DMs automaticamente, com sorteios pelos comentários e links rastreados. Alternativa brasileira ao ManyChat.",
-    url: "https://notifiquei.com.br",
-    publisher: { "@id": "https://notifiquei.com.br/#org" },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "BRL",
-      lowPrice: "99",
-      highPrice: "799",
-      offerCount: plans.length,
-      offers: plans.map((p) => ({
-        "@type": "Offer",
-        name: `Plano ${p.name}`,
-        price: p.price,
-        priceCurrency: "BRL",
-        url: p.hrefM,
-        availability: "https://schema.org/InStock",
-      })),
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  },
+const resources = [
+  { icon: "chart", title: "Entenda cada clique", text: "Veja quais automações estão levando seu público até a sua oferta." },
+  { icon: "link", title: "Mude o link uma vez só", text: "Atualize o destino e todas as suas automações passam a enviar o link certo." },
+  { icon: "spark", title: "Sorteie sem planilha", text: "Reúna quem comentou a palavra-chave e faça o sorteio direto no painel." },
 ];
 ---
 
 <Base
-  title="Notifiquei — Automação de Instagram pela API oficial da Meta"
-  description="O Notifiquei responde DMs, comentários e stories no Instagram em segundos, com a sua voz, pela API oficial da Meta. Você cria e ele converte."
+  title="Notifiquei — Seu próximo cliente está no direct."
+  description="Transforme comentários em conversas que vendem. Automatize comentários, directs e stories do Instagram com o seu jeito de falar. Conheça o Notifiquei e comece grátis."
   path="/"
   hreflangOf="/"
   jsonLd={jsonLd}
-  heroPoster="/assets/hero-ago26c-poster.webp"
+  heroPoster="/assets/home/creator-hero-v2.webp"
 >
-  <Nav lang="pt-BR" langLabel="Escolher idioma" />
-  {/* Convite de idioma pra quem chega de fora. Qual aparece depende do
-      data-suggest que a Pages Function estampa a partir do país. */}
-  <div data-suggest-only="en"><LangBanner texto="View this page in English" href="/en" /></div>
-  <div data-suggest-only="es"><LangBanner texto="Ver esta página en español" href="/es" /></div>
-
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="hero__bg" aria-hidden="true"></div>
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <span class="hero__badge br-only"><span class="hero__badge-ic" aria-hidden="true">✦</span> Comece grátis · sem cartão</span>
-          <span class="hero__badge intl-only"><span class="hero__badge-ic" aria-hidden="true">✦</span> Garantia de 7 dias · cancele quando quiser</span>
-          <span class="eyebrow is-plain hero__eyebrow">Instagram + TikTok · API oficial</span>
-          <h1 class="hero__title">
-            Responda seus directs e comentários do Instagram <span class="hl">no automático</span>!
-          </h1>
-          <p class="lead hero__lead">
-            Pra criadores e lojas que vendem no Instagram e TikTok. Ele responde comentários,
-            DMs e stories com a <em>sua</em> voz, pela API oficial da Meta, e te chama só quando
-            o cliente já está pronto pra comprar. Você cria e ele converte.
-          </p>
-          <div class="hero__actions">
-            <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-            <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
-          </div>
-          <div class="hero__proof">
-            <span class="hero__avatars" aria-hidden="true">
-              <img src="/assets/creators/c1-nutri.webp" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c3-beleza.webp" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c6-moda.webp" alt="" width="40" height="40" loading="lazy" />
-              <img src="/assets/creators/c2-fitness.webp" alt="" width="40" height="40" loading="lazy" />
-            </span>
-            <span class="hero__proof-txt"><strong>+2.000 criadores</strong> já vendem no automático · pela API oficial da Meta</span>
-          </div>
-        </div>
-
-        <!-- Cartão de automação ao vivo (peça-assinatura) -->
-        <div class="hero__demo" role="img" aria-label="Demonstração de uma automação respondendo um comentário e fechando a venda">
-          <video
-            class="hero__video"
-            src="/assets/hero-ago26c.mp4"
-            poster="/assets/hero-ago26c-poster.webp"
-            data-autoplay
-            muted
-            loop
-            playsinline
-            preload="none"
-            aria-hidden="true"
-          ></video>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROVA SOCIAL ============ -->
-    <section class="proof">
-      <div class="container">
-        <div class="proof__stats">
-          <div>
-            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
-            <span class="proof__num">3s</span><span class="proof__lbl">tempo médio de resposta</span>
-          </div>
-          <div>
-            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
-            <span class="proof__num">24h</span><span class="proof__lbl">vendendo, mesmo dormindo</span>
-          </div>
-          <div>
-            <span class="proof__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-4-.9L3 20l1.3-4.3A8.4 8.4 0 0 1 3 11.5 8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></span>
-            <span class="proof__num">98%</span><span class="proof__lbl">dos comentários respondidos</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ AFILIADOS (subido pra perto do topo) ============ -->
-    <section class="section affil" id="afiliados">
-      <div class="container affil__inner">
-        <div class="affil__copy reveal">
-          <span class="eyebrow is-plain">Para afiliados</span>
-          <h2 class="affil__title">Quem comenta no seu post recebe o seu link de afiliado no direct, <span class="hl">na hora</span>.</h2>
-          <p class="lead">Posta o produto, pede pra comentarem a palavra-chave, e o Notifiquei manda o <strong>seu link de afiliado</strong> no direct de cada pessoa — na hora, sem você copiar e colar link o dia inteiro.</p>
-          <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-          <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
-        </div>
-
-        <div class="affil__demo reveal" aria-hidden="true">
-          <div class="afcard afcard--comment">
-            <span class="afcard__ava">J</span>
-            <div class="afcard__who"><b>joana_ofertas</b> comentou<br /><span class="afcard__txt">"quero o link! 🔗"</span></div>
-          </div>
-          <div class="afcard__arrow"><span>resposta automática na hora</span></div>
-          <div class="afcard afcard--dm">
-            <div class="afcard__dm-top"><span class="afcard__ava afcard__ava--brand">N</span> Direct</div>
-            <p class="afcard__bubble">Oi! 💕 Seu link tá aqui, é só tocar 👇</p>
-            <span class="afcard__link">🔗 shopee.com.br/seu-link-de-afiliado</span>
-          </div>
-        </div>
+  <div class="home-page">
+    <a href="#conteudo" class="home-skip">Pular para o conteúdo</a>
+    <Nav links={navigation} lang="pt-BR" langLabel="Escolher idioma" comecar="Começar agora" />
+    <main id="conteudo">
+      <HomeHero />
+      <div class="home-language-suggestions">
+        <div data-suggest-only="en"><LangBanner texto="View this page in English" href="/en" /></div>
+        <div data-suggest-only="es"><LangBanner texto="Ver esta página en español" href="/es" /></div>
       </div>
 
-      <div class="container affil__marks reveal">
-        <span class="affil__marks-label">Funciona com os links de afiliado de</span>
-        <div class="affil__logos">
-          <img src="/assets/marketplaces/shopee.svg" alt="Shopee" width="1000" height="320" loading="lazy" />
-          <img src="/assets/marketplaces/mercadolivre.svg" alt="Mercado Livre" width="948" height="373" loading="lazy" />
-          <img src="/assets/marketplaces/amazon.svg" alt="Amazon" width="603" height="182" loading="lazy" />
-          <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" width="1719" height="372" loading="lazy" />
-          <img src="/assets/marketplaces/magalu.svg" alt="Magalu" width="490" height="140" loading="lazy" />
-        </div>
-      </div>
-    </section>
+      <HomeAuthority />
 
-    <!-- ============ CRIADORES (faces) ============ -->
-    <CreatorsMarquee />
-
-    <!-- ============ COMO FUNCIONA ============ -->
-    <section class="section section--paper2" id="como">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Como funciona</span>
-          <h2>Você coloca pra rodar em <span class="hl">cinco minutos</span>.</h2>
-          <p class="lead">Você não precisa de dev, time técnico ou tutorial de duas horas. Se a gente soubesse que era tão simples, teria cobrado mais caro.</p>
+      <section class="home-proof" aria-label="Marcas que usam o Notifiquei">
+        <div class="container">
+          <p>Mais conversas na rotina de marcas como</p>
+          <div class="home-proof__logos">
+            {clientes.map((file) => (
+              <img src={`/assets/clientes/${file}`} alt={file.replace(/\.(png|svg)$/, "").replace(/-/g, " ")} width={logoDims[file]} height="30" loading="lazy" />
+            ))}
+          </div>
         </div>
-        <div class="como__split">
-          <ol class="steps steps--stack">
-            {steps.map((s, i) => (
-              <li class="step reveal" style={`--reveal-delay:${i * 90}ms`}>
-                <span class="step__n">{s.n}</span>
-                <h3 class="step__title">{s.title}</h3>
-                <p class="step__body">{s.body}</p>
-              </li>
+      </section>
+
+      <section class="home-section home-audiences">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker"><Icon name="heart" size={17} /> FEITO PARA QUEM TEM ALGO A COMPARTILHAR</span>
+            <h2>Tem gente querendo<br /><span class="hl">o que você tem.</span></h2>
+            <p>Seu próximo cliente, aluno ou fã pode estar a uma mensagem de distância.</p>
+          </div>
+          <div class="home-audience-grid">
+            {audiences.map((audience) => (
+              <article class={`audience-card audience-card--${audience.theme}`}>
+                <div class="audience-card__photo">
+                  <img src={audience.image} alt={audience.alt} width="480" height="600" loading="lazy" />
+                  <span>{audience.tag}</span>
+                </div>
+                <div class="audience-card__copy">
+                  <h3>{audience.title}</h3>
+                  <p>{audience.body}</p>
+                  <a href="#plataforma" data-show-demo={audience.trigger}>Veja como funciona <Icon name="diagonal" size={20} /></a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HomeDemo />
+
+      <HomeMcp />
+
+      <section class="home-section home-before-after">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker">MENOS COPIAR E COLAR. MAIS TEMPO PARA VOCÊ.</span>
+            <h2>Seu direct pode<br />ter <span class="hl">outra rotina.</span></h2>
+          </div>
+          <div class="home-comparison">
+            <article class="home-comparison__before">
+              <span class="home-comparison__label">SEM AUTOMAÇÃO</span>
+              <h3>Seu post bombou.<br />Seu trabalho também.</h3>
+              <div class="waiting-messages" aria-label="Exemplos de perguntas repetidas">
+                <span>Tem o link? <span>👀</span></span>
+                <span>Qual o valor? <span>💬</span></span>
+                <span>Me manda também! <span>🙋</span></span>
+              </div>
+              <ul>
+                <li><Icon name="minus" size={18} /> Responder a mesma pergunta, de novo.</li>
+                <li><Icon name="minus" size={18} /> Parar o que está fazendo a cada direct.</li>
+                <li><Icon name="minus" size={18} /> Deixar quem tem interesse esperando.</li>
+              </ul>
+            </article>
+            <article class="home-comparison__after">
+              <span class="home-comparison__label"><img src="/assets/favicon.svg" alt="" width="25" height="25" /> COM NOTIFIQUEI</span>
+              <h3>Seu post bombou.<br /><span>Pode comemorar.</span></h3>
+              <div class="answered-message"><span><Icon name="check" size={22} /></span><div><b>Link enviado no direct.</b><small>Mais uma conversa acontecendo.</small></div><Icon name="spark" size={25} /></div>
+              <ul>
+                <li><Icon name="check" size={18} /> Respostas automáticas com a sua voz.</li>
+                <li><Icon name="check" size={18} /> Links chegando a quem quer saber mais.</li>
+                <li><Icon name="check" size={18} /> Seu tempo de volta para criar e vender.</li>
+              </ul>
+              <a href={FREE} class="home-text-link br-only" data-home-cta="mid_page">Quero essa rotina <Icon name="arrow" size={19} /></a>
+              <a href="#planos" class="home-text-link intl-only" data-home-cta="mid_page">Quero essa rotina <Icon name="arrow" size={19} /></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-affiliate" id="afiliados">
+        <div class="container">
+          <div class="home-affiliate__grid">
+            <div class="home-affiliate__copy">
+              <span class="home-kicker"><Icon name="link" size={17} /> PARA QUEM GANHA INDICANDO</span>
+              <h2>“Comenta <span class="hl">QUERO</span><br />que eu te mando.”<br />E pronto.</h2>
+              <p>Você posta o achadinho. O Notifiquei entrega o seu link de afiliado no direct de cada pessoa que comentou. Sem passar o dia copiando e colando.</p>
+              <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="affiliate">Quero automatizar meus links <Icon name="arrow" size={20} /></a>
+              <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="affiliate">Quero automatizar meus links <Icon name="arrow" size={20} /></a>
+            </div>
+            <div class="affiliate-visual" aria-label="Exemplo de envio de link de afiliado">
+              <div class="affiliate-visual__tag"><Icon name="bolt" size={18} /> Do comentário para o seu link</div>
+              <div class="affiliate-request"><span>💬</span><div><small>COMENTÁRIO RECEBIDO</small><b>Quero esse achadinho! 😍</b></div></div>
+              <div class="affiliate-path" aria-hidden="true"><span></span><Icon name="arrow" size={22} /></div>
+              <div class="affiliate-reply"><div><img src="/assets/favicon.svg" alt="" width="35" height="35" /><span><b>Oii! Seu link chegou 💕</b><small>Enviado automaticamente no direct</small></span></div><span class="affiliate-reply__link"><Icon name="link" size={20} /> Ver meu achadinho <Icon name="diagonal" size={20} /></span></div>
+              <p>Seu conteúdo. Seu link. Sua comissão.</p>
+            </div>
+          </div>
+          <div class="home-marketplaces">
+            <p>Funciona com os seus links de</p>
+            <div>
+              <img src="/assets/marketplaces/shopee.svg" alt="Shopee" width="1000" height="320" loading="lazy" />
+              <img src="/assets/marketplaces/amazon.svg" alt="Amazon" width="603" height="182" loading="lazy" />
+              <img src="/assets/marketplaces/mercadolivre.svg" alt="Mercado Livre" width="948" height="373" loading="lazy" />
+              <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" width="1719" height="372" loading="lazy" />
+              <img src="/assets/marketplaces/magalu.svg" alt="Magalu" width="490" height="140" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-extras">
+        <div class="container">
+          <div class="home-section-heading"><h2>A conversa é só<br /><span class="hl">o começo.</span></h2><p>As ferramentas para organizar o que acontece depois também estão aqui.</p></div>
+          <div class="home-resource-list">
+            {resources.map((resource) => (
+              <article><span><Icon name={resource.icon} size={26} /></span><h3>{resource.title}</h3><p>{resource.text}</p></article>
+            ))}
+          </div>
+          <div class="home-ai" id="claude">
+            <span class="home-ai__icon"><Icon name="spark" size={29} /></span>
+            <div><span class="home-kicker">PREFERE CONVERSAR COM A IA?</span><h3>Peça sua próxima automação ao Claude.</h3><p>O painel tem um kit pronto para você criar e gerenciar automações pela conversa.</p></div>
+            <a href={FREE} class="home-text-link br-only">Conhecer a plataforma <Icon name="diagonal" size={20} /></a>
+            <a href="#planos" class="home-text-link intl-only">Conhecer os planos <Icon name="diagonal" size={20} /></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-how" id="como">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+            <h2>Você não precisa de código.<br /><span class="hl">Só de uma boa conversa.</span></h2>
+            <p>Três passos entre a sua ideia e a primeira resposta automática.</p>
+          </div>
+          <ol class="home-steps">
+            {steps.map((step) => (
+              <li><div class="home-step__top"><span>{step.n}</span><Icon name={step.icon} size={28} /></div><h3>{step.title}</h3><p>{step.body}</p></li>
             ))}
           </ol>
-          <div class="como__media reveal">
-            <div class="cdemo" aria-hidden="true">
-              <div class="cdemo__bar">
-                <span class="cdemo__dots"><i></i><i></i><i></i></span>
-                <span class="cdemo__rail">
-                  <b class="is-on" data-dot="0">01</b><b data-dot="1">02</b><b data-dot="2">03</b>
-                </span>
-              </div>
-              <div class="cdemo__screen">
-                <!-- 01 · Conecte -->
-                <div class="cstage is-on" data-stage="0">
-                  <span class="cstage__kicker">Conexão oficial</span>
-                  <div class="cacct">
-                    <span class="cacct__av"></span>
-                    <span class="cacct__id"><b>@sua.loja</b><small>Instagram · via Meta</small></span>
-                    <span class="cacct__ok">✓</span>
-                  </div>
-                  <div class="cline"><span class="cline__dot"></span>Sem senha exposta</div>
-                  <div class="cline"><span class="cline__dot"></span>Login em poucos cliques</div>
-                  <div class="cbtn">Conectado <span class="cbtn__ck">✓</span></div>
-                </div>
-                <!-- 02 · Gatilhos -->
-                <div class="cstage" data-stage="1">
-                  <span class="cstage__kicker">Novo gatilho</span>
-                  <div class="crule">
-                    <span class="crule__lbl">Quando comentarem</span>
-                    <span class="crule__chip">"quero"</span>
-                  </div>
-                  <span class="crule__arrow">↓</span>
-                  <div class="crule crule--do">
-                    <span class="crule__lbl">Responder no Direct</span>
-                    <span class="cswitch"><i></i></span>
-                  </div>
-                  <div class="cchips">
-                    <span>DM recebido</span><span>Resposta de story</span><span class="cchips__more">+4</span>
-                  </div>
-                </div>
-                <!-- 03 · Venda -->
-                <div class="cstage" data-stage="2">
-                  <div class="cmsg cmsg--in">quero!! 🔥</div>
-                  <div class="cmsg cmsg--out">Oi! Seu link com desconto 👉 <b>notifiquei.me/promo</b></div>
-                  <div class="ctoast"><span class="ctoast__ic">✓</span> Lead qualificado · link enviado</div>
-                </div>
-              </div>
-            </div>
+          <div class="home-how__actions">
+            <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="steps">Começar grátis <Icon name="arrow" size={20} /></a>
+            <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="steps">Começar agora <Icon name="arrow" size={20} /></a>
+            <span><Icon name="shield" size={18} /> Conexão oficial com a Meta. Sua senha fica com você.</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ VEJA EM AÇÃO ============ -->
-    <section class="section inaction">
-      <div class="container inaction__inner">
-        <div class="inaction__copy">
-          <div class="section-head reveal">
-            <span class="eyebrow">Veja em ação</span>
-            <h2>Um comentário vira <br class="br-r" />venda em segundos.</h2>
-            <p class="lead">É a mesma pergunta com dois finais possíveis. No Instagram, quem responde primeiro fica com o cliente, e o Notifiquei garante que esse seja você.</p>
+      <HomePricing />
+
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">PODE PERGUNTAR</span>
+            <h2>Vamos tirar<br /><span class="hl">suas dúvidas?</span></h2>
+            <p>Se preferir uma conversa de verdade, nosso time está por aqui.</p>
+            <a href={WPP} class="home-text-link">Falar com a gente <Icon name="diagonal" size={20} /></a>
           </div>
-          <div class="outcomes reveal">
-            <div class="outcome outcome--lose">
-              <span class="outcome__tag">Sem Notifiquei</span>
-              <b>🥲 Venda perdida em 6 horas</b>
-            </div>
-            <div class="outcome outcome--win">
-              <span class="outcome__tag">Com Notifiquei</span>
-              <b>🎉 Venda fechada em 1 minuto</b>
-            </div>
-          </div>
-        </div>
-        <div class="inaction__video reveal">
-          <video
-            class="conversa-video"
-            src="/assets/demo-conversa-ago26.mp4"
-            poster="/assets/demo-conversa-ago26-poster.webp"
-            data-autoplay muted loop playsinline preload="none" aria-hidden="true"
-          ></video>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ UM DIA COMUM (split pinned) ============ -->
-    <DayInLife />
-
-    <!-- ============ DENTRO DA PLATAFORMA ============ -->
-    <PlatformShowcase />
-
-    <!-- ============ ZOOM (scroll travado) — separado da DayInLife pela Plataforma ============ -->
-    <ZoomReveal />
-
-    <!-- ============ CAPACIDADES ============ -->
-    <Capabilities />
-
-    <!-- ============ MONTE PELO CLAUDE (API de parceiros) ============ -->
-    <section class="section claudeai" id="claude">
-      <div class="container claudeai__inner">
-        <div class="claudeai__copy reveal">
-          <span class="eyebrow">Novo · pra quem usa IA</span>
-          <h2 class="claudeai__title">Não quer nem montar o fluxo? <span class="hl">Peça pro Claude</span>.</h2>
-          <p class="lead">
-            Todo plano tem uma chave de API. Você copia o kit pronto no painel, cola nas
-            instruções de um Projeto no <strong>Claude</strong>, e a partir dali é só conversar
-            em português: ele escolhe o post, monta a automação e liga pra você.
-          </p>
-          <ul class="claudeai__list">
-            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Um botão no painel copia o kit com a sua chave dentro</li>
-            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Ele sempre mostra o resumo e pede seu OK antes de criar</li>
-            <li><span class="claudeai__tick" aria-hidden="true">✓</span> Dá pra listar, ligar e desligar automação pela conversa</li>
-            <li class="br-only"><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, inclusive no grátis</li>
-            <li class="intl-only"><span class="claudeai__tick" aria-hidden="true">✓</span> Incluso em todos os planos, sem custo extra</li>
-          </ul>
-          <p class="claudeai__note">
-            Tem sistema próprio? A mesma chave serve pra plugar direto na sua aplicação.
-          </p>
-        </div>
-
-        <div class="claudeai__demo reveal" aria-hidden="true">
-          <div class="cwin">
-            <div class="cwin__bar"><span class="cwin__dots"><i></i><i></i><i></i></span><span class="cwin__url">claude · automações instagram</span></div>
-            <div class="cchat">
-              <div class="cbub cbub--me">cria uma automação no meu último reel: quem comentar QUERO recebe o link da promo no direct</div>
-              <div class="cbub cbub--ai">
-                Achei o Reel de ontem — “kit verão com 30% off”. Antes de criar, confirma:
-                <span class="crec">
-                  <span class="crec__l"><b>Conta</b><i>@sua.loja</i></span>
-                  <span class="crec__l"><b>Dispara com</b><i>QUERO</i></span>
-                  <span class="crec__l"><b>No comentário</b><i>“te chamei no direct 💛”</i></span>
-                  <span class="crec__l"><b>No direct</b><i>link + botão “quero esse”</i></span>
-                </span>
-                Pode criar?
-              </div>
-              <div class="cbub cbub--me">pode</div>
-              <div class="cbub cbub--ai cbub--ok"><span class="cbub__ic">✓</span> Criada e ativa. Já está valendo pros próximos comentários.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA DO MEIO ============ -->
-    <section class="section midcta">
-      <div class="container container--narrow midcta__inner reveal">
-        <span class="eyebrow is-plain">Pronto quando você estiver</span>
-        <h2 class="midcta__title">Quem responde primeiro leva a venda,<br class="br-r" /> e essa pessoa pode <span class="hl">ser você</span>.</h2>
-        <div class="midcta__actions">
-          <a href="#planos" class="btn btn--brand btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-          <a href="#planos" class="btn btn--brand btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
-        </div>
-        <p class="midcta__sub br-only">Grátis pra sempre · sem cartão</p>
-        <p class="midcta__sub intl-only">Garantia de 7 dias · devolução 100%</p>
-      </div>
-    </section>
-
-    <!-- ============ POR QUE API OFICIAL ============ -->
-    <section class="section section--ink on-ink risk">
-      <div class="container">
-        <div class="section-head section-head--center reveal">
-          <span class="eyebrow">Por que API oficial importa</span>
-          <h2>Tudo pela API oficial da Meta,<br class="br-r" /> <span class="hl">sem risco de punição ou banimento</span>.</h2>
-          <p class="lead" style="color:var(--on-ink-soft)">Menos alcance, anúncio até 3× mais caro, conta banida — é o preço de automação que a Meta proíbe. O Notifiquei é 100% API oficial: você vende sem arriscar seu perfil.</p>
-        </div>
-        <div class="risk__grid">
-          <article class="risk__card risk__card--bad reveal">
-            <h3 class="risk__title">⚠ Ferramentas não-oficiais</h3>
-            <ul class="risk__list">
-              <li>Punições silenciosas — menos alcance, menos visualizações</li>
-              <li>Anúncios até 3× mais caros depois de uma punição</li>
-              <li>Risco real de banimento temporário ou permanente</li>
-              <li>Acesso revogado sem aviso prévio</li>
-            </ul>
-          </article>
-          <article class="risk__card risk__card--good reveal" style="--reveal-delay:120ms">
-            <h3 class="risk__title">✓ Com Notifiquei (API oficial)</h3>
-            <ul class="risk__list">
-              <li>Integração 100% aprovada pela Meta — dentro das regras</li>
-              <li>Sem risco de punição, banimento ou perda de alcance</li>
-              <li>Suas métricas e anúncios seguem normais</li>
-              <li>Atualiza sozinho quando a Meta muda as regras</li>
-            </ul>
-          </article>
-        </div>
-        <p class="risk__seal reveal">
-          <span class="risk__seal-dot"></span> Notifiquei é parceiro certificado da Meta. Cada automação aqui está dentro das regras — e seu perfil fica protegido enquanto você vende.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ DEPOIMENTOS ============ -->
-    <section class="section section--ink on-ink testi">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Quem já usa</span>
-          <h2>O que dizem os criadores que <br class="br-r" /><span class="hl">já usam o Notifiquei</span>.</h2>
-        </div>
-        <figure class="quote reveal">
-          <blockquote>
-            “Antes eu perdia vários comentários porque não conseguia responder rápido. Hoje o Notifiquei faz isso por mim e eu só falo com quem já quer comprar. Muito mais simples e acessível que o ManyChat.”
-          </blockquote>
-          <figcaption>
-            <span class="tcard__ava" data-initial="L"></span>
-            <span class="quote__who"><strong>Leid Medeiros</strong><span>@leidconsultoria</span></span>
-          </figcaption>
-        </figure>
-
-        {/* PLACEHOLDER: confirmar/substituir pelas palavras reais dos clientes */}
-        <div class="tgrid reveal">
-          <figure class="tcard">
-            <blockquote>“A gente vivia perdendo venda no comentário porque não dava conta de responder todo mundo a tempo. Agora chega um ‘quero’ e o cliente já recebe o link no direct na hora. Foi o pulo do gato pra gente.”</blockquote>
-            <figcaption><span class="tcard__ava" data-initial="G"></span><span class="tcard__who"><strong>Gummy</strong><span>@gummy</span></span></figcaption>
-          </figure>
-          <figure class="tcard">
-            <blockquote>“O que me convenceu foi não parecer robô. Configurei a resposta do meu jeito e meu público nem desconfia que não sou eu ali. Voltei a ter tempo pra gravar em vez de ficar grudado no direct.”</blockquote>
-            <figcaption><span class="tcard__ava" data-initial="S"></span><span class="tcard__who"><strong>Sucesso na Rede</strong><span>@sucessonarede</span></span></figcaption>
-          </figure>
-          <figure class="tcard">
-            <blockquote>“Achei que ia ser complicado de montar e em uns 5 minutos já tava rodando. O cliente comenta no post e recebe o orçamento na DM sozinho. Pra quem vende todo dia, isso é ouro.”</blockquote>
-            <figcaption><span class="tcard__ava" data-initial="B"></span><span class="tcard__who"><strong>Sul Battery</strong><span>@sulbattery</span></span></figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ MARCAS (logo wall) ============ -->
-    <section class="logostrip">
-      <div class="container">
-        <p class="logostrip__label reveal">Marcas e criadores que já usam</p>
-        <div class="logos reveal" aria-label="Marcas que usam o Notifiquei">
-          <div class="logos__track">
-            {[...clientes, ...clientes, ...clientes].map((file) => (
-              <img class="logos__item" src={`/assets/clientes/${file}`} alt={`${file.replace(/\.(png|svg|jpg)$/, "").replace(/-/g, " ")} — usa o Notifiquei`} loading="lazy" width={logoDims[file]} height={30} />
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ COMPARATIVO DE PREÇOS ============ -->
-    <section class="section section--paper2 compare br-only" id="comparativo">
-      <div class="container">
-        <div class="section-head section-head--center reveal">
-          <span class="eyebrow is-plain">Compare</span>
-          <h2>Notifiquei, ManyChat e Gaio:<br class="br-r" /> <span class="hl">preço e recursos lado a lado</span>.</h2>
-          <p class="lead">No ManyChat e no Gaio, a fatura sobe junto com a sua audiência. Aqui é preço fixo e contatos ilimitados — veja quanto você economiza quando cresce.</p>
-        </div>
-
-        <div class="ctable reveal">
-          <table>
-            <thead>
-              <tr>
-                <th class="ctable__feat"></th>
-                <th>ManyChat</th>
-                <th>Gaio</th>
-                <th class="ctable__us">Notifiquei</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="ctable__price">
-                <th class="ctable__feat">Preço por mês</th>
-                <td>de R$ 249 a R$ 4.309<span class="ctable__sub">sobe com os contatos · em dólar</span></td>
-                <td>de R$ 74,90 a R$ 3.774<span class="ctable__sub">sobe com os contatos</span></td>
-                <td class="ctable__us"><strong>R$ 99 fixo</strong><span class="ctable__sub">não importa quantos contatos</span></td>
-              </tr>
-              <tr><th class="ctable__feat">Contatos ilimitados</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">Preço fixo em real</th><td class="no">✗</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">Instagram + TikTok no mesmo plano</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">App nativo (iPhone e Android)</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">Sorteios pelos comentários</th><td class="no">✗</td><td class="no">✗</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">Suporte e produto em português</th><td class="no">✗</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
-              <tr><th class="ctable__feat">API oficial da Meta</th><td class="yes">✓</td><td class="yes">✓</td><td class="ctable__us yes">✓</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="ctable__note">Preços de ManyChat e Gaio conforme tabelas públicas (jun/2026), por faixa de contatos. No Notifiquei, contatos são ilimitados em todos os planos.</p>
-      </div>
-    </section>
-
-    <!-- ============ PLANOS ============ -->
-    <section class="section" id="planos">
-      <div class="container">
-        <div class="section-head section-head--center reveal">
-          <span class="eyebrow">Planos</span>
-          <h2>Planos com preço fixo e<br class="br-r" /> <span class="hl">contatos ilimitados</span>.</h2>
-          <p class="lead br-only">O ManyChat cobra por contato e em dólar — sua conta cresce junto com a audiência. Aqui é preço fixo em real, com contatos ilimitados: você cresce sem a fatura crescer.</p>
-          <p class="lead intl-only">O ManyChat cobra por contato — sua fatura cresce junto com a audiência. Aqui o preço é fixo, com contatos ilimitados: você cresce sem a fatura crescer.</p>
-          <p class="plans__note"><strong>2 em 1:</strong> cada conta já conecta <strong>Instagram + TikTok</strong> no mesmo plano — automatize os dois sem pagar a mais.</p>
-          <div class="billtoggle reveal" id="billtoggle" role="group" aria-label="Ciclo de cobrança">
-            <button type="button" class="billtoggle__opt" data-cycle="m">Mensal</button>
-            <button type="button" class="billtoggle__opt is-on" data-cycle="a">Anual <span class="billtoggle__save">2 meses grátis</span></button>
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">quero! 💕</span>
+          <span class="home-kicker">SUA PRÓXIMA CONVERSA COMEÇA AQUI</span>
+          <h2>Menos “te respondo depois”.<br />Mais <span>“já te mandei”.</span></h2>
+          <p>Seu conteúdo chama atenção. O Notifiquei cuida da conversa.</p>
+          <div class="home-final__actions">
+            <a href={FREE} class="btn btn--lg br-only" data-home-cta="final_cta">Começar grátis agora <Icon name="arrow" size={22} /></a>
+            <a href="#planos" class="btn btn--lg intl-only" data-home-cta="final_cta">Escolher meu plano <Icon name="arrow" size={22} /></a>
+            <small class="br-only">Sem cartão. Sem prazo. Do seu jeito.</small>
+            <small class="intl-only">Garantia de 7 dias. Do seu jeito.</small>
           </div>
         </div>
-        <div class="plans" id="plans-grid">
-          {plans.map((p, i) => (
-            <article class={`plan reveal ${p.featured ? "plan--featured" : ""}`} style={`--reveal-delay:${i * 90}ms`}>
-              {p.featured && <span class="plan__badge">Mais popular</span>}
-              <h3 class="plan__name">{p.name}</h3>
-              <p class="plan__blurb">{p.blurb}</p>
-              {/* As três moedas saem no HTML; o CSS mostra a do país (ver global.css). */}
-              <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{mensalNoAnual(p.price)}</span><span class="plan__per">/mês</span></p>
-              <p class="plan__price" data-cur="USD"><span class="plan__cur">$</span><span class="plan__amount" data-m={p.usd} data-a={mensalNoAnual(p.usd)}>{mensalNoAnual(p.usd)}</span><span class="plan__per">/mês</span></p>
-              <p class="plan__price" data-cur="EUR"><span class="plan__cur">€</span><span class="plan__amount" data-m={p.eur} data-a={mensalNoAnual(p.eur)}>{mensalNoAnual(p.eur)}</span><span class="plan__per">/mês</span></p>
-
-              <p class="plan__bill" data-cur="BRL" data-bill={`cobrado R$ ${totalAnual(p.price).toLocaleString("pt-BR")}/ano`}>{`cobrado R$ ${totalAnual(p.price).toLocaleString("pt-BR")}/ano`}</p>
-              <p class="plan__bill" data-cur="USD" data-bill={`cobrado $${totalAnual(p.usd).toLocaleString("en-US")}/ano`}>{`cobrado $${totalAnual(p.usd).toLocaleString("en-US")}/ano`}</p>
-              <p class="plan__bill" data-cur="EUR" data-bill={`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}>{`cobrado €${totalAnual(p.eur).toLocaleString("pt-BR")}/ano`}</p>
-
-              <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
-              <a href={intlHref(p.slug, "USD", "a", "pt-BR")} data-href-m={intlHref(p.slug, "USD", "m", "pt-BR")} data-href-a={intlHref(p.slug, "USD", "a", "pt-BR")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
-              <a href={intlHref(p.slug, "EUR", "a", "pt-BR")} data-href-m={intlHref(p.slug, "EUR", "m", "pt-BR")} data-href-a={intlHref(p.slug, "EUR", "a", "pt-BR")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{p.cta}<span class="arr" aria-hidden="true">→</span></a>
-              <ul class="plan__features">
-                {p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
-              </ul>
-              <span class="plan__guarantee">Garantia de 7 dias · devolução 100%</span>
-            </article>
-          ))}
-        </div>
-
-        <!-- Plano grátis para sempre (separado dos pagos) -->
-        <article class="freeplan reveal br-only">
-          <div class="freeplan__head">
-            <span class="freeplan__tag">Grátis para sempre</span>
-            <h3 class="freeplan__name">Plano Grátis</h3>
-            <p class="freeplan__blurb">Quer só experimentar, sem cartão e sem prazo? Comece de graça e suba de plano quando quiser.</p>
-          </div>
-          <ul class="freeplan__features">
-            <li><span class="plan__tick" aria-hidden="true">✓</span> Para sempre, sem cartão</li>
-            <li><span class="plan__tick" aria-hidden="true">✓</span> Só Instagram (sem TikTok)</li>
-            <li><span class="plan__tick" aria-hidden="true">✓</span> Até 200 envios automáticos por mês</li>
-            <li><span class="plan__tick" aria-hidden="true">✓</span> Mensagens com marca d’água “⚡ Enviado com Notifiquei”</li>
-          </ul>
-          <div class="freeplan__cta">
-            <a href={FREE} class="btn btn--ghost btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="section section--paper2" id="faq">
-      <div class="container container--narrow">
-        <div class="section-head section-head--center reveal">
-          <span class="eyebrow is-plain">Dúvidas comuns</span>
-          <h2>Tire suas dúvidas <br class="br-r" /><span class="hl">antes de começar</span>.</h2>
-        </div>
-        <div class="faq reveal">
-          {faqs.map((f, i) => (
-            <details class="faq__item" name="faq" open={i === 0}>
-              <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
-              <div class="faq__a"><p>{f.a}</p></div>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA FINAL ============ -->
-    <section class="section section--brand on-brand finalcta">
-      <span class="finalcta__glyph" aria-hidden="true">“</span>
-      <div class="container container--narrow finalcta__inner reveal">
-        <span class="eyebrow is-plain">Enquanto você lia isso…</span>
-        <h2 class="finalcta__title">Alguém comentou <span class="hl">“quero”</span> no seu post.</h2>
-        <p class="lead br-only">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Comece de graça — sem cartão, sem prazo.</p>
-        <p class="lead intl-only">Quem responde primeiro fica com o cliente. O Notifiquei garante que esse seja sempre você. Garantia de 7 dias — se não rolar, devolvemos 100%.</p>
-        <div class="finalcta__actions">
-          <a href="#planos" class="btn btn--inverse btn--lg br-only">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-          <a href="#planos" class="btn btn--inverse btn--lg intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
-          <a href={WPP} class="btn btn--ghost btn--lg">Falar com a gente</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <Footer />
-  <StickyCta href="#planos" />
+      </section>
+    </main>
+    <Footer />
+  </div>
 
   <script>
-    // Toggle mensal/anual nos planos
-    const toggle = document.getElementById("billtoggle");
-    const grid = document.getElementById("plans-grid");
-    if (toggle && grid) {
-      toggle.addEventListener("click", (e) => {
-        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".billtoggle__opt");
-        if (!btn) return;
-        const annual = btn.dataset.cycle === "a";
-        toggle.querySelectorAll(".billtoggle__opt").forEach((o) => o.classList.toggle("is-on", o === btn));
-        // querySelectorAll, não querySelector: desde que o card virou multi-moeda,
-        // cada um carrega 3 preços e 2 botões (Brasil + internacional). No singular,
-        // o toggle só mexia no primeiro — o BRL, que fica escondido lá fora — e o
-        // gringo via o preço travado no anual. Atualiza todos; o CSS mostra o certo.
-        grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
-          card.querySelectorAll<HTMLElement>(".plan__amount").forEach((amt) => {
-            amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
-          });
-          card.querySelectorAll<HTMLElement>(".plan__bill").forEach((bill) => {
-            bill.textContent = annual ? bill.dataset.bill! : "";
-          });
-          card.querySelectorAll<HTMLAnchorElement>(".plan__cta").forEach((cta) => {
-            cta.href = annual ? cta.dataset.hrefA! : cta.dataset.hrefM!;
-          });
-        });
-      });
-    }
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
 
-    // ===== Como funciona: demo da plataforma auto-rotativa + glow no passo ativo =====
-    // (sem acoplar ao scroll — gira sozinha enquanto visível e destaca o passo correspondente)
-    const como = document.getElementById("como");
-    if (como) {
-      const stages = Array.from(como.querySelectorAll<HTMLElement>(".cstage"));
-      const dots = Array.from(como.querySelectorAll<HTMLElement>(".cdemo__rail b"));
-      const stepEls = Array.from(como.querySelectorAll<HTMLElement>(".step"));
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let active = -1;
-      const setStage = (i: number) => {
-        if (i === active || i < 0 || i >= stages.length) return;
-        active = i;
-        stages.forEach((s, k) => s.classList.toggle("is-on", k === i));
-        dots.forEach((d, k) => d.classList.toggle("is-on", k <= i));
-        stepEls.forEach((s, k) => s.classList.toggle("is-active", k === i));
-      };
-      setStage(0);
-
-      let cycle: number | undefined;
-      const start = () => { if (cycle || reduce) return; cycle = window.setInterval(() => setStage((active + 1) % stages.length), 1400); };
-      const stop = () => { if (cycle) { clearInterval(cycle); cycle = undefined; } };
-
-      if ("IntersectionObserver" in window && !reduce) {
-        const io = new IntersectionObserver(
-          (entries) => entries.forEach((e) => (e.isIntersecting ? start() : stop())),
-          { threshold: 0.3 }
-        );
-        io.observe(como);
-      }
-    }
-  </script>
-
-  <script is:inline>
-    // PostHog event tracking
-    document.addEventListener('DOMContentLoaded', function () {
-      // Hero CTA
-      var heroCta = document.querySelector('.hero__actions .btn--brand');
-      if (heroCta) {
-        heroCta.addEventListener('click', function () {
-          window.posthog?.capture('hero_cta_clicked');
-        });
-      }
-
-      // Mid-page CTA
-      var midCta = document.querySelector('.midcta__actions .btn--brand');
-      if (midCta) {
-        midCta.addEventListener('click', function () {
-          window.posthog?.capture('hero_cta_clicked', { section: 'mid_page' });
-        });
-      }
-
-      // Final CTA (Começar grátis)
-      var finalCtas = document.querySelectorAll('.finalcta__actions .btn--inverse');
-      finalCtas.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          window.posthog?.capture('hero_cta_clicked', { section: 'final_cta' });
-        });
-      });
-
-      // Plan CTAs
-      var planGrid = document.getElementById('plans-grid');
-      if (planGrid) {
-        planGrid.addEventListener('click', function (e) {
-          var cta = e.target.closest('.plan__cta');
-          if (!cta) return;
-          var card = cta.closest('.plan');
-          var planName = card ? (card.querySelector('.plan__name') || {}).textContent : null;
-          var toggle = document.getElementById('billtoggle');
-          var activeBtn = toggle ? toggle.querySelector('.billtoggle__opt.is-on') : null;
-          var cycle = activeBtn ? activeBtn.dataset.cycle : 'a';
-          window.posthog?.capture('plan_cta_clicked', {
-            plan_name: planName ? planName.trim() : null,
-            billing_cycle: cycle === 'a' ? 'annual' : 'monthly',
-          });
-        });
-      }
-
-      // Free plan CTA (signup)
-      var freeCta = document.querySelector('.freeplan__cta .btn');
-      if (freeCta) {
-        freeCta.addEventListener('click', function () {
-          window.posthog?.capture('signup_cta_clicked', { plan_name: 'Grátis', section: 'plans' });
-        });
-      }
-
-      // Affiliate section CTA
-      var affilCta = document.querySelector('.affil .btn--brand');
-      if (affilCta) {
-        affilCta.addEventListener('click', function () {
-          window.posthog?.capture('signup_cta_clicked', { section: 'affiliate' });
-        });
-      }
+    document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+      cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: cta.dataset.homeCta }));
     });
-  </script>
-
-  <script is:inline>
-    // Grava o idioma antes de sair pro Stripe. A URL de retorno do Payment Link
-    // é fixa e não varia por idioma; o /obrigado lê este cookie (via a Pages
-    // Function) pra falar com o comprador na língua dele.
-    document.addEventListener('click', function (e) {
-      var a = e.target && e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
-      if (!a) return;
-      var m = a.getAttribute('href').match(/nqlang_([a-zA-Z-]+)/);
-      if (m) document.cookie = 'nq_lang=' + m[1] + '; path=/; max-age=3600; SameSite=Lax';
+    document.querySelectorAll<HTMLAnchorElement>("[data-show-demo]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const key = link.dataset.showDemo;
+        if (!["comment", "story", "direct"].includes(key ?? "")) return;
+        document.querySelector<HTMLButtonElement>(`#demo [data-demo="${key}"]`)?.click();
+      });
+    });
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly" });
+    });
+    document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "plans" }));
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>('a[href*="buy.stripe.com"]');
+      const language = link?.href.match(/nqlang_([a-zA-Z-]+)/);
+      if (language) document.cookie = `nq_lang=${language[1]}; path=/; max-age=3600; SameSite=Lax`;
     }, true);
   </script>
 </Base>
-
-<style>
-  /* CSS das seções: src/styles/home-sections.css (compartilhado com /en e /es) */
-</style>
