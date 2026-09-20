@@ -20,9 +20,12 @@ const cakto = {
 };
 ---
 <script is:inline define:vars={{ cakto }}>
+  // Lead e InitiateCheckout são eventos padrão da Meta; Scroll<N> é personalizado.
+  var PADRAO = { Lead: 1, InitiateCheckout: 1 };
+
   function envia(nome, dados) {
     var id = window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random().toString(36).slice(2);
-    if (window.fbq) window.fbq("track", nome, dados, { eventID: id });
+    if (window.fbq) window.fbq(PADRAO[nome] ? "track" : "trackCustom", nome, dados, { eventID: id });
     var corpo = JSON.stringify({ event_name: nome, event_id: id, event_source_url: location.href, custom_data: dados });
     // sendBeacon sobrevive à troca de página que o próprio clique provoca.
     if (!(navigator.sendBeacon && navigator.sendBeacon("/api/evento", new Blob([corpo], { type: "application/json" })))) {
@@ -45,12 +48,41 @@ const cakto = {
     }
   }
 
+  // Marcos de leitura, de 20 em 20%. Cada marco dispara uma vez por página; ao
+  // chegar em 100% o ouvinte sai. A conta roda dentro de requestAnimationFrame
+  // porque ler scrollHeight a cada evento de rolagem força recálculo de layout.
+  var marcos = [20, 40, 60, 80, 100];
+  var vistos = {};
+  var agendado = false;
+
+  function mede() {
+    agendado = false;
+    var doc = document.documentElement;
+    var rolavel = doc.scrollHeight - window.innerHeight;
+    var pct = rolavel > 0 ? ((window.scrollY || doc.scrollTop) / rolavel) * 100 : 100;
+    for (var i = 0; i < marcos.length; i++) {
+      var m = marcos[i];
+      if (!vistos[m] && pct >= m - 0.5) {
+        vistos[m] = 1;
+        envia("Scroll" + m, {});
+      }
+    }
+    if (vistos[100]) window.removeEventListener("scroll", aoRolar);
+  }
+
+  function aoRolar() {
+    if (agendado) return;
+    agendado = true;
+    (window.requestAnimationFrame || setTimeout)(mede);
+  }
+
   var ligado = false;
   if (typeof window.nfAoConsentir === "function") {
     window.nfAoConsentir(function () {
       if (ligado) return;
       ligado = true;
       document.addEventListener("click", aoClicar, true);
+      window.addEventListener("scroll", aoRolar, { passive: true });
     });
   }
 </script>

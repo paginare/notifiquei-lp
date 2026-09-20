@@ -6,7 +6,13 @@ import { onRequestPost } from '../functions/api/evento.js';
 const enviados = [];
 globalThis.fetch = async (url, init) => { enviados.push({ url, corpo: JSON.parse(init.body) }); return new Response('{}'); };
 
-async function chama(body, headers = {}) {
+// request.cf é o que a Cloudflare entrega na borda; aqui entra fixo.
+const CF = { city: 'São Paulo', regionCode: 'SP', postalCode: '01310-000', country: 'BR' };
+const sha = async (v) =>
+  [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)))]
+    .map((b) => b.toString(16).padStart(2, '0')).join('');
+
+async function chama(body, headers = {}, cf = CF) {
   const pendentes = [];
   const request = new Request('https://notifiquei.com.br/api/evento', {
     method: 'POST',
@@ -19,6 +25,7 @@ async function chama(body, headers = {}) {
       ...headers,
     },
   });
+  Object.defineProperty(request, 'cf', { value: cf, configurable: true });
   const r = await onRequestPost({ request, env: { META_CAPI_TOKEN: 'tok\n' }, waitUntil: (p) => pendentes.push(p) });
   await Promise.all(pendentes);
   return r.status;
@@ -44,6 +51,24 @@ assert.deepEqual(ev.custom_data, { value: 99, currency: 'BRL', content_name: 'so
 assert.equal(ev.user_data.client_ip_address, '203.0.113.9');
 assert.equal(ev.user_data.fbp, 'fb.1.111.222');
 assert.match(ev.user_data.fbc, /^fb\.1\.\d+\.ABC$/);
+
+// localização do IP entra em hash, sem acento e sem pontuação
+assert.deepEqual(ev.user_data.ct, [await sha('saopaulo')]);
+assert.deepEqual(ev.user_data.st, [await sha('sp')]);
+assert.deepEqual(ev.user_data.zp, [await sha('01310000')]);
+assert.deepEqual(ev.user_data.country, [await sha('br')]);
+
+// sem request.cf (dev local) o evento sai sem a parte de localização (null, não
+// undefined: undefined cairia no valor padrão do parâmetro)
+await chama(ok, {}, null);
+const semGeo = enviados.pop().corpo.data[0].user_data;
+assert.equal(semGeo.ct, undefined);
+assert.equal(semGeo.country, undefined);
+
+// marco de rolagem é evento válido
+assert.equal(await chama({ ...ok, event_name: 'Scroll40', custom_data: {} }), 204);
+assert.equal(enviados.pop().corpo.data[0].event_name, 'Scroll40');
+assert.equal(await chama({ ...ok, event_name: 'Scroll30' }), 400);
 
 // cookie _fbc manda mais que o fbclid da URL
 await chama(ok, { Cookie: '_fbc=fb.1.9.XYZ' });

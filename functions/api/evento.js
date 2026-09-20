@@ -12,12 +12,39 @@
  */
 const PIXEL = '4197456147066821';
 const GRAPH = `https://graph.facebook.com/v26.0/${PIXEL}/events`;
-const EVENTOS = new Set(['Lead', 'InitiateCheckout']);
+// Scroll<N> são eventos personalizados (marcos de leitura da página), o resto é padrão da Meta.
+const EVENTOS = new Set(['Lead', 'InitiateCheckout', 'Scroll20', 'Scroll40', 'Scroll60', 'Scroll80', 'Scroll100']);
 const MOEDAS = new Set(['BRL', 'USD', 'EUR']);
 
 function cookie(req, nome) {
   const m = (req.headers.get('Cookie') || '').match(new RegExp(`(?:^|;\\s*)${nome}=([^;]+)`));
   return m ? decodeURIComponent(m[1]) : undefined;
+}
+
+/** Normalização que a Meta pede antes do hash: minúsculo, sem acento e sem pontuação. */
+const normaliza = (v) =>
+  typeof v === 'string'
+    ? v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '') || undefined
+    : undefined;
+
+async function hash(v) {
+  const limpo = normaliza(v);
+  if (!limpo) return undefined;
+  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(limpo));
+  return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+/**
+ * Localização aproximada que a Cloudflare deduz do IP na borda (request.cf).
+ * Vai em hash, como a Meta exige — é o que melhora a qualidade do pareamento
+ * quando não há e-mail, que é o caso dos eventos anônimos do site.
+ */
+async function geo(cf) {
+  if (!cf) return {};
+  const [ct, st, zp, country] = await Promise.all([
+    hash(cf.city), hash(cf.regionCode || cf.region), hash(cf.postalCode), hash(cf.country),
+  ]);
+  return { ct: ct && [ct], st: st && [st], zp: zp && [zp], country: country && [country] };
 }
 
 export async function onRequestPost({ request, env, waitUntil }) {
@@ -70,6 +97,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
         client_user_agent: request.headers.get('User-Agent') || undefined,
         fbp: cookie(request, '_fbp'),
         fbc,
+        ...(await geo(request.cf)),
       },
       custom_data,
     }],
