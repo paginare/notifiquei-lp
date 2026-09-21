@@ -37,7 +37,15 @@
 .home-page .nav__brand { padding: 0; color: inherit; }
 .home-page .nav__brand svg { width: 175px; height: auto; }
 .home-page .nav__links { gap: 29px; font-size: 13px; font-weight: 600; }
-.home-page .nav__links a, .home-page .nav__login, .home-page .nav__burger { color: inherit; }
+/* #siteNav para ganhar do estilo do próprio componente Nav, que fixa a cor da
+   marca em --ink: sobre o hero escuro a logo precisa acompanhar a barra. */
+.home-page #siteNav .nav__links a, .home-page #siteNav .nav__login,
+.home-page #siteNav .nav__burger, .home-page #siteNav .nav__brand,
+.home-page #siteNav .nav__burger-bar,
+.home-page #siteNav .nav__burger-bar::before,
+.home-page #siteNav .nav__burger-bar::after { color: inherit; background-color: currentColor; }
+.home-page #siteNav .nav__brand, .home-page #siteNav .nav__links a,
+.home-page #siteNav .nav__login, .home-page #siteNav .nav__burger { background-color: transparent; }
 .home-page .nav:not(.is-scrolled):not(.is-open) .nav__links a { color: var(--paper); }
 .home-page .nav:not(.is-scrolled):not(.is-open) .nav__links a:hover { color: #ff8fb6; }
 .home-page .nav.is-scrolled .nav__links a { color: var(--ink-soft); }
@@ -319,7 +327,12 @@
   .home-page .nav__brand svg { width: 143px; }
   .home-page .nav__cta { gap: 9px; }
   .home-page .nav__cta > .lang { display: none; }
-  .home-page .nav__start { font-size: 10px; padding: 12px; }
+  /* Sem botão no topo do celular: ele brigava com o CTA do hero, que está
+     logo abaixo e é o que a gente quer que a pessoa clique. Continua dentro
+     do menu, junto com "Entrar". */
+  .home-page .nav__start { display: none; }
+  /* Sobre o hero (escuro) a barra fica limpa; só ganha fundo ao rolar. */
+  .home-page #siteNav.nav:not(.is-scrolled):not(.is-open) { background: transparent; }
   .home-page .nav__burger { width: 33px; margin-right: -6px; }
   .home-section { padding-block: 68px; }
   .home-page .btn--lg { padding: 17px 22px; min-height: 54px; font-size: 14px; }

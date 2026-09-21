@@ -247,3 +247,35 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
     </main>
     <Footer {...rodape} />
   </div>
+
+
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+
+    document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+      cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: cta.dataset.homeCta }));
+    });
+    document.querySelectorAll<HTMLAnchorElement>("[data-show-demo]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const key = link.dataset.showDemo;
+        if (!["comment", "story", "direct"].includes(key ?? "")) return;
+        document.querySelector<HTMLButtonElement>(`#demo [data-demo="${key}"]`)?.click();
+      });
+    });
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly" });
+    });
+    document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "plans" }));
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>('a[href*="buy.stripe.com"]');
+      const language = link?.href.match(/nqlang_([a-zA-Z-]+)/);
+      if (language) document.cookie = `nq_lang=${language[1]}; path=/; max-age=3600; SameSite=Lax`;
+    }, true);
+  </script>
