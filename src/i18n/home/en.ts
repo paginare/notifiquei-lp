@@ -188,8 +188,8 @@ export const en: CopyHome = {
   planos: {
     eyebrow: "Pricing",
     titulo: "Your audience grows.\n{hl}Your price stays the same.{/hl}",
-    leadBr: "Pick the plan that fits where you are right now. Unlimited contacts on all of them, no surprises on the invoice.",
-    leadIntl: "Pick the plan that fits where you are right now. Unlimited contacts and a fixed price, no surprises on the invoice.",
+    leadBr: "Pick the plan that fits where you are right now. No surprises on the invoice.",
+    leadIntl: "Pick the plan that fits where you are right now. A fixed price, no surprises on the invoice.",
     nota: "<strong>2 in 1:</strong> every account connects <strong>Instagram + TikTok</strong> on the same plan — automate both without paying extra.",
     ciclo: "Billing cycle",
     mensal: "Monthly",
@@ -209,11 +209,12 @@ export const en: CopyHome = {
       "Messages carry a “⚡ Sent with Notifiquei” watermark",
     ],
     gratisCta: "Start free",
+    comuns: "Every plan: unlimited contacts, unlimited automations, the full template library and new features first.",
     cartoes: {
-      solo: { blurb: "Starting creator, small operation.", cta: "Start with Solo", itens: ["1 account — Instagram + TikTok", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
-      duo: { blurb: "Two fronts in the same operation.", cta: "Start with Duo", itens: ["2 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
-      pro: { blurb: "For those already scaling.", cta: "Start with Pro", itens: ["5 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Chat support", "New features first"] },
-      business: { blurb: "Agencies and larger operations.", cta: "Start with Business", itens: ["10 accounts — Instagram + TikTok", "Teams and role separation", "Unlimited automations", "Full template library", "Priority VIP support"] },
+      solo: { blurb: "Starting creator, small operation.", cta: "Start with Solo", itens: ["1 account — Instagram + TikTok", "Unlimited automations and contacts", "Full template library and chat support"] },
+      duo: { blurb: "Two fronts in the same operation.", base: "Everything in Solo, plus:", cta: "Start with Duo", itens: ["2 accounts instead of 1", "Teams: more than one person running it", "Role separation: each person sees their own"] },
+      pro: { blurb: "For those already scaling.", base: "Everything in Solo, plus:", cta: "Start with Pro", itens: ["5 accounts — Instagram + TikTok", "Teams and role separation"] },
+      business: { blurb: "Agencies and larger operations.", base: "Everything in Pro, plus:", cta: "Start with Business", itens: ["10 accounts — Instagram + TikTok", "Priority VIP support"] },
     },
   },
 

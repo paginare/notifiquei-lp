@@ -188,8 +188,8 @@ export const es: CopyHome = {
   planos: {
     eyebrow: "Planes",
     titulo: "Tu audiencia crece.\n{hl}Tu precio sigue fijo.{/hl}",
-    leadBr: "Elige el plan que acompaña tu momento. Contactos ilimitados en todos ellos, sin sorpresas en la factura.",
-    leadIntl: "Elige el plan que acompaña tu momento. Contactos ilimitados y precio fijo, sin sorpresas en la factura.",
+    leadBr: "Elige el plan que acompaña tu momento. Sin sorpresas en la factura.",
+    leadIntl: "Elige el plan que acompaña tu momento. Precio fijo, sin sorpresas en la factura.",
     nota: "<strong>2 en 1:</strong> cada cuenta ya conecta <strong>Instagram + TikTok</strong> en el mismo plan — automatiza los dos sin pagar de más.",
     ciclo: "Ciclo de facturación",
     mensal: "Mensual",
@@ -209,11 +209,12 @@ export const es: CopyHome = {
       "Mensajes con marca de agua “⚡ Enviado con Notifiquei”",
     ],
     gratisCta: "Empezar gratis",
+    comuns: "En todos los planes: contactos ilimitados, automatizaciones ilimitadas, plantillas completas y novedades antes que nadie.",
     cartoes: {
-      solo: { blurb: "Creador que empieza, operación pequeña.", cta: "Empezar con Solo", itens: ["1 cuenta — Instagram + TikTok", "Automatizaciones ilimitadas", "Plantillas completas", "Soporte por chat", "Novedades antes que nadie"] },
-      duo: { blurb: "Dos frentes en la misma operación.", cta: "Empezar con Duo", itens: ["2 cuentas — Instagram + TikTok", "Equipos y división por roles", "Automatizaciones ilimitadas", "Plantillas completas", "Soporte por chat", "Novedades antes que nadie"] },
-      pro: { blurb: "Para quien ya escaló un poco.", cta: "Empezar con Pro", itens: ["5 cuentas — Instagram + TikTok", "Equipos y división por roles", "Automatizaciones ilimitadas", "Plantillas completas", "Soporte por chat", "Novedades antes que nadie"] },
-      business: { blurb: "Agencias y operaciones grandes.", cta: "Empezar con Business", itens: ["10 cuentas — Instagram + TikTok", "Equipos y división por roles", "Automatizaciones ilimitadas", "Plantillas completas", "Soporte VIP prioritario"] },
+      solo: { blurb: "Creador que empieza, operación pequeña.", cta: "Empezar con Solo", itens: ["1 cuenta — Instagram + TikTok", "Automatizaciones y contactos ilimitados", "Plantillas completas y soporte por chat"] },
+      duo: { blurb: "Dos frentes en la misma operación.", base: "Todo lo de Solo, y además:", cta: "Empezar con Duo", itens: ["2 cuentas en lugar de 1", "Equipos: más de una persona al mando", "División por equipo: cada quien ve lo suyo"] },
+      pro: { blurb: "Para quien ya está creciendo.", base: "Todo lo de Solo, y además:", cta: "Empezar con Pro", itens: ["5 cuentas — Instagram + TikTok", "Equipos y división por equipo"] },
+      business: { blurb: "Agencias y operaciones grandes.", base: "Todo lo de Pro, y además:", cta: "Empezar con Business", itens: ["10 cuentas — Instagram + TikTok", "Soporte VIP prioritario"] },
     },
   },
 

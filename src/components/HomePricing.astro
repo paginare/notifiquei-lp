@@ -53,6 +53,7 @@ const anual = (valor: string, moeda: string) =>
                   <a href={intlHref(p.slug, "EUR", "a", "pt-BR")} data-href-m={intlHref(p.slug, "EUR", "m", "pt-BR")} data-href-a={intlHref(p.slug, "EUR", "a", "pt-BR")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
                 </>
               )}
+              {cartao(p.slug).base && <p class="plan__base">{cartao(p.slug).base}</p>}
               <ul class="plan__features">
                 {cartao(p.slug).itens.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
               </ul>
@@ -60,6 +61,8 @@ const anual = (valor: string, moeda: string) =>
             </article>
           ))}
         </div>
+
+        <p class="plans__comuns">{t.comuns}</p>
 
         <!-- Plano grátis para sempre (separado dos pagos) -->
         <article class="freeplan reveal br-only">

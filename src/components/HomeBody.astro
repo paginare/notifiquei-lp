@@ -75,12 +75,6 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
       <section class="home-proof" aria-label={t.provaMarcas}>
         <div class="container">
           <HomeStories titulo={t.perfisTitulo} />
-          <p class="home-proof__marcas">{t.provaMarcas}</p>
-          <div class="home-proof__logos">
-            {clientes.map((file) => (
-              <img src={`/assets/clientes/${file}`} alt={file.replace(/\.(png|svg)$/, "").replace(/-/g, " ")} width={logoDims[file]} height="30" loading="lazy" />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -202,6 +196,17 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
             <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="steps">{t.como.ctaBr} <Icon name="arrow" size={20} /></a>
             <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="steps">{t.como.ctaIntl} <Icon name="arrow" size={20} /></a>
             <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-marcas" aria-label={t.provaMarcas}>
+        <div class="container">
+          <p class="home-marcas__titulo">{t.provaMarcas}</p>
+          <div class="home-proof__logos">
+            {clientes.map((file) => (
+              <img src={`/assets/clientes/${file}`} alt={file.replace(/\.(png|svg)$/, "").replace(/-/g, " ")} width={logoDims[file]} height="30" loading="lazy" />
+            ))}
           </div>
         </div>
       </section>
