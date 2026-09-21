@@ -20,7 +20,6 @@ const anual = (valor: string, moeda: string) =>
           <h2 set:html={marcar(t.titulo)} />
           <p class="lead br-only">{t.leadBr}</p>
           <p class="lead intl-only">{t.leadIntl}</p>
-          <p class="plans__note" set:html={t.nota} />
           <div class="billtoggle reveal" id="billtoggle" role="group" aria-label={t.ciclo}>
             <button type="button" class="billtoggle__opt" data-cycle="m" aria-pressed="false">{t.mensal}</button>
             <button type="button" class="billtoggle__opt is-on" data-cycle="a" aria-pressed="true">{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
@@ -53,25 +52,24 @@ const anual = (valor: string, moeda: string) =>
                   <a href={intlHref(p.slug, "EUR", "a", "pt-BR")} data-href-m={intlHref(p.slug, "EUR", "m", "pt-BR")} data-href-a={intlHref(p.slug, "EUR", "a", "pt-BR")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
                 </>
               )}
-              {cartao(p.slug).base && <p class="plan__base">{cartao(p.slug).base}</p>}
               <ul class="plan__features">
                 {cartao(p.slug).itens.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
+              </ul>
+              <ul class="plan__chips" aria-hidden="true">
+                {cartao(p.slug).chips.map((c) => <li>{c}</li>)}
               </ul>
               <span class="plan__guarantee">{t.garantia}</span>
             </article>
           ))}
         </div>
 
-        <ul class="plans__dif" aria-label="O que nos diferencia">
-          {t.diferenciais.map((d) => (
-            <li><strong>{d.titulo}</strong><span>{d.texto}</span></li>
-          ))}
-        </ul>
 
-        <!-- Plano grátis para sempre (separado dos pagos) -->
+
+        <!-- Plano grátis: rota de saída pra quem chegou no preço e não assinou -->
         <article class="freeplan reveal br-only">
           <div class="freeplan__head">
             <span class="freeplan__tag">{t.gratisTag}</span>
+            <p class="freeplan__chamada">{t.gratisChamada}</p>
             <h3 class="freeplan__name">{t.gratisNome}</h3>
             <p class="freeplan__blurb">{t.gratisBlurb}</p>
           </div>
@@ -82,6 +80,16 @@ const anual = (valor: string, moeda: string) =>
             <a href={FREE} class="btn btn--ghost btn--lg">{t.gratisCta}<span class="arr" aria-hidden="true">→</span></a>
           </div>
         </article>
+
+        <div class="plans__porque">
+          <h3>{t.difTitulo}</h3>
+        <ul class="plans__dif" aria-label="O que nos diferencia">
+          {t.diferenciais.map((d) => (
+            <li><strong>{d.titulo}</strong><span>{d.texto}</span></li>
+          ))}
+        </ul>
+          <a href={t.compararHref} class="home-text-link plans__comparar">{t.comparar} <span class="arr" aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 

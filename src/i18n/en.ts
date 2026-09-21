@@ -233,6 +233,9 @@ export const en = {
   faqTitleHl: "before you start",
   faqEyebrow: "Common questions",
   faqs: [
+  { q: "Does the price go up as my contacts grow?", a: "No. You pay for the plan, not for the size of your list: contacts and automations are unlimited. Your bill only changes if you change plans." },
+  { q: "What counts as one account?", a: "Each connected Instagram account. The TikTok account of the same brand comes with it and doesn't count as another one." },
+  { q: "What is the difference between Solo and Pro?", a: "Number of accounts and teamwork. Solo is for running your own operation with one account. Pro covers up to five accounts and lets more than one person handle the automations, with role separation." },
     { q: "Can this get my Instagram blocked?", a: "No. We are an official Meta provider and use only Instagram's official API. No disguised automation, no rule-breaking, no risk of a ban." },
     { q: "Do I need to know how to code?", a: "Not at all. Zero code. If you can send an Instagram message, you can use Notifiquei. The whole interface is visual." },
     { q: "Can I build automations by chatting with Claude?", a: "Yes. Every plan includes an API key, and the dashboard hands you a ready-made kit with your key inside. Paste it into a Claude Project and ask in plain English: it finds the post, builds the automation, shows you a summary to confirm, and turns it on. You can also list, enable and disable automations by chatting." },

@@ -231,8 +231,22 @@
 /* "Tudo do Solo, mais:" — deixa claro que o cartão lista só a diferença. */
 .home-page .plan__base { margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink-soft); letter-spacing: .01em; }
 .home-page .plan__base + .plan__features { margin-top: 10px; }
+/* Fichas do cartão: leitura rápida do que o plano entrega, sem repetir a lista. */
+.home-page .plan__chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+.home-page .plan__chips li { padding: 6px 10px; border-radius: 8px; background: var(--paper-2); color: var(--ink-soft); font-size: 11.5px; line-height: 1.3; }
+.home-page .plan--featured .plan__chips li { background: #ffeaf2; color: #8d1042; }
+
+/* Grátis como rota de saída, não como concorrente do Solo. */
+.home-page .freeplan__chamada { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+
+/* "Por que escolher" vem depois do preço: justifica a compra, não disputa com ela. */
+.home-page .plans__porque { max-width: 1040px; margin: 46px auto 0; }
+.home-page .plans__porque h3 { text-align: center; font-family: var(--font-display); font-size: 21px; letter-spacing: -.02em; }
+.home-page .plans__comparar { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-size: 14px; }
+.home-page .plans__porque { display: grid; justify-items: center; }
+
 /* As diferenças que importam ficam embaixo da grade, não repetidas nos cartões. */
-.home-page .plans__dif { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 26px; max-width: 1040px; margin: 30px auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
+.home-page .plans__dif { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 26px; max-width: 1040px; margin: 24px auto 0; padding-top: 24px; border-top: 1px solid var(--line); }
 .home-page .plans__dif li { display: grid; gap: 4px; }
 .home-page .plans__dif strong { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; letter-spacing: -.01em; }
 .home-page .plans__dif span { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }

@@ -242,6 +242,9 @@ export const es = {
   faqTitle: "Resuelve tus dudas",
   faqTitleHl: "antes de empezar",
   faqs: [
+  { q: "¿El precio sube si crecen mis contactos?", a: "No. Pagas por el plan, no por el tamaño de tu lista: contactos y automatizaciones son ilimitados. Tu cuenta solo cambia si cambias de plan." },
+  { q: "¿Qué cuenta como una cuenta?", a: "Cada cuenta de Instagram conectada. La cuenta de TikTok de la misma marca viene incluida y no cuenta como otra." },
+  { q: "¿Cuál es la diferencia entre Solo y Pro?", a: "Número de cuentas y trabajo en equipo. Solo es para quien lleva su propia operación con una cuenta. Pro cubre hasta cinco cuentas y permite que más de una persona gestione las automatizaciones, con permisos por equipo." },
     { q: "¿Esto puede bloquear mi Instagram?", a: "No. Somos proveedores oficiales de Meta y usamos exclusivamente la API oficial de Instagram. Nada de automatización encubierta, nada de romper reglas, cero riesgo de bloqueo." },
     { q: "¿Necesito saber programar?", a: "Para nada. Cero código. Si sabes enviar un mensaje por Instagram, sabes usar Notifiquei. La interfaz es totalmente visual." },
     { q: "¿Puedo crear automatizaciones conversando con Claude?", a: "Sí. Todos los planes incluyen una clave de API, y el panel te entrega un kit listo con tu clave dentro. Lo pegas en un Proyecto de Claude y pides en español: él encuentra la publicación, monta la automatización, te muestra un resumen para confirmar y la activa. También puedes listar, activar y desactivar automatizaciones conversando." },

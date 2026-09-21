@@ -72,6 +72,9 @@ export const planosBR = plans.filter((p) => p.mercado !== "intl");
 export const planosINTL = plans.filter((p) => p.mercado !== "br");
 
 export const faqs = [
+  { q: "O preço aumenta se meus contatos crescerem?", a: "Não. O valor é o do plano, não o do tamanho da sua lista: contatos e automações são ilimitados. Sua conta só muda se você trocar de plano." },
+  { q: "O que conta como uma conta?", a: "Cada conta do Instagram conectada. O TikTok da mesma marca entra junto e não conta como outra — por isso o Solo atende uma conta e o Duo, duas." },
+  { q: "Qual a diferença entre Solo e Duo?", a: "Número de contas e trabalho em equipe. O Solo é para quem toca a própria operação, com uma conta. O Duo atende duas contas e deixa mais de uma pessoa cuidar das automações, com divisão por equipe." },
   { q: "Isso pode bloquear meu Instagram?", a: "O Notifiquei usa a API oficial da Meta, e a conexão acontece pelo login do próprio Instagram. Você não precisa compartilhar sua senha com a gente. As automações devem respeitar as regras e os limites da plataforma." },
   { q: "Preciso saber programar?", a: "Nada. Zero código. Se você sabe mandar mensagem no Instagram, sabe usar o Notifiquei. A interface é toda visual." },
   { q: "Dá pra criar automação conversando com o Claude?", a: "Dá. Todo plano tem uma chave de API, e o painel entrega um kit pronto com a sua chave dentro. Você cola esse kit nas instruções de um Projeto no Claude e passa a pedir em português: ele acha o post, monta a automação, mostra o resumo pra você confirmar e liga. Também dá pra listar, ativar e desativar automações pela conversa." },
