@@ -143,8 +143,32 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
   .mcp-app__thread[data-anim="entra"] .mcp-tool { animation-delay: 1.75s; }
   .mcp-app__thread[data-anim="entra"] .mcp-preview { animation-delay: 2.1s; }
   .mcp-app__thread[data-anim="entra"] .mcp-permit { animation-delay: 2.5s; }
-  .mcp-app__thread[data-anim="entra"] .mcp-say--done { animation-delay: 4.5s; }
-  .mcp-app__thread[data-anim="entra"] .mcp-app__input { animation-delay: 4.9s; }
+  /* A confirmação e o campo de resposta NÃO entram por tempo: só depois que o
+     clique na permissão acontece (a classe vem do script). Se a cena atrasar
+     num aparelho lento, a ordem continua verdadeira. */
+  .mcp-app__thread[data-anim] .mcp-say--done,
+  .mcp-app__thread[data-anim] .mcp-app__input { animation: none; opacity: 0; transform: translateY(14px); }
+  .mcp-app__thread.is-confirmado .mcp-say--done { animation: mcp-entra .5s cubic-bezier(.22,.7,.28,1) both; animation-delay: .15s; }
+  .mcp-app__thread.is-confirmado .mcp-app__input { animation: mcp-entra .5s cubic-bezier(.22,.7,.28,1) both; animation-delay: .45s; }
+
+  /* Orb: o Claude "pensando" antes da primeira resposta. */
+  .mcp-orb { position: relative; display: inline-flex; align-items: center; gap: 9px; justify-self: start; padding: 7px 13px 7px 9px; border-radius: 999px; background: #f4f1e8; border: 1px solid #e6e1d4; }
+  .mcp-orb[hidden] { display: none; }
+  .mcp-orb img { position: relative; z-index: 1; border-radius: 5px; animation: orb-gira 3.2s linear infinite; }
+  .mcp-orb__halo { position: absolute; left: 4px; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #d9775766 0%, #d9775700 70%); animation: orb-pulsa 1.5s ease-in-out infinite; }
+  .mcp-orb__dots { display: flex; gap: 4px; }
+  .mcp-orb__dots i { width: 5px; height: 5px; border-radius: 50%; background: #b4562f; animation: orb-ponto 1.1s ease-in-out infinite; }
+  .mcp-orb__dots i:nth-child(2) { animation-delay: .18s; }
+  .mcp-orb__dots i:nth-child(3) { animation-delay: .36s; }
+  @keyframes orb-gira { to { transform: rotate(360deg); } }
+  @keyframes orb-pulsa { 0%, 100% { transform: scale(.85); opacity: .5; } 50% { transform: scale(1.15); opacity: 1; } }
+  @keyframes orb-ponto { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+
+  /* Cursor falso. position:absolute é essencial: sem isso ele entra no fluxo,
+     empurra o conteúdo e "abre um espaço" quando aparece. */
+  .mcp-cursor { position: absolute; top: 0; left: 0; z-index: 4; pointer-events: none; transform: translate(var(--x, 50%), var(--y, 60%)); transition: transform .75s cubic-bezier(.33,.9,.35,1); filter: drop-shadow(0 3px 6px #1f1c1433); }
+  .mcp-cursor[hidden] { display: none; }
+  .mcp-cursor.is-click { transform: translate(var(--x, 50%), var(--y, 60%)) scale(.82); transition-duration: .12s; }
 
   @keyframes mcp-entra {
     from { opacity: 0; transform: translateY(14px); }
@@ -215,6 +239,7 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
       permitir.classList.remove("is-press");
       await espere(220);
       pedido.classList.add("is-oculto");   // o pedido sai da conversa
+      thread.classList.add("is-confirmado"); // e só agora entra o "está no ar"
       await espere(380);
       cursor.hidden = true;
     };

@@ -162,10 +162,8 @@
       '<a href="', t.href, '">', t.politica, '</a>.</p>',
       '</div>',
       '<div id="nf-cookie-btns">',
-      REGIME === 'aberto'
-        ? '<button class="nf-btn-essential" id="nf-btn-essential">' + t.bloquear + '</button>'
-        : '<button class="nf-btn-essential" id="nf-btn-essential">' + t.essenciais + '</button>'
-          + '<button class="nf-btn-accept" id="nf-btn-accept">' + t.aceitar + '</button>',
+      '<button class="nf-btn-essential" id="nf-btn-essential">' + (REGIME === 'aberto' ? t.bloquear : t.essenciais) + '</button>',
+      '<button class="nf-btn-accept" id="nf-btn-accept">' + (REGIME === 'aberto' ? t.confirmaNao : t.aceitar) + '</button>',
       '</div>'
     ].join('');
     return banner;
@@ -260,11 +258,7 @@
         recusar.textContent = t.confirmaSim;
         var texto = banner.querySelector('#nf-cookie-text p');
         if (texto) texto.textContent = t.confirmaTexto;
-        var manter = document.createElement('button');
-        manter.className = 'nf-btn-accept';
-        manter.textContent = t.confirmaNao;
-        manter.addEventListener('click', function () { setConsent('all'); });
-        recusar.parentNode.appendChild(manter);
+        if (aceitar) aceitar.textContent = t.confirmaNao;
       });
     }
   }
