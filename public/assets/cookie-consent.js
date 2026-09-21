@@ -11,6 +11,14 @@
   var STORAGE_KEY = 'notifiquei_consent';
   var stored = localStorage.getItem(STORAGE_KEY);
 
+  // Regime estampado pela função de borda (functions/_middleware.js):
+  //   'previo' → Europa, Reino Unido, Suíça e país desconhecido: nada carrega
+  //              antes do aceite, como manda a ePrivacy/GDPR.
+  //   'aberto' → Brasil e demais países: análise e marketing já valem, e a
+  //              pessoa pode bloquear pelo aviso, com confirmação.
+  var REGIME = document.documentElement.getAttribute('data-consent') === 'aberto' ? 'aberto' : 'previo';
+  var liberadoPorPadrao = REGIME === 'aberto' && !stored;
+
   var TEXTOS = {
     'pt-BR': {
       aria: 'Aviso de cookies',
@@ -18,7 +26,12 @@
       politica: 'Política de Privacidade',
       href: '/politica-de-privacidade',
       essenciais: 'Apenas essenciais',
-      aceitar: 'Aceitar todos'
+      aceitar: 'Aceitar todos',
+      abertoTexto: 'Usamos cookies de análise e marketing para entender o uso do site. Detalhes na ',
+      bloquear: 'Bloquear',
+      confirmaTexto: 'Bloquear os cookies de análise e marketing? A página será recarregada.',
+      confirmaSim: 'Sim, bloquear',
+      confirmaNao: 'Manter'
     },
     en: {
       aria: 'Cookie notice',
@@ -26,7 +39,12 @@
       politica: 'Privacy Policy',
       href: '/en/privacy-policy',
       essenciais: 'Essential only',
-      aceitar: 'Accept all'
+      aceitar: 'Accept all',
+      abertoTexto: 'We use analytics and marketing cookies to understand how the site is used. Details in our ',
+      bloquear: 'Block',
+      confirmaTexto: 'Block analytics and marketing cookies? The page will reload.',
+      confirmaSim: 'Yes, block',
+      confirmaNao: 'Keep'
     },
     es: {
       aria: 'Aviso de cookies',
@@ -34,7 +52,12 @@
       politica: 'Política de Privacidad',
       href: '/es/politica-de-privacidad',
       essenciais: 'Solo esenciales',
-      aceitar: 'Aceptar todo'
+      aceitar: 'Aceptar todo',
+      abertoTexto: 'Usamos cookies de análisis y marketing para entender el uso del sitio. Detalles en la ',
+      bloquear: 'Bloquear',
+      confirmaTexto: '¿Bloquear las cookies de análisis y marketing? La página se recargará.',
+      confirmaSim: 'Sí, bloquear',
+      confirmaNao: 'Mantener'
     }
   };
 
@@ -53,7 +76,7 @@
   var t = TEXTOS[idioma()];
 
   // Expõe o estado de consentimento globalmente
-  window.notifiqueiConsent = stored || null;
+  window.notifiqueiConsent = stored || (liberadoPorPadrao ? 'all' : null);
 
   // Fila de quem depende de consentimento. Quem quiser ligar algo se registra
   // com nfAoConsentir() e é chamado na hora se o visitante já tinha aceitado.
@@ -68,7 +91,7 @@
   // --- Google Consent Mode v2 defaults (nega tudo por padrão) ---
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
-  if (!stored || stored === 'essential') {
+  if (window.notifiqueiConsent !== 'all') {
     gtag('consent', 'default', {
       ad_storage: 'denied',
       analytics_storage: 'denied',
@@ -135,12 +158,14 @@
     banner.setAttribute('aria-label', t.aria);
     banner.innerHTML = [
       '<div id="nf-cookie-text">',
-      '<p>', t.texto,
+      '<p>', REGIME === 'aberto' ? t.abertoTexto : t.texto,
       '<a href="', t.href, '">', t.politica, '</a>.</p>',
       '</div>',
       '<div id="nf-cookie-btns">',
-      '<button class="nf-btn-essential" id="nf-btn-essential">', t.essenciais, '</button>',
-      '<button class="nf-btn-accept" id="nf-btn-accept">', t.aceitar, '</button>',
+      REGIME === 'aberto'
+        ? '<button class="nf-btn-essential" id="nf-btn-essential">' + t.bloquear + '</button>'
+        : '<button class="nf-btn-essential" id="nf-btn-essential">' + t.essenciais + '</button>'
+          + '<button class="nf-btn-accept" id="nf-btn-accept">' + t.aceitar + '</button>',
       '</div>'
     ].join('');
     return banner;
@@ -173,7 +198,7 @@
   // sobreviver no navegador — nem resto de quem já tinha aceitado e voltou
   // atrás, nem cookie de antes deste banner existir. Roda antes de qualquer
   // tag subir, então não há corrida com flush de persistência de ninguém.
-  if (stored !== 'all') limpaCookies();
+  if (window.notifiqueiConsent !== 'all') limpaCookies();
 
   function setConsent(value) {
     var anterior = window.notifiqueiConsent;
@@ -223,8 +248,25 @@
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { banner.classList.add('visible'); });
     });
-    document.getElementById('nf-btn-accept').addEventListener('click', function () { setConsent('all'); });
-    document.getElementById('nf-btn-essential').addEventListener('click', function () { setConsent('essential'); });
+    var aceitar = document.getElementById('nf-btn-accept');
+    var recusar = document.getElementById('nf-btn-essential');
+    if (aceitar) aceitar.addEventListener('click', function () { setConsent('all'); });
+    if (recusar) {
+      recusar.addEventListener('click', function () {
+        // No regime aberto, bloquear pede confirmação: um clique só não desliga.
+        if (REGIME !== 'aberto') return setConsent('essential');
+        if (recusar.getAttribute('data-confirmando') === '1') return setConsent('essential');
+        recusar.setAttribute('data-confirmando', '1');
+        recusar.textContent = t.confirmaSim;
+        var texto = banner.querySelector('#nf-cookie-text p');
+        if (texto) texto.textContent = t.confirmaTexto;
+        var manter = document.createElement('button');
+        manter.className = 'nf-btn-accept';
+        manter.textContent = t.confirmaNao;
+        manter.addEventListener('click', function () { setConsent('all'); });
+        recusar.parentNode.appendChild(manter);
+      });
+    }
   }
 
   // Retirar o consentimento tem que ser tão fácil quanto dar (GDPR art. 7(3)).
@@ -240,6 +282,21 @@
 
   // Já respondeu antes: nada de banner, mas o link do rodapé continua valendo.
   if (stored) return;
+
+  // Regime aberto: o aviso informa e oferece o bloqueio. Some sozinho depois de
+  // um tempo (a menos que a pessoa esteja no meio da confirmação); o link do
+  // rodapé segue abrindo quando ela quiser.
+  if (REGIME === 'aberto') {
+    window.notifiqueiAbrirCookies();
+    setTimeout(function () {
+      var b = document.getElementById('nf-cookie-banner');
+      if (b && !b.querySelector('[data-confirmando="1"]')) {
+        b.style.transform = 'translateY(100%)';
+        setTimeout(function () { if (b.parentNode) b.remove(); }, 400);
+      }
+    }, 12000);
+    return;
+  }
 
   window.notifiqueiAbrirCookies();
 })();

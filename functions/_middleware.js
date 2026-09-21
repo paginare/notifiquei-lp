@@ -23,6 +23,17 @@ const ESPANHOL = new Set([
 ]);
 
 // Zona do euro + microestados que usam euro. Fora daqui (e fora do BR) é dólar.
+/**
+ * Onde o consentimento precisa vir ANTES de carregar (ePrivacy/GDPR): união
+ * europeia, EEE, Reino Unido e Suíça. No resto, o site carrega e a pessoa pode
+ * bloquear pelo aviso. País desconhecido cai no modo mais protetivo.
+ */
+const CONSENTIMENTO_PREVIO = new Set([
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU',
+  'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES',
+  'SE', 'IS', 'LI', 'NO', 'GB', 'CH', 'XX', '',
+]);
+
 const EURO = new Set([
   'AT', 'BE', 'CY', 'DE', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR',
   'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PT', 'SI', 'SK',
@@ -73,6 +84,7 @@ export async function onRequest(context) {
   const traduzida = /^\/(en|es)(\/|$)/.test(url.pathname);
 
   const alvo = decidir(pais, traduzida);
+  const consentimento = CONSENTIMENTO_PREVIO.has(pais) ? 'previo' : 'aberto';
 
   // ---- Redirecionamento por idioma (só a home, só gente, só quem não escolheu) ----
   const ua = req.headers.get('User-Agent') || '';
@@ -109,9 +121,13 @@ export async function onRequest(context) {
 
   if (!alvo) {
     // Sem mercado definido ainda pode haver idioma a estampar (ex.: /obrigado).
-    if (idioma === 'pt-BR') return resposta;
     const so = new HTMLRewriter()
-      .on('html', { element: (el) => el.setAttribute('data-lang', idioma) })
+      .on('html', {
+        element: (el) => {
+          if (idioma !== 'pt-BR') el.setAttribute('data-lang', idioma);
+          el.setAttribute('data-consent', consentimento);
+        },
+      })
       .transform(resposta);
     return new Response(so.body, { status: so.status, statusText: so.statusText, headers: new Headers(so.headers) });
   }
@@ -119,6 +135,7 @@ export async function onRequest(context) {
   const saida = new HTMLRewriter()
     .on('html', {
       element(el) {
+        el.setAttribute('data-consent', consentimento);
         el.setAttribute('data-market', alvo.market);
         el.setAttribute('data-currency', alvo.currency);
         el.setAttribute('data-lang', idioma);
