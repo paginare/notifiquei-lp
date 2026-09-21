@@ -13,7 +13,7 @@
 const PIXEL = '4197456147066821';
 const GRAPH = `https://graph.facebook.com/v26.0/${PIXEL}/events`;
 // Scroll<N> são eventos personalizados (marcos de leitura da página), o resto é padrão da Meta.
-const EVENTOS = new Set(['Lead', 'InitiateCheckout', 'Scroll20', 'Scroll40', 'Scroll60', 'Scroll80', 'Scroll100']);
+const EVENTOS = new Set(['Lead', 'InitiateCheckout', 'Contact', 'Scroll20', 'Scroll40', 'Scroll60', 'Scroll80', 'Scroll100']);
 const MOEDAS = new Set(['BRL', 'USD', 'EUR']);
 
 function cookie(req, nome) {

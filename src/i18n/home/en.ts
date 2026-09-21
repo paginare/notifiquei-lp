@@ -216,6 +216,9 @@ export const en: CopyHome = {
     },
   },
 
+    zapTexto: "Hi! I came from the Notifiquei website and I have a question.",
+    zapRotulo: "Talk to us on WhatsApp",
+
   faq: {
     kicker: "ASK AWAY",
     titulo: "Let's clear up\n{hl}your questions.{/hl}",

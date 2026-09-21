@@ -16,6 +16,7 @@ import HomeDemo from "./HomeDemo.astro";
 import HomeMcp from "./HomeMcp.astro";
 import HomePricing from "./HomePricing.astro";
 import LangBanner from "./LangBanner.astro";
+import ZapFlutuante from "./ZapFlutuante.astro";
 import { FREE, WPP, faqs as faqsPt, clientes, logoDims } from "../data/home";
 import { copyHome, marcar, type Lang } from "../i18n/home";
 import { en as antigoEn } from "../i18n/en";
@@ -240,6 +241,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
       </section>
     </main>
     <Footer {...rodape} />
+    <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
   </div>
 
 

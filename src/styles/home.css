@@ -228,7 +228,9 @@
 .home-page .plan__features li { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; color: var(--ink-soft); }
 .home-page .plan__tick { color: var(--brand-ink); font-weight: 700; flex: none; }
 .home-page .plan__guarantee { font-size: 13px; color: var(--ink-soft); text-align: center; margin-top: 34px; }
-.home-page .freeplan { display: grid; grid-template-columns: 1fr 1fr auto; gap: 35px; align-items: center; margin-top: 20px; padding: 26px 28px; border: 1px dashed #bcaca0; border-radius: 13px; }
+/* Mesma largura da grade de planos logo acima — com 2 cartões a grade encolheu
+   e o bloco grátis ficava mais largo que eles. */
+.home-page .freeplan { display: grid; grid-template-columns: 1fr 1fr auto; gap: 35px; align-items: center; max-width: 1040px; margin: 20px auto 0; padding: 26px 28px; border: 1px dashed #bcaca0; border-radius: 13px; }
 .home-page .freeplan__tag { display: block; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--brand-ink); font-weight: 700; }
 .home-page .freeplan__name { font-size: 21px; margin-top: 6px; }
 .home-page .freeplan__blurb { margin-top: 9px; font-size: 12px; color: var(--ink-soft); line-height: 1.9; }

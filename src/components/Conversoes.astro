@@ -21,7 +21,7 @@ const cakto = {
 ---
 <script is:inline define:vars={{ cakto }}>
   // Lead e InitiateCheckout são eventos padrão da Meta; Scroll<N> é personalizado.
-  var PADRAO = { Lead: 1, InitiateCheckout: 1 };
+  var PADRAO = { Lead: 1, InitiateCheckout: 1, Contact: 1 };
 
   function envia(nome, dados) {
     var id = window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random().toString(36).slice(2);
@@ -41,6 +41,9 @@ const cakto = {
     if (u.host === "pay.cakto.com.br") {
       var plano = cakto[u.origin + u.pathname];
       envia("InitiateCheckout", plano ? { content_name: plano.content_name, value: plano.value, currency: "BRL" } : { currency: "BRL" });
+    } else if (u.host === "wa.me" || u.host === "api.whatsapp.com") {
+      envia("Contact", {});
+      if (window.posthog) window.posthog.capture("whatsapp_clicked", { origem: a.dataset.zap || "link" });
     } else if (u.host === "app.notifiquei.com.br" && u.pathname === "/auth") {
       // Com ?plan= é o gringo indo pagar no Stripe; sem, é o cadastro grátis.
       var slug = u.searchParams.get("plan");

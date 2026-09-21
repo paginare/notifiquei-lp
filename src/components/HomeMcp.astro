@@ -118,6 +118,22 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
   .mcp-app__input i { width: 20px; height: 20px; border-radius: 6px; background: #efece2; }
   .mcp-app figcaption { padding: 11px 14px; background: #f0eee6; border-top: 1px solid #e6e1d4; color: #7c7263; font-size: 10.5px; }
 
+  /* Entrada da conversa, uma linha por vez. O estado escondido só é aplicado
+     pelo script (data-anim), então sem JS ou com movimento reduzido a janela
+     aparece inteira e legível. */
+  .mcp-app__thread[data-anim] > * { opacity: 0; transform: translateY(14px); }
+  .mcp-app__thread[data-anim="entra"] > * { animation: mcp-entra .5s cubic-bezier(.22,.7,.28,1) both; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(2) { animation-delay: .5s; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(3) { animation-delay: .9s; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(4) { animation-delay: 1.35s; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(5) { animation-delay: 1.9s; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(6) { animation-delay: 2.35s; }
+  .mcp-app__thread[data-anim="entra"] > :nth-child(7) { animation-delay: 2.7s; }
+  @keyframes mcp-entra {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+
   @media (max-width: 1000px) {
     .home-mcp__grid { grid-template-columns: 1fr; gap: 36px; }
     .home-mcp__lead { max-width: none; }
@@ -138,3 +154,18 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
     .mcp-permit__btns { flex-wrap: wrap; }
   }
 </style>
+
+<script>
+  // A conversa se monta na ordem em que aconteceria: pedido, ferramenta, prévia,
+  // permissão, confirmação. Roda uma vez, quando a janela entra na tela.
+  const thread = document.querySelector<HTMLElement>(".mcp-app__thread");
+  if (thread && matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+    thread.dataset.anim = "espera";
+    const olho = new IntersectionObserver((entradas) => {
+      if (!entradas.some((e) => e.isIntersecting)) return;
+      olho.disconnect();
+      thread.dataset.anim = "entra";
+    }, { threshold: 0.3 });
+    olho.observe(thread);
+  }
+</script>

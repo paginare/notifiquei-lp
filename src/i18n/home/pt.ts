@@ -228,6 +228,9 @@ export const pt = {
     },
   },
 
+    zapTexto: "Oi! Vim pela página do Notifiquei e queria tirar uma dúvida.",
+    zapRotulo: "Falar com a gente no WhatsApp",
+
   faq: {
     kicker: "PODE PERGUNTAR",
     titulo: "Vamos tirar\n{hl}suas dúvidas?{/hl}",
