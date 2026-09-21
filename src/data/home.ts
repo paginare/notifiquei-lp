@@ -85,6 +85,28 @@ export const faqs = [
 ];
 
 // Curado: só logos com fundo transparente e cor real (sem as brancas/fundo-branco).
+// Perfis que autorizaram o uso da marca na página. O @ aparece num balão ao
+// passar o mouse; quem não tem handle aqui é logo de marca, sem balão.
+export const handles: Record<string, string> = {
+  "resiliencia-humana.webp": "@resiliencia_humana",
+  "mulher-motivada.webp": "@mulhermotivadaa__",
+};
+
+// Contas conectadas mostradas em formato de stories. Ordem = tamanho do
+// público. O dono confirmou a autorização de uso em 21/09/2026.
+export const perfis = [
+  { arquivo: "resiliencia_humana", handle: "resiliencia_humana" },
+  { arquivo: "mudeparaevoluir", handle: "mudeparaevoluir" },
+  { arquivo: "mentedeambicao", handle: "mentedeambicao" },
+  { arquivo: "mulheres_maduras", handle: "mulheres_maduras" },
+  { arquivo: "drjuanlambert", handle: "drjuanlambert" },
+  { arquivo: "gummy", handle: "gummy" },
+  { arquivo: "valordiario", handle: "valordiario" },
+  { arquivo: "mentalidade_autoritaria", handle: "mentalidade_autoritaria" },
+  { arquivo: "emagrecercomdietaofcc", handle: "emagrecercomdietaofcc" },
+  { arquivo: "sabedoriaexponencial_", handle: "sabedoriaexponencial_" },
+];
+
 export const clientes = [
   "gummy.png", "responda.png", "rosa-selvagem.png",
   "vert-sophistique.png", "cikiy.svg", "debran.svg",

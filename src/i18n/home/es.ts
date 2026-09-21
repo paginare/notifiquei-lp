@@ -52,6 +52,7 @@ export const es: CopyHome = {
   },
 
   provaMarcas: "Más conversaciones en la rutina de marcas como",
+    perfisTitulo: "Cuentas que ya conversan con Notifiquei",
 
   publicos: {
     kicker: "HECHO PARA QUIEN TIENE ALGO QUE COMPARTIR",

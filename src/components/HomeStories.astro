@@ -1,0 +1,73 @@
+---
+// Contas conectadas no formato da barra de stories do Instagram: foto redonda
+// com anel colorido e o @ embaixo. Rola na horizontal quando não cabe.
+// As fotos são cópias guardadas pelo próprio Notifiquei (o CDN do Instagram
+// expira em horas), e o uso foi autorizado pelo dono das contas.
+import { perfis } from "../data/home";
+
+interface Props { titulo: string; }
+const { titulo } = Astro.props;
+---
+
+<div class="stories">
+  <p class="stories__titulo">{titulo}</p>
+  <ul class="stories__fila" aria-label={titulo}>
+    {perfis.map((perfil) => (
+      <li class="stories__item">
+        <span class="stories__anel">
+          <img src={`/assets/perfis/${perfil.arquivo}.webp`} width="64" height="64" alt={`Foto do perfil @${perfil.handle}`} loading="lazy" />
+        </span>
+        <span class="stories__handle">@{perfil.handle}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .stories { margin-top: 8px; }
+  .stories__titulo { text-align: center; font-size: 12px; color: var(--ink-soft); margin-bottom: 20px; }
+  .stories__fila {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 2px 0 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* some a rolagem nas pontas, como na barra do app */
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .stories__fila::-webkit-scrollbar { display: none; }
+  .stories__item { display: flex; flex-direction: column; align-items: center; gap: 7px; flex: none; width: 96px; }
+  .stories__anel {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    /* o anel do Instagram: amarelo → rosa → roxo */
+    background: conic-gradient(from 210deg, #f9ce34, #ee2a7b 45%, #6228d7 80%, #f9ce34);
+    transition: transform .25s var(--ease-out);
+  }
+  .stories__anel img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--paper); display: block; }
+  .stories__item:hover .stories__anel { transform: scale(1.06); }
+  .stories__handle {
+    max-width: 96px;
+    font-size: 10px;
+    color: var(--ink-soft);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .stories__fila { justify-content: flex-start; gap: 16px; padding-inline: 2px; scroll-snap-type: x proximity; }
+    .stories__item { width: 76px; scroll-snap-align: start; }
+    .stories__anel { width: 64px; height: 64px; }
+    .stories__anel img { width: 57px; height: 57px; }
+    .stories__handle { max-width: 76px; font-size: 9.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stories__anel, .stories__item:hover .stories__anel { transition: none; transform: none; }
+  }
+</style>

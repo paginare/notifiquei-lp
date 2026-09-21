@@ -52,6 +52,7 @@ export const en: CopyHome = {
   },
 
   provaMarcas: "More conversations in the daily routine of brands like",
+    perfisTitulo: "Accounts already talking through Notifiquei",
 
   publicos: {
     kicker: "BUILT FOR ANYONE WITH SOMETHING TO SHARE",

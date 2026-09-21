@@ -15,6 +15,7 @@ import HomeAuthority from "./HomeAuthority.astro";
 import HomeDemo from "./HomeDemo.astro";
 import HomeMcp from "./HomeMcp.astro";
 import HomePricing from "./HomePricing.astro";
+import HomeStories from "./HomeStories.astro";
 import LangBanner from "./LangBanner.astro";
 import ZapFlutuante from "./ZapFlutuante.astro";
 import { FREE, WPP, faqs as faqsPt, clientes, logoDims } from "../data/home";
@@ -73,7 +74,8 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
 
       <section class="home-proof" aria-label={t.provaMarcas}>
         <div class="container">
-          <p>{t.provaMarcas}</p>
+          <HomeStories titulo={t.perfisTitulo} />
+          <p class="home-proof__marcas">{t.provaMarcas}</p>
           <div class="home-proof__logos">
             {clientes.map((file) => (
               <img src={`/assets/clientes/${file}`} alt={file.replace(/\.(png|svg)$/, "").replace(/-/g, " ")} width={logoDims[file]} height="30" loading="lazy" />

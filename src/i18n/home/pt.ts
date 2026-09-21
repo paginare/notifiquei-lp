@@ -60,6 +60,7 @@ export const pt = {
   },
 
   provaMarcas: "Mais conversas na rotina de marcas como",
+    perfisTitulo: "Contas que já conversam pelo Notifiquei",
 
   publicos: {
     kicker: "FEITO PARA QUEM TEM ALGO A COMPARTILHAR",
