@@ -43,6 +43,12 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
         <div class="mcp-app__thread">
           <p class="mcp-msg mcp-msg--you">{pedidoAntes}<b>{cupom}</b>{pedidoDepois}</p>
 
+          <div class="mcp-orb" data-orb hidden aria-hidden="true">
+            <span class="mcp-orb__halo"></span>
+            <img src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" />
+            <span class="mcp-orb__dots"><i></i><i></i><i></i></span>
+          </div>
+
           <p class="mcp-say"><img class="mcp-avatar" src="/assets/home/claude-app-icon.png" width="22" height="22" alt="" loading="lazy" /><span>{t.achou}</span></p>
           <span class="mcp-tool"><Icon name="spark" size={12} /> notifiquei · listar_posts · prever_automacao</span>
 
@@ -63,6 +69,9 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
           <div class="mcp-app__input" aria-hidden="true"><span>{t.responder}</span><i></i></div>
         </div>
       </div>
+      <span class="mcp-cursor" data-cursor hidden aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 2.5 19 12l-6.4 1.3L9.7 19 5 2.5Z" fill="#1f1c14" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" /></svg>
+      </span>
       <figcaption>{t.legenda}</figcaption>
     </figure>
   </div>
@@ -81,7 +90,7 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
 
   /* Janela na paleta clara do Claude (areia + terracota). O rosa aparece só no
      que é do Notifiquei: o selo do conector e a prévia da automação. */
-  .mcp-app { margin: 0; border-radius: 14px; overflow: hidden; background: #faf9f5; border: 1px solid #e6e1d4; box-shadow: 0 26px 60px #2b1c0e1f; }
+  .mcp-app { position: relative; margin: 0; border-radius: 14px; overflow: hidden; background: #faf9f5; border: 1px solid #e6e1d4; box-shadow: 0 26px 60px #2b1c0e1f; }
   .mcp-app__bar { display: flex; align-items: center; gap: 12px; padding: 10px 13px; background: #f0eee6; border-bottom: 1px solid #e6e1d4; }
   .mcp-app__lights { display: flex; gap: 6px; }
   .mcp-app__lights i { width: 10px; height: 10px; border-radius: 50%; background: #d9d4c6; }
@@ -112,7 +121,11 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
   .mcp-permit__q { font-size: 12.5px; color: #3d3929; }
   .mcp-permit__q b { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: #b4562f; font-weight: 400; }
   .mcp-permit__btns { display: flex; gap: 8px; margin-top: 10px; }
-  .mcp-permit__btn { padding: 6px 12px; border-radius: 8px; border: 1px solid #e0dacb; color: #5c5446; font-size: 11.5px; background: #fff; }
+  .mcp-permit__btn { padding: 6px 12px; border-radius: 8px; border: 1px solid #e0dacb; color: #5c5446; font-size: 11.5px; background: #fff; transition: filter .15s, transform .15s; }
+  .mcp-permit__btn.is-press { filter: brightness(.94); transform: scale(.97); }
+  /* Depois do "sempre permitir" o pedido sai da conversa, como no Claude Code. */
+  .mcp-permit { overflow: hidden; max-height: 220px; transition: opacity .3s, transform .3s, max-height .45s cubic-bezier(.3,.7,.3,1), padding .3s, margin .3s, border-color .3s; }
+  .mcp-permit.is-oculto { opacity: 0; transform: translateY(-8px); max-height: 0; padding-block: 0; border-color: transparent; }
   .mcp-permit__btn.is-primary { background: #3d3929; border-color: transparent; color: #faf9f5; font-weight: 600; }
   .mcp-app__input { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; padding: 10px 12px; border: 1px solid #e0dacb; border-radius: 12px; background: #fff; color: #8d8474; font-size: 12px; }
   .mcp-app__input i { width: 20px; height: 20px; border-radius: 6px; background: #efece2; }
@@ -121,14 +134,18 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
   /* Entrada da conversa, uma linha por vez. O estado escondido só é aplicado
      pelo script (data-anim), então sem JS ou com movimento reduzido a janela
      aparece inteira e legível. */
-  .mcp-app__thread[data-anim] > * { opacity: 0; transform: translateY(14px); }
-  .mcp-app__thread[data-anim="entra"] > * { animation: mcp-entra .5s cubic-bezier(.22,.7,.28,1) both; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(2) { animation-delay: .5s; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(3) { animation-delay: .9s; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(4) { animation-delay: 1.35s; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(5) { animation-delay: 1.9s; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(6) { animation-delay: 2.35s; }
-  .mcp-app__thread[data-anim="entra"] > :nth-child(7) { animation-delay: 2.7s; }
+  /* Os atrasos vão por classe, não por posição: o orb entra no meio da lista e
+     a contagem por nth-child quebrava toda a sequência. */
+  .mcp-app__thread[data-anim] > *:not([data-orb]) { opacity: 0; transform: translateY(14px); }
+  .mcp-app__thread[data-anim="entra"] > *:not([data-orb]) { animation: mcp-entra .5s cubic-bezier(.22,.7,.28,1) both; }
+  .mcp-app__thread[data-anim="entra"] .mcp-msg--you { animation-delay: 0s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-say:not(.mcp-say--done) { animation-delay: 1.4s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-tool { animation-delay: 1.75s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-preview { animation-delay: 2.1s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-permit { animation-delay: 2.5s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-say--done { animation-delay: 4.5s; }
+  .mcp-app__thread[data-anim="entra"] .mcp-app__input { animation-delay: 4.9s; }
+
   @keyframes mcp-entra {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
@@ -156,16 +173,57 @@ const [permAntes, permDepois] = t.permissao.split("{tool}");
 </style>
 
 <script>
-  // A conversa se monta na ordem em que aconteceria: pedido, ferramenta, prévia,
-  // permissão, confirmação. Roda uma vez, quando a janela entra na tela.
-  const thread = document.querySelector<HTMLElement>(".mcp-app__thread");
-  if (thread && matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+  // A cena: a pessoa pede, o Claude pensa (orb), responde, monta a prévia e
+  // pede permissão — aí um cursor vai até "Permitir uma vez" e clica. Só depois
+  // do clique entra a confirmação. Roda uma vez, quando a janela aparece.
+  //
+  // Nada disso existe sem JS ou com movimento reduzido: o orb e o cursor ficam
+  // com [hidden] e a janela aparece inteira e legível.
+  const janela = document.querySelector<HTMLElement>(".mcp-app");
+  const thread = janela?.querySelector<HTMLElement>(".mcp-app__thread");
+  const orb = janela?.querySelector<HTMLElement>("[data-orb]");
+  const cursor = janela?.querySelector<HTMLElement>("[data-cursor]");
+  const permitir = janela?.querySelector<HTMLElement>(".mcp-permit__btn:not(.is-primary)");
+  const pedido = janela?.querySelector<HTMLElement>(".mcp-permit");
+
+  if (janela && thread && orb && cursor && permitir && pedido && matchMedia("(prefers-reduced-motion: no-preference)").matches) {
     thread.dataset.anim = "espera";
+    const espere = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    const cena = async () => {
+      thread.dataset.anim = "entra";
+      await espere(500);
+      orb.hidden = false;           // o Claude pensando
+      await espere(900);
+      orb.hidden = true;            // some quando a resposta entra
+      await espere(2200);           // prévia e pedido de permissão na tela
+
+      const janelaRect = janela.getBoundingClientRect();
+      const alvo = permitir.getBoundingClientRect();
+      // entra pela borda de baixo à direita e vai até o botão
+      cursor.style.setProperty("--x", `${janelaRect.width * 0.72}px`);
+      cursor.style.setProperty("--y", `${janelaRect.height * 0.92}px`);
+      cursor.hidden = false;
+      await espere(60);
+      cursor.style.setProperty("--x", `${alvo.left - janelaRect.left + alvo.width * 0.52}px`);
+      cursor.style.setProperty("--y", `${alvo.top - janelaRect.top + alvo.height * 0.6}px`);
+      await espere(820);
+      cursor.classList.add("is-click");
+      permitir.classList.add("is-press");
+      await espere(200);
+      cursor.classList.remove("is-click");
+      permitir.classList.remove("is-press");
+      await espere(220);
+      pedido.classList.add("is-oculto");   // o pedido sai da conversa
+      await espere(380);
+      cursor.hidden = true;
+    };
+
     const olho = new IntersectionObserver((entradas) => {
       if (!entradas.some((e) => e.isIntersecting)) return;
       olho.disconnect();
-      thread.dataset.anim = "entra";
+      cena();
     }, { threshold: 0.3 });
-    olho.observe(thread);
+    olho.observe(janela);
   }
 </script>
