@@ -96,8 +96,8 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
                   <span>{audience.tag}</span>
                 </div>
                 <div class="audience-card__copy">
-                  <h3>{audience.title}</h3>
-                  <p>{audience.body}</p>
+                  <h3>{audience.titulo}</h3>
+                  <p>{audience.texto}</p>
                   <a href="#plataforma" data-show-demo={audience.trigger}>{t.publicos.verComo} <Icon name="diagonal" size={20} /></a>
                 </div>
               </article>
@@ -177,7 +177,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
           <div class="home-section-heading"><h2 set:html={marcar(t.extras.titulo)} /><p>{t.extras.lead}</p></div>
           <div class="home-resource-list">
             {resources.map((resource) => (
-              <article><span><Icon name={resource.icon} size={26} /></span><h3>{resource.title}</h3><p>{resource.text}</p></article>
+              <article><span><Icon name={resource.icon} size={26} /></span><h3>{resource.titulo}</h3><p>{resource.texto}</p></article>
             ))}
           </div>
           <div class="home-ai" id="claude">
@@ -198,7 +198,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
           </div>
           <ol class="home-steps">
             {steps.map((step) => (
-              <li><div class="home-step__top"><span>{step.n}</span><Icon name={step.icon} size={28} /></div><h3>{step.title}</h3><p>{step.body}</p></li>
+              <li><div class="home-step__top"><span>{step.n}</span><Icon name={step.icon} size={28} /></div><h3>{step.titulo}</h3><p>{step.texto}</p></li>
             ))}
           </ol>
           <div class="home-how__actions">

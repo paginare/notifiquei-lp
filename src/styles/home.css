@@ -236,7 +236,8 @@
 .home-page .faq__icon::after { left: 6px; width: 2px; height: 14px; transition: transform .2s; }
 .home-page .faq__item[open] .faq__icon::after { transform: scaleY(0); }
 .home-page .faq__a { font-size: 14px; line-height: 1.8; color: var(--ink-soft); padding: 0 20px 23px 0; }
-.home-final { background: var(--brand); padding-top: 86px; overflow: hidden; }
+/* padding-bottom explícito: quem dava o respiro aqui era a logo de fundo, que saiu. */
+.home-final { background: var(--brand); padding-block: 86px 64px; overflow: hidden; }
 .home-final__inner { text-align: center; }
 .home-final__bubble { display: table; padding: 12px 23px; border-radius: 15px 15px 15px 3px; background: #fff7f0; color: var(--ink); font-size: 22px; font-family: var(--font-display); font-weight: 700; letter-spacing: -.03em; transform: rotate(-8deg); margin: 0 auto 34px; box-shadow: 0 8px 0 #14100e15; }
 .home-final .home-kicker { color: var(--ink); font-size: 10px; }
@@ -419,6 +420,24 @@
   .home-final h2 br { display: none; }
   .home-final .home-kicker { font-size: 8px; }
   .home-final__inner > p { font-size: 14px; margin-top: 20px; }
+  .home-final { padding-block: 53px 44px; }
+  /* Botão ocupa a largura do texto: antes ficava estreito no meio de uma linha
+     bem mais larga, e a composição parecia torta. */
+  .home-final__actions .btn { width: 100%; justify-content: center; }
+  .home-final__actions small { font-size: 11.5px; margin-top: 15px; }
+
+  /* PADRÃO DE ALINHAMENTO NO CELULAR
+     No desktop centralizar faz sentido nas seções de largura cheia, porque elas
+     contrastam com as de duas colunas. Em uma coluna só esse contraste some e
+     sobra alternância sem motivo: aqui tudo que é título e texto corrido alinha
+     à esquerda. Continuam centralizados apenas os blocos-cartaz (CTA final) e as
+     legendas presas a elementos centralizados (faixa de logos, seletor de ciclo). */
+  .home-centered-heading,
+  .home-page .section-head--center { text-align: left; margin-inline: 0; }
+  .home-centered-heading > p,
+  .home-page .section-head--center > p { margin-inline: 0; }
+  .home-page .section-head--center .eyebrow,
+  .home-centered-heading .home-kicker { justify-content: flex-start; }
   .home-final__actions small { font-size: 10px; }
   .home-page .footer { padding-block: 50px 25px; }
   .home-page .footer__cols { grid-template-columns: repeat(3, 1fr); gap: 20px; }
