@@ -221,7 +221,12 @@ export const pt = {
     gratisCta: "Começar grátis",
     // Nome, frase e itens de cada plano. Preço e link ficam em data/home.ts:
     // número e URL não se traduzem.
-    comuns: "Em todos os planos: contatos ilimitados, automações ilimitadas, templates completos e novidades antes de todo mundo.",
+    diferenciais: [
+      { titulo: "Contatos ilimitados", texto: "O preço não muda se a sua lista dobrar. No ManyChat, a conta acompanha o número de contatos." },
+      { titulo: "Instagram e TikTok no mesmo plano", texto: "O segundo canal não custa a mais. Lá, não existe TikTok." },
+      { titulo: "Preço em real, com PIX", texto: "Sem câmbio, sem IOF e sem cartão internacional. Suporte em português, por gente." },
+      { titulo: "A automação nasce de uma conversa", texto: "Você descreve e o Claude monta. No editor visual, você monta bloco por bloco." },
+    ],
     cartoes: {
       solo: { blurb: "Criador iniciante, operação pequena.", cta: "Começar com Solo", itens: ["1 conta — Instagram + TikTok", "Automações e contatos ilimitados", "Templates prontos e atendimento por chat"] },
       duo: { blurb: "Duas frentes na mesma operação.", base: "Tudo do Solo, mais:", cta: "Começar com Duo", itens: ["2 contas em vez de 1", "Times: mais de uma pessoa cuidando", "Divisão por equipe: cada um vê o que é seu"] },

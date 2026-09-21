@@ -209,7 +209,12 @@ export const es: CopyHome = {
       "Mensajes con marca de agua “⚡ Enviado con Notifiquei”",
     ],
     gratisCta: "Empezar gratis",
-    comuns: "En todos los planes: contactos ilimitados, automatizaciones ilimitadas, plantillas completas y novedades antes que nadie.",
+    diferenciais: [
+      { titulo: "Contactos ilimitados", texto: "El precio no cambia si tu lista se duplica. En ManyChat, la cuenta sigue al número de contactos." },
+      { titulo: "Instagram y TikTok en el mismo plan", texto: "El segundo canal no cuesta más. Allí no hay TikTok." },
+      { titulo: "Sorteos nativos", texto: "Elige ganador entre quienes comentaron, en un clic y sin planilla." },
+      { titulo: "La automatización nace de una conversación", texto: "Tú la describes y Claude la arma. En un editor visual, la armas bloque a bloque." },
+    ],
     cartoes: {
       solo: { blurb: "Creador que empieza, operación pequeña.", cta: "Empezar con Solo", itens: ["1 cuenta — Instagram + TikTok", "Automatizaciones y contactos ilimitados", "Plantillas completas y soporte por chat"] },
       duo: { blurb: "Dos frentes en la misma operación.", base: "Todo lo de Solo, y además:", cta: "Empezar con Duo", itens: ["2 cuentas en lugar de 1", "Equipos: más de una persona al mando", "División por equipo: cada quien ve lo suyo"] },

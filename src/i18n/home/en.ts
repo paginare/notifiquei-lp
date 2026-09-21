@@ -209,7 +209,12 @@ export const en: CopyHome = {
       "Messages carry a “⚡ Sent with Notifiquei” watermark",
     ],
     gratisCta: "Start free",
-    comuns: "Every plan: unlimited contacts, unlimited automations, the full template library and new features first.",
+    diferenciais: [
+      { titulo: "Unlimited contacts", texto: "The price does not change when your list doubles. On ManyChat, the bill follows the number of contacts." },
+      { titulo: "Instagram and TikTok in one plan", texto: "The second channel costs nothing extra. There, TikTok is not on the menu." },
+      { titulo: "Native giveaways", texto: "Pick a winner among the people who commented, in one click, without a spreadsheet." },
+      { titulo: "Automations start as a conversation", texto: "You describe it and Claude builds it. In a visual editor, you build it block by block." },
+    ],
     cartoes: {
       solo: { blurb: "Starting creator, small operation.", cta: "Start with Solo", itens: ["1 account — Instagram + TikTok", "Unlimited automations and contacts", "Full template library and chat support"] },
       duo: { blurb: "Two fronts in the same operation.", base: "Everything in Solo, plus:", cta: "Start with Duo", itens: ["2 accounts instead of 1", "Teams: more than one person running it", "Role separation: each person sees their own"] },

@@ -62,7 +62,11 @@ const anual = (valor: string, moeda: string) =>
           ))}
         </div>
 
-        <p class="plans__comuns">{t.comuns}</p>
+        <ul class="plans__dif" aria-label="O que nos diferencia">
+          {t.diferenciais.map((d) => (
+            <li><strong>{d.titulo}</strong><span>{d.texto}</span></li>
+          ))}
+        </ul>
 
         <!-- Plano grátis para sempre (separado dos pagos) -->
         <article class="freeplan reveal br-only">

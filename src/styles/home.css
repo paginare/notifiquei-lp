@@ -102,9 +102,6 @@
 }
 .home-proof { padding-block: 38px 41px; background: var(--paper); border-bottom: 1px solid var(--line-soft); }
 .home-proof p { text-align: center; font-size: 12px; color: var(--ink-soft); margin-bottom: 28px; }
-/* Logos de marca agora moram logo antes dos planos: prova perto do preço. */
-.home-marcas { padding-block: 10px 6px; background: var(--paper); }
-.home-marcas__titulo { text-align: center; font-size: 12px; color: var(--ink-soft); margin-bottom: 26px; }
 .home-proof__logos { display: flex; align-items: center; justify-content: space-around; gap: 40px; }
 .home-proof__logos img { max-width: 165px; max-height: 32px; width: auto; height: auto; object-fit: contain; }
 .home-proof__logos img:nth-child(4) { max-height: 43px; }
@@ -234,8 +231,14 @@
 /* "Tudo do Solo, mais:" — deixa claro que o cartão lista só a diferença. */
 .home-page .plan__base { margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink-soft); letter-spacing: .01em; }
 .home-page .plan__base + .plan__features { margin-top: 10px; }
-/* O que vale em todos os planos aparece uma vez só, não em cada cartão. */
-.home-page .plans__comuns { max-width: 1040px; margin: 20px auto 0; text-align: center; font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+/* As diferenças que importam ficam embaixo da grade, não repetidas nos cartões. */
+.home-page .plans__dif { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 26px; max-width: 1040px; margin: 30px auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
+.home-page .plans__dif li { display: grid; gap: 4px; }
+.home-page .plans__dif strong { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; letter-spacing: -.01em; }
+.home-page .plans__dif span { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+@media (max-width: 760px) {
+  .home-page .plans__dif { grid-template-columns: 1fr; gap: 16px; margin-top: 26px; padding-top: 22px; }
+}
 
 /* Mesma largura da grade de planos logo acima — com 2 cartões a grade encolheu
    e o bloco grátis ficava mais largo que eles. */
