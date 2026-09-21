@@ -1,0 +1,275 @@
+---
+/**
+ * Corpo da home, igual nas três línguas. Só a copy muda: vem do dicionário em
+ * src/i18n/home. Estrutura única de propósito — markup duplicado por idioma
+ * sempre acaba divergindo em silêncio (o aviso já estava no topo da /en antiga).
+ *
+ * Mercado (Brasil × internacional) continua sendo decidido no CSS pelas classes
+ * br-only / intl-only, a partir do atributo que a Pages Function estampa.
+ */
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import Icon from "./HomeIcon.astro";
+import HomeHero from "./HomeHero.astro";
+import HomeAuthority from "./HomeAuthority.astro";
+import HomeDemo from "./HomeDemo.astro";
+import HomeMcp from "./HomeMcp.astro";
+import HomePricing from "./HomePricing.astro";
+import LangBanner from "./LangBanner.astro";
+import { FREE, WPP, faqs as faqsPt, clientes, logoDims } from "../data/home";
+import { copyHome, marcar, type Lang } from "../i18n/home";
+import { en as antigoEn } from "../i18n/en";
+import { es as antigoEs } from "../i18n/es";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = copyHome(lang);
+
+// Perguntas, rodapé e o rótulo "Entrar" já existiam traduzidos para /en e /es.
+const antigo = lang === "en" ? antigoEn : lang === "es" ? antigoEs : null;
+const faqs = antigo?.faqs ?? faqsPt;
+const entrar = antigo?.nav.entrar;
+
+// O rodapé traduzido aponta para âncoras do desenho anterior; os ids da home
+// nova são os mesmos nas três línguas.
+const ANCORAS: Record<string, string> = { "#how": "#como", "#platform": "#plataforma", "#claude": "#mcp", "#plans": "#planos" };
+const rodape = antigo
+  ? {
+      ...antigo.footer,
+      cols: antigo.footer.cols.map((col) => ({
+        ...col,
+        links: col.links.map((l) => ({ ...l, href: l.href.replace(/#[a-z-]+$/, (a) => ANCORAS[a] ?? a) })),
+      })),
+    }
+  : {};
+
+// Imagem, tema e gatilho são estrutura; o texto de cada cartão vem da língua.
+const audiences = t.publicos.cards.map((card, i) => ({
+  ...card,
+  image: ["/assets/home/creator-content-v2.webp", "/assets/home/creator-fashion-v2.webp", "/assets/home/creator-business-v2.webp"][i],
+  theme: ["pink", "cream", "dark"][i],
+  trigger: ["direct", "comment", "story"][i],
+}));
+const steps = t.como.passos.map((passo, i) => ({ ...passo, n: ["01", "02", "03"][i], icon: ["instagram", "chat", "bolt"][i] }));
+const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "link", "spark"][i] }));
+---
+
+  <div class="home-page">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang={lang} langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} entrar={entrar} />
+    <main id="conteudo">
+      <HomeHero t={t.hero} conversa={t.conversa} />
+      {lang === "pt-BR" ? (
+        <div class="home-language-suggestions">
+          <div data-suggest-only="en"><LangBanner texto="View this page in English" href="/en" /></div>
+          <div data-suggest-only="es"><LangBanner texto="Ver esta página en español" href="/es" /></div>
+        </div>
+      ) : (
+        <LangBanner texto="Ver esta página em português" href="/" />
+      )}
+
+      <HomeAuthority t={t.autoridade} />
+
+      <section class="home-proof" aria-label={t.provaMarcas}>
+        <div class="container">
+          <p>{t.provaMarcas}</p>
+          <div class="home-proof__logos">
+            {clientes.map((file) => (
+              <img src={`/assets/clientes/${file}`} alt={file.replace(/\.(png|svg)$/, "").replace(/-/g, " ")} width={logoDims[file]} height="30" loading="lazy" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-audiences">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker"><Icon name="heart" size={17} /> {t.publicos.kicker}</span>
+            <h2 set:html={marcar(t.publicos.titulo)} />
+            <p>{t.publicos.lead}</p>
+          </div>
+          <div class="home-audience-grid">
+            {audiences.map((audience) => (
+              <article class={`audience-card audience-card--${audience.theme}`}>
+                <div class="audience-card__photo">
+                  <img src={audience.image} alt={audience.alt} width="480" height="600" loading="lazy" />
+                  <span>{audience.tag}</span>
+                </div>
+                <div class="audience-card__copy">
+                  <h3>{audience.titulo}</h3>
+                  <p>{audience.texto}</p>
+                  <a href="#plataforma" data-show-demo={audience.trigger}>{t.publicos.verComo} <Icon name="diagonal" size={20} /></a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HomeDemo t={t.demo} />
+
+      <HomeMcp t={t.mcp} />
+
+      <section class="home-section home-before-after">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker">{t.antesDepois.kicker}</span>
+            <h2 set:html={marcar(t.antesDepois.titulo)} />
+          </div>
+          <div class="home-comparison">
+            <article class="home-comparison__before">
+              <span class="home-comparison__label">{t.antesDepois.antesRotulo}</span>
+              <h3 set:html={marcar(t.antesDepois.antesTitulo)} />
+              <div class="waiting-messages" aria-label={t.antesDepois.antesRotulo}>
+                {t.antesDepois.esperando.map((msg, i) => <span>{msg} <span>{["👀", "💬", "🙋"][i]}</span></span>)}
+              </div>
+              <ul>
+                {t.antesDepois.antesItens.map((item) => <li><Icon name="minus" size={18} /> {item}</li>)}
+              </ul>
+            </article>
+            <article class="home-comparison__after">
+              <span class="home-comparison__label"><img src="/assets/favicon.svg" alt="" width="25" height="25" /> {t.antesDepois.depoisRotulo}</span>
+              <h3 set:html={marcar(t.antesDepois.depoisTitulo)} />
+              <div class="answered-message"><span><Icon name="check" size={22} /></span><div><b>{t.antesDepois.enviado}</b><small>{t.antesDepois.enviadoSub}</small></div><Icon name="spark" size={25} /></div>
+              <ul>
+                {t.antesDepois.depoisItens.map((item) => <li><Icon name="check" size={18} /> {item}</li>)}
+              </ul>
+              <a href={FREE} class="home-text-link br-only" data-home-cta="mid_page">{t.antesDepois.cta} <Icon name="arrow" size={19} /></a>
+              <a href="#planos" class="home-text-link intl-only" data-home-cta="mid_page">{t.antesDepois.cta} <Icon name="arrow" size={19} /></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-affiliate" id="afiliados">
+        <div class="container">
+          <div class="home-affiliate__grid">
+            <div class="home-affiliate__copy">
+              <span class="home-kicker"><Icon name="link" size={17} /> {t.afiliados.kicker}</span>
+              <h2 set:html={marcar(t.afiliados.titulo)} />
+              <p>{t.afiliados.lead}</p>
+              <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="affiliate">{t.afiliados.cta} <Icon name="arrow" size={20} /></a>
+              <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="affiliate">{t.afiliados.cta} <Icon name="arrow" size={20} /></a>
+            </div>
+            <div class="affiliate-visual" aria-label={t.afiliados.aria}>
+              <div class="affiliate-visual__tag"><Icon name="bolt" size={18} /> {t.afiliados.tag}</div>
+              <div class="affiliate-request"><span>💬</span><div><small>{t.afiliados.comentarioRotulo}</small><b>{t.afiliados.comentario}</b></div></div>
+              <div class="affiliate-path" aria-hidden="true"><span></span><Icon name="arrow" size={22} /></div>
+              <div class="affiliate-reply"><div><img src="/assets/favicon.svg" alt="" width="35" height="35" /><span><b>{t.afiliados.respostaTitulo}</b><small>{t.afiliados.respostaSub}</small></span></div><span class="affiliate-reply__link"><Icon name="link" size={20} /> {t.afiliados.respostaBotao} <Icon name="diagonal" size={20} /></span></div>
+              <p>{t.afiliados.fecho}</p>
+            </div>
+          </div>
+          <div class="home-marketplaces">
+            <p>{t.afiliados.marketplaces}</p>
+            <div>
+              <img src="/assets/marketplaces/shopee.svg" alt="Shopee" width="1000" height="320" loading="lazy" />
+              <img src="/assets/marketplaces/amazon.svg" alt="Amazon" width="603" height="182" loading="lazy" />
+              <img src="/assets/marketplaces/mercadolivre.svg" alt="Mercado Livre" width="948" height="373" loading="lazy" />
+              <img src="/assets/marketplaces/aliexpress.svg" alt="AliExpress" width="1719" height="372" loading="lazy" />
+              <img src="/assets/marketplaces/magalu.svg" alt="Magalu" width="490" height="140" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-extras">
+        <div class="container">
+          <div class="home-section-heading"><h2 set:html={marcar(t.extras.titulo)} /><p>{t.extras.lead}</p></div>
+          <div class="home-resource-list">
+            {resources.map((resource) => (
+              <article><span><Icon name={resource.icon} size={26} /></span><h3>{resource.titulo}</h3><p>{resource.texto}</p></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section home-how" id="como">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+            <h2 set:html={marcar(t.como.titulo)} />
+            <p>{t.como.lead}</p>
+          </div>
+          <ol class="home-steps">
+            {steps.map((step) => (
+              <li><div class="home-step__top"><span>{step.n}</span><Icon name={step.icon} size={28} /></div><h3>{step.titulo}</h3><p>{step.texto}</p></li>
+            ))}
+          </ol>
+          <div class="home-how__actions">
+            <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="steps">{t.como.ctaBr} <Icon name="arrow" size={20} /></a>
+            <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="steps">{t.como.ctaIntl} <Icon name="arrow" size={20} /></a>
+            <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
+          </div>
+        </div>
+      </section>
+
+      <HomePricing t={t.planos} lang={lang} />
+
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">{t.faq.kicker}</span>
+            <h2 set:html={marcar(t.faq.titulo)} />
+            <p>{t.faq.lead}</p>
+            <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+          </div>
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">{t.final.bolha}</span>
+          <span class="home-kicker">{t.final.kicker}</span>
+          <h2 set:html={marcar(t.final.titulo)} />
+          <p>{t.final.lead}</p>
+          <div class="home-final__actions">
+            <a href={FREE} class="btn btn--lg br-only" data-home-cta="final_cta">{t.final.ctaBr} <Icon name="arrow" size={22} /></a>
+            <a href="#planos" class="btn btn--lg intl-only" data-home-cta="final_cta">{t.final.ctaIntl} <Icon name="arrow" size={22} /></a>
+            <small class="br-only">{t.final.microBr}</small>
+            <small class="intl-only">{t.final.microIntl}</small>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer {...rodape} />
+  </div>
+
+
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+
+    document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+      cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: cta.dataset.homeCta }));
+    });
+    document.querySelectorAll<HTMLAnchorElement>("[data-show-demo]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const key = link.dataset.showDemo;
+        if (!["comment", "story", "direct"].includes(key ?? "")) return;
+        document.querySelector<HTMLButtonElement>(`#demo [data-demo="${key}"]`)?.click();
+      });
+    });
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly" });
+    });
+    document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "plans" }));
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>('a[href*="buy.stripe.com"]');
+      const language = link?.href.match(/nqlang_([a-zA-Z-]+)/);
+      if (language) document.cookie = `nq_lang=${language[1]}; path=/; max-age=3600; SameSite=Lax`;
+    }, true);
+  </script>

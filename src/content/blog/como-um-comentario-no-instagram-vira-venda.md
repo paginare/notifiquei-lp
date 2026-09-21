@@ -72,19 +72,19 @@ Essa diferença de postura — de "manda mensagem" pra "posso te mandar" — mud
 
 Existe um limite no que você consegue fazer num comentário público. Tem coisas que só dá pra resolver no Direct: preço especial, personalização, dúvida mais complexa, objeção real.
 
-Então o objetivo do comentário não é fechar a venda; é abrir a conversa privada.
+Então o objetivo do comentário não é fechar a venda; é abrir a conversa privada. Dá pra deixar até a [resposta pública do comentário automática](/blog/responder-comentarios-do-instagram-automaticamente), pra ninguém ver o post sem retorno enquanto a conversa migra pro direct.
 
 E aí entra uma virada que muita marca ainda não percebeu: você não precisa esperar a pessoa ir até o Direct. Você pode [acionar o Direct automaticamente](/blog/dm-para-quem-comentou-no-instagram), no momento em que ela comentou, com uma mensagem já personalizada.
 
 ## a lógica do comentário como gatilho
 
-Imagina o seguinte: alguém comenta "quero" num post seu. Em menos de 10 segundos, ela recebe uma DM automática que diz:
+Imagina o seguinte: alguém comenta "quero" num post seu, e "quero" é uma das [palavras-chave que você configurou como gatilho](/blog/palavras-chave-em-comentarios-para-acionar-automacao). Em menos de 10 segundos, ela recebe uma DM automática que diz:
 
 *"Oi! Vi que você curtiu [nome do produto]. Tenho as últimas unidades em estoque — me fala seu tamanho e eu te passo as formas de pagamento."*
 
 Sem que você precisasse tocar no celular, sem delay. A pessoa ainda está com o post aberto, ainda está no pico do interesse, e já tem uma conversa esperando por ela.
 
-Isso não é ficção científica. Já é realidade pra quem usa automação via API oficial do Instagram.
+Isso não é ficção científica. Já é realidade pra quem usa automação via API oficial do Instagram. O mesmo gatilho funciona durante uma transmissão, então dá pra [disparar a mensagem na live](/blog/disparar-mensagem-na-live-do-instagram) sem parar de falar pra explicar o link, ou concentrar tudo numa [promoção relâmpago de poucas horas](/blog/promocao-relampago-com-automacao-no-instagram).
 
 O número de marcas que chegam a 15% a 20% de conversão de DM em venda — contra os 5% ou menos de campanhas genéricas — é justamente esse grupo que combina velocidade com mensagem certa. Os dados de mercado são claros: quando o tempo de resposta cai de horas para minutos (ou segundos), o engajamento futuro sobe em torno de 23% e a conversão sobe bem mais do que isso.
 

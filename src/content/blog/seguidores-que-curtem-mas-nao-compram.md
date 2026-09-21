@@ -20,7 +20,7 @@ Você posta todo dia, aparece nos stories, faz reels, carrossel e ainda entra no
 
 Aí você abre o relatório de vendas e o número conta outra história: zero, ou quase zero.
 
-Isso não é azar, não é o algoritmo te perseguindo e não é porque seu produto é ruim. É porque curtir e comprar são comportamentos completamente diferentes, e a maioria dos criadores trata os dois como se fossem a mesma coisa quando, na real, não são.
+Isso não é azar, não é o algoritmo te perseguindo e não é porque seu produto é ruim. É porque curtir e comprar são comportamentos completamente diferentes, e a maioria dos criadores trata os dois como se fossem a mesma coisa quando, na real, não são. [transformar seguidores em clientes](/blog/transformar-seguidores-em-clientes-no-instagram) começa por aceitar essa diferença.
 
 ## curtir é fácil. comprar exige confiança.
 

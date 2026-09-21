@@ -18,9 +18,9 @@ faq:
 
 Alguém manda uma DM perguntando "quanto custa?" e você responde na hora com o preço. A pessoa lê, some, e nunca mais aparece.
 
-Isso acontece todo dia com quem vende pelo Instagram. E o problema não é o preço — é que você mandou o número antes de entender se aquela pessoa estava, de fato, pronta pra comprar.
+Isso acontece todo dia com quem vende pelo Instagram. E o problema não é o preço, é que você mandou o número antes de entender se aquela pessoa estava, de fato, pronta pra comprar.
 
-Qualificar um lead não é sobre ser difícil ou criar obstáculos. É sobre entender o contexto de quem chegou até você antes de jogar um valor na conversa sem nenhum preparo. Preço sem contexto vira objeção. Preço com contexto vira decisão.
+Qualificar um lead não é sobre ser difícil ou criar obstáculos. É sobre entender o contexto de quem chegou até você antes de jogar um valor na conversa sem nenhum preparo. Preço sem contexto vira objeção. Preço com contexto vira decisão. É uma das etapas de [transformar seguidores em clientes](/blog/transformar-seguidores-em-clientes-no-instagram).
 
 ## o que está acontecendo na cabeça de quem pergunta o preço
 

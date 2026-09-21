@@ -18,7 +18,7 @@ faq:
 
 Você entrou no Notifiquei, clicou em alguma automação e a tela estava diferente. O perfil do seu Instagram sumiu da lista e a automação parou de rodar. Ou chegou um e-mail avisando que a plataforma foi atualizada e você ficou sem saber o que fazer.
 
-A primeira reação é preocupação: "perdi minha assinatura?", "vou ter que configurar tudo de novo?". A resposta curta é não. O que mudou tem solução rápida e leva menos de cinco minutos. Aqui vai o que aconteceu e o que você precisa fazer pra voltar a trabalhar normal.
+A primeira reação é preocupação: "perdi minha assinatura?", "vou ter que configurar tudo de novo?". A resposta curta é não. O que mudou tem solução rápida e leva menos de cinco minutos. Se você está chegando agora, o caminho inteiro está nos [primeiros passos no Notifiquei](/blog/primeiros-passos-no-notifiquei-guia-completo). Aqui vai o que aconteceu e o que você precisa fazer pra voltar a trabalhar normal.
 
 ## o que não muda: assinatura e histórico intactos
 

@@ -18,7 +18,7 @@ faq:
 
 Você define o que o Notifiquei vai dizer. Essa é a regra principal. A ferramenta respeita a API oficial da Meta para entregar a mensagem rápido, mas o texto é seu, do início ao fim. Um template bem escrito chega rápido e faz a pessoa responder. Um template ruim chega rápido e é ignorado.
 
-A diferença está em entender que cada momento da conversa pede um tipo de mensagem diferente. O que funciona na boas-vindas não funciona na oferta. O que convence no follow-up não devia estar no primeiro contato.
+A diferença está em entender que cada momento da conversa pede um tipo de mensagem diferente. O que funciona na boas-vindas não funciona na oferta. O que convence no follow-up não devia estar no primeiro contato, e [o que escrever no primeiro DM automático](/blog/script-do-primeiro-dm-automatico-no-instagram) é o caso mais sensível dos três.
 
 ## o que é um template na prática
 

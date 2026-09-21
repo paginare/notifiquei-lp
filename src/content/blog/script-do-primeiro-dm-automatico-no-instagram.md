@@ -20,7 +20,7 @@ Você comentou num post, recebeu um DM dois segundos depois e a mensagem tinha q
 
 Isso acontece toda hora. O primeiro DM automático chega rápido, a API oficial da Meta garante isso independente do volume de comentários, mas o texto joga fora essa vantagem logo no início.
 
-O problema não é a automação. É o script.
+O problema não é a automação. É o script. E script ruim tem sintoma conhecido: [o DM parece robô](/blog/dm-automatico-parece-robo-como-evitar) antes da pessoa terminar a primeira linha.
 
 ## por que a primeira mensagem não pode ser longa
 
@@ -72,7 +72,7 @@ E se o nome não estiver disponível no perfil, o sistema simplesmente deixa a v
 
 ## montando o fluxo do zero
 
-O primeiro DM é a entrada do fluxo, mas não é o fluxo inteiro. Depois que o lead responde ou toca num botão, a conversa pode seguir com qualificação, apresentação de oferta ou encaminhamento pra um atendente humano, dependendo do que você configurou.
+O primeiro DM é a entrada do fluxo, mas não é o fluxo inteiro. Cada etapa seguinte pede um texto próprio, e a lógica de [templates de mensagem no direct](/blog/templates-de-mensagem-no-direct-do-instagram) cobre essa parte. Depois que o lead responde ou toca num botão, a conversa pode seguir com qualificação, apresentação de oferta ou encaminhamento pra um atendente humano, dependendo do que você configurou.
 
 Se você está começando a montar essa estrutura agora, o passo a passo de [como montar o fluxo de boas-vindas no direct](/blog/fluxo-de-boas-vindas-no-direct-do-instagram) mostra como encadear as etapas desde o primeiro contato.
 

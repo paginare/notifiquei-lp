@@ -19,7 +19,7 @@ faq:
 
 Você abre o direct do Instagram numa segunda de manhã e tem 40 conversas esperando. Algumas são de pessoas que compraram semana passada e querem saber do rastreio. Outras são de quem perguntou o preço há três dias e sumiu. Tem quem pediu catálogo mas não abriu, e quem está mandando mensagem pela segunda vez sobre o mesmo produto.
 
-Sem organização, você responde o que aparece primeiro e perde o fio das conversas que estavam quentes. A ideia que surge naturalmente é etiquetar: marcar cada pessoa como "lead", "cliente", "quente", "frio", e depois filtrar.
+Sem organização, você responde o que aparece primeiro e perde o fio das conversas que estavam quentes, que é onde [transformar seguidores em clientes](/blog/transformar-seguidores-em-clientes-no-instagram) acontece de verdade. A ideia que surge naturalmente é etiquetar: marcar cada pessoa como "lead", "cliente", "quente", "frio", e depois filtrar.
 
 Faz todo sentido no papel. No Instagram, quase nunca funciona — e vale entender por quê antes de montar um sistema que você vai abandonar em duas semanas.
 

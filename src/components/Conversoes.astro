@@ -1,0 +1,88 @@
+---
+// Eventos de conversão da LP: pixel no navegador + /api/evento (API de Conversões,
+// functions/api/evento.js). Mesmo event_id nos dois, então a Meta conta uma vez.
+// Só liga depois do aceite de cookies, igual ao GTM (ver Gtm.astro).
+//
+// Não passa pelo dataLayer de propósito: a tag de evento do GTM gera o próprio
+// event_id e dispararia o pixel de novo, com id diferente (evento em dobro).
+
+// Link da Cakto → plano e valor em BRL. Anual = 10x a mensalidade.
+// ponytail: cópia dos links da tabela de preços (hoje repetidos em index, v2, v3 e
+// afiliados/central). Link que não estiver aqui ainda gera o evento, só sem valor.
+// Quando os planos virarem um módulo único, importar de lá.
+const cakto = {
+  "https://pay.cakto.com.br/jghakt9_1023509": { content_name: "solo_mensal", value: 99 },
+  "https://pay.cakto.com.br/ccwxocu": { content_name: "solo_anual", value: 990 },
+  "https://pay.cakto.com.br/3c939t6": { content_name: "pro_mensal", value: 499 },
+  "https://pay.cakto.com.br/pesb7su": { content_name: "pro_anual", value: 4990 },
+  "https://pay.cakto.com.br/zkdgyvq": { content_name: "business_mensal", value: 799 },
+  "https://pay.cakto.com.br/dfycche": { content_name: "business_anual", value: 7990 },
+};
+---
+<script is:inline define:vars={{ cakto }}>
+  // Lead e InitiateCheckout são eventos padrão da Meta; Scroll<N> é personalizado.
+  var PADRAO = { Lead: 1, InitiateCheckout: 1 };
+
+  function envia(nome, dados) {
+    var id = window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random().toString(36).slice(2);
+    if (window.fbq) window.fbq(PADRAO[nome] ? "track" : "trackCustom", nome, dados, { eventID: id });
+    var corpo = JSON.stringify({ event_name: nome, event_id: id, event_source_url: location.href, custom_data: dados });
+    // sendBeacon sobrevive à troca de página que o próprio clique provoca.
+    if (!(navigator.sendBeacon && navigator.sendBeacon("/api/evento", new Blob([corpo], { type: "application/json" })))) {
+      fetch("/api/evento", { method: "POST", body: corpo, keepalive: true, headers: { "Content-Type": "application/json" } }).catch(function () {});
+    }
+  }
+
+  function aoClicar(e) {
+    var a = e.target instanceof Element && e.target.closest("a[href]");
+    if (!a) return;
+    var u;
+    try { u = new URL(a.href); } catch (_) { return; }
+    if (u.host === "pay.cakto.com.br") {
+      var plano = cakto[u.origin + u.pathname];
+      envia("InitiateCheckout", plano ? { content_name: plano.content_name, value: plano.value, currency: "BRL" } : { currency: "BRL" });
+    } else if (u.host === "app.notifiquei.com.br" && u.pathname === "/auth") {
+      // Com ?plan= é o gringo indo pagar no Stripe; sem, é o cadastro grátis.
+      var slug = u.searchParams.get("plan");
+      envia(slug ? "InitiateCheckout" : "Lead", slug ? { content_name: slug } : {});
+    }
+  }
+
+  // Marcos de leitura, de 20 em 20%. Cada marco dispara uma vez por página; ao
+  // chegar em 100% o ouvinte sai. A conta roda dentro de requestAnimationFrame
+  // porque ler scrollHeight a cada evento de rolagem força recálculo de layout.
+  var marcos = [20, 40, 60, 80, 100];
+  var vistos = {};
+  var agendado = false;
+
+  function mede() {
+    agendado = false;
+    var doc = document.documentElement;
+    var rolavel = doc.scrollHeight - window.innerHeight;
+    var pct = rolavel > 0 ? ((window.scrollY || doc.scrollTop) / rolavel) * 100 : 100;
+    for (var i = 0; i < marcos.length; i++) {
+      var m = marcos[i];
+      if (!vistos[m] && pct >= m - 0.5) {
+        vistos[m] = 1;
+        envia("Scroll" + m, {});
+      }
+    }
+    if (vistos[100]) window.removeEventListener("scroll", aoRolar);
+  }
+
+  function aoRolar() {
+    if (agendado) return;
+    agendado = true;
+    (window.requestAnimationFrame || setTimeout)(mede);
+  }
+
+  var ligado = false;
+  if (typeof window.nfAoConsentir === "function") {
+    window.nfAoConsentir(function () {
+      if (ligado) return;
+      ligado = true;
+      document.addEventListener("click", aoClicar, true);
+      window.addEventListener("scroll", aoRolar, { passive: true });
+    });
+  }
+</script>

@@ -20,7 +20,7 @@ Você tem 800 seguidores, manda um Reels, recebe 40 comentários pedindo o link,
 
 Essa cena se repete mais do que parece, e ela não tem nada a ver com tamanho de conta. Tem a ver com velocidade de resposta.
 
-A pergunta "vale a pena automatizar com poucos seguidores?" pressupõe que automação é privilégio de quem já cresceu. Mas o raciocínio é ao contrário: conta pequena tem menos margem pra desperdiçar interesse, então cada resposta tardia custa mais.
+A pergunta "vale a pena automatizar com poucos seguidores?" pressupõe que [automação no Instagram](/blog/automacao-no-instagram-guia) é privilégio de quem já cresceu. Mas o raciocínio é ao contrário: conta pequena tem menos margem pra desperdiçar interesse, então cada resposta tardia custa mais.
 
 ## a crença de que automação é coisa de conta grande
 

@@ -1,7 +1,8 @@
 ---
 title: "Como automatizar a resposta a stories no Instagram"
-description: "Quando alguém responde seu story, dá pra disparar uma automação no direct. Veja como funciona o gatilho de resposta a story e a regra da janela da Meta."
+description: "Sim, dá pra automatizar: a resposta ao story aciona um fluxo no direct. A primeira mensagem vem com botão, pela regra da Meta, e depois a conversa segue livre."
 date: 2026-07-01
+updated: 2026-09-16
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Stories", "Instagram"]
@@ -20,7 +21,7 @@ Você postou uma enquete no story ontem à noite. Duas fotos do mesmo produto e 
 
 Você começa a responder de cima pra baixo. Copia o link, cola, volta, responde a próxima, se perde em quem já respondeu e quem não. No meio disso o dia começa, aparece reunião, cliente, filho pra levar na escola. Quando você volta, já é meio da tarde. Boa parte daquela galera que respondeu de madrugada esfriou, comprou de outro lugar ou nem lembra mais que votou.
 
-A pergunta que resolve isso é direta: dá pra automatizar a resposta a story, pra cada pessoa que responde receber o retorno na hora sem você ficar grudada no celular? Dá. E tem uma regra da Meta no caminho que vale entender pra montar do jeito certo.
+A pergunta que resolve isso é direta: dá pra automatizar a resposta a story, pra cada pessoa que responde receber o retorno na hora sem você ficar grudada no celular? Dá, e é assim que começa um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram). Tem uma regra da Meta no caminho que vale entender pra montar do jeito certo.
 
 ## dá pra automatizar a resposta a story?
 
@@ -60,6 +61,8 @@ Se você quase não usa story de interação, isso muda pouco pra você. Agora, 
 É o caso de quem tem uma base engajada e usa o story como vitrine. Você pergunta, a galera responde, e cada resposta é uma pessoa levantando a mão dizendo que tem interesse. Deixar essas mãos levantadas sem retorno por horas é dinheiro escorrendo pelo ralo todo dia.
 
 Automatizar isso não tira o seu toque pessoal. As conversas que precisam de você de verdade continuam existindo, e a gente organiza melhor o seu tempo pra elas. O que sai da sua mão é o trabalho repetitivo de mandar o mesmo link cinquenta vezes.
+
+Se o seu objetivo é [usar o story como ponto de entrada de um funil orgânico](/blog/stories-com-interacao-e-dm-automatico), a escolha do tipo de pergunta faz bastante diferença no perfil de quem chega no direct.
 
 ## como o Notifiquei monta esse fluxo
 

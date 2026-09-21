@@ -20,7 +20,7 @@ Você posta um Reel, ele estoura, e em meia hora chegam 300 comentários pedindo
 
 A resposta curta é: não, e tudo bem que não aceite. A API oficial da Meta tem um limite de envio de cerca de 200 mensagens por hora por conta. Não é uma trava do Notifiquei, é uma regra da própria plataforma para manter o ecossistema funcionando de forma saudável.
 
-Entender esse limite ajuda a planejar melhor e evitar escolhas que parecem vantajosas mas colocam sua conta em risco.
+Entender esse limite ajuda a planejar melhor e evitar escolhas que parecem vantajosas mas colocam sua conta em risco. Ele é uma das regras que fazem a [automação no Instagram](/blog/automacao-no-instagram-guia) pelo caminho oficial ser segura.
 
 ## por que a api limita o envio de mensagens
 

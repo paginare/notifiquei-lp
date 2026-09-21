@@ -20,7 +20,7 @@ Eram onze da manhã quando a Carla viu uma notificação no celular: alguém tin
 
 Esse tipo de situação acontece mais do que parece. O lead manda a primeira mensagem num momento de interesse alto, e se não recebe resposta naquela janela de atenção, vai embora. Não porque você foi descuidada, mas porque a atenção das pessoas dura o tempo de um scroll.
 
-A automação de boas-vindas resolve exatamente isso: ela dispara o primeiro DM no momento em que a conversa é aberta, sem depender de ninguém estar online.
+A automação de boas-vindas resolve exatamente isso: ela dispara o primeiro DM no momento em que a conversa é aberta, sem depender de ninguém estar online. É a etapa de captura de um [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram).
 
 ## o que acontece quando alguém manda a primeira mensagem
 

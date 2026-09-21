@@ -19,7 +19,7 @@ faq:
 
 Você tem um Reel gravado, editado e pronto pra postar às 19h de sexta, o horário em que seu público costuma aparecer. Mas às 19h você está em reunião, ou com a família, ou simplesmente longe do celular. Então publica às 17h e o alcance cai pela metade, ou publica às 21h e a maioria já passou pela tela.
 
-Agendar resolve isso. Mas vale começar pela parte que interessa a quem chegou aqui procurando o Notifiquei: **ele não agenda publicação.**
+Agendar resolve isso. Mas vale começar pela parte que interessa a quem chegou aqui procurando o Notifiquei: **ele não agenda publicação.** O que ele faz é [automação no Instagram](/blog/automacao-no-instagram-guia) depois que o post já está no ar, respondendo comentário e direct.
 
 ## por que o agendamento saiu do produto
 

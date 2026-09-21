@@ -1,0 +1,113 @@
+---
+import { plans, FREE } from "../data/home";
+import { intlHref, mensalNoAnual, totalAnual } from "../i18n/planos";
+import { marcar, type CopyHome, type Lang } from "../i18n/home";
+
+interface Props { t: CopyHome["planos"]; lang: Lang; }
+const { t, lang } = Astro.props;
+// Cada língua escreve número do seu jeito: 1.290 em pt/es, 1,290 em en.
+const LOCALE: Record<Lang, string> = { "pt-BR": "pt-BR", en: "en-US", es: "es-ES" };
+const SRC = "home";
+// Preço e link vêm dos dados; frase, botão e itens vêm da língua.
+const cartao = (slug: string) => t.cartoes[slug as keyof typeof t.cartoes];
+const anual = (valor: string, moeda: string) =>
+  t.cobradoAno.replace("{valor}", `${moeda}${totalAnual(valor).toLocaleString(LOCALE[lang])}`);
+---
+    <section class="home-section home-pricing" id="planos">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow">{t.eyebrow}</span>
+          <h2 set:html={marcar(t.titulo)} />
+          <p class="lead br-only">{t.leadBr}</p>
+          <p class="lead intl-only">{t.leadIntl}</p>
+          <p class="plans__note" set:html={t.nota} />
+          <div class="billtoggle reveal" id="billtoggle" role="group" aria-label={t.ciclo}>
+            <button type="button" class="billtoggle__opt" data-cycle="m" aria-pressed="false">{t.mensal}</button>
+            <button type="button" class="billtoggle__opt is-on" data-cycle="a" aria-pressed="true">{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
+          </div>
+        </div>
+        <div class="plans" id="plans-grid">
+          {plans.map((p, i) => (
+            <article
+              class={`plan reveal ${p.featured ? "plan--featured" : ""} ${p.mercado === "br" ? "br-only" : ""} ${p.mercado === "intl" ? "intl-only" : ""}`}
+              style={`--reveal-delay:${i * 90}ms`}
+            >
+              {p.featured && <span class="plan__badge">{t.maisPopular}</span>}
+              <h3 class="plan__name">{p.name}</h3>
+              <p class="plan__blurb">{cartao(p.slug).blurb}</p>
+              {/* As três moedas saem no HTML; o CSS mostra a do país (ver global.css). */}
+              {p.price && (
+                <>
+                  <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{mensalNoAnual(p.price)}</span><span class="plan__per">{t.porMes}</span></p>
+                  <p class="plan__bill" data-cur="BRL" data-bill={anual(p.price, "R$ ")}>{anual(p.price, "R$ ")}</p>
+                  <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                </>
+              )}
+              {p.usd && (
+                <>
+                  <p class="plan__price" data-cur="USD"><span class="plan__cur">$</span><span class="plan__amount" data-m={p.usd} data-a={mensalNoAnual(p.usd)}>{mensalNoAnual(p.usd)}</span><span class="plan__per">{t.porMes}</span></p>
+                  <p class="plan__price" data-cur="EUR"><span class="plan__cur">€</span><span class="plan__amount" data-m={p.eur} data-a={mensalNoAnual(p.eur!)}>{mensalNoAnual(p.eur!)}</span><span class="plan__per">{t.porMes}</span></p>
+                  <p class="plan__bill" data-cur="USD" data-bill={anual(p.usd, "$")}>{anual(p.usd, "$")}</p>
+                  <p class="plan__bill" data-cur="EUR" data-bill={anual(p.eur!, "€")}>{anual(p.eur!, "€")}</p>
+                  <a href={intlHref(p.slug, "USD", "a", "pt-BR")} data-href-m={intlHref(p.slug, "USD", "m", "pt-BR")} data-href-a={intlHref(p.slug, "USD", "a", "pt-BR")} data-cur="USD" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                  <a href={intlHref(p.slug, "EUR", "a", "pt-BR")} data-href-m={intlHref(p.slug, "EUR", "m", "pt-BR")} data-href-a={intlHref(p.slug, "EUR", "a", "pt-BR")} data-cur="EUR" class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta intl-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                </>
+              )}
+              <ul class="plan__features">
+                {cartao(p.slug).itens.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
+              </ul>
+              <span class="plan__guarantee">{t.garantia}</span>
+            </article>
+          ))}
+        </div>
+
+        <!-- Plano grátis para sempre (separado dos pagos) -->
+        <article class="freeplan reveal br-only">
+          <div class="freeplan__head">
+            <span class="freeplan__tag">{t.gratisTag}</span>
+            <h3 class="freeplan__name">{t.gratisNome}</h3>
+            <p class="freeplan__blurb">{t.gratisBlurb}</p>
+          </div>
+          <ul class="freeplan__features">
+            {t.gratisItens.map((item) => <li><span class="plan__tick" aria-hidden="true">✓</span> {item}</li>)}
+          </ul>
+          <div class="freeplan__cta">
+            <a href={FREE} class="btn btn--ghost btn--lg">{t.gratisCta}<span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+<script>
+    // Toggle mensal/anual nos planos
+    const toggle = document.getElementById("billtoggle");
+    const grid = document.getElementById("plans-grid");
+    if (toggle && grid) {
+      toggle.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".billtoggle__opt");
+        if (!btn) return;
+        const annual = btn.dataset.cycle === "a";
+        toggle.querySelectorAll(".billtoggle__opt").forEach((o) => {
+          o.classList.toggle("is-on", o === btn);
+          o.setAttribute("aria-pressed", String(o === btn));
+        });
+        // querySelectorAll, não querySelector: desde que o card virou multi-moeda,
+        // cada um carrega 3 preços e 2 botões (Brasil + internacional). No singular,
+        // o toggle só mexia no primeiro — o BRL, que fica escondido lá fora — e o
+        // gringo via o preço travado no anual. Atualiza todos; o CSS mostra o certo.
+        grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
+          card.querySelectorAll<HTMLElement>(".plan__amount").forEach((amt) => {
+            amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
+          });
+          card.querySelectorAll<HTMLElement>(".plan__bill").forEach((bill) => {
+            bill.textContent = annual ? bill.dataset.bill! : "";
+          });
+          card.querySelectorAll<HTMLAnchorElement>(".plan__cta").forEach((cta) => {
+            cta.href = annual ? cta.dataset.hrefA! : cta.dataset.hrefM!;
+          });
+        });
+      });
+    }
+
+</script>

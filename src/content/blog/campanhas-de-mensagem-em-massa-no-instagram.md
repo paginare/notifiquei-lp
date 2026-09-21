@@ -21,7 +21,7 @@ Você tem 180 pessoas que mandaram DM perguntando sobre seu produto nas últimas
 
 Aí chega o relançamento. Ou a Black Friday. E vem a pergunta natural: como eu mando uma mensagem pra essa base toda de uma vez?
 
-A resposta honesta é que, no Instagram, você não manda. E entender por que é o que separa quem monta uma operação que dura de quem toma um bloqueio no meio da campanha.
+A resposta honesta é que, no Instagram, você não manda. [transformar seguidores em clientes](/blog/transformar-seguidores-em-clientes-no-instagram) ali passa por conversa aberta, nunca por disparo. E entender por que é o que separa quem monta uma operação que dura de quem toma um bloqueio no meio da campanha.
 
 ## a janela de conversa da meta
 

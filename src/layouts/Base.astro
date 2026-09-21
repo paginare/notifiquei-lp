@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import PostHog from '../components/posthog.astro';
 import Gtm from '../components/Gtm.astro';
+import Conversoes from '../components/Conversoes.astro';
 import { versaoConsent } from "../lib/versao-asset";
 
 interface Props {
@@ -78,6 +79,7 @@ const alternates = hreflangOf
   -->
   <script is:inline src={`/assets/cookie-consent.js?v=${versaoConsent}`}></script>
   <Gtm />
+  <Conversoes />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />

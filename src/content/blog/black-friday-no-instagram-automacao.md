@@ -20,7 +20,7 @@ Você abre o Instagram na sexta de manhã cedo e o celular já vibrou mais de ce
 
 A janela de decisão de compra na Black Friday é curta. A pessoa que não recebe retorno em minutos vai ao próximo perfil, ao próximo anúncio, à próxima opção. Atendimento manual com volume alto simplesmente não funciona nesse cenário.
 
-É aqui que a automação faz diferença real. Não porque substitui uma equipe de vendas, mas porque garante que ninguém fica sem resposta no momento de maior intenção de compra do ano.
+É aqui que a [automação no Instagram](/blog/automacao-no-instagram-guia) faz diferença real. Não porque substitui uma equipe de vendas, mas porque garante que ninguém fica sem resposta no momento de maior intenção de compra do ano.
 
 ## o que acontece quando o volume supera o manual
 

@@ -14,9 +14,7 @@
   var TEXTOS = {
     'pt-BR': {
       aria: 'Aviso de cookies',
-      texto: 'Usamos cookies essenciais para o funcionamento da plataforma e, com seu consentimento,'
-        + ' cookies analíticos e de marketing para melhorar sua experiência.'
-        + ' Consulte nossa ',
+      texto: 'Cookies essenciais e, com seu aceite, de análise e marketing. Detalhes na ',
       politica: 'Política de Privacidade',
       href: '/politica-de-privacidade',
       essenciais: 'Apenas essenciais',
@@ -24,9 +22,7 @@
     },
     en: {
       aria: 'Cookie notice',
-      texto: 'We use essential cookies to run the platform and, with your consent,'
-        + ' analytics and marketing cookies to improve your experience.'
-        + ' See our ',
+      texto: 'Essential cookies and, with your consent, analytics and marketing ones. Details in our ',
       politica: 'Privacy Policy',
       href: '/en/privacy-policy',
       essenciais: 'Essential only',
@@ -34,9 +30,7 @@
     },
     es: {
       aria: 'Aviso de cookies',
-      texto: 'Usamos cookies esenciales para el funcionamiento de la plataforma y, con su consentimiento,'
-        + ' cookies analíticas y de marketing para mejorar su experiencia.'
-        + ' Consulte nuestra ',
+      texto: 'Cookies esenciales y, con su aceptación, de análisis y marketing. Detalles en la ',
       politica: 'Política de Privacidad',
       href: '/es/politica-de-privacidad',
       essenciais: 'Solo esenciales',
@@ -122,8 +116,11 @@
     'transition:all .2s;font-family:inherit;}',
     '.nf-btn-essential:hover{color:#FFF9F3;border-color:rgba(255,249,243,0.5);}',
     '@media(max-width:600px){',
-    '#nf-cookie-banner{padding:16px 20px;}',
+    // Compacto no celular de propósito: o aviso tapava metade da primeira tela, que é
+    // onde metade das pessoas decide — e é ele que libera toda a medição do site.
+    '#nf-cookie-banner{padding:13px 16px;gap:12px;font-size:12.5px;line-height:1.45;}',
     '#nf-cookie-btns{width:100%;}',
+    '.nf-btn-accept,.nf-btn-essential{padding:10px 16px;font-size:12.5px;}',
     '.nf-btn-accept,.nf-btn-essential{flex:1;text-align:center;}',
     '}'
   ].join('');

@@ -20,7 +20,7 @@ Você publica um Reel de bastidores do programa, vai tomar um café e, quando vo
 
 Esse pico depois de um conteúdo bom é o ritmo natural de coach e infoprodutor. O problema não é o volume de DMs em si, é que tudo chega ao mesmo tempo e depende de você estar online para responder na hora certa. Lead que não recebe resposta rápida esfria. E lead frio raramente volta.
 
-A automação resolve exatamente esse gargalo. Ela não substitui a sua voz no processo, mas garante que o primeiro contato aconteça no momento em que a pessoa levantou a mão, não horas depois.
+A [automação no Instagram](/blog/automacao-no-instagram-guia) resolve exatamente esse gargalo. Ela não substitui a sua voz no processo, mas garante que o primeiro contato aconteça no momento em que a pessoa levantou a mão, não horas depois.
 
 ## como o funil de infoprodutor funciona no direct
 

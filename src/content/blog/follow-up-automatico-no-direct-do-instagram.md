@@ -1,7 +1,8 @@
 ---
-title: "Follow-up automático no direct do Instagram sem parecer chato"
-description: "Dá pra programar um follow-up no direct sem floodar ninguém. Veja como usar o nó de espera, a janela de 7 dias e o limite de 24 horas a seu favor."
+title: "Follow-up automático no direct do Instagram sem ser chato"
+description: "Follow-up automático no direct: veja como o nó de espera, a janela de 7 dias e o limite de 24h garantem que o lembrete certo chega na hora, sem virar spam."
 date: 2026-07-01
+updated: 2026-09-18
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Follow-up", "Instagram"]
@@ -20,9 +21,9 @@ Você [manda o preço pro cliente no direct](/blog/como-qualificar-lead-antes-de
 
 Na maioria das vezes é a terceira opção. A pessoa se interessou de verdade, mas a vida atravessou, ela fechou o app pra fazer outra coisa e nunca mais voltou naquela conversa. Não foi o preço que matou a venda, foi o silêncio depois dele. E o que resolveria isso é bobo: um lembrete no tempo certo, um "e aí, ainda quer?" chegando quando fizer sentido.
 
-O problema é que mandar esse lembrete na mão pra cada pessoa que sumiu é impossível de manter. Você perde a conta de quem tá esperando resposta, esquece de voltar, e no fim deixa dinheiro na mesa toda semana. A boa notícia é que dá pra automatizar esse acompanhamento sem virar aquele vendedor chato que fica cutucando todo dia. Só precisa entender as regras.
+O problema é que mandar esse lembrete na mão pra cada pessoa que sumiu é impossível de manter. Você perde a conta de quem tá esperando resposta, esquece de voltar, e no fim deixa dinheiro na mesa toda semana. A boa notícia é que dá pra automatizar esse acompanhamento sem virar aquele vendedor chato que fica cutucando todo dia. Num [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram), é a etapa que segura quem não respondeu. Só precisa entender as regras.
 
-## o que mata a venda é o silêncio, não o preço
+## follow-up automático: o que mata a venda é o silêncio, não o preço
 
 Quem vende pelo direct sabe que raramente a pessoa fala "não quero". Ela some. Some porque se distraiu, porque ia decidir depois, porque outra notificação chegou por cima da sua. O interesse existia, mas ninguém trouxe ela de volta pra conversa.
 

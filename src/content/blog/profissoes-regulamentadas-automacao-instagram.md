@@ -24,7 +24,7 @@ A resposta curta é que a automação de DM não é proibida por nenhum conselho
 
 ## a automação em si não é o problema, o conteúdo é
 
-Nenhum conselho regula qual ferramenta você usa pra responder mensagem no Instagram. A regulamentação existe sobre o que você comunica. O Código de Ética Médica, por exemplo, proíbe divulgar preços de procedimentos e fazer promessas de resultado. Mas isso vale pra qualquer comunicação, post, legenda, DM manual, DM automático, não muda com a ferramenta.
+Nenhum conselho regula qual ferramenta você usa pra responder mensagem no Instagram, nem proíbe [automação no Instagram](/blog/automacao-no-instagram-guia). A regulamentação existe sobre o que você comunica. O Código de Ética Médica, por exemplo, proíbe divulgar preços de procedimentos e fazer promessas de resultado. Mas isso vale pra qualquer comunicação, post, legenda, DM manual, DM automático, não muda com a ferramenta.
 
 Usando a API oficial da Meta, o Notifiquei entrega as mensagens que você configurou. A responsabilidade pelo conteúdo continua sendo sua. Então a pergunta certa não é "posso usar automação?", e sim "posso enviar essa mensagem específica?".
 

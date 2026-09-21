@@ -18,7 +18,7 @@ faq:
 
 Quando a gente tenta conectar o Instagram a uma ferramenta de automação pela primeira vez, a tela de erro pode parecer misteriosa. O login está certo, a senha está certa, mas a conta simplesmente não conecta. O motivo, quase sempre, é direto: a conta está no modo pessoal.
 
-A regra não é da ferramenta, é da API oficial da Meta. Só conta Profissional ou de Criador de Conteúdo tem acesso ao que permite automação de DM, resposta a comentários e agendamento de posts. Conta pessoal fica de fora, sem exceção.
+A regra não é da ferramenta, é da API oficial da Meta. Só conta Profissional ou de Criador de Conteúdo tem acesso ao que permite [automação no Instagram](/blog/automacao-no-instagram-guia): DM automático, resposta a comentários e resposta a story. Conta pessoal fica de fora, sem exceção.
 
 A boa notícia é que a mudança leva menos de 1 minuto e não custa nada.
 

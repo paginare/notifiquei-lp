@@ -20,7 +20,7 @@ O DM chegou em dois segundos. A pessoa ainda estava na tela do feed quando a not
 
 Mas o texto começava com "Olá! Ficamos muito felizes com seu interesse em nossa empresa" e tinha três parágrafos sobre benefícios do produto antes de fazer qualquer pergunta. A pessoa fechou sem responder.
 
-A velocidade foi garantida pela API oficial da Meta, que dispara o DM imediatamente após o comentário, independente do volume. O que a automação não faz é escrever o texto pra você. E é exatamente aí que mora a diferença entre um DM que parece humano e um que parece disparo em massa.
+A velocidade foi garantida pela API oficial da Meta, que dispara o DM imediatamente após o comentário, independente do volume. O que a automação não faz é escrever o texto pra você. E é exatamente aí que mora a diferença entre um DM que parece humano e um que parece disparo em massa. Ela começa em [o que escrever no primeiro DM automático](/blog/script-do-primeiro-dm-automatico-no-instagram).
 
 ## o que entrega que é automático antes de qualquer leitura
 

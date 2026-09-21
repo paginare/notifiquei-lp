@@ -1,5 +1,7 @@
 # Índice de posts do blog (para linkagem interna)
 
+Fonte de verdade pra escolher links **laterais**. A teia pilar/satélite (link obrigatório pro pilar do cluster) fica em `docs/blog-clusters.md`, verificada por `npm run check:blog`.
+
 Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicione uma linha aqui** (slug, título, categoria, tema). Use pra: (a) linkar 2-3 posts relevantes de dentro do novo post (outbound) e (b) editar 1-2 posts existentes pra apontar pro novo (inbound). URL = `/blog/<slug>`.
 
 | Slug | Título | Cat | Tema (pra decidir link) |
@@ -17,7 +19,7 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | agente-de-ia-que-responde-dm-no-instagram | Agente de IA que responde DM no Instagram | Estratégia | agente de IA, responder DM sozinho |
 | gerenciar-instagram-de-clientes-com-times | Gerenciar o Instagram de vários clientes com times | Estratégia | times, agência, acesso sem senha |
 | automatizar-resposta-a-stories-no-instagram | Como automatizar a resposta a stories no Instagram | Estratégia | automação de resposta a story |
-| follow-up-automatico-no-direct-do-instagram | Follow-up automático no direct do Instagram | Estratégia | follow-up, janela de 7 dias, lembrete |
+| follow-up-automatico-no-direct-do-instagram | Follow-up automático no direct do Instagram sem ser chato | Estratégia | follow-up, janela de 7 dias, lembrete |
 | precisa-de-conta-profissional-no-instagram | Precisa de conta profissional no Instagram pra automatizar? | Estratégia | conta profissional, conta criador, API oficial Meta, pré-requisito automação |
 | limites-de-envio-da-api-do-instagram | Quantas mensagens por hora a API do Instagram deixa enviar | Estratégia | limite de DMs, API Meta, 200 mensagens por hora, envio sustentável |
 | disparar-mensagem-na-live-do-instagram | Como disparar mensagem durante a live do Instagram | Estratégia | live, comentário live, DM automático na live, API oficial Meta |
@@ -46,7 +48,7 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | como-vender-servicos-pelo-direct-do-instagram | Como vender serviços pelo direct do Instagram | Estratégia | vender serviço direct, qualificação lead serviço, fluxo direct servico, etiquetas por fase, agente IA servico |
 | reativar-contatos-que-pararam-de-responder-no-direct | Como reativar contatos que pararam de responder no direct | Estratégia | reativação contatos direct, follow-up janela 7 dias, campanha reativação, lead frio, etiqueta sem resposta |
 | instagram-para-coaches-e-infoprodutores | Automação no Instagram para coaches e infoprodutores | Estratégia | funil direct coach, infoprodutor instagram, etiquetas por etapa, agente de IA, integração Kiwify Hotmart |
-| stories-com-interacao-e-dm-automatico | Stories com enquete viram DM automático no Instagram | Estratégia | stories automação dm, stories com enquete, dm automático para quem respondeu story, ponto de entrada funil orgânico |
+| stories-com-interacao-e-dm-automatico | Story que vira DM automático: como usar no seu funil | Estratégia | stories automação dm, dm automático para quem respondeu story, ponto de entrada funil orgânico, story como funil instagram |
 | promocao-relampago-com-automacao-no-instagram | Promoção relâmpago no Instagram com automação | Estratégia | promoção relâmpago, dm automático após comentário, campanha agendada, etiquetas, fila de envio API Meta |
 | profissoes-regulamentadas-automacao-instagram | Profissões regulamentadas: o que dá automatizar no Instagram | Estratégia | profissões regulamentadas, médico dentista advogado nutricionista, CFM OAB CFN, automação DM ética, conteúdo regulado |
 | relatorios-e-metricas-do-notifiquei | Como ler os relatórios do Notifiquei e melhorar campanhas | Estratégia | relatórios do notifiquei, métricas de automação, taxa de resposta dm, como melhorar campanha direct |

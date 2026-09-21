@@ -20,7 +20,7 @@ Tem uma cena que quem vende pelo Instagram conhece bem: você posta um Reels às
 
 Você responde a mais urgente, depois outra, e vai dormir. No dia seguinte responde o resto, e aí descobre que metade dessas pessoas já comprou da concorrência.
 
-Essa história não é metáfora, é o dia a dia de quem ainda não tem automação. E é por isso que vale entender com honestidade o que muda quando você começa a usar, e o que não muda.
+Essa história não é metáfora, é o dia a dia de quem ainda não tem [automação no Instagram](/blog/automacao-no-instagram-guia). E é por isso que vale entender com honestidade o que muda quando você começa a usar, e o que não muda.
 
 ## o cenário sem automação: você contra o relógio
 
