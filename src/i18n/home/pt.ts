@@ -200,21 +200,23 @@ export const pt = {
     titulo: "Sua audiência cresce.\n{hl}Seu preço continua fixo.{/hl}",
     leadBr: "Contatos e automações ilimitados. Instagram + TikTok no mesmo plano.",
     leadIntl: "Contatos e automações ilimitados. Instagram + TikTok no mesmo plano.",
-    difTitulo: "Por que escolher o Notifiquei?",
+    difEyebrow: "Por que escolher o Notifiquei?",
+    difTitulo: "Mais resultados. Menos complicação.",
     comparar: "Comparar todos os recursos",
     compararHref: "/vs-manychat",
     gratisChamada: "Ainda não está pronto para assinar?",
+    notaAnual: "Pague menos\nno plano anual",
     ciclo: "Ciclo de cobrança",
     mensal: "Mensal",
     anual: "Anual",
     economia: "2 meses grátis",
     porMes: "/mês",
-    cobradoAno: "cobrado {valor}/ano",
+    cobradoAno: "cobrado {valor}/ano no plano anual",
     maisPopular: "Mais popular",
     garantia: "Garantia de 7 dias · devolução 100%",
-    gratisTag: "Grátis para sempre",
+    gratisTag: "Para sempre gratuito",
     gratisNome: "Plano Grátis",
-    gratisBlurb: "Quer só experimentar, sem cartão e sem prazo? Comece de graça e suba de plano quando quiser.",
+    gratisBlurb: "Comece agora e teste sem compromisso.",
     gratisItens: [
       "Para sempre, sem cartão",
       "Só Instagram (sem TikTok)",
@@ -222,6 +224,13 @@ export const pt = {
       "Mensagens com marca d’água “⚡ Enviado com Notifiquei”",
     ],
     gratisCta: "Começar grátis",
+    // Números que dá pra defender: 646 contas no banco em 21/09 e a garantia
+    // que já está no cartão. Nota média fica de fora enquanto não houver fonte.
+    provas: [
+      { titulo: "Garantia de 7 dias", texto: "Devolução 100% do seu dinheiro." },
+      { titulo: "+600 criadores e marcas", texto: "já usam o Notifiquei." },
+      { titulo: "Suporte em português", texto: "Resposta de gente, no chat." },
+    ],
     // Nome, frase e itens de cada plano. Preço e link ficam em data/home.ts:
     // número e URL não se traduzem.
     diferenciais: [
@@ -231,8 +240,8 @@ export const pt = {
       { titulo: "A automação nasce de uma conversa", texto: "Você descreve e o Claude monta. No editor visual, você monta bloco por bloco." },
     ],
     cartoes: {
-      solo: { blurb: "Para quem toca a própria operação.", cta: "Começar com Solo", chips: ["Contatos ilimitados", "Automação 24/7", "Suporte por chat"], itens: ["1 conta — Instagram + TikTok", "Automações e contatos ilimitados", "Templates prontos e atendimento por chat"] },
-      duo: { blurb: "Para equipe ou operação com 2 contas.", cta: "Começar com Duo", chips: ["Até 2 contas", "Times e permissões", "Tudo do Solo"], itens: ["2 contas em vez de 1", "Times: mais de uma pessoa cuidando", "Divisão por equipe: cada um vê o que é seu"] },
+      solo: { blurb: "Para quem gerencia a própria operação.", cta: "Começar com Solo", chips: ["Contatos ilimitados", "Automação 24/7", "Suporte por chat"], itens: ["1 conta — Instagram + TikTok", "Automações e contatos ilimitados", "Templates prontos e atendimento por chat"] },
+      duo: { blurb: "Para equipes ou operações com 2 contas.", cta: "Começar com Duo", chips: ["Até 2 contas (IG + TikTok)", "Times e permissões", "Tudo do Solo + mais controle"], itens: ["2 contas em vez de 1", "Times: mais de uma pessoa cuidando", "Divisão por equipe: cada um vê o que é seu"] },
       pro: { blurb: "Para operação com até 5 contas.", cta: "Começar com Pro", chips: ["Até 5 contas", "Times e permissões", "Tudo do Solo"], itens: ["5 contas — Instagram + TikTok", "Times e divisão por equipe"] },
       business: { blurb: "Para agência e operação grande.", cta: "Começar com Business", chips: ["Até 10 contas", "Times e permissões", "Atendimento VIP"], itens: ["10 contas — Instagram + TikTok", "Atendimento VIP prioritário"] },
     },

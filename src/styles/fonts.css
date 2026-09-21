@@ -35,3 +35,11 @@
   font-style: normal;
   font-display: optional;
 }
+/* Só para a nota manuscrita ao lado do toggle anual (ver .billtoggle__nota). */
+@font-face {
+  font-family: "Caveat";
+  src: url("/assets/fonts/caveat-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

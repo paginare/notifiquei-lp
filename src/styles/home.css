@@ -207,6 +207,11 @@
 .home-page .home-pricing .lead { font-size: 16px; max-width: 590px; line-height: 1.85; margin: 19px auto 0; }
 .home-page .plans__note { margin: 18px auto 0; font-size: 12px; max-width: 420px; color: var(--ink-soft); }
 .home-page .plans__note strong { font-weight: 700; color: var(--ink); }
+.home-page .billtoggle-row { position: relative; display: inline-flex; align-items: center; }
+/* A nota fica fora do fluxo pra não desalinhar o toggle, que é centralizado. */
+.home-page .billtoggle__nota { position: absolute; width: max-content; left: calc(100% + 16px); top: 56%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 9px; white-space: pre-line; font-family: "Caveat", "Snell Roundhand", cursive; font-size: 20px; line-height: 1.1; text-align: left; color: var(--ink-soft); }
+.home-page .billtoggle__nota svg { flex: none; color: var(--brand-ink); }
+@media (max-width: 1100px) { .home-page .billtoggle__nota { display: none; } }
 .home-page .billtoggle { display: inline-flex; gap: 3px; margin-top: 27px; padding: 4px; background: #e6ddd2; border: 1px solid var(--line-soft); border-radius: 10px; }
 .home-page .billtoggle__opt { min-height: 42px; padding: 9px 15px; border-radius: 7px; font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--ink-soft); font-weight: 600; }
 .home-page .billtoggle__opt.is-on { background: var(--paper); color: var(--ink); box-shadow: 0 1px 5px #14100e0d; }
@@ -215,7 +220,7 @@
    internacional; os do outro mercado ficam com display:none. */
 .home-page .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 18px; margin-top: 46px; align-items: stretch; max-width: 1040px; margin-inline: auto; }
 .home-page .plan { display: flex; flex-direction: column; position: relative; border: 1px solid #dcd2c7; border-radius: 15px; padding: 35px 29px 29px; background: #f5f0e9; }
-.home-page .plan--featured { border: 2px solid var(--brand-ink); padding: 34px 28px 28px; background: #fffaf8; }
+.home-page .plan--featured { border: 2px solid var(--brand-ink); padding: 34px 28px 28px; background: #fdf1f6; }
 .home-page .plan__badge { position: absolute; left: 23px; top: -15px; font-size: 13px; letter-spacing: .04em; padding: 6px 12px; border-radius: 6px; background: var(--brand-ink); color: white; font-weight: 700; }
 .home-page .plan__name { font-size: 30px; }
 .home-page .plan__blurb { margin-top: 8px; color: var(--ink-soft); font-size: 13px; }
@@ -232,34 +237,50 @@
 .home-page .plan__base { margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink-soft); letter-spacing: .01em; }
 .home-page .plan__base + .plan__features { margin-top: 10px; }
 /* Fichas do cartão: leitura rápida do que o plano entrega, sem repetir a lista. */
-.home-page .plan__chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
-.home-page .plan__chips li { padding: 6px 10px; border-radius: 8px; background: var(--paper-2); color: var(--ink-soft); font-size: 11.5px; line-height: 1.3; }
+.home-page .plan__chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+.home-page .plan__chips li { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px; background: var(--paper-2); color: var(--ink-soft); font-size: 11px; line-height: 1.25; }
+.home-page .plan__chips svg { flex: none; color: var(--brand-ink); opacity: .85; }
 .home-page .plan--featured .plan__chips li { background: #ffeaf2; color: #8d1042; }
 
 /* Grátis como rota de saída, não como concorrente do Solo. */
-.home-page .freeplan__chamada { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+.home-page .freeplan__chamada { font-size: 13px; color: var(--ink-soft); margin-top: 9px; }
 
 /* "Por que escolher" vem depois do preço: justifica a compra, não disputa com ela. */
-.home-page .plans__porque { max-width: 1040px; margin: 46px auto 0; }
-.home-page .plans__porque h3 { text-align: center; font-family: var(--font-display); font-size: 21px; letter-spacing: -.02em; }
+.home-page .plans__porque { max-width: 1040px; margin: 54px auto 0; display: grid; justify-items: center; }
+.home-page .plans__porque h3 { text-align: center; font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -.025em; margin-top: 10px; }
 .home-page .plans__comparar { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-size: 14px; }
-.home-page .plans__porque { display: grid; justify-items: center; }
 
 /* As diferenças que importam ficam embaixo da grade, não repetidas nos cartões. */
-.home-page .plans__dif { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 26px; max-width: 1040px; margin: 24px auto 0; padding-top: 24px; border-top: 1px solid var(--line); }
-.home-page .plans__dif li { display: grid; gap: 4px; }
-.home-page .plans__dif strong { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; letter-spacing: -.01em; }
-.home-page .plans__dif span { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+.home-page .plans__dif { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 26px; max-width: 1040px; margin: 34px auto 0; }
+.home-page .plans__dif li { display: grid; gap: 5px; justify-items: start; }
+.home-page .plans__difIcon { display: inline-flex; align-items: center; gap: 3px; justify-content: center; min-width: 52px; height: 52px; padding: 0 12px; margin-bottom: 9px; border-radius: 16px; background: #f8dce6; color: var(--brand-ink); }
+.home-page .plans__dif strong { font-family: var(--font-display); font-size: 15.5px; font-weight: 700; letter-spacing: -.015em; line-height: 1.35; }
+.home-page .plans__dif span:not(.plans__difIcon) { font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+
+/* Rodapé de confiança — fecha a seção com o que tira o medo de assinar. */
+.home-page .plans__provas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 30px; max-width: 1040px; margin: 46px auto 0; padding-top: 28px; border-top: 1px solid var(--line); }
+.home-page .plans__provas li { display: flex; align-items: center; justify-content: center; gap: 13px; }
+.home-page .plans__provaIcon { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 12px; background: #f8dce6; color: var(--brand-ink); }
+.home-page .plans__provaTxt { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+.home-page .plans__provaTxt strong { display: block; font-size: 13.5px; color: var(--ink); font-weight: 700; }
+.home-page .plans__caras { display: flex; flex: none; }
+.home-page .plans__caras img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--paper); margin-left: -11px; }
+.home-page .plans__caras img:first-child { margin-left: 0; }
 @media (max-width: 760px) {
-  .home-page .plans__dif { grid-template-columns: 1fr; gap: 16px; margin-top: 26px; padding-top: 22px; }
+  .home-page .plans__dif { grid-template-columns: 1fr; gap: 20px; margin-top: 28px; }
+  .home-page .plans__difIcon { height: 46px; min-width: 46px; border-radius: 14px; margin-bottom: 6px; }
+  .home-page .plans__provas { grid-template-columns: 1fr; gap: 16px; margin-top: 34px; }
+  /* No celular o chip vira linha: em 3 colunas o texto do Duo quebrava em 4. */
+  .home-page .plan__chips { grid-template-columns: 1fr; gap: 6px; }
+  .home-page .plans__provas li { justify-content: flex-start; }
 }
 
 /* Mesma largura da grade de planos logo acima — com 2 cartões a grade encolheu
    e o bloco grátis ficava mais largo que eles. */
-.home-page .freeplan { display: grid; grid-template-columns: 1fr 1fr auto; gap: 35px; align-items: center; max-width: 1040px; margin: 20px auto 0; padding: 26px 28px; border: 1px dashed #bcaca0; border-radius: 13px; }
+.home-page .freeplan { display: grid; grid-template-columns: 1fr 1fr auto; gap: 35px; align-items: center; max-width: 1040px; margin: 24px auto 0; padding: 28px 30px; background: #fdeff4; border: 1px solid #f6d7e3; border-radius: 16px; }
 .home-page .freeplan__tag { display: block; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--brand-ink); font-weight: 700; }
-.home-page .freeplan__name { font-size: 21px; margin-top: 6px; }
-.home-page .freeplan__blurb { margin-top: 9px; font-size: 12px; color: var(--ink-soft); line-height: 1.9; }
+.home-page .freeplan__name { font-size: 23px; margin-top: 7px; }
+.home-page .freeplan__blurb { margin-top: 2px; font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
 .home-page .freeplan__features { display: grid; gap: 8px; }
 .home-page .freeplan__features li { display: flex; gap: 7px; font-size: 12px; color: var(--ink-soft); }
 .home-page .freeplan__cta .btn { font-size: 13px; min-height: 47px; padding: 12px 15px; }

@@ -1,7 +1,19 @@
 ---
-import { plans, FREE } from "../data/home";
+import { plans, FREE, perfis } from "../data/home";
 import { intlHref, mensalNoAnual, totalAnual } from "../i18n/planos";
 import { marcar, type CopyHome, type Lang } from "../i18n/home";
+import Icon from "./HomeIcon.astro";
+
+// Ícone é estrutura, não tradução: fica aqui e não no dicionário. O índice 1
+// (Instagram + TikTok) desenha os dois logos, por isso não entra na lista.
+const DIF_ICONES = ["infinito", "", "cartao", "spark"];
+const CHIP_ICONES: Record<string, string[]> = {
+  solo: ["infinito", "bolt", "chat"],
+  duo: ["instagram", "times", "chart"],
+  pro: ["instagram", "times", "chart"],
+  business: ["instagram", "times", "chart"],
+};
+const CARAS = perfis.slice(0, 4).map((p) => p.arquivo);
 
 interface Props { t: CopyHome["planos"]; lang: Lang; }
 const { t, lang } = Astro.props;
@@ -20,9 +32,18 @@ const anual = (valor: string, moeda: string) =>
           <h2 set:html={marcar(t.titulo)} />
           <p class="lead br-only">{t.leadBr}</p>
           <p class="lead intl-only">{t.leadIntl}</p>
-          <div class="billtoggle reveal" id="billtoggle" role="group" aria-label={t.ciclo}>
-            <button type="button" class="billtoggle__opt" data-cycle="m" aria-pressed="false">{t.mensal}</button>
-            <button type="button" class="billtoggle__opt is-on" data-cycle="a" aria-pressed="true">{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
+          <div class="billtoggle-row reveal">
+            <div class="billtoggle" id="billtoggle" role="group" aria-label={t.ciclo}>
+              <button type="button" class="billtoggle__opt" data-cycle="m" aria-pressed="false">{t.mensal}</button>
+              <button type="button" class="billtoggle__opt is-on" data-cycle="a" aria-pressed="true">{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
+            </div>
+            {/* Nota manuscrita: chama o olho pro anual sem virar mais um botão. */}
+            <span class="billtoggle__nota" aria-hidden="true">
+              <svg viewBox="0 0 64 34" width="64" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M62 7C50 2 26 2 8 19" /><path d="M3 17l5 3 6-4" />
+              </svg>
+              {t.notaAnual}
+            </span>
           </div>
         </div>
         <div class="plans" id="plans-grid">
@@ -56,7 +77,9 @@ const anual = (valor: string, moeda: string) =>
                 {cartao(p.slug).itens.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
               </ul>
               <ul class="plan__chips" aria-hidden="true">
-                {cartao(p.slug).chips.map((c) => <li>{c}</li>)}
+                {cartao(p.slug).chips.map((c, ci) => (
+                  <li><Icon name={(CHIP_ICONES[p.slug] ?? CHIP_ICONES.solo)[ci]} size={19} />{c}</li>
+                ))}
               </ul>
               <span class="plan__guarantee">{t.garantia}</span>
             </article>
@@ -69,8 +92,8 @@ const anual = (valor: string, moeda: string) =>
         <article class="freeplan reveal br-only">
           <div class="freeplan__head">
             <span class="freeplan__tag">{t.gratisTag}</span>
-            <p class="freeplan__chamada">{t.gratisChamada}</p>
             <h3 class="freeplan__name">{t.gratisNome}</h3>
+            <p class="freeplan__chamada">{t.gratisChamada}</p>
             <p class="freeplan__blurb">{t.gratisBlurb}</p>
           </div>
           <ul class="freeplan__features">
@@ -82,14 +105,38 @@ const anual = (valor: string, moeda: string) =>
         </article>
 
         <div class="plans__porque">
+          <span class="eyebrow">{t.difEyebrow}</span>
           <h3>{t.difTitulo}</h3>
         <ul class="plans__dif" aria-label="O que nos diferencia">
-          {t.diferenciais.map((d) => (
-            <li><strong>{d.titulo}</strong><span>{d.texto}</span></li>
+          {t.diferenciais.map((d, i) => (
+            <li>
+              <span class="plans__difIcon" aria-hidden="true">
+                {i === 1
+                  ? <><Icon name="instagram" size={21} /><Icon name="tiktok" size={21} /></>
+                  : <Icon name={DIF_ICONES[i]} size={24} />}
+              </span>
+              <strong>{d.titulo}</strong><span>{d.texto}</span>
+            </li>
           ))}
         </ul>
           <a href={t.compararHref} class="home-text-link plans__comparar">{t.comparar} <span class="arr" aria-hidden="true">→</span></a>
         </div>
+
+        <!-- Rodapé de confiança: garantia, quantos já usam e quem atende -->
+        <ul class="plans__provas">
+          {t.provas.map((p, i) => (
+            <li>
+              {i === 1 ? (
+                <span class="plans__caras" aria-hidden="true">
+                  {CARAS.map((arq) => <img src={`/assets/perfis/${arq}.webp`} width="34" height="34" alt="" loading="lazy" />)}
+                </span>
+              ) : (
+                <span class="plans__provaIcon" aria-hidden="true"><Icon name={i === 0 ? "shield" : "chat"} size={20} /></span>
+              )}
+              <span class="plans__provaTxt"><strong>{p.titulo}</strong>{p.texto}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
