@@ -102,14 +102,14 @@ export const pt = {
   },
 
   mcp: {
-    kicker: "CONECTOR MCP",
-    titulo: "Peça em português.\n{hl}A automação nasce pronta.{/hl}",
-    lead: "Todo plano tem uma chave que liga o Notifiquei ao Claude. A partir daí você conversa: ele acha o post, monta a automação, mostra o resumo e só cria depois do seu sim.",
+    kicker: "AUTOMAÇÃO POR CONVERSA",
+    titulo: "Explica do seu jeito.\n{hl}Ele monta a automação.{/hl}",
+    lead: "Sem abrir painel e sem preencher formulário: você descreve o que quer como explicaria para alguém do seu time. O Claude acha o post, monta a automação e mostra como ficou. Só entra no ar quando você diz que está certo.",
     itens: [
-      "Funciona no Claude e em qualquer app compatível com MCP",
-      "Lista, cria, edita, liga e desliga automações",
-      "Diagnostica o que não disparou, e diz por quê",
-      "Pede sua permissão antes de mexer em qualquer coisa",
+      "Funciona no Claude e em qualquer app que fale MCP",
+      "Cria, edita, liga e desliga sem você sair da conversa",
+      "Não disparou? Ele investiga e te diz o motivo",
+      "Nada entra no ar sem o seu sim",
     ],
     ctaBr: "Pegar minha chave",
     ctaIntl: "Ver os planos",
@@ -179,11 +179,6 @@ export const pt = {
       { titulo: "Mude o link uma vez só", texto: "Atualize o destino e todas as suas automações passam a enviar o link certo." },
       { titulo: "Sorteie sem planilha", texto: "Reúna quem comentou a palavra-chave e faça o sorteio direto no painel." },
     ],
-    iaKicker: "PREFERE CONVERSAR COM A IA?",
-    iaTitulo: "Peça sua próxima automação ao Claude.",
-    iaTexto: "O painel tem um kit pronto para você criar e gerenciar automações pela conversa.",
-    iaCtaBr: "Conhecer a plataforma",
-    iaCtaIntl: "Conhecer os planos",
   },
 
   como: {

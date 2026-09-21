@@ -92,14 +92,14 @@ export const en: CopyHome = {
   },
 
   mcp: {
-    kicker: "MCP CONNECTOR",
-    titulo: "Ask in plain English.\n{hl}The automation comes out ready.{/hl}",
-    lead: "Every plan comes with a key that connects Notifiquei to Claude. From there you just talk: it finds the post, builds the automation, shows you a summary and only creates it after your yes.",
+    kicker: "AUTOMATION BY CHAT",
+    titulo: "Say it your way.\n{hl}It builds the automation.{/hl}",
+    lead: "No dashboard, no form to fill in: you describe what you want the way you would explain it to someone on your team. Claude finds the post, builds the automation and shows you how it turned out. It only goes live when you say it is right.",
     itens: [
-      "Works in Claude and in any MCP-compatible app",
-      "Lists, creates, edits, turns automations on and off",
-      "Diagnoses what didn't fire, and tells you why",
-      "Asks your permission before touching anything",
+      "Works in Claude and in any app that speaks MCP",
+      "Creates, edits, turns on and off without leaving the chat",
+      "Did not fire? It digs in and tells you why",
+      "Nothing goes live without your yes",
     ],
     ctaBr: "Get my key",
     ctaIntl: "See pricing",
@@ -169,11 +169,6 @@ export const en: CopyHome = {
       { titulo: "Change the link once", texto: "Update the destination and every automation you have starts sending the right link." },
       { titulo: "Run giveaways, no spreadsheet", texto: "Gather everyone who commented the keyword and draw the winner right in the dashboard." },
     ],
-    iaKicker: "PREFER TO TALK TO AI?",
-    iaTitulo: "Ask Claude for your next automation.",
-    iaTexto: "The dashboard hands you a ready-made kit to create and manage automations just by chatting.",
-    iaCtaBr: "Explore the platform",
-    iaCtaIntl: "See the plans",
   },
 
   como: {

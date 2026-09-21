@@ -92,14 +92,14 @@ export const es: CopyHome = {
   },
 
   mcp: {
-    kicker: "CONECTOR MCP",
-    titulo: "Pídelo en español.\n{hl}La automatización nace lista.{/hl}",
-    lead: "Todos los planes incluyen una clave que conecta Notifiquei con Claude. A partir de ahí solo conversas: encuentra la publicación, monta la automatización, te muestra el resumen y la crea solo después de tu sí.",
+    kicker: "AUTOMATIZACIÓN CONVERSANDO",
+    titulo: "Dilo a tu manera.\n{hl}Él arma la automatización.{/hl}",
+    lead: "Sin panel y sin formularios: describes lo que quieres como se lo explicarías a alguien de tu equipo. Claude encuentra la publicación, arma la automatización y te muestra cómo quedó. Solo se activa cuando dices que está bien.",
     itens: [
-      "Funciona en Claude y en cualquier app compatible con MCP",
-      "Lista, crea, edita, activa y desactiva automatizaciones",
-      "Diagnostica lo que no se disparó, y te dice por qué",
-      "Te pide permiso antes de tocar nada",
+      "Funciona en Claude y en cualquier app que hable MCP",
+      "Crea, edita, activa y desactiva sin salir de la conversación",
+      "¿No se disparó? Lo revisa y te dice por qué",
+      "Nada se activa sin tu sí",
     ],
     ctaBr: "Conseguir mi clave",
     ctaIntl: "Ver los planes",
@@ -169,11 +169,6 @@ export const es: CopyHome = {
       { titulo: "Cambia el enlace una sola vez", texto: "Actualiza el destino y todas tus automatizaciones pasan a enviar el enlace correcto." },
       { titulo: "Sortea sin hojas de cálculo", texto: "Reúne a quien comentó la palabra clave y haz el sorteo directo en el panel." },
     ],
-    iaKicker: "¿PREFIERES CONVERSAR CON LA IA?",
-    iaTitulo: "Pídele tu próxima automatización a Claude.",
-    iaTexto: "El panel tiene un kit listo para que crees y gestiones automatizaciones conversando.",
-    iaCtaBr: "Conocer la plataforma",
-    iaCtaIntl: "Conocer los planes",
   },
 
   como: {
