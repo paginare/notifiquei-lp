@@ -1,5 +1,5 @@
 ---
-import { plans, FREE, perfis } from "../data/home";
+import { plans, FREE, WPP, perfis } from "../data/home";
 import { intlHref, mensalNoAnual, totalAnual } from "../i18n/planos";
 import { marcar, type CopyHome, type Lang } from "../i18n/home";
 import Icon from "./HomeIcon.astro";
@@ -88,6 +88,32 @@ const anual = (valor: string, moeda: string) =>
 
 
 
+        <!-- Acima de 2 contas não existe checkout em real: Pro e Business só
+             estão no catálogo internacional. Por isso a janela leva pro chat. -->
+        <p class="maisplanos__chamada br-only">
+          {t.maisChamada} <button type="button" class="home-text-link" id="maisplanos-abrir">{t.maisCta} <span class="arr" aria-hidden="true">→</span></button>
+        </p>
+
+        <dialog class="maisplanos" id="maisplanos">
+          <div class="maisplanos__caixa">
+            <button type="button" class="maisplanos__x" id="maisplanos-fechar" aria-label={t.maisFechar}>×</button>
+            <h3>{t.maisTitulo}</h3>
+            <p class="maisplanos__intro">{t.maisIntro}</p>
+            <ul class="maisplanos__lista">
+              {t.maisPlanos.map((m) => (
+                <li>
+                  <span class="maisplanos__icone" aria-hidden="true"><Icon name="times" size={21} /></span>
+                  <span>
+                    <span class="maisplanos__topo"><strong>{m.nome}</strong><em>{m.contas}</em></span>
+                    {m.texto}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <a href={`${WPP}?text=${encodeURIComponent(t.maisZap)}`} target="_blank" rel="noopener" class="btn btn--brand btn--lg maisplanos__cta">{t.maisFalar}<span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </dialog>
+
         <!-- Plano grátis: rota de saída pra quem chegou no preço e não assinou -->
         <article class="freeplan reveal br-only">
           <div class="freeplan__head">
@@ -142,6 +168,22 @@ const anual = (valor: string, moeda: string) =>
 
 
 <script>
+    // Janela dos planos maiores. <dialog> nativo: Esc e foco já vêm de graça.
+    const maisJanela = document.getElementById("maisplanos") as HTMLDialogElement | null;
+    const maisAbrir = document.getElementById("maisplanos-abrir");
+    const maisFechar = document.getElementById("maisplanos-fechar");
+    if (maisJanela && maisAbrir) {
+      maisAbrir.addEventListener("click", () => {
+        maisJanela.showModal();
+        (window as any).posthog?.capture?.("mais_planos_aberto");
+      });
+      maisFechar?.addEventListener("click", () => maisJanela.close());
+      // Clique no fundo fecha: o ::backdrop é o próprio dialog fora da caixa.
+      maisJanela.addEventListener("click", (e) => {
+        if (e.target === maisJanela) maisJanela.close();
+      });
+    }
+
     // Toggle mensal/anual nos planos
     const toggle = document.getElementById("billtoggle");
     const grid = document.getElementById("plans-grid");
