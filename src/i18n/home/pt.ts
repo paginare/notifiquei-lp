@@ -240,10 +240,10 @@ export const pt = {
       { titulo: "A automação nasce de uma conversa", texto: "Você descreve e o Claude monta. No editor visual, você monta bloco por bloco." },
     ],
     cartoes: {
-      solo: { blurb: "Para quem gerencia a própria operação.", cta: "Começar com Solo", chips: ["Contatos ilimitados", "Automação 24/7", "Suporte por chat"], itens: ["1 conta — Instagram + TikTok", "Automações e contatos ilimitados", "Templates prontos e atendimento por chat"] },
-      duo: { blurb: "Para equipes ou operações com 2 contas.", cta: "Começar com Duo", chips: ["Até 2 contas (IG + TikTok)", "Times e permissões", "Tudo do Solo + mais controle"], itens: ["2 contas em vez de 1", "Times: mais de uma pessoa cuidando", "Divisão por equipe: cada um vê o que é seu"] },
-      pro: { blurb: "Para operação com até 5 contas.", cta: "Começar com Pro", chips: ["Até 5 contas", "Times e permissões", "Tudo do Solo"], itens: ["5 contas — Instagram + TikTok", "Times e divisão por equipe"] },
-      business: { blurb: "Para agência e operação grande.", cta: "Começar com Business", chips: ["Até 10 contas", "Times e permissões", "Atendimento VIP"], itens: ["10 contas — Instagram + TikTok", "Atendimento VIP prioritário"] },
+      solo: { blurb: "Para quem gerencia a própria operação.", cta: "Começar com Solo", chips: ["Contatos\nilimitados", "Automação\n24 horas", "Suporte\npor chat"], itens: ["1 conta — Instagram + TikTok", "Automações e contatos ilimitados", "Templates prontos e atendimento por chat"] },
+      duo: { blurb: "Para equipes ou operações com 2 contas.", cta: "Começar com Duo", chips: ["Até 2 contas\n(IG + TikTok)", "Times e\npermissões", "Tudo do Solo\n+ controle"], itens: ["2 contas em vez de 1", "Times: mais de uma pessoa cuidando", "Divisão por equipe: cada um vê o que é seu"] },
+      pro: { blurb: "Para operação com até 5 contas.", cta: "Começar com Pro", chips: ["Até 5 contas\n(IG + TikTok)", "Times e\npermissões", "Tudo do Solo\n+ controle"], itens: ["5 contas — Instagram + TikTok", "Times e divisão por equipe"] },
+      business: { blurb: "Para agência e operação grande.", cta: "Começar com Business", chips: ["Até 10 contas\n(IG + TikTok)", "Times e\npermissões", "Atendimento\nVIP"], itens: ["10 contas — Instagram + TikTok", "Atendimento VIP prioritário"] },
     },
   },
 

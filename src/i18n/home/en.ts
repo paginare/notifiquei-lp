@@ -226,10 +226,10 @@ export const en: CopyHome = {
       { titulo: "Automations start as a conversation", texto: "You describe it and Claude builds it. In a visual editor, you build it block by block." },
     ],
     cartoes: {
-      solo: { blurb: "For running your own operation.", cta: "Start with Solo", chips: ["Unlimited contacts", "24/7 automation", "Chat support"], itens: ["1 account — Instagram + TikTok", "Unlimited automations and contacts", "Full template library and chat support"] },
-      duo: { blurb: "For a team or 2 accounts.", cta: "Start with Duo", chips: ["Up to 2 accounts", "Teams and roles", "Everything in Solo"], itens: ["2 accounts instead of 1", "Teams: more than one person running it", "Role separation: each person sees their own"] },
-      pro: { blurb: "For operations with up to 5 accounts.", cta: "Start with Pro", chips: ["Up to 5 accounts", "Teams and roles", "Everything in Solo"], itens: ["5 accounts — Instagram + TikTok", "Teams and role separation"] },
-      business: { blurb: "For agencies and larger operations.", cta: "Start with Business", chips: ["Up to 10 accounts", "Teams and roles", "VIP support"], itens: ["10 accounts — Instagram + TikTok", "Priority VIP support"] },
+      solo: { blurb: "For running your own operation.", cta: "Start with Solo", chips: ["Unlimited\ncontacts", "Automation\naround the clock", "Support\nover chat"], itens: ["1 account — Instagram + TikTok", "Unlimited automations and contacts", "Full template library and chat support"] },
+      duo: { blurb: "For a team or 2 accounts.", cta: "Start with Duo", chips: ["Up to 2 accounts\n(IG + TikTok)", "Teams\nand roles", "Everything in Solo\n+ control"], itens: ["2 accounts instead of 1", "Teams: more than one person running it", "Role separation: each person sees their own"] },
+      pro: { blurb: "For operations with up to 5 accounts.", cta: "Start with Pro", chips: ["Up to 5 accounts\n(IG + TikTok)", "Teams\nand roles", "Everything in Solo\n+ control"], itens: ["5 accounts — Instagram + TikTok", "Teams and role separation"] },
+      business: { blurb: "For agencies and larger operations.", cta: "Start with Business", chips: ["Up to 10 accounts\n(IG + TikTok)", "Teams\nand roles", "VIP\nsupport"], itens: ["10 accounts — Instagram + TikTok", "Priority VIP support"] },
     },
   },
 

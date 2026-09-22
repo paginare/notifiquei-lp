@@ -226,10 +226,10 @@ export const es: CopyHome = {
       { titulo: "La automatización nace de una conversación", texto: "Tú la describes y Claude la arma. En un editor visual, la armas bloque a bloque." },
     ],
     cartoes: {
-      solo: { blurb: "Para quien lleva su propia operación.", cta: "Empezar con Solo", chips: ["Contactos ilimitados", "Automatización 24/7", "Soporte por chat"], itens: ["1 cuenta — Instagram + TikTok", "Automatizaciones y contactos ilimitados", "Plantillas completas y soporte por chat"] },
-      duo: { blurb: "Para un equipo u operación con 2 cuentas.", cta: "Empezar con Duo", chips: ["Hasta 2 cuentas", "Equipos y permisos", "Todo lo de Solo"], itens: ["2 cuentas en lugar de 1", "Equipos: más de una persona al mando", "División por equipo: cada quien ve lo suyo"] },
-      pro: { blurb: "Para operaciones de hasta 5 cuentas.", cta: "Empezar con Pro", chips: ["Hasta 5 cuentas", "Equipos y permisos", "Todo lo de Solo"], itens: ["5 cuentas — Instagram + TikTok", "Equipos y división por equipo"] },
-      business: { blurb: "Para agencias y operaciones grandes.", cta: "Empezar con Business", chips: ["Hasta 10 cuentas", "Equipos y permisos", "Soporte VIP"], itens: ["10 cuentas — Instagram + TikTok", "Soporte VIP prioritario"] },
+      solo: { blurb: "Para quien lleva su propia operación.", cta: "Empezar con Solo", chips: ["Contactos\nilimitados", "Automatización\n24 horas", "Soporte\npor chat"], itens: ["1 cuenta — Instagram + TikTok", "Automatizaciones y contactos ilimitados", "Plantillas completas y soporte por chat"] },
+      duo: { blurb: "Para un equipo u operación con 2 cuentas.", cta: "Empezar con Duo", chips: ["Hasta 2 cuentas\n(IG + TikTok)", "Equipos\ny permisos", "Todo lo de Solo\n+ control"], itens: ["2 cuentas en lugar de 1", "Equipos: más de una persona al mando", "División por equipo: cada quien ve lo suyo"] },
+      pro: { blurb: "Para operaciones de hasta 5 cuentas.", cta: "Empezar con Pro", chips: ["Hasta 5 cuentas\n(IG + TikTok)", "Equipos\ny permisos", "Todo lo de Solo\n+ control"], itens: ["5 cuentas — Instagram + TikTok", "Equipos y división por equipo"] },
+      business: { blurb: "Para agencias y operaciones grandes.", cta: "Empezar con Business", chips: ["Hasta 10 cuentas\n(IG + TikTok)", "Equipos\ny permisos", "Soporte\nVIP"], itens: ["10 cuentas — Instagram + TikTok", "Soporte VIP prioritario"] },
     },
   },
 

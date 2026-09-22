@@ -238,7 +238,7 @@
 .home-page .plan__base + .plan__features { margin-top: 10px; }
 /* Fichas do cartão: leitura rápida do que o plano entrega, sem repetir a lista. */
 .home-page .plan__chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
-.home-page .plan__chips li { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px; background: var(--paper-2); color: var(--ink-soft); font-size: 11px; line-height: 1.25; }
+.home-page .plan__chips li { display: flex; align-items: center; gap: 9px; padding: 10px 11px; border-radius: 10px; background: var(--paper-2); color: var(--ink-soft); font-size: 11px; line-height: 1.35; white-space: pre-line; }
 .home-page .plan__chips svg { flex: none; color: var(--brand-ink); opacity: .85; }
 .home-page .plan--featured .plan__chips li { background: #ffeaf2; color: #8d1042; }
 
@@ -272,6 +272,7 @@
   .home-page .plans__provas { grid-template-columns: 1fr; gap: 16px; margin-top: 34px; }
   /* No celular o chip vira linha: em 3 colunas o texto do Duo quebrava em 4. */
   .home-page .plan__chips { grid-template-columns: 1fr; gap: 6px; }
+  .home-page .plan__chips li { white-space: normal; }
   .home-page .plans__provas li { justify-content: flex-start; }
 }
 
