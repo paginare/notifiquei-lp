@@ -29,7 +29,7 @@ const { t, conversa } = Astro.props;
       <h1 id="hero-title">{t.titulo.map((linha) => <span>{linha}</span>)}</h1>
       <p class="home-hero__lead" set:html={t.lead} />
       <div class="home-actions hero__actions">
-        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="hero">
+        <a href="#planos" class="btn btn--brand btn--lg br-only" data-home-cta="hero">
           {t.ctaBr} <Icon name="arrow" size={21} />
         </a>
         <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="hero">
