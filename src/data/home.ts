@@ -68,6 +68,15 @@ export const plans = [
 // Links e preços internacionais: fonte única em src/i18n/planos.ts (compartilhada
 // com /en e /es). Duplicar aqui já causou divergência antes.
 
+// Pro e Business saíram da tabela do Brasil em 2e85684 porque quase não recebiam
+// clique, mas os produtos seguem ativos na Cakto (preço conferido no checkout em
+// 21/09/2026: 499 e 799 no mês, 4.990 e 7.990 no ano). A janela "mais contas" usa
+// estes links — se um deles for desativado, tirar daqui também.
+export const planosMaiores = [
+  { slug: "pro", price: "499", hrefM: "https://pay.cakto.com.br/3c939t6", hrefA: "https://pay.cakto.com.br/pesb7su" },
+  { slug: "business", price: "799", hrefM: "https://pay.cakto.com.br/zkdgyvq", hrefA: "https://pay.cakto.com.br/dfycche" },
+];
+
 export const planosBR = plans.filter((p) => p.mercado !== "intl");
 export const planosINTL = plans.filter((p) => p.mercado !== "br");
 

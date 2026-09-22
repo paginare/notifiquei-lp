@@ -227,13 +227,11 @@ export const pt = {
     maisChamada: "Precisa de mais de duas contas?",
     maisCta: "Ver planos maiores",
     maisTitulo: "Planos para quem tem mais contas",
-    maisIntro: "Acima de duas contas o plano é montado com você: o preço acompanha o número de contas e o tamanho do time. Chama no WhatsApp que a gente fecha na hora.",
+    maisIntro: "Mais contas no mesmo login, com times e divisão por equipe. Mesma garantia de 7 dias dos outros planos.",
     maisPlanos: [
       { nome: "Pro", contas: "Até 5 contas", texto: "Instagram + TikTok em cada uma, com times e divisão por equipe." },
       { nome: "Business", contas: "Até 10 contas", texto: "Tudo do Pro, com atendimento VIP e prioridade na fila." },
     ],
-    maisFalar: "Falar com a gente",
-    maisZap: "Oi! Preciso de um plano com mais de 2 contas no Notifiquei.",
     maisFechar: "Fechar",
     // Números que dá pra defender: 646 contas no banco em 21/09 e a garantia
     // que já está no cartão. Nota média fica de fora enquanto não houver fonte.

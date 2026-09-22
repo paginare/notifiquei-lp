@@ -1,5 +1,5 @@
 ---
-import { plans, FREE, WPP, perfis } from "../data/home";
+import { plans, FREE, planosMaiores, perfis } from "../data/home";
 import { intlHref, mensalNoAnual, totalAnual } from "../i18n/planos";
 import { marcar, type CopyHome, type Lang } from "../i18n/home";
 import Icon from "./HomeIcon.astro";
@@ -88,8 +88,8 @@ const anual = (valor: string, moeda: string) =>
 
 
 
-        <!-- Acima de 2 contas não existe checkout em real: Pro e Business só
-             estão no catálogo internacional. Por isso a janela leva pro chat. -->
+        <!-- Pro e Business saíram da grade em 2e85684, mas os produtos seguem
+             ativos na Cakto: a janela os traz de volta com checkout direto. -->
         <p class="maisplanos__chamada br-only">
           {t.maisChamada} <button type="button" class="home-text-link" id="maisplanos-abrir">{t.maisCta} <span class="arr" aria-hidden="true">→</span></button>
         </p>
@@ -100,17 +100,19 @@ const anual = (valor: string, moeda: string) =>
             <h3>{t.maisTitulo}</h3>
             <p class="maisplanos__intro">{t.maisIntro}</p>
             <ul class="maisplanos__lista">
-              {t.maisPlanos.map((m) => (
-                <li>
-                  <span class="maisplanos__icone" aria-hidden="true"><Icon name="times" size={21} /></span>
-                  <span>
+              {t.maisPlanos.map((m, i) => {
+                const d = planosMaiores[i];
+                return (
+                  <li class="maisplan">
                     <span class="maisplanos__topo"><strong>{m.nome}</strong><em>{m.contas}</em></span>
-                    {m.texto}
-                  </span>
-                </li>
-              ))}
+                    <p class="maisplan__texto">{m.texto}</p>
+                    <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={d.price} data-a={mensalNoAnual(d.price)}>{mensalNoAnual(d.price)}</span><span class="plan__per">{t.porMes}</span></p>
+                    <p class="plan__bill" data-cur="BRL" data-bill={anual(d.price, "R$ ")}>{anual(d.price, "R$ ")}</p>
+                    <a href={`${d.hrefA}?src=${SRC}`} data-href-m={`${d.hrefM}?src=${SRC}`} data-href-a={`${d.hrefA}?src=${SRC}`} class="btn btn--ghost plan__cta maisplan__cta">{cartao(d.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                  </li>
+                );
+              })}
             </ul>
-            <a href={`${WPP}?text=${encodeURIComponent(t.maisZap)}`} target="_blank" rel="noopener" class="btn btn--brand btn--lg maisplanos__cta">{t.maisFalar}<span class="arr" aria-hidden="true">→</span></a>
           </div>
         </dialog>
 
@@ -200,7 +202,8 @@ const anual = (valor: string, moeda: string) =>
         // cada um carrega 3 preços e 2 botões (Brasil + internacional). No singular,
         // o toggle só mexia no primeiro — o BRL, que fica escondido lá fora — e o
         // gringo via o preço travado no anual. Atualiza todos; o CSS mostra o certo.
-        grid.querySelectorAll<HTMLElement>(".plan").forEach((card) => {
+        // .maisplan: os planos maiores moram na janela, fora da grade.
+        document.querySelectorAll<HTMLElement>(".plan, .maisplan").forEach((card) => {
           card.querySelectorAll<HTMLElement>(".plan__amount").forEach((amt) => {
             amt.textContent = annual ? amt.dataset.a! : amt.dataset.m!;
           });

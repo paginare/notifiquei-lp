@@ -217,13 +217,11 @@ export const es: CopyHome = {
     maisChamada: "¿Necesitas más de dos cuentas?",
     maisCta: "Ver los planes mayores",
     maisTitulo: "Planes para más cuentas",
-    maisIntro: "A partir de dos cuentas armamos el plan contigo: el precio sigue el número de cuentas y el tamaño del equipo. Escríbenos y lo cerramos al momento.",
+    maisIntro: "Más cuentas en el mismo acceso, con equipos y permisos. La misma garantía de 7 días que los demás planes.",
     maisPlanos: [
       { nome: "Pro", contas: "Hasta 5 cuentas", texto: "Instagram + TikTok en cada una, con equipos y permisos." },
       { nome: "Business", contas: "Hasta 10 cuentas", texto: "Todo lo de Pro, con soporte VIP y prioridad en la fila." },
     ],
-    maisFalar: "Hablar con nosotros",
-    maisZap: "¡Hola! Necesito un plan de Notifiquei con más de 2 cuentas.",
     maisFechar: "Cerrar",
     provas: [
       { titulo: "Garantía de 7 días", texto: "Devolución del 100% de tu dinero." },
