@@ -91,3 +91,17 @@ const cakto = {
     });
   }
 </script>
+
+<script>
+  // Parameter builder da Meta (biblioteca oficial): logo na chegada, grava _fbp e,
+  // se a URL ou o referrer tiver fbclid, _fbc — no formato com o sufixo que a
+  // Meta usa pra reconhecer a biblioteca. Assim o fbclid não se perde quando o
+  // clique de conversão acontece em outra página. No navegador do Instagram/
+  // Facebook ainda recupera o click ID pelas propriedades do app. Só depois do
+  // aceite, e carregado sob demanda (56 KB fora do caminho crítico).
+  window.nfAoConsentir?.(() => {
+    import("meta-capi-param-builder-clientjs")
+      .then((m) => (m.default || m).processAndCollectAllParams(location.href))
+      .catch(() => {});
+  });
+</script>

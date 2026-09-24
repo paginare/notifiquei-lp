@@ -4,21 +4,27 @@
  * O navegador manda {event_name, event_id, custom_data} só DEPOIS do aceite de
  * cookies (quem chama é src/components/Conversoes.astro, via nfAoConsentir).
  * Aqui entra o que só o servidor vê direito: IP, user agent e os cookies
- * _fbp/_fbc. O pixel do navegador dispara o mesmo evento com o mesmo event_id,
- * e a Meta conta uma vez só.
+ * _fbp/_fbc (via parameter builder da Meta). O pixel do navegador dispara o
+ * mesmo evento com o mesmo event_id, e a Meta conta uma vez só.
  *
  * Responde 204 na hora; o envio pra Meta segue em waitUntil. Falha da Meta vira
  * log (wrangler pages deployment tail), nunca erro pro visitante.
  */
+import { ParamBuilder } from 'capi-param-builder-nodejs';
+
 const PIXEL = '4197456147066821';
 const GRAPH = `https://graph.facebook.com/v26.0/${PIXEL}/events`;
 // Scroll<N> são eventos personalizados (marcos de leitura da página), o resto é padrão da Meta.
 const EVENTOS = new Set(['Lead', 'InitiateCheckout', 'Contact', 'Scroll20', 'Scroll40', 'Scroll60', 'Scroll80', 'Scroll100']);
 const MOEDAS = new Set(['BRL', 'USD', 'EUR']);
 
-function cookie(req, nome) {
-  const m = (req.headers.get('Cookie') || '').match(new RegExp(`(?:^|;\\s*)${nome}=([^;]+)`));
-  return m ? decodeURIComponent(m[1]) : undefined;
+function cookies(req) {
+  const tudo = {};
+  for (const par of (req.headers.get('Cookie') || '').split(/;\s*/)) {
+    const i = par.indexOf('=');
+    if (i > 0) try { tudo[par.slice(0, i)] = decodeURIComponent(par.slice(i + 1)); } catch {}
+  }
+  return tudo;
 }
 
 /** Normalização que a Meta pede antes do hash: minúsculo, sem acento e sem pontuação. */
@@ -73,11 +79,20 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (MOEDAS.has(c.currency)) custom_data.currency = c.currency;
   if (typeof c.content_name === 'string') custom_data.content_name = c.content_name.slice(0, 60);
 
-  // _fbc só existe se o pixel já rodou com fbclid na URL. Se o clique veio na
-  // mesma página que recebeu o fbclid, monta direto (formato da Meta).
-  let fbc = cookie(request, '_fbc');
-  const fbclid = pagina?.searchParams.get('fbclid');
-  if (!fbc && fbclid) fbc = `fb.1.${Date.now()}.${fbclid}`;
+  // Parameter builder da Meta (biblioteca oficial, par da que roda no navegador
+  // em Conversoes.astro): lê _fbc/_fbp dos cookies, monta _fbc do fbclid da
+  // página ou do referrer quando falta, e escolhe o IP (IPv6 antes de IPv4).
+  // Tudo sai com o sufixo que a Meta usa pra reconhecer a biblioteca. Instância
+  // por requisição: ela guarda estado da última chamada.
+  const pb = new ParamBuilder(['notifiquei.com.br']);
+  const aGravar = pb.processRequest(
+    url.host,
+    pagina ? Object.fromEntries(pagina.searchParams) : {},
+    cookies(request),
+    request.headers.get('Referer'),
+    null,
+    request.headers.get('CF-Connecting-IP'),
+  );
 
   const token = (env.META_CAPI_TOKEN || '').trim();
   if (!token) {
@@ -86,10 +101,10 @@ export async function onRequestPost({ request, env, waitUntil }) {
   }
 
   const user_data = {
-    client_ip_address: request.headers.get('CF-Connecting-IP') || undefined,
+    client_ip_address: pb.getClientIpAddress() || undefined,
     client_user_agent: request.headers.get('User-Agent') || undefined,
-    fbp: cookie(request, '_fbp'),
-    fbc,
+    fbp: pb.getFbp() || undefined,
+    fbc: pb.getFbc() || undefined,
     ...(await geo(request.cf)),
   };
 
@@ -128,5 +143,11 @@ export async function onRequestPost({ request, env, waitUntil }) {
       .then(async (r) => { if (!r.ok) console.error('capi', r.status, await r.text()); })
       .catch((e) => console.error('capi', e.message)),
   );
-  return new Response(null, { status: 204 });
+  // _fbc/_fbp que o servidor montou viram cookie, pra os próximos eventos
+  // (pixel e CAPI) usarem o mesmo valor. Sem HttpOnly: o pixel precisa ler.
+  const headers = new Headers();
+  for (const c of aGravar) {
+    headers.append('Set-Cookie', `${c.name}=${c.value}; Max-Age=${c.maxAge}; Domain=${c.domain}; Path=/; SameSite=Lax; Secure`);
+  }
+  return new Response(null, { status: 204, headers });
 }
