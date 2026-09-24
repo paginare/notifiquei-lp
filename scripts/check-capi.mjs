@@ -19,7 +19,7 @@ async function chama(body, headers = {}, cf = CF) {
     body: typeof body === 'string' ? body : JSON.stringify(body),
     headers: {
       Origin: 'https://notifiquei.com.br',
-      Cookie: 'a=1; _fbp=fb.2.1596403881668.1116446470',
+      Cookie: 'a=1; _fbp=fb.2.1596403881668.1116446470; nf_eid=0b6f6c1e-1111-4222-8333-944445555666',
       'CF-Connecting-IP': '203.0.113.9',
       'User-Agent': 'Teste/1.0',
       ...headers,
@@ -54,6 +54,9 @@ assert.match(ev.user_data.client_ip_address, /^203\.0\.113\.9\.[\w-]{8}$/);
 assert.match(ev.user_data.fbp, /^fb\.2\.1596403881668\.1116446470\.[\w-]{8}$/);
 assert.match(ev.user_data.fbc, /^fb\.2\.\d+\.ABC\.[\w-]{8}$/);
 
+// id anônimo do visitante: hash do uuid como está (o backend do app faz igual)
+assert.deepEqual(ev.user_data.external_id, [await sha('0b6f6c1e-1111-4222-8333-944445555666')]);
+
 // localização do IP entra em hash, sem acento e sem pontuação
 assert.deepEqual(ev.user_data.ct, [await sha('saopaulo')]);
 assert.deepEqual(ev.user_data.st, [await sha('sp')]);
@@ -71,6 +74,10 @@ assert.equal(semGeo.country, undefined);
 assert.equal(await chama({ ...ok, event_name: 'Scroll40', custom_data: {} }), 200);
 assert.equal(enviados.pop().corpo.data[0].event_name, 'Scroll40');
 assert.equal(await chama({ ...ok, event_name: 'Scroll30' }), 400);
+
+// nf_eid fora do formato fica de fora
+await chama({ ...ok, event_source_url: 'https://notifiquei.com.br/' }, { Cookie: 'nf_eid=<script>' });
+assert.equal(enviados.pop().corpo.data[0].user_data.external_id, undefined);
 
 // cookie _fbc manda mais que o fbclid da URL
 await chama({ ...ok, event_source_url: 'https://notifiquei.com.br/' }, { Cookie: '_fbc=fb.2.1554763741205.XYZ' });

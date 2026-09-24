@@ -33,12 +33,19 @@ const normaliza = (v) =>
     ? v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '') || undefined
     : undefined;
 
-async function hash(v) {
-  const limpo = normaliza(v);
-  if (!limpo) return undefined;
-  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(limpo));
+async function sha256(v) {
+  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
   return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
+
+async function hash(v) {
+  const limpo = normaliza(v);
+  return limpo ? sha256(limpo) : undefined;
+}
+
+// nf_eid: id anônimo do visitante (Conversoes.astro). O backend do app faz o
+// mesmo hash (minúsculo, com hífens) no CompleteRegistration — não normalizar.
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 /**
  * Localização aproximada que a Cloudflare deduz do IP na borda (request.cf).
@@ -85,10 +92,11 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // Tudo sai com o sufixo que a Meta usa pra reconhecer a biblioteca. Instância
   // por requisição: ela guarda estado da última chamada.
   const pb = new ParamBuilder(['notifiquei.com.br']);
+  const jar = cookies(request);
   const aGravar = pb.processRequest(
     url.host,
     pagina ? Object.fromEntries(pagina.searchParams) : {},
-    cookies(request),
+    jar,
     request.headers.get('Referer'),
     null,
     request.headers.get('CF-Connecting-IP'),
@@ -105,6 +113,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
     client_user_agent: request.headers.get('User-Agent') || undefined,
     fbp: pb.getFbp() || undefined,
     fbc: pb.getFbc() || undefined,
+    external_id: UUID.test(jar.nf_eid || '') ? [await sha256(jar.nf_eid)] : undefined,
     ...(await geo(request.cf)),
   };
 

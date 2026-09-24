@@ -170,7 +170,7 @@
   }
 
   // Cookies de rastreio conhecidos (GA, Clarity, pixel da Meta, PostHog).
-  var RASTREIO = /^(_ga|_gid|_gat|_clck|_clsk|_fbp|_fbc|ph_|__ph_)/;
+  var RASTREIO = /^(_ga|_gid|_gat|_clck|_clsk|_fbp|_fbc|_fbi|nf_eid|ph_|__ph_)/;
 
   function limpaCookies() {
     var host = location.hostname;

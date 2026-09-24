@@ -86,6 +86,13 @@ const cakto = {
     window.nfAoConsentir(function () {
       if (ligado) return;
       ligado = true;
+      // Id anônimo do visitante (external_id na API de Conversões). Vale pro
+      // domínio todo: o app (app.notifiquei.com.br) lê no cadastro e manda junto
+      // com o id da conta, e a Meta liga as visitas da LP à pessoa que se cadastrou.
+      if (!/(?:^|;\s*)nf_eid=/.test(document.cookie) && window.crypto && crypto.randomUUID) {
+        document.cookie = "nf_eid=" + crypto.randomUUID() + "; Max-Age=31536000; Path=/; SameSite=Lax; Secure" +
+          (/(^|\.)notifiquei\.com\.br$/.test(location.hostname) ? "; Domain=notifiquei.com.br" : "");
+      }
       document.addEventListener("click", aoClicar, true);
       window.addEventListener("scroll", aoRolar, { passive: true });
     });
