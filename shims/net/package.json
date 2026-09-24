@@ -2,6 +2,6 @@
   "name": "net",
   "version": "0.0.0",
   "private": true,
-  "description": "Ponte pro build das Pages Functions: capi-param-builder-nodejs faz require('net'), que o build da Cloudflare não resolve sem o prefixo node:. No Node de verdade o builtin ganha deste pacote.",
+  "description": "Substitui o builtin net no build das Pages Functions (capi-param-builder-nodejs usa só isIPv4/isIPv6). No Node de verdade o builtin ganha deste pacote.",
   "main": "index.js"
 }

@@ -101,3 +101,13 @@ assert.equal(await chama({ ...ok, test_event_code: 'x'.repeat(5000) }), 413);
 assert.equal(enviados.length, 0);
 
 console.log('check-capi ok');
+
+// shims/net (o 'net' que o Worker usa) concorda com o builtin do Node
+import { createRequire } from 'node:module';
+import net from 'node:net';
+const shim = createRequire(import.meta.url)('../shims/net/index.js');
+for (const ip of ['203.0.113.9', '2001:db8::1', '::ffff:1.2.3.4', '::', '256.1.1.1', '01.2.3.4', '1.2.3', 'fe80::1%eth0', '[::1]', '2001:db8::g', 'abc', '', null]) {
+  assert.equal(shim.isIPv4(ip), net.isIPv4(ip ?? ''), `isIPv4 ${ip}`);
+  assert.equal(shim.isIPv6(ip), net.isIPv6(ip ?? '') && !String(ip).includes('%'), `isIPv6 ${ip}`);
+}
+console.log('shim net ok');
