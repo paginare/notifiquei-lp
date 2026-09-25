@@ -14,6 +14,8 @@ import HomeDemo from "../../components/HomeDemo.astro";
 import HomePricing from "../../components/HomePricing.astro";
 import { copyHome } from "../../i18n/home";
 import { temas, conversaLp } from "../../data/lp-trafego";
+import { plans } from "../../data/home";
+import { mensalNoAnual } from "../../i18n/planos";
 import "../../styles/home.css";
 
 export function getStaticPaths() {
@@ -22,7 +24,9 @@ export function getStaticPaths() {
 
 const { tema } = Astro.params as { tema: string };
 const t = copyHome("pt-BR");
-const hero = { ...t.hero, ...temas[tema], canais: { nota: "AUTOMAÇÃO DE DM" }, microBr: t.planos.garantia };
+// Preço junto do botão, calculado do plano mais barato (Solo, no anual — o toggle abre no anual).
+const precoMicro = `A partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anual · garantia de 7 dias`;
+const hero = { ...t.hero, ...temas[tema], canais: { nota: "AUTOMAÇÃO DE DM" }, microBr: precoMicro };
 const conversa = { ...t.conversa, topo: conversaLp.topo, respondeu: conversaLp.respondeu, exemplos: [conversaLp.exemplo] };
 ---
 
