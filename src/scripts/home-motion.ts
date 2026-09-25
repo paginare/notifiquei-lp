@@ -14,9 +14,8 @@ export function initHomeMotion() {
     page.dataset.motion = "on";
 
     context.add(() => {
-      gsap.fromTo(page.querySelectorAll(".home-hero__channels, #hero-title > span, .home-hero__lead, .hero__actions, .home-hero__micro, .home-hero__trust"),
-        { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .75, stagger: .065, ease: "power3.out", clearProps: "transform,opacity" });
-
+      // Hero sem animação de entrada: esconder o texto até o JS rodar jogava o LCP
+      // para ~13s no mobile throttled do PageSpeed. O hero é o LCP; aparece pronto.
       const loop = page.querySelector<HTMLElement>("[data-chat-loop]");
       if (loop) cleanups.push(animateConversation(loop));
       const demo = page.querySelector<HTMLElement>("#demo");
