@@ -40,12 +40,13 @@ const conversa = { ...t.conversa, topo: conversaLp.topo, respondeu: conversaLp.r
   lang="pt-BR"
 >
   <div class="home-page lp-trafego">
-    <Nav links={[{ href: "#planos", label: "Planos" }]} comecar={t.meta.navComecar} comecarHref="#planos" />
+    <Nav links={[{ href: "#planos", label: "Planos" }]} comecar={t.meta.navComecar} comecarHref="#planos" entrar="" />
     <main id="conteudo">
       <HomeHero t={hero} conversa={conversa} imagensConversa={[conversaLp.imagem]} />
-      <HomeAuthority t={t.autoridade} />
-      {/* Planos antes da demo: quem vem de anúncio já viu a proposta no hero. */}
+      {/* Planos logo após o hero: no PostHog a rolagem mediana ficou em ~18% e
+          quase ninguém chegava nos planos quando vinham depois da autoridade. */}
       <HomePricing t={t.planos} lang="pt-BR" src={`lp-${tema}`} gratis={false} />
+      <HomeAuthority t={t.autoridade} />
       <HomeDemo t={t.demo} />
     </main>
     <Footer />

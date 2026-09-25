@@ -7,7 +7,7 @@ interface Props {
   links?: { href: string; label: string }[];
   entrar?: string;
   comecar?: string;
-  comecarHref?: string;
+  comecarHref?: string; // entrar="" esconde o link de login (landings de tráfego)
 }
 const LINKS_PT = [
   { href: "/#como", label: "Como funciona" },
@@ -33,7 +33,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
 
     <div class="nav__cta">
       <LangSwitcher atual={lang} label={langLabel} />
-      <a href="https://app.notifiquei.com.br" class="nav__login">{entrar}</a>
+      {entrar && <a href="https://app.notifiquei.com.br" class="nav__login">{entrar}</a>}
       <a href={comecarHref} class="btn btn--brand nav__start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
       <button
         type="button"
@@ -55,7 +55,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
       {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
     </nav>
     <div class="nav__mobile-lang"><LangSwitcher atual={lang} label={langLabel} /></div>
-    <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">{entrar}</a>
+    {entrar && <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">{entrar}</a>}
     <a href={comecarHref} class="btn btn--brand nav__mobile-start">{comecar}<span class="arr" aria-hidden="true">→</span></a>
   </div>
 </header>

@@ -281,6 +281,11 @@
   // um tempo (a menos que a pessoa esteja no meio da confirmação); o link do
   // rodapé segue abrindo quando ela quiser.
   if (REGIME === 'aberto') {
+    // Landings de tráfego pago (/comece/*): sem o aviso, a pedido do dono — no
+    // regime aberto o rastreamento já vale por padrão e o aviso cobria a demo do
+    // hero no celular. A política segue linkada no rodapé. Regime prévio (UE)
+    // continua mostrando o banner em qualquer página.
+    if (location.pathname.indexOf('/comece/') === 0) return;
     window.notifiqueiAbrirCookies();
     setTimeout(function () {
       var b = document.getElementById('nf-cookie-banner');
