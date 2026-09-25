@@ -18,6 +18,7 @@ const { titulo, lead, micro } = Astro.props;
       <p class="lp-hero__lead" set:html={lead} />
       <a href="#planos" class="btn btn--brand btn--lg lp-hero__cta" data-home-cta="hero">Começar agora <Icon name="arrow" size={20} /></a>
       <p class="lp-hero__micro"><Icon name="check" size={15} /> {micro}</p>
+      <img class="lp-hero__selo" src="/assets/meta-partner-white.svg" alt="Meta Business Partner" width="148" height="32" />
     </div>
     <div class="lp-hero__media">
       <video src="/assets/hero-ago26c.mp4" poster="/assets/lp/produto-poster.webp" width="640" height="800" data-autoplay muted loop playsinline preload="none" aria-label="Demonstração: alguém comenta “Quero o link” e recebe a resposta automática no direct"></video>
@@ -36,6 +37,7 @@ const { titulo, lead, micro } = Astro.props;
   .lp-hero__lead :global(strong) { color: #fff6ef; font-weight: 600; }
   .lp-hero__cta { margin-top: 22px; --btn-bg: var(--brand-ink); border: 1px solid #ff79a547; }
   .lp-hero__micro { display: flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; color: var(--on-ink-soft); }
+  .lp-hero__selo { display: block; height: 28px; width: auto; margin-top: 22px; opacity: .92; }
   /* O vídeo tem muita margem creme: o zoom deixa o celular (o produto) maior. */
   .lp-hero__media { justify-self: center; width: min(100%, 320px); overflow: hidden; border-radius: var(--r-lg); background: #f6f1e8; box-shadow: 0 24px 60px #0007; }
   .lp-hero__media video { display: block; width: 100%; height: auto; transform: scale(1.28); transform-origin: 50% 46%; }
