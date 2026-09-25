@@ -1,5 +1,5 @@
 // Landings de tráfego pago: /comece/<tema>. Cada tema repete a promessa do anúncio
-// no hero (linhas de até ~12 caracteres, senão cortam no celular). Pra testar outra promessa, acrescente uma entrada e aponte o anúncio
+// no hero (LpHero; linhas curtas, uma ideia por linha). Pra testar outra promessa, acrescente uma entrada e aponte o anúncio
 // pra /comece/<nova-chave>. O tema também vira o src da Cakto (lp-<tema>).
 export const temas: Record<string, { titulo: string[]; lead: string }> = {
   "link-na-bio": {
