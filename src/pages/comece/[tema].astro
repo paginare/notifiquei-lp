@@ -8,12 +8,12 @@
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
-import HomeHero from "../../components/HomeHero.astro";
+import LpHero from "../../components/LpHero.astro";
 import HomeAuthority from "../../components/HomeAuthority.astro";
 import HomeDemo from "../../components/HomeDemo.astro";
 import HomePricing from "../../components/HomePricing.astro";
 import { copyHome } from "../../i18n/home";
-import { temas, conversaLp } from "../../data/lp-trafego";
+import { temas } from "../../data/lp-trafego";
 import { plans } from "../../data/home";
 import { mensalNoAnual } from "../../i18n/planos";
 import "../../styles/home.css";
@@ -25,9 +25,7 @@ export function getStaticPaths() {
 const { tema } = Astro.params as { tema: string };
 const t = copyHome("pt-BR");
 // Preço junto do botão, calculado do plano mais barato (Solo, no anual — o toggle abre no anual).
-const precoMicro = `A partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anual · garantia de 7 dias`;
-const hero = { ...t.hero, ...temas[tema], canais: { nota: "AUTOMAÇÃO DE DM" }, microBr: precoMicro };
-const conversa = { ...t.conversa, topo: conversaLp.topo, respondeu: conversaLp.respondeu, exemplos: [conversaLp.exemplo] };
+const precoMicro = `A partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anual · 7 dias de garantia`;
 ---
 
 <Base
@@ -36,13 +34,12 @@ const conversa = { ...t.conversa, topo: conversaLp.topo, respondeu: conversaLp.r
   path={`/comece/${tema}`}
   canonicalPath="/"
   noindex
-  heroPoster="/assets/home/creator-hero-v3.webp"
   lang="pt-BR"
 >
   <div class="home-page lp-trafego">
     <Nav links={[{ href: "#planos", label: "Planos" }]} comecar={t.meta.navComecar} comecarHref="#planos" entrar="" />
     <main id="conteudo">
-      <HomeHero t={hero} conversa={conversa} imagensConversa={[conversaLp.imagem]} />
+      <LpHero tema={temas[tema]} micro={precoMicro} />
       {/* Planos logo após o hero: no PostHog a rolagem mediana ficou em ~18% e
           quase ninguém chegava nos planos quando vinham depois da autoridade. */}
       <HomePricing t={t.planos} lang="pt-BR" src={`lp-${tema}`} gratis={false} />
@@ -56,9 +53,4 @@ const conversa = { ...t.conversa, topo: conversaLp.topo, respondeu: conversaLp.r
     import { initHomeMotion } from "../../scripts/home-motion";
     initHomeMotion();
   </script>
-  <style is:global>
-    /* Rótulos do card animado legíveis no celular (na home são 9px). */
-    .lp-trafego .hero-chat__incoming small, .lp-trafego .hero-chat__sender { font-size: 11.5px; }
-    .lp-trafego .hero-chat__top > span { font-size: 12.5px; font-weight: 600; }
-  </style>
 </Base>
