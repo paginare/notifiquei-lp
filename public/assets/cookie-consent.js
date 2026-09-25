@@ -141,9 +141,9 @@
     '@media(max-width:600px){',
     // Compacto no celular de propósito: o aviso tapava metade da primeira tela, que é
     // onde metade das pessoas decide — e é ele que libera toda a medição do site.
-    '#nf-cookie-banner{padding:13px 16px;gap:12px;font-size:12.5px;line-height:1.45;}',
+    '#nf-cookie-banner{padding:10px 14px;gap:8px;font-size:11.5px;line-height:1.4;}',
     '#nf-cookie-btns{width:100%;}',
-    '.nf-btn-accept,.nf-btn-essential{padding:10px 16px;font-size:12.5px;}',
+    '.nf-btn-accept,.nf-btn-essential{padding:7px 14px;font-size:12px;}',
     '.nf-btn-accept,.nf-btn-essential{flex:1;text-align:center;}',
     '}'
   ].join('');

@@ -4,8 +4,8 @@ import HomeConversation from "./HomeConversation.astro";
 import { FREE } from "../data/home";
 import { type CopyHome } from "../i18n/home";
 
-interface Props { t: CopyHome["hero"]; conversa: CopyHome["conversa"]; }
-const { t, conversa } = Astro.props;
+interface Props { t: CopyHome["hero"]; conversa: CopyHome["conversa"]; imagensConversa?: string[]; }
+const { t, conversa, imagensConversa } = Astro.props;
 ---
 
 <section class="home-hero" aria-labelledby="hero-title">
@@ -39,7 +39,7 @@ const { t, conversa } = Astro.props;
       </div>
       <p class="home-hero__micro br-only"><Icon name="check" size={15} /> {t.microBr}</p>
       <p class="home-hero__micro intl-only"><Icon name="check" size={15} /> {t.microIntl}</p>
-      <HomeConversation t={conversa} />
+      <HomeConversation t={conversa} imagens={imagensConversa} />
       <div class="home-hero__trust">
         <img src="/assets/meta-partner-white.svg" alt="Meta Business Partner" width="148" height="32" />
         <span aria-hidden="true"></span>

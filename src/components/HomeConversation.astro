@@ -2,8 +2,9 @@
 import Icon from "./HomeIcon.astro";
 import { type CopyHome } from "../i18n/home";
 
-interface Props { t: CopyHome["conversa"]; }
-const { t } = Astro.props;
+// imagens: foto do cartão de link por exemplo (a LP de tráfego troca pelo tema).
+interface Props { t: CopyHome["conversa"]; imagens?: string[]; }
+const { t, imagens } = Astro.props;
 const conversations = t.exemplos;
 // As fotos do cartão de link não mudam com o idioma.
 const IMAGENS = ["/assets/home/creator-fashion-v2.webp", "/assets/home/creator-content-v2.webp", "/assets/home/creator-business-v2.webp"];
@@ -33,7 +34,7 @@ const IMAGENS = ["/assets/home/creator-fashion-v2.webp", "/assets/home/creator-c
           <div class="hero-chat__sender"><Icon name="spark" size={14} /><span>{t.respondeu}</span></div>
           <p>{chat.resposta}</p>
           <div class="hero-chat__link" data-chat-link>
-            <img src={IMAGENS[i]} width="44" height="54" alt="" loading="lazy" />
+            <img src={(imagens ?? IMAGENS)[i]} width="44" height="54" alt="" loading="lazy" />
             <span><small>{chat.rotulo}</small><b>{chat.link}</b></span>
             <Icon name="diagonal" size={19} />
           </div>
@@ -44,7 +45,7 @@ const IMAGENS = ["/assets/home/creator-fashion-v2.webp", "/assets/home/creator-c
       </article>
     ))}
   </div>
-  <div class="hero-chat__footer"><span aria-hidden="true"><i data-chat-dot class="is-active"></i><i data-chat-dot></i><i data-chat-dot></i></span><small>{t.rodape}</small></div>
+  <div class="hero-chat__footer"><span aria-hidden="true">{conversations.length > 1 && conversations.map((_, i) => <i data-chat-dot class={i === 0 ? "is-active" : undefined}></i>)}</span><small>{t.rodape}</small></div>
 </div>
 
 <style>
