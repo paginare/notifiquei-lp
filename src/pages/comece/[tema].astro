@@ -34,6 +34,7 @@ const precoMicro = `A partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anua
   path={`/comece/${tema}`}
   canonicalPath="/"
   noindex
+  heroPoster="/assets/creators/day-morning.webp"
   lang="pt-BR"
 >
   <div class="home-page lp-trafego">
@@ -53,4 +54,11 @@ const precoMicro = `A partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anua
     import { initHomeMotion } from "../../scripts/home-motion";
     initHomeMotion();
   </script>
+  <style is:global>
+    /* Hero claro nas LPs: o menu fica sempre na versão "rolada" (fundo papel). */
+    .home-page.lp-trafego .nav, .home-page.lp-trafego #siteNav.nav { background: var(--paper); color: var(--ink); box-shadow: 0 2px 15px #14100e0a; }
+    .home-page.lp-trafego .nav:not(.is-scrolled):not(.is-open) .nav__links a { color: var(--ink-soft); }
+    .home-page.lp-trafego .nav .nav__start { background: var(--brand-ink); color: #fff; }
+    .home-page.lp-trafego .nav .lang__btn { border-color: var(--line); background: transparent; }
+  </style>
 </Base>

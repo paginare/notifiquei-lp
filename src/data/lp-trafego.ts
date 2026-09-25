@@ -15,22 +15,15 @@ export const temas: Record<string, TemaLp> = {
   // Variante "intenção": fala do momento em que o lead já levantou a mão.
   "link-na-bio": {
     titulo: ["Se comentaram,", "já estão interessados.", "Mande a oferta."],
-    lead: "O Notifiquei transforma comentários no Instagram e TikTok em <strong>DMs automáticas com sua oferta</strong>, em segundos.",
+    lead: "Quem comenta no seu post recebe sua oferta <strong>direto na DM</strong>, em segundos. Automático, no Instagram e TikTok.",
     cta: "Quero automatizar",
     ctaSecundario: "Ver funcionando",
   },
   // Variante "resultado": comentou → recebeu → vendeu.
   "vendas-por-dm": {
     titulo: ["Comentou.", "Recebeu.", "Você vendeu."],
-    lead: "Transforme comentários em vendas no automático. O Notifiquei responde o comentário e <strong>envia sua oferta na DM em segundos</strong>, mesmo quando você está offline.",
+    lead: "O Notifiquei responde cada comentário e <strong>envia sua oferta na DM</strong> em segundos, mesmo com você offline.",
     cta: "Automatizar minhas DMs",
     ctaSecundario: "Ver como funciona",
   },
-};
-
-// Demonstração do hero: comentário → DM automática → clique na oferta.
-export const demoLp = {
-  comentario: "QUERO! Me manda o link do curso? 😍",
-  dm: "Oi, Julia! Aqui está o link da turma. Te espero lá dentro 💕",
-  oferta: "Garantir minha vaga",
 };

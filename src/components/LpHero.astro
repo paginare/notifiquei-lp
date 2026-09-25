@@ -1,22 +1,18 @@
 ---
 /**
- * Hero das landings de tráfego (/comece/<tema>). Mesma identidade da home (fundo
- * escuro, Bricolage, rosa, foto da criadora), outra estrutura: resultado primeiro
- * no título e a demonstração em 3 passos (comentou → DM automática → clicou na
- * oferta) como protagonista. No desktop ~48/52 texto/demo, com a foto escurecida
- * atrás dos cards; no celular a demo vem logo depois do lead, antes do botão, e a
- * foto sai pra o hero caber numa tela.
+ * Hero das landings de tráfego (/comece/<tema>). Feedback do mentor (25/09): quem
+ * chega de anúncio tem ~3 segundos e não lê — o hero tem que se explicar pela
+ * imagem. Então: foto clara de gente real no celular, com o comentário ("QUERO o
+ * link!") e a resposta automática no direct por cima. Fundo claro, pouco texto.
+ * No celular a foto vem logo depois do título, antes do botão.
  */
 import Icon from "./HomeIcon.astro";
-import { eyebrowLp, demoLp, type TemaLp } from "../data/lp-trafego";
+import { eyebrowLp, type TemaLp } from "../data/lp-trafego";
 
 interface Props { tema: TemaLp; micro: string; }
 const { tema, micro } = Astro.props;
 ---
 <section class="lp-hero" aria-labelledby="hero-title">
-  <div class="lp-hero__photo" aria-hidden="true">
-    <img src="/assets/home/creator-hero-v3.webp" alt="" width="1120" height="1400" fetchpriority="low" />
-  </div>
   <div class="container lp-hero__inner">
     <div class="lp-hero__copy">
       <p class="lp-hero__eyebrow">{eyebrowLp}</p>
@@ -24,29 +20,17 @@ const { tema, micro } = Astro.props;
       <p class="lp-hero__lead" set:html={tema.lead} />
     </div>
 
-    <ol class="lp-demo" aria-label="Como funciona em 3 passos">
-      <li class="lp-demo__step">
-        <span class="lp-demo__n">1</span>
-        <div>
-          <small>Comentou no post</small>
-          <p class="lp-demo__bubble">“{demoLp.comentario}”</p>
-        </div>
-      </li>
-      <li class="lp-demo__step lp-demo__step--dm">
-        <span class="lp-demo__n">2</span>
-        <div>
-          <small><img src="/assets/favicon.svg" alt="" width="14" height="14" /> Notifiquei enviou na DM</small>
-          <p class="lp-demo__bubble lp-demo__bubble--dm">“{demoLp.dm}”</p>
-        </div>
-      </li>
-      <li class="lp-demo__step">
-        <span class="lp-demo__n">3</span>
-        <div>
-          <small>Cliente clicou na oferta</small>
-          <p class="lp-demo__offer">{demoLp.oferta} <Icon name="arrow" size={15} /></p>
-        </div>
-      </li>
-    </ol>
+    <figure class="lp-hero__media">
+      <img src="/assets/creators/day-morning.webp" alt="Criadora sorrindo enquanto olha o celular" width="760" height="760" fetchpriority="high" />
+      <div class="lp-hero__comment" aria-hidden="true">
+        <span class="lp-hero__av">J</span>
+        <span><small>julia comentou no seu post</small><b>QUERO o link! 😍</b></span>
+      </div>
+      <figcaption class="lp-hero__dm">
+        <b>Te mandei tudo no direct 💌</b>
+        <small><Icon name="check" size={13} /> Resposta automática do Notifiquei</small>
+      </figcaption>
+    </figure>
 
     <div class="lp-hero__actions">
       <div class="lp-hero__buttons">
@@ -59,54 +43,43 @@ const { tema, micro } = Astro.props;
 </section>
 
 <style>
-  .lp-hero { position: relative; isolation: isolate; overflow: hidden; background: #24221f; color: var(--paper); }
-  .lp-hero__photo { display: none; }
-  .lp-hero__inner { display: grid; gap: 22px; padding-top: 92px; padding-bottom: 36px; }
-  .lp-hero__eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .01em; color: #ff9cc0; }
-  .lp-hero h1 { font-size: clamp(2.35rem, 1.2rem + 5vw, 5rem); line-height: .98; letter-spacing: -.05em; margin-top: 12px; }
+  .lp-hero { background: var(--paper); color: var(--ink); }
+  .lp-hero__inner { display: grid; gap: 20px; padding-top: 104px; padding-bottom: 40px; }
+  .lp-hero__eyebrow { font-size: 12px; font-weight: 600; color: var(--brand-ink); }
+  .lp-hero h1 { font-size: clamp(2.3rem, 1.3rem + 4.4vw, 4.6rem); line-height: .98; letter-spacing: -.05em; margin-top: 10px; }
   .lp-hero h1 > span { display: block; }
-  .lp-hero h1 > span:last-child { color: #ff88b2; }
-  .lp-hero__lead { font-size: 15px; line-height: 1.6; color: #e0d8ce; max-width: 470px; margin-top: 14px; }
-  .lp-hero__lead :global(strong) { color: #fff6ef; font-weight: 600; }
+  .lp-hero h1 > span:last-child { color: var(--brand-ink); }
+  .lp-hero__lead { font-size: 15px; line-height: 1.55; color: var(--ink-soft); max-width: 480px; margin-top: 12px; }
+  .lp-hero__lead :global(strong) { color: var(--ink); font-weight: 600; }
 
-  /* Demo: 3 passos empilhados, ligados por uma linha — é o produto explicado. */
-  .lp-demo { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; position: relative; }
-  .lp-demo::before { content: ""; position: absolute; left: 13px; top: 20px; bottom: 20px; border-left: 2px dashed #ff79a560; }
-  .lp-demo__step { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: center; }
-  .lp-demo__n { position: relative; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-ink); color: #fff; font-size: 13px; font-weight: 700; box-shadow: 0 0 0 4px #24221f; }
-  .lp-demo__step > div { background: #fffdfa; color: #24221f; border-radius: 16px; padding: 10px 13px; box-shadow: 0 10px 28px #0005; }
-  .lp-demo__step small { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #8a7a76; }
-  .lp-demo__step small img { border-radius: 4px; }
-  .lp-demo__bubble { margin-top: 3px; font-size: 13.5px; line-height: 1.4; }
-  .lp-demo__step--dm > div { background: linear-gradient(130deg, #921048, #6f0a36); color: #fff; }
-  .lp-demo__step--dm small { color: #ffd3e3; }
-  .lp-demo__offer { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; padding: 6px 12px; border-radius: 999px; background: var(--brand-ink); color: #fff; font-size: 13px; font-weight: 700; }
+  /* A foto é o argumento: gente de verdade recebendo a resposta no direct. */
+  .lp-hero__media { position: relative; margin: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 1 / 1; box-shadow: 0 24px 60px #14100e24; }
+  .lp-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .lp-hero__comment { position: absolute; top: 16px; left: 16px; right: 22%; display: flex; align-items: center; gap: 9px; padding: 10px 13px; background: #fffdfa; border-radius: 16px 16px 16px 4px; box-shadow: 0 10px 26px #14100e2e; transform: rotate(-2deg); }
+  .lp-hero__av { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7); color: #fff; font-weight: 700; font-size: 12px; }
+  .lp-hero__comment small { display: block; font-size: 11px; color: #817472; }
+  .lp-hero__comment b { display: block; font-size: 15px; font-weight: 600; }
+  .lp-hero__dm { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 14px 18px; background: #ff1f6dee; color: #fff; border-radius: 18px 18px 4px 18px; box-shadow: 0 14px 34px #c90c5455; backdrop-filter: blur(4px); }
+  .lp-hero__dm b { display: block; font-family: var(--font-display); font-size: 19px; letter-spacing: -.02em; line-height: 1.1; }
+  .lp-hero__dm small { display: flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .92; }
 
   .lp-hero__buttons { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
-  .lp-hero__cta { --btn-bg: var(--brand-ink); border: 1px solid #ff79a547; }
-  .lp-hero__sec { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--paper); }
-  .lp-hero__sec:hover { color: #ff88b2; }
-  .lp-hero__micro { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #cbbfb5; margin-top: 12px; }
-  .lp-hero__micro :global(svg) { color: #ff88b2; }
+  .lp-hero__cta { --btn-bg: var(--brand-ink); }
+  .lp-hero__sec { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink); }
+  .lp-hero__sec:hover { color: var(--brand-ink); }
+  .lp-hero__micro { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-soft); margin-top: 12px; }
+  .lp-hero__micro :global(svg) { color: var(--brand-ink); }
 
   @media (min-width: 900px) {
-    .lp-hero { min-height: 760px; }
-    /* Foto da home, mais escura e desfocada: fica de fundo, o produto na frente. */
-    .lp-hero__photo { display: block; position: absolute; z-index: -1; inset: 0 0 0 40%; overflow: hidden; }
-    .lp-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; filter: blur(3px) brightness(.45) saturate(.8); transform: scale(1.1); }
-    .lp-hero__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #24221f 0%, #24221fcc 22%, #24221f40 60%, #24221f80 100%); }
-    .lp-hero__inner { grid-template-columns: 48fr 52fr; grid-template-areas: "copy demo" "actions demo"; column-gap: 64px; row-gap: 30px; align-content: center; min-height: 760px; padding-top: 128px; padding-bottom: 64px; }
+    .lp-hero__inner { grid-template-columns: 1fr 1fr; grid-template-areas: "copy media" "actions media"; column-gap: 72px; row-gap: 32px; align-content: center; min-height: 740px; padding-top: 132px; padding-bottom: 64px; }
     .lp-hero__copy { grid-area: copy; align-self: end; }
     .lp-hero__actions { grid-area: actions; align-self: start; }
-    .lp-demo { grid-area: demo; align-self: center; max-width: 470px; justify-self: center; width: 100%; gap: 18px; }
-    .lp-demo::before { left: 17px; }
-    .lp-demo__step { grid-template-columns: 36px 1fr; gap: 16px; }
-    .lp-demo__n { width: 36px; height: 36px; font-size: 15px; }
-    .lp-demo__step > div { padding: 16px 20px; border-radius: 20px; }
-    .lp-demo__step small { font-size: 12.5px; }
-    .lp-demo__bubble { font-size: 16px; }
-    .lp-demo__offer { font-size: 15px; padding: 8px 16px; }
-    .lp-hero__lead { font-size: 18px; margin-top: 22px; }
+    .lp-hero__media { grid-area: media; align-self: center; max-width: 540px; width: 100%; justify-self: end; border-radius: 32px; }
+    .lp-hero__comment { top: 24px; left: 24px; padding: 13px 16px; }
+    .lp-hero__comment b { font-size: 17px; }
+    .lp-hero__dm { left: 24px; right: 24px; bottom: 24px; padding: 18px 22px; }
+    .lp-hero__dm b { font-size: 27px; }
+    .lp-hero__lead { font-size: 18px; margin-top: 20px; }
     .lp-hero__eyebrow { font-size: 13px; }
   }
 </style>
