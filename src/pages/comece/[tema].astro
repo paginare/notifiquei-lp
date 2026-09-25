@@ -8,7 +8,7 @@
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
-import LpHero from "../../components/LpHero.astro";
+import HomeHero from "../../components/HomeHero.astro";
 import HomeAuthority from "../../components/HomeAuthority.astro";
 import HomeStories from "../../components/HomeStories.astro";
 import HomeDemo from "../../components/HomeDemo.astro";
@@ -23,7 +23,7 @@ export function getStaticPaths() {
 
 const { tema } = Astro.params as { tema: string };
 const t = copyHome("pt-BR");
-const tema_ = temas[tema];
+const hero = { ...t.hero, ...temas[tema], microBr: t.planos.garantia };
 ---
 
 <Base
@@ -32,12 +32,13 @@ const tema_ = temas[tema];
   path={`/comece/${tema}`}
   canonicalPath="/"
   noindex
+  heroPoster="/assets/home/creator-hero-v3.webp"
   lang="pt-BR"
 >
   <div class="home-page">
     <Nav links={[{ href: "#planos", label: "Planos" }]} comecar={t.meta.navComecar} comecarHref="#planos" />
     <main id="conteudo">
-      <LpHero titulo={tema_.titulo} lead={tema_.lead} micro={t.planos.garantia} />
+      <HomeHero t={hero} conversa={t.conversa} />
       <HomeAuthority t={t.autoridade} />
       <section class="home-proof" aria-label={t.provaMarcas}>
         <div class="container">
