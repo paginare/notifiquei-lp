@@ -15,11 +15,12 @@ const CHIP_ICONES: Record<string, string[]> = {
 };
 const CARAS = perfis.slice(0, 4).map((p) => p.arquivo);
 
-interface Props { t: CopyHome["planos"]; lang: Lang; }
-const { t, lang } = Astro.props;
+// src vai no link da Cakto (atribuição por landing); gratis=false esconde o plano grátis (LP de tráfego pago).
+interface Props { t: CopyHome["planos"]; lang: Lang; src?: string; gratis?: boolean; }
+const { t, lang, src = "home", gratis = true } = Astro.props;
 // Cada língua escreve número do seu jeito: 1.290 em pt/es, 1,290 em en.
 const LOCALE: Record<Lang, string> = { "pt-BR": "pt-BR", en: "en-US", es: "es-ES" };
-const SRC = "home";
+const SRC = src;
 // Preço e link vêm dos dados; frase, botão e itens vêm da língua.
 const cartao = (slug: string) => t.cartoes[slug as keyof typeof t.cartoes];
 const anual = (valor: string, moeda: string) =>
@@ -117,6 +118,7 @@ const anual = (valor: string, moeda: string) =>
         </dialog>
 
         <!-- Plano grátis: rota de saída pra quem chegou no preço e não assinou -->
+        {gratis && (
         <article class="freeplan reveal br-only">
           <div class="freeplan__head">
             <span class="freeplan__tag">{t.gratisTag}</span>
@@ -131,6 +133,7 @@ const anual = (valor: string, moeda: string) =>
             <a href={FREE} class="btn btn--ghost btn--lg">{t.gratisCta}<span class="arr" aria-hidden="true">→</span></a>
           </div>
         </article>
+        )}
 
         <div class="plans__porque">
           <span class="eyebrow">{t.difEyebrow}</span>

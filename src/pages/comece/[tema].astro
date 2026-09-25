@@ -1,0 +1,58 @@
+---
+/**
+ * Landing de tráfego pago: mesmo visual da home, com o hero repetindo a promessa
+ * do anúncio e sem o plano grátis (a campanha otimiza para InitiateCheckout).
+ * Página estática por tema — nada de trocar copy via JS, que piscaria o hero e
+ * atrasaria o LCP. Temas em src/data/lp-trafego.ts.
+ */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import HomeHero from "../../components/HomeHero.astro";
+import HomeAuthority from "../../components/HomeAuthority.astro";
+import HomeStories from "../../components/HomeStories.astro";
+import HomeDemo from "../../components/HomeDemo.astro";
+import HomePricing from "../../components/HomePricing.astro";
+import { copyHome } from "../../i18n/home";
+import { temas } from "../../data/lp-trafego";
+import "../../styles/home.css";
+
+export function getStaticPaths() {
+  return Object.keys(temas).map((tema) => ({ params: { tema } }));
+}
+
+const { tema } = Astro.params as { tema: string };
+const t = copyHome("pt-BR");
+const hero = { ...t.hero, ...temas[tema], microBr: t.planos.garantia };
+---
+
+<Base
+  title={t.meta.title}
+  description={t.meta.description}
+  path={`/comece/${tema}`}
+  canonicalPath="/"
+  noindex
+  heroPoster="/assets/home/creator-hero-v3.webp"
+  lang="pt-BR"
+>
+  <div class="home-page">
+    <Nav links={[{ href: "#planos", label: "Planos" }]} comecar={t.meta.navComecar} comecarHref="#planos" />
+    <main id="conteudo">
+      <HomeHero t={hero} conversa={t.conversa} />
+      <HomeAuthority t={t.autoridade} />
+      <section class="home-proof" aria-label={t.provaMarcas}>
+        <div class="container">
+          <HomeStories titulo={t.perfisTitulo} />
+        </div>
+      </section>
+      <HomeDemo t={t.demo} />
+      <HomePricing t={t.planos} lang="pt-BR" src={`lp-${tema}`} gratis={false} />
+    </main>
+    <Footer />
+  </div>
+
+  <script>
+    import { initHomeMotion } from "../../scripts/home-motion";
+    initHomeMotion();
+  </script>
+</Base>
