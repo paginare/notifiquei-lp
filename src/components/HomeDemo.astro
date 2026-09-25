@@ -1,6 +1,5 @@
 ---
 import Icon from "./HomeIcon.astro";
-import { FREE } from "../data/home";
 import { marcar, type CopyHome } from "../i18n/home";
 
 interface Props { t: CopyHome["demo"]; }
@@ -33,7 +32,7 @@ const cena = t.cenas[0];
           ))}
         </div>
         <p class="demo__hint">{t.escolha} <Icon name="diagonal" size={16} /></p>
-        <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="demo">{t.ctaBr} <Icon name="arrow" size={20} /></a>
+        <a href="#planos" class="btn btn--brand btn--lg br-only" data-home-cta="demo">{t.ctaBr} <Icon name="arrow" size={20} /></a>
         <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="demo">{t.ctaIntl} <Icon name="arrow" size={20} /></a>
       </div>
       <div class="demo-scene" id="demo-scene" data-active="comment">

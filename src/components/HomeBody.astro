@@ -18,7 +18,7 @@ import HomePricing from "./HomePricing.astro";
 import HomeStories from "./HomeStories.astro";
 import LangBanner from "./LangBanner.astro";
 import ZapFlutuante from "./ZapFlutuante.astro";
-import { FREE, WPP, faqs as faqsPt } from "../data/home";
+import { WPP, faqs as faqsPt } from "../data/home";
 import { copyHome, marcar, type Lang } from "../i18n/home";
 import { en as antigoEn } from "../i18n/en";
 import { es as antigoEs } from "../i18n/es";
@@ -131,7 +131,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
               <ul>
                 {t.antesDepois.depoisItens.map((item) => <li><Icon name="check" size={18} /> {item}</li>)}
               </ul>
-              <a href={FREE} class="home-text-link br-only" data-home-cta="mid_page">{t.antesDepois.cta} <Icon name="arrow" size={19} /></a>
+              <a href="#planos" class="home-text-link br-only" data-home-cta="mid_page">{t.antesDepois.cta} <Icon name="arrow" size={19} /></a>
               <a href="#planos" class="home-text-link intl-only" data-home-cta="mid_page">{t.antesDepois.cta} <Icon name="arrow" size={19} /></a>
             </article>
           </div>
@@ -145,7 +145,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
               <span class="home-kicker"><Icon name="link" size={17} /> {t.afiliados.kicker}</span>
               <h2 set:html={marcar(t.afiliados.titulo)} />
               <p>{t.afiliados.lead}</p>
-              <a href={FREE} class="btn btn--brand btn--lg br-only" data-home-cta="affiliate">{t.afiliados.cta} <Icon name="arrow" size={20} /></a>
+              <a href="#planos" class="btn btn--brand btn--lg br-only" data-home-cta="affiliate">{t.afiliados.cta} <Icon name="arrow" size={20} /></a>
               <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="affiliate">{t.afiliados.cta} <Icon name="arrow" size={20} /></a>
             </div>
             <div class="affiliate-visual" aria-label={t.afiliados.aria}>
