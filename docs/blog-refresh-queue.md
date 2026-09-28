@@ -19,11 +19,23 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ---
 
+## Fila ativa
+
+**`dm-para-quem-comentou-no-instagram`** (37 impressões/mês, posição 6,1, CTR 5,4%)
+Title atual "Dá pra mandar DM pra quem comentou no post? Como funciona a janela da Meta" tem 74 caracteres, acima do limite de 60; o Google provavelmente corta na SERP. Encurtar para até 60 chars mantendo a consulta "DM pra quem comentou" perto do começo. Sugestão: "DM pra quem comentou: como funciona a janela da Meta" (52 chars). Description atual está OK (151 chars). Se o title mudar, atualizar `updated`.
+
+**`automacao-no-instagram-guia`** (13 impressões/mês, posição 10,6)
+Pilar do cluster "automação no Instagram" na borda da primeira página. Title (57 chars) e description (154 chars) dentro dos limites, mas a description não repete a promessa do title ("sem arriscar sua conta") com força. Reescrever description para começar com a consulta "automação no Instagram" e incluir o diferencial de segurança que está no title. Verificar se o primeiro H2 começa com "automação no Instagram". Atualizar `updated`.
+
+---
+
 ## Bloqueado (não mexer até alguém conferir no Search Console)
 
 - **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês, posição 2,3, 1 clique). Posição 2 com CTR de 1% tem cara de impressão vinda da busca "notifiquei". Precisa abrir Search Console > Desempenho > filtro Página com a URL do post > aba Consultas. Se as consultas forem de sorteio, boas-vindas ou direct, vira item desta fila. Se forem de marca, o post sai da lista.
 
 ## Feito
+
+- **2026-09-28** — `automatizar-resposta-a-stories-no-instagram`: description reescrita de 162 para 146 chars, agora começa com a consulta "Automatizar resposta a stories no Instagram"; `updated: 2026-09-28`. Title não mudou (50 chars).
 
 - **2026-09-21** — Items 1 e 3 removidos da fila ativa: o trabalho de ambos já estava concluído (confirmado nos arquivos dos posts e nas entradas do histórico abaixo), mas os itens não tinham sido apagados da seção ativa em execuções anteriores. Fila limpa.
 

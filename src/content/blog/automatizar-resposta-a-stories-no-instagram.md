@@ -1,8 +1,8 @@
 ---
 title: "Como automatizar a resposta a stories no Instagram"
-description: "Sim, dá pra automatizar: a resposta ao story aciona um fluxo no direct. A primeira mensagem vem com botão, pela regra da Meta, e depois a conversa segue livre."
+description: "Automatizar resposta a stories no Instagram é simples: cada reply entra num fluxo de DM automático. Veja a regra da Meta e como montar em minutos."
 date: 2026-07-01
-updated: 2026-09-16
+updated: 2026-09-28
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Stories", "Instagram"]
