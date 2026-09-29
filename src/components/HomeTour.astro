@@ -1,0 +1,67 @@
+---
+// Tour do painel em vídeo (anuncios-funcoes, vídeo "demo"), só na home em PT:
+// a legenda e a narração são em português. O texto fica aqui e não em pt.ts,
+// porque CopyHome = typeof pt obrigaria en.ts e es.ts a ter a mesma chave.
+// O vídeo entra mudo e em loop (o script de data-autoplay do Base.astro); a
+// legenda queimada conta a história sem som. "Ver com som" volta pro começo.
+import Icon from "./HomeIcon.astro";
+import { marcar } from "../i18n/home";
+---
+<section class="home-section home-tour" id="tour" aria-labelledby="tour-title">
+  <div class="container">
+    <div class="home-centered-heading">
+      <span class="home-kicker"><Icon name="play" size={17} /> POR DENTRO DO PAINEL</span>
+      <h2 id="tour-title" set:html={marcar("Em um minuto,\n{hl}do zero ao automático.{/hl}")} />
+      <p>Veja o painel por dentro: conectar o Instagram, criar a automação e ver o link chegando no direct de quem comentou.</p>
+    </div>
+    <div class="home-tour__frame">
+      <video
+        class="home-tour__video"
+        poster="/assets/demo-tour-set26-poster.webp"
+        width="1920" height="1080"
+        data-autoplay muted loop playsinline preload="none"
+        aria-label="Tour do painel do Notifiquei: conectar o Instagram, criar uma automação de comentário e ver a resposta chegando no direct"
+      >
+        <source src="/assets/demo-tour-set26.webm" type='video/webm; codecs="vp9, opus"' />
+        <source src="/assets/demo-tour-set26.mp4" type="video/mp4" />
+      </video>
+      <button type="button" class="home-tour__som" data-tour-som aria-label="Ver com som: o vídeo volta pro começo com a narração">
+        <Icon name="som" size={20} /> Ver com som
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-tour { padding-top: 30px; background: var(--paper); }
+  .home-tour__frame { position: relative; max-width: 1200px; margin: 56px auto 0; }
+  .home-tour__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 28px; border: 1px solid #ead1db; background: #f4d8e1; box-shadow: 0 26px 60px #6727431a; }
+  .home-tour__som { position: absolute; top: 18px; left: 18px; display: inline-flex; align-items: center; gap: 9px; min-height: 46px; padding: 11px 18px 11px 14px; border-radius: 999px; background: var(--brand-ink); color: white; font-size: 15px; font-weight: 700; box-shadow: 0 10px 26px #67274333; transition: background .2s, transform .2s; }
+  .home-tour__som:hover { background: #ad104b; transform: translateY(-1px); }
+  .home-tour__som:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .home-tour__som[hidden] { display: none; }
+  @media (max-width: 760px) { .home-tour { padding-top: 15px; } .home-tour__frame { margin-top: 36px; } }
+  /* Celular: o vídeo ocupa a largura toda e o botão sai de cima dele. */
+  @media (max-width: 600px) {
+    .home-tour__frame { margin-inline: calc(-1 * var(--gutter)); display: flex; flex-direction: column; align-items: center; }
+    .home-tour__video { border-radius: 0; border-inline: 0; box-shadow: none; }
+    .home-tour__som { position: static; margin-top: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .home-tour__som { transition: none; } }
+</style>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>(".home-tour__video");
+  const som = document.querySelector<HTMLButtonElement>("[data-tour-som]");
+  som?.addEventListener("click", () => {
+    if (!video) return;
+    video.muted = false;
+    video.loop = false; // com som, toca uma vez; os controles deixam repetir e pausar
+    video.controls = true;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+    som.hidden = true;
+    video.focus();
+    (window as any).posthog?.capture?.("home_tour_som");
+  });
+</script>
