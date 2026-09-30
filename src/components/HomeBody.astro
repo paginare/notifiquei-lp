@@ -93,7 +93,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
             {audiences.map((audience) => (
               <article class={`audience-card audience-card--${audience.theme}`}>
                 <div class="audience-card__photo">
-                  <img src={audience.image} alt={audience.alt} width="480" height="600" loading="lazy" />
+                  <img src={audience.image} srcset={`${audience.image.replace(".webp", "-480.webp")} 480w, ${audience.image} 800w`} sizes="(max-width: 900px) 260px, 400px" alt={audience.alt} width="480" height="600" loading="lazy" decoding="async" />
                   <span>{audience.tag}</span>
                 </div>
                 <div class="audience-card__copy">
@@ -248,8 +248,8 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
 
 
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
 
     document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
       cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: cta.dataset.homeCta }));

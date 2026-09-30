@@ -131,8 +131,8 @@ const jsonLd = [
   </div>
 
   <script>
-    import { initHomeMotion } from "../../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../../scripts/movimento";
+    iniciarMovimento();
     const botoes = document.querySelectorAll<HTMLButtonElement>(".bl-filtro");
     const cards = document.querySelectorAll<HTMLElement>(".bl-card");
     botoes.forEach((b) => b.addEventListener("click", () => {

@@ -76,8 +76,8 @@ const semHtml = (s: string) => s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").t
 </div>
 
 <script>
-  import { initHomeMotion } from "../scripts/home-motion";
-  initHomeMotion();
+  import { iniciarMovimento } from "../scripts/movimento";
+  iniciarMovimento();
   const alvo = location.hash && document.querySelector<HTMLDetailsElement>(`details${location.hash}`);
   if (alvo) alvo.open = true;
   const campo = document.getElementById("aj-busca") as HTMLInputElement | null;

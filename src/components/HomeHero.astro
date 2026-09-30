@@ -12,6 +12,8 @@ const { t, conversa, imagensConversa } = Astro.props;
   <div class="home-hero__photo">
     <img
       src="/assets/home/creator-hero-v4.webp"
+      srcset="/assets/home/creator-hero-v4-760.webp 760w, /assets/home/creator-hero-v4.webp 1120w"
+      sizes="(max-width: 900px) 100vw, 50vw"
       alt={t.fotoAlt}
       width="1120"
       height="1400"

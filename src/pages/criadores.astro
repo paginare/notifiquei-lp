@@ -193,8 +193,8 @@ const jsonLd = [
   </div>
 
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
 
     document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
       cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: `creators_${cta.dataset.homeCta}` }));

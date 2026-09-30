@@ -82,9 +82,33 @@
   // com nfAoConsentir() e é chamado na hora se o visitante já tinha aceitado.
   var ligar = [];
   var desligar = [];
+  // Quem já tinha consentimento (ou está no regime aberto) não liga na hora: as
+  // tags (GTM → gtag×2, pixel da Meta, Clarity, PostHog) somavam ~1,5s de CPU
+  // antes do primeiro desenho e jogavam o LCP do PageSpeed mobile pra ~14s.
+  // Sobem assim que a página termina de carregar e o navegador fica livre, ou
+  // no primeiro toque/rolagem/tecla — o que vier antes. O clique em "Aceitar"
+  // (setConsent) continua ligando na hora. Cada tag tem a própria trava contra
+  // subir duas vezes.
+  var fila = [];
+  var liberado = false;
+  function libera() {
+    if (liberado) return;
+    liberado = true;
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { removeEventListener(ev, libera, true); });
+    fila.splice(0).forEach(function (fn) { try { fn(); } catch (e) {} });
+  }
+  ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { addEventListener(ev, libera, { capture: true, passive: true }); });
+  function depoisDoLoad() {
+    var ocioso = window.requestIdleCallback || function (cb) { return setTimeout(cb, 1); };
+    setTimeout(function () { ocioso(libera, { timeout: 2000 }); }, 1500);
+  }
+  if (document.readyState === 'complete') depoisDoLoad();
+  else addEventListener('load', depoisDoLoad, { once: true });
+
   window.nfAoConsentir = function (fn) {
     ligar.push(fn);
-    if (window.notifiqueiConsent === 'all') { try { fn(); } catch (e) {} }
+    if (window.notifiqueiConsent !== 'all') return;
+    if (liberado) { try { fn(); } catch (e) {} } else fila.push(fn);
   };
   window.nfAoRecusar = function (fn) { desligar.push(fn); };
 

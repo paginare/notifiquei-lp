@@ -122,8 +122,8 @@ const entrar = (lang === "en" ? antigoEn : antigoEs).nav.entrar;
 </div>
 
 <script>
-  import { initHomeMotion } from "../scripts/home-motion";
-  initHomeMotion();
+  import { iniciarMovimento } from "../scripts/movimento";
+  iniciarMovimento();
   const lang = document.documentElement.lang;
   document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
     cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: `creators_${lang}_${cta.dataset.homeCta}` }));

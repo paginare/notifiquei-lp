@@ -80,8 +80,8 @@ const NAO = "No";
 </div>
 
 <script>
-  import { initHomeMotion } from "../scripts/home-motion";
-  initHomeMotion();
+  import { iniciarMovimento } from "../scripts/movimento";
+  iniciarMovimento();
   const lang = document.documentElement.lang;
   document.getElementById("plans-grid")?.addEventListener("click", (event) => {
     if (!(event.target instanceof Element)) return;

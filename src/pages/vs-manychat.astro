@@ -184,8 +184,8 @@ const jsonLd = [
   </div>
 
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
     document.querySelectorAll<HTMLAnchorElement>("[data-cta]").forEach((a) =>
       a.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { section: a.dataset.cta })),
     );

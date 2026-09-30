@@ -93,8 +93,8 @@ const jsonLd = [
     <Footer />
   </div>
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
     const bs = document.querySelectorAll<HTMLButtonElement>(".md-filtro");
     const cs = document.querySelectorAll<HTMLElement>(".md-card");
     bs.forEach((b) => b.addEventListener("click", () => {

@@ -79,8 +79,8 @@ const jsonLd = [
   </div>
 
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
     // Abre o artigo do link (ex.: /ajuda#acesso-mensagens)
     const alvo = location.hash && document.querySelector<HTMLDetailsElement>(`details${location.hash}`);
     if (alvo) alvo.open = true;

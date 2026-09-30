@@ -113,8 +113,8 @@ const jsonLd = [
   </div>
 
   <script>
-    import { initHomeMotion } from "../scripts/home-motion";
-    initHomeMotion();
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
     document.getElementById("plans-grid")?.addEventListener("click", (event) => {
       if (!(event.target instanceof Element)) return;
       const cta = event.target.closest(".plan__cta");
