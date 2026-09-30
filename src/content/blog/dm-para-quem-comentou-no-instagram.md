@@ -1,7 +1,8 @@
 ---
-title: "Dá pra mandar DM pra quem comentou no post? Como funciona a janela da Meta"
+title: "DM pra quem comentou: como funciona a janela da Meta"
 description: "Dá pra mandar DM automática pra quem comentou no seu post, mesmo quem não te segue. Veja como funciona a janela da Meta e a regra da primeira mensagem."
 date: 2026-06-30
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "DM", "Instagram"]

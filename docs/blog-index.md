@@ -12,7 +12,7 @@ Fonte de verdade pra escolher links internos. **Ao publicar um post novo, adicio
 | instagram-com-e-sem-automacao-o-que-muda | Instagram com e sem automação: o que muda na prática | Estratégia | vender com e sem automação |
 | quantas-vendas-voce-perde-demorando-responder-dm | Você sabe quantas vendas perde por demorar a responder DM? | Estratégia | tempo de resposta, vendas perdidas |
 | seguidores-que-curtem-mas-nao-compram | Seguidores que curtem tudo mas não compram nada | Copywriting | engajamento que não converte |
-| dm-para-quem-comentou-no-instagram | Dá pra mandar DM pra quem comentou no post? | Estratégia | DM pra quem comentou, janela da Meta |
+| dm-para-quem-comentou-no-instagram | DM pra quem comentou: como funciona a janela da Meta | Estratégia | DM pra quem comentou, janela da Meta |
 | notifiquei-vs-manychat | Notifiquei vs ManyChat: qual vale mais a pena no Brasil | Estratégia | comparação de preço/recursos vs ManyChat |
 | sorteio-no-instagram-pelos-comentarios | Sorteio de comentários no Instagram: como fazer sem print | Estratégia | sorteio de comentários no Instagram |
 | automacao-de-dm-no-tiktok | Automação de DM no TikTok: o que dá e o que não dá | Estratégia | automação de DM no TikTok, IG+TikTok |
