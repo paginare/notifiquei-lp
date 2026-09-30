@@ -38,8 +38,8 @@ const cena = t.cenas[0];
       <div class="demo-scene" id="demo-scene" data-active="comment">
         <div class="demo-scene__top"><span><i></i> {t.emAcao}</span><div><span>{t.exemplo}</span><button type="button" data-demo-replay aria-label="Repetir animação da demonstração" hidden><Icon name="replay" size={15} /></button></div></div>
         <article class="demo__post" aria-label="Exemplo de publicação no Instagram">
-          <div class="demo__post-head"><img src="/assets/home/creator-fashion-v2.webp" width="32" height="32" alt="" loading="lazy" /><b>{t.marca}</b><Icon name="instagram" size={19} /></div>
-          <div class="demo__photo"><img src="/assets/home/creator-fashion-v2.webp" width="480" height="600" alt="Criadora de moda apresentando uma camisa rosa e calça clara" loading="lazy" /><span>{t.legenda}</span></div>
+          <div class="demo__post-head"><img src="/assets/home/creator-fashion-v2-thumb.webp" width="32" height="32" alt="" loading="lazy" /><b>{t.marca}</b><Icon name="instagram" size={19} /></div>
+          <div class="demo__photo"><img src="/assets/home/creator-fashion-v2.webp" srcset="/assets/home/creator-fashion-v2-480.webp 480w, /assets/home/creator-fashion-v2.webp 800w" sizes="(max-width: 900px) 200px, 260px" width="480" height="600" alt="Criadora de moda apresentando uma camisa rosa e calça clara" loading="lazy" decoding="async" /><span>{t.legenda}</span></div>
           <p class="demo__caption" id="demo-caption">{cena.chamada}</p>
         </article>
         <div class="demo__comment" id="demo-trigger" aria-live="polite" aria-atomic="true">

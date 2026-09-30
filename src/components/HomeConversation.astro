@@ -7,7 +7,8 @@ interface Props { t: CopyHome["conversa"]; imagens?: string[]; }
 const { t, imagens } = Astro.props;
 const conversations = t.exemplos;
 // As fotos do cartão de link não mudam com o idioma.
-const IMAGENS = ["/assets/home/creator-fashion-v2.webp", "/assets/home/creator-content-v2.webp", "/assets/home/creator-business-v2.webp"];
+// Miniaturas (120px): aparecem com ~44px na conversa do topo; a foto cheia pesava 50–77 KB cada.
+const IMAGENS = ["/assets/home/creator-fashion-v2-thumb.webp", "/assets/home/creator-content-v2-thumb.webp", "/assets/home/creator-business-v2-thumb.webp"];
 ---
 
 <div class="hero-chat" data-chat-loop aria-label={t.topo}>
