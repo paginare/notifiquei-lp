@@ -2,7 +2,7 @@
 title: "Sorteio de comentários no Instagram: como fazer sem print"
 description: "Como fazer sorteio de comentários no Instagram de forma justa: a lista de quem comentou sai pronta, o vencedor é aleatório e o re-sorteio leva um clique."
 date: 2026-06-30
-updated: 2026-09-14
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Sorteio", "Engajamento", "Instagram"]
@@ -63,12 +63,12 @@ O ponto que mais alivia é o re-sorteio. Acontece muito de o ganhador sumir, nã
 
 Isso muda o jogo na hora de cobrar a regra. Se o primeiro ganhador não cumpriu o combinado, você re-sorteia sem peso na consciência e sem perder tempo, porque a lista continua ali inteira, esperando.
 
-## o pulo do gato: quem participou vira contato
+## o pulo do gato: quem participou vira conversa
 
 Tem um detalhe que quase todo mundo deixa passar. Aquela gente que comentou "eu quero" não está ali por acaso. Eles levantaram a mão dizendo que querem algo seu. Seria um desperdício o sorteio acabar e você nunca mais falar com eles.
 
-Quando o sorteio acontece dentro de uma plataforma de vendas, e não num site de terceiro que só sorteia e esquece, cada participante pode virar um contato. Aquele monte de [gente que comentou no seu post](/blog/como-um-comentario-no-instagram-vira-venda) deixa de ser só número de engajamento e passa a ser uma lista de pessoas interessadas, que você pode chamar no direct, avisar do próximo lançamento ou puxar pra uma oferta.
+Quando o sorteio acontece dentro de uma plataforma de vendas, e não num site de terceiro que só sorteia e esquece, dá pra ligar uma automação de comentário no mesmo post. Cada pessoa que comenta a palavra recebe um DM na hora, confirmando a participação — e aproveitando pra mandar um cupom pra quem não quiser esperar o resultado. Aquele monte de [gente que comentou no seu post](/blog/como-um-comentario-no-instagram-vira-venda) deixa de ser só número de engajamento e passa a ser conversa aberta no direct, no momento em que o interesse está no auge.
 
-É a diferença entre fazer um sorteio que dá um pico de likes e some, e fazer um sorteio que ainda te deixa uma base de gente quente pra conversar depois.
+É a diferença entre fazer um sorteio que dá um pico de likes e some, e fazer um sorteio que ainda vira venda enquanto está no ar. Só não conte com essa lista pra mandar mensagem semanas depois: a Meta fecha a janela de conversa, e a hora de falar com essa gente é durante o sorteio.
 
-Se você vive perdendo tempo apurando sorteio na mão e quer fazer isso de um jeito justo, rápido e que ainda transforma quem participou em contato, vale conhecer como o Notifiquei resolve isso. Dá pra começar em [notifiquei.com.br](https://notifiquei.com.br).
+Se você vive perdendo tempo apurando sorteio na mão e quer fazer isso de um jeito justo, rápido e que ainda transforma quem participou em conversa, vale conhecer como o Notifiquei resolve isso. Dá pra começar em [notifiquei.com.br](https://notifiquei.com.br).

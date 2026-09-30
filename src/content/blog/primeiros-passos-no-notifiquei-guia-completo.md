@@ -16,7 +16,7 @@ faq:
     a: "Sim. Antes de deixar a automação ativa, comente no próprio post com uma conta de teste e verifique se o DM chegou com o texto certo. Só aí você ativa para o público."
 ---
 
-Você acaba de criar sua conta no Notifiquei e está olhando para a tela inicial sem saber por onde começar. Fluxos, gatilhos, palavras-chave, etiquetas, ao mesmo tempo. Parece muita coisa.
+Você acaba de criar sua conta no Notifiquei e está olhando para a tela inicial sem saber por onde começar. Fluxos, gatilhos, palavras-chave, botões, tudo ao mesmo tempo. Parece muita coisa.
 
 Na prática, o caminho até a primeira automação funcionando tem menos etapas do que parece. Este guia vai do começo absoluto, sem pressupor nada além de que você tem um Instagram e acabou de criar a conta.
 
@@ -56,7 +56,7 @@ Com o primeiro fluxo no ar, você tem uma base para crescer. O próximo passo na
 
 A partir daí, o fluxo cresce conforme a sua necessidade, sem precisar reconfigurar tudo do zero. Cada automação nova se encaixa no que já está funcionando, e você vai ajustando os textos conforme vê o que gera mais resposta. Pra saber o que ajustar, vale ler [como ler os relatórios do Notifiquei](/blog/relatorios-e-metricas-do-notifiquei).
 
-Depois disso, tem duas coisas que costumam entrar: [ligar o direct ao seu checkout pra rastrear a venda](/blog/integrar-notifiquei-com-checkout-kiwify-hotmart) e usar o [nó de webhook pra conversar com as suas outras ferramentas](/blog/webhook-e-integracoes-do-notifiquei).
+Depois disso, tem duas coisas que costumam entrar: [usar links rastreados pra saber quem clicou e conferir a venda no seu checkout](/blog/integrar-notifiquei-com-checkout-kiwify-hotmart) e usar o [nó de webhook pra conversar com as suas outras ferramentas](/blog/webhook-e-integracoes-do-notifiquei).
 
 ---
 

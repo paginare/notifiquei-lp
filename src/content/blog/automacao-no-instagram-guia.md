@@ -48,7 +48,7 @@ A API oficial da Meta trabalha com cinco gatilhos. Sempre parte de uma ação da
 
 **Botão de atalho no menu.** São opções clicáveis no direct, que guiam a pessoa sem ela precisar formular a pergunta do zero.
 
-Em qualquer um dos cinco, a resposta pode seguir um fluxo que você escreveu, com caminhos definidos, ou ficar por conta de um [agente de IA que responde o DM](/blog/agente-de-ia-que-responde-dm-no-instagram). O fluxo é previsível e a IA cobre a pergunta que você não previu, e dá pra usar os dois no mesmo perfil.
+Em qualquer um dos cinco, a resposta segue um fluxo que você escreveu, com caminhos definidos por botões e palavras-chave. É previsível: o cliente recebe exatamente o texto que você aprovou. A pergunta que você não previu cai numa resposta padrão e fica pra você responder — e vale ler por que esse caminho costuma render mais que um [agente de IA respondendo o DM](/blog/agente-de-ia-que-responde-dm-no-instagram).
 
 O que fica de fora: mandar mensagem pra quem nunca falou com você, escrever pra seguidor que só curtiu, e disparar promoção pra base inteira sem interação prévia. A Meta trata isso como spam e a porta oficial simplesmente não oferece esse caminho.
 

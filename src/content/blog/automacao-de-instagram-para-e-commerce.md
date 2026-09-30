@@ -71,6 +71,6 @@ O fluxo básico de uma loja de moda, por exemplo, pode funcionar assim:
 - Envia preço e link de pagamento
 - Se não responder em 24 horas, manda follow-up automático
 
-Todo esse caminho roda sem intervenção humana. Quando a conversa precisa de atenção especial, você retoma de onde a automação parou, com o histórico completo na tela.
+Todo esse caminho roda sem intervenção humana. Quando a conversa precisa de atenção especial, você entra pelo próprio Instagram e continua de onde a automação parou, com a conversa inteira ali no direct.
 
 Se quiser ver como o Notifiquei funciona na prática para o seu e-commerce no Instagram, acesse [notifiquei.com.br](https://notifiquei.com.br) e crie sua conta.

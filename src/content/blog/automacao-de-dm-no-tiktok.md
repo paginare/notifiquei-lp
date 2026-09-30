@@ -2,11 +2,12 @@
 title: "Automação de DM no TikTok: o que dá e o que não dá"
 description: "No TikTok dá pra automatizar DM por palavra-chave, boas-vindas e resposta padrão. O construtor de fluxos e comentários ainda é só no Instagram. Veja a diferença."
 date: 2026-06-30
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "DM", "TikTok"]
 keywords: ["automação de DM no TikTok", "automação TikTok", "responder DM TikTok automático", "DM por palavra-chave TikTok", "conta business TikTok"]
-tldr: "No TikTok dá pra automatizar DM por palavra-chave, mandar boas-vindas na primeira mensagem e ter uma resposta padrão quando nada bate. O que ainda não dá (construtor de fluxos, automação por comentário, campanhas, IA) continua só no Instagram. No Notifiquei, IG e TikTok ficam na mesma vaga, mesmo preço."
+tldr: "No TikTok dá pra automatizar DM por palavra-chave, mandar boas-vindas na primeira mensagem e ter uma resposta padrão quando nada bate. O que ainda não dá (construtor de fluxos, automação por comentário, sorteios, links rastreados) continua só no Instagram. No Notifiquei, IG e TikTok ficam na mesma vaga, mesmo preço."
 faq:
   - q: "Dá pra automatizar DM no TikTok?"
     a: "Dá. Você configura palavras-chave e, quando alguém manda uma delas no direct, a resposta sai sozinha. Também dá pra ter uma mensagem de boas-vindas na primeira DM e uma resposta padrão pra quando nada bate. É uma automação mais enxuta que a do Instagram, focada em DM por palavra-chave."
@@ -26,7 +27,7 @@ A parte central já funciona: automação de DM por palavra-chave. Você escolhe
 
 E dá pra ser preciso no que conta como gatilho. Você define se a palavra precisa estar contida na mensagem, se a mensagem tem que ser exatamente igual, ou se ela só precisa começar com aquele termo. Isso evita disparar resposta errada e te dá controle sobre quando a automação entra.
 
-Tem mais três coisas que ajudam no dia a dia. A mensagem de boas-vindas, que é o primeiro texto que a pessoa recebe quando abre conversa com você. A resposta padrão, aquele fallback que entra quando ninguém digitou nenhuma palavra-chave, pra que nenhuma DM fique no vácuo. E a base de contatos de quem te mandou mensagem, que vai juntando todo mundo que passou pelo seu direct. Quando você precisar falar algo na mão, também dá pra enviar texto manualmente dentro da conversa.
+Tem mais duas coisas que ajudam no dia a dia. A mensagem de boas-vindas, que é o primeiro texto que a pessoa recebe quando abre conversa com você. E a resposta padrão, aquele fallback que entra quando ninguém digitou nenhuma palavra-chave, pra que nenhuma DM fique no vácuo. Quando você precisar falar algo na mão, é só responder direto no app do TikTok, como sempre.
 
 Pra tudo isso rodar, a conta precisa ser de negócio do TikTok. Conta pessoal é rejeitada na hora de conectar. A conta business é de graça, você troca nas configurações do app em um minuto e não perde seguidor nem vídeo. E se precisar desconectar e conectar de novo depois, dá pra reconectar sem gastar uma vaga nova.
 

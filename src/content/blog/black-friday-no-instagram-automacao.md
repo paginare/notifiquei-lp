@@ -6,7 +6,7 @@ author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Black Friday", "Automação", "Instagram", "Campanha", "DM"]
 keywords: ["black friday instagram", "automação black friday", "DM automático instagram", "campanha black friday", "notifiquei black friday"]
-tldr: "Responder manualmente durante a Black Friday é inviável quando centenas de comentários chegam ao mesmo tempo. Com automação pelo Notifiquei via API oficial da Meta, o DM é disparado no instante do comentário, independente do volume, e campanhas podem ser agendadas com antecedência para o horário certo."
+tldr: "Responder manualmente durante a Black Friday é inviável quando centenas de comentários chegam ao mesmo tempo. Com automação pelo Notifiquei via API oficial da Meta, o DM é disparado no instante do comentário, independente do volume, e as automações podem ficar prontas com antecedência, esperando só você ligar na hora certa."
 faq:
   - q: "A automação aguenta o pico de comentários da Black Friday?"
     a: "Sim. Com a API oficial da Meta, o DM é disparado no momento do comentário, independente de quantos acontecem ao mesmo tempo. Se o volume ultrapassar o limite definido pela API, os envios ficam em fila e saem em sequência. Nenhum comentário fica sem retorno."
@@ -38,7 +38,7 @@ O que configurar:
 
 - **Automação de comentário no post da oferta:** palavra-chave ou qualquer comentário no post dispara DM automático com o link ou com o próximo passo do fluxo. Esse é o fluxo central da Black Friday.
 - **Texto do DM direto e com ação clara:** a mensagem precisa ser curta. A pessoa que comentou quer a informação agora, não uma conversa longa. Um botão de atalho com "quero o link" funciona melhor do que um texto explicativo de dez linhas.
-- **Follow-up automático:** para quem recebeu o DM mas não respondeu, configure um segundo contato automático dentro da janela de 7 dias da API da Meta. Esse acompanhamento pode recuperar quem ficou para depois.
+- **Follow-up automático:** para quem recebeu o DM mas não respondeu, configure um segundo contato automático algumas horas depois, dentro da janela de 24 horas da Meta. Esse acompanhamento pode recuperar quem ficou para depois.
 
 Depois de configurar, teste tudo. Comente no post com uma conta de teste, veja se o DM chega, confira o texto e os botões antes de ativar para valer.
 

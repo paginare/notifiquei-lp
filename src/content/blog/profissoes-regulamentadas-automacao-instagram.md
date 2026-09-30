@@ -2,6 +2,7 @@
 title: "Profissões regulamentadas: o que dá automatizar no Instagram"
 description: "Médico, dentista ou advogado: a automação de DM no Instagram é permitida. Veja o que dá e o que não dá pra automatizar sem infringir CFM, OAB ou CFN."
 date: 2026-09-07
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Profissões Regulamentadas"]
@@ -12,8 +13,8 @@ faq:
     a: "Pode, desde que o conteúdo respeite as regras do CFM. Não é recomendado automatizar mensagens sobre diagnóstico, prescrição, promessa de resultado ou divulgação de preços de procedimentos. Dá pra automatizar respostas sobre horário, localização e como agendar consulta."
   - q: "Advogado pode automatizar mensagens no Instagram?"
     a: "Pode, respeitando o código de ética da OAB. O que não deve entrar em mensagens automáticas é publicidade que prometa resultado ou que ofereça serviços de forma captadora. Informações sobre horário, localização e como marcar uma consulta inicial são geralmente permitidas."
-  - q: "A IA vai responder perguntas clínicas ou jurídicas no meu lugar?"
-    a: "Não, se você configurar o fluxo assim. O Notifiquei não define o conteúdo das mensagens: você escreve cada resposta. Dá pra configurar o agente para redirecionar perguntas clínicas ou jurídicas para o atendimento humano, sem emitir opinião técnica no lugar do profissional."
+  - q: "A automação vai responder perguntas clínicas ou jurídicas no meu lugar?"
+    a: "Não. O Notifiquei não tem uma IA gerando resposta: você escreve cada mensagem, e a automação só manda o texto que você aprovou. Pergunta clínica ou jurídica cai na resposta padrão, que avisa que o profissional vai responder pessoalmente — sem emitir opinião técnica no seu lugar."
 ---
 
 A nutricionista abriu o celular às 7h20 e tinha 41 DMs novos. Dez perguntando valor da consulta. Oito querendo saber se atende online. Onze pedindo informação sobre a primeira sessão. E mais doze variações das mesmas três dúvidas. Ela passou 50 minutos respondendo antes de ver o primeiro paciente do dia.
@@ -48,13 +49,13 @@ Pra nutricionistas, o CFN proíbe promessas de emagrecimento com números ou pra
 
 A regra prática funciona em todas as áreas: se você escreveria essa frase num post público sem hesitar, você pode automatizar no DM. Se você pensaria duas vezes antes de publicar, não automatize.
 
-## como redirecionar perguntas clínicas sem a IA opinar
+## como redirecionar perguntas clínicas sem a automação opinar
 
-Esse é o ponto onde um [agente de IA que responde DM no Instagram](/blog/agente-de-ia-que-responde-dm-no-instagram) faz diferença em relação a um fluxo simples de resposta automática. Dá pra configurar a base de conhecimento com as informações que podem ser comunicadas e incluir uma instrução explícita: perguntas sobre diagnóstico, prognóstico, conduta clínica ou honorários específicos devem ser encaminhadas para o atendimento humano.
+Aqui o roteiro pronto joga a seu favor. Como a automação só manda texto que você escreveu, não existe o risco de ela inventar uma opinião clínica — que é justamente o problema de um [agente de IA respondendo o DM](/blog/agente-de-ia-que-responde-dm-no-instagram) numa área regulada. Você cria respostas só para o que pode ser comunicado: horário, localização, convênios, como funciona a primeira consulta.
 
-Na prática, o fluxo fica assim: a pessoa pergunta sobre horário e recebe resposta automática. Pergunta sobre como funciona a consulta e recebe resposta baseada no que você configurou. Pergunta "você acha que meu exame indica algo grave?" e a IA não opina, apenas encaminha para o atendimento humano com uma mensagem de transição.
+Na prática, o fluxo fica assim: a pessoa toca no botão "horários" e recebe a resposta automática. Toca em "como funciona a consulta" e recebe o texto que você escreveu. Pergunta "você acha que meu exame indica algo grave?" e cai na resposta padrão, que não opina: avisa que esse tipo de pergunta é respondido pessoalmente pelo profissional.
 
-Você configura o que a IA responde e o que ela não responde. Ela filtra bem com as instruções certas, e nenhuma pergunta fica sem saída, ela apenas não responde na área proibida.
+Você decide o que a automação responde e o que fica com você. Nenhuma pergunta fica sem saída — ela só não recebe resposta automática na área proibida.
 
 ## o tempo que isso libera na semana (e o que você pode fazer com ele)
 

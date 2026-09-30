@@ -2,18 +2,19 @@
 title: "Promoção relâmpago no Instagram com automação"
 description: "Como montar uma promoção relâmpago de 12h ou 24h no Instagram e mandar o link por DM automaticamente pra quem comentar, sem depender de atendente."
 date: 2026-09-04
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Promoção", "Vendas"]
 keywords: ["promoção relâmpago instagram", "automação instagram promoção", "dm automático comentário", "promoção 24 horas instagram", "automatizar venda instagram"]
-tldr: "Com automação, o link ou o código da promoção chega por DM imediatamente após o comentário, sem precisar de atendente. Campanhas podem ser agendadas para o horário de pico e os envios respeitam a fila da API da Meta, então nenhum comentário fica sem resposta."
+tldr: "Com automação, o link ou o código da promoção chega por DM imediatamente após o comentário, sem precisar de atendente. Você deixa a automação pronta antes, liga na hora da promoção (até pelo app no celular) e os envios respeitam a fila da API da Meta, então nenhum comentário fica sem resposta."
 faq:
   - q: "A automação consegue dar conta de um pico alto de comentários numa promoção relâmpago?"
     a: "Sim. Os DMs entram em fila e saem em sequência, no ritmo que a API oficial da Meta permite. Mesmo que cheguem centenas de comentários ao mesmo tempo, nenhum fica sem resposta. Quem comentou por último pode receber o DM alguns minutos depois de quem comentou primeiro, mas todos recebem."
   - q: "Posso agendar a promoção para começar e terminar num horário específico?"
-    a: "Sim. No Notifiquei é possível configurar campanhas com horário de início e fim. Você prepara tudo com antecedência e a automação entra e sai sozinha no horário certo, sem precisar estar online na hora."
+    a: "Não existe horário de início e fim programado na automação. O que dá pra fazer é deixar tudo pronto com antecedência: a automação pode ficar esperando o próximo post e se ligar sozinha quando ele for publicado — e o post você agenda no Planner do Meta Business Suite. Pra encerrar, você desliga a automação com um toque, inclusive pelo app no celular."
   - q: "Como evitar mandar o link depois que a promoção encerrou?"
-    a: "Configurando o horário de encerramento automático da campanha. Se você não fizer isso, a automação continua respondendo comentários com a oferta mesmo depois do prazo, o que gera uma promessa inválida. Vale sempre conferir se a campanha está desativada após o fechamento."
+    a: "Desligando a automação no fim do prazo. Se você não fizer isso, ela continua respondendo comentários com a oferta mesmo depois do prazo, o que gera uma promessa inválida. Vale pôr um alarme no celular pro horário de encerramento e desligar pelo app."
 ---
 
 Eram 22h de uma sexta quando ela postou o Reels anunciando 30% de desconto por 12 horas. A regra era simples: comentar "QUERO" para receber o link no direct. Em dez minutos, 80 comentários. Em meia hora, mais de 200.
@@ -44,9 +45,9 @@ Se você ainda não conhece como a Meta estrutura os envios por DM para quem com
 
 ## o timing certo da campanha
 
-Promoções relâmpago geram mais interação quando lançadas nos horários de maior engajamento do perfil. No Notifiquei, é possível agendar a campanha para ativar num horário específico, então você configura tudo com antecedência e não precisa estar presente na hora do lançamento.
+Promoções relâmpago geram mais interação quando lançadas nos horários de maior engajamento do perfil. O Notifiquei não agenda publicação, mas dá pra montar tudo com antecedência: você agenda o post no Planner do Meta Business Suite e configura a automação pra esperar o próximo post. Quando ele sai no horário marcado, a automação se vincula sozinha e começa a responder, sem você precisar estar presente na hora do lançamento.
 
-Isso ajuda principalmente em dois casos: quando o horário de maior engajamento é tarde da noite ou cedo da manhã, e quando você quer lançar em vários perfis ao mesmo tempo.
+Isso ajuda principalmente em dois casos: quando o horário de maior engajamento é tarde da noite ou cedo da manhã, e quando você quer lançar em vários perfis ao mesmo tempo. O passo a passo do agendamento está no post sobre [o que usar hoje pra agendar posts, Reels e stories](/blog/agendar-posts-reels-e-stories-no-instagram).
 
 Outra decisão que influencia o resultado é o intervalo da promoção. Uma janela de 12 horas cria urgência real, mas deixa menos margem para pessoas que viram o post tarde. Uma janela de 24 horas alcança mais pessoas ao longo do dia, mas dilui um pouco a sensação de pressa. Não há uma resposta certa para todos os casos, depende do seu público e do horário de maior alcance do perfil.
 
@@ -56,15 +57,15 @@ A API oficial da Meta tem limites de volume e o Notifiquei respeita esses parâm
 
 Na prática, quem comentou por último pode receber o DM com alguns minutos de atraso. Para uma promoção de 12 ou 24 horas, isso normalmente não é um problema: a oferta ainda vale quando a mensagem chega.
 
-O que não pode acontecer é a automação continuar ativa depois que a promoção encerrou. Se o link do checkout foi desativado mas a campanha ainda está respondendo comentários com esse link, a experiência quebra para quem receber a mensagem. Configure o horário de encerramento automático ou lembre de desativar manualmente.
+O que não pode acontecer é a automação continuar ativa depois que a promoção encerrou. Se o link do checkout foi desativado mas a automação ainda está respondendo comentários com esse link, a experiência quebra para quem receber a mensagem. Deixe um alarme pro horário de encerramento e desligue a automação na hora — dá pra fazer pelo app, em dois toques.
 
-## usando etiquetas para aproveitar a base da promoção
+## aproveitando quem participou da promoção
 
-Quem participou de uma promoção relâmpago já demonstrou intenção de compra. Isso é informação útil para campanhas futuras.
+Quem participou de uma promoção relâmpago já demonstrou intenção de compra. Isso é informação útil para as próximas ações.
 
-Com etiquetas, você marca quem comentou e recebeu o link. Nas próximas campanhas, esse grupo pode receber uma oferta antes da abertura pública, como um acesso antecipado de duas horas. Ou você cria uma sequência de reativação para quem recebeu o link mas não comprou.
+Enquanto a janela de conversa está aberta, um lembrete automático pode ir pra quem recebeu o link, curto e com um "se já garantiu o seu, desconsidera". Depois disso, o caminho é chamar de novo na entrada: na próxima promoção, avise nos stories que quem comentar "VIP" ganha acesso antecipado de duas horas — quem já comprou de você tende a ser o primeiro a comentar. E o relatório de cliques mostra quantas pessoas de cada automação foram até o link.
 
-Entender como usar [etiquetas para segmentar contatos no Instagram](/blog/etiquetas-e-segmentacao-no-instagram) é o que transforma uma campanha pontual num ativo que continua rendendo nas próximas promoções.
+Entender como fazer [segmentação na entrada no Instagram](/blog/etiquetas-e-segmentacao-no-instagram) é o que transforma uma ação pontual em algo que continua rendendo nas próximas promoções.
 
 ---
 

@@ -1,17 +1,18 @@
 ---
 title: "Como reativar contatos que pararam de responder no direct"
-description: "Seu direct tem gente que sumiu? Veja como agir enquanto a janela de 7 dias da API ainda está aberta e o que mudar quando ela fecha, dentro das regras."
+description: "Seu direct tem gente que sumiu? Veja como agir enquanto a janela de 24 horas da Meta ainda está aberta e o que mudar quando ela fecha, dentro das regras."
 date: 2026-08-28
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "Direct", "Follow-up", "Reativação"]
-keywords: ["reativar contatos no direct", "follow-up no direct instagram", "contatos que pararam de responder", "reativar lead instagram", "janela de 7 dias meta"]
-tldr: "A janela da API da Meta dura 7 dias após a última mensagem do contato. Enquanto ela está aberta, use follow-up automático. Depois que fechou, só campanha de reativação para quem já interagiu com a conta funciona dentro das regras."
+keywords: ["reativar contatos no direct", "follow-up no direct instagram", "contatos que pararam de responder", "reativar lead instagram", "janela de 24 horas meta"]
+tldr: "Pra mensagem automática, a janela da Meta dura 24 horas após a última mensagem do contato. Enquanto ela está aberta, use follow-up automático. Depois que fechou, o único caminho dentro das regras é fazer a pessoa te chamar de novo, com um post ou story que peça um comentário ou uma resposta."
 faq:
   - q: "Por quanto tempo posso fazer follow-up com quem não respondeu?"
-    a: "A janela da API da Meta dura 7 dias após a última mensagem enviada pelo contato. Dentro desse prazo, você pode mandar até 2-3 mensagens de acompanhamento. Depois que a janela fecha, só é possível entrar em contato de novo se o usuário interagir com sua conta, comentando em um post ou respondendo um story, por exemplo."
-  - q: "O que é uma campanha de reativação no Notifiquei?"
-    a: "É um disparo segmentado para contatos que já interagiram com sua conta e foram etiquetados como 'sem resposta' ou 'frio'. A campanha só funciona para quem já teve contato com a conta, dentro das regras da Meta. Os envios saem distribuídos, respeitando os limites da API."
+    a: "Pra mensagem automática, a janela da Meta dura 24 horas após a última mensagem enviada pelo contato. Dentro desse prazo, um lembrete bem colocado resolve. (A extensão de 7 dias existe só pra atendente humano respondendo na mão.) Depois que a janela fecha, só é possível entrar em contato de novo se o usuário interagir com sua conta, comentando em um post ou respondendo um story, por exemplo."
+  - q: "O Notifiquei faz campanha de reativação para quem sumiu?"
+    a: "Não. O Notifiquei não dispara mensagem para uma lista de contatos: a área de campanhas saiu do produto, e a Meta não deixa mandar DM fora da janela de conversa de qualquer jeito. O que ele faz é o lembrete (follow-up) dentro da janela e a resposta automática quando a pessoa volta a interagir, comentando num post ou respondendo um story."
   - q: "Qual a melhor mensagem para reativar um contato que sumiu?"
     a: "Curta, direta e que referencia algo que o contato já perguntou ou viu antes. Uma mensagem que diz 'você me perguntou sobre X, conseguiu resolver?' tem muito mais chance de gerar resposta do que uma oferta nova sem contexto. Evite recomeçar do zero ou mandar um texto genérico."
 ---
@@ -22,19 +23,19 @@ A maioria das pessoas ou esquece ou manda mensagem fora de hora e acaba quebrand
 
 As duas situações pedem ações diferentes, e misturar as duas é o principal erro de quem tenta reativar contatos no direct. Nos dois casos o objetivo é o mesmo: trazer a pessoa de volta pro [funil de vendas pelo direct](/blog/funil-de-vendas-pelo-direct-do-instagram).
 
-## o que é a janela de 7 dias e por que ela define tudo
+## o que é a janela de 24 horas e por que ela define tudo
 
-A API oficial da Meta abre uma janela de comunicação de 7 dias a partir da última mensagem que o contato te enviou. Dentro dessa janela, você pode mandar mensagem. Depois que ela fecha, não dá mais, a não ser que o usuário interaja com você de novo.
+A API oficial da Meta abre uma janela de 24 horas pra mensagem automática a partir da última mensagem que o contato te enviou. Dentro dessa janela, a automação pode mandar mensagem. A Meta estende pra 7 dias só quando é um atendente humano respondendo na mão — automação não entra nessa regra. Depois que ela fecha, não dá mais, a não ser que o usuário interaja com você de novo.
 
 Isso não é limitação do Notifiquei, é a regra da própria Meta pra proteger o usuário de spam. Entender esse prazo muda completamente como você planeja o acompanhamento.
 
-Se um lead comentou no seu post na terça, você mandou o DM automático na terça e ele não respondeu, você ainda tem até a terça da semana seguinte pra tentar de novo. Depois disso, a porta fecha.
+Se um lead comentou no seu post na terça às 10h, você mandou o DM automático na hora e ele não respondeu, a automação ainda tem até quarta às 10h pra tentar de novo. Depois disso, a porta fecha pra mensagem automática.
 
 ## o que fazer enquanto a janela ainda está aberta
 
 Essa é a fase mais fácil, porque você ainda tem permissão de entrar em contato. O [follow-up automático no direct](/blog/follow-up-automatico-no-direct-do-instagram) resolve esse trecho sem você precisar lembrar de cada conversa individualmente.
 
-O Notifiquei permite configurar uma sequência: a primeira mensagem vai na hora, e se não houver resposta, uma segunda mensagem sai alguns dias depois, ainda dentro da janela. O intervalo exato depende do seu produto e do tempo que o lead costuma precisar pra tomar decisão.
+O Notifiquei permite configurar uma sequência: a primeira mensagem vai na hora, e se não houver resposta, uma segunda mensagem sai algumas horas depois, ainda dentro da janela. O intervalo exato depende do seu produto e do tempo que o lead costuma precisar pra tomar decisão.
 
 Aqui vale calcular o que está em jogo. Imagine que você vende um serviço de R$500 e recebe 40 DMs por semana. Se 20% desses leads some depois da primeira mensagem e você não faz follow-up, são 8 conversas mortas toda semana. Com uma taxa de conversão de 25%, isso são 2 vendas a menos por semana, R$1.000 que ficaram na mesa. Em quatro semanas, R$4.000 que foram embora por falta de um segundo contato.
 
@@ -42,13 +43,13 @@ A automação do follow-up não cria vendas do nada, mas recupera as que já exi
 
 ## o que fazer depois que a janela fechou
 
-Quando os 7 dias passam sem nova interação, você não pode mais mandar mensagem por iniciativa própria. O único jeito de abrir a janela de novo é o contato interagir com você: comentar num post, responder a um story, clicar em "enviar mensagem" num anúncio.
+Quando as 24 horas passam sem nova interação, você não pode mais mandar mensagem por iniciativa própria. O único jeito de abrir a janela de novo é o contato interagir com você: comentar num post, responder a um story, clicar em "enviar mensagem" num anúncio.
 
 É aí que entram duas estratégias que funcionam em conjunto.
 
-A primeira é o conteúdo. Um story que pede opinião ou um post que acerta direto na dor do lead pode provocar uma resposta espontânea. Quando ela chega, a janela reabre e o Notifiquei pode retomar a automação automaticamente.
+A primeira é o conteúdo. Um story que pede opinião ou um post que acerta direto na dor do lead pode provocar uma resposta espontânea. Quando ela chega, a janela reabre e a automação daquele post ou story responde na hora.
 
-A segunda é a campanha de reativação. No Notifiquei, você pode disparar [campanhas de mensagem para sua base de contatos etiquetados como "frio" ou "sem resposta"](/blog/campanhas-de-mensagem-em-massa-no-instagram). Essas campanhas funcionam só pra quem já teve interação com a conta dentro das regras da Meta, então não é disparo pra estranhos.
+A segunda é dar um motivo claro pra pessoa voltar. Um post ou story com chamada direta — "comenta VOLTEI que eu te mando a condição de quem já tinha perguntado" — faz quem sumiu levantar a mão de novo, e a automação responde em segundos. O Notifiquei não dispara mensagem para uma lista de quem sumiu, e o post sobre [por que mensagem em massa no Instagram não funciona](/blog/campanhas-de-mensagem-em-massa-no-instagram) explica o porquê.
 
 ## a mensagem de reativação que gera resposta
 
@@ -60,9 +61,9 @@ A mensagem de reativação funciona melhor quando é curta, direta e personaliza
 
 ## como o ciclo completo funciona na prática
 
-Juntando as duas fases, o fluxo fica assim: o contato chega pelo comentário ou story e recebe o primeiro DM automático. Se não responder, recebe um follow-up 2-3 dias depois, ainda dentro da janela. Se ainda não responder, é etiquetado como "sem resposta" e entra numa lista específica.
+Juntando as duas fases, o fluxo fica assim: o contato chega pelo comentário ou story e recebe o primeiro DM automático. Se não responder, recebe um follow-up 2-3 dias depois, ainda dentro da janela. Se ainda não responder, a janela fecha e ele sai do alcance do direct.
 
-Quando você rodar uma campanha pra essa lista, seja por uma promoção ou por um conteúdo novo, ele recebe uma mensagem de reativação curta e contextual. Se responder, a janela reabre e o fluxo retoma de onde parou.
+Quando você publicar uma promoção ou um conteúdo novo com uma palavra-chave pra comentar, quem sumiu tem um motivo pra voltar. Se comentar, a janela reabre e ele recebe na hora uma mensagem curta e contextual, do jeito que você escreveu na automação daquele post.
 
 Esse ciclo não depende de você lembrar de ninguém manualmente. Você configura uma vez e o Notifiquei cuida do ritmo dentro das regras da API oficial da Meta.
 

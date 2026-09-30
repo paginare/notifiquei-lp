@@ -2,6 +2,7 @@
 title: "Como transformar seguidores em clientes no Instagram"
 description: "Seguidor que curte não compra sozinho. Veja o caminho do comentário até a venda no direct e por que perguntar antes de mandar preço faz toda a diferença."
 date: 2026-08-17
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Instagram", "Vendas", "DM", "Automação"]
@@ -13,7 +14,7 @@ faq:
   - q: "Por que não é suficiente ter muitos seguidores pra vender?"
     a: "Porque seguidor que só curte não tem conversa aberta com você. Sem acesso ao direct, não tem como qualificar, apresentar a oferta ou fazer follow-up. A audiência precisa ser convertida em contato primeiro, e o comentário é o gatilho mais natural pra isso."
   - q: "Dá para escalar a conversão de seguidores em clientes sem atendente o tempo todo?"
-    a: "Dá. O Notifiquei usa a API oficial da Meta pra enviar DM automático pra quem comentou, registrar o contato, aplicar etiquetas e disparar follow-up dentro da janela de 7 dias. O atendimento humano entra só nas conversas que precisam de julgamento."
+    a: "Dá. O Notifiquei usa a API oficial da Meta pra enviar DM automático pra quem comentou, separar as pessoas por palavra-chave e botão, e mandar um lembrete (follow-up) enquanto a janela de conversa está aberta. O atendimento humano entra só nas conversas que precisam de julgamento."
 ---
 
 Você tem seguidores, publica com consistência, o engajamento aparece. Mas as vendas não acompanham. Muita gente que vende no Instagram reconhece essa situação. O problema costuma ser um só: seguidor não é cliente, e o caminho entre os dois não é automático.
@@ -58,12 +59,12 @@ O fluxo que funciona tem quatro etapas simples:
 
 **4. Oferta com contexto.** Com a qualificação respondida, a oferta chega com argumento. Não é "compre agora". É "isso aqui resolve exatamente o que você me disse".
 
-## o que muda quando você registra os contatos
+## o que muda quando a conversa fica aberta
 
-O que separa quem vende com consistência de quem depende de picos eventuais de engajamento é a base própria. Não seguidor, mas contato com conversa aberta.
+O que separa quem vende com consistência de quem depende de picos eventuais de engajamento é a conversa aberta. Não seguidor, mas gente que já falou com você.
 
-O Notifiquei, que usa a API oficial da Meta, registra cada contato que passou pelo direct, aplica [etiquetas por interesse ou etapa do funil](/blog/etiquetas-e-segmentacao-no-instagram), e permite retomar a conversa dentro da janela de 7 dias que a Meta disponibiliza. Isso não é [mensagem em massa](/blog/campanhas-de-mensagem-em-massa-no-instagram), que a Meta não permite, é retomada de conversa já aberta. Um seguidor que comentou hoje pode estar no seu radar pra follow-up amanhã. Isso é base própria, não audiência emprestada de plataforma que pode mudar as regras.
+O Notifiquei, que usa a API oficial da Meta, separa cada pessoa [na entrada, pela palavra que ela comentou e pelo botão que ela tocou](/blog/etiquetas-e-segmentacao-no-instagram), e manda o lembrete automático enquanto a janela de conversa que a Meta disponibiliza está aberta. Isso não é [mensagem em massa](/blog/campanhas-de-mensagem-em-massa-no-instagram), que a Meta não permite, é retomada de conversa já aberta. Um seguidor que comentou hoje pode receber o follow-up amanhã. E se você quer uma base própria, que não dependa das regras da plataforma, a automação pode pedir o e-mail ou o WhatsApp dentro da conversa e mandar pro seu sistema por um nó de webhook.
 
-Pra quem vende pelo Instagram, colocar esse ciclo pra funcionar, comentário, DM, qualificação e oferta, é o passo que transforma número de seguidor em lista de contatos com intenção de compra.
+Pra quem vende pelo Instagram, colocar esse ciclo pra funcionar, comentário, DM, qualificação e oferta, é o passo que transforma número de seguidor em conversa com gente pronta pra comprar.
 
 Acesse [notifiquei.com.br](https://notifiquei.com.br) pra ver como montar esse fluxo na prática.

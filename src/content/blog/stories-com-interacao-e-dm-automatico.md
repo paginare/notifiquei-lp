@@ -60,7 +60,7 @@ Esse cálculo muda bastante dependendo do volume de respostas e do produto. Mas 
 
 Nem todo mundo vai comprar na primeira mensagem. Alguns respondem, recebem o DM automático, e param por aí.
 
-Para esses casos, dá pra configurar um [follow-up automático no direct](/blog/follow-up-automatico-no-direct-do-instagram) dentro da janela de 7 dias que a API da Meta permite. Assim, quem abriu a conversa mas não deu um passo seguinte pode receber um lembrete alguns dias depois, sem você precisar lembrar de quem foi.
+Para esses casos, dá pra configurar um [follow-up automático no direct](/blog/follow-up-automatico-no-direct-do-instagram) dentro da janela de 24 horas que a Meta permite pra mensagem automática. Assim, quem abriu a conversa mas não deu um passo seguinte pode receber um lembrete alguns dias depois, sem você precisar lembrar de quem foi.
 
 A combinação de story como entrada e follow-up automático cria um mini-funil que funciona de forma independente: o lead entra, recebe o primeiro contato, e tem uma segunda chance de avançar, tudo sem intervenção manual.
 

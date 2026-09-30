@@ -57,6 +57,6 @@ Quem trata o Instagram como canal de vendas não pode correr esse risco. As regr
 
 O Notifiquei cuida desse fluxo pra você. Você escolhe o post e a palavra-chave, escreve a mensagem com o botão, e ele faz o resto: responde quem comentou em segundos, na sua voz, e libera o link assim que a pessoa toca no botão. Tudo pela API oficial da Meta, então sua conta não corre risco.
 
-Dá pra fazer o mesmo com [quem responde seu story](/blog/automatizar-resposta-a-stories-no-instagram) ou te chama no direct. E o atendimento que precisar de você de verdade aparece organizado numa caixa de entrada só, sem você ficar caçando conversa perdida.
+Dá pra fazer o mesmo com [quem responde seu story](/blog/automatizar-resposta-a-stories-no-instagram) ou te chama no direct. E como o repetido já foi respondido, o atendimento que precisa de você de verdade fica visível no direct, sem você ficar caçando conversa perdida no meio de dezenas de "quero".
 
 Se você vive perdendo comentário de "quero" por não dar conta de responder na hora, vale conhecer como o Notifiquei resolve isso. Dá pra começar de graça em [notifiquei.com.br](https://notifiquei.com.br).

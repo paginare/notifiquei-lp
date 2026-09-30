@@ -2,18 +2,19 @@
 title: "Como montar um funil de vendas pelo direct"
 description: "Veja como montar um funil de vendas completo pelo direct do Instagram, etapa por etapa, com o que automatizar e quando deixar o atendente entrar."
 date: 2026-08-24
+updated: 2026-09-30
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Funil de Vendas"]
 keywords: ["funil de vendas pelo direct", "funil direct instagram", "funil de vendas instagram", "automação direct instagram"]
-tldr: "Um funil pelo direct tem 4 etapas: atrair, capturar, qualificar e fechar. Com o Notifiquei, cada etapa pode ser automatizada com fluxos encadeados, etiquetas e integração com checkout."
+tldr: "Um funil pelo direct tem 4 etapas: atrair, capturar, qualificar e fechar. Com o Notifiquei, cada etapa pode ser automatizada com fluxos encadeados, botões e links rastreados até o checkout."
 faq:
   - q: "O funil pelo direct funciona para qualquer tipo de produto?"
     a: "Sim. O modelo de etapas funciona para produto físico, digital e serviço. O que muda é a profundidade da qualificação: produtos de ticket alto costumam precisar de mais perguntas antes de apresentar o preço."
   - q: "Quanto tempo leva para montar um funil no direct?"
     a: "Um funil básico com comentário, DM de captura, qualificação e link de checkout pode ser configurado em poucas horas. Fluxos com mais ramificações e botões levam mais tempo de planejamento antes de configurar."
   - q: "O que acontece depois que o lead compra?"
-    a: "Com a integração com o checkout (Kiwify, Hotmart, Cakto ou Greenn), o Notifiquei identifica a compra e pode pausar automaticamente os DMs de oferta para esse contato, além de acionar um fluxo de pós-venda."
+    a: "A compra acontece no seu checkout, e é lá que você a confere: o Notifiquei não tem integração pronta com Kiwify, Hotmart, Cakto ou Greenn. O que ele mostra é quem clicou no link, automação por automação, pelo relatório de cliques. Como a automação não sabe quem comprou, vale deixar o lembrete (follow-up) curto e com uma saída educada, tipo 'se já garantiu o seu, pode desconsiderar'. O pós-venda você conduz pelo seu checkout ou pelo e-mail."
 ---
 
 A conversa começa assim: alguém vê um story com um produto que chamou atenção, manda um DM perguntando o preço e você vê a mensagem três horas depois. Quando responde, o interesse já esfriou. O lead estava quente, mas a janela fechou.
@@ -32,7 +33,7 @@ Um funil pelo direct tem etapas bem definidas, mesmo que a maioria das pessoas q
 
 **Qualificar:** antes de apresentar a oferta, vale entender se o lead tem intenção e perfil de compra. Isso pesa mais ainda em [venda de serviço pelo direct](/blog/como-vender-servicos-pelo-direct-do-instagram), onde o preço depende do escopo. Uma pergunta simples, com botões de atalho para guiar a resposta, já resolve isso sem exigir que um atendente humano entre na conversa.
 
-**Apresentar e fechar:** depois de qualificado, o lead recebe o DM com a oferta e o link pro checkout. Se a conversa avançar com dúvida mais profunda, o atendente humano entra no momento certo, com o histórico completo na tela.
+**Apresentar e fechar:** depois de qualificado, o lead recebe o DM com a oferta e o link pro checkout. Se a conversa avançar com dúvida mais profunda, você entra no momento certo, direto no Instagram, com a conversa inteira ali.
 
 ## o que automatizar em cada etapa
 
@@ -42,23 +43,23 @@ Na etapa de captura, o DM inicial vai automático assim que o comentário chega 
 
 Na etapa de qualificação, botões de atalho conduzem o lead sem exigir resposta em texto livre. Cada escolha aciona um fluxo diferente: quem indicou interesse em produto de ticket mais alto pode ir para um fluxo com mais perguntas; quem quer algo mais simples recebe o link direto.
 
-O [follow-up automático no direct do Instagram](/blog/follow-up-automatico-no-direct-do-instagram) entra quando o lead não respondeu. Dentro da janela de 7 dias que a API oficial da Meta permite, é possível mandar um lembrete, retomar a conversa ou apresentar outro ângulo da oferta. Esse recurso evita perder leads que ficaram com a mensagem em aberto sem responder. Quando a janela já fechou, o caminho é outro, e está em [como reativar contatos que pararam de responder](/blog/reativar-contatos-que-pararam-de-responder-no-direct).
+O [follow-up automático no direct do Instagram](/blog/follow-up-automatico-no-direct-do-instagram) entra quando o lead não respondeu. Dentro da janela de 24 horas que a Meta permite pra mensagem automática, é possível mandar um lembrete, retomar a conversa ou apresentar outro ângulo da oferta. Esse recurso evita perder leads que ficaram com a mensagem em aberto sem responder. Quando a janela já fechou, o caminho é outro, e está em [como reativar contatos que pararam de responder](/blog/reativar-contatos-que-pararam-de-responder-no-direct).
 
-## como as etiquetas organizam o funil
+## como a segmentação organiza o funil
 
-Com vários leads em estágios diferentes ao mesmo tempo, a organização vira um problema rápido. Etiquetas resolvem isso sem complicação.
+Com vários leads em estágios diferentes ao mesmo tempo, a organização vira um problema rápido. A saída não é marcar cada pessoa à mão depois: é separar na entrada.
 
-Você pode criar etiquetas como "capturado", "qualificado", "oferta enviada" e "comprador". Cada etapa do fluxo aplica ou remove uma etiqueta automaticamente. Assim, dá pra saber em qual etapa do funil cada contato está sem precisar abrir cada conversa individualmente.
+Você usa uma palavra-chave para cada intenção — "CATÁLOGO" para quem está descobrindo, "PREÇO" para quem está avaliando, "COMPRAR" para quem já decidiu — e cada uma dispara uma automação com a conversa certa. Dentro do fluxo, os botões separam de novo. Assim, cada pessoa já cai na etapa em que está, sem você precisar abrir cada conversa individualmente.
 
-Etiquetas também permitem excluir quem já comprou das campanhas de oferta futuras. Comprador não recebe mais DM de quem ainda não comprou. Isso evita fricção com a base de quem já converteu. A lógica de [etiquetas e segmentação de contatos no Instagram](/blog/etiquetas-e-segmentacao-no-instagram) é simples de configurar e faz diferença quando você tem vários fluxos rodando ao mesmo tempo no mesmo perfil.
+E o relatório de cliques mostra, automação por automação, quantas pessoas receberam o link e quantas clicaram — é ali que você vê qual etapa está funcionando. A lógica de [segmentação na entrada no Instagram](/blog/etiquetas-e-segmentacao-no-instagram) é simples de configurar e faz diferença quando você tem vários fluxos rodando ao mesmo tempo no mesmo perfil.
 
 ## quando o atendente humano entra
 
 Automação cobre bem a parte previsível do funil. Mas tem momentos em que a conversa exige julgamento, negociação ou empatia que um fluxo automatizado não consegue entregar.
 
-A [caixa de entrada unificada](/blog/caixa-de-entrada-unificada-do-instagram) do Notifiquei mostra o histórico completo de cada conversa, então o atendente que assume sabe tudo que já foi dito antes. Não precisa perguntar de novo o que o lead precisa, o que já foi enviado ou em qual etapa do funil ele está.
+Nessa hora você entra pelo próprio Instagram. A conversa inteira está ali no direct — o que a automação mandou, os botões que a pessoa tocou —, então quem assume sabe tudo que já foi dito antes. Não precisa perguntar de novo o que o lead precisa, o que já foi enviado ou em qual etapa do funil ele está. O Notifiquei não é uma [caixa de entrada](/blog/caixa-de-entrada-unificada-do-instagram): ele responde antes, pra sobrar pra você só o que precisa de gente.
 
-Esse handoff funciona melhor quando é claro: a automação cobre até certo ponto e o humano é acionado a partir de um gatilho específico, seja uma resposta que indica dúvida mais profunda, seja uma pergunta que o fluxo não cobre. O Notifiquei permite pausar a automação e retomá-la depois, então a entrada humana não quebra a sequência.
+Esse handoff funciona melhor quando é claro: a automação cobre até certo ponto e o fluxo termina num ponto específico, seja um botão como "quero falar com alguém", seja uma pergunta que o fluxo não cobre. Ali a parte automática para e a pessoa já sabe que a próxima resposta vem de você.
 
 ## uma conta de quanto um funil assim pode representar
 

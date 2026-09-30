@@ -50,6 +50,6 @@ Em duas lives por semana com essa mesma média, a conta passa de R$ 16.000 por m
 
 Tudo fica pronto antes de você apertar o botão de ir ao vivo. No Notifiquei você define a palavra-gatilho e monta a mensagem que vai pro direct. Pode ser algo direto como "oi, vi que você pediu o link durante a live, aqui está: [link]", ou o início de um fluxo de perguntas que qualifica o interesse.
 
-Depois é só entrar ao vivo e focar na apresentação. A mesma lógica de [mandar DM pra quem comentou](/blog/dm-para-quem-comentou-no-instagram) vale fora das lives também, em posts, reels e carrosséis. Essas conversas todas ficam organizadas no inbox do Notifiquei pra você dar continuidade depois que a transmissão terminar.
+Depois é só entrar ao vivo e focar na apresentação. A mesma lógica de [mandar DM pra quem comentou](/blog/dm-para-quem-comentou-no-instagram) vale fora das lives também, em posts, reels e carrosséis. Essas conversas todas ficam no direct do Instagram, já respondidas, pra você dar continuidade depois que a transmissão terminar.
 
 Se você faz lives e quer que nenhum comentário com interesse fique sem resposta, veja como funciona em [notifiquei.com.br](https://notifiquei.com.br).

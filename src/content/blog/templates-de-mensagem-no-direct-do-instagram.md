@@ -38,7 +38,7 @@ Na qualificação, você quer entender se a pessoa tem perfil. Uma pergunta dire
 
 Na oferta, o contexto já está construído. O template pode ser mais longo, trazer o link do checkout e explicar o próximo passo. Mas mesmo aqui, clareza é mais importante do que quantidade de texto.
 
-No follow-up, o lead ficou em silêncio dentro da janela de 7 dias da API da Meta. Um template de follow-up precisa reativar a conversa sem parecer insistente. Uma pergunta simples como "Ficou alguma dúvida?" costuma funcionar melhor do que repetir a oferta inteira.
+No follow-up, o lead ficou em silêncio dentro da janela de 24 horas da Meta. Um template de follow-up precisa reativar a conversa sem parecer insistente. Uma pergunta simples como "Ficou alguma dúvida?" costuma funcionar melhor do que repetir a oferta inteira.
 
 ## como os botões de atalho mudam o resultado
 
@@ -48,7 +48,7 @@ Imagine uma conta que vende consultoria de R$500 e recebe 60 comentários por se
 
 Sem os botões, muitos leads param na primeira mensagem porque não sabem o que responder ou porque digitar algo não parece urgente no momento.
 
-Cada botão pode acionar um fluxo diferente no Notifiquei, então a escolha do lead já define o caminho que ele vai percorrer. Quem clicou em "Já tenho interesse" não precisa receber o mesmo fluxo de quem clicou em "Quero saber mais". A [detecção de intenção de compra no direct](/blog/deteccao-de-intencao-de-compra-no-instagram) depende exatamente desse tipo de separação.
+Cada botão pode acionar um fluxo diferente no Notifiquei, então a escolha do lead já define o caminho que ele vai percorrer. Quem clicou em "Já tenho interesse" não precisa receber o mesmo fluxo de quem clicou em "Quero saber mais". [Saber quem está pronto pra fechar](/blog/deteccao-de-intencao-de-compra-no-instagram) depende exatamente desse tipo de separação: é a própria pessoa que se declara no botão.
 
 ## o que tornar um template mais provável de gerar resposta
 
