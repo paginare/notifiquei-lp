@@ -10,7 +10,7 @@ import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/HomeIcon.astro";
-import HomeDemo from "../components/HomeDemo.astro";
+import PainelTelas from "../components/PainelTelas.astro";
 import ZapFlutuante from "../components/ZapFlutuante.astro";
 import { copyHome, marcar } from "../i18n/home";
 import { WPP, plans } from "../data/home";
@@ -126,7 +126,7 @@ const jsonLd = [
         </div>
       </section>
 
-      <HomeDemo t={t.demo} />
+      <PainelTelas titulo={"A mesma automação,\n{hl}em português.{/hl}"} lead="Painel, avisos e relatórios na sua língua. Estas são as telas de verdade." fundo="papel" />
 
       <section class="home-section home-how" id="como">
         <div class="container">

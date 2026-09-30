@@ -1,0 +1,86 @@
+---
+// Telas reais do painel (código do instaV2 em 30/09/2026, com dados de exemplo
+// da conta fictícia @sua.marca — nenhum cliente real). Abas trocam a imagem.
+import Icon from "./HomeIcon.astro";
+import { marcar } from "../i18n/home";
+
+interface Props { titulo?: string; lead?: string; fundo?: "papel" | "areia" }
+const {
+  titulo = "Por dentro,\n{hl}simples assim.{/hl}",
+  lead = "As telas de verdade do Notifiquei — em português, do jeito que você vai usar.",
+  fundo = "areia",
+} = Astro.props;
+const telas = [
+  { id: "dashboard", aba: "Início", icon: "chart", texto: "Quanto suas automações fizeram no mês e o que aconteceu agora há pouco." },
+  { id: "assistente", aba: "Criar automação", icon: "spark", texto: "Escolha a palavra, escreva a mensagem e veja no celular como a pessoa vai receber." },
+  { id: "automacoes", aba: "Automações", icon: "bolt", texto: "Tudo organizado em pastas, com quantas vezes cada uma rodou." },
+  { id: "sorteio", aba: "Sorteios", icon: "heart", texto: "Quem comentou a palavra entra sozinho. Um clique e os ganhadores aparecem." },
+  { id: "cliques", aba: "Cliques", icon: "link", texto: "Quantas pessoas clicaram no link de cada automação." },
+];
+---
+<section class={`home-section pt-sec pt-sec--${fundo}`} aria-labelledby="painel-titulo">
+  <div class="container">
+    <div class="home-centered-heading">
+      <span class="home-kicker"><Icon name="play" size={17} /> POR DENTRO DO PAINEL</span>
+      <h2 id="painel-titulo" set:html={marcar(titulo)} />
+      <p>{lead}</p>
+    </div>
+    <div class="pt-abas" role="tablist" aria-label="Telas do painel">
+      {telas.map((t, i) => (
+        <button type="button" role="tab" id={`aba-${t.id}`} aria-controls={`tela-${t.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} class="pt-aba" data-tela={t.id}>
+          <Icon name={t.icon} size={16} /> {t.aba}
+        </button>
+      ))}
+    </div>
+    <div class="pt-janela">
+      <div class="pt-barra" aria-hidden="true"><i></i><i></i><i></i><span>app.notifiquei.com.br</span></div>
+      {telas.map((t, i) => (
+        <figure class="pt-tela" id={`tela-${t.id}`} role="tabpanel" aria-labelledby={`aba-${t.id}`} hidden={i !== 0}>
+          <img src={`/assets/painel/${t.id}.webp`} srcset={`/assets/painel/${t.id}.webp 1440w, /assets/painel/${t.id}@2x.webp 2160w`} sizes="(min-width: 1320px) 1200px, 92vw" width="1440" height="900" alt={`Tela ${t.aba} do painel do Notifiquei`} loading="lazy" decoding="async" />
+          <figcaption>{t.texto}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="pt-nota">Telas do produto com dados de exemplo.</p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".pt-sec").forEach((sec) => {
+    const abas = [...sec.querySelectorAll<HTMLButtonElement>(".pt-aba")];
+    const ativar = (b: HTMLButtonElement) => {
+      abas.forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
+      sec.querySelectorAll<HTMLElement>(".pt-tela").forEach((f) => { f.hidden = f.id !== `tela-${b.dataset.tela}`; });
+    };
+    abas.forEach((b, i) => {
+      b.addEventListener("click", () => ativar(b));
+      b.addEventListener("keydown", (e) => {
+        const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!d) return;
+        const n = abas[(i + d + abas.length) % abas.length]; n.focus(); ativar(n);
+      });
+    });
+  });
+</script>
+
+<style>
+  .pt-sec--areia { background: #eee7dc; }
+  .pt-sec--papel { background: var(--paper); }
+  .pt-abas { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+  .pt-aba { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 99px; border: 1px solid var(--line); background: #fff; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .pt-aba :global(svg) { color: var(--brand-ink); }
+  .pt-aba[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pt-aba[aria-selected="true"] :global(svg) { color: #ff8fb6; }
+  .pt-janela { max-width: 1200px; margin: 28px auto 0; background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px #14100e1f; }
+  .pt-barra { display: flex; align-items: center; gap: 6px; padding: 11px 14px; background: #f4efe8; border-bottom: 1px solid var(--line-soft); }
+  .pt-barra i { width: 10px; height: 10px; border-radius: 50%; background: #d9cfc2; }
+  .pt-barra span { margin: 0 auto; padding: 4px 16px; border-radius: 8px; background: #fff; font-size: 11px; color: var(--ink-soft); }
+  .pt-tela { margin: 0; }
+  .pt-tela img { display: block; width: 100%; height: auto; }
+  .pt-tela figcaption { padding: 14px 20px; font-size: 14px; color: var(--ink-soft); border-top: 1px solid var(--line-soft); text-align: center; }
+  .pt-nota { text-align: center; font-size: 11px; color: var(--ink-soft); margin-top: 14px; }
+  @media (max-width: 620px) {
+    .pt-abas { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
+    .pt-aba { flex: none; }
+  }
+</style>
