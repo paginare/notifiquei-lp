@@ -1,0 +1,15 @@
+---
+/** /en/help — central de ajuda (30/09/2026). Corpo em components/PaginaAjudaIntl.astro. */
+import Base from "../../layouts/Base.astro";
+import PaginaAjudaIntl from "../../components/PaginaAjudaIntl.astro";
+import { secoesIntl } from "../../data/ajuda-intl";
+import "../../styles/home.css";
+
+const semHtml = (s: string) => s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: secoesIntl.en.flatMap((s) => s.artigos).map((a) => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: semHtml(a.a) } })) },
+];
+---
+<Base title="Help center | Notifiquei" description="How to connect Instagram, create your first automation, what to do when a DM doesn't arrive, giveaways, links, plans and cancellation." path="/en/help" lang="en" jsonLd={jsonLd}>
+  <PaginaAjudaIntl lang="en" />
+</Base>

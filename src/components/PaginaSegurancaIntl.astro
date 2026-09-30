@@ -1,0 +1,96 @@
+---
+/** Corpo de /en/security e /es/seguridad (30/09/2026): mesmo desenho de /seguranca. */
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import Icon from "./HomeIcon.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { segurancaIntl } from "../i18n/seguranca-intl";
+import { en as antigoEn } from "../i18n/en";
+import { es as antigoEs } from "../i18n/es";
+
+interface Props { lang: "en" | "es" }
+const { lang } = Astro.props;
+const t = copyHome(lang);
+const c = segurancaIntl[lang];
+const rodape = (lang === "en" ? antigoEn : antigoEs).footer;
+const entrar = (lang === "en" ? antigoEn : antigoEs).nav.entrar;
+const precos = lang === "en" ? "/en/pricing" : "/es/precios";
+---
+<div class="home-page pagina-clara">
+  <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+  <Nav links={t.nav} lang={lang} langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref={precos} entrar={entrar} />
+  <main id="conteudo">
+    <section class="pg-head">
+      <div class="container">
+        <span class="home-kicker"><Icon name="shield" size={17} /> {c.kicker}</span>
+        <h1 set:html={marcar(c.titulo)} />
+        <p>{c.lead}</p>
+      </div>
+    </section>
+
+    <section class="home-section home-extras sg-pilares">
+      <div class="container">
+        <div class="home-resource-list sg-grade">
+          {c.pilares.map((p) => <article><span><Icon name={p.icon!} size={26} /></span><h3>{p.t}</h3><p>{p.d}</p></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section sg-dados">
+      <div class="container sg-duas">
+        <div><span class="home-kicker">{c.dadosKicker}</span><h2 set:html={marcar(c.dadosTitulo)} /></div>
+        <dl class="sg-lista">{c.dados.map((d) => <div><dt>{d.t}</dt><dd>{d.d}</dd></div>)}</dl>
+      </div>
+    </section>
+
+    <section class="home-section sg-direitos">
+      <div class="container sg-duas">
+        <div><span class="home-kicker">{c.direitosKicker}</span><h2 set:html={marcar(c.direitosTitulo)} /></div>
+        <dl class="sg-lista">{c.direitos.map((d) => <div><dt>{d.t}</dt><dd>{d.d}</dd></div>)}</dl>
+      </div>
+    </section>
+
+    <section class="home-section sg-docs">
+      <div class="container">
+        <div class="home-centered-heading">
+          <span class="home-kicker">{c.docsKicker}</span>
+          <h2 set:html={marcar(c.docsTitulo)} />
+        </div>
+        <div class="sg-docs__grade">
+          {c.docs.map((d) => <a href={d.href}><Icon name={d.icon} size={22} /><b>{d.t}</b><small>{d.d}</small></a>)}
+        </div>
+        <p class="sg-empresa">{c.empresa}</p>
+      </div>
+    </section>
+  </main>
+  <Footer {...rodape} />
+</div>
+<script>
+  import { initHomeMotion } from "../scripts/home-motion";
+  initHomeMotion();
+</script>
+
+<style>
+  .sg-pilares { padding-top: 20px; }
+  .sg-grade { grid-template-columns: repeat(4, 1fr); margin-top: 0; }
+  .sg-grade h3 { font-size: 24px; }
+  .sg-dados { background: #eee7dc; }
+  .sg-duas { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
+  .sg-duas h2 { font-size: clamp(2.3rem, 3.8vw, 3.6rem); margin-top: 16px; }
+  .sg-lista { margin: 0; display: grid; gap: 0; }
+  .sg-lista > div { padding: 22px 0; border-top: 1px solid #cfc3b3; }
+  .sg-lista > div:last-child { border-bottom: 1px solid #cfc3b3; }
+  .sg-lista dt { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  .sg-lista dd { margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+  .sg-docs { background: #eee7dc; }
+  .sg-docs__grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+  .sg-docs__grade a { display: grid; gap: 8px; padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 20px; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+  .sg-docs__grade a:hover { box-shadow: 0 16px 36px #14100e12; transform: translateY(-2px); }
+  .sg-docs__grade :global(svg) { color: var(--brand-ink); }
+  .sg-docs__grade b { font-size: 17px; }
+  .sg-docs__grade small { font-size: 13px; color: var(--ink-soft); }
+  .sg-empresa { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 30px; }
+  @media (max-width: 1100px) { .sg-grade { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 900px) { .sg-duas, .sg-docs__grade { grid-template-columns: 1fr; gap: 24px; } }
+  @media (max-width: 620px) { .sg-grade { grid-template-columns: 1fr; } }
+</style>

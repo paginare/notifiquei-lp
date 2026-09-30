@@ -1,0 +1,16 @@
+---
+/** /es/precios — preços do mercado internacional (30/09/2026). Corpo em components/PaginaPrecosIntl.astro. */
+import Base from "../../layouts/Base.astro";
+import PaginaPrecosIntl from "../../components/PaginaPrecosIntl.astro";
+import { precosIntl } from "../../data/precos-intl";
+import "../../styles/home.css";
+
+const c = precosIntl.es;
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: c.title, url: "https://notifiquei.com.br/es/precios", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: c.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+];
+---
+<Base title={c.title} description={c.description} path="/es/precios" lang="es" jsonLd={jsonLd}>
+  <PaginaPrecosIntl lang="es" />
+</Base>

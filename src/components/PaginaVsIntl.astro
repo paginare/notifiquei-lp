@@ -1,0 +1,143 @@
+---
+/**
+ * Corpo de /en/vs-manychat e /es/vs-manychat (30/09/2026): o mesmo desenho de
+ * /vs-manychat, com a copy de i18n/paginas-intl.ts. Tabela honesta: só
+ * diferenças verificáveis; linhas iguais ficam sem destaque.
+ */
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import Icon from "./HomeIcon.astro";
+import PainelTelas from "./PainelTelas.astro";
+import ZapFlutuante from "./ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { vs } from "../i18n/paginas-intl";
+import { en as antigoEn } from "../i18n/en";
+import { es as antigoEs } from "../i18n/es";
+import { WPP } from "../data/home";
+
+interface Props { lang: "en" | "es" }
+const { lang } = Astro.props;
+const t = copyHome(lang);
+const c = vs[lang];
+const precos = lang === "en" ? "/en/pricing" : "/es/precios";
+const rodape = (lang === "en" ? antigoEn : antigoEs).footer;
+const entrar = (lang === "en" ? antigoEn : antigoEs).nav.entrar;
+---
+<div class="home-page pagina-clara">
+  <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+  <Nav links={t.nav} lang={lang} langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref={precos} entrar={entrar} />
+  <main id="conteudo">
+    <section class="pg-head">
+      <div class="container">
+        <span class="home-kicker">{c.head.kicker}</span>
+        <h1 set:html={marcar(c.head.titulo)} />
+        <p>{c.head.lead}</p>
+        <div class="pg-head__acoes">
+          <a href={precos} class="btn btn--brand btn--lg" data-cta="vs_hero">{c.head.cta} <Icon name="arrow" size={20} /></a>
+          <a href="#tabela" class="home-text-link">{c.head.ver} <Icon name="diagonal" size={18} /></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section vs-tabela" id="tabela">
+      <div class="container">
+        <div class="home-centered-heading">
+          <span class="home-kicker"><Icon name="chart" size={17} /> {c.tabela.kicker}</span>
+          <h2 set:html={marcar(c.tabela.titulo)} />
+          <p>{c.tabela.lead}</p>
+        </div>
+        <div class="cmp" tabindex="0" aria-label="Notifiquei × ManyChat">
+          <table>
+            <thead><tr><th scope="col"><span class="sr-only">{c.tabela.criterio}</span></th><th scope="col" class="cmp__nos">Notifiquei</th><th scope="col">ManyChat</th></tr></thead>
+            <tbody>
+              {c.tabela.linhas.map((l) => (
+                <tr><th scope="row">{l.c}</th><td class={l.igual ? "" : "cmp__nos"}>{l.n}</td><td>{l.m}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="vs-nota">{c.tabela.nota}</p>
+      </div>
+    </section>
+
+    <section class="home-section home-extras">
+      <div class="container">
+        <div class="home-section-heading"><h2 set:html={marcar(c.motivos.titulo)} /><p>{c.motivos.lead}</p></div>
+        <div class="home-resource-list vs-motivos">
+          {c.motivos.itens.map((m) => <article><span><Icon name={m.icon} size={26} /></span><h3>{m.t}</h3><p>{m.d}</p></article>)}
+        </div>
+      </div>
+    </section>
+
+    <PainelTelas lang={lang} titulo={c.painel.titulo} lead={c.painel.lead} fundo="papel" />
+
+    <section class="home-section home-how" id="como">
+      <div class="container">
+        <div class="home-centered-heading">
+          <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+          <h2 set:html={marcar(c.troca.titulo)} />
+          <p>{c.troca.lead}</p>
+        </div>
+        <ol class="home-steps">
+          {c.troca.itens.map((p, i) => (
+            <li><div class="home-step__top"><span>{`0${i + 1}`}</span><Icon name={p.icon} size={28} /></div><h3>{p.titulo}</h3><p>{p.texto}</p></li>
+          ))}
+        </ol>
+        <div class="home-how__actions">
+          <a href={precos} class="btn btn--brand btn--lg" data-cta="vs_steps">{c.troca.cta} <Icon name="arrow" size={20} /></a>
+          <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section home-faq" id="faq">
+      <div class="container home-faq__grid">
+        <div class="home-faq__intro">
+          <span class="home-kicker">{t.faq.kicker}</span>
+          <h2 set:html={marcar(c.faq.titulo)} />
+          <p>{t.faq.lead}</p>
+          <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+        </div>
+        <div class="faq">
+          {c.faq.itens.map((f) => (
+            <details class="faq__item" name="faq">
+              <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-final">
+      <div class="container home-final__inner">
+        <span class="home-final__bubble" aria-hidden="true">{c.final.bolha}</span>
+        <span class="home-kicker">{c.final.kicker}</span>
+        <h2 set:html={marcar(c.final.titulo)} />
+        <p>{c.final.lead}</p>
+        <div class="home-final__actions">
+          <a href={precos} class="btn btn--lg" data-cta="vs_final">{c.final.cta} <Icon name="arrow" size={22} /></a>
+          <small>{c.final.micro}</small>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {...rodape} />
+  <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
+</div>
+
+<script>
+  import { initHomeMotion } from "../scripts/home-motion";
+  initHomeMotion();
+  document.querySelectorAll<HTMLAnchorElement>("[data-cta]").forEach((a) =>
+    a.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { section: `${a.dataset.cta}_${document.documentElement.lang}` })),
+  );
+</script>
+
+<style>
+  .vs-tabela { background: #eee7dc; }
+  .vs-nota { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 18px; }
+  .vs-motivos { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 1000px) { .vs-motivos { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .vs-motivos { grid-template-columns: 1fr; } }
+</style>

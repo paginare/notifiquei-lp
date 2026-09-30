@@ -1,0 +1,163 @@
+---
+/**
+ * Corpo de /en/creators e /es/creadores (30/09/2026): o mesmo desenho de
+ * /criadores, com a copy de i18n/paginas-intl.ts. Sem os casos (só em PT) e
+ * sem o tour em vídeo (narrado em português).
+ */
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import Icon from "./HomeIcon.astro";
+import LpHero from "./LpHero.astro";
+import HomeAuthority from "./HomeAuthority.astro";
+import HomeStories from "./HomeStories.astro";
+import HomeDemo from "./HomeDemo.astro";
+import PainelTelas from "./PainelTelas.astro";
+import HomePricing from "./HomePricing.astro";
+import ZapFlutuante from "./ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { criadores } from "../i18n/paginas-intl";
+import { en as antigoEn } from "../i18n/en";
+import { es as antigoEs } from "../i18n/es";
+import { WPP } from "../data/home";
+
+interface Props { lang: "en" | "es" }
+const { lang } = Astro.props;
+const t = copyHome(lang);
+const c = criadores[lang];
+const rodape = (lang === "en" ? antigoEn : antigoEs).footer;
+const entrar = (lang === "en" ? antigoEn : antigoEs).nav.entrar;
+---
+<div class="home-page pagina-clara">
+  <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+  <Nav links={t.nav} lang={lang} langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="#planos" entrar={entrar} />
+  <main id="conteudo">
+    <LpHero tema={{ titulo: c.hero.titulo, lead: c.hero.lead, cta: c.hero.cta, ctaSecundario: c.hero.ctaSecundario }} micro={c.hero.micro} eyebrow={c.hero.eyebrow} textos={c.hero.foto} />
+
+    <HomeAuthority t={t.autoridade} />
+    <section class="home-proof" aria-label={t.provaMarcas}>
+      <div class="container"><HomeStories titulo={t.perfisTitulo} /></div>
+    </section>
+
+    <section class="home-section cr-usos" id="usos">
+      <div class="container">
+        <div class="home-centered-heading">
+          <span class="home-kicker"><Icon name="heart" size={17} /> {c.usos.kicker}</span>
+          <h2 set:html={marcar(c.usos.titulo)} />
+          <p>{c.usos.lead}</p>
+        </div>
+        <ul class="cr-usos__grid">
+          {c.usos.itens.map((u) => (
+            <li class="cr-uso">
+              <span class="cr-uso__tag"><Icon name={u.icon} size={16} /> {u.tag}</span>
+              <div class="cr-uso__cena" aria-hidden="true">
+                <span class="cr-uso__comentario">{u.palavra}</span>
+                <span class="cr-uso__resposta">{u.resposta}</span>
+              </div>
+              <p>{u.texto}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <HomeDemo t={t.demo} />
+
+    <PainelTelas lang={lang} titulo={c.painelTitulo} />
+
+    <section class="home-section home-how" id="como">
+      <div class="container">
+        <div class="home-centered-heading">
+          <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+          <h2 set:html={marcar(c.passos.titulo)} />
+          <p>{c.passos.lead}</p>
+        </div>
+        <ol class="home-steps">
+          {c.passos.itens.map((p, i) => (
+            <li><div class="home-step__top"><span>{`0${i + 1}`}</span><Icon name={p.icon} size={28} /></div><h3>{p.titulo}</h3><p>{p.texto}</p></li>
+          ))}
+        </ol>
+        <div class="home-how__actions">
+          <a href="#planos" class="btn btn--brand btn--lg" data-home-cta="steps">{c.passos.cta} <Icon name="arrow" size={20} /></a>
+          <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
+        </div>
+      </div>
+    </section>
+
+    <HomePricing t={t.planos} lang={lang} src={`criadores-${lang}`} />
+
+    <section class="home-section home-faq" id="faq">
+      <div class="container home-faq__grid">
+        <div class="home-faq__intro">
+          <span class="home-kicker">{t.faq.kicker}</span>
+          <h2 set:html={marcar(c.faq.titulo)} />
+          <p>{t.faq.lead}</p>
+          <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+        </div>
+        <div class="faq">
+          {c.faq.itens.map((f) => (
+            <details class="faq__item" name="faq">
+              <summary class="faq__q">{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-final">
+      <div class="container home-final__inner">
+        <span class="home-final__bubble" aria-hidden="true">{c.final.bolha}</span>
+        <span class="home-kicker">{c.final.kicker}</span>
+        <h2 set:html={marcar(c.final.titulo)} />
+        <p>{c.final.lead}</p>
+        <div class="home-final__actions">
+          <a href="#planos" class="btn btn--lg" data-home-cta="final_cta">{c.final.cta} <Icon name="arrow" size={22} /></a>
+          <small>{t.final.microIntl}</small>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {...rodape} />
+  <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
+</div>
+
+<script>
+  import { initHomeMotion } from "../scripts/home-motion";
+  initHomeMotion();
+  const lang = document.documentElement.lang;
+  document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+    cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: `creators_${lang}_${cta.dataset.homeCta}` }));
+  });
+  document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const cta = event.target.closest(".plan__cta");
+    if (!cta) return;
+    const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+    const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+    (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly", page: `creators_${lang}` });
+  });
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest<HTMLAnchorElement>('a[href*="buy.stripe.com"]');
+    const language = link?.href.match(/nqlang_([a-zA-Z-]+)/);
+    if (language) document.cookie = `nq_lang=${language[1]}; path=/; max-age=3600; SameSite=Lax`;
+  }, true);
+</script>
+
+<style>
+  .cr-usos { background: var(--paper); }
+  .cr-usos__grid { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cr-uso { display: flex; flex-direction: column; gap: 18px; padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+  .cr-uso__tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .cr-uso__tag :global(svg) { color: var(--brand-ink); }
+  .cr-uso__cena { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #fbf1f4; border-radius: 16px; }
+  .cr-uso__comentario { align-self: flex-start; padding: 8px 13px; background: #fff; border-radius: 14px 14px 14px 4px; font-size: 14px; font-weight: 700; color: var(--brand-ink); box-shadow: 0 3px 10px #14100e0f; }
+  .cr-uso__resposta { align-self: flex-end; max-width: 88%; padding: 9px 13px; background: var(--brand); color: #fff; border-radius: 14px 14px 4px 14px; font-size: 13px; line-height: 1.4; }
+  .cr-uso p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 960px) { .cr-usos__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) {
+    .cr-usos__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 32px -16px 0; padding: 0 16px 8px; scrollbar-width: none; }
+    .cr-usos__grid::-webkit-scrollbar { display: none; }
+    .cr-uso { flex: 0 0 82%; scroll-snap-align: center; }
+  }
+</style>

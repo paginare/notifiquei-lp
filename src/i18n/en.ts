@@ -236,7 +236,7 @@ export const en = {
   { q: "Does the price go up as my contacts grow?", a: "No. You pay for the plan, not for the size of your list: contacts and automations are unlimited. Your bill only changes if you change plans." },
   { q: "What counts as one account?", a: "Each connected Instagram account. The TikTok account of the same brand comes with it and doesn't count as another one." },
   { q: "What is the difference between Solo and Pro?", a: "Number of accounts and teamwork. Solo is for running your own operation with one account. Pro covers up to five accounts and lets more than one person handle the automations, with role separation." },
-    { q: "Can this get my Instagram blocked?", a: "No. We are an official Meta provider and use only Instagram's official API. No disguised automation, no rule-breaking, no risk of a ban." },
+    { q: "Can this get my Instagram blocked?", a: "Notifiquei uses Meta's official API, and you connect through Instagram's own login — you never share your password with us. Automations should still respect the platform's rules and limits." },
     { q: "Do I need to know how to code?", a: "Not at all. Zero code. If you can send an Instagram message, you can use Notifiquei. The whole interface is visual." },
     { q: "Can I build automations by chatting with Claude?", a: "Yes. Every plan includes an API key, and the dashboard hands you a ready-made kit with your key inside. Paste it into a Claude Project and ask in plain English: it finds the post, builds the automation, shows you a summary to confirm, and turns it on. You can also list, enable and disable automations by chatting." },
     { q: "Does it work for e-commerce?", a: "Yes. We have customers selling fashion, cosmetics, supplements and physical products in general. The ideal flow changes a little, and there's a ready-made template for it." },
@@ -279,10 +279,15 @@ export const en = {
     cookies: "Cookie preferences",
     cols: [
       { title: "Product", links: [
-        { href: "/en#how", label: "How it works" },
-        { href: "/en#platform", label: "Platform" },
-        { href: "/en#claude", label: "API + Claude" },
-        { href: "/en#plans", label: "Pricing" },
+        { href: "/en#plataforma", label: "How it works" },
+        { href: "/en/pricing", label: "Pricing" },
+        { href: "/en#mcp", label: "Claude + MCP" },
+        { href: "/en/vs-manychat", label: "vs ManyChat" },
+        { href: "/en/creators", label: "For creators" },
+      ]},
+      { title: "Support", links: [
+        { href: "/en/help", label: "Help center" },
+        { href: "/en/security", label: "Security" },
       ]},
       { title: "Company", links: [
         { href: "https://www.instagram.com/notifiquei.com.br/", label: "Instagram" },

@@ -1,0 +1,15 @@
+---
+/** /es/seguridad — segurança e privacidade (30/09/2026). Corpo em components/PaginaSegurancaIntl.astro. */
+import Base from "../../layouts/Base.astro";
+import PaginaSegurancaIntl from "../../components/PaginaSegurancaIntl.astro";
+import { segurancaIntl } from "../../i18n/seguranca-intl";
+import "../../styles/home.css";
+
+const c = segurancaIntl.es;
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: c.title, url: "https://notifiquei.com.br/es/seguridad", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+];
+---
+<Base title={c.title} description={c.description} path="/es/seguridad" lang="es" jsonLd={jsonLd}>
+  <PaginaSegurancaIntl lang="es" />
+</Base>

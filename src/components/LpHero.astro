@@ -9,26 +9,27 @@
 import Icon from "./HomeIcon.astro";
 import { eyebrowLp, type TemaLp } from "../data/lp-trafego";
 
-interface Props { tema: TemaLp; micro: string; }
-const { tema, micro } = Astro.props;
+interface Props { tema: TemaLp; micro: string; eyebrow?: string; textos?: { alt: string; quem: string; comentario: string; dm: string; auto: string } }
+// eyebrow e textos: só as páginas em inglês/espanhol passam; o padrão é o português.
+const { tema, micro, eyebrow = eyebrowLp, textos = { alt: "Criadora sorrindo no sofá enquanto olha o celular", quem: "julia comentou no seu post", comentario: "QUERO o link! 😍", dm: "Te mandei tudo no direct 💌", auto: "Resposta automática do Notifiquei" } } = Astro.props;
 ---
 <section class="lp-hero" aria-labelledby="hero-title">
   <div class="container lp-hero__inner">
     <div class="lp-hero__copy">
-      <p class="lp-hero__eyebrow">{eyebrowLp}</p>
+      <p class="lp-hero__eyebrow">{eyebrow}</p>
       <h1 id="hero-title">{tema.titulo.map((linha) => <span>{linha}</span>)}</h1>
       <p class="lp-hero__lead" set:html={tema.lead} />
     </div>
 
     <figure class="lp-hero__media">
-      <img src="/assets/creators/criadora-sofa.webp" srcset="/assets/creators/criadora-sofa-600.webp 600w, /assets/creators/criadora-sofa.webp 1200w" sizes="(min-width: 900px) 540px, calc(100vw - 32px)" alt="Criadora sorrindo no sofá enquanto olha o celular" width="1200" height="1200" fetchpriority="high" />
+      <img src="/assets/creators/criadora-sofa.webp" srcset="/assets/creators/criadora-sofa-600.webp 600w, /assets/creators/criadora-sofa.webp 1200w" sizes="(min-width: 900px) 540px, calc(100vw - 32px)" alt={textos.alt} width="1200" height="1200" fetchpriority="high" />
       <div class="lp-hero__comment" aria-hidden="true">
         <span class="lp-hero__av">J</span>
-        <span><small>julia comentou no seu post</small><b>QUERO o link! 😍</b></span>
+        <span><small>{textos.quem}</small><b>{textos.comentario}</b></span>
       </div>
       <figcaption class="lp-hero__dm">
-        <b>Te mandei tudo no direct 💌</b>
-        <small><Icon name="check" size={13} /> Resposta automática do Notifiquei</small>
+        <b>{textos.dm}</b>
+        <small><Icon name="check" size={13} /> {textos.auto}</small>
       </figcaption>
     </figure>
 

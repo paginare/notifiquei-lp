@@ -1,0 +1,128 @@
+---
+/** Corpo de /en/help e /es/ayuda (30/09/2026): mesmo desenho de /ajuda, conteúdo em data/ajuda-intl.ts. */
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import Icon from "./HomeIcon.astro";
+import ZapFlutuante from "./ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { WPP } from "../data/home";
+import { secoesIntl } from "../data/ajuda-intl";
+import { en as antigoEn } from "../i18n/en";
+import { es as antigoEs } from "../i18n/es";
+
+interface Props { lang: "en" | "es" }
+const { lang } = Astro.props;
+const t = copyHome(lang);
+const secoes = secoesIntl[lang];
+const rodape = (lang === "en" ? antigoEn : antigoEs).footer;
+const entrar = (lang === "en" ? antigoEn : antigoEs).nav.entrar;
+const TXT = lang === "en"
+  ? { kicker: "HELP CENTER", titulo: "How can we\n{hl}help you?{/hl}", busca: "Search the help center", ph: "E.g.: DM didn't arrive, giveaway, cancel…", assuntos: "Topics", vazio: "Nothing found. Talk to us — we reply fast.", contato: "Couldn't find it?\n{hl}Talk to us.{/hl}", contatoLead: "Real people on the other side.", zap: "Hi! I came from the Notifiquei help center and I need help.", precos: "/en/pricing" }
+  : { kicker: "CENTRO DE AYUDA", titulo: "¿Cómo podemos\n{hl}ayudarte?{/hl}", busca: "Buscar en la ayuda", ph: "Ej.: el DM no llegó, sorteo, cancelar…", assuntos: "Temas", vazio: "No encontramos nada. Habla con nosotros — respondemos rápido.", contato: "¿No lo encontraste?\n{hl}Habla con nosotros.{/hl}", contatoLead: "Personas reales del otro lado.", zap: "¡Hola! Vengo del centro de ayuda de Notifiquei y necesito ayuda.", precos: "/es/precios" };
+const semHtml = (s: string) => s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+---
+<div class="home-page pagina-clara">
+  <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+  <Nav links={t.nav} lang={lang} langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref={TXT.precos} entrar={entrar} />
+  <main id="conteudo">
+    <section class="pg-head aj-head">
+      <div class="container">
+        <span class="home-kicker">{TXT.kicker}</span>
+        <h1 set:html={marcar(TXT.titulo)} />
+        <label class="aj-busca">
+          <span class="sr-only">{TXT.busca}</span>
+          <input type="search" id="aj-busca" placeholder={TXT.ph} autocomplete="off" />
+        </label>
+        <nav class="aj-atalhos" aria-label={TXT.assuntos}>
+          {secoes.map((s) => <a href={`#${s.id}`}><Icon name={s.icon} size={16} /> {s.titulo}</a>)}
+        </nav>
+      </div>
+    </section>
+
+    <section class="aj-corpo">
+      <div class="container aj-grade">
+        {secoes.map((s) => (
+          <section class="aj-secao" id={s.id} data-secao>
+            <h2><Icon name={s.icon} size={22} /> {s.titulo}</h2>
+            <div class="faq">
+              {s.artigos.map((a) => (
+                <details class="faq__item" id={a.id} data-texto={`${a.q} ${semHtml(a.a)}`.toLowerCase()}>
+                  <summary class="faq__q">{a.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                  <div class="faq__a aj-resp" set:html={a.a} />
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+        <p class="aj-vazio" id="aj-vazio" hidden>{TXT.vazio}</p>
+      </div>
+    </section>
+
+    <section class="home-section aj-contato">
+      <div class="container aj-contato__box">
+        <div>
+          <h2 set:html={marcar(TXT.contato)} />
+          <p>{TXT.contatoLead}</p>
+        </div>
+        <div class="aj-contato__acoes">
+          <a href={WPP} class="btn btn--brand btn--lg">WhatsApp <Icon name="arrow" size={20} /></a>
+          <a href="mailto:contato@notifiquei.com.br" class="home-text-link">contato@notifiquei.com.br</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {...rodape} />
+  <ZapFlutuante texto={TXT.zap} rotulo={t.zapRotulo} />
+</div>
+
+<script>
+  import { initHomeMotion } from "../scripts/home-motion";
+  initHomeMotion();
+  const alvo = location.hash && document.querySelector<HTMLDetailsElement>(`details${location.hash}`);
+  if (alvo) alvo.open = true;
+  const campo = document.getElementById("aj-busca") as HTMLInputElement | null;
+  const vazio = document.getElementById("aj-vazio");
+  campo?.addEventListener("input", () => {
+    const termo = campo.value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    let achou = 0;
+    document.querySelectorAll<HTMLElement>("[data-secao]").forEach((sec) => {
+      let naSecao = 0;
+      sec.querySelectorAll<HTMLDetailsElement>("details").forEach((d) => {
+        const texto = (d.dataset.texto ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "");
+        const ok = !termo || termo.split(/\s+/).every((p) => texto.includes(p));
+        d.hidden = !ok; d.open = !!termo && ok;
+        if (ok) naSecao++;
+      });
+      sec.hidden = naSecao === 0; achou += naSecao;
+    });
+    if (vazio) vazio.hidden = achou > 0;
+  });
+</script>
+
+<style>
+  .aj-head { padding-bottom: 48px; }
+  .aj-busca { display: block; max-width: 560px; margin: 28px auto 0; }
+  .aj-busca input { width: 100%; padding: 17px 22px; border-radius: 16px; border: 1px solid var(--line); background: #fff; font: inherit; font-size: 16px; color: var(--ink); box-shadow: 0 8px 24px #14100e0d; }
+  .aj-busca input:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .aj-atalhos { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .aj-atalhos a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 99px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .aj-atalhos a :global(svg) { color: var(--brand-ink); }
+  .aj-corpo { padding-bottom: 90px; }
+  .aj-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 56px; align-items: start; }
+  .aj-secao { scroll-margin-top: 110px; }
+  .aj-secao[hidden], .aj-grade details[hidden] { display: none; }
+  .aj-secao h2 { display: flex; align-items: center; gap: 10px; font-size: 26px; letter-spacing: -.03em; margin-bottom: 8px; }
+  .aj-secao h2 :global(svg) { color: var(--brand-ink); }
+  .aj-grade details { scroll-margin-top: 110px; }
+  .aj-resp :global(p), .aj-resp :global(ol) { margin: 0 0 10px; }
+  .aj-resp :global(ol) { padding-left: 20px; display: grid; gap: 6px; }
+  .aj-resp :global(a) { color: var(--brand-ink); text-decoration: underline; }
+  .aj-resp :global(b) { color: var(--ink); }
+  .aj-vazio { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); }
+  .aj-contato { background: #eee7dc; }
+  .aj-contato__box { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+  .aj-contato h2 { font-size: clamp(2.2rem, 3.6vw, 3.4rem); }
+  .aj-contato p { color: var(--ink-soft); margin-top: 12px; }
+  .aj-contato__acoes { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  @media (max-width: 900px) { .aj-grade { grid-template-columns: 1fr; } }
+</style>

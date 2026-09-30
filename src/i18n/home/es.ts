@@ -1,27 +1,23 @@
 import type { CopyHome } from "./pt";
+import { LINKS_ES } from "../../data/nav";
 
 /** Copy da home em espanhol. Mesmas chaves do pt.ts (ver as regras lá). */
 export const es: CopyHome = {
   meta: {
     title: "Notifiquei — Automatiza comentarios y DMs de Instagram",
     description:
-      "Automatiza las respuestas a comentarios, DMs e historias de Instagram y TikTok con tu propia voz y por la API oficial de Meta. Convierte comentarios en conversaciones que venden.",
+      "Automatiza las respuestas a comentarios, DMs e historias de Instagram y TikTok con tus propios mensajes, por la API oficial de Meta. Convierte comentarios en conversaciones que venden.",
     skip: "Saltar al contenido",
     navLangLabel: "Elegir idioma",
     navComecar: "Empezar ahora",
   },
 
-  nav: [
-    { href: "/es#plataforma", label: "Funciones" },
-    { href: "/es#como", label: "Cómo funciona" },
-    { href: "/es#mcp", label: "Claude y MCP" },
-    { href: "/es#planos", label: "Precios" },
-  ],
+  nav: LINKS_ES,
 
   hero: {
     canais: { nota: "EN AUTOMÁTICO" },
     titulo: ["Tu próximo", "cliente está", "en el DM."],
-    lead: 'Convierte comentarios en conversaciones que venden. Automatiza tu Instagram y TikTok, con mensajes que tienen <strong>tu voz.</strong>',
+    lead: 'Convierte comentarios en conversaciones que venden. Automatiza tu Instagram y TikTok, con mensajes que tienen <strong>tu estilo.</strong>',
     ctaBr: "Empezar ahora",
     ctaIntl: "Empezar ahora",
     verNaPratica: "Verlo en acción",
@@ -139,7 +135,7 @@ export const es: CopyHome = {
     enviado: "Enlace enviado por DM.",
     enviadoSub: "Una conversación más en marcha.",
     depoisItens: [
-      "Respuestas automáticas con tu voz.",
+      "Respuestas automáticas, a tu manera.",
       "Enlaces que llegan a quien quiere saber más.",
       "Tu tiempo de vuelta para crear y vender.",
     ],

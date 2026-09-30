@@ -4,28 +4,66 @@
 import Icon from "./HomeIcon.astro";
 import { marcar } from "../i18n/home";
 
-interface Props { titulo?: string; lead?: string; fundo?: "papel" | "areia" }
+interface Props { titulo?: string; lead?: string; fundo?: "papel" | "areia"; lang?: "pt-BR" | "en" | "es" }
+const { lang = "pt-BR" } = Astro.props;
+// As imagens são do painel em português; em en/es a nota avisa que o painel
+// também existe na língua do visitante (traduzido em 17/08/2026).
+const TXT = {
+  "pt-BR": {
+    titulo: "Por dentro,\n{hl}simples assim.{/hl}",
+    lead: "As telas de verdade do Notifiquei — em português, do jeito que você vai usar.",
+    kicker: "POR DENTRO DO PAINEL", abasAria: "Telas do painel", alt: "Tela {aba} do painel do Notifiquei",
+    nota: "Telas do produto com dados de exemplo.",
+    telas: [
+      { id: "dashboard", aba: "Início", icon: "chart", texto: "Quanto suas automações fizeram no mês e o que aconteceu agora há pouco." },
+      { id: "assistente", aba: "Criar automação", icon: "spark", texto: "Escolha a palavra, escreva a mensagem e veja no celular como a pessoa vai receber." },
+      { id: "automacoes", aba: "Automações", icon: "bolt", texto: "Tudo organizado em pastas, com quantas vezes cada uma rodou." },
+      { id: "sorteio", aba: "Sorteios", icon: "heart", texto: "Quem comentou a palavra entra sozinho. Um clique e os ganhadores aparecem." },
+      { id: "cliques", aba: "Cliques", icon: "link", texto: "Quantas pessoas clicaram no link de cada automação." },
+    ],
+  },
+  en: {
+    titulo: "Inside,\n{hl}it's this simple.{/hl}",
+    lead: "The real Notifiquei screens — exactly what you'll use.",
+    kicker: "INSIDE THE DASHBOARD", abasAria: "Dashboard screens", alt: "{aba} screen of the Notifiquei dashboard",
+    nota: "Product screens with sample data, shown in Portuguese. The dashboard is also available in English.",
+    telas: [
+      { id: "dashboard", aba: "Home", icon: "chart", texto: "What your automations did this month and what just happened." },
+      { id: "assistente", aba: "Create automation", icon: "spark", texto: "Pick the keyword, write the message and preview on a phone how people will get it." },
+      { id: "automacoes", aba: "Automations", icon: "bolt", texto: "Everything organized in folders, with how many times each one ran." },
+      { id: "sorteio", aba: "Giveaways", icon: "heart", texto: "Everyone who commented the keyword is entered. One click and the winners show up." },
+      { id: "cliques", aba: "Clicks", icon: "link", texto: "How many people clicked the link in each automation." },
+    ],
+  },
+  es: {
+    titulo: "Por dentro,\n{hl}así de simple.{/hl}",
+    lead: "Las pantallas reales de Notifiquei — tal como las vas a usar.",
+    kicker: "DENTRO DEL PANEL", abasAria: "Pantallas del panel", alt: "Pantalla {aba} del panel de Notifiquei",
+    nota: "Pantallas del producto con datos de ejemplo, en portugués. El panel también está disponible en español.",
+    telas: [
+      { id: "dashboard", aba: "Inicio", icon: "chart", texto: "Lo que hicieron tus automatizaciones en el mes y lo que acaba de pasar." },
+      { id: "assistente", aba: "Crear automatización", icon: "spark", texto: "Elige la palabra, escribe el mensaje y mira en el celular cómo lo recibirá la persona." },
+      { id: "automacoes", aba: "Automatizaciones", icon: "bolt", texto: "Todo organizado en carpetas, con cuántas veces se ejecutó cada una." },
+      { id: "sorteio", aba: "Sorteos", icon: "heart", texto: "Quien comentó la palabra participa solo. Un clic y aparecen los ganadores." },
+      { id: "cliques", aba: "Clics", icon: "link", texto: "Cuántas personas hicieron clic en el enlace de cada automatización." },
+    ],
+  },
+}[lang];
 const {
-  titulo = "Por dentro,\n{hl}simples assim.{/hl}",
-  lead = "As telas de verdade do Notifiquei — em português, do jeito que você vai usar.",
+  titulo = TXT.titulo,
+  lead = TXT.lead,
   fundo = "areia",
 } = Astro.props;
-const telas = [
-  { id: "dashboard", aba: "Início", icon: "chart", texto: "Quanto suas automações fizeram no mês e o que aconteceu agora há pouco." },
-  { id: "assistente", aba: "Criar automação", icon: "spark", texto: "Escolha a palavra, escreva a mensagem e veja no celular como a pessoa vai receber." },
-  { id: "automacoes", aba: "Automações", icon: "bolt", texto: "Tudo organizado em pastas, com quantas vezes cada uma rodou." },
-  { id: "sorteio", aba: "Sorteios", icon: "heart", texto: "Quem comentou a palavra entra sozinho. Um clique e os ganhadores aparecem." },
-  { id: "cliques", aba: "Cliques", icon: "link", texto: "Quantas pessoas clicaram no link de cada automação." },
-];
+const telas = TXT.telas;
 ---
 <section class={`home-section pt-sec pt-sec--${fundo}`} aria-labelledby="painel-titulo">
   <div class="container">
     <div class="home-centered-heading">
-      <span class="home-kicker"><Icon name="play" size={17} /> POR DENTRO DO PAINEL</span>
+      <span class="home-kicker"><Icon name="play" size={17} /> {TXT.kicker}</span>
       <h2 id="painel-titulo" set:html={marcar(titulo)} />
       <p>{lead}</p>
     </div>
-    <div class="pt-abas" role="tablist" aria-label="Telas do painel">
+    <div class="pt-abas" role="tablist" aria-label={TXT.abasAria}>
       {telas.map((t, i) => (
         <button type="button" role="tab" id={`aba-${t.id}`} aria-controls={`tela-${t.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} class="pt-aba" data-tela={t.id}>
           <Icon name={t.icon} size={16} /> {t.aba}
@@ -36,12 +74,12 @@ const telas = [
       <div class="pt-barra" aria-hidden="true"><i></i><i></i><i></i><span>app.notifiquei.com.br</span></div>
       {telas.map((t, i) => (
         <figure class="pt-tela" id={`tela-${t.id}`} role="tabpanel" aria-labelledby={`aba-${t.id}`} hidden={i !== 0}>
-          <img src={`/assets/painel/${t.id}.webp`} srcset={`/assets/painel/${t.id}.webp 1440w, /assets/painel/${t.id}@2x.webp 2160w`} sizes="(min-width: 1320px) 1200px, 92vw" width="1440" height="900" alt={`Tela ${t.aba} do painel do Notifiquei`} loading="lazy" decoding="async" />
+          <img src={`/assets/painel/${t.id}.webp`} srcset={`/assets/painel/${t.id}.webp 1440w, /assets/painel/${t.id}@2x.webp 2160w`} sizes="(min-width: 1320px) 1200px, 92vw" width="1440" height="900" alt={TXT.alt.replace("{aba}", t.aba)} loading="lazy" decoding="async" />
           <figcaption>{t.texto}</figcaption>
         </figure>
       ))}
     </div>
-    <p class="pt-nota">Telas do produto com dados de exemplo.</p>
+    <p class="pt-nota">{TXT.nota}</p>
   </div>
 </section>
 

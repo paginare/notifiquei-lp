@@ -1,22 +1,18 @@
 import type { CopyHome } from "./pt";
+import { LINKS_EN } from "../../data/nav";
 
 /** Copy da home em inglês. Mesmas chaves do pt.ts (ver as regras lá). */
 export const en: CopyHome = {
   meta: {
     title: "Notifiquei — Instagram comment and DM automation",
     description:
-      "Auto-reply to Instagram comments, DMs and story replies in your own voice, on Meta's official API. Turn a comment into a DM with your link. Instagram + TikTok in one plan.",
+      "Auto-reply to Instagram comments, DMs and story replies with your own messages, on Meta's official API. Turn a comment into a DM with your link. Instagram + TikTok in one plan.",
     skip: "Skip to content",
     navLangLabel: "Choose language",
     navComecar: "Get started",
   },
 
-  nav: [
-    { href: "/en#plataforma", label: "Features" },
-    { href: "/en#como", label: "How it works" },
-    { href: "/en#mcp", label: "Claude + MCP" },
-    { href: "/en#planos", label: "Pricing" },
-  ],
+  nav: LINKS_EN,
 
   hero: {
     canais: { nota: "ON AUTOPILOT" },
@@ -139,7 +135,7 @@ export const en: CopyHome = {
     enviado: "Link sent in the DMs.",
     enviadoSub: "One more conversation happening.",
     depoisItens: [
-      "Automatic replies in your own voice.",
+      "Automatic replies, written your way.",
       "Links reaching everyone who wants to know more.",
       "Your time back, to create and to sell.",
     ],
