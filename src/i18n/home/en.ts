@@ -27,7 +27,7 @@ export const en: CopyHome = {
     verNaPratica: "See it in action",
     microBr: "Free forever. No card.",
     microIntl: "7-day guarantee. Cancel anytime.",
-    fotoAlt: "Creator looking at her phone, lit by the screen, in a dark room",
+    fotoAlt: "Shop owner at her counter, smiling at her phone",
   },
 
   conversa: {

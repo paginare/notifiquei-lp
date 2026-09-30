@@ -33,7 +33,7 @@ export const pt = {
     verNaPratica: "Ver na prática",
     microBr: "Grátis para sempre. Sem cartão.",
     microIntl: "Garantia de 7 dias. Cancele quando quiser.",
-    fotoAlt: "Criadora olhando para o celular, iluminada pela tela, em um ambiente escuro",
+    fotoAlt: "Empreendedora no balcão da própria loja, sorrindo para o celular",
   },
 
   conversa: {

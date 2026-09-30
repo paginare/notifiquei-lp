@@ -27,7 +27,7 @@ export const es: CopyHome = {
     verNaPratica: "Verlo en acción",
     microBr: "Gratis para siempre. Sin tarjeta.",
     microIntl: "Garantía de 7 días. Cancela cuando quieras.",
-    fotoAlt: "Creadora mirando el móvil, iluminada por la pantalla, en un ambiente oscuro",
+    fotoAlt: "Emprendedora en el mostrador de su tienda, sonriendo al móvil",
   },
 
   conversa: {
