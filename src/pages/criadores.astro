@@ -1,27 +1,61 @@
 ---
+/**
+ * Página para criadores, no visual da home nova (30/09). Reaproveita as seções
+ * da home (autoridade, perfis, demo, tour, planos) e troca o resto por copy de
+ * criador: os usos de um comentário, passos e perguntas próprias.
+ * Só promete o que o produto faz hoje — nada de "qualifica lead" ou "sua voz".
+ */
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import FinalCta from "../components/FinalCta.astro";
-import PlatformShowcase from "../components/PlatformShowcase.astro";
-import Capabilities from "../components/Capabilities.astro";
-import "../styles/creators-sections.css";
+import Icon from "../components/HomeIcon.astro";
+import LpHero from "../components/LpHero.astro";
+import HomeAuthority from "../components/HomeAuthority.astro";
+import HomeStories from "../components/HomeStories.astro";
+import HomeDemo from "../components/HomeDemo.astro";
+import HomeTour from "../components/HomeTour.astro";
+import HomePricing from "../components/HomePricing.astro";
+import ZapFlutuante from "../components/ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { WPP, plans } from "../data/home";
+import { mensalNoAnual } from "../i18n/planos";
+import "../styles/home.css";
 
-const APP = "https://app.notifiquei.com.br";
+const t = copyHome("pt-BR");
 
-const steps = [
-  { n: "01", t: "Conecte em 3 cliques", d: "Login pela Meta oficial. A gente não pede sua senha (e nem podia). Zero risco de bloqueio, conta segura." },
-  { n: "02", t: "Escolha a palavra", d: "“Quero”, “preço”, “link”… você define. Quem comentar ou mandar DM com ela recebe a resposta na hora." },
-  { n: "03", t: "Volta a criar", d: "Os DMs respondem sozinhos, os leads chegam qualificados, e você só entra quando o cliente já quer comprar." },
+const hero = {
+  titulo: ["Seu post viraliza.", "A gente responde."],
+  lead: "Cada pessoa que comenta <strong>“QUERO”</strong> recebe o seu link no direct em segundos — no Instagram e no TikTok. Você volta a criar e ninguém fica sem resposta.",
+  cta: "Automatizar meu perfil",
+  ctaSecundario: "Ver funcionando",
+};
+const precoMicro = `Plano grátis pra começar · pagos a partir de R$ ${mensalNoAnual(plans[0].price)}/mês no anual`;
+
+// Os usos mais comuns entre criadores: a palavra que a pessoa comenta e o que chega no direct.
+const usos = [
+  { icon: "link", tag: "Link do post", palavra: "QUERO", resposta: "Oii! Aqui está o link do que eu mostrei no vídeo 💕", texto: "Curso, preset, produto ou página de venda: quem comenta recebe o link na hora, sem “link na bio”." },
+  { icon: "bookmark", tag: "Material grátis", palavra: "GUIA", resposta: "Prontinho! Seu guia grátis está aqui 📚", texto: "E-book, aula, planilha ou receita. A entrega é automática e o seu post ganha comentário." },
+  { icon: "heart", tag: "Publi e achadinho", palavra: "EU QUERO", resposta: "Seu link com cupom chegou! 🛍️", texto: "Link de afiliado da Shopee, Amazon, Mercado Livre ou o cupom da marca parceira — direto no direct." },
+  { icon: "spark", tag: "Sorteio", palavra: "PARTICIPO", resposta: "Você está participando! Boa sorte 🍀", texto: "Quem comenta a palavra entra na lista. No fim, você sorteia no painel — sem planilha e sem print." },
+  { icon: "chat", tag: "Stories", palavra: "respondeu o story", resposta: "Que bom que gostou! Olha o link aqui 👇", texto: "Quem responde o seu story também recebe a mensagem. Bom pra caixinha, enquete e lançamento." },
+  { icon: "bolt", tag: "Post viral", palavra: "800 comentários", resposta: "Todo mundo respondido em segundos ✨", texto: "O reel explodiu? Cada comentário vira uma conversa, sem você passar a noite copiando e colando." },
 ];
 
-const perks = [
-  { t: "Aguenta o tranco do viral", d: "800 comentários “quero” num reel que explodiu? Cada um vira uma conversa no DM, em segundos — sem você travar." },
-  { t: "Sorteia sem garimpar comentário", d: "Quem comenta a palavra entra sozinho. Você clica em sortear e ele mostra os ganhadores — sem planilha, sem print." },
-  { t: "Você dorme, ele vende", d: "Resposta automática 24h, mesmo de madrugada. Quem responde primeiro fica com o cliente." },
-  { t: "Sem risco pro perfil", d: "API oficial da Meta, parceiro certificado. Seu alcance e seus anúncios seguem normais." },
-  { t: "Só te chama quando importa", d: "Ele filtra e qualifica. Quando o lead esquenta, te marca pra você fechar — sem garimpar DM." },
-  { t: "Configura sem dev", d: "Você é criador, não programador. Escolhe o gatilho, responde três perguntas, ativa. Sem tutorial de duas horas." },
+const passos = [
+  { n: "01", icon: "instagram", titulo: "Conecte seu perfil", texto: "Login oficial do Instagram, pela Meta. Sua senha continua só com você." },
+  { n: "02", icon: "chat", titulo: "Escolha a palavra", texto: "“QUERO”, “LINK”, “GUIA”… e escreva a mensagem que a pessoa vai receber." },
+  { n: "03", icon: "bolt", titulo: "Poste e volte a criar", texto: "Seu público comenta, o Notifiquei responde. Você acompanha os cliques no painel." },
+];
+
+const faqs = [
+  { q: "Funciona com poucos seguidores?", a: "Funciona com perfil de qualquer tamanho. Quem responde rápido converte mais — não importa se você tem 500 ou 500 mil seguidores. Perfil menor costuma sentir o resultado primeiro." },
+  { q: "Isso pode bloquear meu Instagram?", a: "O Notifiquei usa a API oficial da Meta, e a conexão acontece pelo login do próprio Instagram. Você não precisa compartilhar sua senha com a gente. As automações devem respeitar as regras e os limites da plataforma." },
+  { q: "Preciso de conta profissional?", a: "Sim, uma conta Profissional ou de Criador no Instagram — é grátis de ativar e leva 1 minuto. É exigência da própria API oficial da Meta." },
+  { q: "Preciso saber programar?", a: "Não. Você escolhe o post, a palavra e a mensagem. Se sabe mandar mensagem no Instagram, sabe usar o Notifiquei." },
+  { q: "Dá pra mandar link de afiliado ou cupom de publi?", a: "Dá, e é um dos usos mais comuns. Você posta, pede pra comentarem a palavra-chave e o Notifiquei manda o seu link — de Shopee, Mercado Livre, Amazon, AliExpress, Magalu ou de qualquer loja." },
+  { q: "Funciona com TikTok?", a: "Sim. Os planos pagos incluem Instagram e DMs do TikTok (que exige uma conta Business), no mesmo plano. O plano grátis atende só o Instagram." },
+  { q: "O preço sobe se meu perfil crescer?", a: "Não. Contatos e automações são ilimitados nos planos pagos. O valor só muda se você trocar de plano." },
+  { q: "Posso cancelar quando quiser?", a: "Sim, sem fidelidade — você cancela pelo painel. Todo plano pago tem garantia de 7 dias: se não rolar, devolvemos 100% do valor." },
 ];
 
 const jsonLd = [
@@ -43,157 +77,158 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Funciona com poucos seguidores?", acceptedAnswer: { "@type": "Answer", text: "Sim. O Notifiquei funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores." } },
-      { "@type": "Question", name: "Preciso saber programar para usar?", acceptedAnswer: { "@type": "Answer", text: "Não. É tudo visual: você escolhe a palavra-chave e a resposta. Se sabe mandar mensagem no Instagram, sabe usar o Notifiquei." } },
-      { "@type": "Question", name: "O Notifiquei pode bloquear meu Instagram?", acceptedAnswer: { "@type": "Answer", text: "Não. O Notifiquei usa a API oficial da Meta e não pede sua senha. Não há risco de banimento." } },
-    ],
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   },
 ];
 ---
 
 <Base
   title="Notifiquei para criadores — seu post viraliza, a gente responde"
-  description="Pro criador que não dá conta dos DMs: o Notifiquei responde cada “quero” do seu post em segundos, com a sua voz, pela API oficial da Meta. Você cria, ele converte."
+  description="Pro criador que não dá conta dos comentários: o Notifiquei manda o seu link no direct de cada pessoa que comentou, em segundos, no Instagram e no TikTok. API oficial da Meta."
   path="/criadores"
   jsonLd={jsonLd}
+  heroPoster="/assets/creators/day-morning.webp"
+  lang="pt-BR"
 >
-  <Nav />
+  <div class="home-page lp-criadores">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="#planos" />
+    <main id="conteudo">
+      <LpHero tema={hero} micro={precoMicro} />
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero__bg" aria-hidden="true"></div>
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <span class="eyebrow is-plain">Criadores de 10k a 1M seguidores</span>
-          <h1 class="hero__title">Seu post viraliza.<br />A gente <span class="hl">responde</span>.</h1>
-          <p class="lead hero__lead">
-            Você postou aquele reel que explodiu. Agora tem 800 comentários “quero” esperando.
-            O Notifiquei manda o link pra cada um em segundos — você só acorda e vê o resultado.
-          </p>
-          <div class="hero__actions">
-            <a href={APP} class="btn btn--brand btn--lg">Automatizar meu Instagram<span class="arr" aria-hidden="true">→</span></a>
-            <a href="#como" class="btn btn--ghost btn--lg">Ver como funciona</a>
+      <HomeAuthority t={t.autoridade} />
+      <section class="home-proof" aria-label={t.provaMarcas}>
+        <div class="container">
+          <HomeStories titulo={t.perfisTitulo} />
+        </div>
+      </section>
+
+      <section class="home-section cr-usos" id="usos">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker"><Icon name="heart" size={17} /> FEITO PRA QUEM CRIA CONTEÚDO</span>
+            <h2 set:html={marcar("Um comentário.\n{hl}Muitas formas de usar.{/hl}")} />
+            <p>Você escolhe a palavra. Quem comenta recebe a mensagem certa no direct.</p>
           </div>
-          <ul class="hero__trust">
-            <li><span class="tick" aria-hidden="true">✓</span> API oficial Meta</li>
-            <li><span class="tick" aria-hidden="true">✓</span> Não parece robô</li>
-            <li><span class="tick" aria-hidden="true">✓</span> Responde em 3 segundos</li>
+          <ul class="cr-usos__grid">
+            {usos.map((u) => (
+              <li class="cr-uso">
+                <span class="cr-uso__tag"><Icon name={u.icon} size={16} /> {u.tag}</span>
+                <div class="cr-uso__cena" aria-hidden="true">
+                  <span class="cr-uso__comentario">{u.palavra}</span>
+                  <span class="cr-uso__resposta">{u.resposta}</span>
+                </div>
+                <p>{u.texto}</p>
+              </li>
+            ))}
           </ul>
         </div>
+      </section>
 
-        <div class="hero__demo">
-          <div class="rcard">
-            <div class="rcard__core">
-              <div class="rcard__bar"><span class="pill"><span class="dot is-live"></span> Automação ativa</span><span class="rcard__m">847 respostas hoje</span></div>
-              <div class="rbub rbub--in"><span class="rbub__who">@mariana.fit comentou no seu reel</span><p>“quero saber o preço do curso 😍”</p></div>
-              <div class="rcard__flow"><span></span>resposta automática no privado<span></span></div>
-              <div class="rbub rbub--out"><p>Oii! 😊 Tá <strong>R$ 297</strong> à vista. Te mando o link?</p></div>
-              <div class="rcard__done"><span class="rcard__check">✓</span> Mariana abriu o link · <strong>3s</strong></div>
-            </div>
+      <HomeDemo t={t.demo} />
+
+      <HomeTour />
+
+      <section class="home-section home-how" id="como">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+            <h2 set:html={marcar("Você é criador.\n{hl}Não programador.{/hl}")} />
+            <p>Três passos entre o post e a primeira resposta automática.</p>
+          </div>
+          <ol class="home-steps">
+            {passos.map((p) => (
+              <li><div class="home-step__top"><span>{p.n}</span><Icon name={p.icon} size={28} /></div><h3>{p.titulo}</h3><p>{p.texto}</p></li>
+            ))}
+          </ol>
+          <div class="home-how__actions">
+            <a href="#planos" class="btn btn--brand btn--lg" data-home-cta="steps">Começar agora <Icon name="arrow" size={20} /></a>
+            <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- COMO FUNCIONA -->
-    <section class="section section--paper2" id="como">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Como funciona</span>
-          <h2>Você é criador,<br />não desenvolvedor.</h2>
-          <p class="lead">Por isso a gente fez simples: sem configuração infinita, sem tutorial de duas horas, sem chamar o sobrinho que mexe com tecnologia.</p>
+      <HomePricing t={t.planos} lang="pt-BR" src="criadores" />
+
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">{t.faq.kicker}</span>
+            <h2 set:html={marcar("Dúvidas de\n{hl}quem cria.{/hl}")} />
+            <p>{t.faq.lead}</p>
+            <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+          </div>
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
         </div>
-        <ol class="steps">
-          {steps.map((s, i) => (
-            <li class="step reveal" style={`--reveal-delay:${i * 110}ms`}>
-              <span class="step__n">{s.n}</span>
-              <h3 class="step__t">{s.t}</h3>
-              <p class="step__d">{s.d}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+      </section>
 
-    <!-- CONTRASTE -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Veja a diferença</span>
-          <h2>Quem responde primeiro<br />fica com o cliente.</h2>
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">quero! 💕</span>
+          <span class="home-kicker">ENQUANTO VOCÊ LIA ISSO…</span>
+          <h2 set:html={marcar("Alguém comentou\n{span}“quero” no seu post.{/span}")} />
+          <p>Deixa o Notifiquei responder. Você volta a criar.</p>
+          <div class="home-final__actions">
+            <a href="#planos" class="btn btn--lg" data-home-cta="final_cta">Automatizar meu perfil <Icon name="arrow" size={22} /></a>
+            <small>{t.final.microBr}</small>
+          </div>
         </div>
-        <div class="contrast__grid">
-          <article class="convo convo--lose reveal">
-            <header class="convo__head"><span class="convo__tag">Sem Notifiquei</span></header>
-            <div class="convo__body">
-              <div class="msg msg--them">Oi! Quanto tá o curso? 😍</div>
-              <div class="convo__gap">⋯ 6 horas depois</div>
-              <div class="msg msg--them">Deixa, comprei de outra pessoa.</div>
-            </div>
-            <footer class="convo__foot convo__foot--lose">Cliente foi embora em 6 horas.</footer>
-          </article>
-          <article class="convo convo--win reveal" style="--reveal-delay:120ms">
-            <header class="convo__head"><span class="convo__tag convo__tag--win">Com Notifiquei</span></header>
-            <div class="convo__body">
-              <div class="msg msg--them">Oi! Quanto tá o curso? 😍</div>
-              <div class="msg msg--me">Oii! 😊 R$ 297 à vista. Te mando o link?<span class="msg__meta">14:32 · automático</span></div>
-              <div class="msg msg--them">Manda! Quero comprar agora 🔥</div>
-            </div>
-            <footer class="convo__foot convo__foot--win">Respondido em 1 minuto.</footer>
-          </article>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
+    <Footer />
+    <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
+  </div>
 
-    <PlatformShowcase bg="paper2" title="Por dentro,<br />feito pra criador." />
-    <Capabilities bg="paper" eyebrow="Tudo num lugar" title="Mais que responder DM." lead="O que você precisa pra transformar audiência em venda — sem juntar cinco ferramentas." />
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
 
-    <!-- PERKS -->
-    <section class="section section--paper2">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Feito pra rodar sozinho</span>
-          <h2>Escala sua audiência<br />sem escalar seu tempo.</h2>
-        </div>
-        <div class="perks">
-          {perks.map((p, i) => (
-            <article class="perk reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
-              <h3 class="perk__t">{p.t}</h3>
-              <p class="perk__d">{p.d}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <FinalCta
-      eyebrow="Enquanto você lia isso…"
-      title="Alguém comentou"
-      titleHl="“quero”."
-      lead="Teste 7 dias. Se não rolar, devolvemos 100%. Sem pegadinha."
-      primaryHref={APP}
-      primaryLabel="Começar agora"
-      secondaryHref="/#planos"
-      secondaryLabel="Ver planos"
-    />
-  </main>
-
-  <Footer />
-
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-      var heroCta = document.querySelector('.hero__actions .btn--brand');
-      if (heroCta) {
-        heroCta.addEventListener('click', function () {
-          window.posthog?.capture('signup_cta_clicked', { section: 'creators_hero' });
-        });
-      }
+    document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+      cta.addEventListener("click", () => (window as any).posthog?.capture?.("hero_cta_clicked", { section: `creators_${cta.dataset.homeCta}` }));
     });
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly", page: "criadores" });
+    });
+    document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "creators_plans" }));
   </script>
+
+  <style is:global>
+    /* Hero claro (o mesmo das landings): o menu fica sempre na versão "rolada". */
+    .home-page.lp-criadores .nav, .home-page.lp-criadores #siteNav.nav { background: var(--paper); color: var(--ink); box-shadow: 0 2px 15px #14100e0a; }
+    .home-page.lp-criadores .nav:not(.is-scrolled):not(.is-open) .nav__links a { color: var(--ink-soft); }
+    .home-page.lp-criadores .nav .nav__start { background: var(--brand-ink); color: #fff; }
+    .home-page.lp-criadores .nav .lang__btn { border-color: var(--line); background: transparent; }
+  </style>
 </Base>
 
 <style>
-  /* CSS das seções: src/styles/creators-sections.css (compartilhado) */
+  .cr-usos { background: var(--paper); }
+  .cr-usos__grid { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cr-uso { display: flex; flex-direction: column; gap: 18px; padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+  .cr-uso__tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .cr-uso__tag :global(svg) { color: var(--brand-ink); }
+  /* Mini conversa: o comentário à esquerda e a resposta automática à direita. */
+  .cr-uso__cena { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #fbf1f4; border-radius: 16px; }
+  .cr-uso__comentario { align-self: flex-start; padding: 8px 13px; background: #fff; border-radius: 14px 14px 14px 4px; font-size: 14px; font-weight: 700; color: var(--brand-ink); box-shadow: 0 3px 10px #14100e0f; }
+  .cr-uso__resposta { align-self: flex-end; max-width: 88%; padding: 9px 13px; background: var(--brand); color: #fff; border-radius: 14px 14px 4px 14px; font-size: 13px; line-height: 1.4; }
+  .cr-uso p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 960px) { .cr-usos__grid { grid-template-columns: repeat(2, 1fr); } }
+  /* No celular os cartões deslizam pro lado, pra seção não virar uma rolagem sem fim. */
+  @media (max-width: 620px) {
+    .cr-usos__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 32px -16px 0; padding: 0 16px 8px; scrollbar-width: none; }
+    .cr-usos__grid::-webkit-scrollbar { display: none; }
+    .cr-uso { flex: 0 0 82%; scroll-snap-align: center; }
+  }
 </style>
