@@ -31,7 +31,7 @@ export const en = {
     lead:
       "For creators and shops selling on Instagram and TikTok. It replies to comments, DMs and story replies in <em>your</em> voice, on Meta's official API, and only pings you when the customer is ready to buy.",
     cta: "Get started",
-    proof: "<strong>2,000+ creators</strong> already sell on autopilot · on Meta's official API",
+    proof: "<strong>360+ active profiles</strong> already reply on autopilot · on Meta's official API",
   },
 
   proof: [
@@ -54,7 +54,7 @@ export const en = {
     eyebrow: "Who uses it",
     title: "Built for creators<br />like you.",
     lead:
-      "From fitness to food, from digital products to local shops — Notifiquei already replies for more than <strong>2,000 creators</strong> while they create (or sleep).",
+      "From fitness to food, from digital products to local shops — Notifiquei already replies for more than <strong>360 active profiles</strong> while they create (or sleep).",
     nichos: {
       Nutrição: "Nutrition", Fitness: "Fitness", Pet: "Pets", Beleza: "Beauty",
       Confeitaria: "Baking", Estética: "Aesthetics", Infoproduto: "Digital products",

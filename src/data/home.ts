@@ -2,10 +2,12 @@ const SRC = "home"; // atribuição A/B: identifica a landing de origem (?src=) 
 export const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
 export const WPP = "https://wa.me/551231995949";
 
-// Snapshot fornecido pelo responsável em 08/09/2026. Só o total: sem nome de conta
-// e sem a régua de destaques, que o dono pediu para tirar.
+// Soma de seguidores das contas do Instagram ATIVAS no banco em 30/09/2026 (363
+// contas; o produto atualiza o número de cada uma todo dia). Só o total: sem nome
+// de conta e sem a régua de destaques, que o dono pediu para tirar.
 export const connectedAudience = {
-  totalFollowers: 48_680_969,
+  totalFollowers: 119_115_757,
+  contasAtivas: 363,
 };
 
 // Preços por moeda. BRL é o de sempre (Cakto). USD/EUR batem com o catálogo criado
@@ -104,43 +106,48 @@ export const handles: Record<string, string> = {
   "mulher-motivada.webp": "@mulhermotivadaa__",
 };
 
-// Contas conectadas mostradas em formato de stories. Ordem = tamanho do
-// público. O dono confirmou a autorização de uso em 21/09/2026.
+// Contas conectadas mostradas em formato de stories: as maiores contas ATIVAS no
+// banco em 30/09/2026, na ordem do tamanho do público (quem desconectou saiu).
+// O dono pediu a atualização da lista de clientes em 30/09/2026.
 export const perfis = [
   { arquivo: "resiliencia_humana", handle: "resiliencia_humana" },
   { arquivo: "mudeparaevoluir", handle: "mudeparaevoluir" },
   { arquivo: "mentedeambicao", handle: "mentedeambicao" },
+  { arquivo: "opoeteiro", handle: "opoeteiro" },
   { arquivo: "mulheres_maduras", handle: "mulheres_maduras" },
-  { arquivo: "drjuanlambert", handle: "drjuanlambert" },
   { arquivo: "gummy", handle: "gummy" },
   { arquivo: "valordiario", handle: "valordiario" },
-  { arquivo: "mentalidade_autoritaria", handle: "mentalidade_autoritaria" },
+  { arquivo: "picapaucretino", handle: "picapaucretino" },
+  { arquivo: "mentorsandropena", handle: "mentorsandropena" },
   { arquivo: "emagrecercomdietaofcc", handle: "emagrecercomdietaofcc" },
+  { arquivo: "eusouolider_", handle: "eusouolider_" },
   { arquivo: "sabedoriaexponencial_", handle: "sabedoriaexponencial_" },
   { arquivo: "mulherderiqueza", handle: "mulherderiqueza" },
   { arquivo: "poesiadasruas", handle: "poesiadasruas" },
   { arquivo: "respiresucesso", handle: "respiresucesso" },
   { arquivo: "metamotivacional", handle: "metamotivacional" },
-  { arquivo: "floresceremospoesia", handle: "floresceremospoesia" },
+  { arquivo: "humanidadehistorica", handle: "humanidadehistorica" },
+  { arquivo: "fredcretino", handle: "fredcretino" },
+  { arquivo: "aproximandodedeus_", handle: "aproximandodedeus_" },
+  { arquivo: "emagrecendo.saudavelmenteaqui", handle: "emagrecendo.saudavelmenteaqui" },
+  { arquivo: "zoeiraclt", handle: "zoeiraclt" },
+  { arquivo: "receitas_fitnessoficial", handle: "receitas_fitnessoficial" },
+  { arquivo: "cicatrizam", handle: "cicatrizam" },
   { arquivo: "ousadiamental", handle: "ousadiamental" },
+  { arquivo: "dieta_e_receitas_emagrecer", handle: "dieta_e_receitas_emagrecer" },
+  { arquivo: "sigomecanico", handle: "sigomecanico" },
   { arquivo: "mentaldeaco", handle: "mentaldeaco" },
-  { arquivo: "umanordestinacitou", handle: "umanordestinacitou" },
+  { arquivo: "tendenciamental", handle: "tendenciamental" },
   { arquivo: "tecnicadamente", handle: "tecnicadamente" },
-  { arquivo: "curiosidadescantada", handle: "curiosidadescantada" },
   { arquivo: "mentalidade.valiosa", handle: "mentalidade.valiosa" },
+  { arquivo: "receitas__naturaiss", handle: "receitas__naturaiss" },
+  { arquivo: "receitass_saudaveis_br", handle: "receitass_saudaveis_br" },
   { arquivo: "opoderdaconsistencia", handle: "opoderdaconsistencia" },
   { arquivo: "amandaamicaele", handle: "amandaamicaele" },
   { arquivo: "fazendoanossafestaoficial", handle: "fazendoanossafestaoficial" },
   { arquivo: "karenreceitasfit", handle: "karenreceitasfit" },
-  { arquivo: "diquinhas.juliana", handle: "diquinhas.juliana" },
+  { arquivo: "mentalidaade", handle: "mentalidaade" },
   { arquivo: "dr.limpezaof", handle: "dr.limpezaof" },
-  { arquivo: "donamaria_resolve", handle: "donamaria_resolve" },
-  { arquivo: "gestoresiliente", handle: "gestoresiliente" },
-  { arquivo: "mentesdeslumbrantess", handle: "mentesdeslumbrantess" },
-  { arquivo: "chavesdisse", handle: "chavesdisse" },
-  { arquivo: "objetosdodia", handle: "objetosdodia" },
-  { arquivo: "fatoscomclique", handle: "fatoscomclique" },
-  { arquivo: "sutilmenteforte", handle: "sutilmenteforte" },
 ];
 
 export const clientes = [

@@ -225,7 +225,7 @@ export const en: CopyHome = {
     maisFechar: "Close",
     provas: [
       { titulo: "7-day guarantee", texto: "100% of your money back." },
-      { titulo: "+600 creators and brands", texto: "already use Notifiquei." },
+      { titulo: "360+ active profiles", texto: "of creators and brands on Notifiquei." },
       { titulo: "People, not bots", texto: "Real answers over chat." },
     ],
     diferenciais: [

@@ -237,7 +237,7 @@ export const pt = {
     // que já está no cartão. Nota média fica de fora enquanto não houver fonte.
     provas: [
       { titulo: "Garantia de 7 dias", texto: "Devolução 100% do seu dinheiro." },
-      { titulo: "+600 criadores e marcas", texto: "já usam o Notifiquei." },
+      { titulo: "+360 perfis ativos", texto: "de criadores e marcas no Notifiquei." },
       { titulo: "Suporte em português", texto: "Resposta de gente, no chat." },
     ],
     // Nome, frase e itens de cada plano. Preço e link ficam em data/home.ts:

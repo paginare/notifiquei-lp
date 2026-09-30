@@ -30,7 +30,7 @@ export const es = {
     lead:
       "Para creadores y tiendas que venden en Instagram y TikTok. Responde comentarios, DMs e historias con <em>tu</em> voz, por la API oficial de Meta, y solo te avisa cuando el cliente ya quiere comprar.",
     cta: "Empezar",
-    proof: "<strong>+2.000 creadores</strong> ya venden en automático · con la API oficial de Meta",
+    proof: "<strong>+360 perfiles activos</strong> ya responden en automático · con la API oficial de Meta",
   },
 
   proof: [
@@ -53,7 +53,7 @@ export const es = {
     eyebrow: "Quién lo usa",
     title: "Hecho para creadores<br />como tú.",
     lead:
-      "De fitness a gastronomía, de infoproductos a tiendas de barrio — Notifiquei ya responde por más de <strong>2.000 creadores</strong> mientras ellos crean (o duermen).",
+      "De fitness a gastronomía, de infoproductos a tiendas de barrio — Notifiquei ya responde por más de <strong>360 perfiles activos</strong> mientras ellos crean (o duermen).",
     nichos: {
       Nutrição: "Nutrición", Fitness: "Fitness", Pet: "Mascotas", Beleza: "Belleza",
       Confeitaria: "Repostería", Estética: "Estética", Infoproduto: "Infoproductos",
