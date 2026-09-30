@@ -1,7 +1,7 @@
 ---
 // Casos reais (só em português): números em src/data/casos.ts.
 import Icon from "./HomeIcon.astro";
-import { casos } from "../data/casos";
+import { casos, casosAnonimos } from "../data/casos";
 import { marcar } from "../i18n/home";
 ---
 <section class="home-section casos" aria-labelledby="casos-titulo">
@@ -29,6 +29,19 @@ import { marcar } from "../i18n/home";
         </article>
       ))}
     </div>
+    <h3 class="casos__sub">Outros perfis grandes, nos últimos 30 dias</h3>
+    <ul class="casos__anon">
+      {casosAnonimos.map((c) => (
+        <li>
+          <span class="casos__anon-ic"><Icon name={c.icon} size={20} /></span>
+          <b>{c.nicho}</b>
+          <small>{c.seguidores} de seguidores</small>
+          <p><span>{c.taxa}</span> de quem recebeu o link clicou</p>
+          <small>{c.respostas} respostas automáticas · {c.receberam} pessoas receberam o link</small>
+        </li>
+      ))}
+    </ul>
+    <p class="casos__nota">Perfis sem nome para preservar a privacidade dos clientes. Taxa de clique medida pelos links rastreados do Notifiquei.</p>
   </div>
 </section>
 
@@ -47,6 +60,15 @@ import { marcar } from "../i18n/home";
   .caso__nums b { display: block; font-family: var(--font-display); font-size: 22px; letter-spacing: -.03em; }
   .caso__nums small { display: block; font-size: 12px; line-height: 1.4; color: var(--ink-soft); margin-top: 4px; }
   .caso__rodape { font-size: 12px; color: var(--ink-soft); margin-top: auto; }
-  @media (max-width: 900px) { .casos__grade { grid-template-columns: 1fr; } }
+  .casos__sub { text-align: center; font-size: 20px; letter-spacing: -.02em; margin-top: 56px; }
+  .casos__anon { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .casos__anon li { display: flex; flex-direction: column; gap: 4px; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+  .casos__anon-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #fbe3ec; color: var(--brand-ink); margin-bottom: 8px; }
+  .casos__anon b { font-family: var(--font-display); font-size: 18px; letter-spacing: -.02em; }
+  .casos__anon small { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+  .casos__anon p { margin: 12px 0 6px; font-size: 14px; color: var(--ink-soft); }
+  .casos__anon p span { display: block; font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: -.05em; color: var(--brand-ink); margin-bottom: 4px; }
+  .casos__nota { text-align: center; font-size: 11px; color: var(--ink-soft); margin-top: 16px; }
+  @media (max-width: 900px) { .casos__grade, .casos__anon { grid-template-columns: 1fr; } }
   @media (max-width: 480px) { .caso { padding: 22px; } .caso__nums { grid-template-columns: 1fr; } }
 </style>
