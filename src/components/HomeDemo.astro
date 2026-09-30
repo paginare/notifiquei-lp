@@ -159,4 +159,27 @@ const cena = t.cenas[0];
   @media (max-width: 480px) { .demo-scene { height: 545px; border-radius: 20px; } .demo-scene__top { inset: 18px 17px auto; } .demo-scene__top > span:first-child { font-size: 9px; } .demo__post { top: 55px; left: 15px; width: 207px; } .demo__photo img { height: 203px; } .demo__photo > span { font-size: 11px; left: 8px; } .demo__post-head { padding: 10px; } .demo__caption { font-size: 9px; padding: 11px; } .demo__comment { top: 96px; right: 12px; width: 180px; padding: 11px; gap: 7px; } .demo__comment b { font-size: 8px; } .demo__comment div > span { font-size: 12px; } .demo__avatar { width: 28px; height: 28px; font-size: 11px; } .demo__connection { top: 172px; right: 14px; width: 76px; } .demo__message { top: 264px; right: 13px; width: 260px; padding: 13px; } .demo__bubble { font-size: 12px; padding: 11px; } .demo__bubble p { min-height: 60px; } .demo__product-link { font-size: 10px; padding: 8px; } .demo__notification { left: 15px; bottom: 18px; padding: 10px; } .demo__notification b { font-size: 11px; } .demo__notification small { font-size: 9px; } .demo__choice-heading strong { font-size: 22px; } .demo__choice-copy { font-size: 14px; } }
   @media (max-width: 350px) { .demo__post { width: 181px; left: 12px; } .demo__photo img { height: 187px; } .demo__photo > span { font-size: 9px; } .demo__comment { width: 166px; right: 10px; } .demo__message { width: 238px; right: 11px; } .demo__bubble { font-size: 11px; } .demo__notification { bottom: 15px; } .demo__message-head small { font-size: 8px; } }
   @media (prefers-reduced-motion: reduce) { .demo-scene, .demo__choice-plus::after { transition: none; } }
+
+  /* Animação da cena em CSS puro (antes GSAP): roda quando a cena ganha
+     .is-playing (JS mínimo em scripts/home-motion.ts, ao entrar na tela, ao
+     trocar de exemplo e no botão de repetir). Sem a classe, a cena fica
+     completa e parada — é o estado de quem não tem JS ou pede menos movimento.
+     translate/scale não mexem na inclinação (transform: rotate) dos cartões. */
+  @keyframes nf-demo-sobe { from { opacity: 0; translate: 0 var(--de, 20px); scale: var(--escala, 1); } to { opacity: 1; translate: 0 0; scale: 1; } }
+  @keyframes nf-demo-aparece { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes nf-demo-digitando { 0% { opacity: 0; visibility: visible; translate: 0 20px; } 15% { opacity: 1; visibility: visible; translate: 0 0; } 88% { opacity: 1; visibility: visible; translate: 0 0; } 99.9% { opacity: 0; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+  @keyframes nf-demo-bolinha { from { translate: 0 0; opacity: .4; } to { translate: 0 -4px; opacity: 1; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .demo-scene.is-playing .demo__comment { --de: 38px; --escala: .94; animation: nf-demo-sobe .55s cubic-bezier(.215,.61,.355,1) both; }
+    .demo-scene.is-playing .demo__connection { animation: nf-demo-aparece .35s cubic-bezier(.215,.61,.355,1) .4s both; }
+    .demo-scene.is-playing .demo__typing { animation: nf-demo-digitando 1.2s cubic-bezier(.215,.61,.355,1) .75s both; }
+    .demo-scene.is-playing .demo__typing-dots i { animation: nf-demo-bolinha .18s ease-out .85s 8 alternate both; }
+    .demo-scene.is-playing .demo__typing-dots i:nth-child(2) { animation-delay: .95s; }
+    .demo-scene.is-playing .demo__typing-dots i:nth-child(3) { animation-delay: 1.05s; }
+    .demo-scene.is-playing .demo__message { --de: 34px; --escala: .97; animation: nf-demo-sobe .65s cubic-bezier(.34,1.36,.64,1) 1.9s both; }
+    .demo-scene.is-playing .demo__product-link { --de: 8px; animation: nf-demo-sobe .4s cubic-bezier(.215,.61,.355,1) 2.3s both; }
+    .demo-scene.is-playing .demo__sent { animation: nf-demo-aparece .35s cubic-bezier(.215,.61,.355,1) 2.6s both; }
+    .demo-scene.is-playing .demo__notification { --de: 20px; --escala: .95; animation: nf-demo-sobe .55s cubic-bezier(.34,1.5,.64,1) 2.8s both; }
+    .demo-scene.is-paused * { animation-play-state: paused !important; }
+  }
 </style>

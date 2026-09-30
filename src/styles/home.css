@@ -608,3 +608,9 @@
    só o menu e o rodapé novos. Os títulos delas ficam fora das regras da home
    (ver :where(:not(.pagina-antiga *)) no topo, que mantém a especificidade); aqui só o respiro do menu fixo. */
 .home-page.pagina-antiga main { padding-top: 40px; }
+
+/* Entrada suave das seções ao rolar (classes postas por scripts/home-motion.ts). */
+@media (prefers-reduced-motion: no-preference) {
+  .nf-rev { opacity: 0; translate: 0 28px; transition: opacity .75s cubic-bezier(.215,.61,.355,1), translate .75s cubic-bezier(.215,.61,.355,1); transition-delay: calc(var(--nf-rev-i, 0) * 85ms); }
+  .nf-rev.is-in { opacity: 1; translate: 0 0; }
+}

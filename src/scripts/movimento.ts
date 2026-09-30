@@ -1,4 +1,4 @@
-// Carrega as animações (GSAP + home-motion, ~1s de CPU no celular) só depois
+// Carrega o controle das animações (home-motion: pausa, repetir, entrada ao rolar) só depois
 // que a página já apareceu: após o load, quando o navegador fica livre, ou na
 // primeira interação. O conteúdo é todo renderizado no servidor; a animação é
 // enfeite e não pode atrasar o primeiro desenho (LCP do PageSpeed mobile).

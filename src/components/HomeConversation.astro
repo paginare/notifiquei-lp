@@ -1,16 +1,20 @@
 ---
 import Icon from "./HomeIcon.astro";
 import { type CopyHome } from "../i18n/home";
+import { cssConversa } from "../lib/animacao-conversa";
 
 // imagens: foto do cartão de link por exemplo (a LP de tráfego troca pelo tema).
 interface Props { t: CopyHome["conversa"]; imagens?: string[]; }
 const { t, imagens } = Astro.props;
 const conversations = t.exemplos;
+// Animação em CSS puro (ver lib/animacao-conversa.ts); o JS só pausa/retoma.
+const animacao = cssConversa(conversations.length);
 // As fotos do cartão de link não mudam com o idioma.
 // Miniaturas (120px): aparecem com ~44px na conversa do topo; a foto cheia pesava 50–77 KB cada.
 const IMAGENS = ["/assets/home/creator-fashion-v2-thumb.webp", "/assets/home/creator-content-v2-thumb.webp", "/assets/home/creator-business-v2-thumb.webp"];
 ---
 
+<Fragment set:html={`<style>${animacao}</style>`} />
 <div class="hero-chat" data-chat-loop aria-label={t.topo}>
   <div class="hero-chat__top">
     <span><Icon name="instagram" size={16} /> {t.topo}</span>
