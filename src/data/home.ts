@@ -2,12 +2,12 @@ const SRC = "home"; // atribuição A/B: identifica a landing de origem (?src=) 
 export const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
 export const WPP = "https://wa.me/551231995949";
 
-// Soma de seguidores das contas do Instagram ATIVAS no banco em 30/09/2026 (363
+// Soma de seguidores das contas do Instagram ATIVAS no banco em 30/09/2026 (362
 // contas; o produto atualiza o número de cada uma todo dia). Só o total: sem nome
 // de conta e sem a régua de destaques, que o dono pediu para tirar.
 export const connectedAudience = {
-  totalFollowers: 119_115_757,
-  contasAtivas: 363,
+  totalFollowers: 119_115_706,
+  contasAtivas: 362,
 };
 
 // Preços por moeda. BRL é o de sempre (Cakto). USD/EUR batem com o catálogo criado

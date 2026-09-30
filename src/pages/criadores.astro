@@ -87,10 +87,10 @@ const jsonLd = [
   description="Pro criador que não dá conta dos comentários: o Notifiquei manda o seu link no direct de cada pessoa que comentou, em segundos, no Instagram e no TikTok. API oficial da Meta."
   path="/criadores"
   jsonLd={jsonLd}
-  heroPoster="/assets/creators/day-morning.webp"
+  heroPoster="/assets/creators/criadora-sofa.webp"
   lang="pt-BR"
 >
-  <div class="home-page lp-criadores">
+  <div class="home-page pagina-clara">
     <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
     <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="#planos" />
     <main id="conteudo">
@@ -204,13 +204,6 @@ const jsonLd = [
     document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "creators_plans" }));
   </script>
 
-  <style is:global>
-    /* Hero claro (o mesmo das landings): o menu fica sempre na versão "rolada". */
-    .home-page.lp-criadores .nav, .home-page.lp-criadores #siteNav.nav { background: var(--paper); color: var(--ink); box-shadow: 0 2px 15px #14100e0a; }
-    .home-page.lp-criadores .nav:not(.is-scrolled):not(.is-open) .nav__links a { color: var(--ink-soft); }
-    .home-page.lp-criadores .nav .nav__start { background: var(--brand-ink); color: #fff; }
-    .home-page.lp-criadores .nav .lang__btn { border-color: var(--line); background: transparent; }
-  </style>
 </Base>
 
 <style>

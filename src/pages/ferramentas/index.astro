@@ -2,26 +2,30 @@
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
-import "../../styles/tools.css";
+import Icon from "../../components/HomeIcon.astro";
+import { copyHome, marcar } from "../../i18n/home";
+import "../../styles/home.css";
+
+const t = copyHome("pt-BR");
 
 const tools = [
   {
-    href: "/ferramentas/sorteador",
+    href: "/ferramentas/sorteador", id: "sorteio", icon: "spark", uso: "Pra sorteio no post",
     name: "Sorteador de comentários",
     desc: "Sorteie ganhadores a partir dos comentários do seu post, de forma aleatória e justa.",
   },
   {
-    href: "/ferramentas/calculadora-engajamento",
+    href: "/ferramentas/calculadora-engajamento", id: "engaj", icon: "chart", uso: "Pra mídia kit e publi",
     name: "Calculadora de engajamento",
     desc: "Descubra a taxa de engajamento de um perfil ou post, com a referência do que é bom.",
   },
   {
-    href: "/ferramentas/calculadora-roi-dm",
+    href: "/ferramentas/calculadora-roi-dm", id: "roi", icon: "clock", uso: "Pra saber se vale automatizar",
     name: "Calculadora de ROI de DM",
     desc: "Veja quanto tempo e dinheiro você economiza respondendo DMs no automático.",
   },
   {
-    href: "/ferramentas/gerador-link-direct",
+    href: "/ferramentas/gerador-link-direct", id: "link", icon: "link", uso: "Pra bio, anúncio e material impresso",
     name: "Gerador de link de direct + QR",
     desc: "Crie um link e um QR Code que abrem direto na sua DM do Instagram.",
   },
@@ -45,85 +49,93 @@ const jsonLd = [
   description="Ferramentas grátis pra quem vende pelo Instagram: sorteador de comentários, calculadora de engajamento, calculadora de ROI de DM e gerador de link de direct. Sem login."
   path="/ferramentas"
   jsonLd={jsonLd}
+  lang="pt-BR"
 >
-  <Nav />
-  <main>
-    <section class="section tool">
-      <div class="container container--narrow">
-        <div class="section-head section-head--center reveal">
-          <span class="eyebrow is-plain">Grátis · sem login</span>
-          <h1>Ferramentas pra quem <span class="hl">vende</span> pelo Instagram</h1>
-          <p class="lead">
-            Um punhado de ferramentas grátis que rodam direto no navegador — sem cadastro,
-            sem instalar nada. Feitas pelo Notifiquei pra te ajudar no dia a dia.
-          </p>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head">
+        <div class="container">
+          <span class="home-kicker">GRÁTIS · SEM CADASTRO</span>
+          <h1 set:html={marcar("Ferramentas pra quem\n{hl}vende pelo Instagram.{/hl}")} />
+          <p>Rodam direto no navegador, sem login e sem instalar nada. Feitas pelo time do Notifiquei pro seu dia a dia.</p>
         </div>
+      </section>
 
-        <div class="hubgrid">
-          {tools.map((t) => (
-            <a class="hubcard reveal" href={t.href}>
-              <h2 class="hubcard__name">{t.name}</h2>
-              <p class="hubcard__desc">{t.desc}</p>
-              <span class="hubcard__go">Abrir <span aria-hidden="true">→</span></span>
-            </a>
-          ))}
+      <section class="fr-lista">
+        <div class="container">
+          <ul class="fr-grade">
+            {tools.map((f) => (
+              <li>
+                <a class="fr-card" href={f.href}>
+                  <div class={`fr-vis fr-vis--${f.id}`} aria-hidden="true">
+                    {f.id === "sorteio" && (<div class="fr-sorteio"><span>🏆 @mariana.fit</span><span>🥈 @joao.suplementos</span><span>🥉 @bia.estetica</span></div>)}
+                    {f.id === "engaj" && (<div class="fr-engaj"><b>4,8%</b><small>taxa de engajamento</small><i><em style="width:72%"></em></i></div>)}
+                    {f.id === "roi" && (<div class="fr-roi"><small>tempo economizado</small><b>32h</b><small>por mês</small></div>)}
+                    {f.id === "link" && (<div class="fr-link"><span class="fr-qr"></span><span>ig.me/m/sua.marca</span></div>)}
+                  </div>
+                  <div class="fr-card__txt">
+                    <span class="fr-uso"><Icon name={f.icon} size={15} /> {f.uso}</span>
+                    <h2>{f.name}</h2>
+                    <p>{f.desc}</p>
+                    <span class="home-text-link">Abrir ferramenta <Icon name="arrow" size={18} /></span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section section--ink on-ink toolcta">
-      <div class="container container--narrow toolcta__inner reveal">
-        <span class="eyebrow is-plain">Pronto pra automatizar de verdade?</span>
-        <h2 class="toolcta__title">As ferramentas ajudam. O Notifiquei <span class="hl">vende por você</span>.</h2>
-        <p class="lead" style="color:var(--on-ink-soft)">
-          Responda cada comentário e DM do Instagram na hora, com a sua voz, e transforme quem
-          interage em cliente — tudo pela API oficial da Meta.
-        </p>
-        <div class="toolcta__actions">
-          <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
-          <a href="/#como" class="tlink">Ver como funciona</a>
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">quero! 💕</span>
+          <span class="home-kicker">PRONTO PRA AUTOMATIZAR?</span>
+          <h2 set:html={marcar("As ferramentas ajudam.\n{span}O Notifiquei responde por você.{/span}")} />
+          <p>Cada comentário e direct respondido na hora, pela API oficial da Meta.</p>
+          <div class="home-final__actions">
+            <a href="/precos" class="btn btn--lg">Ver planos <Icon name="arrow" size={22} /></a>
+            <small>{t.final.microBr}</small>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
-  <Footer />
-
-  <style>
-    .hubgrid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .hubcard {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      padding: 1.5rem; background: var(--card);
-      border: 1px solid var(--line); border-radius: var(--r-lg);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
-    }
-    .hubcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--brand) 30%, var(--line)); }
-    .hubcard__name { font-size: 1.2rem; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
-    .hubcard__desc { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
-    .hubcard__go { margin-top: 0.4rem; font-weight: 700; color: var(--brand-ink); font-size: 0.95rem; }
-    @media (min-width: 640px) { .hubgrid { grid-template-columns: 1fr 1fr; } }
-  </style>
-
-  <script is:inline>
-    // PostHog: track tool card clicks
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.hubcard').forEach(function (card) {
-        card.addEventListener('click', function () {
-          var toolName = (card.querySelector('.hubcard__name') || {}).textContent;
-          window.posthog?.capture('tool_card_clicked', {
-            tool_name: toolName ? toolName.trim() : null,
-            tool_href: card.getAttribute('href'),
-          });
-        });
-      });
-
-      // Tools page signup CTA
-      var toolCta = document.querySelector('.toolcta .btn--inverse');
-      if (toolCta) {
-        toolCta.addEventListener('click', function () {
-          window.posthog?.capture('signup_cta_clicked', { section: 'tools_hub' });
-        });
-      }
-    });
+      </section>
+    </main>
+    <Footer />
+  </div>
+  <script>
+    import { initHomeMotion } from "../../scripts/home-motion";
+    initHomeMotion();
   </script>
 </Base>
+
+<style>
+  .fr-lista { padding-bottom: 110px; }
+  .fr-grade { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .fr-card { display: grid; grid-template-columns: 1fr 1.15fr; gap: 26px; align-items: center; height: 100%; padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 26px; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+  .fr-card:hover { box-shadow: 0 18px 44px #14100e14; transform: translateY(-2px); }
+  .fr-card__txt { display: flex; flex-direction: column; gap: 10px; padding-right: 10px; }
+  .fr-card h2 { font-size: 24px; line-height: 1.1; letter-spacing: -.03em; }
+  .fr-card p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .fr-uso { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--brand-ink); }
+
+  /* Miniaturas desenhadas de cada ferramenta */
+  .fr-vis { display: grid; place-items: center; aspect-ratio: 1; border-radius: 18px; background: #fbf1f4; padding: 18px; }
+  .fr-vis--engaj { background: #eef6f1; } .fr-vis--roi { background: #f4efe7; } .fr-vis--link { background: #2b2320; }
+  .fr-sorteio { display: grid; gap: 8px; width: 100%; }
+  .fr-sorteio span { padding: 9px 11px; background: #fff; border-radius: 12px; font-size: 12px; font-weight: 600; box-shadow: 0 3px 10px #14100e0f; }
+  .fr-engaj { display: grid; gap: 6px; width: 100%; text-align: center; }
+  .fr-engaj b, .fr-roi b { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -.05em; line-height: 1; color: #1f8a5b; }
+  .fr-engaj small, .fr-roi small { font-size: 11px; color: var(--ink-soft); }
+  .fr-engaj i { display: block; height: 8px; border-radius: 99px; background: #d7e9df; margin-top: 8px; }
+  .fr-engaj em { display: block; height: 100%; border-radius: inherit; background: #1f8a5b; }
+  .fr-roi { display: grid; gap: 4px; text-align: center; }
+  .fr-roi b { color: var(--brand-ink); }
+  .fr-link { display: grid; gap: 12px; justify-items: center; color: #fff; font-size: 11px; font-weight: 600; }
+  .fr-qr { width: 86px; height: 86px; border-radius: 10px; background:
+      conic-gradient(from 90deg at 30% 30%, #fff 25%, #0000 0) 0 0 / 18px 18px,
+      linear-gradient(#2b2320, #2b2320); border: 8px solid #fff; box-shadow: inset 0 0 0 6px #2b2320; }
+
+  @media (max-width: 1100px) { .fr-card { grid-template-columns: 1fr; } .fr-vis { aspect-ratio: 16 / 8; } .fr-card__txt { padding: 0 6px 6px; } }
+  @media (max-width: 700px) { .fr-grade { grid-template-columns: 1fr; } }
+</style>

@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import "../../styles/tools.css";
+import "../../styles/home.css";
 
 const jsonLd = [
   {
@@ -48,6 +49,7 @@ const jsonLd = [
   path="/ferramentas/calculadora-engajamento"
   jsonLd={jsonLd}
 >
+  <div class="home-page pagina-clara pagina-antiga">
   <Nav />
   <main>
     <section class="section tool">
@@ -108,7 +110,7 @@ const jsonLd = [
         <h2 class="toolcta__title">Responder rápido é o que <span class="hl">converte</span>.</h2>
         <p class="lead" style="color:var(--on-ink-soft)">
           Engajamento alto é ótimo, mas quem paga o boleto é a venda. O Notifiquei responde cada
-          comentário e DM na hora, com a sua voz, e transforma quem interage em cliente — pela API oficial da Meta.
+          comentário e DM na hora, com as suas mensagens, e transforma quem interage em cliente — pela API oficial da Meta.
         </p>
         <div class="toolcta__actions">
           <a href="/#planos" class="btn btn--inverse btn--lg">Começar grátis<span class="arr" aria-hidden="true">→</span></a>
@@ -118,6 +120,7 @@ const jsonLd = [
     </section>
   </main>
   <Footer />
+  </div>
 
   <script>
     const form = document.getElementById("eng") as HTMLFormElement | null;

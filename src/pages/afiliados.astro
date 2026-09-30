@@ -2,9 +2,12 @@
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import FinalCta from "../components/FinalCta.astro";
-import PlatformShowcase from "../components/PlatformShowcase.astro";
-import Capabilities from "../components/Capabilities.astro";
+import Icon from "../components/HomeIcon.astro";
+import HomeDemo from "../components/HomeDemo.astro";
+import { copyHome, marcar } from "../i18n/home";
+import "../styles/home.css";
+
+const t = copyHome("pt-BR");
 
 // Sem cadastro de afiliado dedicado ainda — CTA vai pro WhatsApp com msg pronta.
 // Quando existir o link do programa no Cakto, é só trocar esta constante.
@@ -26,6 +29,13 @@ const who = [
   { t: "Comunidade / grupo", d: "Lidera grupo no Telegram, WhatsApp ou Discord. Sua recomendação tem peso — monetize sem perder a confiança." },
 ];
 
+const faqs = [
+  { q: "Quanto é a comissão do afiliado Notifiquei?", a: "Você recebe 30% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." },
+  { q: "Quando o afiliado recebe?", a: "Todo mês. A comissão é paga via Kiwify ou Cakto, com cookie de 60 dias." },
+  { q: "Como me afilio ao Notifiquei?", a: "Você preenche o formulário (leva 2 minutos), a gente aprova em até 48h e libera seu painel com link personalizado e materiais prontos." },
+  { q: "O afiliado tem cupom de desconto pra oferecer?", a: "Tem. Cada afiliado recebe um cupom exclusivo de 10% de desconto recorrente pra oferecer pro público. O desconto vale enquanto a pessoa continuar cliente, o que ajuda a fechar a indicação." },
+];
+
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -45,12 +55,7 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Quanto é a comissão do afiliado Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você recebe 30% do pagamento mensal de cada cliente que indicar, de forma recorrente — enquanto o cliente continuar ativo. Sem teto." } },
-      { "@type": "Question", name: "Quando o afiliado recebe?", acceptedAnswer: { "@type": "Answer", text: "Todo mês. A comissão é paga via Kiwify ou Cakto, com cookie de 60 dias." } },
-      { "@type": "Question", name: "Como me afilio ao Notifiquei?", acceptedAnswer: { "@type": "Answer", text: "Você preenche o formulário (leva 2 minutos), a gente aprova em até 48h e libera seu painel com link personalizado e materiais prontos." } },
-      { "@type": "Question", name: "O afiliado tem cupom de desconto pra oferecer?", acceptedAnswer: { "@type": "Answer", text: "Tem. Cada afiliado recebe um cupom exclusivo de 10% de desconto recorrente pra oferecer pro público. O desconto vale enquanto a pessoa continuar cliente, o que ajuda a fechar a indicação." } },
-    ],
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   },
 ];
 ---
@@ -60,16 +65,19 @@ const jsonLd = [
   description="Indique o Notifiquei e receba 30% do pagamento mensal de cada cliente, enquanto ele continuar ativo. Comissão recorrente, sem teto, paga via Kiwify ou Cakto."
   path="/afiliados"
   jsonLd={jsonLd}
+  lang="pt-BR"
 >
-  <Nav />
+  <div class="home-page pagina-clara">
+  <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+  <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar="Quero me afiliar" comecarHref={WPP} />
 
-  <main>
+  <main id="conteudo">
     <!-- HERO -->
     <section class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow is-plain">Comissão recorrente enquanto o cliente pagar</span>
+          <span class="home-kicker"><Icon name="link" size={17} /> PROGRAMA DE AFILIADOS</span>
           <h1 class="hero__title">Indica uma vez.<br /><span class="hl">Recebe</span> todo mês.</h1>
           <p class="lead hero__lead">
             Você indica, o cliente assina e você recebe <strong>30% do pagamento mensal dele</strong> —
@@ -77,9 +85,8 @@ const jsonLd = [
             E ainda leva um cupom exclusivo de <strong>10% de desconto recorrente</strong> pra oferecer pro seu público.
           </p>
           <div class="hero__actions">
-            <a href={WPP} class="btn btn--brand btn--lg">Quero me afiliar<span class="arr" aria-hidden="true">→</span></a>
-            <a href="#calculadora" class="btn btn--ghost btn--lg">Calcular ganhos</a>
-            <a href="/afiliados/central" class="btn btn--ghost btn--lg">Central de apoio pra vender</a>
+            <a href={WPP} class="btn btn--brand btn--lg">Quero me afiliar <Icon name="arrow" size={20} /></a>
+            <a href="#calculadora" class="home-text-link">Calcular ganhos <Icon name="diagonal" size={18} /></a>
           </div>
           <ul class="hero__trust">
             <li><span class="tick" aria-hidden="true">✓</span> 30% recorrente</li>
@@ -106,35 +113,31 @@ const jsonLd = [
     </section>
 
     <!-- COMO FUNCIONA -->
-    <section class="section section--paper2">
+    <section class="home-section home-how">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Como funciona</span>
-          <h2>Quatro passos.<br />Um minuto.</h2>
-          <p class="lead">Você se cadastra, a gente aprova, você divulga, nós pagamos todo mês. Sem burocracia, sem planilha, sem contrato de 20 páginas.</p>
+        <div class="home-centered-heading">
+          <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+          <h2 set:html={marcar("Quatro passos.\n{hl}Sem burocracia.{/hl}")} />
+          <p>Você se cadastra, a gente aprova, você divulga e recebe todo mês. Sem planilha e sem contrato de 20 páginas.</p>
         </div>
-        <ol class="steps steps--4">
-          {steps.map((s, i) => (
-            <li class="step reveal" style={`--reveal-delay:${i * 90}ms`}>
-              <span class="step__n">{s.n}</span>
-              <h3 class="step__t">{s.t}</h3>
-              <p class="step__d">{s.d}</p>
-            </li>
+        <ol class="home-steps af-steps">
+          {steps.map((s) => (
+            <li><div class="home-step__top"><span>{s.n}</span></div><h3>{s.t}</h3><p>{s.d}</p></li>
           ))}
         </ol>
       </div>
     </section>
 
     <!-- CALCULADORA -->
-    <section class="section" id="calculadora">
+    <section class="home-section" id="calculadora">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Quanto dá pra ganhar</span>
-          <h2>Comissão que não<br />para de pingar.</h2>
-          <p class="lead">Diferente de afiliado de curso que ganha uma vez e acabou. Aqui você recebe 30% do pagamento mensal — todo mês — enquanto o cliente continuar ativo.</p>
+        <div class="home-centered-heading">
+          <span class="home-kicker"><Icon name="chart" size={17} /> QUANTO DÁ PRA GANHAR</span>
+          <h2 set:html={marcar("Comissão que não\n{hl}para de pingar.{/hl}")} />
+          <p>Diferente de afiliado de curso, que ganha uma vez e acabou: aqui você recebe 30% do pagamento mensal enquanto o cliente continuar ativo.</p>
         </div>
 
-        <div class="calc reveal">
+        <div class="calc">
           <div class="calc__controls">
             <label class="calc__field">
               <span class="calc__lbl">Clientes que você indica por mês</span>
@@ -145,8 +148,8 @@ const jsonLd = [
               <span class="calc__lbl">Plano médio dos seus indicados</span>
               <div class="calc__plans" id="calc-plan">
                 <button type="button" data-price="99" class="calc__plan">Solo · R$ 99</button>
-                <button type="button" data-price="499" class="calc__plan is-on">Pro · R$ 499</button>
-                <button type="button" data-price="799" class="calc__plan">Business · R$ 799</button>
+                <button type="button" data-price="198" class="calc__plan is-on">Duo · R$ 198</button>
+                <button type="button" data-price="499" class="calc__plan">5 contas · R$ 499</button>
               </div>
             </fieldset>
           </div>
@@ -160,20 +163,15 @@ const jsonLd = [
       </div>
     </section>
 
-    <PlatformShowcase bg="paper2" eyebrow="O produto que você indica" title="Fácil de indicar<br />porque é fácil de usar." lead="Você divulga uma ferramenta que o cliente realmente usa — e continua pagando. É isso que faz a comissão durar." />
-    <Capabilities bg="paper" eyebrow="Argumentos de venda" title="Tudo que o cliente ganha." lead="Use esses recursos na sua divulgação: cada um é um motivo a mais pro seu indicado assinar e ficar." />
+    <HomeDemo t={t.demo} />
 
     <!-- QUEM INDICA -->
-    <section class="section section--paper2">
+    <section class="home-section af-quem">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Pra quem é</span>
-          <h2>Quem indica<br />com resultado.</h2>
-          <p class="lead">A gente aprova afiliados com audiência alinhada — gente que fala com quem vende no Instagram. Se é o seu caso, bem-vindo.</p>
-        </div>
+        <div class="home-section-heading"><h2 set:html={marcar("Quem indica\n{hl}com resultado.{/hl}")} /><p>A gente aprova afiliados com audiência alinhada: gente que fala com quem vende no Instagram.</p></div>
         <div class="who">
-          {who.map((w, i) => (
-            <article class="whocard reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
+          {who.map((w) => (
+            <article class="whocard">
               <h3 class="whocard__t">{w.t}</h3>
               <p class="whocard__d">{w.d}</p>
             </article>
@@ -182,20 +180,41 @@ const jsonLd = [
       </div>
     </section>
 
-    <FinalCta
-      eyebrow="Renda recorrente de verdade"
-      title="Indica hoje."
-      titleHl="Recebe todo mês."
-      lead="Cadastro em 2 minutos, aprovação em até 48h. Sem teto de ganho, sem vencimento de comissão."
-      primaryHref={WPP}
-      primaryLabel="Quero me afiliar"
-      secondaryHref="/"
-      secondaryLabel="Conhecer o produto"
-      glyph="%"
-    />
+    <section class="home-section home-faq" id="faq">
+      <div class="container home-faq__grid">
+        <div class="home-faq__intro">
+          <span class="home-kicker">{t.faq.kicker}</span>
+          <h2 set:html={marcar("Dúvidas de\n{hl}afiliado.{/hl}")} />
+          <p>Quer vender melhor? A central tem roteiros, materiais e respostas prontas.</p>
+          <a href="/afiliados/central" class="home-text-link">Central de apoio <Icon name="diagonal" size={20} /></a>
+        </div>
+        <div class="faq">
+          {faqs.map((faq) => (
+            <details class="faq__item" name="faq">
+              <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>{faq.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-final">
+      <div class="container home-final__inner">
+        <span class="home-final__bubble" aria-hidden="true">30% todo mês 💸</span>
+        <span class="home-kicker">RENDA RECORRENTE DE VERDADE</span>
+        <h2 set:html={marcar("Indica hoje.\n{span}Recebe todo mês.{/span}")} />
+        <p>Cadastro em 2 minutos, aprovação em até 48h. Sem teto de ganho, sem vencimento de comissão.</p>
+        <div class="home-final__actions">
+          <a href={WPP} class="btn btn--lg">Quero me afiliar <Icon name="arrow" size={22} /></a>
+          <small>Fale com a gente no WhatsApp</small>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer />
+  </div>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -210,6 +229,8 @@ const jsonLd = [
 </Base>
 
 <script>
+  import { initHomeMotion } from "../scripts/home-motion";
+  initHomeMotion();
   const n = document.getElementById("calc-n") as HTMLInputElement | null;
   const nOut = document.getElementById("calc-n-out");
   const planWrap = document.getElementById("calc-plan");
@@ -217,7 +238,7 @@ const jsonLd = [
   const yearEl = document.getElementById("calc-year");
   const fmt = (v: number) => "R$ " + Math.round(v).toLocaleString("pt-BR");
 
-  let price = 499;
+  let price = 198;
   // base de clientes ativos após 12 meses acumulando N/mês com 85% de retenção
   const ACTIVE_FACTOR = (1 - Math.pow(0.85, 12)) / (1 - 0.85); // ≈ 5.72
 
@@ -239,7 +260,7 @@ const jsonLd = [
   planWrap?.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".calc__plan");
     if (!btn) return;
-    price = parseInt(btn.dataset.price || "499", 10);
+    price = parseInt(btn.dataset.price || "198", 10);
     planWrap.querySelectorAll(".calc__plan").forEach((b) => b.classList.toggle("is-on", b === btn));
     update();
   });
@@ -264,14 +285,20 @@ const jsonLd = [
 
 <style>
   /* HERO */
-  .hero { position: relative; padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) var(--space-section); overflow: clip; }
+  .hero { position: relative; padding-block: 150px clamp(4rem, 8vw, 6.5rem); overflow: clip; }
+  @media (max-width: 700px) { .hero { padding-top: 116px; } }
+  .af-steps { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .af-steps h3 { font-size: 24px; }
+  @media (max-width: 1000px) { .af-steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .af-steps { grid-template-columns: 1fr; } }
+  .af-quem { background: #eee7dc; }
   .hero__bg { position: absolute; inset: -10% -20% auto; height: 70%; z-index: 0; background: radial-gradient(60% 60% at 80% 0%, var(--brand-wash), transparent 70%); pointer-events: none; }
   .hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
-  .hero__title { margin-top: 1.4rem; font-size: clamp(2.9rem, 1.4rem + 7vw, 6.5rem); line-height: 0.92; letter-spacing: -0.04em; }
+  .hero__title { margin-top: 1rem; font-size: clamp(2.7rem, 1.4rem + 5vw, 5rem); line-height: 0.98; letter-spacing: -0.05em; }
   .hero__title .hl { color: var(--brand-ink); }
   .hero__lead { margin-top: 1.5rem; max-width: 32rem; }
   .hero__lead strong { color: var(--ink); }
-  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; margin-top: 2rem; }
   .hero__trust { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); }
   .hero__trust li { display: inline-flex; align-items: center; gap: 0.45em; }
   .hero__trust .tick { color: var(--brand-ink); font-weight: 800; }

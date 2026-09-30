@@ -9,6 +9,8 @@
  *    mas os textos ficam aqui de qualquer jeito.
  *  - Nada de nome de cliente: não temos autorização.
  */
+import { LINKS_PT } from "../../data/nav";
+
 export const pt = {
   meta: {
     title: "Notifiquei — Seu próximo cliente está no direct.",
@@ -19,12 +21,8 @@ export const pt = {
     navComecar: "Começar agora",
   },
 
-  nav: [
-    { href: "/#plataforma", label: "Recursos" },
-    { href: "/#como", label: "Como funciona" },
-    { href: "/criadores", label: "Para criadores" },
-    { href: "/#planos", label: "Planos" },
-  ],
+  // Menu único do site: o mesmo das outras páginas (components/Nav.astro).
+  nav: LINKS_PT,
 
   hero: {
     canais: { nota: "NO AUTOMÁTICO" },
@@ -149,7 +147,7 @@ export const pt = {
     enviado: "Link enviado no direct.",
     enviadoSub: "Mais uma conversa acontecendo.",
     depoisItens: [
-      "Respostas automáticas com a sua voz.",
+      "Respostas automáticas com o seu jeito de falar.",
       "Links chegando a quem quer saber mais.",
       "Seu tempo de volta para criar e vender.",
     ],

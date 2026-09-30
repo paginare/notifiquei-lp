@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import "../../styles/tools.css";
+import "../../styles/home.css";
 
 const jsonLd = [
   {
@@ -26,6 +27,7 @@ const jsonLd = [
   path="/ferramentas/calculadora-roi-dm"
   jsonLd={jsonLd}
 >
+  <div class="home-page pagina-clara pagina-antiga">
   <Nav />
   <main>
     <section class="section tool">
@@ -96,7 +98,7 @@ const jsonLd = [
         <span class="eyebrow is-plain">Da conta certa pra prática</span>
         <h2 class="toolcta__title">O Notifiquei faz esse trabalho <span class="hl">por você</span>.</h2>
         <p class="lead" style="color:var(--on-ink-soft)">
-          Responde cada comentário e DM na hora, com a sua voz, manda o link e te chama só quando
+          Responde cada comentário e DM na hora, com as suas mensagens, manda o link e te chama só quando
           o cliente está pronto pra fechar. Você economiza o tempo e ganha a venda.
         </p>
         <div class="toolcta__actions">
@@ -107,6 +109,7 @@ const jsonLd = [
     </section>
   </main>
   <Footer />
+  </div>
 
   <script>
     const form = document.getElementById("roi") as HTMLFormElement | null;

@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import "../../styles/home.css";
 
 const jsonLd = [
   {
@@ -55,6 +56,7 @@ const jsonLd = [
   path="/ferramentas/sorteador"
   jsonLd={jsonLd}
 >
+  <div class="home-page pagina-clara pagina-antiga">
   <Nav />
 
   <main>
@@ -140,6 +142,7 @@ const jsonLd = [
   </main>
 
   <Footer />
+  </div>
 
   <script>
     const form = document.getElementById("raffle") as HTMLFormElement | null;

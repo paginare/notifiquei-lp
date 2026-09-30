@@ -1,24 +1,15 @@
 ---
 import Logo from "./Logo.astro";
 import LangSwitcher from "./LangSwitcher.astro";
+import { LINKS_PT, type NavLink } from "../data/nav";
 interface Props {
   lang?: "pt-BR" | "en" | "es";
   langLabel?: string;
-  links?: { href: string; label: string }[];
+  links?: NavLink[];
   entrar?: string;
   comecar?: string;
   comecarHref?: string; // entrar="" esconde o link de login (landings de tráfego)
 }
-const LINKS_PT = [
-  { href: "/#como", label: "Como funciona" },
-  { href: "/#plataforma", label: "Plataforma" },
-  { href: "/#claude", label: "API + Claude" },
-  { href: "/criadores", label: "Criadores" },
-  { href: "/vs-manychat", label: "vs ManyChat" },
-  { href: "/blog", label: "Blog" },
-  { href: "/ferramentas", label: "Ferramentas" },
-  { href: "/#planos", label: "Planos" },
-];
 const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar = "Começar", comecarHref = "/#planos" } = Astro.props;
 ---
 <header class="nav" id="siteNav">
@@ -28,7 +19,14 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
     </a>
 
     <nav class="nav__links" aria-label="Navegação principal">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {links.map((l) => l.itens ? (
+        <div class="nav__grupo">
+          <button type="button" class="nav__grupo-btn" aria-expanded="false">{l.label}<span class="nav__seta" aria-hidden="true"></span></button>
+          <div class="nav__painel">
+            {l.itens.map((i) => <a href={i.href} class="nav__sub"><b>{i.label}</b>{i.desc && <small>{i.desc}</small>}</a>)}
+          </div>
+        </div>
+      ) : <a href={l.href}>{l.label}</a>)}
     </nav>
 
     <div class="nav__cta">
@@ -52,7 +50,7 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
 
   <div class="nav__mobile" id="navMobile" hidden>
     <nav class="nav__mobile-nav" aria-label="Navegação principal (mobile)">
-      {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
+      {links.flatMap((l) => l.itens ? l.itens : [l]).map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
     </nav>
     <div class="nav__mobile-lang"><LangSwitcher atual={lang} label={langLabel} /></div>
     {entrar && <a href="https://app.notifiquei.com.br" class="nav__mobile-link nav__mobile-login">{entrar}</a>}
@@ -117,6 +115,25 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
   }
   .nav__login:hover { color: var(--brand-ink); }
   .nav__start { padding: 0.6rem 1.15rem; font-size: 0.9rem; }
+
+  /* ── Grupo com painel (desktop): abre no hover, no foco e no clique ── */
+  .nav__grupo { position: relative; display: flex; align-items: center; }
+  .nav__grupo-btn { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+  .nav__seta { width: 7px; height: 7px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s; }
+  .nav__painel {
+    position: absolute; top: 100%; left: -18px; margin-top: 14px; min-width: 300px; padding: 8px;
+    display: grid; gap: 2px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 18px 40px #14100e1f; opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity .18s, transform .18s, visibility .18s; white-space: normal;
+  }
+  /* ponte invisível pro mouse não "cair" no vão entre o botão e o painel */
+  .nav__painel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+  .nav__grupo:hover .nav__painel, .nav__grupo:focus-within .nav__painel, .nav__grupo.is-open .nav__painel { opacity: 1; visibility: visible; transform: none; }
+  .nav__grupo:hover .nav__seta, .nav__grupo.is-open .nav__seta { transform: translateY(1px) rotate(225deg); }
+  .nav__links .nav__sub { display: grid; gap: 2px; padding: 10px 12px; border-radius: 10px; color: var(--ink) !important; }
+  .nav__links .nav__sub:hover { background: #14100e0a; }
+  .nav__sub b { font-size: 13px; font-weight: 700; }
+  .nav__sub small { font-size: 12px; font-weight: 500; color: var(--ink-soft); }
 
   /* ── Botão hambúrguer (mobile) ── */
   .nav__burger {
@@ -249,6 +266,19 @@ const { lang = "pt-BR", langLabel, links = LINKS_PT, entrar = "Entrar", comecar 
       ) {
         setOpen(false);
       }
+    });
+
+    // grupos do menu: clique abre/fecha (teclado e toque); clique fora fecha
+    document.querySelectorAll<HTMLElement>(".nav__grupo").forEach((g) => {
+      const btn = g.querySelector<HTMLButtonElement>(".nav__grupo-btn");
+      btn?.addEventListener("click", () => {
+        const aberto = !g.classList.contains("is-open");
+        g.classList.toggle("is-open", aberto);
+        btn.setAttribute("aria-expanded", String(aberto));
+      });
+      document.addEventListener("click", (e) => {
+        if (e.target instanceof Node && !g.contains(e.target)) { g.classList.remove("is-open"); btn?.setAttribute("aria-expanded", "false"); }
+      });
     });
 
     // volta ao desktop fecha o menu

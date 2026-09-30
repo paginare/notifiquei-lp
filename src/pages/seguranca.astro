@@ -1,0 +1,139 @@
+---
+/**
+ * /seguranca — segurança e LGPD (30/09). Cada afirmação foi conferida no
+ * código do instaV2 (OAuth, AES-256-GCM, limites, exclusão em 30 dias,
+ * retenção de 120 dias) ou copiada da política de privacidade publicada.
+ * Não afirmar país de hospedagem além do que a política já diz.
+ */
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/HomeIcon.astro";
+import { copyHome, marcar } from "../i18n/home";
+import "../styles/home.css";
+
+const t = copyHome("pt-BR");
+
+const pilares = [
+  { icon: "instagram", t: "Conexão oficial, sem senha", d: "A conta do Instagram é conectada pelo login oficial da Meta (OAuth). Você vê na tela da Meta cada permissão pedida (comentários, mensagens e publicações) e pode revogar quando quiser." },
+  { icon: "shield", t: "Acessos criptografados", d: "As chaves de acesso do Instagram ficam guardadas criptografadas (AES-256-GCM). Uma cópia do banco, sozinha, não serve pra acessar nenhuma conta." },
+  { icon: "chat", t: "Conversas fora dos registros", d: "O conteúdo de comentários e mensagens e os dados pessoais não vão para os registros técnicos do sistema." },
+  { icon: "clock", t: "Limites contra abuso", d: "A API tem limite de requisições por cliente e respeita as pausas que a Meta pede. Quando o Instagram limita uma conta, o Notifiquei espera e reenvia, em vez de insistir." },
+];
+
+const dados = [
+  { t: "O que tratamos", d: "Dados do seu cadastro, das contas conectadas (nome de usuário, foto, número de seguidores) e das interações que disparam suas automações (comentários, respostas a story e mensagens)." },
+  { t: "Por quanto tempo", d: "O histórico de execuções das automações fica guardado por 120 dias. Os acessos à Meta valem só enquanto a autorização estiver ativa. Os demais prazos estão na política de privacidade." },
+  { t: "Onde", d: "Conforme a política de privacidade: servidores da AWS e do Google Cloud, com datacenters no Brasil e nos Estados Unidos, e a Turbocloud (provedor brasileiro) no servidor principal da API." },
+  { t: "Pagamentos", d: "Cartão e PIX são processados pela Cakto (Brasil) e pela Stripe (internacional). O Notifiquei não guarda dados de cartão." },
+];
+
+const direitos = [
+  { t: "Excluir a conta", d: "Em Configurações → Excluir minha conta, no site ou no app. O acesso é bloqueado e as automações param na hora; depois de 30 dias os dados da conta são apagados de vez." },
+  { t: "Desconectar pelo Instagram", d: "Se você remover o Notifiquei nas configurações do Instagram, a Meta nos avisa e a conta é desconectada. O pedido de exclusão de dados feito pela Meta também é atendido automaticamente." },
+  { t: "Falar com o encarregado", d: "Encarregado pelo tratamento de dados (DPO): Antonio Duarte — dpa@notifiquei.com.br." },
+];
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: "Segurança e LGPD — Notifiquei", url: "https://notifiquei.com.br/seguranca", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+];
+---
+
+<Base
+  title="Segurança e LGPD | Notifiquei"
+  description="Como o Notifiquei protege sua conta e seus dados: conexão oficial com a Meta sem senha, acessos criptografados, exclusão de dados, DPA e encarregado de dados (LGPD)."
+  path="/seguranca"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head">
+        <div class="container">
+          <span class="home-kicker"><Icon name="shield" size={17} /> SEGURANÇA E LGPD</span>
+          <h1 set:html={marcar("Sua conta e seus dados,\n{hl}bem cuidados.{/hl}")} />
+          <p>O que o Notifiquei faz pra proteger o seu Instagram e as conversas com os seus clientes — em português claro.</p>
+        </div>
+      </section>
+
+      <section class="home-section home-extras sg-pilares">
+        <div class="container">
+          <div class="home-resource-list sg-grade">
+            {pilares.map((p) => <article><span><Icon name={p.icon} size={26} /></span><h3>{p.t}</h3><p>{p.d}</p></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section sg-dados">
+        <div class="container sg-duas">
+          <div>
+            <span class="home-kicker">SEUS DADOS</span>
+            <h2 set:html={marcar("O que guardamos\n{hl}e por quanto tempo.{/hl}")} />
+          </div>
+          <dl class="sg-lista">
+            {dados.map((d) => <div><dt>{d.t}</dt><dd>{d.d}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <section class="home-section sg-direitos">
+        <div class="container sg-duas">
+          <div>
+            <span class="home-kicker">SEUS DIREITOS</span>
+            <h2 set:html={marcar("Você decide\n{hl}o que fica.{/hl}")} />
+          </div>
+          <dl class="sg-lista">
+            {direitos.map((d) => <div><dt>{d.t}</dt><dd>{d.d}</dd></div>)}
+          </dl>
+        </div>
+      </section>
+
+      <section class="home-section sg-docs">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker">DOCUMENTOS</span>
+            <h2 set:html={marcar("Tudo por escrito.")} />
+          </div>
+          <div class="sg-docs__grade">
+            <a href="/politica-de-privacidade"><Icon name="shield" size={22} /><b>Política de privacidade</b><small>Quais dados, para quê e com quem</small></a>
+            <a href="/dpa"><Icon name="bookmark" size={22} /><b>Acordo de tratamento de dados (DPA)</b><small>Pra empresas e agências que precisam de contrato</small></a>
+            <a href="/termos-de-uso"><Icon name="check" size={22} /><b>Termos de uso</b><small>As regras do serviço</small></a>
+          </div>
+          <p class="sg-empresa">Notifiquei Tecnologia LTDA · CNPJ 59.859.848/0001-13</p>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+  </script>
+</Base>
+
+<style>
+  .sg-pilares { padding-top: 20px; }
+  .sg-grade { grid-template-columns: repeat(4, 1fr); margin-top: 0; }
+  .sg-grade h3 { font-size: 24px; }
+  .sg-dados { background: #eee7dc; }
+  .sg-duas { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
+  .sg-duas h2 { font-size: clamp(2.3rem, 3.8vw, 3.6rem); margin-top: 16px; }
+  .sg-lista { margin: 0; display: grid; gap: 0; }
+  .sg-lista > div { padding: 22px 0; border-top: 1px solid #cfc3b3; }
+  .sg-lista > div:last-child { border-bottom: 1px solid #cfc3b3; }
+  .sg-lista dt { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  .sg-lista dd { margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+  .sg-docs { background: #eee7dc; }
+  .sg-docs__grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+  .sg-docs__grade a { display: grid; gap: 8px; padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 20px; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+  .sg-docs__grade a:hover { box-shadow: 0 16px 36px #14100e12; transform: translateY(-2px); }
+  .sg-docs__grade :global(svg) { color: var(--brand-ink); }
+  .sg-docs__grade b { font-size: 17px; }
+  .sg-docs__grade small { font-size: 13px; color: var(--ink-soft); }
+  .sg-empresa { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 30px; }
+  @media (max-width: 1100px) { .sg-grade { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 900px) { .sg-duas, .sg-docs__grade { grid-template-columns: 1fr; gap: 24px; } }
+  @media (max-width: 620px) { .sg-grade { grid-template-columns: 1fr; } }
+</style>

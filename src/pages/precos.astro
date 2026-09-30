@@ -1,0 +1,135 @@
+---
+/**
+ * /precos — página própria de preços (30/09). Os cartões são o mesmo bloco da
+ * home (HomePricing); aqui entram a tabela completa e as perguntas de cobrança.
+ * A tabela só lista o que o produto faz hoje; limites do grátis conferidos no
+ * instaV2 (ver comentário da tabela).
+ */
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/HomeIcon.astro";
+import HomePricing from "../components/HomePricing.astro";
+import ZapFlutuante from "../components/ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { WPP, faqs as faqsHome, planosBR } from "../data/home";
+import { tabelaPlanos } from "../data/precos";
+import "../styles/home.css";
+
+const t = copyHome("pt-BR");
+
+const perguntas = [
+  "O preço aumenta se meus contatos crescerem?",
+  "O que conta como uma conta?",
+  "Qual a diferença entre Solo e Duo?",
+  "Funciona com TikTok?",
+  "Posso cancelar quando quiser?",
+];
+const faqs = [
+  ...perguntas.map((q) => faqsHome.find((f) => f.q === q)!).filter(Boolean),
+  { q: "Quais as formas de pagamento?", a: "No Brasil, cartão de crédito ou PIX, em real — sem IOF e sem cartão internacional. O pagamento é processado pela Cakto." },
+  { q: "Preciso de mais de duas contas. E agora?", a: "Temos planos para 5 e 10 contas, com times e divisão por equipe. Clique em “Ver planos maiores” acima ou fale com a gente no WhatsApp." },
+  { q: "Dá pra começar sem pagar?", a: "Dá. O plano grátis não pede cartão e serve pra conhecer a plataforma com uma conta do Instagram. Quando quiser TikTok, envios sem limite e sem a marca d’água, é só assinar." },
+];
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: "Preços do Notifiquei", url: "https://notifiquei.com.br/precos", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+  {
+    "@context": "https://schema.org", "@type": "Product", name: "Notifiquei",
+    description: "Automação de comentários, stories e direct no Instagram e no TikTok pela API oficial.",
+    brand: { "@type": "Brand", name: "Notifiquei" },
+    offers: planosBR.map((p) => ({ "@type": "Offer", name: `Plano ${p.name}`, price: p.price, priceCurrency: "BRL", url: "https://notifiquei.com.br/precos", availability: "https://schema.org/InStock" })),
+  },
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+];
+---
+
+<Base
+  title="Preços — Notifiquei"
+  description="Planos do Notifiquei em real, com PIX: grátis pra começar, Solo e Duo com contatos e automações ilimitados, Instagram e TikTok no mesmo plano. Garantia de 7 dias."
+  path="/precos"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara pg-precos">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="#planos" />
+    <main id="conteudo">
+      <HomePricing t={t.planos} lang="pt-BR" src="precos" />
+
+      <section class="home-section pr-tabela" id="comparar">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker"><Icon name="chart" size={17} /> COMPARE OS PLANOS</span>
+            <h2 set:html={marcar("Tudo que vem\n{hl}em cada plano.{/hl}")} />
+          </div>
+          <div class="cmp" tabindex="0" aria-label="Tabela de comparação dos planos (role para o lado no celular)">
+            <table>
+              <thead>
+                <tr><th scope="col"><span class="sr-only">Recurso</span></th>{tabelaPlanos.planos.map((p) => <th scope="col">{p}</th>)}</tr>
+              </thead>
+              <tbody>
+                {tabelaPlanos.grupos.map((g) => (
+                  <>
+                    <tr class="cmp__grupo"><th colspan={tabelaPlanos.planos.length + 1} scope="colgroup">{g.titulo}</th></tr>
+                    {g.linhas.map((l) => (
+                      <tr>
+                        <th scope="row">{l.recurso}</th>
+                        {l.valores.map((v) => (
+                          <td>{v === true ? <span class="cmp__sim"><Icon name="check" size={17} /><span class="sr-only">Sim</span></span> : v === false ? <span class="cmp__nao">—<span class="sr-only">Não</span></span> : v}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="pr-nota">Preços em real, por mês. No plano anual você paga menos (2 meses grátis). Todo plano pago tem garantia de 7 dias.</p>
+        </div>
+      </section>
+
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">{t.faq.kicker}</span>
+            <h2 set:html={marcar("Dúvidas sobre\n{hl}planos e cobrança.{/hl}")} />
+            <p>{t.faq.lead}</p>
+            <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+          </div>
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+    <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
+  </div>
+
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      (window as any).posthog?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly", page: "precos" });
+    });
+    document.querySelector(".freeplan__cta a")?.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { plan_name: "Grátis", section: "precos" }));
+  </script>
+</Base>
+
+<style>
+  .pg-precos :global(.home-pricing) { padding-top: 150px; }
+  .pr-tabela { background: #eee7dc; }
+  .pr-nota { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 20px; }
+  @media (max-width: 700px) { .pg-precos :global(.home-pricing) { padding-top: 110px; } }
+</style>

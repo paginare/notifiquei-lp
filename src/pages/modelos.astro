@@ -1,0 +1,133 @@
+---
+/**
+ * /modelos — galeria dos modelos prontos (30/09). Os dados vêm de
+ * src/data/modelos.ts, que espelha a tabela AutomationTemplate do produto.
+ */
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/HomeIcon.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { modelos } from "../data/modelos";
+import "../styles/home.css";
+
+const t = copyHome("pt-BR");
+const GATILHO = {
+  comentario: { nome: "Comentário", icon: "chat", quem: "comentou no seu post" },
+  story: { nome: "Resposta ao story", icon: "play", quem: "respondeu seu story" },
+  direct: { nome: "Mensagem no direct", icon: "send", quem: "te mandou no direct" },
+} as const;
+const categorias = [...new Set(modelos.map((m) => m.categoria))];
+const ordenados = [...modelos].sort((a, b) => Number(b.destaque) - Number(a.destaque));
+const slug = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", name: "Modelos prontos de automação para Instagram", url: "https://notifiquei.com.br/modelos", isPartOf: { "@id": "https://notifiquei.com.br/#org" } },
+];
+---
+
+<Base
+  title="Modelos prontos de automação para Instagram | Notifiquei"
+  description={`${modelos.length} modelos prontos de automação pro Instagram: link no direct, cupom, e-book grátis, sorteio, agendamento, resposta a story e mais. Escolha, troque o texto e ligue.`}
+  path="/modelos"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head">
+        <div class="container">
+          <span class="home-kicker">MODELOS PRONTOS</span>
+          <h1 set:html={marcar(`${modelos.length} automações\n{hl}prontas pra ligar.{/hl}`)} />
+          <p>Escolha um modelo, troque a palavra e o link, e ligue. Todos estão dentro do painel do Notifiquei.</p>
+        </div>
+      </section>
+
+      <section class="md-lista">
+        <div class="container">
+          <div class="bl-filtros md-filtros" role="group" aria-label="Filtrar por objetivo">
+            <button type="button" class="md-filtro is-on" data-cat="todos" aria-pressed="true">Todos</button>
+            {categorias.map((c) => <button type="button" class="md-filtro" data-cat={slug(c)} aria-pressed="false">{c}</button>)}
+          </div>
+          <ul class="md-grade">
+            {ordenados.map((m) => {
+              const g = GATILHO[m.gatilho];
+              return (
+                <li class="md-card" data-cat={slug(m.categoria)}>
+                  <div class="md-card__topo">
+                    <span class="md-gat"><Icon name={g.icon} size={14} /> {g.nome}</span>
+                    {m.destaque && <span class="md-pop">Popular</span>}
+                  </div>
+                  {m.comentario && (
+                    <div class="md-cena" aria-hidden="true">
+                      <span class="md-cena__in"><small>alguém {g.quem}</small>{m.comentario}</span>
+                      {m.resposta && <span class="md-cena__out">{m.resposta}</span>}
+                      {m.botao && <span class="md-cena__btn">{m.botao}</span>}
+                    </div>
+                  )}
+                  <h2>{m.nome}</h2>
+                  <p>{m.descricao}</p>
+                  <span class="md-cat">{m.categoria}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">quero! 💕</span>
+          <span class="home-kicker">ESCOLHA, AJUSTE E LIGUE</span>
+          <h2 set:html={marcar("Seu primeiro modelo\n{span}no ar em minutos.{/span}")} />
+          <p>Ou descreva o que você quer pro Claude e ele monta do zero.</p>
+          <div class="home-final__actions">
+            <a href="/precos" class="btn btn--lg">Começar agora <Icon name="arrow" size={22} /></a>
+            <small>{t.final.microBr}</small>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+    const bs = document.querySelectorAll<HTMLButtonElement>(".md-filtro");
+    const cs = document.querySelectorAll<HTMLElement>(".md-card");
+    bs.forEach((b) => b.addEventListener("click", () => {
+      bs.forEach((x) => { x.classList.toggle("is-on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+      cs.forEach((c) => { c.hidden = b.dataset.cat !== "todos" && c.dataset.cat !== b.dataset.cat; });
+    }));
+  </script>
+</Base>
+
+<style>
+  .md-lista { padding-bottom: 110px; }
+  .md-filtros { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .md-filtro { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .md-filtro.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .md-grade { list-style: none; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .md-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+  .md-card[hidden] { display: none; }
+  .md-card__topo { display: flex; justify-content: space-between; align-items: center; }
+  .md-gat { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+  .md-gat :global(svg) { color: var(--brand-ink); }
+  .md-pop { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--brand-ink); background: #fbe3ec; padding: 4px 9px; border-radius: 99px; }
+  .md-cena { display: flex; flex-direction: column; gap: 7px; padding: 14px; background: #fbf1f4; border-radius: 16px; }
+  .md-cena__in { align-self: flex-start; max-width: 88%; padding: 8px 12px; background: #fff; border-radius: 14px 14px 14px 4px; font-size: 13px; font-weight: 700; box-shadow: 0 3px 10px #14100e0f; }
+  .md-cena__in small { display: block; font-size: 10px; font-weight: 500; color: var(--ink-soft); }
+  .md-cena__out { align-self: flex-end; max-width: 88%; padding: 8px 12px; background: var(--brand); color: #fff; border-radius: 14px 14px 4px 14px; font-size: 12.5px; line-height: 1.4; }
+  .md-cena__btn { align-self: flex-end; padding: 6px 12px; border: 1px solid var(--brand); color: var(--brand-ink); background: #fff; border-radius: 10px; font-size: 12px; font-weight: 700; }
+  .md-card h2 { font-size: 19px; line-height: 1.2; letter-spacing: -.02em; }
+  .md-card p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); flex: 1; }
+  .md-cat { font-size: 11px; font-weight: 600; color: var(--ink-soft); }
+  @media (max-width: 1000px) { .md-grade { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) {
+    .md-grade { grid-template-columns: 1fr; }
+    .md-filtros { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
+    .md-filtro { flex: none; }
+  }
+</style>

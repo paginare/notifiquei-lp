@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import FinalCta from "../../components/FinalCta.astro";
+import "../../styles/home.css";
 
 // Normaliza texto pra busca (minúsculo + sem acento), usado nos data-search.
 const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -13,11 +14,11 @@ const FREE = "https://app.notifiquei.com.br/auth";
 
 // Pitch pronto pra copiar (voz natural, sem cacoete de copy).
 const pitch =
-  "O Notifiquei responde os comentários e as DMs do seu Instagram automaticamente, na sua voz, pela API oficial da Meta — então não tem risco de bloqueio. Alguém comenta “quero” num post e em segundos recebe no direct o link, o preço, o que você quiser. Funciona também no TikTok, no mesmo plano. Dá pra testar de graça e custa a partir de R$ 99 por mês, preço fixo em real — diferente do ManyChat, que cobra por contato e em dólar.";
+  "O Notifiquei responde os comentários e as DMs do seu Instagram automaticamente, com as mensagens que você escreve, pela API oficial da Meta — sem pedir senha. Alguém comenta “quero” num post e em segundos recebe no direct o link, o preço, o que você quiser. Funciona também no TikTok, no mesmo plano. Dá pra testar de graça e custa a partir de R$ 99 por mês, preço fixo em real — diferente do ManyChat, que cobra por contato e em dólar.";
 
 // Os 3 ganchos de venda.
 const ganchos = [
-  { t: "Zero risco de bloqueio", d: "É a API oficial da Meta, não automação disfarçada. O cliente não corre risco de tomar bloqueio." },
+  { t: "API oficial, sem senha", d: "É a API oficial da Meta, não automação disfarçada. O cliente conecta pelo login do Instagram e não entrega a senha." },
   { t: "Preço fixo em real", d: "R$ 99 por mês não importa quantos contatos. O ManyChat e o Gaio cobram por contato — a conta sobe junto com a audiência." },
   { t: "Instagram + TikTok juntos", d: "Cada conta do plano já conecta um Instagram e um TikTok. O cliente automatiza os dois sem pagar a mais." },
 ];
@@ -136,7 +137,7 @@ const funcoesTT = [
 // ===== Dúvidas e objeções (oficiais da LP + reais de cliente), agrupadas =====
 const faqGrupos = [
   { tema: "Segurança e como funciona", itens: [
-    { q: "Isso pode bloquear o Instagram do meu cliente?", a: "Não. O Notifiquei é provedor oficial da Meta e usa só a API oficial do Instagram. Não é automação disfarçada, então não há risco de banimento." },
+    { q: "Isso pode bloquear o Instagram do meu cliente?", a: "O Notifiquei usa só a API oficial do Instagram e a conexão é pelo login da própria Meta, sem senha. Não é automação disfarçada. As automações só precisam respeitar as regras e os limites da plataforma." },
     { q: "Precisa saber programar?", a: "Nada. Zero código. Quem sabe mandar mensagem no Instagram sabe usar — a interface é toda visual." },
     { q: "Ele responde sozinho?", a: "Responde. Você monta a automação uma vez — o que dispara e o que ele manda — e a partir daí ela roda sozinha, 24h, respondendo comentário e direct em segundos. Não é uma IA solta atendendo por você: é o fluxo que você desenhou, do jeito que você escreveu." },
     { q: "Precisa de conta profissional ou de criador?", a: "Sim, uma conta Profissional ou de Criador no Instagram. É grátis de ativar, leva 1 minuto, e é exigência da própria API oficial da Meta." },
@@ -232,6 +233,7 @@ const jsonLd = [
   path="/afiliados/central"
   jsonLd={jsonLd}
 >
+  <div class="home-page pagina-clara pagina-antiga">
   <Nav />
 
   <main>
@@ -518,6 +520,7 @@ const jsonLd = [
   </main>
 
   <Footer />
+  </div>
 
   <script>
     // ---- Busca: filtra funções e dúvidas ao vivo ----

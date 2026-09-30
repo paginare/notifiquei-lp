@@ -1,188 +1,201 @@
 ---
+/**
+ * /vs-manychat no visual da home nova (30/09). A tabela é honesta de propósito:
+ * o ManyChat também usa a API oficial e não pede senha. Só marcamos diferença
+ * onde ela existe e é verificável (moeda, preço por contatos, PIX, sorteio,
+ * TikTok no mesmo plano, empresa brasileira). Linhas sobre idioma da interface
+ * e IA do ManyChat saíram: mudam com frequência e não dá pra garantir.
+ */
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import FinalCta from "../components/FinalCta.astro";
-import PlatformShowcase from "../components/PlatformShowcase.astro";
-import Capabilities from "../components/Capabilities.astro";
-import "../styles/vs-sections.css";
+import Icon from "../components/HomeIcon.astro";
+import HomeDemo from "../components/HomeDemo.astro";
+import ZapFlutuante from "../components/ZapFlutuante.astro";
+import { copyHome, marcar } from "../i18n/home";
+import { WPP, plans } from "../data/home";
+import { mensalNoAnual } from "../i18n/planos";
+import "../styles/home.css";
 
-const APP = "https://app.notifiquei.com.br";
+const t = copyHome("pt-BR");
+const preco = plans[0].price;
 
-// Conteúdo alinhado com a outra frente (Docs/handoff/vs-manychat-content.json).
-// Preço ajustado para R$99 para bater com a página principal.
-const headline = "Tudo que o ManyChat faz — em português, em real e com PIX.";
-const subhead =
-  "Automação de DM, comentário e story no Instagram, pela API oficial da Meta. Sem câmbio, sem variação surpresa, com suporte que fala a sua língua.";
-const honestidade =
-  "ManyChat é uma ótima ferramenta e também usa a API oficial da Meta — não existe “risco de ban” por usá-lo, e nenhum dos dois pede a sua senha. Nossos diferenciais reais são preço em real com PIX, idioma e suporte em português, conformidade local (LGPD), app no celular e recursos pensados pro criador brasileiro. A tabela abaixo reflete isso de forma justa: marcamos só onde a gente realmente entrega algo diferente.";
+const linhas = [
+  { c: "Moeda e pagamento", n: "Real, com PIX ou cartão", m: "Dólar, no cartão internacional (+ IOF)" },
+  { c: "Preço quando sua lista cresce", n: "Fixo — contatos ilimitados", m: "Sobe conforme o número de contatos" },
+  { c: "Instagram + TikTok", n: "No mesmo plano, sem pagar a mais", m: "Canais cobrados à parte" },
+  { c: "Sorteio pelos comentários", n: "Nativo, em 1 clique", m: "Não tem nativo" },
+  { c: "Suporte", n: "Brasileiro, em português, no chat e no WhatsApp", m: "Internacional" },
+  { c: "Empresa e contrato", n: "Brasileira, com acordo de dados (LGPD)", m: "Estrangeira" },
+  { c: "API oficial da Meta", n: "Sim", m: "Sim" },
+  { c: "Pede a senha do Instagram?", n: "Nunca", m: "Nunca" },
+  { c: "Comentário, story e palavra-chave no direct", n: "Sim", m: "Sim" },
+];
+const iguais = new Set(["API oficial da Meta", "Pede a senha do Instagram?", "Comentário, story e palavra-chave no direct"]);
 
-const rows = [
-  { c: "Preço inicial", n: "Em real, a partir de R$ 99/mês", m: "Em dólar (US$) — sujeito a câmbio e IOF", hl: true },
-  { c: "Forma de pagamento", n: "PIX, boleto ou cartão", m: "Cartão de crédito internacional", hl: true },
-  { c: "Moeda", n: "Real (BRL) — sem variação cambial", m: "Dólar (USD)", hl: true },
-  { c: "Idioma da plataforma", n: "100% em português", m: "Inglês (principalmente)", hl: true },
-  { c: "Suporte", n: "Brasileiro, em português", m: "Em inglês", hl: true },
-  { c: "API oficial da Meta", n: "Sim", m: "Sim", hl: false },
-  { c: "Automação por DM", n: "Sim", m: "Sim", hl: false },
-  { c: "Gatilho por comentário", n: "Sim", m: "Sim", hl: false },
-  { c: "Gatilho por story", n: "Sim", m: "Sim", hl: false },
-  { c: "Monta fluxo por linguagem natural", n: "Sim — descreva e a IA monta", m: "Não — editor visual manual", hl: true },
-  { c: "Sorteios nativos", n: "Sim — sorteia em 1 clique", m: "Não", hl: true },
-  { c: "Instagram + TikTok no mesmo plano", n: "Sim — sem pagar a mais", m: "Sim, em planos próprios", hl: false },
-  { c: "App no celular", n: "Sim — iOS e Android", m: "App limitado", hl: true },
-  { c: "Conformidade com a LGPD", n: "Sim — empresa brasileira", m: "Sujeito a leis estrangeiras", hl: true },
-  { c: "Pede a senha do Instagram?", n: "Nunca — token oficial", m: "Nunca — token oficial", hl: false },
-  { c: "Foco no mercado brasileiro", n: "Feito pra criador BR", m: "Global, sem foco no Brasil", hl: true },
+const motivos = [
+  { icon: "cartao", t: "Preço em real, com PIX", d: `A partir de R$ ${mensalNoAnual(preco)}/mês no anual. Sem câmbio, sem IOF, sem surpresa na fatura.` },
+  { icon: "infinito", t: "Não cresce com a sua lista", d: "Contatos e automações ilimitados. Seu perfil cresce e o preço continua o mesmo." },
+  { icon: "tiktok", t: "TikTok junto", d: "A mesma conta atende Instagram e DMs do TikTok, sem plano separado." },
+  { icon: "spark", t: "Automação por conversa", d: "Descreva em português pro Claude e ele monta a automação pra você conferir e ligar." },
 ];
 
-const reasons = [
-  { t: "Preço em real, com PIX", d: "Sem câmbio, sem IOF, sem surpresa no cartão internacional. Você paga em real, do jeito que já paga tudo." },
-  { t: "Tudo em português", d: "Plataforma, suporte e materiais na sua língua. Nada de traduzir termo de gringo no meio da configuração." },
-  { t: "IA que monta o fluxo sozinha", d: "Descreve o que você quer em português e a IA monta a automação. O ManyChat ainda é editor manual." },
-  { t: "Empresa brasileira, LGPD", d: "Seus dados e os do seu cliente sob a lei brasileira — não sujeitos a regras estrangeiras." },
+const troca = [
+  { n: "01", icon: "instagram", t: "Conecte o Instagram", d: "Login oficial da Meta. Pode conectar no Notifiquei antes de desligar o ManyChat." },
+  { n: "02", icon: "chat", t: "Recrie as automações", d: "Comece por um modelo pronto ou peça pro Claude montar. As principais ficam prontas em minutos." },
+  { n: "03", icon: "bolt", t: "Desligue lá, ligue aqui", d: "Pause a automação no ManyChat e ative a do Notifiquei no mesmo post. Ninguém fica sem resposta." },
+];
+
+const faqs = [
+  { q: "Qual a melhor alternativa ao ManyChat no Brasil?", a: "O Notifiquei faz a mesma automação de comentário, story e direct no Instagram (e DMs do TikTok), com preço em real, PIX, suporte em português e contrato sob a LGPD." },
+  { q: "O Notifiquei é mais barato que o ManyChat?", a: `O Notifiquei começa em R$ ${preco}/mês (ou R$ ${mensalNoAnual(preco)}/mês no anual), em real e com preço fixo. O ManyChat cobra em dólar e o valor sobe conforme o número de contatos — para listas grandes, a diferença costuma ser maior.` },
+  { q: "Trocar pode bloquear minha conta do Instagram?", a: "Os dois usam a API oficial da Meta e nenhum pede sua senha. Trocar de ferramenta não afeta a conta; as automações devem sempre respeitar as regras e os limites da plataforma." },
+  { q: "Consigo levar minhas automações do ManyChat?", a: "Não existe importação automática entre as duas ferramentas. Na prática, recriar as automações principais leva poucos minutos com os modelos prontos ou com o Claude — e nosso suporte ajuda no WhatsApp." },
+  { q: "Posso testar antes de cancelar o ManyChat?", a: "Pode. Comece pelo plano grátis ou assine com a garantia de 7 dias, deixe tudo pronto e só então desligue o ManyChat." },
 ];
 
 const jsonLd = [
   {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
       { "@type": "ListItem", position: 2, name: "Notifiquei vs ManyChat", item: "https://notifiquei.com.br/vs-manychat" },
     ],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Qual a melhor alternativa ao ManyChat no Brasil?",
-        acceptedAnswer: { "@type": "Answer", text: "O Notifiquei é a alternativa brasileira direta ao ManyChat: faz a mesma automação de DM, comentário e story no Instagram (e no TikTok), mas em português, com preço em real e pagamento via PIX, suporte brasileiro e conformidade com a LGPD." },
-      },
-      {
-        "@type": "Question",
-        name: "O Notifiquei é mais barato que o ManyChat?",
-        acceptedAnswer: { "@type": "Answer", text: "Sim. O Notifiquei começa em R$ 99/mês, cobrado em real via PIX, sem câmbio nem IOF. O ManyChat cobra em dólar no cartão internacional, o que costuma sair mais caro para o brasileiro." },
-      },
-      {
-        "@type": "Question",
-        name: "O ManyChat funciona em português?",
-        acceptedAnswer: { "@type": "Answer", text: "A plataforma do ManyChat é principalmente em inglês e o suporte é em inglês. O Notifiquei é 100% em português, com suporte brasileiro." },
-      },
-      {
-        "@type": "Question",
-        name: "Usar o ManyChat ou o Notifiquei pode bloquear minha conta do Instagram?",
-        acceptedAnswer: { "@type": "Answer", text: "Não. Tanto o Notifiquei quanto o ManyChat usam a API oficial da Meta e nenhum dos dois pede a senha do Instagram. Não há risco de banimento por usar qualquer um dos dois." },
-      },
-    ],
-  },
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
 ];
 ---
 
 <Base
   title="Notifiquei vs ManyChat — a alternativa brasileira, em real e com PIX"
-  description="Compare Notifiquei e ManyChat: automação de DM no Instagram em português, preço em real com PIX e suporte brasileiro."
+  description="Compare Notifiquei e ManyChat: a mesma automação de comentário, story e direct no Instagram, com preço fixo em real, PIX, TikTok no mesmo plano e suporte em português."
   path="/vs-manychat"
+  hreflangOf="/vs-manychat"
   jsonLd={jsonLd}
+  lang="pt-BR"
 >
-  <Nav />
-
-  <main>
-    <!-- HERO -->
-    <section class="section vs-hero">
-      <div class="container container--narrow vs-hero__inner reveal">
-        <span class="eyebrow is-plain">Notifiquei × ManyChat</span>
-        <h1 class="vs-hero__title">{headline}</h1>
-        <p class="lead">{subhead}</p>
-        <div class="vs-hero__actions">
-          <a href={APP} class="btn btn--brand btn--lg">Começar em português<span class="arr" aria-hidden="true">→</span></a>
-          <a href="#tabela" class="btn btn--ghost btn--lg">Ver a comparação</a>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head">
+        <div class="container">
+          <span class="home-kicker">NOTIFIQUEI × MANYCHAT</span>
+          <h1 set:html={marcar("A mesma automação.\n{hl}Em real, com PIX.{/hl}")} />
+          <p>Comentário, story e direct no automático, pela API oficial da Meta — com preço fixo em real, TikTok no mesmo plano e suporte em português.</p>
+          <div class="pg-head__acoes">
+            <a href="/precos" class="btn btn--brand btn--lg" data-cta="vs_hero">Ver planos <Icon name="arrow" size={20} /></a>
+            <a href="#tabela" class="home-text-link">Ver a comparação <Icon name="diagonal" size={18} /></a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- TABELA -->
-    <section class="section section--paper2" id="tabela">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Comparação honesta</span>
-          <h2>Lado a lado,<br />sem marketing enganoso.</h2>
+      <section class="home-section vs-tabela" id="tabela">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker"><Icon name="chart" size={17} /> COMPARAÇÃO HONESTA</span>
+            <h2 set:html={marcar("Lado a lado,\n{hl}sem exagero.{/hl}")} />
+            <p>O ManyChat é uma boa ferramenta e também usa a API oficial. Marcamos só onde a diferença é real.</p>
+          </div>
+          <div class="cmp" tabindex="0" aria-label="Comparação entre Notifiquei e ManyChat">
+            <table>
+              <thead><tr><th scope="col"><span class="sr-only">Critério</span></th><th scope="col" class="cmp__nos">Notifiquei</th><th scope="col">ManyChat</th></tr></thead>
+              <tbody>
+                {linhas.map((l) => (
+                  <tr>
+                    <th scope="row">{l.c}</th>
+                    <td class={iguais.has(l.c) ? "" : "cmp__nos"}>{l.n}</td>
+                    <td>{l.m}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="vs-nota">Informações do ManyChat conforme o site público deles em setembro de 2026. Preços e recursos podem mudar.</p>
         </div>
+      </section>
 
-        <table class="vstable reveal">
-          <caption class="visually-hidden">Comparação entre Notifiquei e ManyChat</caption>
-          <thead>
-            <tr class="vstable__row vstable__row--head">
-              <th class="vstable__c vstable__crit" scope="col">Critério</th>
-              <th class="vstable__c vstable__nq" scope="col">★ Notifiquei</th>
-              <th class="vstable__c vstable__mc" scope="col">ManyChat</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr class={`vstable__row ${r.hl ? "is-hl" : ""}`}>
-                <th class="vstable__c vstable__crit" scope="row">{r.c}</th>
-                <td class="vstable__c vstable__nq">{r.n}</td>
-                <td class="vstable__c vstable__mc">{r.m}</td>
-              </tr>
+      <section class="home-section home-extras">
+        <div class="container">
+          <div class="home-section-heading"><h2 set:html={marcar("Por que trocar\n{hl}pro Notifiquei.{/hl}")} /><p>A ferramenta global é boa. A brasileira foi feita pro jeito que você vende.</p></div>
+          <div class="home-resource-list vs-motivos">
+            {motivos.map((m) => (
+              <article><span><Icon name={m.icon} size={26} /></span><h3>{m.t}</h3><p>{m.d}</p></article>
             ))}
-          </tbody>
-        </table>
-
-        <p class="vstable__note reveal">{honestidade}</p>
-      </div>
-    </section>
-
-    <!-- POR QUE BR -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Por que trocar</span>
-          <h2>A ferramenta global é boa.<br />A brasileira entende você.</h2>
+          </div>
         </div>
-        <div class="vs-reasons">
-          {reasons.map((r, i) => (
-            <article class="vs-reason reveal" style={`--reveal-delay:${(i % 2) * 90}ms`}>
-              <h3 class="vs-reason__t">{r.t}</h3>
-              <p class="vs-reason__d">{r.d}</p>
-            </article>
-          ))}
+      </section>
+
+      <HomeDemo t={t.demo} />
+
+      <section class="home-section home-how" id="como">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+            <h2 set:html={marcar("Trocar leva\n{hl}uma tarde.{/hl}")} />
+            <p>Sem perder nenhum comentário no caminho.</p>
+          </div>
+          <ol class="home-steps">
+            {troca.map((p) => (
+              <li><div class="home-step__top"><span>{p.n}</span><Icon name={p.icon} size={28} /></div><h3>{p.t}</h3><p>{p.d}</p></li>
+            ))}
+          </ol>
+          <div class="home-how__actions">
+            <a href="/precos" class="btn btn--brand btn--lg" data-cta="vs_steps">Começar agora <Icon name="arrow" size={20} /></a>
+            <span><Icon name="shield" size={18} /> {t.como.seguranca}</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <PlatformShowcase bg="paper2" eyebrow="O que você ganha trocando" title="A mesma automação,<br />numa interface em português." lead="Tudo que o ManyChat faz no DM — e mais um pouco — dentro de um painel pensado pro criador brasileiro." />
-    <Capabilities bg="paper" />
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">{t.faq.kicker}</span>
+            <h2 set:html={marcar("Dúvidas de quem\n{hl}vem do ManyChat.{/hl}")} />
+            <p>{t.faq.lead}</p>
+            <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+          </div>
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <FinalCta
-      eyebrow="Pronto pra trocar?"
-      title="Mesma automação."
-      titleHl="Sua língua."
-      lead="Teste 7 dias, em português, com pagamento em real. Se não rolar, devolvemos."
-      primaryHref={APP}
-      primaryLabel="Começar agora"
-      secondaryHref="/#planos"
-      secondaryLabel="Ver planos"
-      glyph="★"
-    />
-  </main>
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">bora trocar? 💕</span>
+          <span class="home-kicker">PRONTO PRA TROCAR?</span>
+          <h2 set:html={marcar("Mesma automação.\n{span}Sua língua, seu real.{/span}")} />
+          <p>Deixe tudo pronto aqui antes de desligar o ManyChat.</p>
+          <div class="home-final__actions">
+            <a href="/precos" class="btn btn--lg" data-cta="vs_final">Ver planos <Icon name="arrow" size={22} /></a>
+            <small>Plano grátis pra começar · garantia de 7 dias nos pagos</small>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+    <ZapFlutuante texto={t.zapTexto} rotulo={t.zapRotulo} />
+  </div>
 
-  <Footer />
-
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-      var heroCta = document.querySelector('.vs-hero__actions .btn--brand');
-      if (heroCta) {
-        heroCta.addEventListener('click', function () {
-          window.posthog?.capture('signup_cta_clicked', { section: 'vs_manychat_hero' });
-        });
-      }
-    });
+  <script>
+    import { initHomeMotion } from "../scripts/home-motion";
+    initHomeMotion();
+    document.querySelectorAll<HTMLAnchorElement>("[data-cta]").forEach((a) =>
+      a.addEventListener("click", () => (window as any).posthog?.capture?.("signup_cta_clicked", { section: a.dataset.cta })),
+    );
   </script>
 </Base>
 
 <style>
-  /* CSS: src/styles/vs-sections.css (compartilhado) */
+  .vs-tabela { background: #eee7dc; }
+  .vs-nota { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 18px; }
+  .vs-motivos { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 1000px) { .vs-motivos { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .vs-motivos { grid-template-columns: 1fr; } }
 </style>

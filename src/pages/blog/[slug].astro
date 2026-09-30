@@ -2,6 +2,10 @@
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import { copyHome } from "../../i18n/home";
+import "../../styles/home.css";
+
+const t = copyHome("pt-BR");
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -67,9 +71,10 @@ const jsonLd = [
 ];
 ---
 
-<Base title={`${d.title} — Notifiquei`} description={d.description} path={`/blog/${post.id}`} jsonLd={jsonLd} ogImagePath={ogPath} ogType="article">
-  <Nav />
-  <main>
+<Base title={`${d.title} — Notifiquei`} description={d.description} path={`/blog/${post.id}`} jsonLd={jsonLd} ogImagePath={ogPath} ogType="article" lang="pt-BR">
+  <div class="home-page pagina-clara">
+  <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+  <main id="conteudo">
     <article class="article">
       <div class="container container--narrow">
         <nav class="crumbs" aria-label="Você está em"><a href="/blog">Blog</a> · <span>{d.category}</span></nav>
@@ -100,11 +105,11 @@ const jsonLd = [
         )}
 
         <aside class="acta">
-          <h2 class="acta__t">Automatize suas vendas no Instagram com a API oficial da Meta</h2>
-          <p>O Notifiquei responde DMs e comentários na sua voz, sem risco de bloqueio. Comece de graça.</p>
+          <h2 class="acta__t">Deixe os comentários e o direct no automático</h2>
+          <p>O Notifiquei responde cada comentário e mensagem na hora, pela API oficial da Meta. Comece de graça, sem cartão.</p>
           <div class="acta__btns">
-            <a class="btn btn--brand btn--lg" href="/">Conhecer o Notifiquei<span class="arr" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="/vs-manychat">Comparar com o ManyChat</a>
+            <a class="btn btn--brand btn--lg" href="/precos">Ver planos<span class="arr" aria-hidden="true">→</span></a>
+            <a class="acta__sec" href="/modelos">Ver modelos prontos →</a>
           </div>
         </aside>
       </div>
@@ -124,17 +129,24 @@ const jsonLd = [
     </article>
   </main>
   <Footer />
+  </div>
+  <script>
+    import { initHomeMotion } from "../../scripts/home-motion";
+    initHomeMotion();
+  </script>
 </Base>
 
 <style>
-  .article { padding-block: clamp(5.5rem, 4rem + 7vw, 8rem) var(--space-section); }
+  .article { padding-block: 140px var(--space-section); }
+  @media (max-width: 700px) { .article { padding-top: 110px; } }
+  .acta__sec { color: #fff; font-weight: 600; align-self: center; }
   .crumbs { font-size: 0.85rem; color: var(--ink-soft); }
   .crumbs a { color: var(--brand-ink); font-weight: 600; }
-  .article__title { margin-top: 0.8rem; font-size: var(--fs-display-m); line-height: 1.1; letter-spacing: -0.02em; }
-  .article__meta { margin-top: 0.8rem; font-size: 0.85rem; color: var(--ink-faint); font-family: var(--font-mono); }
+  .article__title { margin-top: 0.8rem; font-size: clamp(2.1rem, 1.3rem + 3vw, 3.4rem); line-height: 1.04; letter-spacing: -0.04em; }
+  .article__meta { margin-top: 1rem; font-size: 0.85rem; color: var(--ink-soft); }
 
   .tldr { margin-top: 1.75rem; background: var(--brand-wash); border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent); border-radius: var(--r-md); padding: 1.1rem 1.3rem; }
-  .tldr__label { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand-ink); }
+  .tldr__label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-ink); }
   .tldr p { margin-top: 0.4rem; font-size: 1rem; line-height: 1.55; color: var(--ink); }
 
   .article__cover { width: 100%; border-radius: var(--r-lg); margin-top: 1.75rem; }
@@ -166,6 +178,6 @@ const jsonLd = [
   @media (min-width: 760px) { .related__list { grid-template-columns: repeat(3, 1fr); } }
   .related__list a { display: flex; flex-direction: column; gap: 0.4rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.3rem; box-shadow: var(--shadow-sm); transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out); }
   .related__list a:hover { border-color: var(--brand); transform: translateY(-2px); }
-  .related__cat { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-ink); }
+  .related__cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-ink); }
   .related__title { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; line-height: 1.2; }
 </style>

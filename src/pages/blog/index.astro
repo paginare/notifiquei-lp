@@ -1,27 +1,50 @@
 ---
+/**
+ * Lista do blog no visual da home nova (30/09). As categorias do conteúdo são
+ * só duas (Estratégia e Copywriting) e as tags quase todas iguais, então o
+ * filtro usa o ASSUNTO, tirado do título. A capa é desenhada por assunto: a
+ * imagem de compartilhamento (/blog/og) repete o título e deixava a lista
+ * parecendo uma parede de texto.
+ */
 import Base from "../../layouts/Base.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
+import Icon from "../../components/HomeIcon.astro";
 import { getCollection } from "astro:content";
+import { copyHome, marcar } from "../../i18n/home";
+import "../../styles/home.css";
+
+const t = copyHome("pt-BR");
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
+// Ordem importa: o primeiro que casa com o título é o assunto do post.
+const ASSUNTOS = [
+  { id: "tiktok", nome: "TikTok", icon: "tiktok", re: /tiktok/i },
+  { id: "notifiquei", nome: "Notifiquei", icon: "spark", re: /notifiquei|manychat/i },
+  { id: "stories", nome: "Stories", icon: "play", re: /stor(y|ies)/i },
+  { id: "comentarios", nome: "Comentários", icon: "chat", re: /coment|sorteio/i },
+  { id: "vendas", nome: "Vendas", icon: "cartao", re: /vend|venda|checkout|lançamento|promo|black friday|e-commerce|loja|infoprodut|funil|compra|carrinho/i },
+  { id: "direct", nome: "Direct e DM", icon: "send", re: /\bdm\b|dms|direct|mensage/i },
+];
+const OUTROS = { id: "estrategia", nome: "Estratégia", icon: "bolt" };
+const assunto = (titulo: string) => ASSUNTOS.find((a) => a.re.test(titulo)) ?? OUTROS;
+const itens = posts.map((p) => ({ post: p, a: assunto(p.data.title) }));
+const usados = [...ASSUNTOS, OUTROS].filter((a) => itens.some((i) => i.a.id === a.id))
+  .map((a) => ({ ...a, total: itens.filter((i) => i.a.id === a.id).length }));
+
+const [destaque, ...resto] = itens;
+
 const fmtDate = (d: Date) =>
-  d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
+  d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
+const minutos = (corpo = "") => Math.max(3, Math.round(corpo.split(/\s+/).length / 220));
 
 const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Blog", name: "Blog do Notifiquei", url: "https://notifiquei.com.br/blog", publisher: { "@id": "https://notifiquei.com.br/#org" } },
   {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    name: "Blog do Notifiquei",
-    url: "https://notifiquei.com.br/blog",
-    publisher: { "@id": "https://notifiquei.com.br/#org" },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
       { "@type": "ListItem", position: 2, name: "Blog", item: "https://notifiquei.com.br/blog" },
@@ -35,56 +58,133 @@ const jsonLd = [
   description="Artigos sobre automação de Instagram e TikTok, vendas no direct, API oficial da Meta e estratégia de conteúdo — pra quem vende pelas redes."
   path="/blog"
   jsonLd={jsonLd}
+  lang="pt-BR"
 >
-  <Nav />
-  <main>
-    <section class="section bloghero">
-      <div class="container container--narrow">
-        <span class="eyebrow is-plain">Blog</span>
-        <h1 class="bloghero__title">Como <span class="hl">vender mais</span> pelo Instagram, sem gambiarra.</h1>
-        <p class="lead">Estratégia, automação e bastidores do que funciona pra quem usa o Instagram e o TikTok como canal de vendas.</p>
-      </div>
-    </section>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head bl-head">
+        <div class="container">
+          <span class="home-kicker">BLOG DO NOTIFIQUEI</span>
+          <h1 set:html={marcar("Venda mais pelo Instagram,\n{hl}sem gambiarra.{/hl}")} />
+          <p>Estratégia, automação e bastidores do que funciona pra quem usa o Instagram e o TikTok como canal de vendas.</p>
+        </div>
+      </section>
 
-    <section class="section section--paper2">
-      <div class="container">
-        <ul class="postlist">
-          {posts.map((post) => (
-            <li class="postcard">
-              <a class="postcard__link" href={`/blog/${post.id}`}>
-                <img class="postcard__cover" src={`/blog/og/${post.id}.png`} alt="" loading="lazy" width="600" height="315" />
-                <div class="postcard__body">
-                  <span class="postcard__cat">{post.data.category}</span>
-                  <h2 class="postcard__title">{post.data.title}</h2>
-                  <p class="postcard__desc">{post.data.description}</p>
-                  <span class="postcard__date">{fmtDate(post.data.date)}</span>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  </main>
-  <Footer />
+      <section class="bl-destaque">
+        <div class="container">
+          <a class="bl-dest" href={`/blog/${destaque.post.id}`}>
+            <div class={`bl-capa bl-capa--${destaque.a.id} bl-capa--grande`} aria-hidden="true">
+              <Icon name={destaque.a.icon} size={56} />
+              <span>{destaque.a.nome}</span>
+            </div>
+            <div class="bl-dest__txt">
+              <span class="bl-meta"><b>Mais recente</b> · {fmtDate(destaque.post.data.date)} · {minutos(destaque.post.body)} min de leitura</span>
+              <h2>{destaque.post.data.title}</h2>
+              <p>{destaque.post.data.description}</p>
+              <span class="home-text-link">Ler artigo <Icon name="arrow" size={18} /></span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="home-section bl-lista">
+        <div class="container">
+          <div class="bl-filtros" role="group" aria-label="Filtrar por assunto">
+            <button type="button" class="bl-filtro is-on" data-assunto="todos" aria-pressed="true">Todos <small>{resto.length}</small></button>
+            {usados.map((a) => (
+              <button type="button" class="bl-filtro" data-assunto={a.id} aria-pressed="false">{a.nome} <small>{resto.filter((i) => i.a.id === a.id).length}</small></button>
+            ))}
+          </div>
+          <ul class="bl-grade">
+            {resto.map(({ post, a }) => (
+              <li class="bl-card" data-assunto={a.id}>
+                <a href={`/blog/${post.id}`}>
+                  <div class={`bl-capa bl-capa--${a.id}`} aria-hidden="true"><Icon name={a.icon} size={34} /><span>{a.nome}</span></div>
+                  <div class="bl-card__txt">
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                    <span class="bl-meta">{fmtDate(post.data.date)} · {minutos(post.body)} min</span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">quero! 💕</span>
+          <span class="home-kicker">DA TEORIA PRA PRÁTICA</span>
+          <h2 set:html={marcar("Leu, gostou?\n{span}Deixa no automático.{/span}")} />
+          <p>O Notifiquei responde cada comentário e direct por você, pela API oficial da Meta.</p>
+          <div class="home-final__actions">
+            <a href="/precos" class="btn btn--lg">Ver planos <Icon name="arrow" size={22} /></a>
+            <small>{t.final.microBr}</small>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+
+  <script>
+    import { initHomeMotion } from "../../scripts/home-motion";
+    initHomeMotion();
+    const botoes = document.querySelectorAll<HTMLButtonElement>(".bl-filtro");
+    const cards = document.querySelectorAll<HTMLElement>(".bl-card");
+    botoes.forEach((b) => b.addEventListener("click", () => {
+      const alvo = b.dataset.assunto;
+      botoes.forEach((x) => { x.classList.toggle("is-on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+      cards.forEach((c) => { c.hidden = alvo !== "todos" && c.dataset.assunto !== alvo; });
+    }));
+  </script>
 </Base>
 
 <style>
-  .bloghero { padding-block: clamp(6rem, 4rem + 8vw, 9rem) var(--space-section); }
-  .bloghero__title { margin-top: 1rem; font-size: var(--fs-display-l); line-height: 1.0; letter-spacing: -0.03em; }
-  .bloghero .lead { margin-top: 1.2rem; }
+  .bl-head { padding-bottom: 40px; }
+  .bl-destaque { padding-bottom: 72px; }
+  .bl-dest { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 28px; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+  .bl-dest:hover { box-shadow: 0 20px 50px #14100e14; transform: translateY(-2px); }
+  .bl-dest__txt { padding-right: 28px; }
+  .bl-dest h2 { font-size: clamp(1.8rem, 1.1rem + 2vw, 2.7rem); line-height: 1.05; letter-spacing: -.035em; margin-top: 14px; }
+  .bl-dest p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 14px 0 20px; }
+  .bl-meta { font-size: 12px; color: var(--ink-soft); }
+  .bl-meta b { color: var(--brand-ink); }
 
-  .postlist { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-  @media (min-width: 680px) { .postlist { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1000px) { .postlist { grid-template-columns: repeat(3, 1fr); } }
+  /* Capas por assunto: cor + ícone. */
+  .bl-capa { position: relative; display: grid; place-items: center; align-content: center; gap: 10px; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; color: #fff; }
+  .bl-capa span { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
+  .bl-capa::after { content: ""; position: absolute; inset: auto -20% -60% auto; width: 70%; aspect-ratio: 1; border-radius: 50%; background: #ffffff1f; }
+  .bl-capa--grande span { font-size: 22px; }
+  .bl-capa--comentarios { background: linear-gradient(135deg, #ff1f6d, #c90c54); }
+  .bl-capa--stories { background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7); }
+  .bl-capa--direct { background: linear-gradient(135deg, #2b2320, #5a4038); }
+  .bl-capa--vendas { background: linear-gradient(135deg, #1f8a5b, #0f5c3c); }
+  .bl-capa--tiktok { background: linear-gradient(135deg, #111, #25f4ee 180%); }
+  .bl-capa--notifiquei { background: linear-gradient(135deg, #f7d7e2, #efb3c8); color: var(--brand-ink); }
+  .bl-capa--estrategia { background: linear-gradient(135deg, #e8dccb, #cdb899); color: var(--ink); }
 
-  .postcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
-  .postcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--brand); }
-  .postcard__link { display: flex; flex-direction: column; height: 100%; }
-  .postcard__cover { width: 100%; height: 180px; object-fit: cover; }
-  .postcard__body { padding: 1.25rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-  .postcard__cat { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-ink); }
-  .postcard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; line-height: 1.2; letter-spacing: -0.01em; }
-  .postcard__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; flex: 1; }
-  .postcard__date { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.25rem; }
+  .bl-lista { background: #eee7dc; padding-top: 64px; }
+  .bl-filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bl-filtro { display: inline-flex; align-items: center; gap: 7px; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .bl-filtro small { font-size: 11px; color: var(--ink-soft); font-weight: 500; }
+  .bl-filtro.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .bl-filtro.is-on small { color: #fff9; }
+  .bl-grade { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .bl-card[hidden] { display: none; }
+  .bl-card a { display: flex; flex-direction: column; height: 100%; padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 22px; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+  .bl-card a:hover { box-shadow: 0 16px 36px #14100e12; transform: translateY(-2px); }
+  .bl-card__txt { display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 16px 8px 6px; }
+  .bl-card h3 { font-size: 19px; line-height: 1.2; letter-spacing: -.02em; }
+  .bl-card p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  @media (max-width: 1000px) { .bl-grade { grid-template-columns: repeat(2, 1fr); } .bl-dest { grid-template-columns: 1fr; gap: 20px; } .bl-dest__txt { padding: 0 8px 12px; } }
+  @media (max-width: 620px) {
+    .bl-grade { grid-template-columns: 1fr; }
+    .bl-filtros { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
+    .bl-filtro { flex: none; }
+  }
 </style>

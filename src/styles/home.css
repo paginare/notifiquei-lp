@@ -2,9 +2,9 @@
    Overrides stay inside .home-page so the other landing pages keep their styles. */
 .home-page { --container: 1320px; --gutter: clamp(20px, 4vw, 60px); --home-soft-pink: #f9e4eb; }
 .home-page main { padding-top: 0; }
-.home-page h1, .home-page h2, .home-page h3 { font-weight: 700; }
-.home-page h2 { font-size: clamp(2.7rem, 4.8vw, 4.4rem); line-height: 1.02; letter-spacing: -.045em; }
-.home-page h3 { letter-spacing: -.03em; }
+.home-page :is(h1, h2, h3):where(:not(.pagina-antiga *)) { font-weight: 700; }
+.home-page h2:where(:not(.pagina-antiga *)) { font-size: clamp(2.7rem, 4.8vw, 4.4rem); line-height: 1.02; letter-spacing: -.045em; }
+.home-page h3:where(:not(.pagina-antiga *)) { letter-spacing: -.03em; }
 .home-page .btn { border-radius: 8px; gap: 17px; font-size: 15px; }
 .home-page .btn--lg { padding: 19px 25px; min-height: 58px; font-size: 15px; }
 .home-page .btn--brand { --btn-bg: var(--brand-ink); }
@@ -572,3 +572,39 @@
   .home-page .maisplanos__caixa { padding: 30px 20px 24px; }
   .home-page .maisplanos__caixa h3 { font-size: 22px; }
 }
+
+/* Páginas internas (criadores, preços, ajuda…): topo claro, então o menu fica
+   sempre na versão "rolada", com fundo papel. Uso: <div class="home-page pagina-clara">. */
+.home-page.pagina-clara .nav, .home-page.pagina-clara #siteNav.nav { background: var(--paper); color: var(--ink); box-shadow: 0 2px 15px #14100e0a; }
+.home-page.pagina-clara .nav:not(.is-scrolled):not(.is-open) .nav__links a { color: var(--ink-soft); }
+.home-page.pagina-clara .nav:not(.is-scrolled):not(.is-open) .nav__links a:hover { color: var(--brand-ink); }
+.home-page.pagina-clara .nav .nav__start { background: var(--brand-ink); color: #fff; }
+.home-page.pagina-clara .nav .lang__btn { border-color: var(--line); background: transparent; }
+
+/* Cabeçalho padrão das páginas internas */
+.pg-head { padding-top: 150px; padding-bottom: 56px; text-align: center; }
+.pg-head .home-kicker { justify-content: center; }
+.pg-head h1 { font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5rem); line-height: .98; letter-spacing: -.05em; margin-top: 16px; }
+.pg-head h1 .hl { color: var(--brand-ink); }
+.pg-head > .container > p { font-size: 17px; line-height: 1.6; color: var(--ink-soft); max-width: 620px; margin: 20px auto 0; }
+.pg-head__acoes { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 30px; }
+@media (max-width: 700px) { .pg-head { padding-top: 116px; padding-bottom: 36px; } .pg-head > .container > p { font-size: 15px; } }
+
+/* Tabela de comparação (preços, vs ManyChat). Rola pro lado no celular. */
+.cmp { position: relative; margin-top: 48px; overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+.cmp table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+.cmp thead th { background: #fff; font-family: var(--font-display); font-size: 18px; letter-spacing: -.02em; padding: 22px 16px 16px; text-align: center; }
+.cmp thead th.cmp__nos { color: var(--brand-ink); }
+.cmp tbody th[scope="row"] { text-align: left; font-weight: 500; color: var(--ink); padding: 13px 20px; width: 34%; }
+.cmp td { text-align: center; padding: 13px 16px; color: var(--ink-soft); line-height: 1.45; }
+.cmp td.cmp__nos { color: var(--ink); font-weight: 600; background: #fdf3f6; }
+.cmp tbody tr:not(.cmp__grupo) { border-top: 1px solid var(--line-soft); }
+.cmp__grupo th { text-align: left; padding: 26px 20px 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-ink); }
+.cmp__sim { display: inline-flex; color: var(--brand-ink); }
+.cmp__nao { color: #bdb2a4; }
+.sr-only { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Páginas no desenho anterior (ferramentas, central de afiliados) que ganharam
+   só o menu e o rodapé novos. Os títulos delas ficam fora das regras da home
+   (ver :where(:not(.pagina-antiga *)) no topo, que mantém a especificidade); aqui só o respiro do menu fixo. */
+.home-page.pagina-antiga main { padding-top: 40px; }
