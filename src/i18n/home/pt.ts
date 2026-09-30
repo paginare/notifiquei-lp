@@ -7,7 +7,7 @@
  *    manter o sentido, não a contagem de caracteres.
  *  - O plano grátis e o preço em real só aparecem no Brasil (CSS br-only),
  *    mas os textos ficam aqui de qualquer jeito.
- *  - Nada de nome de cliente: não temos autorização.
+ *  - Nome de cliente só com autorização (casos em data/casos.ts, autorizados em 30/09).
  */
 import { LINKS_PT } from "../../data/nav";
 

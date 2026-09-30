@@ -1,0 +1,52 @@
+---
+// Casos reais (só em português): números em src/data/casos.ts.
+import Icon from "./HomeIcon.astro";
+import { casos } from "../data/casos";
+import { marcar } from "../i18n/home";
+---
+<section class="home-section casos" aria-labelledby="casos-titulo">
+  <div class="container">
+    <div class="home-centered-heading">
+      <span class="home-kicker"><Icon name="chart" size={17} /> RESULTADOS DE QUEM USA</span>
+      <h2 id="casos-titulo" set:html={marcar("Perfis grandes,\n{hl}no automático.{/hl}")} />
+      <p>Números reais das contas, tirados do Notifiquei em 30 de setembro de 2026.</p>
+    </div>
+    <div class="casos__grade">
+      {casos.map((c) => (
+        <article class="caso">
+          <header class="caso__topo">
+            <span class="caso__foto"><img src={`/assets/perfis/${c.handle}.webp`} alt={`Foto do perfil @${c.handle}`} width="64" height="64" loading="lazy" /></span>
+            <div>
+              <b>{c.nome}</b>
+              <small>@{c.handle} · {c.seguidores} de seguidores</small>
+            </div>
+          </header>
+          <p class="caso__dest"><span>{c.destaque.valor}</span> {c.destaque.rotulo}</p>
+          <ul class="caso__nums">
+            {c.numeros.map((n) => <li><b>{n.valor}</b><small>{n.rotulo}</small></li>)}
+          </ul>
+          <footer class="caso__rodape">{c.nicho} · usa o Notifiquei desde {c.desde}</footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .casos { background: var(--paper); }
+  .casos__grade { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 52px; }
+  .caso { display: flex; flex-direction: column; gap: 22px; padding: 30px; background: #fff; border: 1px solid var(--line); border-radius: 26px; }
+  .caso__topo { display: flex; align-items: center; gap: 14px; }
+  .caso__foto { flex: none; padding: 3px; border-radius: 50%; background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7); }
+  .caso__foto img { display: block; width: 56px; height: 56px; border-radius: 50%; border: 3px solid #fff; }
+  .caso__topo b { display: block; font-family: var(--font-display); font-size: 20px; letter-spacing: -.02em; }
+  .caso__topo small { font-size: 13px; color: var(--ink-soft); }
+  .caso__dest { font-size: 16px; color: var(--ink-soft); line-height: 1.4; }
+  .caso__dest span { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -.06em; color: var(--brand-ink); margin-bottom: 6px; }
+  .caso__nums { list-style: none; padding: 18px 0 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-top: 1px solid var(--line-soft); }
+  .caso__nums b { display: block; font-family: var(--font-display); font-size: 22px; letter-spacing: -.03em; }
+  .caso__nums small { display: block; font-size: 12px; line-height: 1.4; color: var(--ink-soft); margin-top: 4px; }
+  .caso__rodape { font-size: 12px; color: var(--ink-soft); margin-top: auto; }
+  @media (max-width: 900px) { .casos__grade { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .caso { padding: 22px; } .caso__nums { grid-template-columns: 1fr; } }
+</style>

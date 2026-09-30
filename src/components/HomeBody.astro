@@ -17,6 +17,7 @@ import HomeMcp from "./HomeMcp.astro";
 import HomeTour from "./HomeTour.astro";
 import HomePricing from "./HomePricing.astro";
 import HomeStories from "./HomeStories.astro";
+import HomeCasos from "./HomeCasos.astro";
 import LangBanner from "./LangBanner.astro";
 import ZapFlutuante from "./ZapFlutuante.astro";
 import { WPP, faqs as faqsPt } from "../data/home";
@@ -78,6 +79,8 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
           <HomeStories titulo={t.perfisTitulo} />
         </div>
       </section>
+
+      {lang === "pt-BR" && <HomeCasos />}
 
       <section class="home-section home-audiences">
         <div class="container">
