@@ -1,9 +1,12 @@
 ---
-// Tour do painel em vídeo (anuncios-funcoes, vídeo "demo"), só na home em PT:
+// Tour do painel em vídeo (anuncios-funcoes, vídeos "demo" e "demo-vertical"), só na home em PT:
 // a legenda e a narração são em português. O texto fica aqui e não em pt.ts,
 // porque CopyHome = typeof pt obrigaria en.ts e es.ts a ter a mesma chave.
-// O vídeo entra mudo e em loop (o script de data-autoplay do Base.astro); a
-// legenda queimada conta a história sem som. "Ver com som" volta pro começo.
+// Celular (até 700 px) vê o 4:5 e o resto o 16:9: o outro fica com display:none e,
+// com preload="none", não baixa nada (o data-autoplay do Base.astro só dá play no
+// que entra na tela, e um display:none nunca entra). Entra mudo e em loop; a
+// legenda queimada conta a história sem som. "Ativar som" (ou tocar no vídeo)
+// volta pro começo com a narração.
 import Icon from "./HomeIcon.astro";
 import { marcar } from "../i18n/home";
 ---
@@ -16,7 +19,7 @@ import { marcar } from "../i18n/home";
     </div>
     <div class="home-tour__frame">
       <video
-        class="home-tour__video"
+        class="home-tour__video home-tour__video--h"
         poster="/assets/demo-tour-set26-poster.webp"
         width="1920" height="1080"
         data-autoplay muted loop playsinline preload="none"
@@ -25,8 +28,20 @@ import { marcar } from "../i18n/home";
         <source src="/assets/demo-tour-set26.webm" type='video/webm; codecs="vp9, opus"' />
         <source src="/assets/demo-tour-set26.mp4" type="video/mp4" />
       </video>
-      <button type="button" class="home-tour__som" data-tour-som aria-label="Ver com som: o vídeo volta pro começo com a narração">
-        <Icon name="som" size={20} /> Ver com som
+      <video
+        class="home-tour__video home-tour__video--v"
+        poster="/assets/demo-tour-set26-vertical-poster.webp"
+        width="1080" height="1350"
+        data-autoplay muted loop playsinline preload="none"
+        aria-label="Tour do painel do Notifiquei: conectar o Instagram, criar uma automação de comentário e ver a resposta chegando no direct"
+      >
+        <source src="/assets/demo-tour-set26-vertical.webm" type='video/webm; codecs="vp9, opus"' />
+        <source src="/assets/demo-tour-set26-vertical.mp4" type="video/mp4" />
+      </video>
+      <button type="button" class="home-tour__som" data-tour-som aria-label="Ativar som: o vídeo volta pro começo com a narração">
+        <span class="home-tour__ico home-tour__ico--on"><Icon name="som" size={18} /></span>
+        <span class="home-tour__ico home-tour__ico--off"><Icon name="mudo" size={18} /></span>
+        <span class="home-tour__rotulo">Ativar som</span>
       </button>
     </div>
   </div>
@@ -35,33 +50,74 @@ import { marcar } from "../i18n/home";
 <style>
   .home-tour { padding-top: 30px; background: var(--paper); }
   .home-tour__frame { position: relative; max-width: 1200px; margin: 56px auto 0; }
-  .home-tour__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 28px; border: 1px solid #ead1db; background: #f4d8e1; box-shadow: 0 26px 60px #6727431a; }
-  .home-tour__som { position: absolute; top: 18px; left: 18px; display: inline-flex; align-items: center; gap: 9px; min-height: 46px; padding: 11px 18px 11px 14px; border-radius: 999px; background: var(--brand-ink); color: white; font-size: 15px; font-weight: 700; box-shadow: 0 10px 26px #67274333; transition: background .2s, transform .2s; }
-  .home-tour__som:hover { background: #ad104b; transform: translateY(-1px); }
-  .home-tour__som:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-  .home-tour__som[hidden] { display: none; }
+  .home-tour__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-lg); background: var(--paper-2); box-shadow: var(--shadow-md); cursor: pointer; }
+  .home-tour__video--v { display: none; aspect-ratio: 4 / 5; }
+
+  .home-tour__som { position: absolute; right: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 15px 0 12px; border-radius: var(--r-pill); background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; line-height: 1; box-shadow: 0 6px 18px rgb(20 16 14 / .22); transition: background .2s; }
+  .home-tour__som:hover { background: var(--brand-ink); }
+  .home-tour__som:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+  .home-tour__ico { display: inline-flex; }
+  .home-tour__ico--off { display: none; }
+  /* Som ligado: sobra só o ícone de mudo ("Desligar som" no aria-label). */
+  .home-tour__som[data-ligado] { width: 40px; padding: 0; justify-content: center; }
+  .home-tour__som[data-ligado] .home-tour__rotulo,
+  .home-tour__som[data-ligado] .home-tour__ico--on { display: none; }
+  .home-tour__som[data-ligado] .home-tour__ico--off { display: inline-flex; }
+
   @media (max-width: 760px) { .home-tour { padding-top: 15px; } .home-tour__frame { margin-top: 36px; } }
-  /* Celular: o vídeo ocupa a largura toda e o botão sai de cima dele. */
-  @media (max-width: 600px) {
-    .home-tour__frame { margin-inline: calc(-1 * var(--gutter)); display: flex; flex-direction: column; align-items: center; }
-    .home-tour__video { border-radius: 0; border-inline: 0; box-shadow: none; }
-    .home-tour__som { position: static; margin-top: 16px; }
+  /* Celular: o vídeo em pé, 16 px de cada borda da tela (o container dá var(--gutter)). */
+  @media (max-width: 700px) {
+    .home-tour__frame { margin-inline: calc(16px - var(--gutter)); margin-bottom: 22px; }
+    .home-tour__video--h { display: none; }
+    .home-tour__video--v { display: block; }
+    /* A legenda do 4:5 tem o pé em y 1300 de 1350: a 390 px sobram ~16 px embaixo. A pílula
+       inteira dentro do vídeo cobriria o fim da 2ª linha; então ela monta na borda de baixo
+       (12 px por cima do vídeo, o resto pra fora, com um anel da cor do fundo), no canto direito. */
+    .home-tour__som { right: 12px; bottom: -22px; height: 34px; font-size: 13px; box-shadow: 0 0 0 3px var(--paper), 0 6px 16px rgb(20 16 14 / .2); }
+    .home-tour__som[data-ligado] { width: 34px; }
   }
   @media (prefers-reduced-motion: reduce) { .home-tour__som { transition: none; } }
 </style>
 
 <script>
-  const video = document.querySelector<HTMLVideoElement>(".home-tour__video");
-  const som = document.querySelector<HTMLButtonElement>("[data-tour-som]");
-  som?.addEventListener("click", () => {
-    if (!video) return;
-    video.muted = false;
-    video.loop = false; // com som, toca uma vez; os controles deixam repetir e pausar
-    video.controls = true;
-    video.currentTime = 0;
-    video.play().catch(() => {});
-    som.hidden = true;
-    video.focus();
+  const frame = document.querySelector<HTMLElement>(".home-tour__frame");
+  const som = frame?.querySelector<HTMLButtonElement>("[data-tour-som]");
+  const vids = frame ? [...frame.querySelectorAll<HTMLVideoElement>("video")] : [];
+  const atual = () => vids.find((v) => v.getClientRects().length > 0); // o que não está com display:none
+
+  const pintar = (ligado: boolean) => {
+    if (!som) return;
+    som.toggleAttribute("data-ligado", ligado);
+    som.setAttribute("aria-label", ligado ? "Desligar som" : "Ativar som: o vídeo volta pro começo com a narração");
+    som.title = ligado ? "Desligar som" : "";
+  };
+  const ligar = (v: HTMLVideoElement) => {
+    v.muted = false;
+    v.loop = false; // com som, toca uma vez; no fim volta ao loop mudo
+    v.currentTime = 0;
+    v.play().catch(() => {});
+    pintar(true);
     (window as any).posthog?.capture?.("home_tour_som");
+  };
+  const desligar = (v: HTMLVideoElement) => {
+    v.muted = true;
+    v.loop = true;
+    pintar(false);
+  };
+
+  som?.addEventListener("click", () => {
+    const v = atual();
+    if (v) v.muted ? ligar(v) : desligar(v);
+  });
+  vids.forEach((v) => {
+    // Tocar no vídeo: mudo → liga o som do começo; com som → pausa/continua.
+    v.addEventListener("click", () => (v.muted ? ligar(v) : v.paused ? v.play().catch(() => {}) : v.pause()));
+    v.addEventListener("ended", () => { desligar(v); v.play().catch(() => {}); });
+  });
+  // Girar o celular troca de vídeo: o que sumiu para (senão seguiria tocando, até com som, escondido).
+  matchMedia("(max-width: 700px)").addEventListener("change", () => {
+    const tocava = vids.some((v) => !v.paused);
+    vids.forEach((v) => { v.pause(); desligar(v); });
+    if (tocava) atual()?.play().catch(() => {});
   });
 </script>
