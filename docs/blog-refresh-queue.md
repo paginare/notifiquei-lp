@@ -21,9 +21,6 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ## Fila ativa
 
-**`automacao-no-instagram-guia`** (13 impressões/mês, posição 10,6)
-Pilar do cluster "automação no Instagram" na borda da primeira página. Title (57 chars) e description (154 chars) dentro dos limites, mas a description não repete a promessa do title ("sem arriscar sua conta") com força. Reescrever description para começar com a consulta "automação no Instagram" e incluir o diferencial de segurança que está no title. Verificar se o primeiro H2 começa com "automação no Instagram". Atualizar `updated`.
-
 ---
 
 ## Bloqueado (não mexer até alguém conferir no Search Console)
@@ -31,6 +28,8 @@ Pilar do cluster "automação no Instagram" na borda da primeira página. Title 
 - **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês, posição 2,3, 1 clique). Posição 2 com CTR de 1% tem cara de impressão vinda da busca "notifiquei". Precisa abrir Search Console > Desempenho > filtro Página com a URL do post > aba Consultas. Se as consultas forem de sorteio, boas-vindas ou direct, vira item desta fila. Se forem de marca, o post sai da lista.
 
 ## Feito
+
+- **2026-10-02** — `automacao-no-instagram-guia`: description reescrita de 154 para 142 chars, agora começa com "Automação no Instagram" e inclui o diferencial de segurança do title; primeiro H2 atualizado para começar com "automação no instagram:"; `updated: 2026-10-02` adicionado. Title não mudou (57 chars).
 
 - **2026-09-30** — `dm-para-quem-comentou-no-instagram`: title encurtado de 74 para 52 chars ("DM pra quem comentou: como funciona a janela da Meta"); `updated: 2026-09-30` adicionado. Description não mudou (151 chars).
 

@@ -1,7 +1,8 @@
 ---
 title: "Automação no Instagram: como fazer sem arriscar sua conta"
-description: "O que dá pra automatizar no Instagram pela API oficial da Meta, o que a plataforma não permite, e por que só o caminho oficial não põe sua conta em risco."
+description: "Automação no Instagram pela API oficial da Meta: o que dá pra automatizar, o que a plataforma não permite e como fazer sem arriscar sua conta."
 date: 2026-08-14
+updated: 2026-10-02
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "API Oficial"]
@@ -24,7 +25,7 @@ Três dias depois aquele post está morto e os cento e sessenta que sobraram já
 
 É esse buraco que a automação no Instagram fecha. E é aqui que quase todo mundo trava, porque a primeira coisa que vem na cabeça é a história do amigo que usou um robô e perdeu o perfil.
 
-## o que é automação no instagram, na prática
+## automação no instagram: o que é na prática
 
 Automação no Instagram é a plataforma disparar uma resposta sua quando alguém interage com o seu conteúdo, sem você estar na frente do celular.
 
