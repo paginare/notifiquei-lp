@@ -27,10 +27,15 @@ const ganchos = [
   { icon: "tiktok", t: "Instagram + TikTok juntos", d: "Cada conta do plano já conecta um Instagram e um TikTok. O cliente automatiza os dois sem pagar a mais." },
 ];
 
-// Planos — só MENSAL (a comissão de afiliado hoje é nos planos mensais). Fonte
-// única em data/home: no Brasil a tabela é Solo + Duo; 5 e 10 contas à parte.
-const planos = plans.filter((p) => p.mercado !== "intl");
-const [pro, business] = planosMaiores;
+// Planos — os 4 pagos do Brasil, na mesma ordem do produto (instaV2,
+// src/lib/plan-pricing.ts). Solo e Duo vêm de data/home; Pro e Business levam o
+// preço em real de planosMaiores (no data/home o cartão deles é o internacional).
+// Anual = mensal × 10 (2 meses grátis), exibido por mês arredondado.
+const brl = (n: number) => n.toLocaleString("pt-BR");
+const planos = plans.map((p) => {
+  const price = Number(p.price ?? planosMaiores.find((m) => m.slug === p.slug)?.price);
+  return { ...p, price, anualMes: Math.round((price * 10) / 12), anualAno: price * 10 };
+});
 
 // Comparativo curto vs concorrentes (jun/2026, tabelas públicas).
 const compara = [
@@ -319,7 +324,7 @@ const jsonLd = [
           <div class="home-centered-heading">
             <span class="home-kicker"><Icon name="cartao" size={17} /> PLANOS E PREÇOS</span>
             <h2 set:html={marcar("Preço fixo em real,\n{hl}contatos ilimitados.{/hl}")} />
-            <p>Os valores que o afiliado divulga hoje são os mensais. Cada conta conecta Instagram + TikTok. Todo plano pago tem garantia de 7 dias.</p>
+            <p>Quatro planos pagos, mensal ou anual (o anual sai com 2 meses grátis). Cada conta conecta Instagram + TikTok. Todo plano pago tem garantia de 7 dias.</p>
           </div>
 
           <div class="plans">
@@ -328,7 +333,8 @@ const jsonLd = [
                 {p.featured && <span class="plan__badge">Mais popular</span>}
                 <h3 class="plan__name">{p.name}</h3>
                 <p class="plan__blurb">{p.blurb}</p>
-                <p class="plan__price"><span class="plan__cur">R$</span>{p.price}<span class="plan__per">/mês</span></p>
+                <p class="plan__price"><span class="plan__cur">R$</span>{brl(p.price)}<span class="plan__per">/mês</span></p>
+                <p class="plan__bill">ou R$ {brl(p.anualMes)}/mês no anual (R$ {brl(p.anualAno)}/ano)</p>
                 <ul class="plan__features">
                   {p.features.map((f) => <li><span class="plan__tick" aria-hidden="true">✓</span>{f}</li>)}
                 </ul>
@@ -342,11 +348,6 @@ const jsonLd = [
               <span class="home-kicker">GRÁTIS PARA SEMPRE</span>
               <h3>Plano Grátis</h3>
               <p>Bom pra tirar a objeção de “vou testar primeiro”. Sem cartão e sem prazo: só Instagram (sem TikTok), até 200 envios automáticos por mês e mensagens com a marca “⚡ Enviado com Notifiquei”.</p>
-            </article>
-            <article>
-              <span class="home-kicker">MAIS CONTAS</span>
-              <h3>5 ou 10 contas</h3>
-              <p>Pra agência e operação grande: R$ {pro.price}/mês com 5 contas e R$ {business.price}/mês com 10, com times e divisão por equipe. Aparecem em “Ver planos maiores” na página de preços.</p>
             </article>
           </div>
 
@@ -568,9 +569,11 @@ const jsonLd = [
 
   /* planos */
   .ce-planos { background: var(--paper); }
-  .ce-planos .plans { max-width: 760px; }
+  .ce-planos .plans { max-width: 1180px; grid-template-columns: repeat(4, 1fr); }
+  .ce-planos .plan__name { font-size: 26px; }
+  .ce-planos .plan__price { font-size: 52px; margin-top: 26px; }
   .ce-plan__garantia { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-soft); }
-  .ce-extras { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 760px; margin: 18px auto 0; }
+  .ce-extras { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 1180px; margin: 18px auto 0; }
   .ce-extras article { padding: 24px 26px; border: 1px dashed #cfc3b3; border-radius: 15px; }
   .ce-extras h3 { font-size: 24px; margin-top: 6px; }
   .ce-extras p { font-size: 13px; line-height: 1.7; color: var(--ink-soft); margin-top: 8px; }
@@ -617,12 +620,13 @@ const jsonLd = [
 
   #pitch, #funcoes, #planos, #duvidas, #comissao, #materiais { scroll-margin-top: 90px; }
 
+  @media (max-width: 1100px) { .ce-planos .plans { grid-template-columns: 1fr 1fr; max-width: 760px; } }
   @media (max-width: 980px) {
     .ce-fngrid, .ce-links, .ce-perfis { grid-template-columns: 1fr 1fr; }
     .ce-ganchos { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
-    .ce-fngrid, .ce-links, .ce-perfis, .ce-extras, .ce-faqgrade, .ce-comm { grid-template-columns: 1fr; }
+    .ce-fngrid, .ce-links, .ce-perfis, .ce-extras, .ce-faqgrade, .ce-comm, .ce-planos .plans { grid-template-columns: 1fr; }
     .ce-pitch { padding: 24px 20px; }
     .ce-pitch__text { font-size: 16px; }
     .ce-plat, .ce-sub { font-size: 26px; }
