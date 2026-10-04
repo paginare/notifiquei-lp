@@ -37,8 +37,31 @@ const jsonLd = [
   {
     "@context": "https://schema.org", "@type": "Product", name: "Notifiquei",
     description: "Automação de comentários, stories e direct no Instagram e no TikTok pela API oficial.",
+    image: "https://notifiquei.com.br/assets/og-image.jpg",
     brand: { "@type": "Brand", name: "Notifiquei" },
-    offers: planosBR.map((p) => ({ "@type": "Offer", name: `Plano ${p.name}`, price: p.price, priceCurrency: "BRL", url: "https://notifiquei.com.br/precos", availability: "https://schema.org/InStock" })),
+    offers: planosBR.map((p) => ({
+      "@type": "Offer", name: `Plano ${p.name}`, price: p.price, priceCurrency: "BRL", url: "https://notifiquei.com.br/precos", availability: "https://schema.org/InStock",
+      // Assinatura digital: sem frete, liberada na hora.
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "BRL" },
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "BR" },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+          transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+        },
+      },
+      // A garantia de 7 dias da FAQ (devolve 100%).
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "BR",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 7,
+        returnFees: "https://schema.org/FreeReturn",
+        refundType: "https://schema.org/FullRefund",
+      },
+    })),
   },
   { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
 ];
