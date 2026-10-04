@@ -41,7 +41,7 @@ const noti = {
       <img class="home-noti__mascote" src="/assets/home/noti/noti-acenando-160.webp" srcset="/assets/home/noti/noti-acenando-160.webp 160w, /assets/home/noti/noti-acenando-320.webp 320w" sizes="120px" width="160" height="169" alt="A Nôti, polvo rosa mascote do Notifiquei, acenando" loading="lazy" decoding="async" />
       <span class="home-kicker"><Icon name="chat" size={17} /> {t.kicker}</span>
       <h2 id="noti-title" set:html={marcar("Pede do seu jeito.\n{hl}A automação sai pronta.{/hl}")} />
-      <p>Dá pra criar, pausar e entender suas automações só conversando. De dois jeitos: com a Nôti, no app do Notifiquei, ou com o Claude, no computador. Nos dois, nada muda sem você confirmar.</p>
+      <p>Dá pra criar, pausar e entender suas automações só conversando. De dois jeitos: com a Nôti, no app do Notifiquei, ou com a IA que você já usa no computador, como Claude, ChatGPT, Cursor e Codex. Nos dois, nada muda sem você confirmar.</p>
     </div>
 
     <div class="noti-scrolly" data-noti-scrolly data-passo="1">
@@ -67,7 +67,8 @@ const noti = {
 
         <article class="noti-passo noti-passo--2" data-passo-n="2">
           <span class="noti-passo__tag"><b>02</b> No computador</span>
-          <h3>No computador: <span>o Claude.</span></h3>
+          <h3>No computador: <span>a IA que você já usa.</span></h3>
+          <ul class="noti-ias" aria-label="Apps compatíveis"><li>Claude</li><li>ChatGPT</li><li>Cursor</li><li>Codex</li><li>e outros com MCP</li></ul>
           <p>{t.lead}</p>
           <ul class="noti-lista">
             {t.itens.map((item) => <li><Icon name="check" size={16} /> {item}</li>)}
@@ -79,15 +80,15 @@ const noti = {
         <article class="noti-passo noti-passo--3" data-passo-n="3">
           <span class="noti-passo__tag"><b>03</b> Os dois juntos</span>
           <h3>Dois caminhos, <span>as mesmas regras.</span></h3>
-          <p>A Nôti e o Claude usam as mesmas ferramentas e mexem nas mesmas automações da sua conta. Comece no celular e confira no computador, ou ao contrário. E nada muda sem você confirmar.</p>
+          <p>A Nôti e a sua IA usam as mesmas ferramentas e mexem nas mesmas automações da sua conta. Comece no celular e confira no computador, ou ao contrário. E nada muda sem você confirmar.</p>
           <dl class="noti-compara">
             <div>
               <dt><img src="/assets/home/noti/noti-avatar-96.webp" width="24" height="24" alt="" loading="lazy" decoding="async" /> Nôti</dt>
               <dd>No app do Notifiquei, no iPhone e no Android. Digitando ou falando.</dd>
             </div>
             <div>
-              <dt><img src="/assets/home/claude-app-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async" /> Claude</dt>
-              <dd>No computador, pelo conector. Ou em qualquer app que fale MCP.</dd>
+              <dt><img src="/assets/home/claude-app-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async" /> Sua IA</dt>
+              <dd>No computador, pelo conector MCP: Claude, ChatGPT, Cursor, Codex e outros.</dd>
             </div>
           </dl>
         </article>
@@ -181,6 +182,9 @@ const noti = {
   /* A cena tem tamanho fixo de desenho (600 × 620) e encolhe por --k, calculado
      pelo script a partir da largura da coluna (telas entre 900 e 1200 px). */
   .noti-palco__cena { position: relative; width: 600px; height: 620px; transform: scale(var(--k, 1)); transform-origin: top left; }
+  .noti-ias { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
+  .noti-ias li { padding: 5px 11px; border-radius: 99px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .noti-ias li:last-child { background: transparent; border-style: dashed; color: var(--ink-soft); }
   .noti-cel, .noti-claude { position: absolute; transition: opacity .55s var(--ease-out), transform .7s var(--ease-spring); }
   .noti-cel { left: calc(50% - 150px); top: 0; width: 300px; z-index: 2; }
   .noti-claude { left: 20px; top: 70px; width: 560px; z-index: 1; }

@@ -103,9 +103,9 @@ export const pt = {
   mcp: {
     kicker: "AUTOMAÇÃO POR CONVERSA",
     titulo: "Explica do seu jeito.\n{hl}Ele monta a automação.{/hl}",
-    lead: "Sem abrir painel e sem preencher formulário: você descreve o que quer como explicaria para alguém do seu time. O Claude acha o post, monta a automação e mostra como ficou. Só entra no ar quando você diz que está certo.",
+    lead: "Sem abrir painel e sem preencher formulário: você descreve o que quer como explicaria para alguém do seu time. A IA acha o post, monta a automação e mostra como ficou. Só entra no ar quando você diz que está certo.",
     itens: [
-      "Funciona no Claude e em qualquer app que fale MCP",
+      "Funciona no Claude, ChatGPT, Cursor, Codex e em qualquer app que fale MCP",
       "Cria, edita, liga e desliga sem você sair da conversa",
       "Não disparou? Ele investiga e te diz o motivo",
       "Nada entra no ar sem o seu sim",
