@@ -67,8 +67,8 @@ const noti = {
 
         <article class="noti-passo noti-passo--2" data-passo-n="2">
           <span class="noti-passo__tag"><b>02</b> No computador</span>
-          <h3>No computador: <span>a IA que você já usa.</span></h3>
-          <ul class="noti-ias" aria-label="Apps compatíveis"><li>Claude</li><li>ChatGPT</li><li>Cursor</li><li>Codex</li><li>e outros com MCP</li></ul>
+          <h3>No computador:<br /><span>a IA que você já usa.</span></h3>
+          <ul class="noti-ias" aria-label="Apps compatíveis"><li><img src="/assets/home/ias/claude.svg" width="16" height="16" alt="" loading="lazy" decoding="async" />Claude</li><li><img src="/assets/home/ias/openai.svg" width="16" height="16" alt="" loading="lazy" decoding="async" />ChatGPT</li><li><img src="/assets/home/ias/cursor.svg" width="16" height="16" alt="" loading="lazy" decoding="async" />Cursor</li><li><img src="/assets/home/ias/openai.svg" width="16" height="16" alt="" loading="lazy" decoding="async" />Codex</li><li>e outros com MCP</li></ul>
           <p>{t.lead}</p>
           <ul class="noti-lista">
             {t.itens.map((item) => <li><Icon name="check" size={16} /> {item}</li>)}
@@ -182,8 +182,9 @@ const noti = {
   /* A cena tem tamanho fixo de desenho (600 × 620) e encolhe por --k, calculado
      pelo script a partir da largura da coluna (telas entre 900 e 1200 px). */
   .noti-palco__cena { position: relative; width: 600px; height: 620px; transform: scale(var(--k, 1)); transform-origin: top left; }
-  .noti-ias { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
-  .noti-ias li { padding: 5px 11px; border-radius: 99px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .noti-ias { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 22px; padding: 0; list-style: none; }
+  .noti-ias li { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px 7px 11px; border-radius: 99px; background: #fff; border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--ink); }
+  .noti-ias img { display: block; width: 16px; height: 16px; }
   .noti-ias li:last-child { background: transparent; border-style: dashed; color: var(--ink-soft); }
   .noti-cel, .noti-claude { position: absolute; transition: opacity .55s var(--ease-out), transform .7s var(--ease-spring); }
   .noti-cel { left: calc(50% - 150px); top: 0; width: 300px; z-index: 2; }

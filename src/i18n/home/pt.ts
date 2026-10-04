@@ -107,7 +107,7 @@ export const pt = {
     itens: [
       "Funciona no Claude, ChatGPT, Cursor, Codex e em qualquer app que fale MCP",
       "Cria, edita, liga e desliga sem você sair da conversa",
-      "Não disparou? Ele investiga e te diz o motivo",
+      "Não disparou? A IA investiga e te diz o motivo",
       "Nada entra no ar sem o seu sim",
     ],
     ctaBr: "Pegar minha chave",
