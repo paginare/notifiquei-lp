@@ -1,0 +1,403 @@
+---
+// Automação por conversa, com os dois caminhos lado a lado: a Nôti (assistente
+// dentro do app do Notifiquei) e o Claude (conector MCP). Só na home em PT —
+// /en e /es seguem com a HomeMcp. O texto da Nôti mora aqui e não em pt.ts
+// pelo mesmo motivo da HomeTour: CopyHome = typeof pt obrigaria en.ts e es.ts
+// a ter as mesmas chaves. A parte do Claude reaproveita a copy de t.mcp.
+//
+// Formato: rolagem guiada. No desktop o palco (celular / janela do Claude)
+// fica preso na tela enquanto os passos de texto passam; o passo ativo decide
+// o que o palco mostra. No celular (até 900 px) não há palco preso: cada passo
+// vem seguido do seu visual, na ordem (display: contents + order).
+// Sem JS ou com movimento reduzido: tudo aparece completo e parado.
+//
+// O que a Nôti faz (e só isso): cria, pausa e explica automações conversando;
+// tudo que muda alguma coisa vira um cartão e só acontece quando a pessoa
+// confirma; diz por que uma automação não enviou; dá pra falar em vez de
+// digitar (ditado). Liberada pra quem tem conta, em qualquer plano.
+import Icon from "./HomeIcon.astro";
+import McpJanela from "./McpJanela.astro";
+import { marcar, type CopyHome } from "../i18n/home";
+
+interface Props { t: CopyHome["mcp"]; }
+const { t } = Astro.props;
+
+const APP_STORE_URL = "https://apps.apple.com/br/app/notifiquei/id6774645360";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.notifiquei.android";
+
+const noti = {
+  itens: [
+    "Pode falar em vez de digitar",
+    "Tudo que muda alguma coisa vem num cartão pra você conferir",
+    "Não enviou? Ela te explica o motivo",
+    "Liberada pra quem tem conta, em qualquer plano",
+  ],
+};
+---
+
+<section class="home-section home-noti" id="mcp" aria-labelledby="noti-title">
+  <div class="container">
+    <div class="home-noti__heading">
+      <img class="home-noti__mascote" src="/assets/home/noti/noti-acenando-160.webp" srcset="/assets/home/noti/noti-acenando-160.webp 160w, /assets/home/noti/noti-acenando-320.webp 320w" sizes="120px" width="160" height="169" alt="A Nôti, polvo rosa mascote do Notifiquei, acenando" loading="lazy" decoding="async" />
+      <span class="home-kicker"><Icon name="chat" size={17} /> {t.kicker}</span>
+      <h2 id="noti-title" set:html={marcar("Pede do seu jeito.\n{hl}A automação sai pronta.{/hl}")} />
+      <p>Dá pra criar, pausar e entender suas automações só conversando. De dois jeitos: com a Nôti, no app do Notifiquei, ou com o Claude, no computador. Nos dois, nada muda sem você confirmar.</p>
+    </div>
+
+    <div class="noti-scrolly" data-noti-scrolly data-passo="1">
+      <div class="noti-passos">
+        <article class="noti-passo noti-passo--1" data-passo-n="1" id="noti">
+          <span class="noti-passo__tag"><b>01</b> No celular</span>
+          <h3>Na palma da mão: <span>a Nôti no app.</span></h3>
+          <p>A Nôti é a assistente que mora no app do Notifiquei, no iPhone e no Android. Você pede como pediria pra alguém do seu time, e ela cria, pausa e explica suas automações. Só liga quando você toca em confirmar.</p>
+          <ul class="noti-lista">
+            {noti.itens.map((item) => <li><Icon name="check" size={16} /> {item}</li>)}
+          </ul>
+          <div class="noti-lojas">
+            <a href={APP_STORE_URL} class="noti-loja" data-home-cta="noti" rel="noopener" target="_blank">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.3 3-2.5.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-4.1ZM13.9 5c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></svg>
+              Baixar para iPhone
+            </a>
+            <a href={PLAY_STORE_URL} class="noti-loja" data-home-cta="noti" rel="noopener" target="_blank">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.2-9.4L4 2.6Zm10.4 10.6 2.6 2.7-11 6.3c-.4.2-.8.3-1.1.2l9.5-9.2Zm0-2.4L4.9 1.6c.3-.1.7 0 1.1.2l11 6.3-2.6 2.7Zm3.9-1.8 3 1.7c.9.5.9 1.9 0 2.4l-3 1.7-2.8-2.9 2.8-2.9Z"/></svg>
+              Baixar para Android
+            </a>
+          </div>
+        </article>
+
+        <article class="noti-passo noti-passo--2" data-passo-n="2">
+          <span class="noti-passo__tag"><b>02</b> No computador</span>
+          <h3>No computador: <span>o Claude.</span></h3>
+          <p>{t.lead}</p>
+          <ul class="noti-lista">
+            {t.itens.map((item) => <li><Icon name="check" size={16} /> {item}</li>)}
+          </ul>
+          <a href="#planos" class="btn btn--brand btn--lg br-only" data-home-cta="mcp">{t.ctaBr} <Icon name="arrow" size={21} /></a>
+          <a href="#planos" class="btn btn--brand btn--lg intl-only" data-home-cta="mcp">{t.ctaIntl} <Icon name="arrow" size={21} /></a>
+        </article>
+
+        <article class="noti-passo noti-passo--3" data-passo-n="3">
+          <span class="noti-passo__tag"><b>03</b> Os dois juntos</span>
+          <h3>Dois caminhos, <span>as mesmas regras.</span></h3>
+          <p>A Nôti e o Claude usam as mesmas ferramentas e mexem nas mesmas automações da sua conta. Comece no celular e confira no computador, ou ao contrário. E nada muda sem você confirmar.</p>
+          <dl class="noti-compara">
+            <div>
+              <dt><img src="/assets/home/noti/noti-avatar-96.webp" width="24" height="24" alt="" loading="lazy" decoding="async" /> Nôti</dt>
+              <dd>No app do Notifiquei, no iPhone e no Android. Digitando ou falando.</dd>
+            </div>
+            <div>
+              <dt><img src="/assets/home/claude-app-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async" /> Claude</dt>
+              <dd>No computador, pelo conector. Ou em qualquer app que fale MCP.</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="noti-palco" aria-label="Os dois jeitos de criar automação conversando">
+        <div class="noti-palco__cena" data-palco>
+          <figure class="noti-cel" data-cel aria-label="Simulação de uma conversa com a Nôti no app do Notifiquei">
+            <div class="noti-cel__tela">
+              <div class="noti-cel__ilha" aria-hidden="true"></div>
+              <div class="noti-cel__topo">
+                <img src="/assets/home/noti/noti-avatar-96.webp" width="34" height="34" alt="" loading="lazy" decoding="async" />
+                <span><b>Nôti</b><small>assistente do Notifiquei</small></span>
+              </div>
+              <div class="noti-cel__conversa" data-cel-conversa>
+                <p class="noti-msg noti-msg--voce">Quem comentar <b>QUERO</b> no meu último Reel recebe o link do e-book</p>
+                <span class="noti-digitando" data-digitando hidden aria-hidden="true"><i></i><i></i><i></i></span>
+                <p class="noti-msg noti-msg--ela">Prontinho. Montei assim — confere antes de ligar:</p>
+                <div class="noti-cartao">
+                  <div class="noti-cartao__linha"><small>Quando</small><b>Alguém comentar “QUERO” no seu último Reel</b></div>
+                  <div class="noti-cartao__linha"><small>Recebe no direct</small><b>O link do e-book</b></div>
+                  <div class="noti-cartao__botoes" aria-hidden="true">
+                    <span class="noti-cartao__btn is-primario" data-ligar>Ligar agora</span>
+                    <span class="noti-cartao__btn">Ajustar</span>
+                  </div>
+                </div>
+                <p class="noti-msg noti-msg--ela noti-msg--pronto"><Icon name="check" size={14} /> Ligada. Já está valendo no seu último Reel.</p>
+              </div>
+              <div class="noti-cel__campo" aria-hidden="true">
+                <span>Pergunte à Nôti…</span>
+                <svg viewBox="0 0 24 24" width="17" height="17"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-6 9a6 6 0 0 0 12 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+              </div>
+            </div>
+            <span class="noti-toque" data-toque hidden aria-hidden="true"></span>
+            <figcaption>Conversa ilustrativa. Nada liga antes do seu toque em confirmar.</figcaption>
+          </figure>
+
+          <div class="noti-claude" data-claude>
+            <McpJanela t={t} gatilho="evento" />
+          </div>
+
+          <span class="noti-ponte" aria-hidden="true"><Icon name="shield" size={15} /> Mesmas ferramentas · nada muda sem o seu sim</span>
+        </div>
+        <ol class="noti-pontos" aria-hidden="true"><li></li><li></li><li></li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-noti { background: var(--paper-2); overflow: clip; }
+
+  /* ---- Cabeçalho ---- */
+  .home-noti__heading { position: relative; text-align: center; max-width: 860px; margin-inline: auto; }
+  .home-noti__heading h2 { margin-top: 19px; }
+  .home-noti__heading > p { font-size: 17px; color: var(--ink-soft); line-height: 1.7; margin: 24px auto 0; max-width: 640px; }
+  .home-noti__mascote { display: block; width: 104px; height: auto; margin: 0 auto 8px; transform: rotate(-4deg); }
+
+  /* ---- Passos de texto ---- */
+  .noti-scrolly { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(40px, 5vw, 80px); margin-top: clamp(24px, 3vw, 40px); }
+  .noti-passo { min-height: 86vh; display: flex; flex-direction: column; justify-content: center; padding-block: 40px; transition: opacity .45s var(--ease-out); }
+  .noti-passo:first-child { min-height: 70vh; }
+  .noti-passo:last-child { min-height: 78vh; }
+  .noti-passo__tag { display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; padding: 6px 12px 6px 6px; border-radius: var(--r-pill); background: var(--paper); border: 1px solid var(--line-soft); font-size: 11px; font-weight: 600; letter-spacing: .085em; text-transform: uppercase; color: var(--ink-soft); }
+  .noti-passo__tag b { display: inline-grid; place-items: center; min-width: 26px; height: 22px; padding-inline: 6px; border-radius: var(--r-pill); background: var(--brand-ink); color: #fff; font-size: 10.5px; letter-spacing: .02em; }
+  .noti-passo h3 { margin-top: 20px; font-size: clamp(2rem, 2.6vw, 2.6rem); line-height: 1.06; letter-spacing: -.035em; }
+  .noti-passo h3 span { color: var(--brand-ink); }
+  .noti-passo > p { margin-top: 18px; font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 48ch; }
+  .noti-lista { display: grid; gap: 10px; margin-top: 22px; }
+  .noti-lista li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.55; }
+  .noti-lista :global(svg) { flex: none; margin-top: 3px; color: var(--brand-ink); }
+  .noti-passo .btn { align-self: flex-start; margin-top: 28px; }
+  .noti-lojas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .noti-loja { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 0 18px; border-radius: 8px; background: var(--ink); color: var(--on-ink); font-size: 14px; font-weight: 600; transition: background .2s; }
+  .noti-loja:hover { background: var(--brand-ink); }
+  .noti-loja:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+  .noti-compara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .noti-compara > div { padding: 16px; border-radius: var(--r-md); background: var(--paper); border: 1px solid var(--line-soft); }
+  .noti-compara dt { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; }
+  .noti-compara dt img { border-radius: 7px; }
+  .noti-compara dd { margin: 8px 0 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+  /* Com JS, o passo que não está ativo fica apagado (só no desktop). */
+  .noti-scrolly[data-js] .noti-passo { opacity: .3; }
+  .noti-scrolly[data-js][data-passo="1"] .noti-passo--1,
+  .noti-scrolly[data-js][data-passo="2"] .noti-passo--2,
+  .noti-scrolly[data-js][data-passo="3"] .noti-passo--3 { opacity: 1; }
+
+  /* ---- Palco preso na tela ---- */
+  .noti-palco { position: sticky; top: max(104px, calc(50vh - 320px)); align-self: start; height: 640px; }
+  /* A cena tem tamanho fixo de desenho (600 × 620) e encolhe por --k, calculado
+     pelo script a partir da largura da coluna (telas entre 900 e 1200 px). */
+  .noti-palco__cena { position: relative; width: 600px; height: 620px; transform: scale(var(--k, 1)); transform-origin: top left; }
+  .noti-cel, .noti-claude { position: absolute; transition: opacity .55s var(--ease-out), transform .7s var(--ease-spring); }
+  .noti-cel { left: calc(50% - 150px); top: 0; width: 300px; z-index: 2; }
+  .noti-claude { left: 20px; top: 70px; width: 560px; z-index: 1; }
+
+  .noti-scrolly[data-passo="1"] .noti-claude { opacity: 0; transform: translateX(70px) scale(.94); pointer-events: none; }
+  .noti-scrolly[data-passo="2"] .noti-cel { opacity: 0; transform: translateX(-70px) scale(.94); pointer-events: none; }
+  .noti-scrolly[data-passo="3"] .noti-claude { transform: translate(-50px, -60px) scale(.8); }
+  .noti-scrolly[data-passo="3"] .noti-cel { transform: translate(150px, -4px) scale(.82); }
+  .noti-cel figcaption { transition: opacity .3s; }
+  .noti-scrolly[data-passo="3"] .noti-cel figcaption { opacity: 0; }
+
+  .noti-ponte { position: absolute; left: 50%; bottom: -6px; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: var(--r-pill); background: var(--ink); color: var(--on-ink); font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow-md); opacity: 0; transform: translate(-50%, 12px); transition: opacity .45s var(--ease-out) .15s, transform .55s var(--ease-out) .15s; }
+  .noti-ponte :global(svg) { color: var(--brand-lift); }
+  .noti-scrolly[data-passo="3"] .noti-ponte { opacity: 1; transform: translate(-50%, 0); }
+
+  .noti-pontos { position: absolute; right: -22px; top: 50%; display: grid; gap: 8px; transform: translateY(-50%); }
+  .noti-pontos li { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: background .3s, transform .3s; }
+  .noti-scrolly[data-passo="1"] .noti-pontos li:nth-child(1),
+  .noti-scrolly[data-passo="2"] .noti-pontos li:nth-child(2),
+  .noti-scrolly[data-passo="3"] .noti-pontos li:nth-child(3) { background: var(--brand-ink); transform: scale(1.3); }
+  .noti-scrolly:not([data-js]) .noti-pontos { display: none; }
+
+  /* ---- Celular com a conversa da Nôti ---- */
+  .noti-cel { margin: 0; }
+  .noti-cel__tela { position: relative; display: flex; flex-direction: column; padding: 12px; border-radius: 46px; background: var(--paper); border: 9px solid var(--ink); box-shadow: var(--shadow-lg); overflow: hidden; }
+  .noti-cel__ilha { position: absolute; top: 9px; left: 50%; width: 86px; height: 24px; border-radius: 999px; background: var(--ink); transform: translateX(-50%); }
+  .noti-cel__topo { display: flex; align-items: center; gap: 10px; margin-top: 32px; padding: 0 6px 12px; border-bottom: 1px solid var(--line-soft); }
+  .noti-cel__topo img { border-radius: 50%; }
+  .noti-cel__topo span { display: grid; line-height: 1.25; }
+  .noti-cel__topo b { font-size: 15px; }
+  .noti-cel__topo small { font-size: 11.5px; color: var(--ink-faint); }
+  .noti-cel__conversa { display: grid; align-content: start; gap: 9px; padding: 14px 4px 12px; }
+  .noti-msg { max-width: 86%; padding: 10px 13px; font-size: 13px; line-height: 1.5; }
+  .noti-msg--voce { justify-self: end; border-radius: 18px 18px 5px 18px; background: var(--ink); color: var(--on-ink); }
+  .noti-msg--voce b { color: #ff8fb6; }
+  .noti-msg--ela { justify-self: start; border-radius: 18px 18px 18px 5px; background: var(--card); color: var(--ink); border: 1px solid var(--line-soft); }
+  .noti-msg--pronto { display: inline-flex; align-items: center; gap: 7px; background: var(--positive-wash); border-color: transparent; color: #146b49; font-weight: 600; }
+  .noti-cartao { justify-self: stretch; padding: 12px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .noti-cartao__linha { display: grid; gap: 3px; padding-bottom: 9px; margin-bottom: 9px; border-bottom: 1px solid var(--line-soft); }
+  .noti-cartao__linha small { font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-ink); }
+  .noti-cartao__linha b { font-size: 12.5px; font-weight: 600; line-height: 1.45; }
+  .noti-cartao__botoes { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; margin-top: 2px; }
+  .noti-cartao__btn { display: grid; place-items: center; height: 36px; border-radius: 10px; border: 1px solid var(--line); font-size: 12.5px; font-weight: 600; color: var(--ink); transition: transform .15s, filter .15s; }
+  .noti-cartao__btn.is-primario { background: var(--brand); border-color: transparent; color: #fff; }
+  .noti-cartao__btn.is-press { transform: scale(.95); filter: brightness(.92); }
+  .noti-cel__campo { display: flex; align-items: center; justify-content: space-between; margin: 0 2px 6px; padding: 11px 14px; border-radius: var(--r-pill); background: var(--card); border: 1px solid var(--line); color: var(--ink-faint); font-size: 12.5px; }
+  .noti-cel__campo svg { color: var(--brand-ink); }
+  .noti-cel figcaption { margin-top: 10px; text-align: center; font-size: 11px; color: var(--ink-faint); }
+  .noti-digitando { display: inline-flex; gap: 4px; justify-self: start; padding: 11px 13px; border-radius: 18px 18px 18px 5px; background: var(--card); border: 1px solid var(--line-soft); }
+  .noti-digitando[hidden] { display: none; }
+  .noti-digitando i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); animation: noti-ponto 1.1s ease-in-out infinite; }
+  .noti-digitando i:nth-child(2) { animation-delay: .16s; }
+  .noti-digitando i:nth-child(3) { animation-delay: .32s; }
+  /* Toque do dedo no "Ligar agora". */
+  .noti-toque { position: absolute; z-index: 4; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgb(20 16 14 / .18); border: 2px solid rgb(255 255 255 / .9); box-shadow: 0 4px 12px rgb(20 16 14 / .2); left: var(--x, 50%); top: var(--y, 70%); pointer-events: none; transition: transform .2s; }
+  .noti-toque[hidden] { display: none; }
+  .noti-toque.is-click { transform: scale(.78); }
+
+  /* Entrada da conversa da Nôti: o estado escondido só existe com o script
+     (data-anim), então sem JS ou com movimento reduzido ela aparece inteira. */
+  .noti-cel__conversa[data-anim] > :not([data-digitando]) { opacity: 0; transform: translateY(12px); }
+  .noti-cel__conversa[data-anim="entra"] > :is(.noti-msg--voce, .noti-msg--ela:not(.noti-msg--pronto), .noti-cartao) { animation: noti-entra .5s var(--ease-out) both; }
+  .noti-cel__conversa[data-anim="entra"] > .noti-msg--ela:not(.noti-msg--pronto) { animation-delay: 1.5s; }
+  .noti-cel__conversa[data-anim="entra"] > .noti-cartao { animation-delay: 1.9s; }
+  .noti-cel__conversa.is-ligada > .noti-msg--pronto { animation: noti-entra .5s var(--ease-out) both .1s; }
+  @keyframes noti-entra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes noti-ponto { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+
+  @media (max-width: 1100px) {
+    .noti-pontos { right: -14px; }
+  }
+
+  /* ---- Celular e tablet em pé: sem palco preso. Cada passo e, logo abaixo,
+     o visual dele (o palco "se desmancha" com display: contents). ---- */
+  @media (max-width: 900px) {
+    .noti-scrolly { display: flex; flex-direction: column; gap: 0; }
+    .noti-passos, .noti-palco, .noti-palco__cena { display: contents; }
+    .noti-passo, .noti-passo:first-child, .noti-passo:last-child { min-height: 0; padding-block: 36px 26px; }
+    .noti-scrolly[data-js] .noti-passo { opacity: 1; }
+    .noti-passo--1 { order: 1; }
+    .noti-cel { order: 2; }
+    .noti-passo--2 { order: 3; }
+    .noti-claude { order: 4; }
+    .noti-passo--3 { order: 5; }
+    .noti-cel, .noti-claude { position: relative; left: auto; top: auto; opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+    .noti-cel { width: min(300px, 100%); margin-inline: auto; }
+    .noti-claude { width: 100%; max-width: 620px; }
+    .noti-ponte, .noti-pontos { display: none; }
+    .noti-passo > p { max-width: none; }
+  }
+  @media (max-width: 600px) {
+    .home-noti__heading > p { font-size: 15.5px; }
+    .home-noti__mascote { width: 88px; }
+    .noti-passo h3 { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+    .noti-passo > p { font-size: 15px; }
+    .noti-lista li { font-size: 14px; }
+    .noti-compara { grid-template-columns: 1fr; }
+    .noti-loja { flex: 1 1 auto; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .noti-passo, .noti-cel, .noti-claude, .noti-ponte, .noti-pontos li { transition: none; }
+    .noti-digitando i { animation: none; }
+  }
+</style>
+
+<script>
+  // Duas coisas: (1) qual passo está ativo (desktop) → data-passo no bloco, que o
+  // CSS usa pra trocar o palco; (2) a cena de cada visual roda uma vez, quando ele
+  // vira o assunto — no desktop pelo passo ativo, no celular quando entra na tela.
+  const bloco = document.querySelector<HTMLElement>("[data-noti-scrolly]");
+  const palco = bloco?.querySelector<HTMLElement>("[data-palco]");
+  const coluna = bloco?.querySelector<HTMLElement>(".noti-palco");
+  const cel = bloco?.querySelector<HTMLElement>("[data-cel]");
+  const claude = bloco?.querySelector<HTMLElement>("[data-claude] .mcp-app");
+  const passos = bloco ? [...bloco.querySelectorAll<HTMLElement>("[data-passo-n]")] : [];
+  const movimento = matchMedia("(prefers-reduced-motion: no-preference)").matches;
+  const desktop = matchMedia("(min-width: 901px)");
+
+  if (bloco && palco && coluna && cel && claude && passos.length) {
+    bloco.dataset.js = "";
+    const espere = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    // ---- Cena da Nôti: pedido → digitando → resposta → cartão → toque em "Ligar agora" → ligada.
+    const conversa = cel.querySelector<HTMLElement>("[data-cel-conversa]")!;
+    const digitando = cel.querySelector<HTMLElement>("[data-digitando]")!;
+    const ligar = cel.querySelector<HTMLElement>("[data-ligar]")!;
+    const toque = cel.querySelector<HTMLElement>("[data-toque]")!;
+    let celTocou = !movimento;
+    if (movimento) conversa.dataset.anim = "espera";
+    const cenaNoti = async () => {
+      if (celTocou) return;
+      celTocou = true;
+      conversa.dataset.anim = "entra";
+      await espere(550);
+      digitando.hidden = false;
+      await espere(900);
+      digitando.hidden = true;
+      await espere(2000); // resposta e cartão na tela
+      // posição relativa ao figure, em px "de desenho" (o palco pode estar escalado)
+      const k = cel.getBoundingClientRect().width / cel.offsetWidth || 1;
+      const base = cel.getBoundingClientRect();
+      const alvo = ligar.getBoundingClientRect();
+      toque.style.setProperty("--x", `${(alvo.left - base.left + alvo.width * 0.5) / k}px`);
+      toque.style.setProperty("--y", `${(alvo.top - base.top + alvo.height * 0.55) / k}px`);
+      toque.hidden = false;
+      await espere(380);
+      toque.classList.add("is-click");
+      ligar.classList.add("is-press");
+      await espere(220);
+      toque.classList.remove("is-click");
+      ligar.classList.remove("is-press");
+      await espere(200);
+      toque.hidden = true;
+      conversa.classList.add("is-ligada");
+    };
+
+    // ---- Cena do Claude: mora na McpJanela, que espera o evento.
+    let claudeTocou = false;
+    const cenaClaude = (atraso: number) => {
+      if (claudeTocou) return;
+      claudeTocou = true;
+      setTimeout(() => claude.dispatchEvent(new CustomEvent("mcp:tocar")), atraso);
+    };
+
+    // ---- Escala do palco: a cena tem 600 px de desenho.
+    const ajustar = () => {
+      const k = desktop.matches ? Math.min(1, coluna.clientWidth / 600) : 1;
+      palco.style.setProperty("--k", String(k));
+      coluna.style.height = desktop.matches ? `${Math.round(640 * k)}px` : "";
+    };
+    new ResizeObserver(ajustar).observe(coluna.parentElement!);
+    desktop.addEventListener("change", ajustar);
+    ajustar();
+
+    let celVisivel = false;
+
+    // ---- Passo ativo: o último cujo topo já passou da linha de leitura (55% da tela).
+    let atual = 0;
+    const definir = (n: number) => {
+      if (n === atual) return;
+      atual = n;
+      bloco.dataset.passo = String(n);
+      if (!desktop.matches) return;
+      if ((n === 1 && celVisivel) || n === 3) cenaNoti();
+      if (n >= 2) cenaClaude(n === 2 ? 450 : 750);
+    };
+    let pendente = false;
+    const medir = () => {
+      pendente = false;
+      if (!desktop.matches) return;
+      const linha = innerHeight * 0.55;
+      let n = 1;
+      passos.forEach((p, i) => { if (p.getBoundingClientRect().top < linha) n = i + 1; });
+      definir(n);
+    };
+    const aoRolar = () => { if (!pendente) { pendente = true; requestAnimationFrame(medir); } };
+    // Só escuta a rolagem enquanto a seção está por perto.
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { addEventListener("scroll", aoRolar, { passive: true }); aoRolar(); }
+      else removeEventListener("scroll", aoRolar);
+    }, { rootMargin: "200px 0px" }).observe(bloco);
+
+    // No celular, cada visual roda a sua cena quando aparece.
+    const olho = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (e.target === cel) celVisivel = e.isIntersecting;
+        if (!e.isIntersecting) return;
+        if (e.target === cel && (!desktop.matches || atual === 1)) cenaNoti();
+        if (desktop.matches) return;
+        if (e.target === claude) cenaClaude(0);
+      });
+    }, { threshold: 0.35 });
+    olho.observe(cel);
+    olho.observe(claude);
+
+    // O passo 1 começa ativo; se a página abrir já no meio da seção, o medir acerta.
+    bloco.dataset.passo = "1";
+  }
+</script>

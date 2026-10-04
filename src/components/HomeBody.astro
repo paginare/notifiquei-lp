@@ -14,6 +14,7 @@ import HomeHero from "./HomeHero.astro";
 import HomeAuthority from "./HomeAuthority.astro";
 import HomeDemo from "./HomeDemo.astro";
 import HomeMcp from "./HomeMcp.astro";
+import HomeNoti from "./HomeNoti.astro";
 import HomeTour from "./HomeTour.astro";
 import HomePricing from "./HomePricing.astro";
 import HomeStories from "./HomeStories.astro";
@@ -111,7 +112,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
 
       {lang === "pt-BR" && <HomeTour />}
 
-      <HomeMcp t={t.mcp} />
+      {lang === "pt-BR" ? <HomeNoti t={t.mcp} /> : <HomeMcp t={t.mcp} />}
 
       <section class="home-section home-before-after">
         <div class="container">
@@ -215,6 +216,7 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
             <h2 set:html={marcar(t.faq.titulo)} />
             <p>{t.faq.lead}</p>
             <a href={WPP} class="home-text-link">{t.faq.cta} <Icon name="diagonal" size={20} /></a>
+            <img class="home-faq__noti" src="/assets/home/noti/noti-pensando-160.webp" srcset="/assets/home/noti/noti-pensando-160.webp 160w, /assets/home/noti/noti-pensando-320.webp 320w" sizes="(max-width: 900px) 72px, 128px" width="160" height="159" alt="" loading="lazy" decoding="async" />
           </div>
           <div class="faq">
             {faqs.map((faq) => (
