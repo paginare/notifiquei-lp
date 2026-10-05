@@ -1,12 +1,12 @@
 ---
 title: "Sorteio de comentários no Instagram: como fazer sem print"
-description: "Como fazer sorteio de comentários no Instagram de forma justa: a lista de quem comentou sai pronta, o vencedor é aleatório e o re-sorteio leva um clique."
+description: "Como sortear comentários no Instagram sem print nem caderno: a lista de quem comentou sai pronta, o vencedor é aleatório e o re-sorteio leva um clique."
 date: 2026-06-30
-updated: 2026-09-30
+updated: 2026-10-05
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Sorteio", "Engajamento", "Instagram"]
-keywords: ["sorteio de comentários no Instagram", "sorteio de comentarios no instagram", "como fazer sorteio de comentários no Instagram", "sorteio no Instagram pelos comentários", "sortear comentários Instagram", "ferramenta de sorteio Instagram"]
+keywords: ["sorteio de comentários no Instagram", "sorteio de comentarios no instagram", "como fazer sorteio de comentários no Instagram", "sorteio no Instagram pelos comentários", "como sortear comentários no Instagram", "como sortear comentario no instagram", "sortear comentários Instagram", "ferramenta de sorteio Instagram"]
 tldr: "Dá pra fazer sorteio de comentários no Instagram sem site de terceiro e sem print: a plataforma junta todo mundo que participou, mostra a lista, sorteia o vencedor e re-sorteia num clique se a pessoa some."
 faq:
   - q: "Como fazer sorteio de comentários no Instagram de forma justa?"
@@ -55,7 +55,7 @@ Faz a conta do tempo que isso economiza. Um post que puxa 300 comentários levar
 
 E como tudo isso roda dentro da [API oficial da Meta](/blog/api-oficial-meta-automacao-instagram), não tem gambiarra simulando humano nem risco de a conta entrar no radar. É a forma oficial de ler os comentários do seu próprio post.
 
-## como sortear e re-sortear sem refazer tudo
+## como sortear comentários no instagram e re-sortear sem refazer tudo
 
 Com a lista pronta, sortear vira a parte fácil. Você manda sortear e a plataforma puxa um nome aleatório de dentro de quem participou. Sem olhômetro, sem escolher na mão, sem chance de favorecer ninguém. Aleatório de verdade, e na frente de todo mundo se você quiser mostrar a tela.
 
