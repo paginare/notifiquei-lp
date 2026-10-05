@@ -4,7 +4,7 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ## Como o agente trabalha cada item
 
-1. Ler `docs/seo/search-console-2026-09.md`, `docs/blog-writing-guide.md` (regras de `title`, `description` e voz), `docs/blog-index.md` e o item inteiro abaixo.
+1. Ler `docs/seo/search-console-2026-10.md` (substitui a de setembro), `docs/blog-writing-guide.md` (regras de `title`, `description` e voz), `docs/blog-index.md` e o item inteiro abaixo.
 2. Fazer só o que o item pede. **Não** reescrever o artigo inteiro. **Não** mudar a `date`. **Não** mudar o nome do arquivo (o slug é a URL).
 3. Se o item mexe em `title`, `description`, `tldr`, FAQ ou H2, adicionar ou atualizar `updated: <data de hoje YYYY-MM-DD>` logo abaixo da `date`. Item que só adiciona link interno não mexe no `updated`.
 4. Regras que valem sempre: `title` com até 60 caracteres e a consulta perto do começo; `description` de 140 a 160 caracteres com a consulta e uma razão pra clicar; headings em minúscula; sem travessão; link interno no formato `[trecho real da frase](/blog/<slug>)` dentro de uma frase natural, nunca "clique aqui" nem seção "Leia também".
@@ -15,19 +15,48 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 9. `git add -A && git commit -m "feat(blog): atualiza <slug principal>" && git push origin main`.
 10. Resumo final: item feito, posts alterados, título e description antes e depois, links adicionados, e se o push foi feito.
 
-**Fila vazia:** não escrever post novo e não puxar tema de `docs/blog-topic-queue.md`. Reportar "fila de atualização vazia" e parar. A próxima leitura do Search Console (por volta de 14/10/2026) reabastece esta fila.
+**Fila vazia:** não escrever post novo e não puxar tema de `docs/blog-topic-queue.md`. Reportar "fila de atualização vazia" e parar. A próxima leitura do Search Console (por volta de 05/11/2026) reabastece esta fila.
 
 ---
 
 ## Fila ativa
 
+Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Ordem por impressões em 21 dias.
+
+- **1. `sorteio-no-instagram-pelos-comentarios`: cobrir "como sortear comentários no Instagram".** 471 impressões em 21 dias, 4 cliques. A consulta nova "como sortear comentários no instagram" teve 48 impressões na posição 10, e as variações com "como sortear" somam 61 impressões entre as posições 7,5 e 10, sem clique. O verbo "sortear" não aparece na description nem nos H2.
+  - **Fazer:** reescrever a `description` (140 a 160 caracteres) começando com "Como sortear comentários no Instagram". Trocar o H2 `## como sortear e re-sortear sem refazer tudo` por um que comece com "como sortear comentários no instagram" (minúsculo). Adicionar em `keywords` "como sortear comentários no Instagram" e "como sortear comentario no instagram". `updated` com a data de hoje.
+  - **Não mexer:** `title` (mudou em 14/09 e está trazendo a consulta), `tldr`, FAQ e o corpo do texto.
+  - **Fatos travados:** sem print nem caderno; a lista de quem comentou sai pronta; o vencedor é aleatório; o re-sorteio puxa outro nome da mesma lista num clique; roda pela API oficial da Meta.
+
+- **2. `disparar-mensagem-na-live-do-instagram`: description dentro da regra.** 53 impressões em 21 dias (eram 3 no total), posição 7,9, zero clique. A `description` tem 136 caracteres.
+  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, começando com a consulta do title ("disparar mensagem" e "live do Instagram") e com uma razão pra clicar. `updated` com a data de hoje.
+  - **Não mexer:** `title` (50 caracteres), `tldr`, FAQ, H2.
+  - **Fatos travados:** quem comenta durante a live recebe a DM no direct, não no chat público da live; chega em segundos, com você ainda ao vivo; gatilho e mensagem são configurados antes de entrar ao vivo; API oficial da Meta; exige conta profissional ou de criador vinculada a uma página do Facebook.
+
+- **3. `limites-de-envio-da-api-do-instagram`: description dentro da regra.** 24 impressões em 21 dias (era zero), posição 6,3. A `description` tem 134 caracteres.
+  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, com "mensagens por hora" e "API do Instagram" perto do começo e a razão pra clicar (o risco do envio ilimitado). `updated` com a data de hoje.
+  - **Não mexer:** `title` (58 caracteres), `tldr`, FAQ, H2.
+  - **Fatos travados:** a API oficial da Meta permite cerca de 200 DMs por hora por conta; ferramenta que promete envio ilimitado opera fora da API e arrisca bloqueio ou banimento da conta. Não arredondar nem trocar o "cerca de 200".
+
+- **4. `caixa-de-entrada-unificada-do-instagram`: description e travessão.** 13 impressões em 21 dias, posição 6,6. A `description` tem 134 caracteres e o `tldr` e duas respostas da FAQ usam travessão (—), que o guia proíbe.
+  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, mantendo "caixa de entrada do Instagram" no começo. Trocar cada travessão do `tldr` e da FAQ por vírgula, ponto ou dois-pontos, sem mudar o sentido. `updated` com a data de hoje.
+  - **Não mexer:** `title` (59 caracteres), perguntas da FAQ, H2.
+  - **Fatos travados:** o Notifiquei não é uma tela de inbox, é a automação que responde antes; responde o DM em segundos pela API oficial da Meta; as conversas seguem no app do Instagram, já respondidas; dá pra assumir a conversa no próprio Instagram.
+
+- **5. `palavras-chave-em-comentarios-para-acionar-automacao`: title e description dentro da regra.** 10 impressões em 21 dias (eram 2), posição 6,5. O `title` tem 66 caracteres e a `description` 132.
+  - **Fazer:** encurtar o `title` pra até 60 caracteres, começando com "Palavras-chave nos comentários". Reescrever a `description` com 140 a 160 caracteres. Atualizar a linha do post em `docs/blog-index.md`. `updated` com a data de hoje.
+  - **Não mexer:** `tldr`, FAQ, H2.
+  - **Fatos travados:** palavras com intenção de compra ("quero", "preço", "link") funcionam melhor que genéricas ("oi", "amei"); dá pra ter várias palavras-chave no mesmo post, cada uma abrindo um fluxo diferente.
+
 ---
 
 ## Bloqueado (não mexer até alguém conferir no Search Console)
 
-- **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês, posição 2,3, 1 clique). Posição 2 com CTR de 1% tem cara de impressão vinda da busca "notifiquei". Precisa abrir Search Console > Desempenho > filtro Página com a URL do post > aba Consultas. Se as consultas forem de sorteio, boas-vindas ou direct, vira item desta fila. Se forem de marca, o post sai da lista.
+- **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês até 12/09 na posição 2,3; só 6 impressões de 13/09 a 03/10, na posição 8,3). A queda de uma vez reforça que o volume era sitelink da busca "notifiquei". Se a leitura de novembro repetir esse número, o post sai da lista. Se alguém quiser decidir antes: Search Console > Desempenho > filtro Página com a URL do post > aba Consultas.
 
 ## Feito
+
+- **2026-10-05** — Fila reabastecida com 5 itens a partir da leitura de outubro (`docs/seo/search-console-2026-10.md`). Item do fluxo de boas-vindas segue bloqueado, com o número novo.
 
 - **2026-10-02** — `automacao-no-instagram-guia`: description reescrita de 154 para 142 chars, agora começa com "Automação no Instagram" e inclui o diferencial de segurança do title; primeiro H2 atualizado para começar com "automação no instagram:"; `updated: 2026-10-02` adicionado. Title não mudou (57 chars).
 

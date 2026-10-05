@@ -1,5 +1,7 @@
 # Search Console: leitura de 14/09/2026 (últimos 12 meses)
 
+> **Substituída pela leitura de 05/10/2026: `docs/seo/search-console-2026-10.md`.** Use a de outubro pra decidir qualquer coisa. Esta fica como histórico.
+
 Export bruto em `docs/seo/dados/` (Consultas, Páginas, Gráfico, Países, Dispositivos). Tipo de pesquisa: Web, janela de 13/09/2025 a 12/09/2026. Este arquivo é a **fonte de verdade da rotina do blog** pra escolher tema, título e post pra atualizar. Substitui a leitura de 14/08/2026 (que está no histórico do git).
 
 ## Antes de ler: como comparar com agosto
