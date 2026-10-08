@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agentskills.io/schemas/discovery/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "notifiquei",
+      "type": "skill-md",
+      "description": "Automatiza respostas de comentários, stories e directs do Instagram e TikTok pelo MCP do Notifiquei.",
+      "url": "https://notifiquei.com.br/.well-known/agent-skills/notifiquei/SKILL.md",
+      "sha256": "10cfb318f936b3730c4edbceb321b1f353696c13a2ca3c512b7945fd44b066f5"
+    }
+  ]
+}

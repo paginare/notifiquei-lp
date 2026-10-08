@@ -3,6 +3,7 @@ import "../styles/global.css";
 import PostHog from '../components/posthog.astro';
 import Gtm from '../components/Gtm.astro';
 import Conversoes from '../components/Conversoes.astro';
+import WebMcp from '../components/WebMcp.astro';
 import { versaoConsent } from "../lib/versao-asset";
 
 interface Props {
@@ -123,6 +124,7 @@ const alternates = hreflangOf
   ))}
   <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
   <PostHog />
+  <WebMcp />
 </head>
 <body>
   <!--

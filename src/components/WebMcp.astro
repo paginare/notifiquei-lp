@@ -1,0 +1,42 @@
+---
+/**
+ * WebMCP: ferramentas da página para agentes de IA que rodam no navegador
+ * (document.modelContext / navigator.modelContext). Em navegador sem a API,
+ * não faz nada. Só informa e devolve links: nenhuma ferramenta compra ou
+ * cadastra sozinha.
+ */
+import { plans, planosMaiores, FREE, WPP } from "../data/home";
+
+const planos = [
+  ...plans.filter((p) => p.price).map((p) => ({ nome: p.name, precoMensalBRL: Number(p.price), recursos: p.features, assinarMensal: p.hrefM, assinarAnual: p.hrefA })),
+  ...planosMaiores.map((p) => ({ nome: p.slug === "pro" ? "Pro" : "Business", precoMensalBRL: Number(p.price), assinarMensal: p.hrefM, assinarAnual: p.hrefA })),
+];
+const dados = {
+  planos,
+  gratis: { url: FREE, itens: ["Sem cartão", "Só Instagram", "Até 200 envios automáticos por mês"] },
+  garantia: "7 dias, devolução de 100%",
+  anual: "2 meses grátis no plano anual",
+  whatsapp: WPP,
+  email: "contato@notifiquei.com.br",
+  mcp: { endpoint: "https://api.notifiquei.com.br/mcp", docs: "https://notifiquei.com.br/auth.md" },
+};
+---
+<script is:inline define:vars={{ dados }}>
+  (function () {
+    var mc = (document && document.modelContext) || (navigator && navigator.modelContext);
+    if (!mc || typeof mc.registerTool !== "function") return;
+    var resp = function (obj) { return { content: [{ type: "text", text: JSON.stringify(obj) }] }; };
+    var vazio = { type: "object", properties: {} };
+    var ferramentas = [
+      { name: "ver_planos", description: "Lista os planos do Notifiquei com preço mensal em reais, recursos, links de assinatura, garantia e o plano grátis.", inputSchema: vazio,
+        execute: function () { return resp({ planos: dados.planos, gratis: dados.gratis, garantia: dados.garantia, anual: dados.anual }); } },
+      { name: "comecar_gratis", description: "Devolve o link para criar conta grátis no Notifiquei (sem cartão).", inputSchema: vazio,
+        execute: function () { return resp({ url: dados.gratis.url, itens: dados.gratis.itens }); } },
+      { name: "falar_com_atendimento", description: "Devolve o WhatsApp e o e-mail do atendimento do Notifiquei.", inputSchema: vazio,
+        execute: function () { return resp({ whatsapp: dados.whatsapp, email: dados.email }); } },
+      { name: "conectar_assistente_ia", description: "Explica como conectar o Notifiquei ao Claude, ChatGPT, Cursor ou outro cliente MCP para criar automações por conversa.", inputSchema: vazio,
+        execute: function () { return resp(dados.mcp); } },
+    ];
+    ferramentas.forEach(function (f) { try { Promise.resolve(mc.registerTool(f)).catch(function () {}); } catch (e) {} });
+  })();
+</script>

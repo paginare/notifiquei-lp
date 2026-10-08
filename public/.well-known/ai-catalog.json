@@ -1,0 +1,46 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "name": "Notifiquei",
+    "url": "https://notifiquei.com.br",
+    "description": "Automação de comentários, stories e directs do Instagram e TikTok, feita no Brasil.",
+    "contact": "contato@notifiquei.com.br"
+  },
+  "entries": [
+    {
+      "id": "urn:air:notifiquei.com.br:mcp:notifiquei",
+      "displayName": "Notifiquei MCP",
+      "type": "application/json",
+      "url": "https://notifiquei.com.br/.well-known/mcp/server-card.json",
+      "description": "Servidor MCP para criar e gerenciar automações de Instagram e TikTok.",
+      "representativeQueries": [
+        "criar automação de comentário no Instagram que manda link no direct",
+        "responder directs do Instagram automaticamente",
+        "por que minha automação do Instagram não disparou",
+        "automate Instagram comment to DM replies"
+      ]
+    },
+    {
+      "id": "urn:air:notifiquei.com.br:skills:index",
+      "displayName": "Notifiquei Agent Skills",
+      "type": "application/json",
+      "url": "https://notifiquei.com.br/.well-known/agent-skills/index.json",
+      "description": "Instruções para agentes usarem o Notifiquei.",
+      "representativeQueries": [
+        "como usar o Notifiquei com o Claude",
+        "skill para automatizar o Instagram"
+      ]
+    },
+    {
+      "id": "urn:air:notifiquei.com.br:docs:llms",
+      "displayName": "Notifiquei llms.txt",
+      "type": "text/plain",
+      "url": "https://notifiquei.com.br/llms.txt",
+      "description": "Resumo do produto, preços e links para modelos de linguagem.",
+      "representativeQueries": [
+        "quanto custa o Notifiquei",
+        "alternativa brasileira ao ManyChat"
+      ]
+    }
+  ]
+}

@@ -63,12 +63,32 @@ function decidir(pais, traduzida) {
  * indexado como se fosse só a versão gringa — o que ameaça o ranking dos posts
  * do blog em português, que são a maior fonte de tráfego orgânico.
  */
+import { descoberta, querMarkdown, paraMarkdown, LINK } from '../lib/agentes.js';
+
 const BOTS = /bot|crawler|spider|crawling|slurp|facebookexternalhit|whatsapp|telegram|discord|preview|embed|lighthouse|pagespeed|gptbot|chatgpt|oai-search|claude|perplexity|applebot|ahrefs|semrush/i;
 
 /** Só a home tem tradução. Redirecionar blog ou ferramentas levaria a lugar nenhum. */
 const REDIRECIONAVEL = new Set(['/', '/index.html']);
 
 export async function onRequest(context) {
+  const url = new URL(context.request.url);
+  const especial = descoberta(url.pathname);
+  if (especial) return especial;
+
+  const resposta = await mercado(context);
+  const tipo = resposta.headers.get('content-type') || '';
+  if (!tipo.includes('text/html') || resposta.status >= 300 && resposta.status < 400) return resposta;
+
+  // Agente pedindo Markdown: mesma página, sem o HTML em volta.
+  if (querMarkdown(context.request)) return paraMarkdown(resposta, url.toString());
+
+  const headers = new Headers(resposta.headers);
+  headers.set('Link', LINK);
+  headers.append('Vary', 'Accept');
+  return new Response(resposta.body, { status: resposta.status, statusText: resposta.statusText, headers });
+}
+
+async function mercado(context) {
   const resposta = await context.next();
 
   // Só HTML passa pelo rewriter. Assets, imagens e vídeos seguem intocados

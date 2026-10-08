@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "notifiquei",
+    "title": "Notifiquei",
+    "version": "1.0.0",
+    "description": "Cria, edita, liga, desliga e diagnostica automações de comentários, stories e directs do Instagram e TikTok na conta Notifiquei do usuário.",
+    "websiteUrl": "https://notifiquei.com.br",
+    "icons": [{ "src": "https://notifiquei.com.br/assets/favicon.svg", "mimeType": "image/svg+xml" }]
+  },
+  "transport": { "type": "streamable-http", "endpoint": "https://api.notifiquei.com.br/mcp" },
+  "authentication": {
+    "required": true,
+    "schemes": ["oauth2", "bearer"],
+    "oauthProtectedResource": "https://api.notifiquei.com.br/.well-known/oauth-protected-resource/mcp"
+  },
+  "capabilities": { "tools": { "listChanged": false } },
+  "tools": [
+    { "name": "listar_contas", "description": "Lista as contas de Instagram e TikTok conectadas." },
+    { "name": "listar_posts", "description": "Lista os posts recentes de uma conta." },
+    { "name": "listar_stories", "description": "Lista os stories ativos de uma conta." },
+    { "name": "listar_automacoes", "description": "Lista as automações da conta." },
+    { "name": "ver_automacao", "description": "Mostra os detalhes de uma automação." },
+    { "name": "prever_automacao", "description": "Mostra como a automação vai ficar antes de criar." },
+    { "name": "criar_automacao", "description": "Cria uma automação de comentário, story ou direct." },
+    { "name": "editar_automacao", "description": "Edita uma automação existente." },
+    { "name": "mudar_palavras_chave", "description": "Troca as palavras-chave de uma automação." },
+    { "name": "ligar_desligar_automacao", "description": "Liga ou desliga uma automação." },
+    { "name": "excluir_automacao", "description": "Exclui uma automação." },
+    { "name": "diagnosticar_automacao", "description": "Investiga por que uma automação não disparou." }
+  ],
+  "documentation": "https://notifiquei.com.br/auth.md"
+}
