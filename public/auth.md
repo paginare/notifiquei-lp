@@ -1,4 +1,4 @@
-# Notifiquei — acesso para agentes
+# auth.md — Notifiquei: acesso para agentes
 
 O Notifiquei expõe um servidor MCP para agentes de IA (Claude, ChatGPT, Cursor, Codex ou qualquer cliente MCP) criarem e gerenciarem automações de Instagram e TikTok na conta do usuário.
 
