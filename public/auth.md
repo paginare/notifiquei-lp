@@ -1,20 +1,30 @@
-# auth.md — Notifiquei: acesso para agentes
+# auth.md — Notifiquei
 
-O Notifiquei expõe um servidor MCP para agentes de IA (Claude, ChatGPT, Cursor, Codex ou qualquer cliente MCP) criarem e gerenciarem automações de Instagram e TikTok na conta do usuário.
+Acesso de agentes de IA (Claude, ChatGPT, Cursor, Codex ou qualquer cliente MCP) ao Notifiquei, para criar e gerenciar automações de Instagram e TikTok **em nome de um usuário** com conta no Notifiquei.
 
-- **Endpoint MCP (Streamable HTTP):** `https://api.notifiquei.com.br/mcp`
-- **Recurso protegido (RFC 9728):** `https://api.notifiquei.com.br/.well-known/oauth-protected-resource/mcp`
-- **Servidor de autorização (RFC 8414):** `https://api.notifiquei.com.br/.well-known/oauth-authorization-server`
-- **Escopo:** `notifiquei`
+## Endpoints
 
-## Como o agente se registra
+- MCP (Streamable HTTP): https://api.notifiquei.com.br/mcp
+- Protected Resource Metadata (RFC 9728): https://api.notifiquei.com.br/.well-known/oauth-protected-resource/mcp
+- Authorization Server Metadata (RFC 8414): https://api.notifiquei.com.br/.well-known/oauth-authorization-server
+- Registro de cliente (RFC 7591): https://api.notifiquei.com.br/register
+- Revogação: https://api.notifiquei.com.br/revoke
+- Escopo: notifiquei
 
-1. **OAuth 2.1 com registro dinâmico (recomendado).** Registre o cliente em `https://api.notifiquei.com.br/register` (RFC 7591), use authorization code com PKCE (S256) e peça o escopo `notifiquei`. O usuário faz login no Notifiquei e aprova o acesso.
-2. **Chave de API.** O usuário gera uma chave no painel do Notifiquei (app.notifiquei.com.br) e o agente envia `Authorization: Bearer <chave>`.
+## Registro do agente (passo a passo)
+
+1. Registre o agente como cliente OAuth com um POST em https://api.notifiquei.com.br/register (registro dinâmico, RFC 7591), informando o redirect_uri do agente.
+2. Mande o usuário para https://api.notifiquei.com.br/authorize com authorization code + PKCE (S256) e escopo notifiquei. O usuário entra no Notifiquei e aprova o acesso.
+3. Troque o code pelo token em https://api.notifiquei.com.br/token.
+4. Use o token em toda chamada ao MCP no cabeçalho: Authorization: Bearer <token>.
+
+## Alternativa: chave de API
+
+O usuário gera uma chave no painel do Notifiquei (https://app.notifiquei.com.br) e o agente a envia no mesmo cabeçalho: Authorization: Bearer <chave>.
 
 ## Regras
 
-- O acesso é sempre em nome de um usuário com plano ativo. Não há acesso anônimo.
-- Nenhuma automação entra no ar sem confirmação do usuário.
-- Revogar token: `https://api.notifiquei.com.br/revoke`. O usuário também pode apagar a chave no painel.
+- Sempre em nome de um usuário com plano ativo. Não há acesso anônimo.
+- Nenhuma automação entra no ar sem a confirmação do usuário.
+- O usuário pode revogar o acesso a qualquer momento (revogação acima ou apagando a chave no painel).
 - Dúvidas: contato@notifiquei.com.br
