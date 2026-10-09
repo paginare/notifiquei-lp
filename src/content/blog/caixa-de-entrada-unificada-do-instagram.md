@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/caixa-de-entrada-unificada-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Caixa de entrada unificada: como não perder DM no Instagram"
 title: "Caixa de entrada unificada: como não perder DM no Instagram"
 description: "Organizar a caixa de entrada do Instagram ajuda, mas não resolve. Veja por que responder na hora vale mais que arrumar a lista depois."
 date: 2026-08-03

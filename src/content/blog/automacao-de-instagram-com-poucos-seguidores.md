@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/automacao-de-instagram-com-poucos-seguidores.webp"
+coverAlt: "Foto ilustrativa do post: Vale a pena automatizar com poucos seguidores?"
 title: "Vale a pena automatizar com poucos seguidores?"
 description: "Automação no Instagram não é só pra conta grande: conta pequena responde rápido, converte mais e costuma sentir o resultado antes."
 date: 2026-07-10

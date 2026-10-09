@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/promocao-relampago-com-automacao-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Promoção relâmpago no Instagram com automação"
 title: "Promoção relâmpago no Instagram com automação"
 description: "Como montar uma promoção relâmpago de 12h ou 24h no Instagram e mandar o link por DM automaticamente pra quem comentar, sem depender de atendente."
 date: 2026-09-04

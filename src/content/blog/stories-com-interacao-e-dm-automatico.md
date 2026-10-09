@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/stories-com-interacao-e-dm-automatico.webp"
+coverAlt: "Foto ilustrativa do post: Story que vira DM automático: como usar no seu funil"
 title: "Story que vira DM automático: como usar no seu funil"
 description: "Use stories como porta de entrada do funil: quem responde com mensagem recebe um DM automático em segundos, sem anúncio e sem atendente no celular."
 date: 2026-09-02

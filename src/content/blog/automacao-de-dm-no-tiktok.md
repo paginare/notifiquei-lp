@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/automacao-de-dm-no-tiktok.webp"
+coverAlt: "Foto ilustrativa do post: Automação de DM no TikTok: o que dá e o que não dá"
 title: "Automação de DM no TikTok: o que dá e o que não dá"
 description: "No TikTok dá pra automatizar DM por palavra-chave, boas-vindas e resposta padrão. O construtor de fluxos e comentários ainda é só no Instagram. Veja a diferença."
 date: 2026-06-30

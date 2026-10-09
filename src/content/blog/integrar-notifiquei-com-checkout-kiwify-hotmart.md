@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/integrar-notifiquei-com-checkout-kiwify-hotmart.webp"
+coverAlt: "Foto ilustrativa do post: Ligar o direct ao checkout: como rastrear a venda que veio do Instagram"
 title: "Ligar o direct ao checkout: como rastrear a venda que veio do Instagram"
 description: "Não existe integração pronta com Kiwify ou Hotmart no Notifiquei. Veja os dois caminhos que funcionam hoje pra saber qual conversa virou venda."
 date: 2026-07-08

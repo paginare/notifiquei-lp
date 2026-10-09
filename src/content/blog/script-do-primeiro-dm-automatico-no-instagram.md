@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/script-do-primeiro-dm-automatico-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: O que escrever no primeiro DM automático do Instagram"
 title: "O que escrever no primeiro DM automático do Instagram"
 description: "Como escrever o primeiro DM automático que abre conversa sem forçar. Script curto, botões de atalho e o que evitar nessa primeira mensagem."
 date: 2026-08-12

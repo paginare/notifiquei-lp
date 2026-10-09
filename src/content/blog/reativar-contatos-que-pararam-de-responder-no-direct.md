@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/reativar-contatos-que-pararam-de-responder-no-direct.webp"
+coverAlt: "Foto ilustrativa do post: Como reativar contatos que pararam de responder no direct"
 title: "Como reativar contatos que pararam de responder no direct"
 description: "Seu direct tem gente que sumiu? Veja como agir enquanto a janela de 24 horas da Meta ainda está aberta e o que mudar quando ela fecha, dentro das regras."
 date: 2026-08-28

@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/agendar-posts-reels-e-stories-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Agendar posts, Reels e stories no Instagram: o que usar hoje"
 title: "Agendar posts, Reels e stories no Instagram: o que usar hoje"
 description: "O Notifiquei não agenda publicação — a permissão da Meta não foi aprovada. Veja com o que agendar de graça e como ligar isso às suas automações."
 date: 2026-07-15

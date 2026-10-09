@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/profissoes-regulamentadas-automacao-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Profissões regulamentadas: o que dá automatizar no Instagram"
 title: "Profissões regulamentadas: o que dá automatizar no Instagram"
 description: "Médico, dentista ou advogado: a automação de DM no Instagram é permitida. Veja o que dá e o que não dá pra automatizar sem infringir CFM, OAB ou CFN."
 date: 2026-09-07

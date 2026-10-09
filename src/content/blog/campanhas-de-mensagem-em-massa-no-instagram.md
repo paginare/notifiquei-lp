@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/campanhas-de-mensagem-em-massa-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Mensagem em massa no Instagram: por que não funciona como você imagina"
 title: "Mensagem em massa no Instagram: por que não funciona como você imagina"
 description: "Disparo para a base inteira não existe no Instagram — a Meta fecha a janela de conversa. Veja o que dá pra fazer de verdade para reativar quem já falou com você."
 date: 2026-07-27

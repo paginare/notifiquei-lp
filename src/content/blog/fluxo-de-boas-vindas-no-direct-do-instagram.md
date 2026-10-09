@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/fluxo-de-boas-vindas-no-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Fluxo de boas-vindas no direct do Instagram: como montar"
 title: "Fluxo de boas-vindas no direct do Instagram: como montar"
 description: "Como configurar uma mensagem automática de boas-vindas no direct do Instagram que já qualifica e direciona o lead antes de qualquer resposta manual."
 date: 2026-08-07

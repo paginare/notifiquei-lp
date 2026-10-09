@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/como-vender-servicos-pelo-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Como vender serviços pelo direct do Instagram"
 title: "Como vender serviços pelo direct do Instagram"
 description: "Vender serviço pelo direct funciona diferente de produto físico. Veja o fluxo certo pra qualificar, agendar e fechar, sem perder leads por responder devagar."
 date: 2026-08-26

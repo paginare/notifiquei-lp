@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/automacao-no-lancamento-de-produto-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Automação no lançamento de produto no Instagram"
 title: "Automação no lançamento de produto no Instagram"
 description: "Como configurar automações para cada fase do lançamento, do pré-aquecimento ao fechamento do carrinho, sem perder os leads que comentaram no pico."
 date: 2026-08-19

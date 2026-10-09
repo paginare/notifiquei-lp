@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/automacao-de-instagram-para-e-commerce.webp"
+coverAlt: "Foto ilustrativa do post: E-commerce no Instagram: como automatizar o atendimento e vender mais"
 title: "E-commerce no Instagram: como automatizar o atendimento e vender mais"
 description: "Lojas de moda, cosméticos e suplementos automatizam DM e comentário via API oficial da Meta para vender mais sem atendente no plantão."
 date: 2026-07-22

@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/migrar-da-versao-antiga-do-notifiquei.webp"
+coverAlt: "Foto ilustrativa do post: Migrei da versão antiga do Notifiquei: o que muda e como revincular"
 title: "Migrei da versão antiga do Notifiquei: o que muda e como revincular"
 description: "A versão antiga foi descontinuada, mas sua assinatura continua. Veja o que muda e como revincular seu Instagram em menos de cinco minutos."
 date: 2026-07-20

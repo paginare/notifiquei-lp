@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/dm-automatico-parece-robo-como-evitar.webp"
+coverAlt: "Foto ilustrativa do post: DM automático parece robô: como escrever diferente"
 title: "DM automático parece robô: como escrever diferente"
 description: "O que faz um DM automático soar como robô e como ajustar o texto, o tom e o fluxo pra criar conversas que parecem humanas mesmo sendo automáticas."
 date: 2026-08-21

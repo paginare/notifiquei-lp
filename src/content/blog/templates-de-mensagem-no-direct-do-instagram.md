@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/templates-de-mensagem-no-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Templates de mensagem no direct: como criar e usar"
 title: "Templates de mensagem no direct: como criar e usar"
 description: "Como criar uma biblioteca de templates por etapa do funil e o que torna cada modelo mais provável de gerar resposta no direct do Instagram."
 date: 2026-09-11

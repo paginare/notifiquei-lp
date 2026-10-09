@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/automacao-no-instagram-guia.webp"
+coverAlt: "Foto ilustrativa do post: Automação no Instagram: como fazer sem arriscar sua conta"
 title: "Automação no Instagram: como fazer sem arriscar sua conta"
 description: "Automação no Instagram pela API oficial da Meta: o que dá pra automatizar, o que a plataforma não permite e como fazer sem arriscar sua conta."
 date: 2026-08-14

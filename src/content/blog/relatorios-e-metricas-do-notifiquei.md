@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/relatorios-e-metricas-do-notifiquei.webp"
+coverAlt: "Foto ilustrativa do post: Como ler os relatórios do Notifiquei e melhorar suas automações"
 title: "Como ler os relatórios do Notifiquei e melhorar suas automações"
 description: "Aprenda a interpretar os números do Notifiquei: disparos por automação, cliques no link e o que cada um indica sobre seus fluxos."
 date: 2026-09-09

@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/webhook-e-integracoes-do-notifiquei.webp"
+coverAlt: "Foto ilustrativa do post: Webhook e integrações: conectando o Notifiquei às suas ferramentas"
 title: "Webhook e integrações: conectando o Notifiquei às suas ferramentas"
 description: "Veja como usar o nó de webhook do Notifiquei para mandar dados da conversa pro n8n, pro seu CRM ou pro Slack — no ponto exato do fluxo que você escolher."
 date: 2026-07-29

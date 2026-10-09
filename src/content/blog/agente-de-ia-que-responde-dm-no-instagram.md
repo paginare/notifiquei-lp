@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/agente-de-ia-que-responde-dm-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Agente de IA que responde DM no Instagram: vale a pena?"
 title: "Agente de IA que responde DM no Instagram: vale a pena?"
 description: "IA respondendo seu direct soa ótimo até ela errar preço na frente do cliente. Veja quando o roteiro pronto entrega mais que o agente autônomo."
 date: 2026-07-01

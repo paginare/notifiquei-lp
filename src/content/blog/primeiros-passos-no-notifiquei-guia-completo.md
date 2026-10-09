@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/primeiros-passos-no-notifiquei-guia-completo.webp"
+coverAlt: "Foto ilustrativa do post: Primeiros passos no Notifiquei: sua primeira automação"
 title: "Primeiros passos no Notifiquei: sua primeira automação"
 description: "Do cadastro à primeira automação funcionando: veja como conectar o Instagram ao Notifiquei pela API oficial da Meta e criar o primeiro fluxo."
 date: 2026-09-14

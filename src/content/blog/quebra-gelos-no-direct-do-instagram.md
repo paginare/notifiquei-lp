@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/quebra-gelos-no-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Quebra-gelos no direct: atalhos que puxam a conversa pra venda"
 title: "Quebra-gelos no direct: atalhos que puxam a conversa pra venda"
 description: "Crie até 4 quebra-gelos no direct do Instagram: botões de atalho que, quando o seguidor toca, já abrem um fluxo de vendas pela API oficial da Meta."
 date: 2026-07-31
