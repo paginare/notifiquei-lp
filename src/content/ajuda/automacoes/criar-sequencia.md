@@ -30,7 +30,15 @@ Funciona em três partes: **criar a sequência**, **escrever as mensagens** e **
 
 ## 2. Escreva as mensagens
 
-Dentro da sequência, clique em **+ Mensagem**. Para cada mensagem, você define:
+Dentro da sequência, clique em **+ Mensagem**. Primeiro escolha **o que a pessoa recebe**:
+
+- **Mensagem simples** — você escreve o texto e escolhe um botão ali mesmo. O jeito mais rápido.
+- **Montar fluxo** — ao salvar, abre o **montador de fluxo** (o editor avançado). Monte a mensagem com botões, perguntas, etiquetas, esperas e o que precisar, e clique em **Publicar**. Ao fechar, você volta para a sequência. Para mudar depois, use **Editar fluxo** no cartão da mensagem.
+- **Usar automação existente** — escolha uma automação de direct que você já tem pronta. Ela roda inteira, mesmo se estiver pausada.
+
+> **Atenção:** um fluxo montado só sai depois de publicado. Enquanto estiver vazio, o cartão avisa "Ainda vazio".
+
+Depois, para cada mensagem, você define:
 
 **Quando enviar**
 
@@ -40,7 +48,7 @@ Dentro da sequência, clique em **+ Mensagem**. Para cada mensagem, você define
 
 Os horários seguem o **horário de Brasília**.
 
-**Mensagem**
+**Mensagem** (no tipo Mensagem simples)
 
 - O texto, com até 1.000 caracteres.
 - Um **Botão** (opcional), com até 20 caracteres:
