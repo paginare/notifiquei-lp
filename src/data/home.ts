@@ -95,7 +95,7 @@ export const faqs = [
   { q: "Funciona com poucos seguidores?", a: "Funciona com conta de qualquer tamanho. Quem responde rápido vende mais — não importa se você tem 500 ou 500 mil seguidores. Conta menor costuma sentir o resultado primeiro." },
   { q: "Preciso de conta comercial ou profissional?", a: "Sim, uma conta Profissional ou de Criador no Instagram — gratuita de ativar e leva 1 minuto. É exigência da própria API oficial da Meta." },
   { q: "Funciona com TikTok?", a: "Sim. Os planos pagos incluem Instagram e DMs do TikTok, que exige uma conta Business. Você automatiza os dois canais no mesmo plano. O plano grátis atende apenas o Instagram." },
-  { q: "Posso cancelar quando quiser?", a: "Sim, sem fidelidade — você cancela a qualquer momento direto pelo painel. E todo plano pago tem garantia de 7 dias: se não rolar, devolvemos 100% do valor." },
+  { q: "Posso cancelar quando quiser?", a: "Sim, sem fidelidade — você cancela a qualquer momento, é só chamar a gente no WhatsApp ou no e-mail. E todo plano pago tem garantia de 7 dias: se não rolar, devolvemos 100% do valor." },
 ];
 
 // Curado: só logos com fundo transparente e cor real (sem as brancas/fundo-branco).

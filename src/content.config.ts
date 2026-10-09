@@ -20,4 +20,23 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+// Central de ajuda: um artigo por página (/ajuda/<categoria>/<slug>).
+// Categoria e seção apontam para src/data/ajuda-categorias.ts.
+const ajuda = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/ajuda' }),
+  schema: z.object({
+    titulo: z.string(),
+    resumo: z.string(),
+    categoria: z.enum(['primeiros-passos', 'automacoes', 'mensagem-nao-chegou', 'recursos', 'conta-e-cobranca']),
+    secao: z.string(),
+    ordem: z.number().default(50),
+    atualizado: z.coerce.date(),
+    popular: z.boolean().default(false),
+    relacionados: z.array(z.string()).default([]),
+    perguntas: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    // Âncora da página antiga (/ajuda#id) que deve abrir este artigo.
+    antigo: z.string().optional(),
+  }),
+});
+
+export const collections = { blog, ajuda };

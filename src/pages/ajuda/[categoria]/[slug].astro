@@ -1,0 +1,192 @@
+---
+/**
+ * /ajuda/<categoria>/<slug> — um artigo por página, como na central da
+ * ManyChat: trilha, índice lateral que acompanha a leitura, destaques,
+ * perguntas no fim, "Este artigo foi útil?" e artigos relacionados.
+ */
+import { render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Nav from "../../../components/Nav.astro";
+import Footer from "../../../components/Footer.astro";
+import Icon from "../../../components/HomeIcon.astro";
+import ZapFlutuante from "../../../components/ZapFlutuante.astro";
+import BuscaAjuda from "../../../components/ajuda/BuscaAjuda.astro";
+import { copyHome } from "../../../i18n/home";
+import { WPP } from "../../../data/home";
+import { categoriaPorId, slugDe, todosOsArtigos, urlDe, type Artigo } from "../../../lib/ajuda/artigos";
+import "../../../styles/home.css";
+import "../../../styles/ajuda.css";
+
+export async function getStaticPaths() {
+  const artigos = await todosOsArtigos();
+  return artigos.map((artigo) => ({
+    params: { categoria: artigo.data.categoria, slug: slugDe(artigo) },
+    props: { artigo, artigos },
+  }));
+}
+
+const { artigo, artigos } = Astro.props as { artigo: Artigo; artigos: Artigo[] };
+const { Content, headings } = await render(artigo);
+const d = artigo.data;
+const t = copyHome("pt-BR");
+const cat = categoriaPorId(d.categoria)!;
+const secao = cat.secoes.find((s) => s.id === d.secao);
+const indice = headings.filter((h) => h.depth === 2);
+
+// Relacionados: os escolhidos no artigo; completa com a mesma seção.
+const porSlug = new Map(artigos.map((a) => [slugDe(a), a]));
+const relacionados = [
+  ...d.relacionados.map((s) => porSlug.get(s)).filter((a): a is Artigo => !!a && a.id !== artigo.id),
+  ...artigos.filter((a) => a.id !== artigo.id && a.data.categoria === d.categoria && a.data.secao === d.secao),
+].filter((a, i, l) => l.findIndex((b) => b.id === a.id) === i).slice(0, 4);
+const daSecao = artigos.filter((a) => a.data.categoria === d.categoria);
+
+const fmt = (date: Date) => date.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
+const url = `https://notifiquei.com.br${urlDe(artigo)}`;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: d.titulo,
+    description: d.resumo,
+    dateModified: d.atualizado.toISOString(),
+    inLanguage: "pt-BR",
+    mainEntityOfPage: url,
+    publisher: { "@type": "Organization", name: "Notifiquei", url: "https://notifiquei.com.br" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Central de ajuda", item: "https://notifiquei.com.br/ajuda" },
+      { "@type": "ListItem", position: 2, name: cat.titulo, item: `https://notifiquei.com.br/ajuda/${cat.id}` },
+      { "@type": "ListItem", position: 3, name: d.titulo, item: url },
+    ],
+  },
+  ...(d.perguntas.length
+    ? [{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: d.perguntas.map((p) => ({ "@type": "Question", name: p.q, acceptedAnswer: { "@type": "Answer", text: p.a } })),
+      }]
+    : []),
+];
+---
+
+<Base title={`${d.titulo} | Central de ajuda | Notifiquei`} description={d.resumo} path={urlDe(artigo)} jsonLd={jsonLd} ogType="article" lang="pt-BR">
+  <div class="home-page pagina-clara aj">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo" class="aj-pagina">
+      <div class="container">
+        <div class="aj-art-topo">
+          <nav class="aj-trilha" aria-label="Você está em">
+            <a href="/ajuda">Central de ajuda</a><span aria-hidden="true">›</span>
+            <a href={`/ajuda/${cat.id}`}>{cat.titulo}</a>
+            {secao && <><span aria-hidden="true">›</span><span>{secao.titulo}</span></>}
+          </nav>
+          <div class="aj-art-topo__busca"><BuscaAjuda placeholder="Buscar outro assunto…" /></div>
+        </div>
+
+        <div class="aj-art">
+          <aside class="aj-art__esq" aria-label="Nesta categoria">
+            <p class="aj-rotulo">{cat.titulo}</p>
+            <ul>
+              {daSecao.map((a) => (
+                <li><a href={urlDe(a)} aria-current={a.id === artigo.id ? "page" : undefined}>{a.data.titulo}</a></li>
+              ))}
+            </ul>
+          </aside>
+
+          <article class="aj-art__meio">
+            <h1>{d.titulo}</h1>
+            <p class="aj-art__resumo">{d.resumo}</p>
+            <p class="aj-art__data">Atualizado em {fmt(d.atualizado)}</p>
+
+            {indice.length > 2 && (
+              <nav class="aj-art__neste" aria-label="Este artigo aborda">
+                <p class="aj-rotulo">Este artigo aborda</p>
+                <ul>{indice.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul>
+              </nav>
+            )}
+
+            <div class="aj-conteudo"><Content /></div>
+
+            {d.perguntas.length > 0 && (
+              <section class="aj-perguntas">
+                <h2>Perguntas frequentes</h2>
+                <div class="faq">
+                  {d.perguntas.map((p) => (
+                    <details class="faq__item">
+                      <summary class="faq__q">{p.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                      <div class="faq__a"><p>{p.a}</p></div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <section class="aj-util" data-util data-artigo={urlDe(artigo)}>
+              <p>Este artigo foi útil?</p>
+              <div class="aj-util__botoes">
+                <button type="button" data-voto="sim">Sim</button>
+                <button type="button" data-voto="nao">Não</button>
+              </div>
+              <p class="aj-util__obrigado" hidden>Obrigado! Se ainda tiver dúvida, <a href={WPP} rel="noopener" target="_blank">fale com a gente no WhatsApp</a>.</p>
+            </section>
+
+            {relacionados.length > 0 && (
+              <section class="aj-relacionados">
+                <h2>Artigos relacionados</h2>
+                <ul class="aj-lista-fina">
+                  {relacionados.map((a) => <li><a href={urlDe(a)}><strong>{a.data.titulo}</strong><span>{a.data.resumo}</span></a></li>)}
+                </ul>
+              </section>
+            )}
+          </article>
+
+          <aside class="aj-art__dir">
+            {indice.length > 0 && (
+              <nav class="aj-toc" aria-label="Índice do artigo">
+                <p class="aj-rotulo">Neste artigo</p>
+                <ul>{indice.map((h) => <li><a href={`#${h.slug}`} data-toc={h.slug}>{h.text}</a></li>)}</ul>
+              </nav>
+            )}
+            <div class="aj-ajuda-box">
+              <img src="/ajuda/img/ajuda-suporte.jpg" alt="" width="72" height="72" loading="lazy" />
+              <p><strong>Precisa de ajuda?</strong>Fale com a gente no WhatsApp. Gente de verdade responde.</p>
+              <a href={WPP} class="btn btn--brand" rel="noopener" target="_blank">WhatsApp <Icon name="arrow" size={16} /></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <Footer />
+    <ZapFlutuante texto={`Oi! Li o artigo "${d.titulo}" na central de ajuda e ainda tenho dúvida.`} rotulo={t.zapRotulo} />
+  </div>
+
+  <script>
+    // Índice que acompanha a leitura.
+    const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-toc]")];
+    const alvos = links.map((l) => document.getElementById(l.dataset.toc!)).filter((x): x is HTMLElement => !!x);
+    if (alvos.length) {
+      const obs = new IntersectionObserver((entradas) => {
+        for (const e of entradas) {
+          if (e.isIntersecting) links.forEach((l) => l.classList.toggle("is-ativo", l.dataset.toc === e.target.id));
+        }
+      }, { rootMargin: "-20% 0px -70% 0px" });
+      alvos.forEach((a) => obs.observe(a));
+    }
+    // "Este artigo foi útil?" — conta no PostHog (quando carregado).
+    document.querySelectorAll<HTMLElement>("[data-util]").forEach((box) => {
+      box.querySelectorAll<HTMLButtonElement>("[data-voto]").forEach((b) =>
+        b.addEventListener("click", () => {
+          const w = window as unknown as { posthog?: { capture: (e: string, p: object) => void } };
+          w.posthog?.capture("ajuda_artigo_util", { artigo: box.dataset.artigo, util: b.dataset.voto === "sim" });
+          box.querySelector(".aj-util__botoes")?.setAttribute("hidden", "");
+          box.querySelector(".aj-util__obrigado")?.removeAttribute("hidden");
+        }),
+      );
+    });
+  </script>
+</Base>

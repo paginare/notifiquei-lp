@@ -1,0 +1,83 @@
+---
+/** /ajuda/<categoria> — artigos de um tópico, agrupados pelas seções. */
+import Base from "../../../layouts/Base.astro";
+import Nav from "../../../components/Nav.astro";
+import Footer from "../../../components/Footer.astro";
+import Icon from "../../../components/HomeIcon.astro";
+import ZapFlutuante from "../../../components/ZapFlutuante.astro";
+import BuscaAjuda from "../../../components/ajuda/BuscaAjuda.astro";
+import { copyHome } from "../../../i18n/home";
+import { categorias, porSecao, todosOsArtigos, urlDe } from "../../../lib/ajuda/artigos";
+import "../../../styles/home.css";
+import "../../../styles/ajuda.css";
+
+export async function getStaticPaths() {
+  return categorias.map((c) => ({ params: { categoria: c.id }, props: { categoria: c } }));
+}
+
+const { categoria } = Astro.props;
+const t = copyHome("pt-BR");
+const secoes = porSecao(await todosOsArtigos(), categoria.id);
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Central de ajuda", item: "https://notifiquei.com.br/ajuda" },
+      { "@type": "ListItem", position: 2, name: categoria.titulo, item: `https://notifiquei.com.br/ajuda/${categoria.id}` },
+    ],
+  },
+];
+---
+
+<Base
+  title={`${categoria.titulo} | Central de ajuda | Notifiquei`}
+  description={categoria.descricao}
+  path={`/ajuda/${categoria.id}`}
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara aj">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo" class="aj-pagina">
+      <div class="container">
+        <nav class="aj-trilha" aria-label="Você está em">
+          <a href="/ajuda">Central de ajuda</a><span aria-hidden="true">›</span><span>{categoria.titulo}</span>
+        </nav>
+        <header class="aj-cat-cabeca">
+          <span class="aj-topico__icone aj-topico__icone--grande"><Icon name={categoria.icon} size={28} /></span>
+          <div>
+            <h1>{categoria.titulo}</h1>
+            <p>{categoria.descricao}</p>
+          </div>
+        </header>
+        <div class="aj-cat-busca"><BuscaAjuda /></div>
+
+        <div class="aj-cat-grade">
+          {secoes.map((s) => (
+            <section class="aj-cat-secao">
+              <h2>{s.titulo}</h2>
+              <ul class="aj-lista-fina">
+                {s.artigos.map((a) => (
+                  <li><a href={urlDe(a)}><strong>{a.data.titulo}</strong><span>{a.data.resumo}</span></a></li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <nav class="aj-outros" aria-label="Outros tópicos">
+          <h2 class="aj-h2">Outros tópicos</h2>
+          <div class="aj-outros__lista">
+            {categorias.filter((c) => c.id !== categoria.id).map((c) => (
+              <a href={`/ajuda/${c.id}`}><Icon name={c.icon} size={18} /> {c.titulo}</a>
+            ))}
+          </div>
+        </nav>
+      </div>
+    </main>
+    <Footer />
+    <ZapFlutuante texto="Oi! Vim pela central de ajuda do Notifiquei e preciso de ajuda." rotulo={t.zapRotulo} />
+  </div>
+</Base>

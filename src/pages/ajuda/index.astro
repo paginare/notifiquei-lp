@@ -1,0 +1,190 @@
+---
+/**
+ * /ajuda — central de ajuda no estilo da central da ManyChat (09/10/2026):
+ * busca que sugere enquanto digita, atalhos "eu quero…", tópicos em cartões e
+ * um artigo por página. Artigos em src/content/ajuda; categorias em
+ * src/data/ajuda-categorias.ts. Fotos geradas no Codex em public/ajuda/img.
+ */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/HomeIcon.astro";
+import ZapFlutuante from "../../components/ZapFlutuante.astro";
+import BuscaAjuda from "../../components/ajuda/BuscaAjuda.astro";
+import { copyHome } from "../../i18n/home";
+import { WPP } from "../../data/home";
+import { categorias, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
+import "../../styles/home.css";
+import "../../styles/ajuda.css";
+
+const t = copyHome("pt-BR");
+const artigos = await todosOsArtigos();
+const populares = artigos.filter((a) => a.data.popular).slice(0, 8);
+const contagem = (id: string) => artigos.filter((a) => a.data.categoria === id).length;
+// /ajuda#acesso-mensagens (endereços da página antiga) → artigo novo.
+const antigos = Object.fromEntries(artigos.filter((a) => a.data.antigo).map((a) => [a.data.antigo, urlDe(a)]));
+
+const guias = [
+  { titulo: "Sou iniciante", texto: "Conecte o Instagram e coloque a primeira automação no ar.", href: "/ajuda/primeiros-passos", img: "guia-iniciante" },
+  { titulo: "Minha mensagem não chegou", texto: "Descubra o motivo e resolva em poucos minutos.", href: "/ajuda/mensagem-nao-chegou", img: "guia-mensagem" },
+  { titulo: "Quero criar uma automação", texto: "Comentário, story, live, direct e sequências.", href: "/ajuda/automacoes", img: "guia-automacao" },
+  { titulo: "Preciso de ajuda com a cobrança", texto: "Planos, pagamento, cancelamento e reembolso.", href: "/ajuda/conta-e-cobranca", img: "guia-cobranca" },
+];
+
+const rapidas = [
+  { titulo: "Fale com a gente", texto: "Suporte em português, por gente de verdade, no WhatsApp.", href: WPP, img: "ajuda-suporte", externo: true },
+  { titulo: "Modelos prontos", texto: "Escolha um modelo, troque a palavra e o link e ligue.", href: "/modelos", img: "ajuda-modelos" },
+  { titulo: "Novidades", texto: "O que mudou no Notifiquei nas últimas semanas.", href: "/novidades", img: "ajuda-novidades" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Central de ajuda do Notifiquei",
+    url: "https://notifiquei.com.br/ajuda",
+  },
+];
+---
+
+<Base
+  title="Central de ajuda | Notifiquei"
+  description="Tudo sobre o Notifiquei: conectar o Instagram, criar automações e sequências, o que fazer quando o direct não chega, sorteios, links, planos e cancelamento."
+  path="/ajuda"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara aj">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="aj-hero">
+        <picture class="aj-hero__foto">
+          <source srcset="/ajuda/img/hero.webp" type="image/webp" />
+          <img src="/ajuda/img/hero.jpg" alt="" width="1536" height="1024" fetchpriority="high" />
+        </picture>
+        <div class="container aj-hero__conteudo">
+          <span class="home-kicker">CENTRAL DE AJUDA</span>
+          <h1>Como podemos<br /><span class="aj-rosa">te ajudar?</span></h1>
+          <BuscaAjuda grande />
+          <div class="aj-hero__rodape">
+            <a class="aj-status" href="https://app.notifiquei.com.br/status" rel="noopener">
+              <span class="aj-status__ponto" aria-hidden="true"></span> Status dos sistemas
+            </a>
+            <span class="aj-hero__sep" aria-hidden="true">·</span>
+            <span class="aj-hero__pop">Mais buscados:
+              {populares.slice(0, 3).map((a, i) => <>{i > 0 && ", "}<a href={urlDe(a)}>{a.data.titulo.replace(/\?$/, "")}</a></>)}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="aj-bloco">
+        <div class="container">
+          <h2 class="aj-h2">Respostas rápidas</h2>
+          <div class="aj-rapidas">
+            {rapidas.map((r) => (
+              <a class="aj-cartao-foto" href={r.href} {...(r.externo ? { rel: "noopener", target: "_blank" } : {})}>
+                <picture>
+                  <source srcset={`/ajuda/img/${r.img}.webp`} type="image/webp" />
+                  <img src={`/ajuda/img/${r.img}.jpg`} alt="" width="600" height="600" loading="lazy" />
+                </picture>
+                <div>
+                  <h3>{r.titulo} <Icon name="arrow" size={18} /></h3>
+                  <p>{r.texto}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="aj-bloco">
+        <div class="container">
+          <h2 class="aj-h2">Por onde você quer começar?</h2>
+          <div class="aj-guias">
+            {guias.map((g) => (
+              <a class="aj-guia" href={g.href}>
+                <picture>
+                  <source srcset={`/ajuda/img/${g.img}.webp`} type="image/webp" />
+                  <img src={`/ajuda/img/${g.img}.jpg`} alt="" width="600" height="600" loading="lazy" />
+                </picture>
+                <h3>{g.titulo}</h3>
+                <p>{g.texto}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="aj-bloco">
+        <div class="container">
+          <h2 class="aj-h2">Explore os tópicos</h2>
+          <div class="aj-topicos">
+            {categorias.map((c) => (
+              <a class="aj-topico" href={`/ajuda/${c.id}`}>
+                <span class="aj-topico__icone"><Icon name={c.icon} size={22} /></span>
+                <h3>{c.titulo}</h3>
+                <p>{c.descricao}</p>
+                <span class="aj-topico__qtd">{contagem(c.id)} artigos</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {populares.length > 0 && (
+        <section class="aj-bloco">
+          <div class="container">
+            <h2 class="aj-h2">Mais lidos</h2>
+            <ul class="aj-lista-fina aj-lista-fina--2col">
+              {populares.map((a) => (
+                <li><a href={urlDe(a)}><strong>{a.data.titulo}</strong><span>{a.data.resumo}</span></a></li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <section class="aj-bloco">
+        <div class="container">
+          <h2 class="aj-h2">Mais recursos</h2>
+          <div class="aj-recursos">
+            <a href="/blog"><Icon name="bookmark" size={20} /><span><strong>Blog</strong>Estratégias para vender mais pelo direct.</span></a>
+            <a href="/novidades"><Icon name="spark" size={20} /><span><strong>Novidades</strong>Tudo que chegou no produto.</span></a>
+            <a href="/modelos"><Icon name="bolt" size={20} /><span><strong>Modelos</strong>Automações prontas para copiar.</span></a>
+            <a href="https://app.notifiquei.com.br/status" rel="noopener"><Icon name="shield" size={20} /><span><strong>Status</strong>Como estão os sistemas agora.</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="aj-contato">
+        <picture class="aj-contato__foto">
+          <source srcset="/ajuda/img/contato.webp" type="image/webp" />
+          <img src="/ajuda/img/contato.jpg" alt="" width="1536" height="1024" loading="lazy" />
+        </picture>
+        <div class="container aj-contato__box">
+          <div>
+            <h2>Não achou?<br /><span class="aj-rosa">Fala com a gente.</span></h2>
+            <p>Suporte em português, por gente de verdade. Respondemos rápido.</p>
+            <div class="aj-contato__acoes">
+              <a href={WPP} class="btn btn--brand btn--lg">WhatsApp <Icon name="arrow" size={20} /></a>
+              <a href="mailto:contato@notifiquei.com.br" class="home-text-link">contato@notifiquei.com.br</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+    <ZapFlutuante texto="Oi! Vim pela central de ajuda do Notifiquei e preciso de ajuda." rotulo={t.zapRotulo} />
+  </div>
+
+  <script define:vars={{ antigos }}>
+    const destino = location.hash && antigos[location.hash.slice(1)];
+    if (destino) location.replace(destino);
+  </script>
+  <script>
+    import { iniciarMovimento } from "../../scripts/movimento";
+    iniciarMovimento();
+  </script>
+</Base>

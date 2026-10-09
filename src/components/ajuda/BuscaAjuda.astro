@@ -1,0 +1,104 @@
+---
+/**
+ * Busca da central: sugere artigos enquanto a pessoa digita (igual à central
+ * da ManyChat). O índice vai embutido na página; tudo roda no navegador.
+ */
+import { indiceDeBusca, todosOsArtigos } from "../../lib/ajuda/artigos";
+
+interface Props { grande?: boolean; placeholder?: string }
+const { grande = false, placeholder = "Busque: direct não chegou, sequência, cancelar…" } = Astro.props;
+const indice = indiceDeBusca(await todosOsArtigos());
+---
+
+<div class:list={["ajb", { "ajb--grande": grande }]} data-busca-ajuda>
+  <label class="ajb__campo">
+    <span class="sr-only">Buscar na central de ajuda</span>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m21 21-4.3-4.3M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    <input type="search" placeholder={placeholder} autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" />
+  </label>
+  <ul class="ajb__lista" role="listbox" hidden></ul>
+  <script type="application/json" data-indice set:html={JSON.stringify(indice)} />
+</div>
+
+<script>
+  type Item = { t: string; r: string; c: string; u: string; x: string };
+  const tirarAcento = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+  document.querySelectorAll<HTMLElement>("[data-busca-ajuda]").forEach((raiz) => {
+    const campo = raiz.querySelector("input")!;
+    const lista = raiz.querySelector<HTMLUListElement>(".ajb__lista")!;
+    const itens: Item[] = JSON.parse(raiz.querySelector("[data-indice]")!.textContent || "[]");
+    const base = itens.map((i) => ({ ...i, nt: tirarAcento(i.t), nr: tirarAcento(i.r), nx: tirarAcento(i.x) }));
+    let ativo = -1;
+
+    const pontuar = (termos: string[], i: (typeof base)[number]) => {
+      let p = 0;
+      for (const t of termos) {
+        if (i.nt.includes(t)) p += 10;
+        else if (i.nr.includes(t)) p += 4;
+        else if (i.nx.includes(t)) p += 1;
+        else return 0; // todas as palavras precisam aparecer
+      }
+      return p;
+    };
+
+    const mostrar = () => {
+      const termos = tirarAcento(campo.value.trim()).split(/\s+/).filter((t) => t.length > 1);
+      ativo = -1;
+      if (!termos.length) { lista.hidden = true; campo.setAttribute("aria-expanded", "false"); return; }
+      const achados = base.map((i) => ({ i, p: pontuar(termos, i) })).filter((x) => x.p > 0).sort((a, b) => b.p - a.p).slice(0, 7);
+      lista.innerHTML = "";
+      if (!achados.length) {
+        const li = document.createElement("li");
+        li.className = "ajb__vazio";
+        li.textContent = "Nada encontrado. Tente outra palavra ou fale com a gente no WhatsApp.";
+        lista.append(li);
+      }
+      for (const { i } of achados) {
+        const li = document.createElement("li");
+        li.setAttribute("role", "option");
+        const a = document.createElement("a");
+        a.href = i.u;
+        const titulo = document.createElement("strong"); titulo.textContent = i.t;
+        const meta = document.createElement("span"); meta.textContent = `${i.c} · ${i.r}`;
+        a.append(titulo, meta);
+        li.append(a);
+        lista.append(li);
+      }
+      lista.hidden = false;
+      campo.setAttribute("aria-expanded", "true");
+    };
+
+    campo.addEventListener("input", mostrar);
+    campo.addEventListener("focus", mostrar);
+    campo.addEventListener("keydown", (e) => {
+      const links = [...lista.querySelectorAll<HTMLAnchorElement>("a")];
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        if (!links.length) return;
+        ativo = (ativo + (e.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+        links.forEach((l, k) => l.classList.toggle("is-ativo", k === ativo));
+      } else if (e.key === "Enter") {
+        const alvo = links[ativo] ?? links[0];
+        if (alvo) { e.preventDefault(); location.href = alvo.href; }
+      } else if (e.key === "Escape") {
+        lista.hidden = true;
+      }
+    });
+    document.addEventListener("click", (e) => { if (!raiz.contains(e.target as Node)) lista.hidden = true; });
+  });
+</script>
+
+<style is:global>
+  .ajb { position: relative; max-width: 620px; margin: 0 auto; text-align: left; }
+  .ajb__campo { display: flex; align-items: center; gap: 12px; padding: 0 22px; border-radius: 999px; background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 30px #14100e12; color: var(--ink-faint); }
+  .ajb__campo:focus-within { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .ajb input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 15px 0; font: inherit; font-size: 16px; color: var(--ink); outline: none; }
+  .ajb--grande input { padding: 19px 0; font-size: 17px; }
+  .ajb__lista { position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 8px); list-style: none; margin: 0; padding: 8px; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 18px 40px #14100e1f; max-height: 420px; overflow: auto; }
+  .ajb__lista a { display: grid; gap: 2px; padding: 11px 14px; border-radius: 14px; color: var(--ink); }
+  .ajb__lista a:hover, .ajb__lista a.is-ativo { background: var(--brand-wash); }
+  .ajb__lista strong { font-size: 15px; font-weight: 700; }
+  .ajb__lista span { font-size: 13px; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ajb__vazio { padding: 12px 14px; font-size: 14px; color: var(--ink-soft); }
+</style>
