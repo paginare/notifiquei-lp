@@ -23,11 +23,6 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Ordem por impressões em 21 dias.
 
-- **1. `disparar-mensagem-na-live-do-instagram`: description dentro da regra.** 53 impressões em 21 dias (eram 3 no total), posição 7,9, zero clique. A `description` tem 136 caracteres.
-  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, começando com a consulta do title ("disparar mensagem" e "live do Instagram") e com uma razão pra clicar. `updated` com a data de hoje.
-  - **Não mexer:** `title` (50 caracteres), `tldr`, FAQ, H2.
-  - **Fatos travados:** quem comenta durante a live recebe a DM no direct, não no chat público da live; chega em segundos, com você ainda ao vivo; gatilho e mensagem são configurados antes de entrar ao vivo; API oficial da Meta; exige conta profissional ou de criador vinculada a uma página do Facebook.
-
 - **2. `limites-de-envio-da-api-do-instagram`: description dentro da regra.** 24 impressões em 21 dias (era zero), posição 6,3. A `description` tem 134 caracteres.
   - **Fazer:** reescrever a `description` com 140 a 160 caracteres, com "mensagens por hora" e "API do Instagram" perto do começo e a razão pra clicar (o risco do envio ilimitado). `updated` com a data de hoje.
   - **Não mexer:** `title` (58 caracteres), `tldr`, FAQ, H2.
@@ -50,6 +45,8 @@ Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Or
 - **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês até 12/09 na posição 2,3; só 6 impressões de 13/09 a 03/10, na posição 8,3). A queda de uma vez reforça que o volume era sitelink da busca "notifiquei". Se a leitura de novembro repetir esse número, o post sai da lista. Se alguém quiser decidir antes: Search Console > Desempenho > filtro Página com a URL do post > aba Consultas.
 
 ## Feito
+
+- **2026-10-09** — `disparar-mensagem-na-live-do-instagram`: description reescrita de 136 para 153 chars, agora começa com "Disparar mensagem na live do Instagram"; destaca que a resposta vai pro direct (não no chat), chega em segundos e se configura antes de entrar ao vivo; `updated: 2026-10-09`. Title não mudou (50 chars).
 
 - **2026-10-05** — `sorteio-no-instagram-pelos-comentarios`: description reescrita de 153 para 151 chars, agora começa com "Como sortear comentários no Instagram"; H2 "como sortear e re-sortear sem refazer tudo" virou "como sortear comentários no instagram e re-sortear sem refazer tudo"; keywords ganharam "como sortear comentários no Instagram" e "como sortear comentario no instagram"; `updated: 2026-10-05`. Title não mudou (57 chars). Conferir na leitura de novembro a posição de "como sortear comentários no instagram" (era 10, zero clique).
 

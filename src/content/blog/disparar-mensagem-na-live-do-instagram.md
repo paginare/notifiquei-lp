@@ -1,7 +1,8 @@
 ---
 title: "Como disparar mensagem durante a live do Instagram"
-description: "Quando alguém comenta durante sua live, dá pra enviar uma DM automática no direct dessa pessoa, em tempo real, pela API oficial da Meta."
+description: "Disparar mensagem na live do Instagram: quem comenta a palavra certa recebe uma DM no direct em segundos, não no chat. Configura antes de entrar ao vivo."
 date: 2026-07-06
+updated: 2026-10-09
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Live", "Instagram", "DM", "Automação"]
