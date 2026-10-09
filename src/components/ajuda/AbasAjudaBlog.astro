@@ -1,0 +1,29 @@
+---
+/**
+ * Abas que ligam a central de ajuda e o blog (mesmo lugar para o visitante,
+ * endereços separados para não mexer no SEO do blog). Busca única nos dois.
+ */
+import BuscaAjuda from "./BuscaAjuda.astro";
+interface Props { ativo: "ajuda" | "blog"; busca?: boolean }
+const { ativo, busca = true } = Astro.props;
+---
+
+<div class="hub">
+  <nav class="hub__abas" aria-label="Central de ajuda e blog">
+    <a href="/ajuda" aria-current={ativo === "ajuda" ? "page" : undefined}>Central de ajuda</a>
+    <a href="/blog" aria-current={ativo === "blog" ? "page" : undefined}>Blog</a>
+  </nav>
+  {busca && <div class="hub__busca"><BuscaAjuda placeholder="Buscar na ajuda e no blog…" /></div>}
+</div>
+
+<style is:global>
+  .hub { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+  .hub__abas { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+  .hub__abas a { padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .hub__abas a:hover { color: var(--ink); }
+  .hub__abas a[aria-current="page"] { background: var(--ink); color: var(--paper); }
+  .hub__busca { flex: 0 1 380px; min-width: 240px; }
+  .hub__busca .ajb { margin: 0; }
+  .hub__busca .ajb input { padding: 10px 0; font-size: 15px; }
+  @media (max-width: 640px) { .hub__busca { flex: 1 1 100%; } }
+</style>

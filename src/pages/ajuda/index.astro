@@ -11,14 +11,16 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/HomeIcon.astro";
 import ZapFlutuante from "../../components/ZapFlutuante.astro";
 import BuscaAjuda from "../../components/ajuda/BuscaAjuda.astro";
+import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
 import { copyHome } from "../../i18n/home";
 import { WPP } from "../../data/home";
-import { categorias, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
+import { categorias, postsDoBlog, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
 import "../../styles/home.css";
 import "../../styles/ajuda.css";
 
 const t = copyHome("pt-BR");
 const artigos = await todosOsArtigos();
+const doBlog = (await postsDoBlog()).slice(0, 3);
 const populares = artigos.filter((a) => a.data.popular).slice(0, 8);
 const contagem = (id: string) => artigos.filter((a) => a.data.categoria === id).length;
 // /ajuda#acesso-mensagens (endereços da página antiga) → artigo novo.
@@ -60,16 +62,17 @@ const jsonLd = [
     <main id="conteudo">
       <section class="aj-hero">
         <picture class="aj-hero__foto">
-          <source srcset="/ajuda/img/hero.webp" type="image/webp" />
+          <source srcset="/ajuda/img/hero-1280.webp 1280w, /ajuda/img/hero-2560.webp 2560w" sizes="100vw" type="image/webp" />
           <img src="/ajuda/img/hero.jpg" alt="" width="1536" height="1024" fetchpriority="high" />
         </picture>
         <div class="container aj-hero__conteudo">
+          <div class="aj-hero__abas"><AbasAjudaBlog ativo="ajuda" busca={false} /></div>
           <span class="home-kicker">CENTRAL DE AJUDA</span>
           <h1>Como podemos<br /><span class="aj-rosa">te ajudar?</span></h1>
           <BuscaAjuda grande />
           <div class="aj-hero__rodape">
-            <a class="aj-status" href="https://app.notifiquei.com.br/status" rel="noopener">
-              <span class="aj-status__ponto" aria-hidden="true"></span> Status dos sistemas
+            <a class="aj-status" href="https://app.notifiquei.com.br/status" rel="noopener" data-status-ajuda>
+              <span class="aj-status__ponto" aria-hidden="true"></span> <span data-status-texto>Status dos sistemas</span>
             </a>
             <span class="aj-hero__sep" aria-hidden="true">·</span>
             <span class="aj-hero__pop">Mais buscados:
@@ -146,6 +149,29 @@ const jsonLd = [
         </section>
       )}
 
+      {doBlog.length > 0 && (
+        <section class="aj-bloco">
+          <div class="container">
+            <div class="aj-bloco__topo">
+              <h2 class="aj-h2">Do blog</h2>
+              <a href="/blog">Ver todos os posts →</a>
+            </div>
+            <div class="aj-blog-grade">
+              {doBlog.map((p) => (
+                <a class="aj-blog-card" href={`/blog/${p.id}`}>
+                  {p.data.cover && <img src={p.data.cover} alt={p.data.coverAlt ?? ""} width="600" height="400" loading="lazy" />}
+                  <div>
+                    <small>{p.data.category}</small>
+                    <h3>{p.data.title}</h3>
+                    <p>{p.data.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section class="aj-bloco">
         <div class="container">
           <h2 class="aj-h2">Mais recursos</h2>
@@ -160,7 +186,7 @@ const jsonLd = [
 
       <section class="aj-contato">
         <picture class="aj-contato__foto">
-          <source srcset="/ajuda/img/contato.webp" type="image/webp" />
+          <source srcset="/ajuda/img/contato-1280.webp 1280w, /ajuda/img/contato-2560.webp 2560w" sizes="100vw" type="image/webp" />
           <img src="/ajuda/img/contato.jpg" alt="" width="1536" height="1024" loading="lazy" />
         </picture>
         <div class="container aj-contato__box">
@@ -186,5 +212,25 @@ const jsonLd = [
   <script>
     import { iniciarMovimento } from "../../scripts/movimento";
     iniciarMovimento();
+    // Status ao vivo (igual à central da ManyChat). Sem resposta em 4s, fica
+    // o link neutro — nunca afirma "tudo ok" sem ter medido.
+    const selo = document.querySelector<HTMLElement>("[data-status-ajuda]");
+    const texto = selo?.querySelector("[data-status-texto]");
+    const ctrl = new AbortController();
+    setTimeout(() => ctrl.abort(), 4000);
+    fetch("https://api.notifiquei.com.br/status/public", { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!selo || !texto || !d?.overall) return;
+        const mapa: Record<string, string> = {
+          operational: "Todos os sistemas operacionais",
+          degraded: "Alguns sistemas com lentidão",
+          outage: "Instabilidade em andamento",
+        };
+        if (!mapa[d.overall]) return;
+        selo.dataset.estado = d.overall;
+        texto.textContent = mapa[d.overall];
+      })
+      .catch(() => undefined);
   </script>
 </Base>

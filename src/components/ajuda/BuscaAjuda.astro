@@ -3,11 +3,11 @@
  * Busca da central: sugere artigos enquanto a pessoa digita (igual à central
  * da ManyChat). O índice vai embutido na página; tudo roda no navegador.
  */
-import { indiceDeBusca, todosOsArtigos } from "../../lib/ajuda/artigos";
+import { indiceDeBusca, postsDoBlog, todosOsArtigos } from "../../lib/ajuda/artigos";
 
 interface Props { grande?: boolean; placeholder?: string }
-const { grande = false, placeholder = "Busque: direct não chegou, sequência, cancelar…" } = Astro.props;
-const indice = indiceDeBusca(await todosOsArtigos());
+const { grande = false, placeholder = "Busque na ajuda e no blog: direct não chegou, sequência…" } = Astro.props;
+const indice = indiceDeBusca(await todosOsArtigos(), await postsDoBlog());
 ---
 
 <div class:list={["ajb", { "ajb--grande": grande }]} data-busca-ajuda>

@@ -11,6 +11,7 @@ import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/HomeIcon.astro";
 import { getCollection } from "astro:content";
+import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
 import { copyHome, marcar } from "../../i18n/home";
 import "../../styles/home.css";
 
@@ -66,6 +67,7 @@ const jsonLd = [
     <main id="conteudo">
       <section class="pg-head bl-head">
         <div class="container">
+          <div class="bl-hub"><AbasAjudaBlog ativo="blog" /></div>
           <span class="home-kicker">BLOG DO NOTIFIQUEI</span>
           <h1 set:html={marcar("Venda mais pelo Instagram,\n{hl}sem gambiarra.{/hl}")} />
           <p>Estratégia, automação e bastidores do que funciona pra quem usa o Instagram e o TikTok como canal de vendas.</p>
@@ -75,10 +77,14 @@ const jsonLd = [
       <section class="bl-destaque">
         <div class="container">
           <a class="bl-dest" href={`/blog/${destaque.post.id}`}>
-            <div class={`bl-capa bl-capa--${destaque.a.id} bl-capa--grande`} aria-hidden="true">
-              <Icon name={destaque.a.icon} size={56} />
-              <span>{destaque.a.nome}</span>
-            </div>
+            {destaque.post.data.cover ? (
+              <img class="bl-foto bl-foto--grande" src={destaque.post.data.cover} alt={destaque.post.data.coverAlt ?? ""} width="1200" height="800" />
+            ) : (
+              <div class={`bl-capa bl-capa--${destaque.a.id} bl-capa--grande`} aria-hidden="true">
+                <Icon name={destaque.a.icon} size={56} />
+                <span>{destaque.a.nome}</span>
+              </div>
+            )}
             <div class="bl-dest__txt">
               <span class="bl-meta"><b>Mais recente</b> · {fmtDate(destaque.post.data.date)} · {minutos(destaque.post.body)} min de leitura</span>
               <h2>{destaque.post.data.title}</h2>
@@ -101,7 +107,11 @@ const jsonLd = [
             {resto.map(({ post, a }) => (
               <li class="bl-card" data-assunto={a.id}>
                 <a href={`/blog/${post.id}`}>
-                  <div class={`bl-capa bl-capa--${a.id}`} aria-hidden="true"><Icon name={a.icon} size={34} /><span>{a.nome}</span></div>
+                  {post.data.cover ? (
+                    <img class="bl-foto" src={post.data.cover} alt={post.data.coverAlt ?? ""} width="600" height="400" loading="lazy" />
+                  ) : (
+                    <div class={`bl-capa bl-capa--${a.id}`} aria-hidden="true"><Icon name={a.icon} size={34} /><span>{a.nome}</span></div>
+                  )}
                   <div class="bl-card__txt">
                     <h3>{post.data.title}</h3>
                     <p>{post.data.description}</p>
@@ -155,6 +165,8 @@ const jsonLd = [
   .bl-meta b { color: var(--brand-ink); }
 
   /* Capas por assunto: cor + ícone. */
+  .bl-hub { display: flex; justify-content: center; margin-bottom: 26px; text-align: left; }
+  .bl-foto { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; background: #f1e9dd; }
   .bl-capa { position: relative; display: grid; place-items: center; align-content: center; gap: 10px; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; color: #fff; }
   .bl-capa span { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
   .bl-capa::after { content: ""; position: absolute; inset: auto -20% -60% auto; width: 70%; aspect-ratio: 1; border-radius: 50%; background: #ffffff1f; }

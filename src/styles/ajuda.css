@@ -17,11 +17,15 @@
 .aj-hero__rodape a { color: var(--ink); font-weight: 600; }
 .aj-hero__pop a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
 .aj-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none !important; }
-.aj-status__ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--positive); box-shadow: 0 0 0 4px var(--positive-wash); }
+.aj-status__ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-faint); }
+.aj-status[data-estado="operational"] .aj-status__ponto { background: var(--positive); box-shadow: 0 0 0 4px var(--positive-wash); }
+.aj-status[data-estado="degraded"] .aj-status__ponto { background: #D98A00; box-shadow: 0 0 0 4px #d98a001a; }
+.aj-status[data-estado="outage"] .aj-status__ponto { background: #D92D20; box-shadow: 0 0 0 4px #d92d201a; }
 
 /* ── Blocos ─────────────────────────────────────────────────── */
 .aj-bloco { padding: 64px 0 0; }
-.aj-bloco:last-of-type { padding-bottom: 80px; }
+/* Respiro antes da faixa de contato (antes ficava colada em "Mais recursos"). */
+.aj-contato { margin-top: clamp(72px, 8vw, 120px); }
 
 .aj-rapidas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .aj-cartao-foto { display: flex; align-items: center; gap: 18px; padding: 14px; padding-right: 22px; border-radius: 24px; background: #fff; border: 1px solid var(--line-soft); color: var(--ink); transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s; }
@@ -76,7 +80,8 @@
 .aj-contato__acoes { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 26px; }
 
 /* ── Páginas internas ──────────────────────────────────────── */
-.aj-pagina { padding: 130px 0 90px; }
+.home-page.aj .aj-pagina { padding: 128px 0 90px; }
+@media (max-width: 700px) { .home-page.aj .aj-pagina { padding-top: 104px; } }
 .aj-trilha { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-soft); }
 .aj-trilha a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
 .aj-trilha a:hover { color: var(--ink); }
@@ -139,6 +144,8 @@
 .aj-util button { padding: 9px 22px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: inherit; font-weight: 600; cursor: pointer; color: var(--ink); }
 .aj-util button:hover { background: var(--ink); color: var(--paper); }
 .aj-util__obrigado { width: 100%; color: var(--ink-soft); }
+.aj-util__placar { width: 100%; font-size: 13px; color: var(--ink-faint); }
+.aj-util__placar[hidden] { display: none; }
 .aj-util__obrigado a { color: var(--brand-ink); text-decoration: underline; }
 .aj-relacionados { margin-top: 48px; }
 
@@ -146,7 +153,9 @@
 .aj-toc a:hover { color: var(--ink); }
 .aj-toc a.is-ativo { border-left-color: var(--brand); color: var(--ink); font-weight: 600; }
 .aj-ajuda-box { margin-top: 28px; padding: 18px; border-radius: 20px; background: #fff; border: 1px solid var(--line-soft); display: grid; gap: 12px; }
-.aj-ajuda-box img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.aj-ajuda-box { text-align: center; justify-items: center; }
+.aj-ajuda-box .aj-ajuda-box__noti { width: 104px; height: 104px; object-fit: contain; margin-top: -4px; }
+.aj-ajuda-box .btn { width: 100%; }
 .aj-ajuda-box p { font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
 .aj-ajuda-box strong { display: block; color: var(--ink); font-size: 15px; margin-bottom: 2px; }
 .aj-ajuda-box .btn { justify-content: center; }
@@ -187,3 +196,19 @@
 @media (prefers-reduced-motion: reduce) {
   .aj-cartao-foto, .aj-guia, .aj-topico { transition: none; }
 }
+
+/* Abas ajuda | blog nas páginas internas */
+.aj-pagina .hub { margin-bottom: 26px; }
+.aj-trilha--abaixo { margin-top: 0; }
+.aj-hero__abas { margin-bottom: 18px; }
+.aj-blog-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.aj-blog-card { display: flex; flex-direction: column; border-radius: 22px; background: #fff; border: 1px solid var(--line-soft); overflow: hidden; color: var(--ink); transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s; }
+.aj-blog-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px #14100e14; }
+.aj-blog-card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: #f1e9dd; }
+.aj-blog-card div { padding: 16px 18px 20px; display: grid; gap: 6px; }
+.aj-blog-card small { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--brand-ink); }
+.aj-blog-card h3 { font-size: 18px; line-height: 1.2; letter-spacing: -.02em; }
+.aj-blog-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.aj-bloco__topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.aj-bloco__topo a { font-weight: 600; font-size: 15px; color: var(--brand-ink); }
+@media (max-width: 860px) { .aj-blog-grade { grid-template-columns: 1fr; } }

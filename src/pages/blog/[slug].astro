@@ -7,6 +7,8 @@ import "../../styles/home.css";
 
 const t = copyHome("pt-BR");
 import { getCollection, render } from "astro:content";
+import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
+import { ajudaParaPost, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -33,6 +35,9 @@ const related = [
   ...all.filter((p) => p.data.category === d.category),
   ...all.filter((p) => p.data.category !== d.category),
 ].slice(0, 3);
+
+// Ponte com a central de ajuda: artigos de "como fazer" ligados ao assunto.
+const comoFazer = ajudaParaPost(post, await todosOsArtigos());
 
 const jsonLd = [
   {
@@ -77,6 +82,7 @@ const jsonLd = [
   <main id="conteudo">
     <article class="article">
       <div class="container container--narrow">
+        <div class="article__hub"><AbasAjudaBlog ativo="blog" /></div>
         <nav class="crumbs" aria-label="Você está em"><a href="/blog">Blog</a> · <span>{d.category}</span></nav>
         <h1 class="article__title">{d.title}</h1>
         <p class="article__meta">Por {d.author} · {fmtDate(d.date)}{d.updated ? ` · atualizado em ${fmtDate(d.updated)}` : ""}</p>
@@ -88,9 +94,21 @@ const jsonLd = [
           </aside>
         )}
 
+        {d.cover && <img class="article__cover" src={d.cover} alt={d.coverAlt ?? ""} width="1200" height="800" fetchpriority="high" />}
+
         <div class="article__body">
           <Content />
         </div>
+
+        {comoFazer.length > 0 && (
+          <aside class="como-fazer">
+            <span class="como-fazer__rotulo">Como fazer no Notifiquei</span>
+            <ul>
+              {comoFazer.map((a) => <li><a href={urlDe(a)}>{a.data.titulo}<span aria-hidden="true">→</span></a></li>)}
+            </ul>
+            <a class="como-fazer__mais" href="/ajuda">Ver a central de ajuda</a>
+          </aside>
+        )}
 
         {d.faq.length > 0 && (
           <section class="afaq">
@@ -149,7 +167,14 @@ const jsonLd = [
   .tldr__label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-ink); }
   .tldr p { margin-top: 0.4rem; font-size: 1rem; line-height: 1.55; color: var(--ink); }
 
-  .article__cover { width: 100%; border-radius: var(--r-lg); margin-top: 1.75rem; }
+  .article__cover { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--r-lg); margin-top: 1.75rem; }
+  .article__hub { margin-bottom: 1.6rem; }
+  .como-fazer { margin-top: 2.4rem; padding: 1.2rem 1.4rem; border-radius: var(--r-md); background: #fff; border: 1px solid var(--line); }
+  .como-fazer__rotulo { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-ink); }
+  .como-fazer ul { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 2px; }
+  .como-fazer li a { display: flex; justify-content: space-between; gap: 12px; padding: 0.55rem 0; border-bottom: 1px solid var(--line-soft); color: var(--ink); font-weight: 600; }
+  .como-fazer li a:hover { color: var(--brand-ink); }
+  .como-fazer__mais { display: inline-block; margin-top: 0.8rem; font-size: 0.9rem; color: var(--brand-ink); font-weight: 600; }
 
   .article__body { margin-top: 2rem; font-size: 1.0625rem; line-height: 1.75; color: var(--ink); }
   .article__body :global(h2) { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.01em; margin-top: 2.4rem; margin-bottom: 0.5rem; }

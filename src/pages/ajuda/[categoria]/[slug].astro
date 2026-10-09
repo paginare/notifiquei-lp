@@ -10,7 +10,7 @@ import Nav from "../../../components/Nav.astro";
 import Footer from "../../../components/Footer.astro";
 import Icon from "../../../components/HomeIcon.astro";
 import ZapFlutuante from "../../../components/ZapFlutuante.astro";
-import BuscaAjuda from "../../../components/ajuda/BuscaAjuda.astro";
+import AbasAjudaBlog from "../../../components/ajuda/AbasAjudaBlog.astro";
 import { copyHome } from "../../../i18n/home";
 import { WPP } from "../../../data/home";
 import { categoriaPorId, slugDe, todosOsArtigos, urlDe, type Artigo } from "../../../lib/ajuda/artigos";
@@ -79,13 +79,13 @@ const jsonLd = [
     <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
     <main id="conteudo" class="aj-pagina">
       <div class="container">
+        <AbasAjudaBlog ativo="ajuda" />
         <div class="aj-art-topo">
           <nav class="aj-trilha" aria-label="Você está em">
             <a href="/ajuda">Central de ajuda</a><span aria-hidden="true">›</span>
             <a href={`/ajuda/${cat.id}`}>{cat.titulo}</a>
             {secao && <><span aria-hidden="true">›</span><span>{secao.titulo}</span></>}
           </nav>
-          <div class="aj-art-topo__busca"><BuscaAjuda placeholder="Buscar outro assunto…" /></div>
         </div>
 
         <div class="aj-art">
@@ -133,6 +133,7 @@ const jsonLd = [
                 <button type="button" data-voto="nao">Não</button>
               </div>
               <p class="aj-util__obrigado" hidden>Obrigado! Se ainda tiver dúvida, <a href={WPP} rel="noopener" target="_blank">fale com a gente no WhatsApp</a>.</p>
+              <p class="aj-util__placar" hidden></p>
             </section>
 
             {relacionados.length > 0 && (
@@ -153,7 +154,7 @@ const jsonLd = [
               </nav>
             )}
             <div class="aj-ajuda-box">
-              <img src="/ajuda/img/ajuda-suporte.jpg" alt="" width="72" height="72" loading="lazy" />
+              <img class="aj-ajuda-box__noti" src="/assets/home/noti/noti-acenando-320.webp" alt="Nôti, a assistente do Notifiquei, acenando" width="120" height="120" loading="lazy" />
               <p><strong>Precisa de ajuda?</strong>Fale com a gente no WhatsApp. Gente de verdade responde.</p>
               <a href={WPP} class="btn btn--brand" rel="noopener" target="_blank">WhatsApp <Icon name="arrow" size={16} /></a>
             </div>
@@ -177,14 +178,35 @@ const jsonLd = [
       }, { rootMargin: "-20% 0px -70% 0px" });
       alvos.forEach((a) => obs.observe(a));
     }
-    // "Este artigo foi útil?" — conta no PostHog (quando carregado).
+    // "Este artigo foi útil?" — voto salvo no D1 (functions/api/ajuda-voto.js)
+    // e placar "X de Y acharam útil", como na central da ManyChat. Um voto por
+    // navegador por artigo (localStorage).
     document.querySelectorAll<HTMLElement>("[data-util]").forEach((box) => {
+      const artigo = box.dataset.artigo!;
+      const chave = `ajuda-voto:${artigo}`;
+      const placar = box.querySelector<HTMLElement>(".aj-util__placar");
+      const mostrarPlacar = (d: { util: number; total: number } | null) => {
+        if (!placar || !d || d.total < 1) return;
+        placar.textContent = `${d.util} de ${d.total} ${d.total === 1 ? "pessoa achou" : "pessoas acharam"} útil`;
+        placar.hidden = false;
+      };
+      const agradecer = () => {
+        box.querySelector(".aj-util__botoes")?.setAttribute("hidden", "");
+        box.querySelector(".aj-util__obrigado")?.removeAttribute("hidden");
+      };
+      let jaVotou = false;
+      try { jaVotou = !!localStorage.getItem(chave); } catch { /* sem storage */ }
+      if (jaVotou) agradecer();
+      fetch(`/api/ajuda-voto?artigo=${encodeURIComponent(artigo)}`).then((r) => (r.ok ? r.json() : null)).then(mostrarPlacar).catch(() => undefined);
       box.querySelectorAll<HTMLButtonElement>("[data-voto]").forEach((b) =>
         b.addEventListener("click", () => {
+          const util = b.dataset.voto === "sim";
+          agradecer();
+          try { localStorage.setItem(chave, util ? "sim" : "nao"); } catch { /* sem storage */ }
           const w = window as unknown as { posthog?: { capture: (e: string, p: object) => void } };
-          w.posthog?.capture("ajuda_artigo_util", { artigo: box.dataset.artigo, util: b.dataset.voto === "sim" });
-          box.querySelector(".aj-util__botoes")?.setAttribute("hidden", "");
-          box.querySelector(".aj-util__obrigado")?.removeAttribute("hidden");
+          w.posthog?.capture("ajuda_artigo_util", { artigo, util });
+          fetch("/api/ajuda-voto", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ artigo, util }) })
+            .then((r) => (r.ok ? r.json() : null)).then(mostrarPlacar).catch(() => undefined);
         }),
       );
     });

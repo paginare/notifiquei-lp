@@ -5,7 +5,7 @@ import Nav from "../../../components/Nav.astro";
 import Footer from "../../../components/Footer.astro";
 import Icon from "../../../components/HomeIcon.astro";
 import ZapFlutuante from "../../../components/ZapFlutuante.astro";
-import BuscaAjuda from "../../../components/ajuda/BuscaAjuda.astro";
+import AbasAjudaBlog from "../../../components/ajuda/AbasAjudaBlog.astro";
 import { copyHome } from "../../../i18n/home";
 import { categorias, porSecao, todosOsArtigos, urlDe } from "../../../lib/ajuda/artigos";
 import "../../../styles/home.css";
@@ -42,7 +42,8 @@ const jsonLd = [
     <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
     <main id="conteudo" class="aj-pagina">
       <div class="container">
-        <nav class="aj-trilha" aria-label="Você está em">
+        <AbasAjudaBlog ativo="ajuda" />
+        <nav class="aj-trilha aj-trilha--abaixo" aria-label="Você está em">
           <a href="/ajuda">Central de ajuda</a><span aria-hidden="true">›</span><span>{categoria.titulo}</span>
         </nav>
         <header class="aj-cat-cabeca">
@@ -52,7 +53,6 @@ const jsonLd = [
             <p>{categoria.descricao}</p>
           </div>
         </header>
-        <div class="aj-cat-busca"><BuscaAjuda /></div>
 
         <div class="aj-cat-grade">
           {secoes.map((s) => (
