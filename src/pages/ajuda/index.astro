@@ -12,6 +12,7 @@ import Icon from "../../components/HomeIcon.astro";
 import ZapFlutuante from "../../components/ZapFlutuante.astro";
 import BuscaAjuda from "../../components/ajuda/BuscaAjuda.astro";
 import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
+import VideosTutoriais from "../../components/ajuda/VideosTutoriais.astro";
 import { copyHome } from "../../i18n/home";
 import { WPP } from "../../data/home";
 import { categorias, postsDoBlog, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
@@ -20,7 +21,7 @@ import "../../styles/ajuda.css";
 
 const t = copyHome("pt-BR");
 const artigos = await todosOsArtigos();
-const doBlog = (await postsDoBlog()).slice(0, 3);
+const doBlog = (await postsDoBlog()).slice(0, 6);
 const populares = artigos.filter((a) => a.data.popular).slice(0, 8);
 const contagem = (id: string) => artigos.filter((a) => a.data.categoria === id).length;
 // /ajuda#acesso-mensagens (endereços da página antiga) → artigo novo.
@@ -50,8 +51,8 @@ const jsonLd = [
 ---
 
 <Base
-  title="Central de ajuda | Notifiquei"
-  description="Tudo sobre o Notifiquei: conectar o Instagram, criar automações e sequências, o que fazer quando o direct não chega, sorteios, links, planos e cancelamento."
+  title="Central de ajuda, tutoriais e blog | Notifiquei"
+  description="Tutoriais em vídeo, artigos de ajuda e o blog do Notifiquei: conectar o Instagram, criar automações e sequências, o que fazer quando o direct não chega, sorteios, links, planos e cancelamento."
   path="/ajuda"
   jsonLd={jsonLd}
   lang="pt-BR"
@@ -67,7 +68,7 @@ const jsonLd = [
         </picture>
         <div class="container aj-hero__conteudo">
           <div class="aj-hero__abas"><AbasAjudaBlog ativo="ajuda" busca={false} /></div>
-          <span class="home-kicker">CENTRAL DE AJUDA</span>
+          <span class="home-kicker">AJUDA · VÍDEOS · BLOG</span>
           <h1>Como podemos<br /><span class="aj-rosa">te ajudar?</span></h1>
           <BuscaAjuda grande />
           <div class="aj-hero__rodape">
@@ -79,6 +80,12 @@ const jsonLd = [
               {populares.slice(0, 3).map((a, i) => <>{i > 0 && ", "}<a href={urlDe(a)}>{a.data.titulo.replace(/\?$/, "")}</a></>)}
             </span>
           </div>
+        </div>
+      </section>
+
+      <section class="aj-bloco">
+        <div class="container">
+          <VideosTutoriais />
         </div>
       </section>
 
@@ -153,7 +160,7 @@ const jsonLd = [
         <section class="aj-bloco">
           <div class="container">
             <div class="aj-bloco__topo">
-              <h2 class="aj-h2">Do blog</h2>
+              <h2 class="aj-h2">Do blog: para vender mais pelo direct</h2>
               <a href="/blog">Ver todos os posts →</a>
             </div>
             <div class="aj-blog-grade">

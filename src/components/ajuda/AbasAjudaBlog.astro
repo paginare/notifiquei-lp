@@ -11,6 +11,7 @@ const { ativo, busca = true } = Astro.props;
 <div class="hub">
   <nav class="hub__abas" aria-label="Central de ajuda e blog">
     <a href="/ajuda" aria-current={ativo === "ajuda" ? "page" : undefined}>Central de ajuda</a>
+    <a href="/ajuda#videos">Vídeos</a>
     <a href="/blog" aria-current={ativo === "blog" ? "page" : undefined}>Blog</a>
   </nav>
   {busca && <div class="hub__busca"><BuscaAjuda placeholder="Buscar na ajuda e no blog…" /></div>}

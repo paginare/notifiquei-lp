@@ -12,6 +12,7 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/HomeIcon.astro";
 import { getCollection } from "astro:content";
 import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
+import VideosTutoriais from "../../components/ajuda/VideosTutoriais.astro";
 import { copyHome, marcar } from "../../i18n/home";
 import "../../styles/home.css";
 
@@ -93,6 +94,10 @@ const jsonLd = [
             </div>
           </a>
         </div>
+      </section>
+
+      <section class="bl-videos">
+        <div class="container"><VideosTutoriais limite={4} titulo="Prefere ver na tela? Tutoriais em vídeo" verTodos /></div>
       </section>
 
       <section class="home-section bl-lista">
@@ -199,4 +204,5 @@ const jsonLd = [
     .bl-filtros { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
     .bl-filtro { flex: none; }
   }
+  .bl-videos { padding: 56px 0 8px; }
 </style>
