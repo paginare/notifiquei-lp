@@ -22,7 +22,7 @@ import "../../styles/ajuda.css";
 const t = copyHome("pt-BR");
 const artigos = await todosOsArtigos();
 const doBlog = (await postsDoBlog()).slice(0, 6);
-const populares = artigos.filter((a) => a.data.popular).slice(0, 8);
+const populares = artigos.filter((a) => a.data.popular).slice(0, 6);
 const contagem = (id: string) => artigos.filter((a) => a.data.categoria === id).length;
 // /ajuda#acesso-mensagens (endereços da página antiga) → artigo novo.
 const antigos = Object.fromEntries(artigos.filter((a) => a.data.antigo).map((a) => [a.data.antigo, urlDe(a)]));
@@ -71,43 +71,18 @@ const jsonLd = [
           <span class="home-kicker">AJUDA · VÍDEOS · BLOG</span>
           <h1>Como podemos<br /><span class="aj-rosa">te ajudar?</span></h1>
           <BuscaAjuda grande />
-          <div class="aj-hero__rodape">
-            <a class="aj-status" href="https://app.notifiquei.com.br/status" rel="noopener" data-status-ajuda>
-              <span class="aj-status__ponto" aria-hidden="true"></span> <span data-status-texto>Status dos sistemas</span>
-            </a>
-            <span class="aj-hero__sep" aria-hidden="true">·</span>
-            <span class="aj-hero__pop">Mais buscados:
-              {populares.slice(0, 3).map((a, i) => <>{i > 0 && ", "}<a href={urlDe(a)}>{a.data.titulo.replace(/\?$/, "")}</a></>)}
-            </span>
-          </div>
+          <p class="aj-hero__pop">Mais buscados:
+            {populares.slice(0, 3).map((a, i) => <>{i > 0 && " · "}<a href={urlDe(a)}>{a.data.titulo.replace(/\?$/, "")}</a></>)}
+          </p>
+          <a class="aj-status" href="#status" data-status-vivo>
+            <span class="aj-status__ponto" aria-hidden="true"></span>
+            <span data-status-texto>Status dos sistemas</span>
+            <small data-status-hora></small>
+          </a>
         </div>
       </section>
 
-      <section class="aj-bloco">
-        <div class="container">
-          <VideosTutoriais />
-        </div>
-      </section>
 
-      <section class="aj-bloco">
-        <div class="container">
-          <h2 class="aj-h2">Respostas rápidas</h2>
-          <div class="aj-rapidas">
-            {rapidas.map((r) => (
-              <a class="aj-cartao-foto" href={r.href} {...(r.externo ? { rel: "noopener", target: "_blank" } : {})}>
-                <picture>
-                  <source srcset={`/ajuda/img/${r.img}.webp`} type="image/webp" />
-                  <img src={`/ajuda/img/${r.img}.jpg`} alt="" width="600" height="600" loading="lazy" />
-                </picture>
-                <div>
-                  <h3>{r.titulo} <Icon name="arrow" size={18} /></h3>
-                  <p>{r.texto}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section class="aj-bloco">
         <div class="container">
@@ -124,6 +99,12 @@ const jsonLd = [
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section class="aj-bloco">
+        <div class="container">
+          <VideosTutoriais inicial={8} />
         </div>
       </section>
 
@@ -179,14 +160,39 @@ const jsonLd = [
         </section>
       )}
 
-      <section class="aj-bloco">
-        <div class="container">
-          <h2 class="aj-h2">Mais recursos</h2>
-          <div class="aj-recursos">
-            <a href="/blog"><Icon name="bookmark" size={20} /><span><strong>Blog</strong>Estratégias para vender mais pelo direct.</span></a>
-            <a href="/novidades"><Icon name="spark" size={20} /><span><strong>Novidades</strong>Tudo que chegou no produto.</span></a>
-            <a href="/modelos"><Icon name="bolt" size={20} /><span><strong>Modelos</strong>Automações prontas para copiar.</span></a>
-            <a href="https://app.notifiquei.com.br/status" rel="noopener"><Icon name="shield" size={20} /><span><strong>Status</strong>Como estão os sistemas agora.</span></a>
+
+      <section class="aj-bloco" id="status">
+        <div class="container aj-final">
+          <div>
+            <h2 class="aj-h2">Atalhos</h2>
+            <div class="aj-rapidas">
+              {rapidas.map((r) => (
+                <a class="aj-cartao-foto" href={r.href} {...(r.externo ? { rel: "noopener", target: "_blank" } : {})}>
+                  <picture>
+                    <source srcset={`/ajuda/img/${r.img}.webp`} type="image/webp" />
+                    <img src={`/ajuda/img/${r.img}.jpg`} alt="" width="600" height="600" loading="lazy" />
+                  </picture>
+                  <div>
+                    <h3>{r.titulo} <Icon name="arrow" size={18} /></h3>
+                    <p>{r.texto}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div class="aj-painel-status" data-status-vivo>
+            <h2 class="aj-h2">Status agora</h2>
+            <div class="aj-painel-status__caixa">
+              <p class="aj-painel-status__geral">
+                <span class="aj-status__ponto" aria-hidden="true"></span>
+                <strong data-status-texto>Status dos sistemas</strong>
+              </p>
+              <ul class="aj-painel-status__lista" data-status-lista hidden></ul>
+              <p class="aj-painel-status__pe">
+                <span data-status-hora></span>
+                <a href="https://app.notifiquei.com.br/status" rel="noopener">Histórico e incidentes →</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -219,25 +225,5 @@ const jsonLd = [
   <script>
     import { iniciarMovimento } from "../../scripts/movimento";
     iniciarMovimento();
-    // Status ao vivo (igual à central da ManyChat). Sem resposta em 4s, fica
-    // o link neutro — nunca afirma "tudo ok" sem ter medido.
-    const selo = document.querySelector<HTMLElement>("[data-status-ajuda]");
-    const texto = selo?.querySelector("[data-status-texto]");
-    const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 4000);
-    fetch("https://api.notifiquei.com.br/status/public", { signal: ctrl.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!selo || !texto || !d?.overall) return;
-        const mapa: Record<string, string> = {
-          operational: "Todos os sistemas operacionais",
-          degraded: "Alguns sistemas com lentidão",
-          outage: "Instabilidade em andamento",
-        };
-        if (!mapa[d.overall]) return;
-        selo.dataset.estado = d.overall;
-        texto.textContent = mapa[d.overall];
-      })
-      .catch(() => undefined);
   </script>
 </Base>

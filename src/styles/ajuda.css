@@ -15,19 +15,37 @@
 .aj-hero .ajb { margin: 0; }
 .aj-hero__rodape { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 20px; font-size: 14px; color: var(--ink-soft); }
 .aj-hero__rodape a { color: var(--ink); font-weight: 600; }
-.aj-hero__pop a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
-.aj-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none !important; }
-.aj-status__ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-faint); }
-.aj-status[data-estado="operational"] .aj-status__ponto { background: var(--positive); box-shadow: 0 0 0 4px var(--positive-wash); }
-.aj-status[data-estado="degraded"] .aj-status__ponto { background: #D98A00; box-shadow: 0 0 0 4px #d98a001a; }
-.aj-status[data-estado="outage"] .aj-status__ponto { background: #D92D20; box-shadow: 0 0 0 4px #d92d201a; }
+.aj-hero__pop { margin-top: 18px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+.aj-hero__pop a { color: var(--ink); font-weight: 600;  text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+.aj-status { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 12px; font-size: 13.5px; font-weight: 600; color: var(--ink) !important; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none !important; }
+.aj-status__ponto { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-faint); }
+.aj-status small { font-weight: 400; color: var(--ink-faint); white-space: nowrap; }
+.aj-status small:not(:empty)::before { content: "· "; }
+[data-estado="operational"] .aj-status__ponto { background: var(--positive); box-shadow: 0 0 0 4px var(--positive-wash); }
+[data-estado="degraded"] .aj-status__ponto { background: #D98A00; box-shadow: 0 0 0 4px #d98a001a; }
+[data-estado="outage"] .aj-status__ponto { background: #D92D20; box-shadow: 0 0 0 4px #d92d201a; }
 
 /* ── Blocos ─────────────────────────────────────────────────── */
 .aj-bloco { padding: 64px 0 0; }
 /* Respiro antes da faixa de contato (antes ficava colada em "Mais recursos"). */
 .aj-contato { margin-top: clamp(72px, 8vw, 120px); }
 
-.aj-rapidas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.aj-rapidas { display: grid; gap: 14px; }
+
+/* Atalhos + status real lado a lado */
+.aj-final { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start; }
+.aj-painel-status__caixa { padding: 22px 24px; border-radius: 24px; background: #fff; border: 1px solid var(--line-soft); }
+.aj-painel-status__geral { display: flex; align-items: center; gap: 10px; font-size: 17px; }
+.aj-painel-status__lista { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--line-soft); }
+.aj-painel-status__lista li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line-soft); font-size: 14.5px; }
+.aj-painel-status__lista small { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+.aj-painel-status__lista small::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-faint); }
+.aj-painel-status__lista [data-estado="operational"] small::before { background: var(--positive); }
+.aj-painel-status__lista [data-estado="degraded"] small::before { background: #D98A00; }
+.aj-painel-status__lista [data-estado="outage"] small { color: #D92D20; }
+.aj-painel-status__lista [data-estado="outage"] small::before { background: #D92D20; }
+.aj-painel-status__pe { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--ink-faint); }
+.aj-painel-status__pe a { font-weight: 600; color: var(--brand-ink); }
 .aj-cartao-foto { display: flex; align-items: center; gap: 18px; padding: 14px; padding-right: 22px; border-radius: 24px; background: #fff; border: 1px solid var(--line-soft); color: var(--ink); transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s; }
 .aj-cartao-foto:hover { transform: translateY(-3px); box-shadow: 0 16px 36px #14100e14; }
 .aj-cartao-foto picture { flex: 0 0 96px; }
@@ -43,7 +61,10 @@
 .aj-guia h3 { margin: 16px 8px 0; font-size: 19px; letter-spacing: -.02em; line-height: 1.15; }
 .aj-guia p { margin: 6px 8px 0; font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
 
-.aj-topicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+/* 5 tópicos sem buraco: 3 em cima, 2 mais largos embaixo. */
+.aj-topicos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+.aj-topico { grid-column: span 2; }
+.aj-topico:nth-child(n+4):nth-last-child(-n+2) { grid-column: span 3; }
 .aj-topico { display: flex; flex-direction: column; gap: 8px; padding: 26px; border-radius: 24px; background: #fff; border: 1px solid var(--line-soft); color: var(--ink); transition: border-color .2s, transform .32s cubic-bezier(.2,.8,.2,1); }
 .aj-topico:hover { border-color: var(--brand); transform: translateY(-3px); }
 .aj-topico__icone { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--brand-wash); color: var(--brand); }
@@ -177,6 +198,8 @@
   .aj-hero__foto img { height: 300px; object-position: 75% 30%; }
   .aj-rapidas, .aj-topicos, .aj-cat-grade, .aj-lista-fina--2col { grid-template-columns: 1fr; }
   .aj-lista-fina--2col li:nth-child(2) { border-top: 0; }
+  .aj-topicos .aj-topico { grid-column: auto !important; }
+  .aj-final { grid-template-columns: 1fr; gap: 40px; }
   .aj-art { grid-template-columns: 1fr; }
   .aj-art__dir { position: static; }
   .aj-toc { display: none; }
@@ -194,6 +217,8 @@
   .aj-guia h3 { font-size: 15px; margin: 10px 4px 0; }
   .aj-guia p { display: none; }
   .aj-cartao-foto picture { flex-basis: 76px; }
+  /* No celular, 3 posts bastam (o link leva ao blog). */
+  .aj-blog-grade > :nth-child(n+4) { display: none; }
   .aj-cartao-foto img { width: 76px; height: 76px; }
 }
 @media (prefers-reduced-motion: reduce) {
