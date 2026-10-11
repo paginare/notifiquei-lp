@@ -8,7 +8,7 @@ import "../../styles/home.css";
 const t = copyHome("pt-BR");
 import { getCollection, render } from "astro:content";
 import AbasAjudaBlog from "../../components/ajuda/AbasAjudaBlog.astro";
-import { ajudaParaPost, todosOsArtigos, urlDe } from "../../lib/ajuda/artigos";
+import { ajudaParaPost, todosOsArtigos, urlDe, videoDe } from "../../lib/ajuda/artigos";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -38,6 +38,9 @@ const related = [
 
 // Ponte com a central de ajuda: artigos de "como fazer" ligados ao assunto.
 const comoFazer = ajudaParaPost(post, await todosOsArtigos());
+// O primeiro desses artigos que tem tutorial em vídeo aparece em destaque.
+const comVideo = comoFazer.find((a) => videoDe(a));
+const videoPost = comVideo ? videoDe(comVideo) : null;
 
 const jsonLd = [
   {
@@ -103,8 +106,16 @@ const jsonLd = [
         {comoFazer.length > 0 && (
           <aside class="como-fazer">
             <span class="como-fazer__rotulo">Como fazer no Notifiquei</span>
+            {comVideo && videoPost && (
+              <figure class="como-fazer__video">
+                <video controls preload="none" playsinline poster={videoPost.capa} width="1920" height="1080">
+                  <source src={videoPost.src} type="video/mp4" />
+                </video>
+                <figcaption>Vídeo: <a href={urlDe(comVideo)}>{comVideo.data.titulo}</a></figcaption>
+              </figure>
+            )}
             <ul>
-              {comoFazer.map((a) => <li><a href={urlDe(a)}>{a.data.titulo}<span aria-hidden="true">→</span></a></li>)}
+              {comoFazer.map((a) => <li><a href={urlDe(a)}>{a.data.titulo}<span aria-hidden="true">{videoDe(a) ? "▶ vídeo →" : "→"}</span></a></li>)}
             </ul>
             <a class="como-fazer__mais" href="/ajuda">Ver a central de ajuda</a>
           </aside>
@@ -174,6 +185,10 @@ const jsonLd = [
   .como-fazer ul { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 2px; }
   .como-fazer li a { display: flex; justify-content: space-between; gap: 12px; padding: 0.55rem 0; border-bottom: 1px solid var(--line-soft); color: var(--ink); font-weight: 600; }
   .como-fazer li a:hover { color: var(--brand-ink); }
+  .como-fazer__video { margin: 0.8rem 0 0.4rem; }
+  .como-fazer__video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-md); background: #111; }
+  .como-fazer__video figcaption { margin-top: 0.4rem; font-size: 0.85rem; color: var(--ink-soft); }
+  .como-fazer__video figcaption a { color: var(--brand-ink); font-weight: 600; }
   .como-fazer__mais { display: inline-block; margin-top: 0.8rem; font-size: 0.9rem; color: var(--brand-ink); font-weight: 600; }
 
   .article__body { margin-top: 2rem; font-size: 1.0625rem; line-height: 1.75; color: var(--ink); }

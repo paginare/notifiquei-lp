@@ -15,6 +15,9 @@ perguntas:
     a: "A mensagem do direct aceita até 1.000 caracteres e o texto do botão, até 20."
   - q: "Posso testar antes de alguém comentar?"
     a: "Pode. Use Testar no direct e mande a palavra de teste de outra conta."
+video:
+  arquivo: primeira-automacao
+  segundos: 123
 ---
 
 Em poucos minutos você monta uma automação em que **quem comenta a palavra certa recebe o que você quiser no direct**. Tudo é feito no editor simples, com uma prévia de celular mostrando o resultado.

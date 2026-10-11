@@ -13,6 +13,9 @@ perguntas:
     a: "Funciona do mesmo jeito: basta a palavra aparecer em algum lugar do comentário."
   - q: "Posso responder qualquer comentário?"
     a: "Pode. Escolha Qualquer palavra e todo comentário dispara a automação."
+video:
+  arquivo: palavras-chave
+  segundos: 67
 ---
 
 A palavra-chave é o que a pessoa precisa escrever para a automação disparar. Se o comentário (ou a mensagem) **contém** uma das suas palavras, a automação roda.

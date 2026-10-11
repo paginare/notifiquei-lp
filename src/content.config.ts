@@ -36,6 +36,8 @@ const ajuda = defineCollection({
     perguntas: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     // Âncora da página antiga (/ajuda#id) que deve abrir este artigo.
     antigo: z.string().optional(),
+    // Tutorial em vídeo: public/ajuda/videos/<arquivo>.mp4 (+ .jpg de capa).
+    video: z.object({ arquivo: z.string(), segundos: z.number() }).optional(),
   }),
 });
 

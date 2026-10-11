@@ -13,7 +13,7 @@ import ZapFlutuante from "../../../components/ZapFlutuante.astro";
 import AbasAjudaBlog from "../../../components/ajuda/AbasAjudaBlog.astro";
 import { copyHome } from "../../../i18n/home";
 import { WPP } from "../../../data/home";
-import { categoriaPorId, slugDe, todosOsArtigos, urlDe, type Artigo } from "../../../lib/ajuda/artigos";
+import { categoriaPorId, slugDe, todosOsArtigos, urlDe, videoDe, type Artigo } from "../../../lib/ajuda/artigos";
 import "../../../styles/home.css";
 import "../../../styles/ajuda.css";
 
@@ -43,6 +43,8 @@ const daSecao = artigos.filter((a) => a.data.categoria === d.categoria);
 
 const fmt = (date: Date) => date.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
 const url = `https://notifiquei.com.br${urlDe(artigo)}`;
+const video = videoDe(artigo);
+const duracao = (s: number) => `PT${Math.floor(s / 60)}M${s % 60}S`;
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -63,6 +65,19 @@ const jsonLd = [
       { "@type": "ListItem", position: 3, name: d.titulo, item: url },
     ],
   },
+  ...(video
+    ? [{
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: d.titulo,
+        description: d.resumo,
+        thumbnailUrl: `https://notifiquei.com.br${video.capa}`,
+        contentUrl: `https://notifiquei.com.br${video.src}`,
+        uploadDate: "2026-10-10",
+        duration: duracao(video.segundos),
+        inLanguage: "pt-BR",
+      }]
+    : []),
   ...(d.perguntas.length
     ? [{
         "@context": "https://schema.org",
@@ -102,6 +117,15 @@ const jsonLd = [
             <h1>{d.titulo}</h1>
             <p class="aj-art__resumo">{d.resumo}</p>
             <p class="aj-art__data">Atualizado em {fmt(d.atualizado)}</p>
+
+            {video && (
+              <figure class="aj-video">
+                <video controls preload="none" playsinline poster={video.capa} width="1920" height="1080">
+                  <source src={video.src} type="video/mp4" />
+                </video>
+                <figcaption>Tutorial em vídeo · {Math.floor(video.segundos / 60)}:{String(video.segundos % 60).padStart(2, "0")}</figcaption>
+              </figure>
+            )}
 
             {indice.length > 2 && (
               <nav class="aj-art__neste" aria-label="Este artigo aborda">

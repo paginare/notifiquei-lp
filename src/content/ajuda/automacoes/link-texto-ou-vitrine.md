@@ -13,6 +13,9 @@ perguntas:
     a: "Da própria página do produto. Você só cola os links."
   - q: "Qual o limite de texto?"
     a: "A mensagem aceita até 1.000 caracteres e o texto do botão, até 20."
+video:
+  arquivo: link-texto-ou-vitrine
+  segundos: 65
 ---
 
 Em **Tipo de entrega**, você escolhe como o conteúdo chega no direct. São três formatos.

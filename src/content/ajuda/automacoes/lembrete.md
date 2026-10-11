@@ -11,6 +11,9 @@ perguntas:
     a: "Não. Hoje ele vai para todo mundo que recebeu a entrega."
   - q: "Quero mandar várias mensagens nos dias seguintes. Dá?"
     a: "Dá, com as Sequências."
+video:
+  arquivo: lembrete
+  segundos: 48
 ---
 
 O lembrete é **uma mensagem a mais, enviada um tempo depois da entrega** — bom para quem não clicou na hora. Ex.: "Passando pra lembrar: o link ainda está de pé 😉".

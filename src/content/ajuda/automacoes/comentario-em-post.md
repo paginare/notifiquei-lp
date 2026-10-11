@@ -13,6 +13,9 @@ perguntas:
     a: "Se comentar a mesma palavra de novo, a automação só dispara outra vez depois de 24 horas."
   - q: "Funciona em post antigo?"
     a: "Funciona. Escolha o post na grade ou use Qualquer publicação ou Reel."
+video:
+  arquivo: comentario-em-post
+  segundos: 72
 ---
 
 É a automação mais usada: **quem comenta a palavra certa no seu post ou Reel recebe uma mensagem no direct** — um link, um texto ou uma vitrine de produtos.

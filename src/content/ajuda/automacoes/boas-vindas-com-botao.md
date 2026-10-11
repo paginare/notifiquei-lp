@@ -11,6 +11,9 @@ perguntas:
     a: "Em comentário e live, pode: desligue Enviar mensagem de boas-vindas antes. A entrega vai direto, mas a conversa para por ali."
   - q: "Quando a boas-vindas é obrigatória?"
     a: "Quando você pede para seguir, envia uma vitrine ou liga o lembrete."
+video:
+  arquivo: boas-vindas-com-botao
+  segundos: 59
 ---
 
 Pela regra da Meta, quem **só comentou** pode receber **uma** mensagem por comentário. A mensagem de boas-vindas com botão resolve isso: quando a pessoa toca no botão, a conversa fica liberada e ela recebe a entrega — e o que vier depois.

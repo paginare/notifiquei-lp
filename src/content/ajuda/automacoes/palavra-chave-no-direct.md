@@ -11,6 +11,9 @@ perguntas:
     a: "Dá. Escolha Qualquer DM e toda mensagem nova dispara a automação."
   - q: "Funciona com a palavra no meio da frase?"
     a: "Funciona. Se a mensagem contém a palavra, a automação dispara."
+video:
+  arquivo: palavra-chave-no-direct
+  segundos: 53
 ---
 
 Com a automação **Palavra-chave na DM**, quem mandar uma palavra no seu direct (ex.: PREÇO) recebe a resposta automática na hora. É útil para divulgar nos stories "me manda PREÇO no direct".

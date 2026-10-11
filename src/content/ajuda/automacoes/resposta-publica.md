@@ -11,6 +11,9 @@ perguntas:
     a: "Até 3, com até 300 caracteres cada. A cada comentário, uma é sorteada."
   - q: "A resposta pública conta no limite do plano grátis?"
     a: "Não. O limite do plano grátis conta as mensagens no direct, não as respostas públicas."
+video:
+  arquivo: resposta-publica
+  segundos: 47
 ---
 
 A resposta pública aparece **embaixo do comentário da pessoa, na hora** — por exemplo, "Pronto, te chamei no direct! 📩". Ela avisa que a mensagem chegou e mostra para quem passa que você responde.

@@ -11,6 +11,9 @@ perguntas:
     a: "Pode. No resumo final do editor simples, clique em Abrir no editor avançado."
   - q: "Dá para usar o editor avançado no celular?"
     a: "No celular, use o editor simples. O editor avançado foi pensado para a tela do computador."
+video:
+  arquivo: editor-simples-ou-avancado
+  segundos: 63
 ---
 
 Para quase tudo, use o **editor simples**: ele faz perguntas em ordem, mostra uma prévia no celular e já monta a automação do jeito que o Instagram aceita. O **editor avançado** é para quem quer desenhar o fluxo bloco a bloco.

@@ -11,6 +11,9 @@ perguntas:
     a: "Funciona. No story, ligar essa opção faz aparecer a mensagem pedindo para seguir antes da entrega."
   - q: "Posso mudar o texto do pedido?"
     a: "Pode. O texto e o botão vêm prontos, mas são editáveis."
+video:
+  arquivo: exigir-seguir
+  segundos: 44
 ---
 
 Dá. Com **Exigir que siga você antes de liberar**, a pessoa só recebe a entrega depois de seguir sua conta. É um jeito de transformar comentário em seguidor.

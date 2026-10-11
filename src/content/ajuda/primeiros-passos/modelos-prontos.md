@@ -12,6 +12,9 @@ perguntas:
     a: "Não. Ele abre o editor já preenchido. Você troca a palavra e o link, revisa e decide quando ativar."
   - q: "Posso mudar tudo no modelo?"
     a: "Pode. O modelo só adianta o trabalho; todos os campos continuam editáveis."
+video:
+  arquivo: modelos-prontos
+  segundos: 54
 ---
 
 Tem, sim. O jeito mais rápido é a área **Automação em um clique**, no **Início** do painel: ela abre o editor já preenchido — você só troca a palavra e o link.

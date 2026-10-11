@@ -15,6 +15,9 @@ perguntas:
     a: "Não. A conexão é direto pelo login do Instagram."
   - q: "Posso conectar mais de uma conta?"
     a: "Pode, dentro do número de contas do seu plano. Veja os planos em /precos."
+video:
+  arquivo: primeira-automacao
+  segundos: 123
 ---
 
 Você conecta o Instagram pelo login oficial do próprio Instagram, em poucos cliques. Só precisa que a conta seja **Profissional** (Comercial ou de Criador).

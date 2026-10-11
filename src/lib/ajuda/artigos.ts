@@ -25,6 +25,10 @@ export function porSecao(artigos: Artigo[], categoriaId: string) {
   return secoes.filter((s) => s.artigos.length > 0);
 }
 
+/** Endereços do tutorial em vídeo de um artigo (se tiver). */
+export const videoDe = (a: Artigo) =>
+  a.data.video ? { src: `/ajuda/videos/${a.data.video.arquivo}.mp4`, capa: `/ajuda/videos/${a.data.video.arquivo}.jpg`, segundos: a.data.video.segundos } : null;
+
 /** Texto puro do Markdown (para a busca). */
 export const textoPuro = (md: string) =>
   md
