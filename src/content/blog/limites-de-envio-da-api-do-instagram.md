@@ -2,8 +2,9 @@
 cover: "/blog/capas/limites-de-envio-da-api-do-instagram.webp"
 coverAlt: "Foto ilustrativa do post: Quantas mensagens por hora a API do Instagram deixa enviar"
 title: "Quantas mensagens por hora a API do Instagram deixa enviar"
-description: "A API oficial da Meta libera cerca de 200 DMs por hora por conta. Entenda por que esse limite existe e como automação segura funciona."
+description: "Mensagens por hora na API do Instagram: a Meta permite cerca de 200 DMs por hora. Ferramenta que promete envio ilimitado arrisca bloqueio ou banimento."
 date: 2026-07-03
+updated: 2026-10-12
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "API"]
