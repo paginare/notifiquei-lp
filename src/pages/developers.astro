@@ -4,8 +4,11 @@
  * em api.notifiquei.com.br/partners/docs, que agora redireciona para cá.
  *
  * Texto fixo (começo rápido, limites, erros) fica aqui. Rotas, limites por
- * rota, exemplos e novidades vêm da API (ver src/lib/developers.ts): lidos no
- * build e relidos no navegador ao abrir — rota nova aparece sem deploy do site.
+ * rota, exemplos e novidades vêm da API, servidos em /developers/openapi.json e
+ * /developers/novidades.json (ver src/lib/developers.ts): lidos no build e
+ * relidos no navegador ao abrir — rota nova aparece sem deploy do site.
+ *
+ * Agendamento de posts está fora da doc até ser liberado (13/10): não citar.
  */
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
@@ -13,14 +16,18 @@ import Footer from "../components/Footer.astro";
 import Icon from "../components/HomeIcon.astro";
 import { copyHome, marcar } from "../i18n/home";
 import {
-  URL_OPENAPI, URL_NOVIDADES, URL_REFERENCIA, buscarJson, rotasDoDocumento, exemplosDoDocumento,
+  SITE, URL_OPENAPI, URL_OPENAPI_YAML, URL_NOVIDADES, URL_REFERENCIA, buscarJson, rotasDoDocumento, exemplosDoDocumento,
   htmlRotas, htmlExemplos, htmlNovidades, htmlUltima, versaoApi, bloco, curl, type Novidade,
 } from "../lib/developers";
 import "../styles/home.css";
 
 const t = copyHome("pt-BR");
 
-const [doc, novidades] = await Promise.all([buscarJson<any>(URL_OPENAPI), buscarJson<Novidade[]>(URL_NOVIDADES)]);
+// No build não há "mesmo site": lê do endereço público (a Function no ar).
+const [doc, novidades] = await Promise.all([
+  buscarJson<any>(SITE + URL_OPENAPI),
+  buscarJson<Novidade[]>(SITE + URL_NOVIDADES),
+]);
 const rotas = rotasDoDocumento(doc);
 const exemplos = exemplosDoDocumento(doc);
 
@@ -39,7 +46,7 @@ const jsonLd = [
 
 <Base
   title="API para desenvolvedores | Notifiquei"
-  description="Crie automações “comenta QUERO” e agende posts do Instagram pela API do Notifiquei. Começo rápido, exemplos prontos, limites, erros e referência para testar com a sua chave."
+  description="Crie, ligue e desligue automações “comenta QUERO” do Instagram pela API do Notifiquei. Começo rápido, exemplos prontos, limites, erros e referência para testar com a sua chave."
   path="/developers"
   jsonLd={jsonLd}
   lang="pt-BR"
@@ -52,7 +59,7 @@ const jsonLd = [
         <div class="container">
           <span class="home-kicker"><Icon name="bolt" size={17} /> API PARA DESENVOLVEDORES</span>
           <h1 set:html={marcar("Ligue o seu sistema\n{hl}ao Notifiquei.{/hl}")} />
-          <p>Crie automações “comenta QUERO” e agende posts do Instagram direto do seu sistema. Você diz o que deve acontecer; o Notifiquei cuida do resto.</p>
+          <p>Crie, ligue e desligue automações “comenta QUERO” do Instagram direto do seu sistema. Você diz o que deve acontecer; o Notifiquei cuida do resto.</p>
           <div class="pg-head__acoes">
             <a href={URL_REFERENCIA} class="btn btn--brand btn--lg">Testar na referência <Icon name="arrow" size={22} /></a>
             <a href="https://app.notifiquei.com.br/api-keys" class="home-text-link">Pegar minha chave <Icon name="diagonal" size={18} /></a>
@@ -73,7 +80,6 @@ const jsonLd = [
           <div class="dv-grade">
             <article class="dv-cartao"><span><Icon name="chat" size={24} /></span><h3>Comenta QUERO</h3><p>Alguém comenta a palavra no post, recebe uma resposta pública e a mensagem no direct, com botão ou carrossel de produtos.</p></article>
             <article class="dv-cartao"><span><Icon name="check" size={24} /></span><h3>Ligar e desligar</h3><p>Veja as automações do time, o que cada uma envia, e ligue ou desligue quando quiser.</p></article>
-            <article class="dv-cartao"><span><Icon name="clock" size={24} /></span><h3>Agendar posts</h3><p>Foto, carrossel, Reels ou story, publicados no horário pela mesma fila do painel.</p></article>
           </div>
           <p class="dv-aviso"><strong>A API não manda mensagem sozinha.</strong> Ela só deixa tudo pronto. Quem dispara o envio é o comentário de verdade no Instagram — e é isso que mantém tudo dentro das regras da Meta.</p>
         </div>
@@ -135,7 +141,7 @@ const jsonLd = [
           <div class="dv-grade">
             <article class="dv-cartao"><h3>Pedidos por minuto</h3><p>Cada chave tem a sua cota, separada das outras. O limite de cada rota está na tabela acima. Passou, volta <code>429</code>: espere alguns segundos e tente de novo.</p></article>
             <article class="dv-cartao"><h3>Automações por chave</h3><p>Uma chave pode ter um teto de automações criadas. Ao chegar nele, a criação volta <code>403</code>.</p></article>
-            <article class="dv-cartao"><h3>Do Instagram</h3><p>Até 3 botões por mensagem, 20 letras por botão, 10 cards por carrossel e de 2 a 10 mídias por carrossel agendado.</p></article>
+            <article class="dv-cartao"><h3>Do Instagram</h3><p>Até 3 botões por mensagem, 20 letras por botão e até 10 cards por carrossel de produtos.</p></article>
           </div>
         </div>
       </section>
@@ -147,10 +153,10 @@ const jsonLd = [
           <div class="dv-tabela"><table>
             <thead><tr><th scope="col">Código</th><th scope="col">Quando acontece</th><th scope="col">O que fazer</th></tr></thead>
             <tbody>
-              <tr><td class="dv-num"><code>400</code></td><td>Pedido com algo errado (campo faltando, botão “continuar” sem mensagem depois, <code>posts</code> inválido, data no passado)</td><td>Leia a <code>message</code>: ela diz o campo e como corrigir</td></tr>
+              <tr><td class="dv-num"><code>400</code></td><td>Pedido com algo errado (campo faltando, botão “continuar” sem mensagem depois, <code>posts</code> inválido)</td><td>Leia a <code>message</code>: ela diz o campo e como corrigir</td></tr>
               <tr><td class="dv-num"><code>401</code></td><td>Chave ausente, inválida ou revogada</td><td>Confira o cabeçalho <code>X-API-Key</code></td></tr>
               <tr><td class="dv-num"><code>403</code></td><td>Conta desconectada ou com a conexão vencida; teto de automações da chave; plano vencido ao ligar</td><td>Reconectar a conta no painel ou falar com a gente</td></tr>
-              <tr><td class="dv-num"><code>404</code></td><td>A conta, automação ou agendamento não existe <strong>ou não é do time da chave</strong></td><td>Confira o ID</td></tr>
+              <tr><td class="dv-num"><code>404</code></td><td>A conta ou a automação não existe <strong>ou não é do time da chave</strong></td><td>Confira o ID</td></tr>
               <tr><td class="dv-num"><code>429</code></td><td>Muitos pedidos no mesmo minuto</td><td>Espere e tente de novo, com calma</td></tr>
             </tbody>
           </table></div>
@@ -171,7 +177,9 @@ const jsonLd = [
           <h2>Para ferramentas e agentes</h2>
           <p>A especificação completa (OpenAPI 3) serve para Postman, Insomnia, geradores de SDK e agentes de IA:</p>
           <ul>
-            <li><a href={URL_OPENAPI}><code>openapi.json</code></a> · <a href={URL_OPENAPI.replace(".json", ".yaml")}><code>openapi.yaml</code></a></li>
+            <li><a href={URL_OPENAPI}><code>notifiquei.com.br/developers/openapi.json</code></a> · <a href={URL_OPENAPI_YAML}><code>openapi.yaml</code></a></li>
+            <li>Novidades em JSON: <a href={URL_NOVIDADES}><code>notifiquei.com.br/developers/novidades.json</code></a></li>
+            <li>As chamadas vão para <code>https://api.notifiquei.com.br</code>, com a chave no <code>X-API-Key</code>.</li>
             <li>Dúvidas: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a></li>
           </ul>
         </div>

@@ -1,9 +1,12 @@
 /**
  * Página /developers (API de parceiros). A parte que muda com o produto —
  * rotas, limites, exemplos e novidades — NÃO mora aqui: vem da própria API,
- * que gera tudo do código a cada subida (repo instaV2, backend/src/partners/):
- *   - https://api.notifiquei.com.br/partners/openapi.json
- *   - https://api.notifiquei.com.br/partners/novidades
+ * que gera tudo do código a cada subida (repo instaV2, backend/src/partners/).
+ * O público lê pelo domínio do site; a Pages Function
+ * functions/developers/[arquivo].js busca da API no servidor, com segredo:
+ *   - /developers/openapi.json (+ .yaml)  ← api/partners/openapi.json
+ *   - /developers/novidades.json          ← api/partners/novidades
+ * (Sem o segredo, a API dá 404 nesses endereços.)
  *
  * As mesmas funções rodam duas vezes: no build (HTML já sai preenchido, bom
  * para busca e para quem está sem JS) e no navegador, que relê a API ao abrir
@@ -11,9 +14,13 @@
  * site. Se a API não responder, fica o que veio do build.
  */
 
+/** Para onde vão as chamadas de verdade (exemplos de curl). */
 export const API = "https://api.notifiquei.com.br";
-export const URL_OPENAPI = `${API}/partners/openapi.json`;
-export const URL_NOVIDADES = `${API}/partners/novidades`;
+export const SITE = "https://notifiquei.com.br";
+/** Caminhos no próprio site (o navegador usa assim; o build usa com SITE na frente). */
+export const URL_OPENAPI = "/developers/openapi.json";
+export const URL_OPENAPI_YAML = "/developers/openapi.yaml";
+export const URL_NOVIDADES = "/developers/novidades.json";
 export const URL_REFERENCIA = "/developers/referencia";
 
 export interface Novidade {
@@ -170,7 +177,7 @@ const ROTULO_TIPO: Record<string, string> = { novo: "Novo", mudanca: "Mudança",
 
 export function htmlNovidades(lista: Novidade[] | null) {
   if (!lista) {
-    return `<p class="dv-vazio">Não consegui carregar as novidades agora. Elas também ficam em <a href="${URL_NOVIDADES}"><code>/partners/novidades</code></a>.</p>`;
+    return `<p class="dv-vazio">Não consegui carregar as novidades agora. Elas também ficam em <a href="${URL_NOVIDADES}"><code>novidades.json</code></a>.</p>`;
   }
   if (!lista.length) return `<p class="dv-vazio">Nada novo por enquanto.</p>`;
   return lista
