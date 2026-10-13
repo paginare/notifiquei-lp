@@ -1,0 +1,290 @@
+---
+/**
+ * /developers — API do Notifiquei para desenvolvedores (13/10). Antes ficava
+ * em api.notifiquei.com.br/partners/docs, que agora redireciona para cá.
+ *
+ * Texto fixo (começo rápido, limites, erros) fica aqui. Rotas, limites por
+ * rota, exemplos e novidades vêm da API (ver src/lib/developers.ts): lidos no
+ * build e relidos no navegador ao abrir — rota nova aparece sem deploy do site.
+ */
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/HomeIcon.astro";
+import { copyHome, marcar } from "../i18n/home";
+import {
+  URL_OPENAPI, URL_NOVIDADES, URL_REFERENCIA, buscarJson, rotasDoDocumento, exemplosDoDocumento,
+  htmlRotas, htmlExemplos, htmlNovidades, htmlUltima, versaoApi, bloco, curl, type Novidade,
+} from "../lib/developers";
+import "../styles/home.css";
+
+const t = copyHome("pt-BR");
+
+const [doc, novidades] = await Promise.all([buscarJson<any>(URL_OPENAPI), buscarJson<Novidade[]>(URL_NOVIDADES)]);
+const rotas = rotasDoDocumento(doc);
+const exemplos = exemplosDoDocumento(doc);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: "API do Notifiquei para desenvolvedores",
+    url: "https://notifiquei.com.br/developers",
+    inLanguage: "pt-BR",
+    isPartOf: { "@id": "https://notifiquei.com.br/#website" },
+    publisher: { "@id": "https://notifiquei.com.br/#org" },
+  },
+];
+---
+
+<Base
+  title="API para desenvolvedores | Notifiquei"
+  description="Crie automações “comenta QUERO” e agende posts do Instagram pela API do Notifiquei. Começo rápido, exemplos prontos, limites, erros e referência para testar com a sua chave."
+  path="/developers"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara dv">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="pg-head">
+        <div class="container">
+          <span class="home-kicker"><Icon name="bolt" size={17} /> API PARA DESENVOLVEDORES</span>
+          <h1 set:html={marcar("Ligue o seu sistema\n{hl}ao Notifiquei.{/hl}")} />
+          <p>Crie automações “comenta QUERO” e agende posts do Instagram direto do seu sistema. Você diz o que deve acontecer; o Notifiquei cuida do resto.</p>
+          <div class="pg-head__acoes">
+            <a href={URL_REFERENCIA} class="btn btn--brand btn--lg">Testar na referência <Icon name="arrow" size={22} /></a>
+            <a href="https://app.notifiquei.com.br/api-keys" class="home-text-link">Pegar minha chave <Icon name="diagonal" size={18} /></a>
+          </div>
+          <p class="dv-ultima" data-dv="ultima" set:html={htmlUltima(novidades)} />
+        </div>
+      </section>
+
+      <nav class="dv-atalhos" aria-label="Nesta página">
+        <div class="container">
+          <a href="#comecar">Começar</a><a href="#exemplos">Exemplos</a><a href="#rotas">Rotas</a><a href="#limites">Limites</a><a href="#erros">Erros</a><a href="#novidades">Novidades</a>
+        </div>
+      </nav>
+
+      <section class="dv-sec">
+        <div class="container dv-cont">
+          <h2>O que dá para fazer</h2>
+          <div class="dv-grade">
+            <article class="dv-cartao"><span><Icon name="chat" size={24} /></span><h3>Comenta QUERO</h3><p>Alguém comenta a palavra no post, recebe uma resposta pública e a mensagem no direct, com botão ou carrossel de produtos.</p></article>
+            <article class="dv-cartao"><span><Icon name="check" size={24} /></span><h3>Ligar e desligar</h3><p>Veja as automações do time, o que cada uma envia, e ligue ou desligue quando quiser.</p></article>
+            <article class="dv-cartao"><span><Icon name="clock" size={24} /></span><h3>Agendar posts</h3><p>Foto, carrossel, Reels ou story, publicados no horário pela mesma fila do painel.</p></article>
+          </div>
+          <p class="dv-aviso"><strong>A API não manda mensagem sozinha.</strong> Ela só deixa tudo pronto. Quem dispara o envio é o comentário de verdade no Instagram — e é isso que mantém tudo dentro das regras da Meta.</p>
+        </div>
+      </section>
+
+      <section class="dv-sec" id="comecar">
+        <div class="container dv-cont">
+          <h2>Começo rápido</h2>
+          <ol class="dv-passos">
+            <li>
+              <h3>Pegue a sua chave</h3>
+              <p>No painel, abra <a href="https://app.notifiquei.com.br/api-keys"><strong>API</strong> (app.notifiquei.com.br/api-keys)</a> e clique em <strong>Gerar chave</strong>. Só o dono do time gera chaves. A chave começa com <code>ntq_live_</code> e aparece <strong>uma vez só</strong>: guarde num lugar seguro. Perdeu? Gere outra e revogue a antiga.</p>
+              <p>A chave é presa a um time: ela só enxerga as contas do Instagram daquele time.</p>
+            </li>
+            <li>
+              <h3>Faça o primeiro pedido</h3>
+              <p>Toda chamada leva a chave no cabeçalho <code>X-API-Key</code>. Comece listando as contas:</p>
+              <Fragment set:html={bloco(curl("GET", "/partners/accounts"))} />
+              <p>Guarde o <code>id</code> da conta. Se <code>podeCriarAutomacao</code> vier <code>false</code>, o dono precisa reconectar a conta no painel.</p>
+            </li>
+            <li>
+              <h3>Crie o seu “comenta QUERO”</h3>
+              <p>Pegue o primeiro exemplo de <a href="#exemplos">Exemplos prontos</a> e troque o <code>contaInstagram</code> pelo <code>id</code> do passo 2. Com <code>"posts": "proximo"</code>, a automação espera o próximo post publicado e se prende a ele sozinha. Outras opções: <code>"todos"</code> ou a lista de IDs de post.</p>
+            </li>
+            <li>
+              <h3>Confira e controle</h3>
+              <p><code>GET /partners/automations</code> mostra todas, com o alvo em vigor. Para desligar: <code>PATCH /partners/automations/&#123;id&#125;/status</code> com <code>&#123;"ativa": false&#125;</code>.</p>
+            </li>
+          </ol>
+          <details class="dv-det">
+            <summary>Usa o Claude? Tem um atalho</summary>
+            <p>Na tela de chaves, o botão <strong>Copiar kit pro Claude</strong> entrega um texto com a sua chave já dentro. Cole nas instruções de um Projeto do Claude e converse em português (“cria um comenta QUERO no meu próximo post com esses links”). O Claude faz as chamadas e confirma com você antes de criar.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="dv-sec" id="exemplos">
+        <div class="container dv-cont">
+          <h2>Exemplos prontos</h2>
+          <p>Os mesmos exemplos da <a href={URL_REFERENCIA}>referência</a>, prontos para copiar. Troque <code>SUA_CHAVE_AQUI</code> pela sua chave.</p>
+          <div data-dv="exemplos" set:html={htmlExemplos(exemplos)} />
+          <h3 class="dv-sub">Regras dos botões</h3>
+          <p>Até 3 botões por mensagem, com até 20 letras. <code>"acao": "continuar"</code> envia a mensagem seguinte (precisa existir uma); <code>"acao": &#123;"link": "https://..."&#125;</code> abre um site. A 1ª mensagem com “continuar” chega como resposta rápida e, depois do toque, o sistema confere se a pessoa segue a conta antes de mandar o resto.</p>
+          <p>Carrossel de produtos: mande só o link de afiliado — a foto e o nome saem da própria página do link. De 1 a 10 cards; uma mensagem tem <code>texto</code> ou <code>cards</code>, nunca os dois.</p>
+        </div>
+      </section>
+
+      <section class="dv-sec" id="rotas">
+        <div class="container dv-cont">
+          <h2>Todas as rotas</h2>
+          <p>Esta lista vem direto da API, então está sempre em dia. Clique numa rota para ver os detalhes e testar. <span class="dv-versao-api" data-dv="versao" set:html={versaoApi(doc)} /></p>
+          <div data-dv="rotas" set:html={htmlRotas(rotas)} />
+        </div>
+      </section>
+
+      <section class="dv-sec" id="limites">
+        <div class="container dv-cont">
+          <h2>Limites</h2>
+          <div class="dv-grade">
+            <article class="dv-cartao"><h3>Pedidos por minuto</h3><p>Cada chave tem a sua cota, separada das outras. O limite de cada rota está na tabela acima. Passou, volta <code>429</code>: espere alguns segundos e tente de novo.</p></article>
+            <article class="dv-cartao"><h3>Automações por chave</h3><p>Uma chave pode ter um teto de automações criadas. Ao chegar nele, a criação volta <code>403</code>.</p></article>
+            <article class="dv-cartao"><h3>Do Instagram</h3><p>Até 3 botões por mensagem, 20 letras por botão, 10 cards por carrossel e de 2 a 10 mídias por carrossel agendado.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="dv-sec" id="erros">
+        <div class="container dv-cont">
+          <h2>Erros comuns</h2>
+          <p>Todo erro vem com uma <code>message</code> em português dizendo o que aconteceu.</p>
+          <div class="dv-tabela"><table>
+            <thead><tr><th scope="col">Código</th><th scope="col">Quando acontece</th><th scope="col">O que fazer</th></tr></thead>
+            <tbody>
+              <tr><td class="dv-num"><code>400</code></td><td>Pedido com algo errado (campo faltando, botão “continuar” sem mensagem depois, <code>posts</code> inválido, data no passado)</td><td>Leia a <code>message</code>: ela diz o campo e como corrigir</td></tr>
+              <tr><td class="dv-num"><code>401</code></td><td>Chave ausente, inválida ou revogada</td><td>Confira o cabeçalho <code>X-API-Key</code></td></tr>
+              <tr><td class="dv-num"><code>403</code></td><td>Conta desconectada ou com a conexão vencida; teto de automações da chave; plano vencido ao ligar</td><td>Reconectar a conta no painel ou falar com a gente</td></tr>
+              <tr><td class="dv-num"><code>404</code></td><td>A conta, automação ou agendamento não existe <strong>ou não é do time da chave</strong></td><td>Confira o ID</td></tr>
+              <tr><td class="dv-num"><code>429</code></td><td>Muitos pedidos no mesmo minuto</td><td>Espere e tente de novo, com calma</td></tr>
+            </tbody>
+          </table></div>
+          <Fragment set:html={bloco(JSON.stringify({ message: "Chave de API inválida", error: "Unauthorized", statusCode: 401, timestamp: "2026-10-13T20:00:00.000Z", path: "/partners/accounts" }, null, 2))} />
+        </div>
+      </section>
+
+      <section class="dv-sec" id="novidades">
+        <div class="container dv-cont">
+          <h2>Novidades da API</h2>
+          <p>O que mudou para quem integra, da mais nova para a mais antiga. Também em <a href={URL_NOVIDADES}>JSON</a>, para o seu sistema acompanhar.</p>
+          <div data-dv="novidades" set:html={htmlNovidades(novidades)} />
+        </div>
+      </section>
+
+      <section class="dv-sec dv-arquivos">
+        <div class="container dv-cont">
+          <h2>Para ferramentas e agentes</h2>
+          <p>A especificação completa (OpenAPI 3) serve para Postman, Insomnia, geradores de SDK e agentes de IA:</p>
+          <ul>
+            <li><a href={URL_OPENAPI}><code>openapi.json</code></a> · <a href={URL_OPENAPI.replace(".json", ".yaml")}><code>openapi.yaml</code></a></li>
+            <li>Dúvidas: <a href="mailto:contato@notifiquei.com.br">contato@notifiquei.com.br</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+
+  <script>
+    import {
+      URL_OPENAPI, URL_NOVIDADES, buscarJson, rotasDoDocumento, exemplosDoDocumento,
+      htmlRotas, htmlExemplos, htmlNovidades, htmlUltima, versaoApi, type Novidade,
+    } from "../lib/developers";
+
+    // Relê a API ao abrir: o que entrou depois do último build aparece aqui.
+    // Só troca o conteúdo quando a resposta veio boa — falhou, fica o do build.
+    const trocar = (nome: string, html: string) => {
+      const el = document.querySelector<HTMLElement>(`[data-dv="${nome}"]`);
+      if (el && el.innerHTML !== html) el.innerHTML = html;
+    };
+    buscarJson<any>(URL_OPENAPI).then((doc) => {
+      if (!doc?.paths) return;
+      trocar("rotas", htmlRotas(rotasDoDocumento(doc)));
+      trocar("versao", versaoApi(doc));
+      const ex = exemplosDoDocumento(doc);
+      if (ex.length) trocar("exemplos", htmlExemplos(ex));
+    });
+    buscarJson<Novidade[]>(URL_NOVIDADES).then((lista) => {
+      if (!Array.isArray(lista)) return;
+      trocar("novidades", htmlNovidades(lista));
+      trocar("ultima", htmlUltima(lista));
+    });
+
+    // Botão "Copiar" dos blocos de código (inclusive os que chegam depois).
+    document.addEventListener("click", (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-copiar]");
+      const codigo = b?.parentElement?.querySelector("code")?.textContent;
+      if (!b || !codigo || !navigator.clipboard) return;
+      navigator.clipboard.writeText(codigo).then(() => {
+        const antes = b.textContent;
+        b.textContent = "Copiado!";
+        setTimeout(() => (b.textContent = antes), 1500);
+      });
+    });
+  </script>
+  <script>
+    import { iniciarMovimento } from "../scripts/movimento";
+    iniciarMovimento();
+  </script>
+</Base>
+
+<style is:global>
+  .dv .dv-ultima { font-size: 14px !important; color: var(--ink-soft); margin-top: 22px !important; }
+  .dv .dv-ultima:empty { display: none; }
+  .dv .dv-ultima a, .dv .dv-sec p a, .dv .dv-sec li a, .dv .dv-tabela td a { color: var(--brand-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .dv-atalhos { position: sticky; top: 92px; z-index: 5; background: var(--paper); border-block: 1px solid var(--line); }
+  .dv-atalhos .container { display: flex; gap: 6px 26px; overflow-x: auto; padding-block: 14px; font-size: 14px; font-weight: 600; white-space: nowrap; scrollbar-width: none; }
+  .dv-atalhos a { color: var(--ink-soft); }
+  .dv-atalhos a:hover { color: var(--brand-ink); }
+  .dv-cont { max-width: 960px; }
+  .dv-sec { padding-block: 56px; scroll-margin-top: 150px; }
+  .dv-sec + .dv-sec { border-top: 1px solid var(--line-soft); }
+  .home-page.dv .dv-sec h2 { font-size: clamp(2rem, 1.4rem + 2.4vw, 2.9rem); letter-spacing: -.04em; margin-bottom: 18px; }
+  .dv-sec > .container > p, .dv-sec li p, .dv-det p { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-top: 10px; }
+  .dv-sec h3 { font-size: 20px; }
+  .dv-sub { margin-top: 36px; }
+  .dv code { font-family: var(--font-mono); font-size: .88em; background: #f6e3ea; color: #7d0a36; padding: .1em .38em; border-radius: 6px; overflow-wrap: anywhere; }
+  .dv-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 8px; }
+  .dv-cartao { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+  .dv-cartao > span { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: #f8dce6; color: var(--brand-ink); margin-bottom: 14px; }
+  .dv-cartao p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin-top: 8px; }
+  .dv-aviso { margin-top: 22px !important; padding: 16px 20px; border-radius: 14px; background: #fff4dc; color: var(--ink) !important; }
+  .dv-passos { list-style: none; padding: 0; margin: 8px 0 0; counter-reset: p; }
+  .dv-passos > li { counter-increment: p; position: relative; padding-left: 56px; margin-bottom: 34px; }
+  .dv-passos > li::before { content: counter(p); position: absolute; left: 0; top: -2px; width: 38px; height: 38px; border-radius: 50%; background: var(--brand-ink); color: #fff; font-weight: 700; display: grid; place-items: center; }
+  .dv-codigo { position: relative; margin: 14px 0; }
+  .dv-codigo pre { margin: 0; background: var(--ink); color: #f6efe4; border-radius: 14px; padding: 18px; padding-top: 44px; overflow-x: auto; font-size: 13px; line-height: 1.55; }
+  .dv-codigo pre code { background: none; color: inherit; padding: 0; overflow-wrap: normal; font-size: inherit; }
+  .dv-copiar { position: absolute; top: 9px; right: 9px; font: 600 12px var(--font-body); padding: 6px 11px; border-radius: 8px; border: 1px solid #ffffff2e; background: #ffffff14; color: #f6efe4; cursor: pointer; }
+  .dv-copiar:hover { background: #ffffff26; }
+  .dv-det { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin: 12px 0; }
+  .dv-det summary { cursor: pointer; font-weight: 600; line-height: 1.5; }
+  .dv-det summary code { font-size: .85em; }
+  .dv-tabela { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 16px; margin-top: 16px; }
+  .dv-tabela table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .dv-tabela th, .dv-tabela td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line-soft); vertical-align: top; line-height: 1.5; }
+  .dv-tabela tr:last-child td { border-bottom: 0; }
+  .dv-tabela thead th { color: var(--ink-soft); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+  .dv-tabela .dv-grupo th { padding-top: 22px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-ink); }
+  .dv-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .dv-resumo { display: block; color: var(--ink-soft); font-size: 13.5px; margin-top: 3px; }
+  .dv-metodo { display: inline-block; min-width: 58px; text-align: center; font: 700 11px var(--font-mono); padding: 4px 6px; border-radius: 6px; }
+  .dv-m-get { background: #e6eefb; color: #1f4f9f; }
+  .dv-m-post { background: #e3f1e9; color: #1f6e48; }
+  .dv-m-patch, .dv-m-put { background: #fbefd6; color: #7a5200; }
+  .dv-m-delete { background: #fbe3ec; color: #a50c47; }
+  .dv-novidade { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; margin-top: 16px; }
+  .dv-novidade__topo { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
+  .dv-novidade p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-top: 8px; }
+  .dv-selo { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; }
+  .dv-selo--novo { background: #e3f1e9; color: #1f6e48; }
+  .dv-selo--mudanca { background: #e6eefb; color: #1f4f9f; }
+  .dv-selo--conserto { background: #efe8dd; color: #6d5d49; }
+  .dv-selo--aviso { background: #fbefd6; color: #7a5200; }
+  .dv-versao { font-family: var(--font-mono); }
+  .dv-versao-api { font-size: 13px; }
+  .dv-vazio { padding: 16px 20px; border: 1px dashed var(--line); border-radius: 14px; }
+  .dv-arquivos ul { margin: 12px 0 0; padding-left: 20px; color: var(--ink-soft); line-height: 2; }
+  @media (max-width: 760px) { .dv-atalhos { top: 76px; } .dv-sec { scroll-margin-top: 130px; } }
+  @media (max-width: 620px) {
+    .dv-sec { padding-block: 40px; }
+    .dv-passos > li { padding-left: 48px; }
+    .dv-tabela th, .dv-tabela td { padding: 10px 12px; }
+    .dv-tabela table { font-size: 13.5px; }
+  }
+</style>

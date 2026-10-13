@@ -69,6 +69,14 @@ R: Sim, uma conta Profissional ou de Criador no Instagram (gratuita, leva 1 minu
 P: Posso cancelar quando quiser?
 R: Sim, a qualquer momento pelo painel, sem multa. Os 7 primeiros dias são grátis — você só é cobrado se continuar depois disso.
 
+## API para desenvolvedores
+
+- Sistemas e agentes podem criar automações "comenta QUERO", ligar/desligar automações e agendar posts pela API de parceiros (chave `X-API-Key`, gerada pelo dono do time em https://app.notifiquei.com.br/api-keys). A API não envia mensagem sozinha: quem dispara é o comentário real no Instagram.
+- Guia (começo rápido, exemplos, limites, erros, novidades): https://notifiquei.com.br/developers
+- Referência para testar (Swagger): https://notifiquei.com.br/developers/referencia
+- Especificação OpenAPI 3: https://api.notifiquei.com.br/partners/openapi.json
+- Novidades da API (JSON): https://api.notifiquei.com.br/partners/novidades
+
 ## Empresa
 
 Notifiquei Tecnologia, empresa brasileira. CNPJ 59.859.848/0001-13. Site: https://notifiquei.com.br

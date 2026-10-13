@@ -1,0 +1,109 @@
+---
+/**
+ * /developers/referencia — Swagger UI da API de parceiros (13/10). Antes ficava
+ * em api.notifiquei.com.br/partners/referencia, que agora redireciona para cá.
+ *
+ * Lê a especificação ao vivo de api.notifiquei.com.br/partners/openapi.json
+ * (gerada do código da API a cada subida), então nunca fica desatualizada.
+ * O "Try it out" chama a API direto do navegador: o backend libera a origem
+ * notifiquei.com.br nas rotas /partners/* (sem cookie, só a chave).
+ */
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/HomeIcon.astro";
+import { copyHome } from "../../i18n/home";
+import { URL_OPENAPI } from "../../lib/developers";
+import "../../styles/home.css";
+
+const t = copyHome("pt-BR");
+const SWAGGER = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14";
+---
+
+<Base
+  title="Referência da API | Notifiquei"
+  description="Referência completa da API do Notifiquei: todas as rotas, campos e exemplos. Cole a sua chave em Authorize e teste cada rota pelo navegador."
+  path="/developers/referencia"
+  lang="pt-BR"
+>
+  <link rel="stylesheet" href={`${SWAGGER}/swagger-ui.css`} />
+  <div class="home-page pagina-clara rf">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar={t.meta.navComecar} comecarHref="/precos" />
+    <main id="conteudo">
+      <section class="rf-topo">
+        <div class="container rf-cont">
+          <a href="/developers" class="rf-volta"><span aria-hidden="true">←</span> API para desenvolvedores</a>
+          <h1>Referência da API</h1>
+          <ol class="rf-como">
+            <li>Pegue a sua chave em <a href="https://app.notifiquei.com.br/api-keys">app.notifiquei.com.br/api-keys</a>.</li>
+            <li>Clique em <strong>Authorize</strong>, cole a chave e confirme.</li>
+            <li>Abra uma rota, clique em <strong>Try it out</strong> e depois em <strong>Execute</strong>.</li>
+          </ol>
+          <p class="rf-alerta"><Icon name="shield" size={16} /> Os testes usam a sua conta de verdade: uma automação criada aqui passa a valer no Instagram.</p>
+        </div>
+      </section>
+      <section class="rf-ui">
+        <div class="container rf-cont">
+          <div id="swagger" data-spec={URL_OPENAPI}>
+            <p class="rf-carregando">Carregando a referência… Se não aparecer, abra o <a href={URL_OPENAPI}>openapi.json</a>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+  <script is:inline src={`${SWAGGER}/swagger-ui-bundle.js`} crossorigin="anonymous"></script>
+  <script is:inline>
+    (function () {
+      var alvo = document.getElementById("swagger");
+      if (!alvo || !window.SwaggerUIBundle) return;
+      window.ui = window.SwaggerUIBundle({
+        url: alvo.getAttribute("data-spec"),
+        dom_id: "#swagger",
+        deepLinking: true,
+        persistAuthorization: true,
+        displayRequestDuration: true,
+        docExpansion: "list",
+        defaultModelsExpandDepth: 0,
+        tryItOutEnabled: true,
+        validatorUrl: null,
+        presets: [window.SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout",
+      });
+    })();
+  </script>
+</Base>
+
+<style is:global>
+  .rf-cont { max-width: 1100px; }
+  .rf-topo { padding-top: 128px; padding-bottom: 8px; }
+  .rf-volta { display: inline-flex; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .rf-volta:hover { color: var(--brand-ink); }
+  .home-page.rf .rf-topo h1 { font-size: clamp(2.3rem, 1.4rem + 3vw, 3.6rem); letter-spacing: -.045em; margin-top: 14px; }
+  .rf-como { margin: 18px 0 0; padding-left: 22px; color: var(--ink-soft); line-height: 1.9; font-size: 15.5px; }
+  .rf-como a, .rf-carregando a { color: var(--brand-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .rf-alerta { display: inline-flex; gap: 8px; align-items: center; margin-top: 16px; padding: 10px 14px; border-radius: 12px; background: #fff4dc; font-size: 14px; }
+  .rf-ui { padding-bottom: 80px; }
+  .rf-carregando { padding: 40px 0; color: var(--ink-soft); }
+  /* Swagger UI dentro do site: devolve as fontes e tamanhos dele, que o CSS global do site muda. */
+  .rf .swagger-ui, .rf .swagger-ui .opblock-tag, .rf .swagger-ui .opblock .opblock-summary-description { font-family: var(--font-body); }
+  .rf .swagger-ui :is(h1, h2, h3, h4, h5) { font-family: var(--font-body); letter-spacing: normal; line-height: 1.3; }
+  .rf .swagger-ui .info { margin: 24px 0 8px; }
+  .rf .swagger-ui .info .title { font-size: 26px; color: var(--ink); }
+  .rf .swagger-ui .info .title small { vertical-align: middle; }
+  .rf .swagger-ui .info .description p, .rf .swagger-ui .info .description li { font-size: 15px; line-height: 1.6; }
+  .rf .swagger-ui .opblock-tag { font-size: 20px; }
+  .rf .swagger-ui .wrapper { padding: 0; max-width: none; }
+  .rf .swagger-ui .scheme-container { background: transparent; box-shadow: none; padding: 12px 0; }
+  .rf .swagger-ui .btn { border-radius: 8px; }
+  .rf .swagger-ui .btn.authorize { border-color: var(--brand-ink); color: var(--brand-ink); }
+  .rf .swagger-ui .btn.authorize svg { fill: var(--brand-ink); }
+  .rf .swagger-ui table { font-size: 13.5px; }
+  .rf .swagger-ui pre, .rf .swagger-ui code { font-family: var(--font-mono); }
+  @media (max-width: 760px) {
+    .rf-topo { padding-top: 104px; }
+    .rf .swagger-ui .opblock .opblock-summary { flex-wrap: wrap; }
+    .rf .swagger-ui .opblock .opblock-summary-path { max-width: 100%; word-break: break-all; }
+  }
+</style>

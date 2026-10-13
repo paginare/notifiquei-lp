@@ -17,6 +17,7 @@ export const LINKS_PT: NavLink[] = [
     { href: "/ajuda", label: "Central de ajuda", desc: "Passo a passo de cada função" },
     { href: "/ajuda#videos", label: "Tutoriais em vídeo", desc: "Veja na tela como se faz" },
     { href: "/blog", label: "Blog", desc: "Estratégias pra vender mais pelo direct" },
+    { href: "/developers", label: "API para desenvolvedores", desc: "Ligue o seu sistema ao Notifiquei" },
   ] },
 ];
 

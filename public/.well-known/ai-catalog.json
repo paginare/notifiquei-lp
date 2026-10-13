@@ -21,6 +21,18 @@
       ]
     },
     {
+      "identifier": "urn:air:notifiquei.com.br:api:parceiros",
+      "displayName": "API de parceiros Notifiquei (OpenAPI)",
+      "type": "application/json",
+      "url": "https://api.notifiquei.com.br/partners/openapi.json",
+      "description": "API REST com chave para criar automações comenta QUERO e agendar posts do Instagram. Guia em https://notifiquei.com.br/developers.",
+      "representativeQueries": [
+        "API para criar automação de comentário no Instagram",
+        "agendar post no Instagram por API",
+        "Notifiquei API docs"
+      ]
+    },
+    {
       "identifier": "urn:air:notifiquei.com.br:skills:index",
       "displayName": "Notifiquei Agent Skills",
       "type": "application/json",
