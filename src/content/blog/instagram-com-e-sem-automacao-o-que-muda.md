@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/instagram-com-e-sem-automacao-o-que-muda.webp"
+coverAlt: "Foto ilustrativa do post: Instagram com e sem automação: o que muda na prática"
 title: "Instagram com e sem automação: o que muda na prática"
 description: "Automação no Instagram não é virar robô. É não perder venda às 23h porque você tava dormindo. Veja o que muda no dia a dia de quem vende."
 date: 2026-04-20

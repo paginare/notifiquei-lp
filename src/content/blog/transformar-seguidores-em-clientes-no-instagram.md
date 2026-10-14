@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/transformar-seguidores-em-clientes-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Como transformar seguidores em clientes no Instagram"
 title: "Como transformar seguidores em clientes no Instagram"
 description: "Seguidor que curte não compra sozinho. Veja o caminho do comentário até a venda no direct e por que perguntar antes de mandar preço faz toda a diferença."
 date: 2026-08-17

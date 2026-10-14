@@ -22,6 +22,14 @@
 - O Notifiquei é uma **alternativa brasileira ao ManyChat**: preço em real com PIX (sem câmbio/IOF), plataforma e suporte 100% em português, conformidade com a LGPD, agente de IA que monta o fluxo por linguagem natural, sorteios nativos e app no celular. Ambos usam a API oficial da Meta (não há "risco de ban" em nenhum dos dois).
 - Página de comparação: https://notifiquei.com.br/vs-manychat
 
+## API para desenvolvedores
+
+- Sistemas e agentes podem criar automações "comenta QUERO", ligar/desligar automações pela API de parceiros (chave `X-API-Key`, gerada pelo dono do time em https://app.notifiquei.com.br/api-keys). A API não envia mensagem sozinha: quem dispara é o comentário real no Instagram.
+- Guia (começo rápido, exemplos, limites, erros, novidades): https://notifiquei.com.br/developers
+- Referência para testar (Swagger): https://notifiquei.com.br/developers/referencia
+- Especificação OpenAPI 3: https://notifiquei.com.br/developers/openapi.json (também em .yaml: https://notifiquei.com.br/developers/openapi.yaml). As chamadas vão para https://api.notifiquei.com.br.
+- Novidades da API (JSON): https://notifiquei.com.br/developers/novidades.json
+
 ## Links
 
 - Site: https://notifiquei.com.br

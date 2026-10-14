@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/follow-up-automatico-no-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Follow-up automático no direct do Instagram sem ser chato"
 title: "Follow-up automático no direct do Instagram sem ser chato"
 description: "Follow-up automático no direct: veja como o nó de espera e a janela de 24 horas da Meta fazem o lembrete certo chegar na hora, sem virar spam."
 date: 2026-07-01

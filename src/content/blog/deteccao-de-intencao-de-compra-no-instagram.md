@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/deteccao-de-intencao-de-compra-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Intenção de compra no Instagram: como saber quem está pronto pra fechar"
 title: "Intenção de compra no Instagram: como saber quem está pronto pra fechar"
 description: "Você não precisa de IA lendo suas conversas pra saber quem quer comprar. Veja como montar um funil no direct em que a própria pessoa se declara."
 date: 2026-07-30

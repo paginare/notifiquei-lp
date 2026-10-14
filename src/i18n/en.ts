@@ -274,7 +274,7 @@ export const en = {
 
   footer: {
     legal: "© 2026 Notifiquei. All rights reserved. · Company ID 59.859.848/0001-13 (Brazil)",
-    status: "All systems operational",
+    status: "System status",
     pitch: "Instagram sales automation on Meta's official API. Built in Brazil, running worldwide.",
     cookies: "Cookie preferences",
     cols: [

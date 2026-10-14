@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/notifiquei-vs-manychat.webp"
+coverAlt: "Foto ilustrativa do post: Notifiquei vs ManyChat: qual vale mais a pena no Brasil"
 title: "Notifiquei vs ManyChat: qual vale mais a pena no Brasil"
 description: "ManyChat cobra por contato e em dólar, e a fatura sobe com a audiência. Veja como o Notifiquei compara, com preço fixo em real e contatos ilimitados."
 date: 2026-06-30

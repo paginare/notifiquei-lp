@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/responder-comentarios-do-instagram-automaticamente.webp"
+coverAlt: "Foto ilustrativa do post: Como responder comentários do Instagram automaticamente sem parecer robô"
 title: "Como responder comentários do Instagram automaticamente sem parecer robô"
 description: "Veja como responder comentários do Instagram automaticamente, puxar leads pro direct e filtrar spam, tudo na sua voz e pela API oficial da Meta."
 date: 2026-07-17

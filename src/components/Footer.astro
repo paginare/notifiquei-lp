@@ -26,6 +26,7 @@ const COLS_PT = [
       { href: "/ferramentas", label: "Ferramentas grátis" },
       { href: "/criadores", label: "Para criadores" },
       { href: "/afiliados", label: "Programa de afiliados" },
+      { href: "/developers", label: "API para desenvolvedores" },
     ],
   },
   {
@@ -51,7 +52,7 @@ const {
   cols = COLS_PT,
   pitch = "Automação de vendas no Instagram com a API oficial da Meta. Feito no Brasil, pra quem vende em português.",
   legal = "© 2026 Notifiquei. Todos os direitos reservados. · CNPJ 59.859.848/0001-13",
-  status = "Todos os sistemas operando",
+  status = "Status dos sistemas",
   cookies = "Preferências de cookies",
 } = Astro.props;
 ---
@@ -97,7 +98,7 @@ const {
           Sem este botão, quem já respondeu nunca mais vê o banner.
         -->
         <button type="button" class="footer__cookies" data-abrir-cookies>{cookies}</button>
-        <span class="footer__status"><span class="footer__dot"></span> {status}</span>
+        <a class="footer__status" href="https://app.notifiquei.com.br/status" rel="noopener" data-status-vivo><span class="footer__dot"></span> <span data-status-texto>{status}</span></a>
       </div>
     </div>
   </div>
@@ -121,10 +122,15 @@ const {
   .footer__store { display: inline-flex; transition: opacity 0.2s var(--ease-out); }
   .footer__store:hover { opacity: 0.82; }
   .footer__store img { height: 40px; width: auto; display: block; }
+  /* Cinza até a consulta real responder (src/scripts/status.ts). */
   .footer__dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--positive); display: inline-block;
+    background: var(--on-ink-soft); display: inline-block;
   }
+  .footer__status[data-estado="operational"] .footer__dot { background: var(--positive); }
+  .footer__status[data-estado="degraded"] .footer__dot { background: #D98A00; }
+  .footer__status[data-estado="outage"] .footer__dot { background: #D92D20; }
+  .footer__status:hover { color: var(--on-ink); }
   .footer__cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .footer__col-title {
     font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
@@ -163,6 +169,8 @@ const {
 </style>
 
 <script>
+  import { iniciarStatus } from "../scripts/status";
+  iniciarStatus();
   // Um listener por instância; o rodapé é único por página, mas querySelectorAll
   // evita repetir o erro do LangSwitcher (getElementById pega só o primeiro).
   document.querySelectorAll("[data-abrir-cookies]").forEach((b) =>

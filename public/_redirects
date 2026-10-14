@@ -2,6 +2,10 @@
 # pra validadores que não seguem 301.
 /sitemap.xml   /sitemap-index.xml   200
 
+# API para desenvolvedores: nome em português leva para a página em /developers.
+/desenvolvedores   /developers   301
+/api-docs          /developers   301
+
 # Blog: URLs antigas (categoria/slug) -> novo /blog/slug. Uma linha por artigo migrado.
 /estrategia/api-oficial-meta-automacao-instagram      /blog/api-oficial-meta-automacao-instagram      301
 /copywriting/como-qualificar-lead-antes-de-mandar-preco  /blog/como-qualificar-lead-antes-de-mandar-preco  301

@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/seguidores-que-curtem-mas-nao-compram.webp"
+coverAlt: "Foto ilustrativa do post: Seguidores que curtem tudo mas não compram nada"
 title: "Seguidores que curtem tudo mas não compram nada"
 description: "Mil curtidas no post e zero vendas não é azar. Veja o que quebra o caminho entre o like e a compra e como resolver."
 date: 2026-04-20

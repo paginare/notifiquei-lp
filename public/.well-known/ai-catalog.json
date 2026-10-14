@@ -21,6 +21,18 @@
       ]
     },
     {
+      "identifier": "urn:air:notifiquei.com.br:api:parceiros",
+      "displayName": "API de parceiros Notifiquei (OpenAPI)",
+      "type": "application/json",
+      "url": "https://notifiquei.com.br/developers/openapi.json",
+      "description": "API REST com chave para criar e gerenciar automações comenta QUERO do Instagram. As chamadas vão para https://api.notifiquei.com.br. Guia em https://notifiquei.com.br/developers.",
+      "representativeQueries": [
+        "API para criar automação de comentário no Instagram",
+        "ligar e desligar automação do Instagram por API",
+        "Notifiquei API docs"
+      ]
+    },
+    {
       "identifier": "urn:air:notifiquei.com.br:skills:index",
       "displayName": "Notifiquei Agent Skills",
       "type": "application/json",

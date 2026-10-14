@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/como-um-comentario-no-instagram-vira-venda.webp"
+coverAlt: "Foto ilustrativa do post: Como um comentário no Instagram vira venda"
 title: "Como um comentário no Instagram vira venda"
 description: "Responder comentário na hora certa não é só educação, é venda. Veja o que falar e quando pra levar quem comenta no Instagram pro Direct."
 date: 2026-04-20

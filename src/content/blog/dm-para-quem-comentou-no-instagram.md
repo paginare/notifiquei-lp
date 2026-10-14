@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/dm-para-quem-comentou-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: DM pra quem comentou: como funciona a janela da Meta"
 title: "DM pra quem comentou: como funciona a janela da Meta"
 description: "Dá pra mandar DM automática pra quem comentou no seu post, mesmo quem não te segue. Veja como funciona a janela da Meta e a regra da primeira mensagem."
 date: 2026-06-30

@@ -1,0 +1,72 @@
+---
+/**
+ * Grade de tutoriais em vídeo (artigos da ajuda com `video` no frontmatter).
+ * Aparece na página inicial da ajuda e no topo do blog — é o que faz os dois
+ * parecerem um lugar só sem mudar os endereços.
+ */
+import { todosOsArtigos, urlDe, videoDe } from "../../lib/ajuda/artigos";
+// `inicial`: mostra só esses cartões e um botão revela o resto (sem recarregar).
+interface Props { limite?: number; inicial?: number; titulo?: string; verTodos?: boolean }
+const { limite, inicial, titulo = "Tutoriais em vídeo", verTodos = false } = Astro.props;
+// Um cartão por vídeo (dois artigos podem usar o mesmo, ex.: conectar e primeira automação).
+const comVideo = (await todosOsArtigos()).filter((a) => videoDe(a))
+  .filter((a, i, l) => l.findIndex((b) => b.data.video!.arquivo === a.data.video!.arquivo) === i);
+const lista = limite ? comVideo.slice(0, limite) : comVideo;
+const tempo = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+---
+
+{lista.length > 0 && (
+  <div class="vt" id="videos">
+    <div class="vt__topo">
+      <h2 class="vt__h2">{titulo}</h2>
+      {verTodos && comVideo.length > lista.length && <a href="/ajuda#videos">Ver os {comVideo.length} vídeos →</a>}
+    </div>
+    <div class="vt__grade">
+      {lista.map((a, i) => {
+        const v = videoDe(a)!;
+        return (
+          <a class="vt__card" href={urlDe(a)} hidden={inicial !== undefined && i >= inicial}>
+            <span class="vt__capa">
+              <img src={v.capa} alt="" width="640" height="360" loading="lazy" />
+              <span class="vt__play" aria-hidden="true">▶</span>
+              <span class="vt__tempo">{tempo(v.segundos)}</span>
+            </span>
+            <strong>{a.data.titulo}</strong>
+          </a>
+        );
+      })}
+    </div>
+    {inicial !== undefined && lista.length > inicial && (
+      <button type="button" class="vt__mais" data-vt-mais>Ver mais {lista.length - inicial} vídeos</button>
+    )}
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-vt-mais]").forEach((b) =>
+    b.addEventListener("click", () => {
+      b.closest(".vt")?.querySelectorAll<HTMLElement>(".vt__card[hidden]").forEach((c) => (c.hidden = false));
+      b.remove();
+    }),
+  );
+</script>
+
+<style is:global>
+  .vt__topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .vt__topo a { font-weight: 600; font-size: 15px; color: var(--brand-ink); }
+  .home-page .vt__h2 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); letter-spacing: -.02em; line-height: 1.1; }
+  .vt__grade { margin-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .vt__card { display: grid; grid-template-rows: auto 1fr; align-content: start; gap: 10px; color: var(--ink); }
+  .vt__card[hidden] { display: none; }
+  .vt__mais { display: block; margin: 26px auto 0; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
+  .vt__mais:hover { border-color: var(--brand); color: var(--brand-ink); }
+  .vt__card strong { font-size: 15px; line-height: 1.3; }
+  .vt__card:hover strong { color: var(--brand-ink); }
+  .vt__capa { position: relative; display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--line-soft); background: #f1e9dd; }
+  .vt__capa img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .3s; }
+  .vt__card:hover .vt__capa img { transform: scale(1.03); }
+  .vt__play { position: absolute; inset: 0; margin: auto; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 999px; background: var(--brand, #ff2d75); color: #fff; font-size: 16px; padding-left: 3px; box-shadow: 0 8px 20px #0003; }
+  .vt__tempo { position: absolute; right: 8px; bottom: 8px; padding: 2px 7px; border-radius: 6px; background: #000b; color: #fff; font-size: 12px; font-weight: 600; }
+  @media (max-width: 960px) { .vt__grade { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .vt__grade { gap: 18px 12px; } .vt__card strong { font-size: 13.5px; } .vt__play { width: 38px; height: 38px; font-size: 13px; } .vt__capa { border-radius: 12px; } }
+</style>

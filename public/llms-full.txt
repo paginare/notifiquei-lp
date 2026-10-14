@@ -10,7 +10,6 @@
 - Moderação de comentários com IA: esconde spam, ofensa e negatividade antes dos seguidores verem; responde os comentários positivos.
 - Sorteios pelos comentários: quem comenta a palavra entra no sorteio automaticamente; sorteia o ganhador em 1 clique.
 - TikTok DM automático: boas-vindas, palavras-chave e resposta padrão no TikTok Business.
-- Agendamento de posts no Instagram.
 - Para afiliados de marketplace: entrega o seu link de afiliado (Shopee, Mercado Livre, Amazon, AliExpress, Magalu) no Direct no automático — a pessoa comenta a palavra-chave no post e recebe o link na hora, sem você copiar e colar link o dia inteiro.
 - App nativo iOS e Android.
 
@@ -68,6 +67,14 @@ R: Sim, uma conta Profissional ou de Criador no Instagram (gratuita, leva 1 minu
 
 P: Posso cancelar quando quiser?
 R: Sim, a qualquer momento pelo painel, sem multa. Os 7 primeiros dias são grátis — você só é cobrado se continuar depois disso.
+
+## API para desenvolvedores
+
+- Sistemas e agentes podem criar automações "comenta QUERO", ligar/desligar automações pela API de parceiros (chave `X-API-Key`, gerada pelo dono do time em https://app.notifiquei.com.br/api-keys). A API não envia mensagem sozinha: quem dispara é o comentário real no Instagram.
+- Guia (começo rápido, exemplos, limites, erros, novidades): https://notifiquei.com.br/developers
+- Referência para testar (Swagger): https://notifiquei.com.br/developers/referencia
+- Especificação OpenAPI 3: https://notifiquei.com.br/developers/openapi.json (também em .yaml: https://notifiquei.com.br/developers/openapi.yaml). As chamadas vão para https://api.notifiquei.com.br.
+- Novidades da API (JSON): https://notifiquei.com.br/developers/novidades.json
 
 ## Empresa
 

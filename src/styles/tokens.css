@@ -11,7 +11,7 @@
   --ink:        #14100E;   /* quase-preto quente: texto e seções dramáticas */
   --ink-2:      #241E1A;   /* superfícies escuras elevadas */
   --ink-soft:   #5F564D;   /* texto secundário sobre claro (escurecido p/ AA) */
-  --ink-faint:  #8A8072;   /* texto terciário / legendas */
+  --ink-faint:  #746A5E;   /* texto terciário / legendas — 4,9 sobre o papel (era #8A8072, 3,6; pacote de design 11/10) */
 
   --brand:      #FF1F6D;   /* rosa da marca — acento elétrico, usado com parcimônia */
   --brand-ink:  #C90C54;   /* rosa escurecido p/ texto sobre claro (contraste AA) */

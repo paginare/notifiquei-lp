@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/funil-de-vendas-pelo-direct-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Como montar um funil de vendas pelo direct"
 title: "Como montar um funil de vendas pelo direct"
 description: "Veja como montar um funil de vendas completo pelo direct do Instagram, etapa por etapa, com o que automatizar e quando deixar o atendente entrar."
 date: 2026-08-24

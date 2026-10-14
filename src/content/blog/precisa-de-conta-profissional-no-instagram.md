@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/precisa-de-conta-profissional-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Precisa de conta profissional no Instagram pra automatizar?"
 title: "Precisa de conta profissional no Instagram pra automatizar?"
 description: "Sim, a API oficial da Meta exige conta Profissional ou de Criador. A mudança é gratuita e leva menos de 1 minuto nas configurações do app."
 date: 2026-07-01

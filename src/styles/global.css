@@ -278,3 +278,13 @@ html:not([data-market="INTL"]) .intl-only { display: none !important; }
 [data-suggest-only] { display: none; }
 html[data-suggest="en"] [data-suggest-only="en"],
 html[data-suggest="es"] [data-suggest-only="es"] { display: block; }
+
+/* Toque não tem hover de verdade: no celular o cartão "pulava" no toque e
+   ficava levantado. Movimento de hover só para mouse (pacote de design, 11/10). */
+@media (hover: none) {
+  .btn:hover, .btn:hover .arr, .home-page .btn:hover svg, .home-text-link:hover svg,
+  .aj-cartao-foto:hover, .aj-guia:hover, .aj-topico:hover, .aj-blog-card:hover,
+  .cap:hover, .cmq__card:hover, .sg-docs__grade a:hover, .zap:hover,
+  .audience-card:hover .audience-card__photo img, .stories__item:hover .stories__anel,
+  .vt__card:hover .vt__capa img { transform: none !important; }
+}

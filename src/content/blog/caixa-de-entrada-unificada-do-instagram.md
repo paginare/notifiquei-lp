@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/caixa-de-entrada-unificada-do-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Caixa de entrada unificada: como não perder DM no Instagram"
 title: "Caixa de entrada unificada: como não perder DM no Instagram"
 description: "Caixa de entrada do Instagram organizada não impede a venda de esfriar. O Notifiquei responde o DM em segundos pela API oficial e a conversa não acumula."
 date: 2026-08-03

@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/como-qualificar-lead-antes-de-mandar-preco.webp"
+coverAlt: "Foto ilustrativa do post: Como descobrir se alguém quer comprar antes de mandar o preço"
 title: "Como descobrir se alguém quer comprar antes de mandar o preço"
 description: "Mandar preço direto pra quem perguntou é o erro mais cometido no Instagram. Veja como entender a intenção de compra antes de qualquer número."
 date: 2026-04-20

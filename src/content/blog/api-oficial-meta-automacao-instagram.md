@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/api-oficial-meta-automacao-instagram.webp"
+coverAlt: "Foto ilustrativa do post: API oficial da Meta pra automação no Instagram: o que isso significa pra você"
 title: "API oficial da Meta pra automação no Instagram: o que isso significa pra você"
 description: "Tem ferramenta de automação que some do nada e bana sua conta junto. Entenda por que a API oficial da Meta é diferente — e por que isso importa pra quem vende."
 date: 2026-04-20

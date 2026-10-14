@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/sorteio-no-instagram-pelos-comentarios.webp"
+coverAlt: "Foto ilustrativa do post: Sorteio de comentários no Instagram: como fazer sem print"
 title: "Sorteio de comentários no Instagram: como fazer sem print"
 description: "Como sortear comentários no Instagram sem print nem caderno: a lista de quem comentou sai pronta, o vencedor é aleatório e o re-sorteio leva um clique."
 date: 2026-06-30

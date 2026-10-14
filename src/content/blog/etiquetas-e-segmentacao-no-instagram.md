@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/etiquetas-e-segmentacao-no-instagram.webp"
+coverAlt: "Foto ilustrativa do post: Etiquetas e segmentação no Instagram: o jeito que funciona de verdade"
 title: "Etiquetas e segmentação no Instagram: o jeito que funciona de verdade"
 description: "Etiquetar contato num painel dá trabalho e envelhece rápido. Veja como segmentar seus leads do Instagram na porta de entrada, pela palavra que a pessoa usa."
 date: 2026-07-24

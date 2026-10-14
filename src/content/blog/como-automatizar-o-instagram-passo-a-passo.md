@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/como-automatizar-o-instagram-passo-a-passo.webp"
+coverAlt: "Foto ilustrativa do post: Como automatizar o Instagram: do zero ao primeiro fluxo"
 title: "Como automatizar o Instagram: do zero ao primeiro fluxo"
 description: "O passo a passo pra automatizar o Instagram: conta profissional, conexão pela API oficial da Meta, primeiro fluxo de comentário e direct, e como testar."
 date: 2026-08-14

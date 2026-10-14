@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/black-friday-no-instagram-automacao.webp"
+coverAlt: "Foto ilustrativa do post: Black Friday no Instagram: prepare as automações antes do pico"
 title: "Black Friday no Instagram: prepare as automações antes do pico"
 description: "Checklist prático para configurar automações de DM no Instagram antes da Black Friday e não perder venda por falta de resposta no pico."
 date: 2026-08-14

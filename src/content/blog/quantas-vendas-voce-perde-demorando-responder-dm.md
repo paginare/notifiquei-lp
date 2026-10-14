@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/quantas-vendas-voce-perde-demorando-responder-dm.webp"
+coverAlt: "Foto ilustrativa do post: Você sabe quantas vendas perde por demorar a responder DM?"
 title: "Você sabe quantas vendas perde por demorar a responder DM?"
 description: "Demorar pra responder DM custa venda. Veja os números reais sobre tempo de resposta no Instagram e quanto isso deixa de entrar sem você perceber."
 date: 2026-04-20

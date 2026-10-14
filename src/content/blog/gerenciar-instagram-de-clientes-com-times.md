@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/gerenciar-instagram-de-clientes-com-times.webp"
+coverAlt: "Foto ilustrativa do post: Como gerenciar o Instagram de vários clientes sem pedir senha"
 title: "Como gerenciar o Instagram de vários clientes sem pedir senha"
 description: "Como uma agência cuida do Instagram de vários clientes com times e acesso sem senha, sem pedir o login de ninguém. Veja como montar no Notifiquei."
 date: 2026-07-01

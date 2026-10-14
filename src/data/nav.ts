@@ -13,8 +13,12 @@ export const LINKS_PT: NavLink[] = [
   { href: "/criadores", label: "Para criadores" },
   { href: "/vs-manychat", label: "vs ManyChat" },
   { href: "/precos", label: "Preços" },
-  { href: "/blog", label: "Blog" },
-  { href: "/ajuda", label: "Ajuda" },
+  { label: "Aprender", itens: [
+    { href: "/ajuda", label: "Central de ajuda", desc: "Passo a passo de cada função" },
+    { href: "/ajuda#videos", label: "Tutoriais em vídeo", desc: "Veja na tela como se faz" },
+    { href: "/blog", label: "Blog", desc: "Estratégias pra vender mais pelo direct" },
+    { href: "/developers", label: "API para desenvolvedores", desc: "Ligue o seu sistema ao Notifiquei" },
+  ] },
 ];
 
 // Menus em inglês e espanhol: mesma estrutura, só com as páginas que existem

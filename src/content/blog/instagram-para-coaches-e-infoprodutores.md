@@ -1,4 +1,6 @@
 ---
+cover: "/blog/capas/instagram-para-coaches-e-infoprodutores.webp"
+coverAlt: "Foto ilustrativa do post: Automação no Instagram para coaches e infoprodutores"
 title: "Automação no Instagram para coaches e infoprodutores"
 description: "Veja como coaches e infoprodutores usam automação no Instagram para montar um funil completo no direct: do lead até a venda, com palavra-chave, botões e links rastreados."
 date: 2026-08-31
