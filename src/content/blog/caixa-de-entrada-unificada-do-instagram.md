@@ -1,18 +1,18 @@
 ---
 title: "Caixa de entrada unificada: como não perder DM no Instagram"
-description: "Organizar a caixa de entrada do Instagram ajuda, mas não resolve. Veja por que responder na hora vale mais que arrumar a lista depois."
+description: "Caixa de entrada do Instagram organizada não impede a venda de esfriar. O Notifiquei responde o DM em segundos pela API oficial e a conversa não acumula."
 date: 2026-08-03
-updated: 2026-08-14
+updated: 2026-10-14
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["DM", "Instagram", "Automação", "Atendimento"]
 keywords: ["caixa de entrada instagram", "inbox instagram", "DM instagram", "automação instagram", "atendimento instagram"]
-tldr: "Caixa de entrada organizada não impede a venda de esfriar: ela só mostra melhor o que você já perdeu. O Notifiquei ataca a causa — responde o DM em segundos, pela API oficial da Meta, pra conversa nem chegar na fila. Ele não é um inbox: é a automação que atende antes de virar acúmulo."
+tldr: "Caixa de entrada organizada não impede a venda de esfriar: ela só mostra melhor o que você já perdeu. O Notifiquei ataca a causa: responde o DM em segundos, pela API oficial da Meta, pra conversa nem chegar na fila. Ele não é um inbox: é a automação que atende antes de virar acúmulo."
 faq:
   - q: "O Notifiquei tem uma caixa de entrada unificada?"
-    a: "Não. O Notifiquei não é uma tela de inbox pra você responder à mão — é a automação que responde antes. As conversas seguem no aplicativo do Instagram, só que já respondidas. Se o que você procura é um painel pra atender manualmente, ele não faz isso."
+    a: "Não. O Notifiquei não é uma tela de inbox pra você responder à mão: é a automação que responde antes. As conversas seguem no aplicativo do Instagram, só que já respondidas. Se o que você procura é um painel pra atender manualmente, ele não faz isso."
   - q: "Então como eu paro de perder DM no Instagram?"
-    a: "Atacando a causa, não a lista. A DM se perde porque demora pra ser respondida e vai sendo empurrada pra baixo por mensagens novas. Quando a resposta sai em segundos, automaticamente, a conversa não acumula — e o que sobra pra você responder à mão é pouco e quente."
+    a: "Atacando a causa, não a lista. A DM se perde porque demora pra ser respondida e vai sendo empurrada pra baixo por mensagens novas. Quando a resposta sai em segundos, automaticamente, a conversa não acumula, e o que sobra pra você responder à mão é pouco e quente."
   - q: "Dá pra assumir a conversa quando eu quiser?"
     a: "Dá, no próprio Instagram. A automação manda a primeira resposta e conduz o começo do papo; quando você entra e responde pessoalmente, é você falando com a pessoa normalmente. O fluxo existe pra te poupar do volume repetido, não pra te tirar da conversa."
 ---

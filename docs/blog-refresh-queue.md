@@ -23,21 +23,6 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Ordem por impressões em 21 dias.
 
-- **1. `disparar-mensagem-na-live-do-instagram`: description dentro da regra.** 53 impressões em 21 dias (eram 3 no total), posição 7,9, zero clique. A `description` tem 136 caracteres.
-  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, começando com a consulta do title ("disparar mensagem" e "live do Instagram") e com uma razão pra clicar. `updated` com a data de hoje.
-  - **Não mexer:** `title` (50 caracteres), `tldr`, FAQ, H2.
-  - **Fatos travados:** quem comenta durante a live recebe a DM no direct, não no chat público da live; chega em segundos, com você ainda ao vivo; gatilho e mensagem são configurados antes de entrar ao vivo; API oficial da Meta; exige conta profissional ou de criador vinculada a uma página do Facebook.
-
-- **2. `limites-de-envio-da-api-do-instagram`: description dentro da regra.** 24 impressões em 21 dias (era zero), posição 6,3. A `description` tem 134 caracteres.
-  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, com "mensagens por hora" e "API do Instagram" perto do começo e a razão pra clicar (o risco do envio ilimitado). `updated` com a data de hoje.
-  - **Não mexer:** `title` (58 caracteres), `tldr`, FAQ, H2.
-  - **Fatos travados:** a API oficial da Meta permite cerca de 200 DMs por hora por conta; ferramenta que promete envio ilimitado opera fora da API e arrisca bloqueio ou banimento da conta. Não arredondar nem trocar o "cerca de 200".
-
-- **3. `caixa-de-entrada-unificada-do-instagram`: description e travessão.** 13 impressões em 21 dias, posição 6,6. A `description` tem 134 caracteres e o `tldr` e duas respostas da FAQ usam travessão (—), que o guia proíbe.
-  - **Fazer:** reescrever a `description` com 140 a 160 caracteres, mantendo "caixa de entrada do Instagram" no começo. Trocar cada travessão do `tldr` e da FAQ por vírgula, ponto ou dois-pontos, sem mudar o sentido. `updated` com a data de hoje.
-  - **Não mexer:** `title` (59 caracteres), perguntas da FAQ, H2.
-  - **Fatos travados:** o Notifiquei não é uma tela de inbox, é a automação que responde antes; responde o DM em segundos pela API oficial da Meta; as conversas seguem no app do Instagram, já respondidas; dá pra assumir a conversa no próprio Instagram.
-
 - **4. `palavras-chave-em-comentarios-para-acionar-automacao`: title e description dentro da regra.** 10 impressões em 21 dias (eram 2), posição 6,5. O `title` tem 66 caracteres e a `description` 132.
   - **Fazer:** encurtar o `title` pra até 60 caracteres, começando com "Palavras-chave nos comentários". Reescrever a `description` com 140 a 160 caracteres. Atualizar a linha do post em `docs/blog-index.md`. `updated` com a data de hoje.
   - **Não mexer:** `tldr`, FAQ, H2.
@@ -50,6 +35,12 @@ Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Or
 - **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês até 12/09 na posição 2,3; só 6 impressões de 13/09 a 03/10, na posição 8,3). A queda de uma vez reforça que o volume era sitelink da busca "notifiquei". Se a leitura de novembro repetir esse número, o post sai da lista. Se alguém quiser decidir antes: Search Console > Desempenho > filtro Página com a URL do post > aba Consultas.
 
 ## Feito
+
+- **2026-10-14** — `caixa-de-entrada-unificada-do-instagram`: description reescrita de 134 para 153 chars, agora começa com "Caixa de entrada do Instagram organizada não impede a venda de esfriar"; travessão do `tldr` substituído por dois-pontos; travessão da resposta da FAQ 1 substituído por dois-pontos; travessão da resposta da FAQ 2 substituído por vírgula; `updated: 2026-10-14`. Title não mudou (59 chars).
+
+- **2026-10-12** — `limites-de-envio-da-api-do-instagram`: description reescrita de 134 para 151 chars, agora começa com "Mensagens por hora na API do Instagram"; inclui "cerca de 200 DMs por hora" e destaca o risco de bloqueio ou banimento de ferramentas de envio ilimitado; `updated: 2026-10-12`. Title não mudou (58 chars).
+
+- **2026-10-09** — `disparar-mensagem-na-live-do-instagram`: description reescrita de 136 para 153 chars, agora começa com "Disparar mensagem na live do Instagram"; destaca que a resposta vai pro direct (não no chat), chega em segundos e se configura antes de entrar ao vivo; `updated: 2026-10-09`. Title não mudou (50 chars).
 
 - **2026-10-05** — `sorteio-no-instagram-pelos-comentarios`: description reescrita de 153 para 151 chars, agora começa com "Como sortear comentários no Instagram"; H2 "como sortear e re-sortear sem refazer tudo" virou "como sortear comentários no instagram e re-sortear sem refazer tudo"; keywords ganharam "como sortear comentários no Instagram" e "como sortear comentario no instagram"; `updated: 2026-10-05`. Title não mudou (57 chars). Conferir na leitura de novembro a posição de "como sortear comentários no instagram" (era 10, zero clique).
 
