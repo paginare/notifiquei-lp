@@ -1,9 +1,10 @@
 ---
 cover: "/blog/capas/palavras-chave-em-comentarios-para-acionar-automacao.webp"
 coverAlt: "Foto ilustrativa do post: Palavras-chave nos comentários: como configurar os gatilhos certos"
-title: "Palavras-chave nos comentários: como configurar os gatilhos certos"
-description: "Como escolher palavras-chave nos comentários do Instagram para acionar DMs automáticos com intenção de compra real, sem gerar ruído."
+title: "Palavras-chave nos comentários: como escolher os gatilhos"
+description: "Palavras-chave nos comentários do Instagram: veja quais palavras acionam DMs com intenção de compra real e como evitar ruído com as genéricas."
 date: 2026-08-10
+updated: 2026-10-16
 author: "Carlos Duarte"
 category: "Estratégia"
 tags: ["Automação", "Instagram", "DM", "Palavras-chave"]

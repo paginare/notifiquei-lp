@@ -21,12 +21,7 @@ Desde 14/09/2026 a rotina **não publica post novo**. A leitura do Search Consol
 
 ## Fila ativa
 
-Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Ordem por impressões em 21 dias.
-
-- **4. `palavras-chave-em-comentarios-para-acionar-automacao`: title e description dentro da regra.** 10 impressões em 21 dias (eram 2), posição 6,5. O `title` tem 66 caracteres e a `description` 132.
-  - **Fazer:** encurtar o `title` pra até 60 caracteres, começando com "Palavras-chave nos comentários". Reescrever a `description` com 140 a 160 caracteres. Atualizar a linha do post em `docs/blog-index.md`. `updated` com a data de hoje.
-  - **Não mexer:** `tldr`, FAQ, H2.
-  - **Fatos travados:** palavras com intenção de compra ("quero", "preço", "link") funcionam melhor que genéricas ("oi", "amei"); dá pra ter várias palavras-chave no mesmo post, cada uma abrindo um fluxo diferente.
+Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Fila vazia — próxima leitura do Search Console por volta de 05/11/2026.
 
 ---
 
@@ -35,6 +30,8 @@ Reabastecida em 05/10/2026 pela leitura `docs/seo/search-console-2026-10.md`. Or
 - **`fluxo-de-boas-vindas-no-direct-do-instagram`** (102 impressões no mês até 12/09 na posição 2,3; só 6 impressões de 13/09 a 03/10, na posição 8,3). A queda de uma vez reforça que o volume era sitelink da busca "notifiquei". Se a leitura de novembro repetir esse número, o post sai da lista. Se alguém quiser decidir antes: Search Console > Desempenho > filtro Página com a URL do post > aba Consultas.
 
 ## Feito
+
+- **2026-10-16** — `palavras-chave-em-comentarios-para-acionar-automacao`: title encurtado de 66 para 57 chars ("Palavras-chave nos comentários: como escolher os gatilhos"); description reescrita de 132 para 142 chars, agora começa com "Palavras-chave nos comentários do Instagram" e inclui "intenção de compra real" e "ruído com as genéricas"; `updated: 2026-10-16`. tldr, FAQ e H2 não mexidos.
 
 - **2026-10-14** — `caixa-de-entrada-unificada-do-instagram`: description reescrita de 134 para 153 chars, agora começa com "Caixa de entrada do Instagram organizada não impede a venda de esfriar"; travessão do `tldr` substituído por dois-pontos; travessão da resposta da FAQ 1 substituído por dois-pontos; travessão da resposta da FAQ 2 substituído por vírgula; `updated: 2026-10-14`. Title não mudou (59 chars).
 
