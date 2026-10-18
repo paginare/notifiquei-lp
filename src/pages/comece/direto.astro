@@ -1,341 +1,209 @@
 ---
 /**
- * LP de teste para tráfego frio de anúncio no celular (out/2026).
- * Por que existe (dados de 18/10, 30 dias):
- * - quem vem do anúncio fica ~7 s ativo na home e vê só a primeira tela (Clarity);
- * - /comece/* (planos logo após o hero) teve 180 visitas e 0 vendas;
- * - 71 de 85 vendas foram no mensal, mas a tabela abre no anual (163 pessoas
- *   clicaram em "Mensal" para trocar).
- * Então: a primeira tela mostra o produto funcionando + preço + garantia; uma
- * única oferta (Solo mensal), sem menu, sem "Entrar", sem plano grátis.
+ * LP de teste para tráfego de anúncio (out/2026). Mesma cara da home (mesmos
+ * componentes), com o que os dados de 18/10 pediram:
+ * - quem vem do anúncio fica ~7 s na primeira tela → o hero repete a promessa
+ *   do anúncio e já mostra preço, garantia e "sem fidelidade";
+ * - 71 de 85 vendas foram no mensal, mas a tabela abria no anual → aqui abre no mensal;
+ * - sem plano grátis e sem "Entrar" (cliente antigo tem a home).
  * src=lp-direto vai no link da Cakto para medir as vendas desta página.
  */
 import Base from "../../layouts/Base.astro";
-import Logo from "../../components/Logo.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
 import Icon from "../../components/HomeIcon.astro";
-import { plans, WPP, connectedAudience } from "../../data/home";
-import { casos } from "../../data/casos";
-import { mensalNoAnual } from "../../i18n/planos";
+import HomeHero from "../../components/HomeHero.astro";
+import HomeAuthority from "../../components/HomeAuthority.astro";
+import HomeStories from "../../components/HomeStories.astro";
+import HomeDemo from "../../components/HomeDemo.astro";
+import HomeTour from "../../components/HomeTour.astro";
+import HomeCasos from "../../components/HomeCasos.astro";
+import HomePricing from "../../components/HomePricing.astro";
+import StickyCta from "../../components/StickyCta.astro";
+import ZapFlutuante from "../../components/ZapFlutuante.astro";
+import { copyHome, marcar } from "../../i18n/home";
+import { WPP } from "../../data/home";
+import "../../styles/home.css";
 
 const SRC = "lp-direto";
-const solo = plans.find((p) => p.slug === "solo")!;
-const duo = plans.find((p) => p.slug === "duo")!;
-const MENSAL = `${solo.hrefM}?src=${SRC}`;
-const ANUAL = `${solo.hrefA}?src=${SRC}`;
-const DUO = `${duo.hrefM}?src=${SRC}`;
-const milhoes = Math.floor(connectedAudience.totalFollowers / 1_000_000);
-const ZAP = `${WPP}?text=${encodeURIComponent("Oi! Vim pelo anúncio do Notifiquei e queria tirar uma dúvida.")}`;
+const base = copyHome("pt-BR");
+const PRECO = "R$ 99/mês · 7 dias de garantia · sem fidelidade";
+
+// Hero: a promessa do anúncio que mais trouxe gente ("quem comenta ou manda
+// direct recebe o seu link na hora, no automático").
+const hero = {
+  ...base.hero,
+  titulo: ["Comentou?", "Recebeu o link", "na hora."],
+  lead: 'Quem comenta no seu post ou chama no direct recebe <strong>o seu link na hora</strong>. No Instagram e no TikTok, 24 horas por dia, com mensagens que têm o seu jeito.',
+  ctaBr: "Quero testar 7 dias",
+  microBr: PRECO,
+};
+
+const t = {
+  ...base,
+  planos: {
+    ...base.planos,
+    leadBr: "Comece no mensal, sem fidelidade. Se em 7 dias não fizer sentido, devolvemos 100%.",
+  },
+  final: {
+    ...base.final,
+    ctaBr: "Quero testar 7 dias",
+    microBr: "7 dias de garantia. Sem fidelidade. Cancele quando quiser.",
+  },
+};
 
 const passos = [
-  { t: "Entre com o seu Instagram", d: "Pelo login oficial da Meta. A gente nunca vê a sua senha." },
-  { t: "Escolha a palavra e o link", d: "Ex.: quem comentar QUERO recebe o link do seu produto, curso ou catálogo." },
-  { t: "Pronto, é com ele", d: "Cada comentário com a palavra vira uma mensagem no direct, na hora, até de madrugada." },
+  { n: "01", icon: "instagram", titulo: "Conecte seu Instagram", texto: "Pelo login oficial da Meta. Sua senha continua só com você." },
+  { n: "02", icon: "chat", titulo: "Escolha a palavra e o link", texto: "Ex.: quem comentar QUERO recebe o link do seu produto, curso ou catálogo. Tem modelos prontos." },
+  { n: "03", icon: "bolt", titulo: "Pronto. Pode postar.", texto: "Cada comentário vira uma mensagem no direct, na hora, até de madrugada." },
 ];
 
+// Dúvidas de quem nunca ouviu falar do Notifiquei (tráfego frio).
 const faqs = [
-  { q: "Minha conta corre risco?", a: "Não. O Notifiquei usa a conexão oficial da Meta e é parceiro oficial da Meta e do TikTok. Nada de senha, nada de robô escondido." },
-  { q: "Preciso entender de tecnologia?", a: "Não. Você escolhe uma palavra, escreve a mensagem e cola o seu link. Tem modelos prontos para começar." },
+  { q: "Minha conta corre risco de bloqueio?", a: "Não. O Notifiquei usa a conexão oficial da Meta e é parceiro oficial da Meta e do TikTok. Nada de senha, nada de robô escondido." },
+  { q: "Preciso entender de tecnologia?", a: "Não. Você escolhe o post, a palavra e escreve a mensagem com o seu link. Tem modelos prontos para começar em poucos minutos." },
   { q: "E se eu não gostar?", a: "Você tem 7 dias de garantia. Pediu, devolvemos 100% do valor." },
-  { q: "Tem fidelidade?", a: "Não. É mensal e você cancela quando quiser, sem multa." },
-  { q: "Funciona no TikTok também?", a: "Sim. O plano vale para 1 conta do Instagram e 1 do TikTok." },
+  { q: "Tem fidelidade ou multa?", a: "Não. O plano é mensal e você cancela quando quiser." },
+  { q: "Funciona no TikTok também?", a: "Sim. O plano Solo vale para 1 conta, com Instagram e TikTok." },
   { q: "Preciso de conta profissional?", a: "Sim, comercial ou de criador. É grátis e você muda nas configurações do próprio Instagram em 1 minuto." },
 ];
 ---
 
 <Base
-  title="Notifiquei — Comentou, recebeu o link na hora"
-  description="O Notifiquei responde por você quem comenta no post ou chama no direct, com o seu link, 24 horas por dia."
+  title="Notifiquei — Comentou? Recebeu o link na hora."
+  description="Quem comenta no seu post ou chama no direct recebe o seu link na hora. No Instagram e no TikTok, 24 horas por dia."
   path="/comece/direto"
   canonicalPath="/"
   noindex
+  heroPoster="/assets/home/creator-hero-v4.webp"
+  heroPosterSrcset="/assets/home/creator-hero-v4-760.webp 760w, /assets/home/creator-hero-v4.webp 1120w"
+  heroPosterSizes="(max-width: 900px) 100vw, 50vw"
   lang="pt-BR"
 >
-  <div class="lpd">
-    <header class="lpd-top">
-      <div class="lpd-wrap lpd-top__in">
-        <Logo height={22} />
-        <a class="lpd-top__zap" href={ZAP} data-zap="topo">Dúvidas? <b>WhatsApp</b></a>
-      </div>
-    </header>
-
+  <div class="home-page lp-direto">
+    <a href="#conteudo" class="home-skip">{base.meta.skip}</a>
+    <Nav links={[{ href: "#plataforma", label: "Como funciona" }, { href: "#planos", label: "Preço" }, { href: "#faq", label: "Dúvidas" }]} comecar="Quero testar" comecarHref="#planos" entrar="" />
     <main id="conteudo">
-      <!-- 1. Primeira tela: promessa do anúncio + o produto funcionando + preço -->
-      <section class="lpd-hero">
-        <div class="lpd-wrap lpd-hero__grid">
-          <div class="lpd-hero__copy">
-            <p class="lpd-eyebrow">Para quem vende pelo Instagram</p>
-            <h1>Comentou?<br /><span>Recebeu o link na hora.</span></h1>
-            <p class="lpd-lead">O Notifiquei responde por você quem comenta no post ou chama no direct, <strong>com o seu link</strong>, 24 horas por dia.</p>
-          </div>
+      <HomeHero t={hero} conversa={base.conversa} />
 
-          <div class="lpd-demo" aria-hidden="true">
-            <div class="lpd-msg lpd-msg--in">
-              <span class="lpd-av">J</span>
-              <span><small>julia comentou no seu post</small><b>QUERO 😍</b></span>
-            </div>
-            <div class="lpd-msg lpd-msg--out">
-              <small><Icon name="bolt" size={12} /> Notifiquei respondeu na hora</small>
-              <b>Oi, Julia! Aqui está o link que você pediu 💌</b>
-              <span class="lpd-msg__btn">Ver a oferta</span>
-            </div>
-            <div class="lpd-msg lpd-msg--in lpd-msg--late">
-              <span class="lpd-av lpd-av--2">M</span>
-              <span><small>mari comentou às 3h12</small><b>quero tb!!</b></span>
-            </div>
-          </div>
+      <HomeAuthority t={base.autoridade} />
 
-          <div class="lpd-hero__act">
-            <a href="#oferta" class="btn btn--brand btn--lg lpd-cta" data-home-cta="lpd_hero">Quero testar por 7 dias <span class="arr" aria-hidden="true">→</span></a>
-            <ul class="lpd-garantias">
-              <li><Icon name="check" size={14} /> R$ {solo.price}/mês</li>
-              <li><Icon name="check" size={14} /> 7 dias de garantia</li>
-              <li><Icon name="check" size={14} /> Sem fidelidade</li>
-            </ul>
-            <div class="lpd-selos">
-              <img src="/assets/meta-business-partner.webp" alt="Meta Business Partner" height="28" width="110" />
-              <img src="/assets/tiktok-marketing-partner.svg" alt="TikTok Marketing Partner" height="28" width="88" />
-            </div>
+      <section class="home-proof" aria-label={base.provaMarcas}>
+        <div class="container">
+          <HomeStories titulo={base.perfisTitulo} />
+        </div>
+      </section>
+
+      <section class="home-section home-before-after">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-kicker">{base.antesDepois.kicker}</span>
+            <h2 set:html={marcar(base.antesDepois.titulo)} />
+          </div>
+          <div class="home-comparison">
+            <article class="home-comparison__before">
+              <span class="home-comparison__label">{base.antesDepois.antesRotulo}</span>
+              <h3 set:html={marcar(base.antesDepois.antesTitulo)} />
+              <div class="waiting-messages" aria-label={base.antesDepois.antesRotulo}>
+                {base.antesDepois.esperando.map((msg, i) => <span>{msg} <span>{["👀", "💬", "🙋"][i]}</span></span>)}
+              </div>
+              <ul>
+                {base.antesDepois.antesItens.map((item) => <li><Icon name="minus" size={18} /> {item}</li>)}
+              </ul>
+            </article>
+            <article class="home-comparison__after">
+              <span class="home-comparison__label"><img src="/assets/favicon.svg" alt="" width="25" height="25" /> {base.antesDepois.depoisRotulo}</span>
+              <h3 set:html={marcar(base.antesDepois.depoisTitulo)} />
+              <div class="answered-message"><span><Icon name="check" size={22} /></span><div><b>{base.antesDepois.enviado}</b><small>{base.antesDepois.enviadoSub}</small></div><Icon name="spark" size={25} /></div>
+              <ul>
+                {base.antesDepois.depoisItens.map((item) => <li><Icon name="check" size={18} /> {item}</li>)}
+              </ul>
+              <a href="#planos" class="home-text-link" data-home-cta="lpd_antes_depois">Quero testar 7 dias <Icon name="arrow" size={19} /></a>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- 2. A dor, em 3 frases -->
-      <section class="lpd-sec lpd-dor">
-        <div class="lpd-wrap">
-          <h2>Cada “quero” sem resposta<br />é uma venda que vai embora.</h2>
-          <ul class="lpd-dor__lista">
-            <li><b>“Link na bio”</b> faz metade das pessoas desistir no caminho.</li>
-            <li><b>Ninguém dá conta</b> de responder centenas de comentários na mão.</li>
-            <li><b>Quem pergunta de madrugada</b> esfria até você acordar.</li>
-          </ul>
-          <p class="lpd-dor__virada">Com o Notifiquei, <strong>todo mundo recebe o link na hora</strong>, e você só posta.</p>
-        </div>
-      </section>
+      <HomeDemo t={base.demo} />
 
-      <!-- 3. Como funciona -->
-      <section class="lpd-sec lpd-passos">
-        <div class="lpd-wrap">
-          <p class="lpd-eyebrow">Como funciona</p>
-          <h2>Liga em poucos minutos.</h2>
-          <ol>
-            {passos.map((p, i) => (
-              <li><span class="lpd-n">{i + 1}</span><div><b>{p.t}</b><p>{p.d}</p></div></li>
+      <HomeTour />
+
+      <HomeCasos />
+
+      <section class="home-section home-how" id="como">
+        <div class="container">
+          <div class="home-centered-heading">
+            <span class="home-section-symbol"><Icon name="bolt" size={29} /></span>
+            <h2 set:html={marcar("Liga em poucos minutos.\n{hl}Sem código, sem complicação.{/hl}")} />
+            <p>Três passos entre o seu post e a primeira resposta automática.</p>
+          </div>
+          <ol class="home-steps">
+            {passos.map((step) => (
+              <li><div class="home-step__top"><span>{step.n}</span><Icon name={step.icon} size={28} /></div><h3>{step.titulo}</h3><p>{step.texto}</p></li>
             ))}
           </ol>
+          <div class="home-how__actions">
+            <a href="#planos" class="btn btn--brand btn--lg" data-home-cta="lpd_passos">Quero testar 7 dias <Icon name="arrow" size={20} /></a>
+            <span><Icon name="shield" size={18} /> {base.como.seguranca}</span>
+          </div>
         </div>
       </section>
 
-      <!-- 4. Prova -->
-      <section class="lpd-sec lpd-prova">
-        <div class="lpd-wrap">
-          <div class="lpd-nums">
-            <p><b>{connectedAudience.contasAtivas}</b><span>perfis usando agora</span></p>
-            <p><b>+{milhoes} mi</b><span>de seguidores somados</span></p>
+      <HomePricing t={t.planos} lang="pt-BR" src={SRC} gratis={false} ciclo="m" />
+
+      <section class="home-section home-faq" id="faq">
+        <div class="container home-faq__grid">
+          <div class="home-faq__intro">
+            <span class="home-kicker">{base.faq.kicker}</span>
+            <h2 set:html={marcar(base.faq.titulo)} />
+            <p>{base.faq.lead}</p>
+            <a href={WPP} class="home-text-link" data-zap="faq">{base.faq.cta} <Icon name="diagonal" size={20} /></a>
+            <img class="home-faq__noti" src="/assets/home/noti/noti-pensando-160.webp" srcset="/assets/home/noti/noti-pensando-160.webp 160w, /assets/home/noti/noti-pensando-320.webp 320w" sizes="(max-width: 900px) 72px, 128px" width="160" height="159" alt="" loading="lazy" decoding="async" />
           </div>
-          <div class="lpd-casos">
-            {casos.map((c) => (
-              <article class="lpd-caso">
-                <header>
-                  <img src={`/assets/perfis/${c.handle}.webp`} alt="" width="44" height="44" loading="lazy" />
-                  <span><b>{c.nome}</b><small>@{c.handle} · {c.seguidores} de seguidores</small></span>
-                </header>
-                <p><strong>{c.numeros[0].valor}</strong> {c.numeros[0].rotulo}</p>
-              </article>
+          <div class="faq">
+            {faqs.map((faq) => (
+              <details class="faq__item" name="faq">
+                <summary class="faq__q">{faq.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{faq.a}</p></div>
+              </details>
             ))}
           </div>
-          <p class="lpd-fonte">Números das contas no Notifiquei em 30/09/2026.</p>
         </div>
       </section>
 
-      <!-- 5. Oferta única: mensal por padrão (71 de 85 vendas foram no mensal) -->
-      <section class="lpd-sec lpd-oferta" id="oferta">
-        <div class="lpd-wrap">
-          <article class="lpd-plano">
-            <p class="lpd-plano__nome">Plano Solo</p>
-            <p class="lpd-plano__preco"><small>R$</small>{solo.price}<span>/mês</span></p>
-            <ul>
-              <li><Icon name="check" size={16} /> 1 Instagram + 1 TikTok</li>
-              <li><Icon name="check" size={16} /> Automações ilimitadas em comentários, direct e stories</li>
-              <li><Icon name="check" size={16} /> Modelos prontos para começar</li>
-              <li><Icon name="check" size={16} /> Suporte por chat em português</li>
-            </ul>
-            <a href={MENSAL} class="btn btn--brand btn--lg lpd-cta lpd-plano__cta" data-plano="solo" data-ciclo="monthly">Começar agora <span class="arr" aria-hidden="true">→</span></a>
-            <p class="lpd-garantia"><Icon name="shield" size={18} /> <span><b>7 dias de garantia.</b> Não gostou, devolvemos 100%.</span></p>
-            <p class="lpd-plano__alt">
-              <a href={ANUAL} data-plano="solo" data-ciclo="annual">Prefere pagar o ano? Sai R$ {mensalNoAnual(solo.price)}/mês →</a>
-              <a href={DUO} data-plano="duo" data-ciclo="monthly">Tem 2 perfis? Plano Duo, R$ {duo.price}/mês →</a>
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- 6. Dúvidas -->
-      <section class="lpd-sec lpd-faq">
-        <div class="lpd-wrap">
-          <h2>Dúvidas comuns</h2>
-          {faqs.map((f) => (
-            <details><summary>{f.q}</summary><p>{f.a}</p></details>
-          ))}
-          <a class="lpd-zap" href={ZAP} data-zap="faq">Ainda com dúvida? Fale com a gente no WhatsApp →</a>
+      <section class="home-final">
+        <div class="container home-final__inner">
+          <span class="home-final__bubble" aria-hidden="true">{t.final.bolha}</span>
+          <span class="home-kicker">{t.final.kicker}</span>
+          <h2 set:html={marcar(t.final.titulo)} />
+          <p>{t.final.lead}</p>
+          <div class="home-final__actions">
+            <a href="#planos" class="btn btn--lg" data-home-cta="lpd_final">{t.final.ctaBr} <Icon name="arrow" size={22} /></a>
+            <small>{t.final.microBr}</small>
+          </div>
         </div>
       </section>
     </main>
-
-    <footer class="lpd-rodape">
-      <div class="lpd-wrap">
-        <Logo height={18} />
-        <p><a href="/termos-de-uso">Termos de uso</a> · <a href="/politica-de-privacidade">Privacidade</a></p>
-      </div>
-    </footer>
-
-    <!-- Barra fixa no celular: some na primeira tela e na oferta -->
-    <div class="lpd-barra" id="lpdBarra" inert>
-      <span><b>R$ {solo.price}/mês</b><small>7 dias de garantia</small></span>
-      <a href="#oferta" class="btn btn--brand" data-home-cta="lpd_barra">Quero testar</a>
-    </div>
+    <Footer />
+    <ZapFlutuante texto="Oi! Vim pelo anúncio do Notifiquei e queria tirar uma dúvida." rotulo={base.zapRotulo} />
+    <StickyCta href="#planos" titulo="R$ 99/mês" sub="7 dias de garantia · sem fidelidade" cta="Quero testar" />
   </div>
 
   <script>
+    import { iniciarMovimento } from "../../scripts/movimento";
+    iniciarMovimento();
+
     const ph = () => (window as any).posthog;
-    document.querySelectorAll<HTMLElement>("[data-home-cta]").forEach((el) =>
-      el.addEventListener("click", () => ph()?.capture?.("hero_cta_clicked", { section: el.dataset.homeCta, page: "lp-direto" })),
-    );
-    document.querySelectorAll<HTMLElement>("[data-plano]").forEach((el) =>
-      el.addEventListener("click", () => ph()?.capture?.("plan_cta_clicked", { plan_name: el.dataset.plano, billing_cycle: el.dataset.ciclo, page: "lp-direto" })),
-    );
-    document.querySelectorAll("details").forEach((d) =>
-      d.addEventListener("toggle", () => d.open && ph()?.capture?.("faq_aberta", { pergunta: d.querySelector("summary")?.textContent, page: "lp-direto" })),
-    );
-
-    // Barra fixa: aparece depois do botão do topo e some quando a oferta está na tela.
-    const barra = document.getElementById("lpdBarra")!;
-    const topo = document.querySelector(".lpd-hero__act")!;
-    const oferta = document.getElementById("oferta")!;
-    let passouTopo = false, naOferta = false;
-    const atualiza = () => {
-      const mostra = passouTopo && !naOferta;
-      barra.classList.toggle("is-on", mostra);
-      barra.toggleAttribute("inert", !mostra);
-    };
-    new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting && e.boundingClientRect.top < 0; atualiza(); }).observe(topo);
-    new IntersectionObserver(([e]) => { naOferta = e.isIntersecting; atualiza(); }, { threshold: 0.15 }).observe(oferta);
+    document.querySelectorAll<HTMLAnchorElement>("[data-home-cta]").forEach((cta) => {
+      cta.addEventListener("click", () => ph()?.capture?.("hero_cta_clicked", { section: cta.dataset.homeCta, page: "lp-direto" }));
+    });
+    document.getElementById("plans-grid")?.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest(".plan__cta");
+      if (!cta) return;
+      const planName = cta.closest(".plan")?.querySelector(".plan__name")?.textContent?.trim();
+      const annual = document.querySelector("#billtoggle [data-cycle='a']")?.getAttribute("aria-pressed") === "true";
+      ph()?.capture?.("plan_cta_clicked", { plan_name: planName, billing_cycle: annual ? "annual" : "monthly", page: "lp-direto" });
+    });
   </script>
-
-  <style>
-    .lpd main { padding-top: 0; }
-    .lpd { background: var(--paper); color: var(--ink); font-family: var(--font-body); }
-    .lpd-wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding-inline: 16px; }
-    .lpd h1, .lpd h2 { font-family: var(--font-display); letter-spacing: -.035em; }
-    .lpd-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-ink); }
-
-    .lpd-top { position: absolute; inset: 0 0 auto; z-index: 5; }
-    .lpd-top__in { display: flex; align-items: center; justify-content: space-between; height: 56px; color: var(--ink); }
-    .lpd-top__zap { font-size: 13px; color: var(--ink-soft); }
-    .lpd-top__zap b { color: var(--ink); }
-
-    /* Primeira tela: no celular cabe título, demo, botão e preço (390×844). */
-    .lpd-hero { padding: 60px 0 28px; }
-    .lpd-hero__grid { display: grid; gap: 16px; }
-    .lpd-hero h1 { font-size: clamp(2.05rem, 1.2rem + 4vw, 4.2rem); line-height: 1; margin-top: 8px; }
-    .lpd-hero h1 span { color: var(--brand-ink); }
-    .lpd-lead { font-size: 16px; line-height: 1.5; color: var(--ink-soft); margin-top: 12px; max-width: 30em; }
-    .lpd-lead strong { color: var(--ink); }
-
-    .lpd-demo { display: grid; gap: 8px; padding: 14px; background: var(--ink); border-radius: 22px; }
-    .lpd-msg { display: flex; gap: 9px; align-items: center; padding: 9px 12px; border-radius: 16px; opacity: 0; animation: lpdEntra .45s ease forwards; }
-    .lpd-msg small { display: flex; align-items: center; gap: 4px; font-size: 11px; opacity: .75; }
-    .lpd-msg b { display: block; font-size: 15px; font-weight: 600; line-height: 1.3; }
-    .lpd-msg--in { background: #fffdfa; color: var(--ink); border-bottom-left-radius: 4px; margin-right: 18%; }
-    .lpd-msg--out { flex-direction: column; align-items: flex-start; gap: 4px; background: var(--brand); color: #fff; border-bottom-right-radius: 4px; margin-left: 12%; animation-delay: .9s; }
-    .lpd-msg--late { animation-delay: 1.8s; }
-    .lpd-msg__btn { margin-top: 4px; padding: 6px 12px; border-radius: 999px; background: #fff; color: var(--brand-ink); font-size: 13px; font-weight: 700; }
-    .lpd-av { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7); color: #fff; font-weight: 700; font-size: 12px; }
-    .lpd-av--2 { background: linear-gradient(135deg, #6228d7, #ee2a7b); }
-    @keyframes lpdEntra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { .lpd-msg { animation: none; opacity: 1; } }
-
-    .lpd-cta { width: 100%; justify-content: center; }
-    .lpd-garantias { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 13px; color: var(--ink-soft); list-style: none; padding: 0; }
-    .lpd-garantias li { display: flex; align-items: center; gap: 5px; }
-    .lpd-garantias :global(svg) { color: var(--positive); }
-    .lpd-selos { display: flex; align-items: center; gap: 18px; margin-top: 16px; opacity: .85; }
-    .lpd-selos img { height: 26px; width: auto; }
-
-    .lpd-sec { padding: 56px 0; }
-    .lpd-sec h2 { font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem); line-height: 1.05; }
-
-    .lpd-dor { background: var(--ink); color: var(--on-ink); }
-    .lpd-dor__lista { list-style: none; padding: 0; margin-top: 24px; display: grid; gap: 14px; }
-    .lpd-dor__lista li { padding: 14px 16px; border: 1px solid var(--line-ink); border-radius: 14px; color: var(--on-ink-soft); font-size: 16px; line-height: 1.45; }
-    .lpd-dor__lista b { color: var(--on-ink); }
-    .lpd-dor__virada { margin-top: 24px; font-size: 18px; line-height: 1.45; }
-    .lpd-dor__virada strong { color: var(--brand-lift); }
-
-    .lpd-passos h2 { margin-top: 6px; }
-    .lpd-passos ol { list-style: none; padding: 0; margin-top: 24px; display: grid; gap: 18px; }
-    .lpd-passos li { display: flex; gap: 14px; }
-    .lpd-n { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--brand-wash); color: var(--brand-ink); font-weight: 800; }
-    .lpd-passos b { font-size: 17px; }
-    .lpd-passos p { color: var(--ink-soft); font-size: 15px; line-height: 1.5; margin-top: 2px; }
-
-    .lpd-prova { background: var(--paper-2); }
-    .lpd-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .lpd-nums p { background: var(--card); border-radius: 16px; padding: 16px; }
-    .lpd-nums b { display: block; font-family: var(--font-display); font-size: 30px; letter-spacing: -.03em; }
-    .lpd-nums span { font-size: 13px; color: var(--ink-soft); }
-    .lpd-casos { display: grid; gap: 12px; margin-top: 12px; }
-    .lpd-caso { background: var(--card); border-radius: 16px; padding: 16px; }
-    .lpd-caso header { display: flex; gap: 10px; align-items: center; }
-    .lpd-caso img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-    .lpd-caso small { display: block; font-size: 12px; color: var(--ink-faint); }
-    .lpd-caso p { margin-top: 10px; font-size: 15px; color: var(--ink-soft); }
-    .lpd-caso strong { color: var(--brand-ink); font-size: 20px; }
-    .lpd-fonte { margin-top: 10px; font-size: 12px; color: var(--ink-faint); }
-
-    .lpd-plano { max-width: 440px; margin: 0 auto; background: var(--card); border: 2px solid var(--brand); border-radius: 24px; padding: 24px 20px; box-shadow: 0 20px 50px #c90c541f; }
-    .lpd-plano__nome { font-weight: 700; color: var(--brand-ink); }
-    .lpd-plano__preco { font-family: var(--font-display); font-size: 56px; letter-spacing: -.04em; line-height: 1; margin-top: 6px; }
-    .lpd-plano__preco small { font-size: 22px; margin-right: 4px; vertical-align: top; }
-    .lpd-plano__preco span { font-size: 18px; color: var(--ink-soft); letter-spacing: 0; }
-    .lpd-plano ul { list-style: none; padding: 0; margin: 18px 0 20px; display: grid; gap: 10px; font-size: 15px; }
-    .lpd-plano li { display: flex; gap: 8px; align-items: flex-start; }
-    .lpd-plano li :global(svg) { flex: none; margin-top: 3px; color: var(--positive); }
-    .lpd-garantia { display: flex; gap: 8px; align-items: center; margin-top: 14px; padding: 12px; border-radius: 12px; background: var(--positive-wash); font-size: 14px; }
-    .lpd-garantia :global(svg) { flex: none; color: var(--positive); }
-    .lpd-plano__alt { display: grid; gap: 8px; margin-top: 16px; font-size: 14px; }
-    .lpd-plano__alt a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
-
-    .lpd-faq details { border-bottom: 1px solid var(--line); padding: 16px 0; }
-    .lpd-faq h2 { margin-bottom: 12px; }
-    .lpd-faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
-    .lpd-faq summary::after { content: "+"; color: var(--brand-ink); font-size: 20px; line-height: 1; }
-    .lpd-faq details[open] summary::after { content: "–"; }
-    .lpd-faq details p { margin-top: 8px; color: var(--ink-soft); line-height: 1.55; }
-    .lpd-zap { display: inline-block; margin-top: 22px; font-weight: 700; color: var(--brand-ink); }
-
-    .lpd-rodape { padding: 28px 0 100px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
-    .lpd-rodape .lpd-wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-
-    .lpd-barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #fffdfaf2; backdrop-filter: blur(8px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .25s ease; }
-    .lpd-barra.is-on { transform: none; }
-    .lpd-barra b { display: block; font-size: 16px; }
-    .lpd-barra small { font-size: 12px; color: var(--ink-soft); }
-
-    @media (min-width: 900px) {
-      .lpd-hero { padding: 120px 0 72px; }
-      .lpd-hero__grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "copy demo" "act demo"; column-gap: 64px; row-gap: 28px; }
-      .lpd-hero__copy { grid-area: copy; align-self: end; }
-      .lpd-demo { grid-area: demo; align-self: center; padding: 22px; gap: 12px; }
-      .lpd-hero__act { grid-area: act; }
-      .lpd-cta { width: auto; }
-      .lpd-lead { font-size: 19px; }
-      .lpd-sec { padding: 88px 0; }
-      .lpd-dor__lista { grid-template-columns: repeat(3, 1fr); }
-      .lpd-passos ol { grid-template-columns: repeat(3, 1fr); }
-      .lpd-casos { grid-template-columns: 1fr 1fr; }
-      .lpd-nums b { font-size: 44px; }
-      .lpd-faq .lpd-wrap { max-width: 760px; }
-      .lpd-barra { display: none; }
-    }
-  </style>
 </Base>

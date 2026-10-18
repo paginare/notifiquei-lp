@@ -20,15 +20,15 @@ const {
   ) : (
     <>
       <div class="stickycta__info br-only">
-        <b>Grátis pra sempre</b>
-        <span>sem cartão · planos a partir de R$ 99</span>
+        <b>{titulo ?? "Grátis pra sempre"}</b>
+        <span>{sub ?? "sem cartão · planos a partir de R$ 99"}</span>
       </div>
       <div class="stickycta__info intl-only">
         <b>Garantia de 7 dias</b>
         <span data-cur="USD">planos a partir de $19/mês</span>
         <span data-cur="EUR">planos a partir de €18/mês</span>
       </div>
-      <a href={href} class="btn btn--brand stickycta__btn br-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
+      <a href={href} class="btn btn--brand stickycta__btn br-only">{cta ?? "Começar agora"}<span class="arr" aria-hidden="true">→</span></a>
       <a href={href} class="btn btn--brand stickycta__btn intl-only">Começar agora<span class="arr" aria-hidden="true">→</span></a>
     </>
   )}

@@ -16,8 +16,10 @@ const CHIP_ICONES: Record<string, string[]> = {
 const CARAS = perfis.slice(0, 4).map((p) => p.arquivo);
 
 // src vai no link da Cakto (atribuição por landing); gratis=false esconde o plano grátis (LP de tráfego pago).
-interface Props { t: CopyHome["planos"]; lang: Lang; src?: string; gratis?: boolean; }
-const { t, lang, src = "home", gratis = true } = Astro.props;
+// ciclo="m" abre a tabela no mensal (LP de teste: 71 de 85 vendas foram no mensal).
+interface Props { t: CopyHome["planos"]; lang: Lang; src?: string; gratis?: boolean; ciclo?: "a" | "m"; }
+const { t, lang, src = "home", gratis = true, ciclo = "a" } = Astro.props;
+const M = ciclo === "m";
 // Cada língua escreve número do seu jeito: 1.290 em pt/es, 1,290 em en.
 const LOCALE: Record<Lang, string> = { "pt-BR": "pt-BR", en: "en-US", es: "es-ES" };
 const SRC = src;
@@ -35,8 +37,8 @@ const anual = (valor: string, moeda: string) =>
           <p class="lead intl-only">{t.leadIntl}</p>
           <div class="billtoggle-row reveal">
             <div class="billtoggle" id="billtoggle" role="group" aria-label={t.ciclo}>
-              <button type="button" class="billtoggle__opt" data-cycle="m" aria-pressed="false">{t.mensal}</button>
-              <button type="button" class="billtoggle__opt is-on" data-cycle="a" aria-pressed="true">{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
+              <button type="button" class={`billtoggle__opt ${M ? "is-on" : ""}`} data-cycle="m" aria-pressed={String(M)}>{t.mensal}</button>
+              <button type="button" class={`billtoggle__opt ${M ? "" : "is-on"}`} data-cycle="a" aria-pressed={String(!M)}>{t.anual} <span class="billtoggle__save">{t.economia}</span></button>
             </div>
             {/* Nota manuscrita: chama o olho pro anual sem virar mais um botão. */}
             <span class="billtoggle__nota" aria-hidden="true">
@@ -60,9 +62,9 @@ const anual = (valor: string, moeda: string) =>
               {/* As três moedas saem no HTML; o CSS mostra a do país (ver global.css). */}
               {p.price && (
                 <>
-                  <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{mensalNoAnual(p.price)}</span><span class="plan__per">{t.porMes}</span></p>
-                  <p class="plan__bill" data-cur="BRL" data-bill={anual(p.price, "R$ ")}>{anual(p.price, "R$ ")}</p>
-                  <a href={`${p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                  <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{M ? p.price : mensalNoAnual(p.price)}</span><span class="plan__per">{t.porMes}</span></p>
+                  <p class="plan__bill" data-cur="BRL" data-bill={anual(p.price, "R$ ")}>{M ? "" : anual(p.price, "R$ ")}</p>
+                  <a href={`${M ? p.hrefM : p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
                 </>
               )}
               {p.usd && (
@@ -108,9 +110,9 @@ const anual = (valor: string, moeda: string) =>
                   <li class="maisplan">
                     <span class="maisplanos__topo"><strong>{m.nome}</strong><em>{m.contas}</em></span>
                     <p class="maisplan__texto">{m.texto}</p>
-                    <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={d.price} data-a={mensalNoAnual(d.price)}>{mensalNoAnual(d.price)}</span><span class="plan__per">{t.porMes}</span></p>
-                    <p class="plan__bill" data-cur="BRL" data-bill={anual(d.price, "R$ ")}>{anual(d.price, "R$ ")}</p>
-                    <a href={`${d.hrefA}?src=${SRC}`} data-href-m={`${d.hrefM}?src=${SRC}`} data-href-a={`${d.hrefA}?src=${SRC}`} class="btn btn--ghost plan__cta maisplan__cta">{cartao(d.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                    <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={d.price} data-a={mensalNoAnual(d.price)}>{M ? d.price : mensalNoAnual(d.price)}</span><span class="plan__per">{t.porMes}</span></p>
+                    <p class="plan__bill" data-cur="BRL" data-bill={anual(d.price, "R$ ")}>{M ? "" : anual(d.price, "R$ ")}</p>
+                    <a href={`${M ? d.hrefM : d.hrefA}?src=${SRC}`} data-href-m={`${d.hrefM}?src=${SRC}`} data-href-a={`${d.hrefA}?src=${SRC}`} class="btn btn--ghost plan__cta maisplan__cta">{cartao(d.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
                   </li>
                 );
               })}
