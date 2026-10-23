@@ -15,7 +15,7 @@ export const pt = {
   meta: {
     title: "Notifiquei — Seu próximo cliente está no direct.",
     description:
-      "Transforme comentários em conversas que vendem. Automatize comentários, directs e stories do Instagram com o seu jeito de falar. Conheça o Notifiquei e comece grátis.",
+      "Transforme comentários em conversas que vendem. Automatize comentários, directs e stories do Instagram com o seu jeito de falar. Conheça o Notifiquei e comece hoje.",
     skip: "Pular para o conteúdo",
     navLangLabel: "Escolher idioma",
     navComecar: "Começar agora",
@@ -31,7 +31,7 @@ export const pt = {
     ctaBr: "Começar agora",
     ctaIntl: "Começar agora",
     verNaPratica: "Ver na prática",
-    microBr: "Grátis para sempre. Sem cartão.",
+    microBr: "Garantia de 7 dias. Cancele quando quiser.",
     microIntl: "Garantia de 7 dias. Cancele quando quiser.",
     fotoAlt: "Empreendedora no balcão da própria loja, sorrindo para o celular",
   },
@@ -275,7 +275,7 @@ export const pt = {
     lead: "Seu conteúdo chama atenção. O Notifiquei cuida da conversa.",
     ctaBr: "Começar agora",
     ctaIntl: "Escolher meu plano",
-    microBr: "Sem cartão. Sem prazo. Do seu jeito.",
+    microBr: "Garantia de 7 dias. Do seu jeito.",
     microIntl: "Garantia de 7 dias. Do seu jeito.",
   },
 };

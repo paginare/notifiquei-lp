@@ -207,7 +207,8 @@ const resources = t.extras.cards.map((card, i) => ({ ...card, icon: ["chart", "l
         </div>
       </section>
 
-      <HomePricing t={t.planos} lang={lang} />
+      {/* Home sem o plano grátis (pedido do dono, 23/10/2026): só os pagos. */}
+      <HomePricing t={t.planos} lang={lang} gratis={false} />
 
       <section class="home-section home-faq" id="faq">
         <div class="container home-faq__grid">
