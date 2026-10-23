@@ -222,15 +222,19 @@ export const pt = {
       "Mensagens com marca d’água “⚡ Enviado com Notifiquei”",
     ],
     gratisCta: "Começar grátis",
-    maisChamada: "Precisa de mais de duas contas?",
-    maisCta: "Ver planos maiores",
-    maisTitulo: "Planos para quem tem mais contas",
-    maisIntro: "Mais contas no mesmo login, com times e divisão por equipe. Mesma garantia de 7 dias dos outros planos.",
+    maisChamada: "Precisa de mais contas?",
+    maisCta: "Monte seu plano",
+    maisTitulo: "Monte seu plano",
+    maisIntro: "De 1 a 20 contas no mesmo login, com times e divisão por equipe. Quanto mais contas, menor o preço por conta. Mesma garantia de 7 dias.",
     maisPlanos: [
       { nome: "Pro", contas: "Até 5 contas", texto: "Instagram + TikTok em cada uma, com times e divisão por equipe." },
       { nome: "Business", contas: "Até 10 contas", texto: "Tudo do Pro, com atendimento VIP e prioridade na fila." },
     ],
     maisFechar: "Fechar",
+    maisConta: "conta",
+    maisContas: "contas",
+    maisPorConta: "por conta",
+    maisContinuar: "Continuar",
     // Números que dá pra defender: 646 contas no banco em 21/09 e a garantia
     // que já está no cartão. Nota média fica de fora enquanto não houver fonte.
     provas: [

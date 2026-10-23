@@ -1,5 +1,5 @@
 ---
-import { plans, FREE, planosMaiores, perfis } from "../data/home";
+import { plans, FREE, perfis, assinarHref, tabelaContas } from "../data/home";
 import { intlHref, mensalNoAnual, totalAnual } from "../i18n/planos";
 import { marcar, type CopyHome, type Lang } from "../i18n/home";
 import Icon from "./HomeIcon.astro";
@@ -64,7 +64,7 @@ const anual = (valor: string, moeda: string) =>
                 <>
                   <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={p.price} data-a={mensalNoAnual(p.price)}>{M ? p.price : mensalNoAnual(p.price)}</span><span class="plan__per">{t.porMes}</span></p>
                   <p class="plan__bill" data-cur="BRL" data-bill={anual(p.price, "R$ ")}>{M ? "" : anual(p.price, "R$ ")}</p>
-                  <a href={`${M ? p.hrefM : p.hrefA}?src=${SRC}`} data-href-m={`${p.hrefM}?src=${SRC}`} data-href-a={`${p.hrefA}?src=${SRC}`} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
+                  <a href={assinarHref(p.contas ?? 1, M ? "m" : "a", SRC)} data-href-m={assinarHref(p.contas ?? 1, "m", SRC)} data-href-a={assinarHref(p.contas ?? 1, "a", SRC)} class={`btn ${p.featured ? "btn--brand" : "btn--ghost"} plan__cta br-only`}>{cartao(p.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
                 </>
               )}
               {p.usd && (
@@ -92,8 +92,8 @@ const anual = (valor: string, moeda: string) =>
 
 
 
-        <!-- Pro e Business saíram da grade em 2e85684, mas os produtos seguem
-             ativos na Cakto: a janela os traz de volta com checkout direto. -->
+        <!-- Mais contas: escolhe de 1 a 20 e segue para o checkout próprio
+             (app.notifiquei.com.br/assinar). Preço por volume em data/home.ts. -->
         <p class="maisplanos__chamada br-only">
           {t.maisChamada} <button type="button" class="home-text-link" id="maisplanos-abrir">{t.maisCta} <span class="arr" aria-hidden="true">→</span></button>
         </p>
@@ -103,20 +103,20 @@ const anual = (valor: string, moeda: string) =>
             <button type="button" class="maisplanos__x" id="maisplanos-fechar" aria-label={t.maisFechar}>×</button>
             <h3>{t.maisTitulo}</h3>
             <p class="maisplanos__intro">{t.maisIntro}</p>
-            <ul class="maisplanos__lista">
-              {t.maisPlanos.map((m, i) => {
-                const d = planosMaiores[i];
-                return (
-                  <li class="maisplan">
-                    <span class="maisplanos__topo"><strong>{m.nome}</strong><em>{m.contas}</em></span>
-                    <p class="maisplan__texto">{m.texto}</p>
-                    <p class="plan__price" data-cur="BRL"><span class="plan__cur">R$</span><span class="plan__amount" data-m={d.price} data-a={mensalNoAnual(d.price)}>{M ? d.price : mensalNoAnual(d.price)}</span><span class="plan__per">{t.porMes}</span></p>
-                    <p class="plan__bill" data-cur="BRL" data-bill={anual(d.price, "R$ ")}>{M ? "" : anual(d.price, "R$ ")}</p>
-                    <a href={`${M ? d.hrefM : d.hrefA}?src=${SRC}`} data-href-m={`${d.hrefM}?src=${SRC}`} data-href-a={`${d.hrefA}?src=${SRC}`} class="btn btn--ghost plan__cta maisplan__cta">{cartao(d.slug).cta}<span class="arr" aria-hidden="true">→</span></a>
-                  </li>
-                );
-              })}
-            </ul>
+            <div class="montar" id="montar" data-tabela={JSON.stringify(tabelaContas)} data-src={SRC} data-ciclo={M ? "m" : "a"}
+              data-conta={t.maisConta} data-contas={t.maisContas} data-porconta={t.maisPorConta} data-bill={t.cobradoAno}>
+              <div class="montar__linha">
+                <p class="montar__num"><strong id="montar-n">3</strong> <span id="montar-rot">{t.maisContas}</span></p>
+                <div class="montar__botoes">
+                  <button type="button" class="montar__btn" data-passo="-1" aria-label="-1">−</button>
+                  <button type="button" class="montar__btn" data-passo="1" aria-label="+1">+</button>
+                </div>
+              </div>
+              <input type="range" min="1" max="20" value="3" id="montar-range" class="montar__range" aria-label={t.maisContas} />
+              <p class="plan__price"><span class="plan__cur">R$</span><span class="plan__amount" id="montar-preco"></span><span class="plan__per">{t.porMes}</span></p>
+              <p class="montar__sub" id="montar-sub"></p>
+              <a id="montar-cta" href={assinarHref(3, M ? "m" : "a", SRC)} class="btn btn--brand plan__cta montar__cta">{t.maisContinuar}<span class="arr" aria-hidden="true">→</span></a>
+            </div>
           </div>
         </dialog>
 
@@ -190,6 +190,40 @@ const anual = (valor: string, moeda: string) =>
       maisJanela.addEventListener("click", (e) => {
         if (e.target === maisJanela) maisJanela.close();
       });
+    }
+
+    // "Monte seu plano": 1 a 20 contas, segue o ciclo do toggle.
+    const montar = document.getElementById("montar");
+    if (montar) {
+      const tabela: { contas: number; mensal: number }[] = JSON.parse(montar.dataset.tabela || "[]");
+      const range = document.getElementById("montar-range") as HTMLInputElement;
+      const fmt = (v: number) => v.toLocaleString("pt-BR");
+      const desenha = () => {
+        const n = Number(range.value);
+        const anual = montar.dataset.ciclo === "a";
+        const mensal = tabela[n - 1].mensal;
+        document.getElementById("montar-n")!.textContent = String(n);
+        document.getElementById("montar-rot")!.textContent = n === 1 ? montar.dataset.conta! : montar.dataset.contas!;
+        document.getElementById("montar-preco")!.textContent = fmt(anual ? Math.round((mensal * 10) / 12) : mensal);
+        const porConta = `R$ ${fmt(Math.round(mensal / n))} ${montar.dataset.porconta}`;
+        document.getElementById("montar-sub")!.textContent = anual
+          ? `${montar.dataset.bill!.replace("{valor}", "R$ " + fmt(mensal * 10))} · ${porConta}`
+          : porConta;
+        const cta = document.getElementById("montar-cta") as HTMLAnchorElement;
+        cta.href = `https://app.notifiquei.com.br/assinar?contas=${n}&ciclo=${anual ? "anual" : "mensal"}&src=${encodeURIComponent(montar.dataset.src || "home")}`;
+      };
+      range.addEventListener("input", desenha);
+      montar.querySelectorAll<HTMLButtonElement>(".montar__btn").forEach((b) =>
+        b.addEventListener("click", () => {
+          range.value = String(Math.min(20, Math.max(1, Number(range.value) + Number(b.dataset.passo))));
+          desenha();
+        }),
+      );
+      document.getElementById("billtoggle")?.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".billtoggle__opt");
+        if (btn) { montar.dataset.ciclo = btn.dataset.cycle; desenha(); }
+      });
+      desenha();
     }
 
     // Toggle mensal/anual nos planos

@@ -46,6 +46,12 @@ const cakto = {
     } else if (u.host === "wa.me" || u.host === "api.whatsapp.com") {
       envia("Contact", {});
       if (window.posthog) window.posthog.capture("whatsapp_clicked", { origem: a.dataset.zap || "link" });
+    } else if (u.host === "app.notifiquei.com.br" && u.pathname === "/assinar") {
+      // Checkout próprio (desde 23/10/2026): plano e valor saem do link.
+      var n = Math.min(20, Math.max(1, Number(u.searchParams.get("contas")) || 1));
+      var anual = u.searchParams.get("ciclo") === "anual";
+      var mensal = n <= 2 ? 99 * n : n <= 5 ? 199 + (n - 2) * 100 : n <= 10 ? 499 + (n - 5) * 60 : 799 + (n - 10) * 50;
+      envia("InitiateCheckout", { content_name: "contas_" + n + (anual ? "_anual" : "_mensal"), value: anual ? mensal * 10 : mensal, currency: "BRL" });
     } else if (u.host === "app.notifiquei.com.br" && u.pathname === "/auth") {
       // Com ?plan= é o gringo indo pagar no Stripe; sem, é o cadastro grátis.
       var slug = u.searchParams.get("plan");

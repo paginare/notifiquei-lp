@@ -620,3 +620,16 @@
   .nf-rev { opacity: 0; translate: 0 28px; transition: opacity .75s cubic-bezier(.215,.61,.355,1), translate .75s cubic-bezier(.215,.61,.355,1); transition-delay: calc(var(--nf-rev-i, 0) * 85ms); }
   .nf-rev.is-in { opacity: 1; translate: 0 0; }
 }
+
+/* "Monte seu plano" (janela mais contas): 1 a 20 contas → checkout próprio */
+.home-page .montar { margin-top: 22px; padding: 22px; border-radius: 16px; background: var(--paper-2, #f4ece6); }
+.home-page .montar__linha { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.home-page .montar__num { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.home-page .montar__num strong { font-size: 44px; line-height: 1; letter-spacing: -.03em; color: var(--ink); margin-right: 4px; }
+.home-page .montar__botoes { display: flex; gap: 8px; }
+.home-page .montar__btn { width: 42px; height: 42px; border-radius: 999px; border: 1.5px solid #e6d9d2; background: var(--paper); font-size: 20px; line-height: 1; cursor: pointer; color: var(--ink); }
+.home-page .montar__btn:hover { border-color: var(--ink); }
+.home-page .montar__range { width: 100%; margin: 18px 0 8px; accent-color: var(--brand, #ff1f6d); }
+.home-page .montar .plan__price { margin: 6px 0 2px; }
+.home-page .montar__sub { margin: 0 0 16px; font-size: 13px; color: var(--ink-soft); min-height: 18px; }
+.home-page .montar__cta { width: 100%; justify-content: center; }

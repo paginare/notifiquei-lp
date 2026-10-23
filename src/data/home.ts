@@ -2,6 +2,23 @@ const SRC = "home"; // atribuição A/B: identifica a landing de origem (?src=) 
 export const FREE = `https://app.notifiquei.com.br/auth?src=${SRC}`; // signup grátis (entrada do funil, sem cartão)
 export const WPP = "https://wa.me/551231995949";
 
+// Checkout próprio do Notifiquei (app.notifiquei.com.br/assinar), desde 23/10/2026:
+// Pix Automático e cartão sem sair do site, de 1 a 20 contas. Os links antigos da
+// Cakto (hrefM/hrefA) ficam nos dados só como referência — os botões usam este.
+export const CHECKOUT = "https://app.notifiquei.com.br/assinar";
+export const assinarHref = (contas: number, ciclo: "m" | "a", src: string) =>
+  `${CHECKOUT}?contas=${contas}&ciclo=${ciclo === "a" ? "anual" : "mensal"}&src=${encodeURIComponent(src)}`;
+
+// Preço mensal por número de contas (desconto por volume) — o mesmo de
+// instaV2/backend/src/payments/cakto/planos-contas.ts. Anual = 10x.
+export function precoContas(n: number): number {
+  if (n <= 2) return 99 * n;
+  if (n <= 5) return 199 + (n - 2) * 100;
+  if (n <= 10) return 499 + (n - 5) * 60;
+  return 799 + (n - 10) * 50;
+}
+export const tabelaContas = Array.from({ length: 20 }, (_, i) => ({ contas: i + 1, mensal: precoContas(i + 1) }));
+
 // Soma de seguidores das contas do Instagram ATIVAS no banco em 30/09/2026 (362
 // contas; o produto atualiza o número de cada uma todo dia). Só o total: sem nome
 // de conta e sem a régua de destaques, que o dono pediu para tirar.
@@ -17,6 +34,7 @@ export const plans = [
   {
     name: "Solo",
     slug: "solo",
+    contas: 1,
     mercado: "ambos",
     price: "99",
     usd: "19",
@@ -31,6 +49,7 @@ export const plans = [
   {
     name: "Duo",
     slug: "duo",
+    contas: 2,
     mercado: "br",
     price: "198",
     blurb: "Duas frentes na mesma operação.",
