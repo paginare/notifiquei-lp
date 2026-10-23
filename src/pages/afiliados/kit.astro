@@ -1,0 +1,421 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/HomeIcon.astro";
+import Logo from "../../components/Logo.astro";
+import ZapFlutuante from "../../components/ZapFlutuante.astro";
+import { copyHome, marcar } from "../../i18n/home";
+import "../../styles/home.css";
+
+const t = copyHome("pt-BR");
+
+// Os arquivos ficam em public/afiliados/kit (logos gerados a partir do Logo.astro,
+// prints convertidos de public/assets/painel). Mexeu em algum? Refaça o ZIP:
+//   cd public/afiliados/kit && zip -qr -X notifiquei-kit-afiliado.zip COMO-USAR.txt textos-prontos.txt logos prints noti
+const K = "/afiliados/kit";
+const ZIP = `${K}/notifiquei-kit-afiliado.zip`;
+
+const logos = [
+  { nome: "Logo rosa", uso: "Fundo claro", arq: "notifiquei-logo-rosa", fundo: "claro", cor: "#FF1F6D", tipo: "logo" },
+  { nome: "Logo preto", uso: "Fundo claro, impressão em 1 cor", arq: "notifiquei-logo-preto", fundo: "claro", cor: "#14100E", tipo: "logo" },
+  { nome: "Logo branco", uso: "Fundo escuro, rosa ou foto", arq: "notifiquei-logo-branco", fundo: "escuro", cor: "#FFFFFF", tipo: "logo" },
+  { nome: "Símbolo rosa", uso: "Espaço pequeno, fundo claro", arq: "notifiquei-simbolo-rosa", fundo: "claro", cor: "#FF1F6D", tipo: "simbolo" },
+  { nome: "Símbolo branco", uso: "Espaço pequeno, fundo escuro", arq: "notifiquei-simbolo-branco", fundo: "rosa", cor: "#FFFFFF", tipo: "simbolo" },
+  { nome: "Ícone do app", uso: "Avatar, figurinha, destaque", arq: "notifiquei-icone-app", fundo: "claro", cor: "", tipo: "icone" },
+];
+
+const cores = [
+  { nome: "Rosa Notifiquei", hex: "#FF1F6D", texto: "#fff" },
+  { nome: "Preto", hex: "#14100E", texto: "#fff" },
+  { nome: "Bege papel", hex: "#FAF6EF", texto: "#14100E" },
+  { nome: "Creme", hex: "#FFF9F3", texto: "#14100E" },
+];
+
+const pode = [
+  "Logo rosa ou preto em fundo claro; branco em fundo escuro, rosa ou foto.",
+  "Espaço livre em volta do logo, de pelo menos a altura da letra “o”.",
+  "Dizer que o Notifiquei usa a API oficial da Meta.",
+  "Deixar claro que você é afiliado e usar sempre o seu link.",
+];
+const naoPode = [
+  "Esticar, girar, trocar as cores ou pôr sombra e contorno no logo.",
+  "Escrever “Notifiquei” com outra fonte imitando o logo.",
+  "Usar os selos de parceiro da Meta ou do TikTok (são só do Notifiquei).",
+  "Criar perfil, página ou anúncio que pareça ser o próprio Notifiquei.",
+  "Prometer o que o produto não faz, como “ganhar seguidores”.",
+];
+
+const prints = [
+  { arq: "notifiquei-automacoes", img: "automacoes", t: "Automações", d: "Todas as automações do perfil, organizadas em pastas." },
+  { arq: "notifiquei-dashboard", img: "dashboard", t: "Dashboard", d: "Quantas mensagens saíram e quem mais interagiu." },
+  { arq: "notifiquei-cliques", img: "cliques", t: "Cliques nos links", d: "Quantas pessoas clicaram no link mandado no direct." },
+  { arq: "notifiquei-sorteio", img: "sorteio", t: "Sorteios", d: "Sorteio com os comentários do post, direto no painel." },
+  { arq: "notifiquei-assistente", img: "assistente", t: "Assistente", d: "Cria a automação conversando, sem configurar nada." },
+];
+
+const noti = [
+  { arq: "noti-acenando", t: "Acenando" },
+  { arq: "noti-olhando", t: "Olhando" },
+  { arq: "noti-pensando", t: "Pensando" },
+];
+
+const textos = [
+  {
+    t: "Legenda pra post ou Reels",
+    txt: `Sabe aquele post que bomba de comentário e você não dá conta de responder todo mundo no direct?
+
+Eu uso o Notifiquei. A pessoa comenta uma palavra (tipo "QUERO") e em segundos recebe no direct o link, o preço ou o que eu quiser mandar. Sozinho, 24 horas.
+
+✅ Pela API oficial da Meta, sem passar senha
+✅ Funciona no Instagram e no TikTok
+✅ Preço fixo em real, a partir de R$ 99 por mês
+✅ 7 dias de garantia
+
+Com o cupom [SEU CUPOM] você ganha 10% de desconto todo mês.
+Link na bio 👉 [SEU LINK]`,
+  },
+  {
+    t: "Stories (3 telas)",
+    txt: `1) Quantas DMs você perdeu essa semana porque não deu tempo de responder? 😅
+2) Eu deixei o Notifiquei responder por mim: comentou, recebeu no direct na hora.
+3) Cupom [SEU CUPOM] = 10% off todo mês. Link aqui: [SEU LINK]`,
+  },
+  {
+    t: "WhatsApp",
+    txt: `Oi! Lembrei de você 😊
+Tem uma ferramenta que responde os comentários e o direct do Instagram sozinha. A pessoa comenta "quero" e já recebe o link no direct.
+É pela API oficial da Meta, custa a partir de R$ 99/mês e tem 7 dias de garantia.
+Com meu cupom [SEU CUPOM] sai 10% mais barato todo mês: [SEU LINK]`,
+  },
+  {
+    t: "E-mail",
+    txt: `Assunto: Pare de perder venda no direct do Instagram
+
+Oi, tudo bem?
+
+Se os seus posts recebem muitos comentários, você já sabe: responder um por um no direct toma o dia inteiro, e quem não recebe resposta rápida desiste da compra.
+
+O Notifiquei resolve isso. Você escolhe uma palavra (por exemplo "QUERO") e, quando alguém comenta, ele manda no direct a mensagem que você escreveu: link, preço, cupom, o que quiser. Na hora, 24 horas por dia.
+
+- Usa a API oficial da Meta (você não passa sua senha pra ninguém)
+- Funciona no Instagram e no TikTok no mesmo plano
+- Preço fixo em real, a partir de R$ 99 por mês
+- 7 dias de garantia
+
+Use o cupom [SEU CUPOM] e ganhe 10% de desconto todo mês:
+[SEU LINK]
+
+Abraço!`,
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Kit do afiliado Notifiquei",
+    url: "https://notifiquei.com.br/afiliados/kit",
+    isPartOf: { "@id": "https://notifiquei.com.br/#org" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Notifiquei", item: "https://notifiquei.com.br/" },
+      { "@type": "ListItem", position: 2, name: "Afiliados", item: "https://notifiquei.com.br/afiliados" },
+      { "@type": "ListItem", position: 3, name: "Kit do afiliado", item: "https://notifiquei.com.br/afiliados/kit" },
+    ],
+  },
+];
+---
+
+<Base
+  title="Kit do afiliado Notifiquei — logos, prints e textos prontos"
+  description="Logos do Notifiquei em SVG e PNG, regras de uso da marca, prints do painel e textos prontos pra post, stories, WhatsApp e e-mail. Baixe tudo num ZIP."
+  path="/afiliados/kit"
+  jsonLd={jsonLd}
+  lang="pt-BR"
+>
+  <div class="home-page pagina-clara">
+    <a href="#conteudo" class="home-skip">{t.meta.skip}</a>
+    <Nav links={t.nav} lang="pt-BR" langLabel={t.meta.navLangLabel} comecar="Quero me afiliar" comecarHref="/afiliados" />
+
+    <main id="conteudo">
+      <section class="pg-head kit-head">
+        <div class="container">
+          <span class="home-kicker"><Icon name="spark" size={17} /> KIT DO AFILIADO</span>
+          <h1 set:html={marcar("Divulgue com\n{hl}a cara do Notifiquei.{/hl}")} />
+          <p>Logos, cores, prints do painel e textos prontos. Baixe tudo de uma vez ou pegue só o que precisar.</p>
+          <div class="kit-head__acoes">
+            <a href={ZIP} download class="btn btn--brand btn--lg">Baixar o kit completo <Icon name="arrow" size={22} /></a>
+            <small>ZIP com 3,7 MB · logos, prints, Nôti e textos</small>
+          </div>
+          <nav class="kit-atalhos" aria-label="Seções do kit">
+            <a href="#logos">Logos</a>
+            <a href="#como-usar">Como usar</a>
+            <a href="#prints">Prints</a>
+            <a href="#noti">Nôti</a>
+            <a href="#textos">Textos prontos</a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- LOGOS -->
+      <section class="home-section kit-sec" id="logos">
+        <div class="container">
+          <div class="home-section-heading">
+            <h2 set:html={marcar("Logos em\n{hl}alta qualidade.{/hl}")} />
+            <p>PNG com fundo transparente pra redes sociais. SVG pra quem edita no Canva, Figma ou manda pra gráfica.</p>
+          </div>
+          <div class="kit-logos">
+            {logos.map((l) => (
+              <article class="kit-logo">
+                <div class={`kit-logo__vitrine kit-logo__vitrine--${l.fundo}`}>
+                  {l.tipo === "logo" && <span style={`color:${l.cor}`}><Logo height={34} /></span>}
+                  {l.tipo !== "logo" && <img src={`${K}/logos/${l.arq}.svg`} alt={l.nome} width="72" height="72" loading="lazy" />}
+                </div>
+                <div class="kit-logo__info">
+                  <b>{l.nome}</b>
+                  <span>{l.uso}</span>
+                </div>
+                <div class="kit-logo__baixar">
+                  <a href={`${K}/logos/${l.arq}.png`} download>PNG</a>
+                  <a href={`${K}/logos/${l.arq}.svg`} download>SVG</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- COMO USAR -->
+      <section class="home-section kit-sec kit-sec--alt" id="como-usar">
+        <div class="container">
+          <div class="home-section-heading">
+            <h2 set:html={marcar("Como usar\n{hl}a marca.{/hl}")} />
+            <p>Poucas regras, pra o seu material passar a mesma confiança que o produto.</p>
+          </div>
+
+          <h3 class="kit-sub">Cores</h3>
+          <div class="kit-cores">
+            {cores.map((c) => (
+              <button type="button" class="kit-cor" data-copiar={c.hex} style={`background:${c.hex};color:${c.texto}`}>
+                <b>{c.nome}</b>
+                <span data-rotulo>{c.hex}</span>
+              </button>
+            ))}
+          </div>
+          <p class="kit-dica">Toque na cor pra copiar o código.</p>
+
+          <h3 class="kit-sub">Tamanho e espaço</h3>
+          <div class="kit-espaco">
+            <div class="kit-espaco__demo" aria-hidden="true">
+              <span class="kit-espaco__logo"><Logo height={40} /></span>
+            </div>
+            <ul>
+              <li><b>Espaço livre:</b> deixe em volta do logo pelo menos a altura da letra “o”.</li>
+              <li><b>Tamanho mínimo:</b> 100 px de largura pro logo completo e 24 px pro símbolo.</li>
+              <li><b>Espaço pequeno</b> (avatar, figurinha, ícone): use o símbolo ou o ícone do app.</li>
+            </ul>
+          </div>
+
+          <div class="kit-regras">
+            <div class="kit-regras__col kit-regras__col--sim">
+              <h3><Icon name="check" size={20} /> Pode</h3>
+              <ul>{pode.map((p) => <li>{p}</li>)}</ul>
+            </div>
+            <div class="kit-regras__col kit-regras__col--nao">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> Não pode</h3>
+              <ul>{naoPode.map((p) => <li>{p}</li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRINTS -->
+      <section class="home-section kit-sec" id="prints">
+        <div class="container">
+          <div class="home-section-heading">
+            <h2 set:html={marcar("Prints da\n{hl}plataforma.{/hl}")} />
+            <p>Telas do painel com dados de exemplo, prontas pra post, carrossel ou apresentação.</p>
+          </div>
+          <div class="kit-prints">
+            {prints.map((p) => (
+              <figure class="kit-print">
+                <img src={`/assets/painel/${p.img}.webp`} alt={`Tela de ${p.t} do Notifiquei`} width="1080" height="675" loading="lazy" />
+                <figcaption>
+                  <div><b>{p.t}</b><span>{p.d}</span></div>
+                  <a href={`${K}/prints/${p.arq}.png`} download class="kit-baixar">Baixar PNG</a>
+                </figcaption>
+              </figure>
+            ))}
+            <figure class="kit-print kit-print--celular">
+              <img src="/assets/painel/mobile-automacoes.webp" alt="Tela de automações no app do Notifiquei" width="585" height="1266" loading="lazy" />
+              <figcaption>
+                <div><b>App no celular</b><span>Formato em pé, bom pra stories.</span></div>
+                <a href={`${K}/prints/notifiquei-celular-automacoes.png`} download class="kit-baixar">Baixar PNG</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- NÔTI -->
+      <section class="home-section kit-sec kit-sec--alt" id="noti">
+        <div class="container">
+          <div class="home-section-heading">
+            <h2 set:html={marcar("Conheça\n{hl}a Nôti.{/hl}")} />
+            <p>A polvinha mascote do Notifiquei. Pode usar nos seus posts e stories, sem alterar o desenho.</p>
+          </div>
+          <div class="kit-noti">
+            {noti.map((n) => (
+              <figure>
+                <img src={`${K}/noti/${n.arq}.png`} alt={`Nôti ${n.t.toLowerCase()}`} width="160" height="160" loading="lazy" />
+                <figcaption>{n.t}</figcaption>
+                <a href={`${K}/noti/${n.arq}.png`} download class="kit-baixar">Baixar PNG</a>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TEXTOS -->
+      <section class="home-section kit-sec" id="textos">
+        <div class="container">
+          <div class="home-section-heading">
+            <h2 set:html={marcar("Textos\n{hl}prontos.{/hl}")} />
+            <p>Copie, troque <b>[SEU LINK]</b> pelo seu link de afiliado da Cakto e <b>[SEU CUPOM]</b> pelo seu cupom.</p>
+          </div>
+          <div class="kit-textos">
+            {textos.map((x) => (
+              <article class="kit-texto">
+                <header>
+                  <h3>{x.t}</h3>
+                  <button type="button" class="btn btn--brand kit-texto__copiar" data-copiar={x.txt}><span data-rotulo>Copiar</span></button>
+                </header>
+                <pre>{x.txt}</pre>
+              </article>
+            ))}
+          </div>
+          <p class="kit-mais">Quer o pitch, as funções e as respostas pras dúvidas do lead? <a href="/afiliados/central" class="home-text-link">Central do afiliado <Icon name="diagonal" size={20} /></a></p>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <ZapFlutuante texto="Oi! Sou afiliado do Notifiquei e tenho uma dúvida sobre o kit." rotulo={t.zapRotulo} />
+  </div>
+
+  <script>
+    import { iniciarMovimento } from "../../scripts/movimento";
+    iniciarMovimento();
+
+    // Copiar cor ou texto: troca o rótulo por "Copiado ✓" por um instante.
+    document.querySelectorAll<HTMLElement>("[data-copiar]").forEach((el) => {
+      el.addEventListener("click", async () => {
+        const rotulo = el.querySelector<HTMLElement>("[data-rotulo]");
+        if (!rotulo) return;
+        const antes = rotulo.textContent;
+        try {
+          await navigator.clipboard.writeText(el.dataset.copiar ?? "");
+          rotulo.textContent = "Copiado ✓";
+        } catch {
+          rotulo.textContent = "Selecione e copie";
+        }
+        setTimeout(() => { rotulo.textContent = antes; }, 1600);
+      });
+    });
+  </script>
+</Base>
+
+<style>
+  .kit-head { padding-bottom: 40px; }
+  .kit-head__acoes { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 30px; }
+  .kit-head__acoes small { font-size: 13px; color: var(--ink-faint); }
+  .kit-atalhos { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .kit-atalhos a { padding: 8px 14px; border-radius: 99px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .kit-atalhos a:hover { border-color: var(--brand-ink); }
+
+  .kit-sec--alt { background: #fff; }
+  .kit-sec .home-section-heading { margin-bottom: 44px; }
+  .kit-sub:not(:first-of-type) { margin-top: 36px; }
+  .kit-baixar { font-size: 13px; font-weight: 700; color: var(--brand-ink); white-space: nowrap; }
+  .kit-baixar:hover { text-decoration: underline; }
+
+  /* Logos */
+  .kit-logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  @media (max-width: 960px) { .kit-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .kit-logos { grid-template-columns: 1fr; } }
+  .kit-logo { background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+  .kit-logo__vitrine { height: 150px; display: grid; place-items: center; padding: 20px; }
+  .kit-logo__vitrine--claro { background: var(--paper); }
+  .kit-logo__vitrine--escuro { background: var(--ink); }
+  .kit-logo__vitrine--rosa { background: var(--brand); }
+  .kit-logo__vitrine :global(svg) { max-width: 100%; height: auto; }
+  .kit-logo__info { padding: 16px 18px 6px; display: flex; flex-direction: column; gap: 2px; }
+  .kit-logo__info b { font-size: 16px; }
+  .kit-logo__info span { font-size: 13px; color: var(--ink-soft); }
+  .kit-logo__baixar { display: flex; gap: 8px; padding: 12px 18px 18px; margin-top: auto; }
+  .kit-logo__baixar a { flex: 1; text-align: center; padding: 9px 0; border-radius: 12px; border: 1px solid var(--line); font-size: 13px; font-weight: 700; color: var(--ink); }
+  .kit-logo__baixar a:hover { border-color: var(--brand-ink); color: var(--brand-ink); }
+
+  /* Como usar */
+  .kit-sub { font-size: 20px; margin: 8px 0 14px; }
+  .kit-cores { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .kit-cor { border: 1px solid var(--line); border-radius: 18px; padding: 54px 18px 16px; text-align: left; font: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+  .kit-cor b { font-size: 15px; }
+  .kit-cor span { font-size: 13px; opacity: .8; font-variant-numeric: tabular-nums; }
+  .kit-dica { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
+  .kit-espaco { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; margin: 4px 0 36px; }
+  .kit-espaco__demo { background: var(--paper); border-radius: 20px; padding: 36px; display: grid; place-items: center; }
+  .kit-espaco__logo { color: var(--brand); padding: 22px; outline: 2px dashed #ff1f6d66; outline-offset: 0; border-radius: 6px; max-width: 100%; }
+  .kit-espaco__logo :global(svg) { max-width: 100%; height: auto; display: block; }
+  .kit-espaco ul, .kit-regras ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .kit-espaco li, .kit-regras li { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+  .kit-espaco li b { color: var(--ink); }
+  .kit-regras { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .kit-regras__col { border-radius: 20px; padding: 24px; border: 1px solid var(--line); }
+  .kit-regras__col h3 { display: flex; align-items: center; gap: 8px; font-size: 18px; margin-bottom: 14px; }
+  .kit-regras__col--sim { background: #eef8f2; }
+  .kit-regras__col--sim h3 { color: var(--positive); }
+  .kit-regras__col--nao { background: #fdf0f3; }
+  .kit-regras__col--nao h3 { color: var(--brand-ink); }
+  .kit-regras li { padding-left: 18px; position: relative; }
+  .kit-regras li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .45; }
+
+  /* Prints */
+  .kit-prints { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .kit-print { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+  .kit-print img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
+  .kit-print figcaption { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 14px 18px; }
+  .kit-print figcaption div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .kit-print figcaption b { font-size: 15px; }
+  .kit-print figcaption span { font-size: 13px; color: var(--ink-soft); }
+  .kit-print--celular { display: flex; flex-direction: column; }
+  .kit-print--celular img { width: auto; max-height: 340px; margin: 18px auto 0; border: 0; border-radius: 22px; box-shadow: 0 10px 30px #14100e1f; }
+  .kit-print--celular figcaption { margin-top: auto; border-top: 1px solid var(--line); }
+
+  /* Nôti */
+  .kit-noti { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 760px; margin: 0 auto; }
+  .kit-noti figure { margin: 0; background: var(--paper); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .kit-noti img { width: 140px; height: 140px; object-fit: contain; }
+  .kit-noti figcaption { font-weight: 700; }
+
+  /* Textos */
+  .kit-textos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .kit-texto { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .kit-texto header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .kit-texto h3 { font-size: 18px; }
+  .kit-texto__copiar { padding: 9px 16px; font-size: 14px; }
+  .kit-texto pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 14px; line-height: 1.6; color: var(--ink-soft); background: var(--paper); border-radius: 14px; padding: 16px; max-height: 340px; overflow: auto; }
+  .kit-mais { text-align: center; margin-top: 36px; color: var(--ink-soft); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+
+  @media (max-width: 760px) {
+    .kit-espaco, .kit-regras, .kit-prints, .kit-textos { grid-template-columns: 1fr; }
+    .kit-noti { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .kit-noti img { width: 88px; height: 88px; }
+    .kit-noti figure { padding: 14px 6px; }
+    .kit-print figcaption { flex-direction: column; align-items: flex-start; }
+  }
+</style>

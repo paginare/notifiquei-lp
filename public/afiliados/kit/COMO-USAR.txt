@@ -1,0 +1,33 @@
+KIT DO AFILIADO NOTIFIQUEI — COMO USAR
+Página com tudo: https://notifiquei.com.br/afiliados/kit
+
+PASTAS
+- logos/   Logo completo e símbolo em rosa, preto e branco (SVG e PNG transparente) + ícone do app
+- prints/  Telas reais do painel com dados de exemplo
+- noti/    A Nôti, mascote do Notifiquei
+- textos-prontos.txt  Legenda, stories, WhatsApp e e-mail
+
+QUAL LOGO USAR
+- Fundo claro (branco, bege): logo rosa ou preto
+- Fundo escuro ou foto: logo branco
+- Fundo rosa: logo branco
+- Espaço pequeno (avatar, figurinha): símbolo ou ícone do app
+
+CORES
+- Rosa Notifiquei  #FF1F6D
+- Preto            #14100E
+- Bege papel       #FAF6EF
+- Creme            #FFF9F3
+
+REGRAS
+- Deixe um espaço livre em volta do logo (pelo menos a altura da letra "o").
+- Tamanho mínimo: 100 px de largura no digital (logo completo) ou 24 px (símbolo).
+- Não estique, não gire, não troque as cores, não coloque sombra ou contorno.
+- Não escreva "Notifiquei" com outra fonte imitando o logo: use o arquivo.
+- Não use os selos de parceiro da Meta ou do TikTok: eles são só do Notifiquei.
+  Você pode dizer que o Notifiquei usa a API oficial da Meta.
+- Não crie perfil, página ou anúncio que pareça ser o próprio Notifiquei.
+  Deixe claro que você é afiliado.
+- Não prometa o que o produto não faz (ex.: "ganhar seguidores", "vender sozinho").
+
+Dúvidas: WhatsApp (12) 3199-5949 ou contato@notifiquei.com.br
